@@ -1,0 +1,55 @@
+<div class="border-primary">
+    <form [formGroup]="signUpForm">
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('username').errors && signUpForm.get('username').touched,
+                        'bg-success text-white': !signUpForm.get('username').errors}">Username</span>
+                </div>
+                <input [ngClass]="{'is-invalid': signUpForm.get('username').errors && signUpForm.get('username').touched,
+                                    'is-valid': !signUpForm.get('username').errors}" type="text" formControlName="username"
+                    class="form-control">
+
+                <div *ngIf="signUpForm.get('username').hasError('required') && signUpForm.get('username').touched"
+                    class="invalid-feedback">
+                    Username is required
+                </div>
+                <div *ngIf="signUpForm.get('username').hasError('minlength') && signUpForm.get('username').touched"
+                    class="invalid-feedback">
+                    Username should be at least 4 characters required
+                </div>
+                <div *ngIf="signUpForm.get('username').hasError('maxlength') && signUpForm.get('username').touched"
+                    class="invalid-feedback">
+                    Username should be no longer than 10 characters
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('userpass').errors && signUpForm.get('userpass').touched,
+                                'bg-success text-white': !signUpForm.get('userpass').errors}">
+                        Password</span>
+                </div>
+                <input [ngClass]="{'is-invalid': signUpForm.get('userpass').errors && signUpForm.get('userpass').touched,
+                                'is-valid': !signUpForm.get('userpass').errors}" type="password"
+                    formControlName="userpass" class="form-control">
+                <div *ngIf="signUpForm.get('userpass').hasError('required') && signUpForm.get('userpass').touched"
+                    class="invalid-feedback">
+                    Password is required
+                </div>
+                <div *ngIf="signUpForm.get('userpass').hasError('minlength') && signUpForm.get('userpass').touched"
+                    class="invalid-feedback">
+                    Password should be at least 4 characters required
+                </div>
+                <div *ngIf="signUpForm.get('userpass').hasError('maxlength') && signUpForm.get('userpass').touched"
+                    class="invalid-feedback">
+                    Password should be no longer than 8 characters
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-outline-secondary btn-block" [disabled]="signUpForm.invalid" [ngClass]="{'btn-outline-success': signUpForm.valid}">Create account</button>
+        </div>
+    </form>
+</div>
