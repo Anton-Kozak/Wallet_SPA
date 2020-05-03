@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MainComponent } from './main/main.component';
 import { RegisterViewComponent } from './register-view/register-view.component';
+import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     SignUpComponent,
     MainComponent,
-    RegisterViewComponent
+    RegisterViewComponent,
+    CreateWalletComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,9 @@ const appRoutes: Routes = [
     
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+        blacklistedRoutes: ['localhost:5000/api/auth']
       }
     }),
   ],

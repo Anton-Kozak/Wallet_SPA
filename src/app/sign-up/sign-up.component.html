@@ -1,5 +1,5 @@
 <div class="border-primary">
-    <form [formGroup]="signUpForm">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
