@@ -11,6 +11,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { MainComponent } from './main/main.component';
 import { RegisterViewComponent } from './register-view/register-view.component';
 import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
+import { ExpenseTableComponent } from './expenses/expense-table/expense-table.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     SignUpComponent,
     MainComponent,
     RegisterViewComponent,
-    CreateWalletComponent
+    CreateWalletComponent,
+    ExpenseTableComponent
   ],
   imports: [
     BrowserModule,
