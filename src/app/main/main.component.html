@@ -1,3 +1,7 @@
-<p>TEST main</p>
-<app-create-wallet></app-create-wallet>
-<app-expense-table></app-expense-table>
+<div *ngIf="hasWallet">
+    <app-expense-table></app-expense-table>
+</div>
+<div *ngIf="!hasWallet">
+    <app-create-wallet></app-create-wallet>
+    <button class="btn btn-primary btn-block" (click)="requestInvite()">Request Invite</button>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_model/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { User } from '../_model/user';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
   signInForm: FormGroup;
   currentUserName?: string;
   ngOnInit(): void {
@@ -26,6 +27,7 @@ export class NavbarComponent implements OnInit {
     this.authService.login(username, password).subscribe((response: any) => {
       const user: User = JSON.parse(localStorage.getItem('currentUser'));
       this.currentUserName = user.userName;
+      this.router.navigate(['/main']);
     })
   }
   loggedIn(): boolean {

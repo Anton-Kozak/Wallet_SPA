@@ -12,6 +12,8 @@ import { MainComponent } from './main/main.component';
 import { RegisterViewComponent } from './register-view/register-view.component';
 import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
 import { ExpenseTableComponent } from './expenses/expense-table/expense-table.component';
+import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
+import { RequestInviteComponent } from './request/request-invite/request-invite.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -19,7 +21,8 @@ export function tokenGetter() {
 
 const appRoutes: Routes = [
   { path: 'main', component: MainComponent},
-  { path: 'register', component: RegisterViewComponent}
+  { path: 'register', component: RegisterViewComponent},
+  { path: 'invite', component: RequestInviteComponent}
 ]
 
 @NgModule({
@@ -30,7 +33,9 @@ const appRoutes: Routes = [
     MainComponent,
     RegisterViewComponent,
     CreateWalletComponent,
-    ExpenseTableComponent
+    ExpenseTableComponent,
+    CreateExpenseComponent,
+    RequestInviteComponent
   ],
   imports: [
     BrowserModule,

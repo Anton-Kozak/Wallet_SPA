@@ -10,15 +10,23 @@ import { Expense } from 'src/app/_model/expense';
 export class ExpenseTableComponent implements OnInit {
 
   constructor(private expenseService: ExpenseService) { }
-  expenses: Expense[] = [];
+  foodExpenses: Expense[] = [];
+  houseExpenses: Expense[] = [];
+  entExpenses: Expense[] = [];
 
   ngOnInit(): void {
-    this.expenseService.showAllExpenses().subscribe((expenses: Expense[]) => {
-      this.expenses = expenses;
-    },error=>{
-      console.log(error);
-      
-    })
+    this.expenseService.showAllExpenses();
+    this.expenseService.foodSubject.subscribe(exp=>{
+      this.foodExpenses = exp;
+    });
+    this.expenseService.entSubject.subscribe(exp=>{
+      this.entExpenses = exp;
+    });
+    this.expenseService.houseSubject.subscribe(exp=>{
+      this.houseExpenses = exp;
+    });
   }
+
+  
 
 }
