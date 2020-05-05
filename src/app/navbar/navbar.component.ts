@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_model/user';
 import { Router } from '@angular/router';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService) { }
   signInForm: FormGroup;
   currentUserName?: string;
   ngOnInit(): void {
@@ -28,6 +29,9 @@ export class NavbarComponent implements OnInit {
       const user: User = JSON.parse(localStorage.getItem('currentUser'));
       this.currentUserName = user.userName;
       this.router.navigate(['/main']);
+      this.alertify.success("Welcome " + user.userName);
+    }, error=>{
+      this.alertify.error(error.statusText);
     })
   }
   loggedIn(): boolean {

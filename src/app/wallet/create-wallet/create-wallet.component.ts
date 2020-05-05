@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Wallet } from 'src/app/_model/wallet';
 import { WalletService } from 'src/app/_services/wallet.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-create-wallet',
@@ -10,7 +11,7 @@ import { WalletService } from 'src/app/_services/wallet.service';
 })
 export class CreateWalletComponent implements OnInit {
 
-  constructor(private walletService: WalletService) { }
+  constructor(private walletService: WalletService, private alertify: AlertifyService) { }
   walletForm: FormGroup;
   wallet: Wallet;
   ngOnInit(): void {
@@ -27,10 +28,9 @@ export class CreateWalletComponent implements OnInit {
     console.log(this.wallet);
     
     this.walletService.createNewWallet(this.wallet).subscribe((response: any)=>{
-      console.log(response.message);
+      this.alertify.success(response.statusText);
     },error=>{
-      console.log(error);
-      
+      this.alertify.error(error.statusText);
     });
   }
 
