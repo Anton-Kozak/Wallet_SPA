@@ -26,7 +26,6 @@ export class WalletService {
 
   createNewWallet(walletToCreate: Wallet){
     console.log(walletToCreate);
-    
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     return this.http.post(this.baseUrl + this.currentUser.id + '/createwallet', walletToCreate);
   }

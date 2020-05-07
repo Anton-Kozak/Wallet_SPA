@@ -12,8 +12,20 @@ export class RequestService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
   
-  createInviteRequest(email: string){
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/request/' + email, {});
+  createRequestForAccess(email: string){
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/request/' + email, {}, {responseType:'text'});
+  }
+
+  getRequests(email: string, userId: string){
+    return this.http.get(this.baseUrl + userId + '/getRequests/' + email);
+  }
+
+  acceptRequest(email: string, userId: string){
+    return this.http.post(this.baseUrl + userId + '/acceptRequest/' + email, {}, {responseType:'text'});
+  }
+
+  test(){
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/test', {}, {responseType:'text'});
   }
 
 }

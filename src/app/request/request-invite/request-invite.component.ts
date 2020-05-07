@@ -20,17 +20,25 @@ export class RequestInviteComponent implements OnInit {
 
   onSubmit() {
     if (this.email.length >= 4) {
-      this.reqService.createInviteRequest(this.email).subscribe((response: string) => {
+      this.reqService.createRequestForAccess(this.email).subscribe((response: any) => {
         this.alertify.success(response);
+        console.log(response);
       }, error => {
-        this.alertify.error(error.statusText)
-      }
-      )
+        this.alertify.error(error.error)
+      });
     }
   }
 
-  goBack(){
+  goBack() {
     this.router.navigate(['/main']);
+  }
+
+  test() {
+    this.reqService.test().subscribe(response => {
+      this.alertify.success(response)
+    }, error => {
+      this.alertify.error(error.error);
+    });
   }
 
 }

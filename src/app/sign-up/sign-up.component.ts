@@ -23,8 +23,8 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     const username = this.signUpForm.value['username'];
     const password = this.signUpForm.value['userpass']
-    this.authService.register(username, password).subscribe((data: string) => {
-      this.alertify.success(data);
+    this.authService.register(username, password).subscribe((data: any) => {
+      this.alertify.success(data.data);
     }, error=>{
       this.alertify.error(error.statusText);
     })

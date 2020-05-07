@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { Expense } from 'src/app/_model/expense';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-expense-table',
@@ -9,7 +10,7 @@ import { Expense } from 'src/app/_model/expense';
 })
 export class ExpenseTableComponent implements OnInit {
 
-  constructor(private expenseService: ExpenseService) { }
+  constructor(private expenseService: ExpenseService, private router: Router) { }
   foodExpenses: Expense[] = [];
   houseExpenses: Expense[] = [];
   entExpenses: Expense[] = [];
@@ -25,6 +26,10 @@ export class ExpenseTableComponent implements OnInit {
     this.expenseService.houseSubject.subscribe(exp=>{
       this.houseExpenses = exp;
     });
+  }
+
+  checkRequests(){
+    this.router.navigate(['/getrequests']);
   }
 
   
