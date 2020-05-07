@@ -23,7 +23,7 @@ export class CheckRequestsComponent implements OnInit {
 
     });
   }
-
+  //TODO: обновлять таблицу при добавлении пользователя
   acceptRequest(email: string) {
     this.reqService.acceptRequest(email, this.currentUser.id).subscribe((response) => {
       this.alertify.success(response)
@@ -31,8 +31,13 @@ export class CheckRequestsComponent implements OnInit {
       this.alertify.error(error.error);
     });
   }
-  declineRequest(email: string) {
 
+  declineRequest(email: string) {
+    this.reqService.declineRequest(email).subscribe((response) => {
+      this.alertify.success(response)
+    }, error => {
+      this.alertify.error(error.error);
+    });
   }
 
 }

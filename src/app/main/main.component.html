@@ -1,7 +1,10 @@
 <div *ngIf="hasWallet">
     <app-expense-table></app-expense-table>
 </div>
-<div *ngIf="!hasWallet">
+<div *ngIf="!hasWallet" class="container">
     <app-create-wallet></app-create-wallet>
-    <button class="btn btn-primary btn-block" (click)="requestInvite()">Request Invite</button>
+    <div class="container d-flex justify-content-around">
+        <button class="btn btn-primary " (click)="requestInvite()">Request Invite</button>
+        <button class="btn btn-primary" (click)="checkInvites()">Check Invites</button>
+    </div>
 </div>

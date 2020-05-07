@@ -24,6 +24,10 @@ export class RequestService {
     return this.http.post(this.baseUrl + userId + '/acceptRequest/' + email, {}, {responseType:'text'});
   }
 
+  declineRequest(email: string){
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/decline/' + email, {}, {responseType:'text'});
+  }
+
   test(){
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/test', {}, {responseType:'text'});
   }

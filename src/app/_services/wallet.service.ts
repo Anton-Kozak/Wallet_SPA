@@ -4,13 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import {User} from '../_model/user';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    //'Authorization': 'Bearer ' + localStorage.getItem('token'),
-    'Accept': 'application/json'
-  })
-};
 
 
 @Injectable({

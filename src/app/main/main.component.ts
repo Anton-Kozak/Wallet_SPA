@@ -21,6 +21,10 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/invite']);
   }
 
+  checkInvites(){
+    this.router.navigate(['/checkInvites']);
+  }
+
 
 
 }

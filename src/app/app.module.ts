@@ -15,6 +15,7 @@ import { ExpenseTableComponent } from './expenses/expense-table/expense-table.co
 import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
 import { RequestInviteComponent } from './request/request-invite/request-invite.component';
 import { CheckRequestsComponent } from './request/check-requests/check-requests.component';
+import { CheckInvitesComponent } from './invites/check-invites/check-invites.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterViewComponent},
   { path: 'invite', component: RequestInviteComponent},
   {path: 'getrequests', component: CheckRequestsComponent},
+  {path: 'checkInvites', component: CheckInvitesComponent},
 ]
 
 @NgModule({
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     ExpenseTableComponent,
     CreateExpenseComponent,
     RequestInviteComponent,
-    CheckRequestsComponent
+    CheckRequestsComponent,
+    CheckInvitesComponent
   ],
   imports: [
     BrowserModule,

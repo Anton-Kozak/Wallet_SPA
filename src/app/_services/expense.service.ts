@@ -26,11 +26,12 @@ export class ExpenseService {
   user: User = JSON.parse(localStorage.getItem('currentUser'));
   showAllExpenses() {
     this.http.get(this.baseUrl + this.user.id).subscribe((expenses: any) => {
-      //this.expenses = expenses;
-      this.initialExpenses = expenses;
-      this.getFoodExpenses();
-      this.getHouseExpenses();
-      this.getEntertainmentExpenses();
+      if (expenses != null) {
+        this.initialExpenses = expenses;
+        this.getFoodExpenses();
+        this.getHouseExpenses();
+        this.getEntertainmentExpenses();
+      }
       //this.expenseSubject.next(this.expenses);
     });
   }
