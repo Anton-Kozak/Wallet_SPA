@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
     this.authService.register(username, password).subscribe((data: any) => {
       this.alertify.success(data.data);
     }, error=>{
-      this.alertify.error(error.statusText);
+      this.alertify.error(error.error);
     })
   }
 

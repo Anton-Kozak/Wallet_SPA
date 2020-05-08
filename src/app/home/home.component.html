@@ -9,8 +9,12 @@
                 (click)="goToRegistration()">Create a new account</button>
             <button *ngIf="isAuthorized && !hasWallet" class="btn btn-primary btn-lg mr-3"
                 (click)="goToWalletCreation()">Create a wallet</button>
-            <button *ngIf="isAuthorized && hasWallet" class="btn btn-primary btn-lg mr-3"
-                (click)="goToWallet()">Go to your wallet</button>
+            <button *ngIf="isAuthorized && !hasWallet" class="btn btn-primary btn-lg mr-3"
+                (click)="requestWalletAccess()">Request access to a wallet</button>
+                <button *ngIf="isAuthorized && !hasWallet" class="btn btn-primary btn-lg mr-3"
+                (click)="checkInvites()">Check invites</button>
+            <button *ngIf="isAuthorized && hasWallet" class="btn btn-primary btn-lg mr-3" (click)="goToWallet()">Go to
+                your wallet</button>
         </p>
     </div>
 </div>

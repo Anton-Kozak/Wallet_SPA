@@ -38,4 +38,12 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/createNewWallet']);
   }
 
+  requestWalletAccess(){
+    this.router.navigate(['requestAccess']);
+  }
+
+  checkInvites(){
+    this.router.navigate(['checkInvites']);
+  }
+
 }

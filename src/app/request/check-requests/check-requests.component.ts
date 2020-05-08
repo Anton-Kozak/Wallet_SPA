@@ -19,8 +19,8 @@ export class CheckRequestsComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.reqService.getRequests(this.currentUser.email, this.currentUser.id).subscribe((req: Request[]) => {
       this.requests = req;
-      console.log(req);
-
+      if(this.requests.length == 0)
+      this.alertify.error("You have no new requests");
     });
   }
   //TODO: обновлять таблицу при добавлении пользователя

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { Expense } from 'src/app/_model/expense';
 import { Router } from '@angular/router';
+import { Expense } from 'src/app/_model/expense';
 
 @Component({
-  selector: 'app-expense-table',
-  templateUrl: './expense-table.component.html',
-  styleUrls: ['./expense-table.component.css']
+  selector: 'app-show-wallet-table',
+  templateUrl: './show-wallet-table.component.html',
+  styleUrls: ['./show-wallet-table.component.css']
 })
-export class ExpenseTableComponent implements OnInit {
+export class ShowWalletTableComponent implements OnInit {
 
   constructor(private expenseService: ExpenseService, private router: Router) { }
   foodExpenses: Expense[] = [];
@@ -29,9 +29,11 @@ export class ExpenseTableComponent implements OnInit {
   }
 
   checkRequests(){
-    this.router.navigate(['/getrequests']);
+    this.router.navigate(['/checkRequests']);
   }
 
-  
+  createInvite(){
+    this.router.navigate(['/createInvite']);
+  }
 
 }

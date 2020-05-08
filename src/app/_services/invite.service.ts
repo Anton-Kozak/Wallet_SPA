@@ -17,6 +17,10 @@ export class InviteService {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getInvites');
   }
 
+  createInvite(email: string){
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/invite/' + email, {}, {responseType:'text'});
+  }
+
   accept(walletId: number){
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/accept/' + walletId, {}, {responseType:'text'});
   }

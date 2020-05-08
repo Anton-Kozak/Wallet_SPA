@@ -11,13 +11,14 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { MainComponent } from './main/main.component';
 import { RegisterViewComponent } from './register-view/register-view.component';
 import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
-import { ExpenseTableComponent } from './expenses/expense-table/expense-table.component';
 import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
-import { RequestInviteComponent } from './request/request-invite/request-invite.component';
 import { CheckRequestsComponent } from './request/check-requests/check-requests.component';
 import { CheckInvitesComponent } from './invites/check-invites/check-invites.component';
 import { appRoutes } from './_routes';
 import { HomeComponent } from './home/home.component';
+import { ShowWalletTableComponent } from './wallet/show-wallet-table/show-wallet-table.component';
+import { RequestAccessComponent } from './request/request-access/request-access.component';
+import { CreateInviteComponent } from './invites/create-invite/create-invite.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -31,12 +32,13 @@ export function tokenGetter() {
     MainComponent,
     RegisterViewComponent,
     CreateWalletComponent,
-    ExpenseTableComponent,
     CreateExpenseComponent,
-    RequestInviteComponent,
     CheckRequestsComponent,
     CheckInvitesComponent,
-    HomeComponent
+    HomeComponent,
+    ShowWalletTableComponent,
+    RequestAccessComponent,
+    CreateInviteComponent
   ],
   imports: [
     BrowserModule,

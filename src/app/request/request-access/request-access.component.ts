@@ -3,13 +3,12 @@ import { RequestService } from 'src/app/_services/request.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 
-
 @Component({
-  selector: 'app-request-invite',
-  templateUrl: './request-invite.component.html',
-  styleUrls: ['./request-invite.component.css']
+  selector: 'app-request-access',
+  templateUrl: './request-access.component.html',
+  styleUrls: ['./request-access.component.css']
 })
-export class RequestInviteComponent implements OnInit {
+export class RequestAccessComponent implements OnInit {
 
   constructor(private reqService: RequestService, private router: Router, private alertify: AlertifyService) { }
 
@@ -27,10 +26,13 @@ export class RequestInviteComponent implements OnInit {
         this.alertify.error(error.error)
       });
     }
+    else{
+      this.alertify.error("Email is too short!");
+    }
   }
 
   goBack() {
-    this.router.navigate(['/main']);
+    this.router.navigate(['/home']);
   }
 
   test() {
