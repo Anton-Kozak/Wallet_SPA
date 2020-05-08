@@ -4,6 +4,7 @@ import { Wallet } from 'src/app/_model/wallet';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-create-wallet',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CreateWalletComponent implements OnInit {
 
-  constructor(private walletService: WalletService, private alertify: AlertifyService, private router: Router) { }
+  constructor(private walletService: WalletService, private authService: AuthService, private alertify: AlertifyService, private router: Router) { }
   walletForm: FormGroup;
   wallet: Wallet;
   ngOnInit(): void {
@@ -31,8 +32,8 @@ export class CreateWalletComponent implements OnInit {
     this.walletService.createNewWallet(this.wallet).subscribe((user: any) => {
       this.alertify.success("You have successfully created a wallet");
       localStorage.setItem("currentUser", JSON.stringify(user));
-      //TODO: сделать РАБОЧИЙ переход после создания кошелька
-      this.router.navigate(['/main']);
+     this.authService.hasWallet.next(true);
+      this.router.navigate(['/home']);
     }, error => {
       this.alertify.error(error.statusText);
     });

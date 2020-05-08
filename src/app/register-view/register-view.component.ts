@@ -15,8 +15,8 @@ export class RegisterViewComponent implements OnInit {
 
   ngOnInit(): void {
     //TODO: запретить заходить сюда если уже залогиненный
-    if(this.authService.checkLogin())
-      this.router.navigate(['main']);
+    //if(this.authService.checkLogin())
+      //this.router.navigate(['main']);
   }
 
   registerToggle(){

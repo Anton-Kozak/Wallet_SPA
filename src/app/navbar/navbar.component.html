@@ -1,20 +1,17 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
   <a class="navbar-brand ml-5" href="#">Wallet SPA</a>
-  <ul *ngIf="!loggedIn()" class="navbar-nav ml-5">
-    <a class="nav-link" [routerLink]="['/register']">Create a new account</a>
-  </ul>
-  <ul *ngIf="loggedIn()" class="navbar-nav ml-5">
+  <ul *ngIf="isLoggedIn" class="navbar-nav ml-5">
     <li class="nav-item">
       <a class="nav-link" [routerLink]="['/main']" >Main</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Services</a>
+      <a class="nav-link"[routerLink]="['/home']">Home</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Contact</a>
     </li>
   </ul>
-  <div class="ml-auto" *ngIf="!loggedIn()">
+  <div class="ml-auto" *ngIf="!isLoggedIn">
     <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <ul class="navbar-nav">
@@ -35,7 +32,7 @@
       </div>
     </form>
   </div>
-  <div class="ml-auto text-light" *ngIf="loggedIn()">
+  <div class="ml-auto text-light" *ngIf="isLoggedIn">
     Hello {{currentUserName}}
     <button class="btn btn-outline-secondary"(click)="logout()" >Logout</button>
   </div>

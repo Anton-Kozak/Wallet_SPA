@@ -1,0 +1,16 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">Fluid jumbo heading</h1>
+        <p class="lead">Welcome,</p>
+        <hr class="my-2">
+        <p>More info</p>
+        <p class="lead">
+            <button *ngIf="!isAuthorized && !hasWallet" class="btn btn-primary btn-lg mr-3"
+                (click)="goToRegistration()">Create a new account</button>
+            <button *ngIf="isAuthorized && !hasWallet" class="btn btn-primary btn-lg mr-3"
+                (click)="goToWalletCreation()">Create a wallet</button>
+            <button *ngIf="isAuthorized && hasWallet" class="btn btn-primary btn-lg mr-3"
+                (click)="goToWallet()">Go to your wallet</button>
+        </p>
+    </div>
+</div>

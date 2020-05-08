@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { environment } from 'src/environments/environment';
+import { Subject, BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,8 +12,10 @@ export class AuthService {
 
   jwtHelper = new JwtHelperService();
   decodedToken: any;
-  baseUrl: string = environment.apiUrl + "auth/"
+  baseUrl: string = environment.apiUrl + "auth/";
 
+  isLoggedIn = new BehaviorSubject<boolean>(false);
+  hasWallet = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) { }
 
   register(username: string, userpass: string) {
@@ -24,8 +27,17 @@ export class AuthService {
       if (response) {
         localStorage.setItem('token', response.token);
         localStorage.setItem('currentUser', JSON.stringify(response.user));
+        this.isLoggedIn.next(true);
+        this.hasWallet.next(this.checkUserWallet());
       }
     }));
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    this.isLoggedIn.next(false);
+    this.hasWallet.next(false);
   }
 
   getToken() {
@@ -35,14 +47,17 @@ export class AuthService {
   }
 
   checkLogin() {
-    return !this.jwtHelper.isTokenExpired(localStorage.getItem('token'));
+    this.isLoggedIn.next(!this.jwtHelper.isTokenExpired(localStorage.getItem('token')));
+    this.hasWallet.next(this.checkUserWallet());
   }
 
   checkUserWallet() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser.walletID != 0)
-    {
-      return true; 
+    if (currentUser != null) {
+      if (currentUser.walletID != 0) {
+        return true;
+      }
+      return false;
     }
     return false;
   }
