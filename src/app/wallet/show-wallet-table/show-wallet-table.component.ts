@@ -14,6 +14,8 @@ export class ShowWalletTableComponent implements OnInit {
   foodExpenses: Expense[] = [];
   houseExpenses: Expense[] = [];
   entExpenses: Expense[] = [];
+  clothesExpenses: Expense[] = [];
+  otherExpenses: Expense[] = [];
 
   ngOnInit(): void {
     this.expenseService.showAllExpenses();
@@ -26,6 +28,12 @@ export class ShowWalletTableComponent implements OnInit {
     this.expenseService.houseSubject.subscribe(exp=>{
       this.houseExpenses = exp;
     });
+    this.expenseService.clothesSubject.subscribe(exp=>{
+      this.clothesExpenses = exp;
+    });
+    this.expenseService.otherSubject.subscribe(exp=>{
+      this.otherExpenses = exp;
+    });
   }
 
   checkRequests(){
@@ -34,6 +42,19 @@ export class ShowWalletTableComponent implements OnInit {
 
   createInvite(){
     this.router.navigate(['/createInvite']);
+  }
+
+  showGraph(){
+    this.router.navigate(['/graph']);
+  }
+
+  createExpense(){
+    this.router.navigate(['/createExpense']);
+  }
+
+
+  showWalletStatistics(){
+    this.router.navigate(['/getWalletStatistics']);
   }
 
 }

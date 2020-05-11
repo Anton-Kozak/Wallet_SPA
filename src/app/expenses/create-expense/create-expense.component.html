@@ -10,22 +10,16 @@
                     <select [ngClass]="{'is-invalid': newExpenseForm.get('category').errors && newExpenseForm.get('category').touched,
                                     'is-valid': !newExpenseForm.get('category').errors}"
                         formControlName="category" class="form-control">
-                    <option value="1">Housekeeping</option>
-                    <option value="2">Entertainment</option>
-                    <option value="3">Food</option>
+                    <option value="1">Food</option>
+                    <option value="2">Housekeeping </option>
+                    <option value="3">Clothes</option>
+                    <option value="4">Entertainment</option>
+                    <option value="5">Other</option>
                     </select>
 
                     <div *ngIf="newExpenseForm.get('category').hasError('required') && newExpenseForm.get('category').touched"
                         class="invalid-feedback">
-                        category is required
-                    </div>
-                    <div *ngIf="newExpenseForm.get('category').hasError('minlength') && newExpenseForm.get('category').touched"
-                        class="invalid-feedback">
-                        category should be at least 4 characters required
-                    </div>
-                    <div *ngIf="newExpenseForm.get('category').hasError('maxlength') && newExpenseForm.get('category').touched"
-                        class="invalid-feedback">
-                        category should be no longer than 16 characters
+                        Category is required
                     </div>
                 </div>
             </div>

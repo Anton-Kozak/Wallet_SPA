@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../_model/user';
 import { Expense } from '../_model/expense';
 import { Subject } from 'rxjs';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,11 +16,15 @@ export class ExpenseService {
   foodExpenses: Expense[] = [];
   houseExpenses: Expense[] = [];
   entertainmentExpenses: Expense[] = [];
+  clothesExpenses: Expense[] = [];
+  otherExpenses: Expense[] = [];
 
   expenses: Expense[] = [];
   foodSubject = new Subject<Expense[]>();
   houseSubject = new Subject<Expense[]>();
   entSubject = new Subject<Expense[]>();
+  clothesSubject = new Subject<Expense[]>();
+  otherSubject = new Subject<Expense[]>();
 
   constructor(private http: HttpClient) { }
   user: User = JSON.parse(localStorage.getItem('currentUser'));
@@ -31,8 +35,9 @@ export class ExpenseService {
         this.getFoodExpenses();
         this.getHouseExpenses();
         this.getEntertainmentExpenses();
+        this.getOtherExpenses();
+        this.getClothesExpenses();
       }
-      //this.expenseSubject.next(this.expenses);
     });
   }
 
@@ -51,25 +56,78 @@ export class ExpenseService {
     this.entSubject.next(this.entertainmentExpenses);
   }
 
+  getClothesExpenses() {
+    this.clothesExpenses = this.initialExpenses['clothes'];
+    this.clothesSubject.next(this.clothesExpenses);
+  }
 
+  getOtherExpenses() {
+    this.otherExpenses = this.initialExpenses['other'];
+    this.otherSubject.next(this.otherExpenses);
+  }
+
+  getBarExpensesData() {
+    return this.http.get(this.baseUrl + this.user.id + '/barExpenses');
+  }
+
+
+
+  // createExpense(expense: Expense) {
+  //   this.http.post(this.baseUrl + this.user.id + '/new', expense).subscribe((newExpense: Expense) => {
+  //     switch (newExpense.expenseCategoryId) {
+  //       case 1:
+  //         this.foodExpenses.push(newExpense);
+  //         this.foodSubject.next(this.foodExpenses);
+  //         break;
+  //       case 2:
+  //         this.houseExpenses.push(newExpense);
+  //         this.houseSubject.next(this.houseExpenses);
+  //         break;
+  //       case 3:
+  //         this.clothesExpenses.push(newExpense);
+  //         this.clothesSubject.next(this.clothesExpenses);
+  //         break;
+  //       case 4:
+  //         this.entertainmentExpenses.push(newExpense);
+  //         this.entSubject.next(this.entertainmentExpenses);
+  //         break;
+  //       case 5:
+  //         this.otherExpenses.push(newExpense);
+  //         this.otherSubject.next(this.otherExpenses);
+  //         break;
+  //     }
+  //   });
+  // }
 
   createExpense(expense: Expense) {
-    this.http.post(this.baseUrl + this.user.id + '/new', expense).subscribe((newExpense: Expense) => {
+    return this.http.post(this.baseUrl + this.user.id + '/new', expense).pipe(map((newExpense: Expense) => {
       switch (newExpense.expenseCategoryId) {
         case 1:
-          this.houseExpenses.push(newExpense);
-          this.houseSubject.next(this.houseExpenses);
-          break;
-        case 2:
-          this.entertainmentExpenses.push(newExpense);
-          this.entSubject.next(this.entertainmentExpenses);
-          break;
-        case 3:
           this.foodExpenses.push(newExpense);
           this.foodSubject.next(this.foodExpenses);
           break;
+        case 2:
+          this.houseExpenses.push(newExpense);
+          this.houseSubject.next(this.houseExpenses);
+          break;
+        case 3:
+          this.clothesExpenses.push(newExpense);
+          this.clothesSubject.next(this.clothesExpenses);
+          break;
+        case 4:
+          this.entertainmentExpenses.push(newExpense);
+          this.entSubject.next(this.entertainmentExpenses);
+          break;
+        case 5:
+          this.otherExpenses.push(newExpense);
+          this.otherSubject.next(this.otherExpenses);
+          break;
       }
-    });
+    }));
+  }
+
+  getWalletStatistics(){
+    return this.http.get(this.baseUrl + this.user.id + '/detailedStatistics');
   }
 
 

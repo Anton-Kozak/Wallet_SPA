@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Expense } from 'src/app/_model/expense';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-create-expense',
@@ -13,7 +14,7 @@ export class CreateExpenseComponent implements OnInit {
   expense: Expense;
   newExpenseForm: FormGroup;
 
-  constructor(private expenseService: ExpenseService) { }
+  constructor(private expenseService: ExpenseService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.newExpenseForm = new FormGroup({
@@ -33,7 +34,11 @@ export class CreateExpenseComponent implements OnInit {
         moneySpent: this.newExpenseForm.value['money'],
         creationDate: new Date()
       }
-      this.expenseService.createExpense(this.expense);
+      this.expenseService.createExpense(this.expense).subscribe(()=>{
+        this.alertify.success("You have successfully created an expense");
+      }, error=>{
+        this.alertify.error("You did not create an expense");
+      });
     }
   }
 

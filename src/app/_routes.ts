@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
 import { RequestAccessComponent } from './request/request-access/request-access.component';
 import { CreateInviteComponent } from './invites/create-invite/create-invite.component';
+import { PieGraphComponent } from './graphs/pie-graph/pie-graph.component';
+import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
+import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-statistics.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +19,9 @@ export const appRoutes: Routes = [
   { path: 'checkRequests', component: CheckRequestsComponent },
   { path: 'checkInvites', component: CheckInvitesComponent },
   { path: 'createInvite', component: CreateInviteComponent },
+  { path: 'createExpense', component: CreateExpenseComponent },
+  { path: 'getWalletStatistics', component: WalletStatisticsComponent },
   { path: 'home', component: HomeComponent },
   { path: 'createNewWallet', component: CreateWalletComponent },
+  { path: 'graph', component: PieGraphComponent },
 ]

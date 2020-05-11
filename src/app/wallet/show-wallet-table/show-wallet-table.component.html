@@ -1,80 +1,113 @@
 <div class="container">
     <button class="btn btn-success mr-5" (click)="checkRequests()">Check requests</button>
-    <button class="btn btn-outline-success" (click)="createInvite()">Invite new user</button>
+    <button class="btn btn-outline-success mr-4" (click)="createInvite()">Invite new user</button>
+    <button class="btn btn-outline-success mr-5" (click)="showGraph()">Show graph</button>
+    <button class="btn btn-secondary mr-5" (click)="createExpense()">Create expense</button>
+    <button class="btn btn-secondary mr-5" (click)="showWalletStatistics()">Show wallet statistics</button>
 </div>
+<div class="d-flex justify-content-around">
     <div class="container">
-        <div class="row">
-            Food
-            <table class="table table-dark table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Date</th>
-                        <th>$</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let expense of foodExpenses">
-                        <td>{{expense.id}}</td>
-                        <td>{{expense.expenseName}}</td>
-                        <td>{{expense.expenseDescription}}</td>
-                        <td>{{expense.creationDate}}</td>
-                        <td>{{expense.moneySpent}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-<br>
-<br>
-<div class="container">
-    <div class="row">
-        Entertainment
-        <table class="table table-dark table-striped table-hover">
+        Food
+        <table class="table table-dark table-striped table-hover table-sm">
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>$</th>
+                <tr class="d-flex">
+                    <th class="col-1">#</th>
+                    <th class="col-5">Name</th>
+                    <th class="col-4">Date</th>
+                    <th class="col-2">$</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let expense of entExpenses">
-                    <td>{{expense.id}}</td>
-                    <td>{{expense.expenseName}}</td>
-                    <td>{{expense.expenseDescription}}</td>
-                    <td>{{expense.creationDate}}</td>
-                    <td>{{expense.moneySpent}}</td>
+                <tr class="d-flex" *ngFor="let expense of foodExpenses">
+                    <td class="col-1">{{expense.id}}</td>
+                    <td class="col-5">{{expense.expenseName}}</td>
+                    <td class="col-4">{{expense.creationDate | date}}</td>
+                    <td class="col-2">{{expense.moneySpent}}</td>
+                </tr>
+                <tr>Total spent: </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        Housekeeping
+        <table class="table table-dark table-striped table-hover table-sm">
+            <thead>
+                <tr class="d-flex">
+                    <th class="col-1">#</th>
+                    <th class="col-4">Name</th>
+                    <th class="col-4">Date</th>
+                    <th class="col-3">$</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="d-flex" *ngFor="let expense of houseExpenses">
+                    <td class="col-1">{{expense.id}}</td>
+                    <td class="col-4">{{expense.expenseName}}</td>
+                    <td class="col-4">{{expense.creationDate | date}}</td>
+                    <td class="col-3">{{expense.moneySpent}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-</div>
-<br><br>
-<div class="container">
-    <div class="row">
-        Housekeeping
-        <table class="table table-dark table-striped table-hover">
+    <div class="container">
+        Entertainment
+        <table class="table table-dark table-striped table-hover table-sm">
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>$</th>
+                <tr class="d-flex">
+                    <th class="col-1">#</th>
+                    <th class="col-4">Name</th>
+                    <th class="col-4">Date</th>
+                    <th class="col-3">$</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let expense of houseExpenses">
-                    <td>{{expense.id}}</td>
-                    <td>{{expense.expenseName}}</td>
-                    <td>{{expense.expenseDescription}}</td>
-                    <td>{{expense.creationDate}}</td>
-                    <td>{{expense.moneySpent}}</td>
+                <tr class="d-flex" *ngFor="let expense of entExpenses">
+                    <td class="col-1">{{expense.id}}</td>
+                    <td class="col-4">{{expense.expenseName}}</td>
+                    <td class="col-4">{{expense.creationDate | date}}</td>
+                    <td class="col-3">{{expense.moneySpent}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        Clothes
+        <table class="table table-dark table-striped table-hover table-sm">
+            <thead>
+                <tr class="d-flex">
+                    <th class="col-1">#</th>
+                    <th class="col-4">Name</th>
+                    <th class="col-4">Date</th>
+                    <th class="col-3">$</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="d-flex" *ngFor="let expense of clothesExpenses">
+                    <td class="col-1">{{expense.id}}</td>
+                    <td class="col-4">{{expense.expenseName}}</td>
+                    <td class="col-4">{{expense.creationDate | date}}</td>
+                    <td class="col-3">{{expense.moneySpent}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        Other
+        <table class="table table-dark table-striped table-hover table-sm">
+            <thead>
+                <tr class="d-flex">
+                    <th class="col-1">#</th>
+                    <th class="col-4">Name</th>
+                    <th class="col-4">Date</th>
+                    <th class="col-3">$</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="d-flex" *ngFor="let expense of otherExpenses">
+                    <td class="col-1">{{expense.id}}</td>
+                    <td class="col-4">{{expense.expenseName}}</td>
+                    <td class="col-4">{{expense.creationDate | date}}</td>
+                    <td class="col-3">{{expense.moneySpent}}</td>
                 </tr>
             </tbody>
         </table>

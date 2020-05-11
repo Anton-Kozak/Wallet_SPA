@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="container">
+        <!-- TODO: сделать линк на категорию -->
+        <p>Most used category: {{mostUsedCategory}}</p>
+        <p>Most spent category: {{mostSpentCategory}}</p>
+        <p>Average daily expenses: {{avgDailyExpenses}}</p>
+        <p>Wallet members: <span *ngFor="let user of walletMembers">{{user}} </span></p>
+        <p>Админ кошелька</p>
+        <p>Amount of money spent: {{amountOfMoneySpent}}</p>
+    </div>
+    <div *ngIf="barExpenses" class="container">
+        <app-single-bar-chart [barExpensesList]="barExpenses" [testString]="mostUsedCategory"></app-single-bar-chart>
+    </div>
+    <div *ngIf="topFiveUsers" class="container">
+        <app-pie-graph [topFiveUsers]="topFiveUsers"></app-pie-graph>
+    </div>
+    <div *ngIf="lastSixMonths" class="container">
+        <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart>
+    </div>
+    <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="container">
+        <app-bar-comparison [currentMonthbarExpensesList]="currentMonthDataToCompare"
+            [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
+    </div>
+</div>
