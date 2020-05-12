@@ -27,6 +27,8 @@ import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-sta
 import { SingleBarChartComponent } from './graphs/single-bar-chart/single-bar-chart.component';
 import { LineChartComponent } from './graphs/line-chart/line-chart.component';
 import { BarComparisonComponent } from './graphs/bar-comparison/bar-comparison.component';
+import { CategoryStatisticsComponent } from './wallet/category-statistics/category-statistics.component';
+import { BarCategoryComparisonComponent } from './graphs/bar-category-comparison/bar-category-comparison.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -52,7 +54,9 @@ export function tokenGetter() {
     WalletStatisticsComponent,
     SingleBarChartComponent,
     LineChartComponent,
-    BarComparisonComponent
+    BarComparisonComponent,
+    CategoryStatisticsComponent,
+    BarCategoryComparisonComponent
   ],
   imports: [
     BrowserModule,

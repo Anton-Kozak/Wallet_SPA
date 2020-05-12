@@ -25,7 +25,6 @@ export class WalletStatisticsComponent implements OnInit {
   walletMembers: string[];
   amountOfMoneySpent: number;
   ngOnInit(): void {
-    this.mostUsedCategory = "test";
     this.expService.getWalletStatistics().subscribe(response => {
 
       this.avgDailyExpenses = response['averageDailyExpense'];
@@ -40,16 +39,16 @@ export class WalletStatisticsComponent implements OnInit {
       this.amountOfMoneySpent = response['amountOfMoneySpent'];
       // console.log('Average daily expenses');
       // console.log(this.avgDailyExpenses);
-       console.log('Current month');
-       console.log(this.currentMonthDataToCompare);
-       console.log('Last month');
-       console.log(this.lastMonthDataToCompare);
+      //  console.log('Current month');
+      //  console.log(this.currentMonthDataToCompare);
+      //  console.log('Last month');
+      //  console.log(this.lastMonthDataToCompare);
       // console.log('Bar expenses');
       // console.log(this.barExpenses);
       //console.log('Top 5 users');
       // console.log(this.topFiveUsers); 
-       //console.log('Last six month');
-       //console.log(this.lastSixMonths);
+      //console.log('Last six month');
+      //console.log(this.lastSixMonths);
 
     });
   }

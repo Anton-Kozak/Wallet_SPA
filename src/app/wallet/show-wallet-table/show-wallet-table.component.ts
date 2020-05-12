@@ -19,42 +19,46 @@ export class ShowWalletTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.expenseService.showAllExpenses();
-    this.expenseService.foodSubject.subscribe(exp=>{
+    this.expenseService.foodSubject.subscribe(exp => {
       this.foodExpenses = exp;
     });
-    this.expenseService.entSubject.subscribe(exp=>{
+    this.expenseService.entSubject.subscribe(exp => {
       this.entExpenses = exp;
     });
-    this.expenseService.houseSubject.subscribe(exp=>{
+    this.expenseService.houseSubject.subscribe(exp => {
       this.houseExpenses = exp;
     });
-    this.expenseService.clothesSubject.subscribe(exp=>{
+    this.expenseService.clothesSubject.subscribe(exp => {
       this.clothesExpenses = exp;
     });
-    this.expenseService.otherSubject.subscribe(exp=>{
+    this.expenseService.otherSubject.subscribe(exp => {
       this.otherExpenses = exp;
     });
   }
 
-  checkRequests(){
+  checkRequests() {
     this.router.navigate(['/checkRequests']);
   }
 
-  createInvite(){
+  createInvite() {
     this.router.navigate(['/createInvite']);
   }
 
-  showGraph(){
+  showGraph() {
     this.router.navigate(['/graph']);
   }
 
-  createExpense(){
+  createExpense() {
     this.router.navigate(['/createExpense']);
   }
 
 
-  showWalletStatistics(){
+  showWalletStatistics() {
     this.router.navigate(['/getWalletStatistics']);
+  }
+
+  categoryStatistics() {
+    this.router.navigate(['/catstat'], { queryParams: { category: 1 } });
   }
 
 }

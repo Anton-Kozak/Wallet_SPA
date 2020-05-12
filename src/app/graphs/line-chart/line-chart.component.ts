@@ -94,7 +94,7 @@ export class LineChartComponent implements OnInit {
     for (let i = 0; i < this.lastSixMonths.length; i++) {
       this.lineChartData[0].data[i] = [this.lastSixMonths[i]['expenseSum']][0];
       this.lineChartLabels[i] = this.lastSixMonths[i]['month'];
-      console.log(this.lineChartData[0].data);
+      //console.log(this.lineChartData[0].data);
     }
   }
 

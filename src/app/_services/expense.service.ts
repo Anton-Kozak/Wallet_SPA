@@ -71,34 +71,6 @@ export class ExpenseService {
   }
 
 
-
-  // createExpense(expense: Expense) {
-  //   this.http.post(this.baseUrl + this.user.id + '/new', expense).subscribe((newExpense: Expense) => {
-  //     switch (newExpense.expenseCategoryId) {
-  //       case 1:
-  //         this.foodExpenses.push(newExpense);
-  //         this.foodSubject.next(this.foodExpenses);
-  //         break;
-  //       case 2:
-  //         this.houseExpenses.push(newExpense);
-  //         this.houseSubject.next(this.houseExpenses);
-  //         break;
-  //       case 3:
-  //         this.clothesExpenses.push(newExpense);
-  //         this.clothesSubject.next(this.clothesExpenses);
-  //         break;
-  //       case 4:
-  //         this.entertainmentExpenses.push(newExpense);
-  //         this.entSubject.next(this.entertainmentExpenses);
-  //         break;
-  //       case 5:
-  //         this.otherExpenses.push(newExpense);
-  //         this.otherSubject.next(this.otherExpenses);
-  //         break;
-  //     }
-  //   });
-  // }
-
   createExpense(expense: Expense) {
     return this.http.post(this.baseUrl + this.user.id + '/new', expense).pipe(map((newExpense: Expense) => {
       switch (newExpense.expenseCategoryId) {
@@ -128,6 +100,11 @@ export class ExpenseService {
 
   getWalletStatistics(){
     return this.http.get(this.baseUrl + this.user.id + '/detailedStatistics');
+  }
+
+
+  getCategoryStatistics(categoryId: number){
+    return this.http.get(this.baseUrl + this.user.id + '/detailedCategoryStatistics/' + categoryId)
   }
 
 
