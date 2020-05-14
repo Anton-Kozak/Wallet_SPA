@@ -3,6 +3,8 @@ import { ExpenseService } from 'src/app/_services/expense.service';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { TopUsersStat } from 'src/app/_model/top-users-stat';
+import { User } from 'src/app/_model/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wallet-statistics',
@@ -11,7 +13,7 @@ import { TopUsersStat } from 'src/app/_model/top-users-stat';
 })
 export class WalletStatisticsComponent implements OnInit {
 
-  constructor(private expService: ExpenseService) { }
+  constructor(private expService: ExpenseService, private router: Router) { }
 
   avgDailyExpenses: number;
   mostSpentCategory: string;
@@ -22,7 +24,7 @@ export class WalletStatisticsComponent implements OnInit {
   barExpenses: ExpenseList;
   lastSixMonths: LastMonthStat[];
   topFiveUsers: TopUsersStat[];
-  walletMembers: string[];
+  walletMembers: User[];
   amountOfMoneySpent: number;
   ngOnInit(): void {
     this.expService.getWalletStatistics().subscribe(response => {
@@ -49,8 +51,15 @@ export class WalletStatisticsComponent implements OnInit {
       // console.log(this.topFiveUsers); 
       //console.log('Last six month');
       //console.log(this.lastSixMonths);
-
+      //console.log('Wallet users');
+      console.log(this.walletMembers);
     });
+  }
+
+  getUserStatistics(id: string){
+    console.log(id);
+    
+    this.router.navigate(['/userStatistics', id]);
   }
 
 }

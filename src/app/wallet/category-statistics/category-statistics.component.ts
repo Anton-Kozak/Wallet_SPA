@@ -4,6 +4,8 @@ import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { TopUsersStat } from 'src/app/_model/top-users-stat';
 import { CategoryComparison } from 'src/app/_model/category-comparison';
 import { ActivatedRoute } from '@angular/router';
+import { Expense } from 'src/app/_model/expense';
+import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 
 @Component({
   selector: 'app-category-statistics',
@@ -28,6 +30,8 @@ export class CategoryStatisticsComponent implements OnInit {
   topFiveUsers: TopUsersStat[];
   lastSixMonths: LastMonthStat[];
 
+  expenses: ExpenseForTable[] = [];
+
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       console.log(params['category']);
@@ -35,7 +39,7 @@ export class CategoryStatisticsComponent implements OnInit {
       this.chosenCategory = +params['category'] || 0;
       switch (this.chosenCategory) {
         case 1:
-          this.chosenCategoryName = "Food"         
+          this.chosenCategoryName = "Food"
           break;
         case 2:
           this.chosenCategoryName = "Housekeeping"
@@ -66,6 +70,10 @@ export class CategoryStatisticsComponent implements OnInit {
       this.lastSixMonths = data['lastSixMonths'];
       console.log(data);
     });
+
+    this.expService.getCategoryExpenses(this.chosenCategory).subscribe((data: ExpenseForTable[]) => {
+      this.expenses = data;
+    })
   }
 
 }

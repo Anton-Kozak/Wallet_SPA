@@ -61,4 +61,8 @@ export class ShowWalletTableComponent implements OnInit {
     this.router.navigate(['/catstat'], { queryParams: { category: 1 } });
   }
 
+  userStat(){
+    this.router.navigate(['/userStatistics']);
+  }
+
 }

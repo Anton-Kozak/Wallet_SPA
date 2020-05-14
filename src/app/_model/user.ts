@@ -3,6 +3,6 @@ export interface User {
     address: string;
     age: number;
     email: string;
-    userName: string;
+    username: string;
     walletID?: number;
 }

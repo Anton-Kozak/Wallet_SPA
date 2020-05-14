@@ -11,6 +11,7 @@ import { PieGraphComponent } from './graphs/pie-graph/pie-graph.component';
 import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
 import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-statistics.component';
 import { CategoryStatisticsComponent } from './wallet/category-statistics/category-statistics.component';
+import { UserStatisticsComponent } from './wallet/user-statistics/user-statistics.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ export const appRoutes: Routes = [
   { path: 'getWalletStatistics', component: WalletStatisticsComponent },
   //TODO: вписать в путь сразу :id и как то его получать
   { path: 'catstat', component: CategoryStatisticsComponent },
+  { path: 'userStatistics/:id', component: UserStatisticsComponent },
   { path: 'home', component: HomeComponent },
   { path: 'createNewWallet', component: CreateWalletComponent },
   { path: 'graph', component: PieGraphComponent },

@@ -98,13 +98,26 @@ export class ExpenseService {
     }));
   }
 
-  getWalletStatistics(){
+  getWalletStatistics() {
     return this.http.get(this.baseUrl + this.user.id + '/detailedStatistics');
   }
 
 
-  getCategoryStatistics(categoryId: number){
+  getCategoryStatistics(categoryId: number) {
     return this.http.get(this.baseUrl + this.user.id + '/detailedCategoryStatistics/' + categoryId)
+  }
+
+
+  getCategoryExpenses(categoryId: number) {
+    return this.http.get(this.baseUrl + this.user.id + '/getCategoryExpenses/' + categoryId);
+  }
+
+  getUserStatistics(){
+    return this.http.get(this.baseUrl + this.user.id + '/detailedUserStatistics');
+  }
+
+  getUserExpenses(id: string) {
+    return this.http.get(this.baseUrl + this.user.id + '/getUserExpenses/' + id);
   }
 
 

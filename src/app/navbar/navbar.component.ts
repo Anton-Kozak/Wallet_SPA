@@ -26,16 +26,16 @@ export class NavbarComponent implements OnInit {
     this.authService.isLoggedIn.subscribe(result=>{
       this.isLoggedIn = result;
     })
-  }
+  }2
 
   onSubmit() {
     const username = this.signInForm.value['username'];
     const password = this.signInForm.value['userpass']
     this.authService.login(username, password).subscribe((response: any) => {
       const user: User = JSON.parse(localStorage.getItem('currentUser'));
-      this.currentUserName = user.userName;
+      this.currentUserName = user.username;
       this.router.navigate(['/home']);
-      this.alertify.success("Welcome " + user.userName);
+      this.alertify.success("Welcome " + user.username);
     }, error=>{
       this.alertify.error(error.statusText);
     })

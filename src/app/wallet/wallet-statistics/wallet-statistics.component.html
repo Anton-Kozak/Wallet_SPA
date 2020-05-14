@@ -4,7 +4,7 @@
         <p>Most used category: {{mostUsedCategory}}</p>
         <p>Most spent category: {{mostSpentCategory}}</p>
         <p>Average daily expenses: {{avgDailyExpenses}}</p>
-        <p>Wallet members: <span *ngFor="let user of walletMembers">{{user}} </span></p>
+        <p>Wallet members: <span *ngFor="let user of walletMembers"> <button class="btn btn-link" type="button" (click)="getUserStatistics(user.id)"> {{user.username}} </button></span></p>
         <p>Админ кошелька</p>
         <p>Amount of money spent: {{amountOfMoneySpent}}</p>
     </div>

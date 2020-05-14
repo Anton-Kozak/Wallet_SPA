@@ -1,1 +1,43 @@
-<p>user-statistics works!</p>
+<div class="row border m-2">
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-4 h-100" style="border:1px solid #333">
+        <div *ngIf="mostSpentCategory && mostUsedCategory">
+            <p>Most used category: {{mostUsedCategory}}</p>
+            <p>Most spent category: {{mostSpentCategory}}</p>
+            <p>Largest expense of all time: !!!!добавить</p>
+        </div>
+        <div>
+            <div *ngIf="barExpenses" class="container">
+                <app-single-bar-chart [barExpensesList]="barExpenses"></app-single-bar-chart>
+            </div>
+            <div *ngIf="lastSixMonths" class="container">
+                <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart>
+            </div>
+            <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="container">
+                <app-bar-comparison [currentMonthbarExpensesList]="currentMonthDataToCompare"
+                    [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-8 col-lg-9 col-xl-8 h-100" style="border:1px solid #ff0000">
+        <div class="container">
+            <table class="table table-dark table-striped table-hover table-sm">
+                <thead>
+                    <tr class="d-flex">
+                        <th class="col-4">Title</th>
+                        <th class="col-3">Description</th>
+                        <th class="col-3">Date</th>
+                        <th class="col-1">$</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="d-flex" *ngFor="let expense of expenses">
+                        <td class="col-4">{{expense.expenseTitle}}</td>
+                        <td class="col-3">{{expense.expenseDescription}}</td>
+                        <td class="col-3">{{expense.creationDate | date :'medium'}}</td>
+                        <td class="col-1">{{expense.moneySpent}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
