@@ -112,8 +112,8 @@ export class ExpenseService {
     return this.http.get(this.baseUrl + this.user.id + '/getCategoryExpenses/' + categoryId);
   }
 
-  getUserStatistics(){
-    return this.http.get(this.baseUrl + this.user.id + '/detailedUserStatistics');
+  getUserStatistics(id: string){
+    return this.http.get(this.baseUrl + this.user.id + '/detailedUserStatistics/' + id);
   }
 
   getUserExpenses(id: string) {

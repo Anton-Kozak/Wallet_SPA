@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Expense } from 'src/app/_model/expense';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -10,14 +11,18 @@ import { Expense } from 'src/app/_model/expense';
 })
 export class ShowWalletTableComponent implements OnInit {
 
-  constructor(private expenseService: ExpenseService, private router: Router) { }
+  constructor(private expenseService: ExpenseService, private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
   foodExpenses: Expense[] = [];
   houseExpenses: Expense[] = [];
   entExpenses: Expense[] = [];
   clothesExpenses: Expense[] = [];
   otherExpenses: Expense[] = [];
+  private id;
 
   ngOnInit(): void {
+    this.id = this.authService.getToken().nameid;
+    console.log(this.id);
+    
     this.expenseService.showAllExpenses();
     this.expenseService.foodSubject.subscribe(exp => {
       this.foodExpenses = exp;
@@ -62,7 +67,7 @@ export class ShowWalletTableComponent implements OnInit {
   }
 
   userStat(){
-    this.router.navigate(['/userStatistics']);
+    this.router.navigate(['/userStatistics', this.id]);
   }
 
 }

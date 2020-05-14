@@ -4,6 +4,7 @@ import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-user-statistics',
@@ -12,7 +13,9 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class UserStatisticsComponent implements OnInit {
 
-  constructor(private expService: ExpenseService, private authService: AuthService) { }
+  constructor(private expService: ExpenseService, private authService: AuthService, private route: ActivatedRoute) { }
+
+  //@Input
 
   spentAll: number;
   avgDailyExpenses: number;
@@ -24,9 +27,15 @@ export class UserStatisticsComponent implements OnInit {
   mostUsedCategory: string;
   lastSixMonths: LastMonthStat[];
   expenses: ExpenseForTable[] = [];
+  private id;
 
   ngOnInit(): void {
-    this.expService.getUserStatistics().subscribe(response=>{
+
+    this.id = this.route.snapshot.params['id'];
+    console.log(this.id);
+    
+
+    this.expService.getUserStatistics(this.id).subscribe(response=>{
       this.avgDailyExpenses = response['averageDailyExpense'];
       this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
       this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
@@ -37,7 +46,7 @@ export class UserStatisticsComponent implements OnInit {
       this.amountOfMoneySpent = response['amountOfMoneySpent'];
     })
 
-    this.expService.getUserExpenses(this.authService.decodedToken.id).subscribe((data: ExpenseForTable[]) => {
+    this.expService.getUserExpenses(this.id).subscribe((data: ExpenseForTable[]) => {
       this.expenses = data;
     })
   }
