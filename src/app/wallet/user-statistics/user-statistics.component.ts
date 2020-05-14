@@ -15,8 +15,6 @@ export class UserStatisticsComponent implements OnInit {
 
   constructor(private expService: ExpenseService, private authService: AuthService, private route: ActivatedRoute) { }
 
-  //@Input
-
   spentAll: number;
   avgDailyExpenses: number;
   amountOfMoneySpent: number;
