@@ -1,0 +1,34 @@
+<div mat-dialog-content>
+    <form [formGroup]="editExpense" (ngSubmit)="onEdit()">
+        <div class="form-group">
+            <input type="text" [ngClass]="{'is-invalid': editExpense.get('title').errors && editExpense.get('title').touched,
+            'is-valid': !editExpense.get('title').errors}" formControlName="title" [value]="exp.expenseTitle"
+                class="form-control">
+        </div>
+        <div *ngIf="editExpense.get('title').hasError('required') && editExpense.get('title').touched"
+            class="invalid-feedback">
+            Title is required
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="desc" [value]="exp.expenseDescription" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="date" [value]="exp.creationDate" class="form-control">
+        </div>
+        <div *ngIf="editExpense.get('date').hasError('required') && editExpense.get('date').touched"
+            class="invalid-feedback">
+            Date is required
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="money" [value]="exp.moneySpent" class="form-control">
+        </div>
+        <div *ngIf="editExpense.get('money').hasError('required') && editExpense.get('money').touched"
+            class="invalid-feedback">
+            Money are required
+        </div>
+        <div class="form-group">
+            <button class="btn btn-outline-secondary btn-block" [disabled]="editExpense.invalid"
+                [ngClass]="{'btn-outline-success': editExpense.valid}">Edit</button>
+        </div>
+    </form>
+</div>

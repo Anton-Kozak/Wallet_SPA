@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Expense } from 'src/app/_model/expense';
+import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
 
 @Component({
   selector: 'app-user-statistics',
@@ -13,7 +17,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class UserStatisticsComponent implements OnInit {
 
-  constructor(private expService: ExpenseService, private authService: AuthService, private route: ActivatedRoute) { }
+  constructor(private expService: ExpenseService, private route: ActivatedRoute, private alertify: AlertifyService, public dialog: MatDialog) { }
 
   spentAll: number;
   avgDailyExpenses: number;
@@ -27,13 +31,15 @@ export class UserStatisticsComponent implements OnInit {
   expenses: ExpenseForTable[] = [];
   private id;
 
+  @ViewChild('table') private table: ElementRef;
+
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
-    
+    //console.log(this.id);
 
-    this.expService.getUserStatistics(this.id).subscribe(response=>{
+
+    this.expService.getUserStatistics(this.id).subscribe(response => {
       this.avgDailyExpenses = response['averageDailyExpense'];
       this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
       this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
@@ -49,6 +55,33 @@ export class UserStatisticsComponent implements OnInit {
     })
   }
 
-  
+  expenseDelete(id: number, rowIndex: number) {
+
+    this.expService.onExpenseDelete(id).subscribe((response: any) => {
+      this.alertify.success(response);
+      var el: any = (document.getElementById(rowIndex.toString())) as HTMLTableElement;
+      var index = el.rowIndex;
+      el.remove(rowIndex);
+    }, error => {
+      this.alertify.error(error.error);
+    });
+  }
+
+  expenseEdit(){
+
+  }
+
+  openDialog(id: number): void {
+    var exp = this.expenses.find(x=> x.id === id);
+    const dialogRef = this.dialog.open(EditExpenseModalComponent, {
+      width: '250px',
+      data: exp
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
 
 }

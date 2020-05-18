@@ -5,6 +5,7 @@ import { User } from '../_model/user';
 import { Expense } from '../_model/expense';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ExpenseForTable } from '../_model/expense-for-table';
 @Injectable({
   providedIn: 'root'
 })
@@ -120,6 +121,14 @@ export class ExpenseService {
     return this.http.get(this.baseUrl + this.user.id + '/getUserExpenses/' + id);
   }
 
+
+  onExpenseDelete(id: number){
+    return this.http.delete(this.baseUrl + this.user.id + '/expenseDelete/' + id, {responseType:'text'});
+  }
+
+  onExpenseEdit(expenseToEdit: ExpenseForTable){
+    return this.http.put(this.baseUrl + this.user.id + '/expenseEdit/' + expenseToEdit.id, expenseToEdit, {responseType:'text'})
+  }
 
 
 

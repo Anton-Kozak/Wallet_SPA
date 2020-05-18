@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { AppComponent } from './app.component';
@@ -29,6 +30,10 @@ import { LineChartComponent } from './graphs/line-chart/line-chart.component';
 import { BarComparisonComponent } from './graphs/bar-comparison/bar-comparison.component';
 import { CategoryStatisticsComponent } from './wallet/category-statistics/category-statistics.component';
 import { BarCategoryComparisonComponent } from './graphs/bar-category-comparison/bar-category-comparison.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidebarComponent } from './navbar/sidebar/sidebar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { EditExpenseModalComponent } from './expenses/edit-expense-modal/edit-expense-modal.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -56,16 +61,20 @@ export function tokenGetter() {
     LineChartComponent,
     BarComparisonComponent,
     CategoryStatisticsComponent,
-    BarCategoryComparisonComponent
+    BarCategoryComparisonComponent,
+    SidebarComponent,
+    EditExpenseModalComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSidenavModule,
     ChartsModule,
+    MatDialogModule,
     RouterModule.forRoot(appRoutes),
-    
+
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -73,6 +82,8 @@ export function tokenGetter() {
         blacklistedRoutes: ['localhost:5000/api/auth']
       }
     }),
+
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
