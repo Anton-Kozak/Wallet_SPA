@@ -18,8 +18,8 @@ export class AuthService {
   hasWallet = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) { }
 
-  register(username: string, userpass: string) {
-    return this.http.post(this.baseUrl + 'register', { username: username, password: userpass });
+  register(username: string, userpass: string, role: string) {
+    return this.http.post(this.baseUrl + 'register', { username: username, password: userpass, role: role });
   }
 
   login(username: string, userpass: string) {
@@ -60,5 +60,17 @@ export class AuthService {
       return false;
     }
     return false;
+  }
+
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    const userRoles = this.decodedToken.role as Array<string>;
+    allowedRoles.forEach(element => {
+      if (userRoles.includes(element)) {
+        isMatch = true;
+        return;
+      }
+    })
+    return isMatch;
   }
 }

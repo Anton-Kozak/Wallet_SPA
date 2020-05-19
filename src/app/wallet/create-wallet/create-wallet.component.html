@@ -20,10 +20,31 @@
                 </div>
                 <div *ngIf="walletForm.get('title').hasError('maxlength') && walletForm.get('title').touched"
                     class="invalid-feedback">
-                    Title should be no longer than 10 characters
+                    Title should be no longer than 16 characters
                 </div>
             </div>
         </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('limit').errors && walletForm.get('limit').touched,
+                        'bg-success text-white': !walletForm.get('limit').errors}">Limit</span>
+                </div>
+                <input [ngClass]="{'is-invalid': walletForm.get('limit').errors && walletForm.get('limit').touched,
+                                    'is-valid': !walletForm.get('limit').errors}" type="number" formControlName="limit"
+                    class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('limit').errors,
+                        'bg-success text-white': !walletForm.get('limit').errors}">$</span>
+                    </div>
+                <div *ngIf="walletForm.get('limit').hasError('min') && walletForm.get('limit').touched"
+                    class="invalid-feedback">
+                    Limit should be 0 or at least $10
+                </div>
+            </div>
+        </div>
+
         <div class="form-group">
             <button class="btn btn-outline-secondary btn-block" [disabled]="walletForm.invalid"
                 [ngClass]="{'btn-outline-success': walletForm.valid}">Create wallet</button>

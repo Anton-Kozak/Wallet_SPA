@@ -16,14 +16,16 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
       'username': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
-      'userpass': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)])
+      'userpass': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
+      'role': new FormControl('', Validators.required)
     })
   }
 
   onSubmit() {
     const username = this.signUpForm.value['username'];
-    const password = this.signUpForm.value['userpass']
-    this.authService.register(username, password).subscribe((data: any) => {
+    const password = this.signUpForm.value['userpass'];
+    const role = this.signUpForm.value['role']
+    this.authService.register(username, password, role).subscribe((data: any) => {
       this.alertify.success(data.data);
     }, error=>{
       this.alertify.error(error.error);

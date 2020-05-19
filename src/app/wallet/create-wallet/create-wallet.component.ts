@@ -18,7 +18,8 @@ export class CreateWalletComponent implements OnInit {
   wallet: Wallet;
   ngOnInit(): void {
     this.walletForm = new FormGroup({
-      'title': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)])
+      'title': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
+      'limit': new FormControl('', Validators.min(10))
     })
   }
 

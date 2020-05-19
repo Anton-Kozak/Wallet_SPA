@@ -25,17 +25,19 @@ export class NavbarComponent implements OnInit {
     this.authService.checkLogin();
     this.authService.isLoggedIn.subscribe(result=>{
       this.isLoggedIn = result;
-    })
-  }2
+    });
+    this.currentUserName = this.authService.getToken().unique_name;
+  }
+  //TODO: сделать чтобы навбар полностью не убирался, а оставался и показывались только иконки
 
   onSubmit() {
     const username = this.signInForm.value['username'];
     const password = this.signInForm.value['userpass']
     this.authService.login(username, password).subscribe((response: any) => {
-      const user: User = JSON.parse(localStorage.getItem('currentUser'));
-      this.currentUserName = user.username;
+      var user: User = JSON.parse(localStorage.getItem('currentUser'));
+      this.currentUserName = this.authService.getToken().unique_name;
       this.router.navigate(['/home']);
-      this.alertify.success("Welcome " + user.username);
+      this.alertify.success("Welcome " + this.currentUserName);
     }, error=>{
       this.alertify.error(error.statusText);
     })

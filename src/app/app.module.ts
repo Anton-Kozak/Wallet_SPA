@@ -34,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './navbar/sidebar/sidebar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { EditExpenseModalComponent } from './expenses/edit-expense-modal/edit-expense-modal.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -64,6 +65,7 @@ export function tokenGetter() {
     BarCategoryComparisonComponent,
     SidebarComponent,
     EditExpenseModalComponent,
+    HasRoleDirective,
   ],
   imports: [
     BrowserModule,

@@ -49,6 +49,18 @@
             </div>
         </div>
         <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('role').errors && signUpForm.get('role').touched,
+                    'bg-success text-white': !signUpForm.get('role').errors}">Role</span>
+                </div>
+                <select formControlName="role" class="form-control">
+                    <option value="Adult">Adult</option>
+                    <option value="Child">Child</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <button class="btn btn-outline-secondary btn-block" [disabled]="signUpForm.invalid" [ngClass]="{'btn-outline-success': signUpForm.valid}">Create account</button>
         </div>
     </form>
