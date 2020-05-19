@@ -35,6 +35,7 @@ import { SidebarComponent } from './navbar/sidebar/sidebar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { EditExpenseModalComponent } from './expenses/edit-expense-modal/edit-expense-modal.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
+import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -66,6 +67,7 @@ export function tokenGetter() {
     SidebarComponent,
     EditExpenseModalComponent,
     HasRoleDirective,
+    EditWalletComponent,
   ],
   imports: [
     BrowserModule,

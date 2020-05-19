@@ -12,6 +12,7 @@ import { CreateExpenseComponent } from './expenses/create-expense/create-expense
 import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-statistics.component';
 import { CategoryStatisticsComponent } from './wallet/category-statistics/category-statistics.component';
 import { UserStatisticsComponent } from './wallet/user-statistics/user-statistics.component';
+import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,5 +29,6 @@ export const appRoutes: Routes = [
   { path: 'userStatistics/:id', component: UserStatisticsComponent },
   { path: 'home', component: HomeComponent },
   { path: 'createNewWallet', component: CreateWalletComponent },
+  { path: 'editWallet', component: EditWalletComponent },
   { path: 'graph', component: PieGraphComponent },
 ]

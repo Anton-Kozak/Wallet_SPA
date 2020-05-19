@@ -22,4 +22,12 @@ export class WalletService {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     return this.http.post(this.baseUrl + this.currentUser.id + '/createwallet', walletToCreate);
   }
+
+  getCurrentWallet(userId: string){
+    return this.http.get(this.baseUrl + userId + '/getCurrentWallet');
+  }
+
+  editWallet(userId: string, wallet: Wallet){
+    return this.http.put(this.baseUrl + userId + '/editWallet', wallet, {responseType: 'text'});
+  }
 }

@@ -130,6 +130,10 @@ export class ExpenseService {
     return this.http.put(this.baseUrl + this.user.id + '/expenseEdit/' + expenseToEdit.id, expenseToEdit, {responseType:'text'})
   }
 
+  getWalletData(userId: string){
+    return this.http.get(this.baseUrl + userId + '/getNameAndLimit');
+  }
+
 
 
 

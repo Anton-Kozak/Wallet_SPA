@@ -18,8 +18,9 @@ export class CreateWalletComponent implements OnInit {
   wallet: Wallet;
   ngOnInit(): void {
     this.walletForm = new FormGroup({
+      //TODO: сделать кастомный валидатор
       'title': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
-      'limit': new FormControl('', Validators.min(10))
+      'limit': new FormControl(0, [Validators.required, Validators.min(10)])
     })
   }
 
@@ -27,17 +28,21 @@ export class CreateWalletComponent implements OnInit {
   createWallet() {
     this.wallet = ({
       title: this.walletForm.value['title'],
+      monthlyLimit: this.walletForm.value['limit'],
     });
-    console.log(this.wallet);
 
     this.walletService.createNewWallet(this.wallet).subscribe((user: any) => {
       this.alertify.success("You have successfully created a wallet");
       localStorage.setItem("currentUser", JSON.stringify(user));
-     this.authService.hasWallet.next(true);
+      this.authService.hasWallet.next(true);
       this.router.navigate(['/home']);
     }, error => {
       this.alertify.error(error.statusText);
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/home']);
   }
 
 

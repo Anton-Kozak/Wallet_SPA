@@ -3,6 +3,7 @@ import { ExpenseService } from 'src/app/_services/expense.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Expense } from 'src/app/_model/expense';
 import { AuthService } from 'src/app/_services/auth.service';
+import { Wallet } from 'src/app/_model/wallet';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -17,11 +18,19 @@ export class ShowWalletTableComponent implements OnInit {
   entExpenses: Expense[] = [];
   clothesExpenses: Expense[] = [];
   otherExpenses: Expense[] = [];
+  walletTitle: string;
+  walletLimit?: number;
   private id;
 
   ngOnInit(): void {
     this.id = this.authService.getToken().nameid;
-    console.log(this.id);
+
+    this.expenseService.getWalletData(this.id).subscribe((walletData: Wallet)=>{
+      console.log(walletData);
+      
+      this.walletTitle = walletData['title'];
+      this.walletLimit = walletData['monthlyLimit'] === null ? 0 : walletData['monthlyLimit'];
+    });
     
     this.expenseService.showAllExpenses();
     this.expenseService.foodSubject.subscribe(exp => {
@@ -68,6 +77,10 @@ export class ShowWalletTableComponent implements OnInit {
 
   userStat(){
     this.router.navigate(['/userStatistics', this.id]);
+  }
+
+  editWallet(){
+    this.router.navigate(['/editWallet']);
   }
 
 }

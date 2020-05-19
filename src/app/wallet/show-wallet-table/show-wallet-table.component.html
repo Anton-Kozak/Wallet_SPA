@@ -1,4 +1,8 @@
 <div class="container">
+        <p class="p-3 border d-block">Wallet Title: {{walletTitle}}</p>
+        <p class="p-3 border d-block">Wallet Limit: {{walletLimit}}</p>
+</div>
+<div class="container">
     <div *appHasRole="['Admin', 'Adult']">
         <button class="btn btn-success mr-5" (click)="checkRequests()">Check requests</button>
         <button class="btn btn-outline-success mr-4" (click)="createInvite()">Invite new user</button>
@@ -8,6 +12,7 @@
     <button class="btn btn-secondary mr-5" (click)="showWalletStatistics()">Show wallet statistics</button>
     <button class="btn btn-secondary mr-5" (click)="categoryStatistics()">Cat stat</button>
     <button class="btn btn-secondary mr-5" (click)="userStat()">User stat</button>
+    <button class="btn btn-danger mr-5" (click)="editWallet()">Edit wallet</button>
     <button *appHasRole="['Child']" class="btn btn-secondary mr-5" (click)="userStat()">Child button</button>
 </div>
 <div class="d-flex justify-content-around">
