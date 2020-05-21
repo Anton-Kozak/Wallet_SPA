@@ -83,4 +83,8 @@ export class ShowWalletTableComponent implements OnInit {
     this.router.navigate(['/editWallet']);
   }
 
+  walletAdmin(){
+    this.router.navigate(['/walletAdmin']);
+  }
+
 }

@@ -1,0 +1,29 @@
+<div class="container">
+    <table class="table table-dark table-striped table-hover table-sm text-light">
+        <thead>
+            <tr class="d-flex">
+                <th class="col-2">Username</th>
+                <th class="col-3">Date joined</th>
+                <th class="col-2">Address</th>
+                <th class="col-1">Age</th>
+                <th class="col-2">Roles</th>
+                <th class="col-1">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [attr.id]="i" class="d-flex" *ngFor="let user of users; index as i">
+                <th class="col-2">{{user.username}}</th>
+                <th class="col-3">{{user.dateJoined}}</th>
+                <th class="col-2">{{user.address}}</th>
+                <th class="col-1">{{user.age}}</th>
+                <th class="col-2"><span *ngFor="let role of user.userRoles">{{role}}<br/></span></th>
+                <th class="col-1">
+                    <button class="btn btn-warning btn-sm">Block</button>
+                    <button (click)="removeUser(user.id, i)" class="btn btn-danger btn-sm">Remove</button>
+                    <button *ngIf="user.userRoles.includes('Adult') && !user.userRoles.includes('Admin')" class="btn btn-warning btn-sm">Make moderator</button>
+                </th>
+            </tr>
+            <tr>Total spent: </tr>
+        </tbody>
+    </table>
+</div>

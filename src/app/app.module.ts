@@ -36,6 +36,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { EditExpenseModalComponent } from './expenses/edit-expense-modal/edit-expense-modal.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
 import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
+import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -68,6 +69,7 @@ export function tokenGetter() {
     EditExpenseModalComponent,
     HasRoleDirective,
     EditWalletComponent,
+    WalletAdminComponent,
   ],
   imports: [
     BrowserModule,

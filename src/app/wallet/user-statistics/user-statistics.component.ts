@@ -60,7 +60,7 @@ export class UserStatisticsComponent implements OnInit {
     this.expService.onExpenseDelete(id).subscribe((response: any) => {
       this.alertify.success(response);
       var el: any = (document.getElementById(rowIndex.toString())) as HTMLTableElement;
-      var index = el.rowIndex;
+      //var index = el.rowIndex;
       el.remove(rowIndex);
     }, error => {
       this.alertify.error(error.error);

@@ -13,6 +13,7 @@ import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-sta
 import { CategoryStatisticsComponent } from './wallet/category-statistics/category-statistics.component';
 import { UserStatisticsComponent } from './wallet/user-statistics/user-statistics.component';
 import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
+import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,5 +31,6 @@ export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'createNewWallet', component: CreateWalletComponent },
   { path: 'editWallet', component: EditWalletComponent },
+  { path: 'walletAdmin', component: WalletAdminComponent },
   { path: 'graph', component: PieGraphComponent },
 ]
