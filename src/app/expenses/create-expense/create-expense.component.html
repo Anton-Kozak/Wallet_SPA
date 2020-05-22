@@ -8,13 +8,13 @@
                         'bg-success text-white': !newExpenseForm.get('category').errors}">Expense Category</span>
                     </div>
                     <select [ngClass]="{'is-invalid': newExpenseForm.get('category').errors && newExpenseForm.get('category').touched,
-                                    'is-valid': !newExpenseForm.get('category').errors}"
-                        formControlName="category" class="form-control">
-                    <option value="1">Food</option>
-                    <option value="2">Housekeeping </option>
-                    <option value="3">Clothes</option>
-                    <option value="4">Entertainment</option>
-                    <option value="5">Other</option>
+                                    'is-valid': !newExpenseForm.get('category').errors}" formControlName="category"
+                        class="form-control">
+                        <option value="1">Food</option>
+                        <option value="2">Housekeeping </option>
+                        <option value="3">Clothes</option>
+                        <option value="4">Entertainment</option>
+                        <option value="5">Other</option>
                     </select>
 
                     <div *ngIf="newExpenseForm.get('category').hasError('required') && newExpenseForm.get('category').touched"
@@ -54,8 +54,8 @@
                         'bg-success text-white': !newExpenseForm.get('desc').errors}">Description</span>
                     </div>
                     <textarea [ngClass]="{'is-invalid': newExpenseForm.get('desc').errors && newExpenseForm.get('desc').touched,
-                                    'is-valid': !newExpenseForm.get('desc').errors}" type="text"
-                        formControlName="desc" class="form-control"></textarea>
+                                    'is-valid': !newExpenseForm.get('desc').errors}" type="text" formControlName="desc"
+                        class="form-control"></textarea>
 
                     <div *ngIf="newExpenseForm.get('desc').hasError('minlength') && newExpenseForm.get('desc').touched"
                         class="invalid-feedback">
@@ -86,7 +86,9 @@
             <div class="form-group">
                 <button class="btn btn-outline-secondary btn-block" [disabled]="newExpenseForm.invalid"
                     [ngClass]="{'btn-outline-success': newExpenseForm.valid}">Create expense</button>
+
             </div>
         </form>
+        <button class="btn btn-warning btn-block" (click)="back()">Back</button>
     </div>
 </div>

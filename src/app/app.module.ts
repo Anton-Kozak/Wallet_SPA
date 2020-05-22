@@ -37,7 +37,7 @@ import { EditExpenseModalComponent } from './expenses/edit-expense-modal/edit-ex
 import { HasRoleDirective } from './_directives/hasRole.directive';
 import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
 import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
-
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -79,6 +79,7 @@ export function tokenGetter() {
     MatSidenavModule,
     ChartsModule,
     MatDialogModule,
+    ProgressbarModule.forRoot(),
     RouterModule.forRoot(appRoutes),
 
     JwtModule.forRoot({

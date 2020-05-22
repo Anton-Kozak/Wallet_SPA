@@ -39,7 +39,7 @@ export class EditWalletComponent implements OnInit {
     this.walletService.editWallet(this.currentUserId, this.walletToEdit).subscribe(response => {
       this.alertify.success("You have successfully edited your wallet");
     }, error => {
-      this.alertify.error(error.statusText);
+      this.alertify.error(error.error);
     });
   }
 

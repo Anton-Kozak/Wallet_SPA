@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Expense } from 'src/app/_model/expense';
 import { AuthService } from 'src/app/_services/auth.service';
-import { Wallet } from 'src/app/_model/wallet';
+import { WalletForPage } from 'src/app/_model/wallet-for-page';
+import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-expense.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Notification } from 'src/app/_model/notification';
+import { NotificationService } from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -12,26 +16,41 @@ import { Wallet } from 'src/app/_model/wallet';
 })
 export class ShowWalletTableComponent implements OnInit {
 
-  constructor(private expenseService: ExpenseService, private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
+  constructor(private expenseService: ExpenseService,
+    private router: Router,
+    private authService: AuthService,
+    public dialog: MatDialog,
+    private noteService: NotificationService) { }
   foodExpenses: Expense[] = [];
   houseExpenses: Expense[] = [];
   entExpenses: Expense[] = [];
   clothesExpenses: Expense[] = [];
   otherExpenses: Expense[] = [];
   walletTitle: string;
-  walletLimit?: number;
+  walletLimit: number;
+  walletExpenses: number;
+  type: string;
   private id;
+  expensesToShow: number;
+  notifications: Notification[] = [];
 
   ngOnInit(): void {
     this.id = this.authService.getToken().nameid;
 
-    this.expenseService.getWalletData(this.id).subscribe((walletData: Wallet)=>{
-      console.log(walletData);
-      
+    this.expenseService.getWalletData(this.id).subscribe((walletData: WalletForPage) => {
       this.walletTitle = walletData['title'];
-      this.walletLimit = walletData['monthlyLimit'] === null ? 0 : walletData['monthlyLimit'];
+      this.expenseService.expensesSubject.subscribe(expData => {
+        this.walletExpenses = expData;
+        this.expensesToShow = expData;
+        this.checkLimit();
+      })
+      this.walletLimit = walletData['monthlyLimit'];
+      this.checkLimit();
     });
-    
+
+
+
+
     this.expenseService.showAllExpenses();
     this.expenseService.foodSubject.subscribe(exp => {
       this.foodExpenses = exp;
@@ -48,6 +67,30 @@ export class ShowWalletTableComponent implements OnInit {
     this.expenseService.otherSubject.subscribe(exp => {
       this.otherExpenses = exp;
     });
+
+    this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
+      this.notifications = notifications;
+    })
+  }
+
+  checkLimit() {
+    if (this.walletLimit != 0) {
+      this.expensesToShow = this.walletExpenses;
+
+      if (this.walletExpenses < 0.25 * this.walletLimit) {
+        this.type = 'success';
+      } else if (this.walletExpenses < 0.5 * this.walletLimit) {
+        this.type = 'info';
+      } else if (this.walletExpenses < 0.75 * this.walletLimit) {
+        this.type = 'warning';
+      } else if (this.walletExpenses < 0.95 * this.walletLimit) {
+        this.type = 'danger';
+      }
+      else if (this.walletExpenses >= this.walletLimit) {
+        this.expensesToShow = this.walletLimit;
+        this.type = 'danger';
+      }
+    }
   }
 
   checkRequests() {
@@ -62,9 +105,9 @@ export class ShowWalletTableComponent implements OnInit {
     this.router.navigate(['/graph']);
   }
 
-  createExpense() {
-    this.router.navigate(['/createExpense']);
-  }
+  // createExpense() {
+  //   this.router.navigate(['/createExpense']);
+  // }
 
 
   showWalletStatistics() {
@@ -75,16 +118,25 @@ export class ShowWalletTableComponent implements OnInit {
     this.router.navigate(['/catstat'], { queryParams: { category: 1 } });
   }
 
-  userStat(){
+  userStat() {
     this.router.navigate(['/userStatistics', this.id]);
   }
 
-  editWallet(){
+  editWallet() {
     this.router.navigate(['/editWallet']);
   }
 
-  walletAdmin(){
+  walletAdmin() {
     this.router.navigate(['/walletAdmin']);
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreateExpenseComponent, {
+      width: '450px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
 }

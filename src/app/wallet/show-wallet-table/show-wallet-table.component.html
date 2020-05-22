@@ -1,6 +1,6 @@
 <div class="container">
-        <p class="p-3 border d-block">Wallet Title: {{walletTitle}}</p>
-        <p class="p-3 border d-block">Wallet Limit: {{walletLimit}}</p>
+    <p class="p-3 border d-block">Wallet Title: {{walletTitle}}</p>
+    <p class="p-3 border d-block">Wallet Limit: {{walletLimit}}</p>
 </div>
 <div class="container">
     <div *appHasRole="['Admin', 'Adult']">
@@ -8,13 +8,18 @@
         <button class="btn btn-outline-success mr-4" (click)="createInvite()">Invite new user</button>
         <button class="btn btn-outline-success mr-5" (click)="showGraph()">Show graph</button>
     </div>
-    <button class="btn btn-secondary mr-5" (click)="createExpense()">Create expense</button>
+    <button class="btn btn-secondary mr-5" (click)="openDialog()">Create expense</button>
     <button class="btn btn-secondary mr-5" (click)="showWalletStatistics()">Show wallet statistics</button>
     <button class="btn btn-secondary mr-5" (click)="categoryStatistics()">Cat stat</button>
     <button class="btn btn-secondary mr-5" (click)="userStat()">User stat</button>
     <button class="btn btn-danger mr-5" (click)="editWallet()">Edit wallet</button>
     <button *appHasRole="['Child']" class="btn btn-secondary mr-5" (click)="userStat()">Child button</button>
     <button *appHasRole="['Admin']" class="btn btn-primary mr-5" (click)="walletAdmin()">Admin wallet</button>
+    <br/><span *ngIf="notifications.length > 0" class="text text-primary uk-text-large">YOU HAVE NOTIFICATIONS</span>
+</div>
+<div *ngIf="walletLimit > 0" class="container mt-5 mb-5">
+    Limit: {{walletExpenses}} / {{walletLimit}}
+    <progressbar class="progress-striped active" [max]="walletLimit" [value]="expensesToShow" [type]="type"></progressbar>
 </div>
 <div class="d-flex justify-content-around">
     <div class="container">

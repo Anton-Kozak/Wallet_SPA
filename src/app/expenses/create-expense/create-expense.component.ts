@@ -3,6 +3,7 @@ import { Expense } from 'src/app/_model/expense';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-expense',
@@ -14,7 +15,7 @@ export class CreateExpenseComponent implements OnInit {
   expense: Expense;
   newExpenseForm: FormGroup;
 
-  constructor(private expenseService: ExpenseService, private alertify: AlertifyService) { }
+  constructor(private expenseService: ExpenseService, private alertify: AlertifyService, public dialogRef: MatDialogRef<CreateExpenseComponent>) { }
 
   ngOnInit(): void {
     this.newExpenseForm = new FormGroup({
@@ -26,6 +27,8 @@ export class CreateExpenseComponent implements OnInit {
   }
 
   createExpense() {
+    console.log('form submit!');
+    
     if (this.newExpenseForm.errors == null) {
       this.expense = {
         expenseCategoryId: this.newExpenseForm.value['category'],
@@ -34,12 +37,23 @@ export class CreateExpenseComponent implements OnInit {
         moneySpent: this.newExpenseForm.value['money'],
         creationDate: new Date()
       }
-      this.expenseService.createExpense(this.expense).subscribe(()=>{
-        this.alertify.success("You have successfully created an expense");
-      }, error=>{
+      this.expenseService.createExpense(this.expense).subscribe((response: any) => {
+        if (response['message'] === null) {
+          this.alertify.success("You have successfully created an expense!");
+          this.dialogRef.close();
+        }
+        else {
+          this.alertify.warning(response['message']);
+          this.dialogRef.close();
+        }
+      }, error => {
         this.alertify.error("You did not create an expense");
       });
     }
+  }
+
+  back() {
+    this.dialogRef.close();
   }
 
 }

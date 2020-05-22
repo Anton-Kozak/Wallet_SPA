@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from '../_model/user';
 import { Expense } from '../_model/expense';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ExpenseForTable } from '../_model/expense-for-table';
 @Injectable({
@@ -26,6 +26,7 @@ export class ExpenseService {
   entSubject = new Subject<Expense[]>();
   clothesSubject = new Subject<Expense[]>();
   otherSubject = new Subject<Expense[]>();
+  expensesSubject = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) { }
   user: User = JSON.parse(localStorage.getItem('currentUser'));
@@ -71,9 +72,10 @@ export class ExpenseService {
     return this.http.get(this.baseUrl + this.user.id + '/barExpenses');
   }
 
-
+  //TODO: здесь идет система автоматического добавления расходов, нужно подумать как их добавлять на деле
   createExpense(expense: Expense) {
-    return this.http.post(this.baseUrl + this.user.id + '/new', expense).pipe(map((newExpense: Expense) => {
+    return this.http.post(this.baseUrl + this.user.id + '/new', expense).pipe(map(response => {
+      var newExpense: Expense = response['expense'];
       switch (newExpense.expenseCategoryId) {
         case 1:
           this.foodExpenses.push(newExpense);
@@ -96,6 +98,8 @@ export class ExpenseService {
           this.otherSubject.next(this.otherExpenses);
           break;
       }
+      this.expensesSubject.next(this.expensesSubject.getValue() + newExpense.moneySpent);
+      return response;
     }));
   }
 
@@ -113,7 +117,7 @@ export class ExpenseService {
     return this.http.get(this.baseUrl + this.user.id + '/getCategoryExpenses/' + categoryId);
   }
 
-  getUserStatistics(id: string){
+  getUserStatistics(id: string) {
     return this.http.get(this.baseUrl + this.user.id + '/detailedUserStatistics/' + id);
   }
 
@@ -122,16 +126,19 @@ export class ExpenseService {
   }
 
 
-  onExpenseDelete(id: number){
-    return this.http.delete(this.baseUrl + this.user.id + '/expenseDelete/' + id, {responseType:'text'});
+  onExpenseDelete(id: number) {
+    return this.http.delete(this.baseUrl + this.user.id + '/expenseDelete/' + id, { responseType: 'text' });
   }
 
-  onExpenseEdit(expenseToEdit: ExpenseForTable){
-    return this.http.put(this.baseUrl + this.user.id + '/expenseEdit/' + expenseToEdit.id, expenseToEdit, {responseType:'text'})
+  onExpenseEdit(expenseToEdit: ExpenseForTable) {
+    return this.http.put(this.baseUrl + this.user.id + '/expenseEdit/' + expenseToEdit.id, expenseToEdit, { responseType: 'text' })
   }
 
-  getWalletData(userId: string){
-    return this.http.get(this.baseUrl + userId + '/getNameAndLimit');
+  getWalletData(userId: string) {
+    return this.http.get(this.baseUrl + userId + '/getNameAndLimit').pipe(map(data => {
+      this.expensesSubject.next(data['monthlyExpenses']);
+      return data
+    }));
   }
 
 
