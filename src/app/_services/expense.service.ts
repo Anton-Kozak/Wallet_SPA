@@ -6,6 +6,7 @@ import { Expense } from '../_model/expense';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ExpenseForTable } from '../_model/expense-for-table';
+import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -28,10 +29,11 @@ export class ExpenseService {
   otherSubject = new Subject<Expense[]>();
   expensesSubject = new BehaviorSubject<number>(0);
 
-  constructor(private http: HttpClient) { }
-  user: User = JSON.parse(localStorage.getItem('currentUser'));
-  showAllExpenses() {
-    this.http.get(this.baseUrl + this.user.id).subscribe((expenses: any) => {
+  constructor(private http: HttpClient, private authService: AuthService) {
+
+  }
+  showAllExpenses() {   
+    this.http.get(this.baseUrl + this.authService.getToken().nameid).subscribe((expenses: any) => {
       if (expenses != null) {
         this.initialExpenses = expenses;
         this.getFoodExpenses();
@@ -69,12 +71,12 @@ export class ExpenseService {
   }
 
   getBarExpensesData() {
-    return this.http.get(this.baseUrl + this.user.id + '/barExpenses');
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/barExpenses');
   }
 
   //TODO: здесь идет система автоматического добавления расходов, нужно подумать как их добавлять на деле
   createExpense(expense: Expense) {
-    return this.http.post(this.baseUrl + this.user.id + '/new', expense).pipe(map(response => {
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/new', expense).pipe(map(response => {
       var newExpense: Expense = response['expense'];
       switch (newExpense.expenseCategoryId) {
         case 1:
@@ -104,34 +106,34 @@ export class ExpenseService {
   }
 
   getWalletStatistics() {
-    return this.http.get(this.baseUrl + this.user.id + '/detailedStatistics');
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedStatistics');
   }
 
 
   getCategoryStatistics(categoryId: number) {
-    return this.http.get(this.baseUrl + this.user.id + '/detailedCategoryStatistics/' + categoryId)
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedCategoryStatistics/' + categoryId)
   }
 
 
   getCategoryExpenses(categoryId: number) {
-    return this.http.get(this.baseUrl + this.user.id + '/getCategoryExpenses/' + categoryId);
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCategoryExpenses/' + categoryId);
   }
 
   getUserStatistics(id: string) {
-    return this.http.get(this.baseUrl + this.user.id + '/detailedUserStatistics/' + id);
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedUserStatistics/' + id);
   }
 
   getUserExpenses(id: string) {
-    return this.http.get(this.baseUrl + this.user.id + '/getUserExpenses/' + id);
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getUserExpenses/' + id);
   }
 
 
   onExpenseDelete(id: number) {
-    return this.http.delete(this.baseUrl + this.user.id + '/expenseDelete/' + id, { responseType: 'text' });
+    return this.http.delete(this.baseUrl + this.authService.getToken().nameid + '/expenseDelete/' + id, { responseType: 'text' });
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable) {
-    return this.http.put(this.baseUrl + this.user.id + '/expenseEdit/' + expenseToEdit.id, expenseToEdit, { responseType: 'text' })
+    return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit, { responseType: 'text' })
   }
 
   getWalletData(userId: string) {

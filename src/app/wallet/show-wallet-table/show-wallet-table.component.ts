@@ -139,4 +139,14 @@ export class ShowWalletTableComponent implements OnInit {
     });
   }
 
+  showNotifications(){
+    this.notifications.forEach(element => {
+      console.log(element.message);
+    });
+    this.noteService.deleteNotifications().subscribe(()=>{
+      console.log('Success');
+      
+    })
+  }
+
 }

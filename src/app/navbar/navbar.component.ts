@@ -33,13 +33,12 @@ export class NavbarComponent implements OnInit {
   onSubmit() {
     const username = this.signInForm.value['username'];
     const password = this.signInForm.value['userpass']
-    this.authService.login(username, password).subscribe((response: any) => {
-      var user: User = JSON.parse(localStorage.getItem('currentUser'));
+    this.authService.login(username, password).subscribe(() => {
       this.currentUserName = this.authService.getToken().unique_name;
       this.router.navigate(['/home']);
       this.alertify.success("Welcome " + this.currentUserName);
     }, error=>{
-      this.alertify.error(error.statusText);
+      this.alertify.error(error.error);
     })
   }
 

@@ -15,7 +15,7 @@
     <button class="btn btn-danger mr-5" (click)="editWallet()">Edit wallet</button>
     <button *appHasRole="['Child']" class="btn btn-secondary mr-5" (click)="userStat()">Child button</button>
     <button *appHasRole="['Admin']" class="btn btn-primary mr-5" (click)="walletAdmin()">Admin wallet</button>
-    <br/><span *ngIf="notifications.length > 0" class="text text-primary uk-text-large">YOU HAVE NOTIFICATIONS</span>
+    <button *ngIf="notifications.length > 0" class="btn btn-outline-dark mr-5" (click)="showNotifications()">Show notifications</button>
 </div>
 <div *ngIf="walletLimit > 0" class="container mt-5 mb-5">
     Limit: {{walletExpenses}} / {{walletLimit}}

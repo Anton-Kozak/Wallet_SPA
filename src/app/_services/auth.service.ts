@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { environment } from 'src/environments/environment';
 import { Subject, BehaviorSubject } from 'rxjs';
+import { User } from '../_model/user';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +27,6 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'login', { username: username, password: userpass }).pipe(map((response: any) => {
       if (response) {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('currentUser', JSON.stringify(response.user));
         this.isLoggedIn.next(true);
         this.hasWallet.next(this.checkUserWallet());
       }
@@ -52,13 +52,8 @@ export class AuthService {
   }
 
   checkUserWallet() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser != null) {
-      if (currentUser.walletID != 0) {
-        return true;
-      }
-      return false;
-    }
+    if (this.getToken().hasWallet === "true")
+      return true;
     return false;
   }
 
