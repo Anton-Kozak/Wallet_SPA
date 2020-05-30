@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../_services/notification.service';
 
 
 @Component({
@@ -10,39 +11,55 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private noteService: NotificationService) { }
   isAuthorized = false;
-  hasWallet = false;
+  notifications
+  //hasWallet = false;
   //TODO: имя пользователя показывать при логине
   userName: string;
   ngOnInit(): void {
-    this.authService.isLoggedIn.subscribe(result=>{
+    this.authService.isLoggedIn.subscribe(result => {
       this.isAuthorized = result;
       console.log("Is authorized: " + this.isAuthorized);
+      if (this.isAuthorized) {
+        console.log('Trying to get notifications');
+        
+        this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
+          this.notifications = notifications;
+          this.notifications.forEach(element => {
+            console.log(element.message);
+          });
+        })
+      }
     });
-    this.authService.hasWallet.subscribe(result=>{
-      this.hasWallet = result;
-      console.log("Has wallet: " + this.hasWallet);
-    })
   }
 
-  goToRegistration(){
+  hasWallet() {
+    if (this.authService.getToken() !== null) {
+      if (this.authService.getToken().hasWallet === "true")
+        return true;
+      return false;
+    }
+    return false;
+  }
+
+  goToRegistration() {
     this.router.navigate(['/register']);
   }
 
-  goToWallet(){
+  goToWallet() {
     this.router.navigate(['/main']);
   }
 
-  goToWalletCreation(){
+  goToWalletCreation() {
     this.router.navigate(['/createNewWallet']);
   }
 
-  requestWalletAccess(){
+  requestWalletAccess() {
     this.router.navigate(['requestAccess']);
   }
 
-  checkInvites(){
+  checkInvites() {
     this.router.navigate(['checkInvites']);
   }
 

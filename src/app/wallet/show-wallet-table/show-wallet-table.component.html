@@ -1,3 +1,189 @@
+<div class="container-fluid mr-5">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-test">
+                    <div class="image">
+                        <img src="../../../assets\images\food3.jpg" alt="Card image cap">
+                    </div>
+                    <!-- <div class="card-header">
+                    <h4 class="card-title">Food expenses</h4>
+                    <p class="card-category">Check out how much you have spent this month!</p>
+                </div> -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr class="d-flex">
+                                        <th class="col-1">#</th>
+                                        <th class="col-5">Name</th>
+                                        <th class="col-4">Date</th>
+                                        <th class="col-2">$</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="d-flex" *ngFor="let expense of foodExpenses">
+                                        <td class="col-1">{{expense.id}}</td>
+                                        <td class="col-5">{{expense.expenseName}}</td>
+                                        <td class="col-4">{{expense.creationDate | date}}</td>
+                                        <td class="col-2">{{expense.moneySpent}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-test">
+                        <div class="image">
+                            <img src="../../../assets\images\house.jpg" alt="Card image cap">
+                        </div>
+                        <div class="card-header">
+                            <h4 class="card-title">House expenses</h4>
+                            <p class="card-category">Check out how much you have spent this month!</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                        <tr class="d-flex">
+                                            <th class="col-1">#</th>
+                                            <th class="col-5">Name</th>
+                                            <th class="col-4">Date</th>
+                                            <th class="col-2">$</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="d-flex" *ngFor="let expense of houseExpenses">
+                                            <td class="col-1">{{expense.id}}</td>
+                                            <td class="col-5">{{expense.expenseName}}</td>
+                                            <td class="col-4">{{expense.creationDate | date}}</td>
+                                            <td class="col-2">{{expense.moneySpent}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-test">
+                            <div class="image">
+                                <img src="../../../assets\images\cl.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-header">
+                                <h4 class="card-title">Clothes expenses</h4>
+                                <p class="card-category">Check out how much you have spent this month!</p>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <tr class="d-flex">
+                                                <th class="col-1">#</th>
+                                                <th class="col-5">Name</th>
+                                                <th class="col-4">Date</th>
+                                                <th class="col-2">$</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="d-flex" *ngFor="let expense of clothesExpenses">
+                                                <td class="col-1">{{expense.id}}</td>
+                                                <td class="col-5">{{expense.expenseName}}</td>
+                                                <td class="col-4">{{expense.creationDate | date}}</td>
+                                                <td class="col-2">{{expense.moneySpent}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-test">
+                                <div class="image">
+                                    <img src="../../../assets\images\ent.jpg" alt="Card image cap">
+                                </div>
+                                <div class="card-header">
+                                    <h4 class="card-title">Entertainment expenses</h4>
+                                    <p class="card-category">Check out how much you have spent this month!</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="text-primary">
+                                                <tr class="d-flex">
+                                                    <th class="col-1">#</th>
+                                                    <th class="col-5">Name</th>
+                                                    <th class="col-4">Date</th>
+                                                    <th class="col-2">$</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="d-flex" *ngFor="let expense of entExpenses">
+                                                    <td class="col-1">{{expense.id}}</td>
+                                                    <td class="col-5">{{expense.expenseName}}</td>
+                                                    <td class="col-4">{{expense.creationDate | date}}</td>
+                                                    <td class="col-2">{{expense.moneySpent}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Other expenses</h4>
+                                        <p class="card-category">Check out how much you have spent this month!</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="text-primary">
+                                                    <tr class="d-flex">
+                                                        <th class="col-1">#</th>
+                                                        <th class="col-5">Name</th>
+                                                        <th class="col-4">Date</th>
+                                                        <th class="col-2">$</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="d-flex" *ngFor="let expense of otherExpenses">
+                                                        <td class="col-1">{{expense.id}}</td>
+                                                        <td class="col-5">{{expense.expenseName}}</td>
+                                                        <td class="col-4">{{expense.creationDate | date}}</td>
+                                                        <td class="col-2">{{expense.moneySpent}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 
 <div class="container">
     <p class="p-3 border d-block">Wallet Title: {{walletTitle}}</p>
     <p class="p-3 border d-block">Wallet Limit: {{walletLimit}}</p>
@@ -13,6 +199,7 @@
     <button class="btn btn-secondary mr-5" (click)="categoryStatistics()">Cat stat</button>
     <button class="btn btn-secondary mr-5" (click)="userStat()">User stat</button>
     <button class="btn btn-danger mr-5" (click)="editWallet()">Edit wallet</button>
+    <button class="btn btn-danger mr-5" (click)="photo()">Photo</button>
     <button *appHasRole="['Child']" class="btn btn-secondary mr-5" (click)="userStat()">Child button</button>
     <button *appHasRole="['Admin']" class="btn btn-primary mr-5" (click)="walletAdmin()">Admin wallet</button>
     <button *ngIf="notifications.length > 0" class="btn btn-outline-dark mr-5" (click)="showNotifications()">Show notifications</button>
@@ -128,4 +315,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</div> -->

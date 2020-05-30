@@ -47,10 +47,6 @@ export class ShowWalletTableComponent implements OnInit {
       this.walletLimit = walletData['monthlyLimit'];
       this.checkLimit();
     });
-
-
-
-
     this.expenseService.showAllExpenses();
     this.expenseService.foodSubject.subscribe(exp => {
       this.foodExpenses = exp;
@@ -83,7 +79,7 @@ export class ShowWalletTableComponent implements OnInit {
         this.type = 'info';
       } else if (this.walletExpenses < 0.75 * this.walletLimit) {
         this.type = 'warning';
-      } else if (this.walletExpenses < 0.95 * this.walletLimit) {
+      } else if (this.walletExpenses < 0.90 * this.walletLimit) {
         this.type = 'danger';
       }
       else if (this.walletExpenses >= this.walletLimit) {
@@ -147,6 +143,10 @@ export class ShowWalletTableComponent implements OnInit {
       console.log('Success');
       
     })
+  }
+
+  photo(){
+    this.router.navigate(['/photo']);
   }
 
 }

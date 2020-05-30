@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { environment } from 'src/environments/environment';
-import { Subject, BehaviorSubject } from 'rxjs';
-import { User } from '../_model/user';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +15,6 @@ export class AuthService {
   baseUrl: string = environment.apiUrl + "auth/";
 
   isLoggedIn = new BehaviorSubject<boolean>(false);
-  hasWallet = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) { }
 
   register(username: string, userpass: string, role: string) {
@@ -28,27 +26,26 @@ export class AuthService {
       if (response) {
         localStorage.setItem('token', response.token);
         this.isLoggedIn.next(true);
-        this.hasWallet.next(this.checkUserWallet());
       }
     }));
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
     this.isLoggedIn.next(false);
-    this.hasWallet.next(false);
   }
 
   getToken() {
     const token = localStorage.getItem('token');
-    this.decodedToken = this.jwtHelper.decodeToken(token);
-    return this.decodedToken;
+    if (token !== null) {
+      this.decodedToken = this.jwtHelper.decodeToken(token);
+      return this.decodedToken;
+    }
+    return null;
   }
 
   checkLogin() {
     this.isLoggedIn.next(!this.jwtHelper.isTokenExpired(localStorage.getItem('token')));
-    this.hasWallet.next(this.checkUserWallet());
   }
 
   checkUserWallet() {
@@ -68,4 +65,14 @@ export class AuthService {
     })
     return isMatch;
   }
+
+  //TODO: сделать отдельный сервис для фото
+  getPhoto(){
+    return this.http.get("http://localhost:5000/api/" + 'photo/' + this.getToken().nameid);
+  }
+
+  deletePhoto(){
+    return this.http.delete("http://localhost:5000/api/" + 'photo/' + this.getToken().nameid);
+  }
+
 }

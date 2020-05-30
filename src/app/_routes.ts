@@ -14,6 +14,8 @@ import { CategoryStatisticsComponent } from './wallet/category-statistics/catego
 import { UserStatisticsComponent } from './wallet/user-statistics/user-statistics.component';
 import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
 import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
+import { PhotoComponent } from './photo/photo.component';
+import { ShowWalletTableComponent } from './wallet/show-wallet-table/show-wallet-table.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +26,7 @@ export const appRoutes: Routes = [
   { path: 'checkInvites', component: CheckInvitesComponent },
   { path: 'createInvite', component: CreateInviteComponent },
   { path: 'createExpense', component: CreateExpenseComponent },
+  { path: 'wallet', component: ShowWalletTableComponent },
   { path: 'getWalletStatistics', component: WalletStatisticsComponent },
   //TODO: вписать в путь сразу :id и как то его получать
   { path: 'catstat', component: CategoryStatisticsComponent },
@@ -32,5 +35,6 @@ export const appRoutes: Routes = [
   { path: 'createNewWallet', component: CreateWalletComponent },
   { path: 'editWallet', component: EditWalletComponent },
   { path: 'walletAdmin', component: WalletAdminComponent },
+  { path: 'photo', component: PhotoComponent },
   { path: 'graph', component: PieGraphComponent },
 ]

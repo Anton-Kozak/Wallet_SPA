@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InviteService } from 'src/app/_services/invite.service';
 import { Invite } from 'src/app/_model/invite';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-check-invites',
@@ -10,7 +11,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 })
 export class CheckInvitesComponent implements OnInit {
 
-  constructor(private invService: InviteService, private alertify: AlertifyService) { }
+  constructor(private invService: InviteService, private alertify: AlertifyService, private router: Router) { }
   invites: Invite[];
 
   ngOnInit(): void {
@@ -22,11 +23,9 @@ export class CheckInvitesComponent implements OnInit {
 
   acceptInvite(walletId: number) {
     this.invService.accept(walletId).subscribe(response => {
-      const user = JSON.parse(localStorage.getItem('currentUser'));
-      user.walletID = walletId;
-      const userStr = JSON.stringify(user);
-      localStorage.setItem('currentUser', userStr);
       this.alertify.success(response);
+      this.alertify.success("Please, log in to see your wallet");
+      this.router.navigate(['/home']);
     }, error => {
       this.alertify.error(error.error);
     });

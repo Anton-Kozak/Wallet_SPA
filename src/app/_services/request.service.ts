@@ -16,8 +16,8 @@ export class RequestService {
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/request/' + email, {}, {responseType:'text'});
   }
 
-  getRequests(email: string, userId: string){
-    return this.http.get(this.baseUrl + userId + '/getRequests/' + email);
+  getRequests(userId: string){
+    return this.http.get(this.baseUrl + userId + '/getRequests');
   }
 
   acceptRequest(email: string, userId: string){

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Wallet } from '../_model/wallet';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import {User} from '../_model/user';
+import { User } from '../_model/user';
+import { AuthService } from './auth.service';
 
 
 
@@ -11,23 +12,22 @@ import {User} from '../_model/user';
 })
 export class WalletService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
   baseUrl: string = environment.apiUrl + "wallet/";
-  currentUser: User;
 
-  
 
-  createNewWallet(walletToCreate: Wallet){
+
+  createNewWallet(walletToCreate: Wallet) {
     console.log(walletToCreate);
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    return this.http.post(this.baseUrl + this.currentUser.id + '/createwallet', walletToCreate);
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/createwallet', walletToCreate);
   }
 
-  getCurrentWallet(userId: string){
-    return this.http.get(this.baseUrl + userId + '/getCurrentWallet');
+  getCurrentWallet(userId: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet');
   }
 
-  editWallet(userId: string, wallet: Wallet){
-    return this.http.put(this.baseUrl + userId + '/editWallet', wallet, {responseType: 'text'});
+  editWallet(userId: string, wallet: Wallet) {
+    return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/editWallet', wallet, { responseType: 'text' });
   }
+
 }

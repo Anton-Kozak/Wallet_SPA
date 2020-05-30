@@ -12,10 +12,6 @@ export class SidebarComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
   ngOnInit(): void {
   }
-
-
-
-
   close() {
     this.sidenav.close();
   }

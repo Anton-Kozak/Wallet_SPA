@@ -14,10 +14,8 @@ export class CheckRequestsComponent implements OnInit {
 
   constructor(private reqService: RequestService, private authService: AuthService, private alertify: AlertifyService) { }
   requests: Request[] = [];
-  currentUser: any;
   ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.reqService.getRequests(this.currentUser.email, this.currentUser.id).subscribe((req: Request[]) => {
+    this.reqService.getRequests(this.authService.getToken().nameid).subscribe((req: Request[]) => {
       this.requests = req;
       if(this.requests.length == 0)
       this.alertify.error("You have no new requests");
@@ -25,7 +23,7 @@ export class CheckRequestsComponent implements OnInit {
   }
   //TODO: обновлять таблицу при добавлении пользователя
   acceptRequest(email: string) {
-    this.reqService.acceptRequest(email, this.currentUser.id).subscribe((response) => {
+    this.reqService.acceptRequest(email, this.authService.getToken().nameid).subscribe((response) => {
       this.alertify.success(response)
     }, error => {
       this.alertify.error(error.error);

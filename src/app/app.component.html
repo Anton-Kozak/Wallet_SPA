@@ -1,2 +1,9 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<app-navbar (toggleDrawer)="onToggle($event)"></app-navbar>
+<mat-drawer-container class="example-container">
+  <mat-drawer class="mat-drawer" #drawer mode="side" disableClose="true" opened="true">
+    <app-sidebar class="h-100"></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content class="mat-drawer-content">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

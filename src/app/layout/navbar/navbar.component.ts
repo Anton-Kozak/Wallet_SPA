@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../_services/auth.service';
-import { User } from '../_model/user';
+import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
-import { AlertifyService } from '../_services/alertify.service';
+import { AlertifyService } from '../../_services/alertify.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +15,11 @@ export class NavbarComponent implements OnInit {
   signInForm: FormGroup;
   currentUserName?: string;
   isLoggedIn = false;
+
+  @Output() toggleDrawer = new EventEmitter();
+  toggleState = false;
+
+
   ngOnInit(): void {
     this.signInForm = new FormGroup({
       'username': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10),]),
@@ -26,7 +30,7 @@ export class NavbarComponent implements OnInit {
     this.authService.isLoggedIn.subscribe(result=>{
       this.isLoggedIn = result;
     });
-    this.currentUserName = this.authService.getToken().unique_name;
+    //this.currentUserName = this.authService.getToken().unique_name;
   }
   //TODO: сделать чтобы навбар полностью не убирался, а оставался и показывались только иконки
 
@@ -34,7 +38,6 @@ export class NavbarComponent implements OnInit {
     const username = this.signInForm.value['username'];
     const password = this.signInForm.value['userpass']
     this.authService.login(username, password).subscribe(() => {
-      this.currentUserName = this.authService.getToken().unique_name;
       this.router.navigate(['/home']);
       this.alertify.success("Welcome " + this.currentUserName);
     }, error=>{
@@ -45,6 +48,12 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.authService.logout();
     this.router.navigate(['/home']);
+  }
+
+  onToggle(){
+    console.log('etmi test');
+    this.toggleState = !this.toggleState;
+    this.toggleDrawer.emit();
   }
 
 }

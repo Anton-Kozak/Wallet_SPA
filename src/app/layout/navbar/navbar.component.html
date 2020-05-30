@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-absolute fixed-top m-0">
+  <div class="container-fluid">
+    <div class="navbar-divider mr-3">
+    </div>
+    <div class="navbar-wrapper">
+
+      <button type="button" mat-button (click)="onToggle()">
+        <i class="nc-icon" [ngClass]="toggleState == false ? 'nc-minimal-left' : 'nc-minimal-right'"></i>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+      <div class="ml-auto" *ngIf="!isLoggedIn">
+        <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <ul class="navbar-nav">
+              <div class="mr-2">
+                <li>
+                  <label for="login" class="text-light">Login</label>
+                  <input formControlName="username" id="login" type="text" class="form-control-sm">
+                </li>
+              </div>
+              <li>
+                <div class="mr-2">
+                  <label class="text-light" for="password">Password</label>
+                  <input formControlName="userpass" type="password" class="form-control-sm ml-3">
+                </div>
+              </li>
+              <li><button class="btn btn-secondary btn-sm">Login</button></li>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>

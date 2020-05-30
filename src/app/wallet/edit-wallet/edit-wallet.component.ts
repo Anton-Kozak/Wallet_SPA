@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Wallet } from 'src/app/_model/wallet';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-edit-wallet',
@@ -12,15 +13,13 @@ import { Router } from '@angular/router';
 })
 export class EditWalletComponent implements OnInit {
 
-  constructor(private walletService: WalletService, private alertify: AlertifyService, private router: Router) { }
+  constructor(private walletService: WalletService, private alertify: AlertifyService, private router: Router, private authService: AuthService) { }
 
   editWalletForm: FormGroup;
   walletToEdit: Wallet;
   public currentWallet: Wallet;
-  private currentUserId: string;
   ngOnInit(): void {
-    this.currentUserId = JSON.parse(localStorage.getItem('currentUser')).id;
-    this.walletService.getCurrentWallet(this.currentUserId).subscribe((wallet: Wallet)=>{
+    this.walletService.getCurrentWallet(this.authService.getToken().id).subscribe((wallet: Wallet)=>{
       this.currentWallet = wallet;
       this.editWalletForm = new FormGroup({
         'title': new FormControl(this.currentWallet.title, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
@@ -36,7 +35,7 @@ export class EditWalletComponent implements OnInit {
       monthlyLimit: this.editWalletForm.value['limit'],
     }); 
 
-    this.walletService.editWallet(this.currentUserId, this.walletToEdit).subscribe(response => {
+    this.walletService.editWallet(this.authService.getToken().id, this.walletToEdit).subscribe(response => {
       this.alertify.success("You have successfully edited your wallet");
     }, error => {
       this.alertify.error(error.error);

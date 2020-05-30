@@ -6,10 +6,11 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MainComponent } from './main/main.component';
 import { RegisterViewComponent } from './register-view/register-view.component';
@@ -31,13 +32,14 @@ import { BarComparisonComponent } from './graphs/bar-comparison/bar-comparison.c
 import { CategoryStatisticsComponent } from './wallet/category-statistics/category-statistics.component';
 import { BarCategoryComparisonComponent } from './graphs/bar-category-comparison/bar-category-comparison.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SidebarComponent } from './navbar/sidebar/sidebar.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { EditExpenseModalComponent } from './expenses/edit-expense-modal/edit-expense-modal.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
 import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
 import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { PhotoComponent } from './photo/photo.component';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -70,14 +72,17 @@ export function tokenGetter() {
     HasRoleDirective,
     EditWalletComponent,
     WalletAdminComponent,
+    PhotoComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatSidenavModule,
     ChartsModule,
+    FileUploadModule,
     MatDialogModule,
     ProgressbarModule.forRoot(),
     RouterModule.forRoot(appRoutes),
