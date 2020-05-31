@@ -3,7 +3,7 @@ import { ExpenseService } from 'src/app/_services/expense.service';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { TopUsersStat } from 'src/app/_model/top-users-stat';
 import { CategoryComparison } from 'src/app/_model/category-comparison';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Expense } from 'src/app/_model/expense';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 
@@ -14,7 +14,11 @@ import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 })
 export class CategoryStatisticsComponent implements OnInit {
 
-  constructor(private expService: ExpenseService, private route: ActivatedRoute) { }
+  constructor(private expService: ExpenseService, private route: ActivatedRoute, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
   chosenCategory: number;
   chosenCategoryName: string;
 
@@ -33,10 +37,12 @@ export class CategoryStatisticsComponent implements OnInit {
   expenses: ExpenseForTable[] = [];
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      console.log(params['category']);
+    console.log('Category init');
 
-      this.chosenCategory = +params['category'] || 0;
+    this.route.params.subscribe(params => {
+      console.log(params['id']);
+
+      this.chosenCategory = +params['id'] || 0;
       switch (this.chosenCategory) {
         case 1:
           this.chosenCategoryName = "Food"

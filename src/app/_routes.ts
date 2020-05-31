@@ -29,7 +29,7 @@ export const appRoutes: Routes = [
   { path: 'wallet', component: ShowWalletTableComponent },
   { path: 'getWalletStatistics', component: WalletStatisticsComponent },
   //TODO: вписать в путь сразу :id и как то его получать
-  { path: 'catstat', component: CategoryStatisticsComponent },
+  { path: 'catstat/:id', component: CategoryStatisticsComponent },
   { path: 'userStatistics/:id', component: UserStatisticsComponent },
   { path: 'home', component: HomeComponent },
   { path: 'createNewWallet', component: CreateWalletComponent },

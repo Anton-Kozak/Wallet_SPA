@@ -22,7 +22,36 @@
             [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
     </div>
 </div> -->
-
+<div class="row">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Team Members</h4>
+            </div>
+            <div class="card-body">
+                <ul *ngFor="let user of walletMembers" class="list-unstyled team-members">
+                    <li>
+                        <div class="row">
+                            <div class="col-md-2 col-2">
+                                <div class="avatar">
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-7 text-capitalize">
+                                {{user.username}}
+                                <br>
+                                <span class="text-muted"><small>Add Here Role!</small></span>
+                            </div>
+                            <div class="col-md-3 col-3 text-right">
+                                <button (click)="getUserStatistics(user.id)" class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                                        class="fa fa-user"></i></button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
@@ -217,6 +246,6 @@
     </div>
 </div>
 <div class="row">
-    
+
 
 </div>

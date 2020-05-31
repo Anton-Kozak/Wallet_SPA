@@ -8,7 +8,6 @@ import { ChartsModule } from 'ng2-charts';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FileUploadModule } from 'ng2-file-upload';
 
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -40,6 +39,8 @@ import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component'
 import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { PhotoComponent } from './photo/photo.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -96,6 +97,8 @@ export function tokenGetter() {
     }),
 
     BrowserAnimationsModule,
+
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

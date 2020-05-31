@@ -1,7 +1,7 @@
 <app-navbar (toggleDrawer)="onToggle($event)"></app-navbar>
 <mat-drawer-container class="example-container">
   <mat-drawer class="mat-drawer" #drawer mode="side" disableClose="true" opened="true">
-    <app-sidebar class="h-100"></app-sidebar>
+    <app-sidebar (createExpense)="createExpenseShow($event)" class="h-100"></app-sidebar>
   </mat-drawer>
   <mat-drawer-content class="mat-drawer-content">
     <router-outlet></router-outlet>

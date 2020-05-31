@@ -1,67 +1,118 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
-    <div class="sidebar-wrapper">
-      <ul class="nav">
-        <li routerLinkActive="active">
-          <a [routerLink]="['/home']">
-            <i class="nc-icon nc-shop"></i>
-            <p>Home</p>
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/wallet']">
-            <i class="nc-icon nc-bank"></i>
-            <p>Your Wallet</p>
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/getWalletStatistics']">
-            <i class="nc-icon nc-chart-bar-32"></i>
-            <p>Wallet Statistics</p>
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/home3']" >
-            <i class="nc-icon nc-circle-10"></i>
-            <p>User Statistics</p>
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/catstat']">
-            <i class="nc-icon nc-chart-pie-36"></i>
-            <p>Category Statistics</p>
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/home2']" >
-            <i class="nc-icon nc-badge"></i>
-            <p>Profile</p>
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/walletAdmin']" >
-            <i class="nc-icon nc-lock-circle-open"></i>
-            <p>Admin Panel</p>
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/createExpense']" >
-            <i class="nc-icon nc-money-coins"></i>
-            <p>New Expense</p>
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/checkRequests']" >
-            <i class="nc-icon nc-email-85"></i>
-            <p>Check Requests</p>
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/createInvite']" >
-            <i class="nc-icon nc-simple-add"></i>
-            <p>Invite User</p>
-          </a>
-        </li>
-        <li>
-      </ul>
-    </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li routerLinkActive="active">
+        <a [routerLink]="['/home']">
+          <i class="nc-icon nc-shop"></i>
+          <p>Home</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/wallet']">
+          <i class="nc-icon nc-bank"></i>
+          <p>Your Wallet</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/getWalletStatistics']">
+          <i class="nc-icon nc-chart-bar-32"></i>
+          <p>Wallet Statistics</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/userStatistics/' + id]">
+          <i class="nc-icon nc-circle-10"></i>
+          <p>User Statistics</p>
+        </a>
+      </li>
+      <li>
+        <a data-toggle="collapse" data-target="#collapseExample">
+          <i class="nc-icon nc-chart-pie-36"></i>
+          <p>Categories</p>
+        </a>
+        <div id="collapseExample" class="collapse">
+          <ul class="nav ml-3">
+            <li routerLinkActive="active">
+              <a style="font-size: 10px;" [routerLink]="['/catstat', 1]">
+                <i class="fas fa-pizza-slice"></i>
+                <p>Food Statistics</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="collapseExample" class="collapse">
+          <ul class="nav ml-3">
+            <li routerLinkActive="active">
+              <a style="font-size: 10px;" [routerLink]="['/catstat', 2]">
+                <i class="fas fa-faucet"></i>
+                <p>Housekeeping Statistics</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="collapseExample" class="collapse">
+          <ul class="nav ml-3">
+            <li routerLinkActive="active">
+              <a style="font-size: 10px;" [routerLink]="['/catstat', 3]">
+                <i class="fas fa-tshirt"></i>
+                <p>Clothes Statistics</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="collapseExample" class="collapse">
+          <ul class="nav ml-3">
+            <li routerLinkActive="active">
+              <a style="font-size: 10px;" [routerLink]="['/catstat', 4]">
+                <i class="fas fa-theater-masks"></i>
+                <p>Entertainment Statistics</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="collapseExample" class="collapse">
+          <ul class="nav ml-3">
+            <li routerLinkActive="active">
+              <a style="font-size: 10px;" [routerLink]="['/catstat', 5]">
+                <i class="far fa-chart-bar"></i>
+                <p>Other Statistics</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li routerLinkActive="active">
+        <a [routerLink]="['/home2']">
+          <i class="nc-icon nc-badge"></i>
+          <p>Profile</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/walletAdmin']">
+          <i class="nc-icon nc-lock-circle-open"></i>
+          <p>Admin Panel</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+       <a (click)="onCreate()"> <!--  [routerLink]="['/createExpense']"> -->
+          <i class="nc-icon nc-money-coins"></i>
+          <p>New Expense</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/checkRequests']">
+          <i class="nc-icon nc-email-85"></i>
+          <p>Check Requests</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/createInvite']">
+          <i class="nc-icon nc-simple-add"></i>
+          <p>Invite User</p>
+        </a>
+      </li>
+      <li>
+    </ul>
   </div>
+</div>
