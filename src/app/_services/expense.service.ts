@@ -32,8 +32,21 @@ export class ExpenseService {
   constructor(private http: HttpClient, private authService: AuthService) {
 
   }
-  showAllExpenses() {   
+  showAllExpenses() {
     this.http.get(this.baseUrl + this.authService.getToken().nameid).subscribe((expenses: any) => {
+      if (expenses != null) {
+        this.initialExpenses = expenses;
+        this.getFoodExpenses();
+        this.getHouseExpenses();
+        this.getEntertainmentExpenses();
+        this.getOtherExpenses();
+        this.getClothesExpenses();
+      }
+    });
+  }
+
+  getPreviousExpenses() {
+    this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses').subscribe((expenses: any) => {
       if (expenses != null) {
         this.initialExpenses = expenses;
         this.getFoodExpenses();

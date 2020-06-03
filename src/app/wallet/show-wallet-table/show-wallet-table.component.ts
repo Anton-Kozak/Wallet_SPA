@@ -17,7 +17,6 @@ import { NotificationService } from 'src/app/_services/notification.service';
 export class ShowWalletTableComponent implements OnInit {
 
   constructor(private expenseService: ExpenseService,
-    private router: Router,
     private authService: AuthService,
     public dialog: MatDialog,
     private noteService: NotificationService) { }
@@ -36,12 +35,14 @@ export class ShowWalletTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.authService.getToken().nameid;
-
+    
     this.expenseService.getWalletData(this.id).subscribe((walletData: WalletForPage) => {
       this.walletTitle = walletData['title'];
       this.expenseService.expensesSubject.subscribe(expData => {
         this.walletExpenses = expData;
         this.expensesToShow = expData;
+        console.log(this.walletExpenses);
+        
         this.checkLimit();
       })
       this.walletLimit = walletData['monthlyLimit'];
@@ -89,64 +90,57 @@ export class ShowWalletTableComponent implements OnInit {
     }
   }
 
-  checkRequests() {
-    this.router.navigate(['/checkRequests']);
-  }
-
-  createInvite() {
-    this.router.navigate(['/createInvite']);
-  }
-
-  showGraph() {
-    this.router.navigate(['/graph']);
-  }
-
-  // createExpense() {
-  //   this.router.navigate(['/createExpense']);
+  // checkRequests() {
+  //   this.router.navigate(['/checkRequests']);
   // }
 
+  // createInvite() {
+  //   this.router.navigate(['/createInvite']);
+  // }
 
-  showWalletStatistics() {
-    this.router.navigate(['/getWalletStatistics']);
-  }
+  // showGraph() {
+  //   this.router.navigate(['/graph']);
+  // }
 
-  categoryStatistics() {
-    this.router.navigate(['/catstat'], { queryParams: { category: 1 } });
-  }
+  // // createExpense() {
+  // //   this.router.navigate(['/createExpense']);
+  // // }
 
-  userStat() {
-    this.router.navigate(['/userStatistics', this.id]);
-  }
 
-  editWallet() {
-    this.router.navigate(['/editWallet']);
-  }
+  // showWalletStatistics() {
+  //   this.router.navigate(['/getWalletStatistics']);
+  // }
 
-  walletAdmin() {
-    this.router.navigate(['/walletAdmin']);
-  }
+  // categoryStatistics() {
+  //   this.router.navigate(['/catstat'], { queryParams: { category: 1 } });
+  // }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(CreateExpenseComponent, {
-      width: '450px',
-    });
+  // userStat() {
+  //   this.router.navigate(['/userStatistics', this.id]);
+  // }
 
+  // editWallet() {
+  //   this.router.navigate(['/editWallet']);
+  // }
+
+  // walletAdmin() {
+  //   this.router.navigate(['/walletAdmin']);
+  // }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(CreateExpenseComponent);
     dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 
-  showNotifications(){
+  showNotifications() {
     this.notifications.forEach(element => {
       console.log(element.message);
     });
-    this.noteService.deleteNotifications().subscribe(()=>{
+    this.noteService.deleteNotifications().subscribe(() => {
       console.log('Success');
-      
+
     })
   }
-
-  photo(){
-    this.router.navigate(['/photo']);
-  }
-
 }

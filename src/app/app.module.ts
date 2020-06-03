@@ -40,6 +40,7 @@ import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.componen
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { PhotoComponent } from './photo/photo.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShowPreviousExpensesComponent } from './wallet/show-previous-expenses/show-previous-expenses.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -74,6 +75,7 @@ export function tokenGetter() {
     EditWalletComponent,
     WalletAdminComponent,
     PhotoComponent,
+    ShowPreviousExpensesComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,6 +101,9 @@ export function tokenGetter() {
     BrowserAnimationsModule,
 
     FontAwesomeModule,
+  ],
+  entryComponents: [
+    CreateExpenseComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

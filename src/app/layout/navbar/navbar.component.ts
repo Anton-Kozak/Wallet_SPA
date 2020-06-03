@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from '../../_services/alertify.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.component';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +13,7 @@ import { AlertifyService } from '../../_services/alertify.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService) { }
+  constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService, public dialog: MatDialog) { }
   signInForm: FormGroup;
   currentUserName?: string;
   isLoggedIn = false;
@@ -54,6 +56,14 @@ export class NavbarComponent implements OnInit {
     console.log('etmi test');
     this.toggleState = !this.toggleState;
     this.toggleDrawer.emit();
+  }
+
+  //TODO: сделать редактирование чисто для админа кошелька
+  onWalletEditDialog() {
+    const dialogRef = this.dialog.open(EditWalletComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
