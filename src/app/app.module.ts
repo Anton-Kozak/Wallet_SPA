@@ -7,12 +7,11 @@ import { RouterModule } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FileUploadModule } from 'ng2-file-upload';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { MainComponent } from './main/main.component';
-import { RegisterViewComponent } from './register-view/register-view.component';
 import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
 import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
 import { CheckRequestsComponent } from './request/check-requests/check-requests.component';
@@ -41,6 +40,10 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { PhotoComponent } from './photo/photo.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ShowPreviousExpensesComponent } from './wallet/show-previous-expenses/show-previous-expenses.component';
+import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.component';
+import { SignupSigninComponent } from './registration/signup-signin/signup-signin.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -50,9 +53,6 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NavbarComponent,
-    SignUpComponent,
-    MainComponent,
-    RegisterViewComponent,
     CreateWalletComponent,
     CreateExpenseComponent,
     CheckRequestsComponent,
@@ -76,6 +76,10 @@ export function tokenGetter() {
     WalletAdminComponent,
     PhotoComponent,
     ShowPreviousExpensesComponent,
+    WalletSectionComponent,
+    SignupSigninComponent,
+    NotFoundComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +91,8 @@ export function tokenGetter() {
     ChartsModule,
     FileUploadModule,
     MatDialogModule,
+    MatTooltipModule,
+    MatBadgeModule,
     ProgressbarModule.forRoot(),
     RouterModule.forRoot(appRoutes),
 

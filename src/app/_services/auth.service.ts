@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +15,9 @@ export class AuthService {
   decodedToken: any;
   baseUrl: string = environment.apiUrl + "auth/";
 
-  isLoggedIn = new BehaviorSubject<boolean>(false);
-  constructor(private http: HttpClient) { }
+  isLoggedIn = new BehaviorSubject<boolean>(!this.jwtHelper.isTokenExpired(localStorage.getItem('token')));
+  hasWallet = new BehaviorSubject<boolean>(this.checkUserWallet());
+  constructor(private http: HttpClient, private router: Router) { }
 
   register(username: string, userpass: string, role: string) {
     return this.http.post(this.baseUrl + 'register', { username: username, password: userpass, role: role });
@@ -26,7 +28,9 @@ export class AuthService {
       if (response) {
         localStorage.setItem('token', response.token);
         this.isLoggedIn.next(true);
+        this.hasWallet.next(this.checkUserWallet());
       }
+      return response;
     }));
   }
 
@@ -49,8 +53,12 @@ export class AuthService {
   }
 
   checkUserWallet() {
-    if (this.getToken().hasWallet === "true")
-      return true;
+    const token = localStorage.getItem('token');
+    if (token !== null) {
+      if (this.getToken().hasWallet === "true")
+        return true;
+      return false;
+    }
     return false;
   }
 
@@ -67,11 +75,11 @@ export class AuthService {
   }
 
   //TODO: сделать отдельный сервис для фото
-  getPhoto(){
+  getPhoto() {
     return this.http.get("http://localhost:5000/api/" + 'photo/' + this.getToken().nameid);
   }
 
-  deletePhoto(){
+  deletePhoto() {
     return this.http.delete("http://localhost:5000/api/" + 'photo/' + this.getToken().nameid);
   }
 

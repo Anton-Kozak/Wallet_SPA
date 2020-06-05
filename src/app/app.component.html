@@ -1,9 +1,7 @@
-<app-navbar (toggleDrawer)="onToggle($event)"></app-navbar>
-<mat-drawer-container class="example-container">
-  <mat-drawer class="mat-drawer" #drawer mode="side" disableClose="true" opened="true">
-    <app-sidebar class="h-100"></app-sidebar>
-  </mat-drawer>
-  <mat-drawer-content class="mat-drawer-content">
-    <router-outlet></router-outlet>
-  </mat-drawer-content>
-</mat-drawer-container>
+<!-- <div *ngIf="hasWallet">
+  <app-wallet-section></app-wallet-section>>
+</div>
+<div *ngIf="!hasWallet" >
+  <app-signup-signin style="color: #fff;"></app-signup-signin>
+</div> -->
+<router-outlet></router-outlet>

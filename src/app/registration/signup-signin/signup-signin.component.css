@@ -1,0 +1,88 @@
+.navbar{
+    border-bottom: #008ed6 3px solid;
+    opacity: 0.8;
+}
+
+#home-section{
+    background: url(src\assets\images\home.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 700px;
+    width: 100%;
+}
+
+#home-section .dark-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 700px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#home-section .home-inner{
+    padding-top: 150px;
+}
+
+.invalid-feedback{
+    font-size: 13px;
+    opacity: 1;
+}
+
+.regform{
+    background-color: #264653;
+}
+
+.card-container {
+    perspective: 700px;
+}
+
+.card-flip, .card-container {
+    transform-style: preserve-3d;
+    transition: all 0.7s ease;
+}
+
+.card-flip div {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.card-img-top{
+    height: 70px;
+    object-fit: cover;
+}
+
+.back {
+    transform: rotateY(-180deg);
+}
+
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.card-flip {
+    display: grid; grid-template: 1fr / 1fr;
+    grid-template-areas: "frontAndBack";
+    transform-style: preserve-3d;
+    transition: all 0.7s ease;
+}
+
+.front {
+    grid-area: frontAndBack;
+}
+
+.back {
+    grid-area: frontAndBack;
+    transform: rotateY(-180deg);
+}
+
+.card-container {
+    display: grid;
+    perspective: 700px;
+}
+
+#explore-head-section{
+    background: #333;
+}

@@ -8,7 +8,7 @@
         <i class="nc-icon" [ngClass]="toggleState == false ? 'nc-minimal-left' : 'nc-minimal-right'"></i>
       </button>
       <div class="dropdown">
-        <button type="button" class="btn button-transparent dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="nc-icon nc-settings-gear-65"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -17,10 +17,20 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </div>
+      <div class="dropdown">
+        <button type="button" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}} matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="notifications">
+        </div>
+      </div>
+
+      <button (click)="logout()" class="btn btn-primary">logout</button>
+      <button (click)="test()" class="btn btn-primary">test</button>
     </div>
 
     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-      <div class="ml-auto" *ngIf="!isLoggedIn">
+      <!-- <div class="ml-auto" *ngIf="!isLoggedIn">
         <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <ul class="navbar-nav">
@@ -40,7 +50,7 @@
             </ul>
           </div>
         </form>
-      </div>
+      </div> -->
     </div>
   </div>
 </nav>

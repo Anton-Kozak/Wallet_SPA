@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RequestService } from 'src/app/_services/request.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-request-access',
@@ -10,7 +11,10 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 })
 export class RequestAccessComponent implements OnInit {
 
-  constructor(private reqService: RequestService, private router: Router, private alertify: AlertifyService) { }
+  constructor(private reqService: RequestService, 
+    private router: Router, 
+    private alertify: AlertifyService,
+    public dialogRef: MatDialogRef<RequestAccessComponent>) { }
 
   @Input() email: string = "";
 
@@ -31,8 +35,8 @@ export class RequestAccessComponent implements OnInit {
     }
   }
 
-  goBack() {
-    this.router.navigate(['/home']);
+  back() {
+    this.dialogRef.close();
   }
 
   test() {

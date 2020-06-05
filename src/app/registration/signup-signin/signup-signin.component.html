@@ -1,0 +1,327 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <div class="container">
+        <a href="" class="navbar-brand">Xpense</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Learn more</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Prices</a>
+                </li>
+                <li *ngIf="isSignedIn" class="nav-item">
+                    <a href="" class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header id="home-section">
+    <div class="dark-overlay">
+        <div class="home-inner container">
+            <div *ngIf="!isSignedIn" class="row">
+                <div class="col-lg-8 d-none d-lg-block">
+                    <h1 class="display-4">Create your wallets</h1>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            Text text
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            Text text
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            Text text
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="card-container">
+                        <div class="card-flip" [ngClass]="{flip: !isSignUp}">
+                            <div class="card front regform text-center card-form">
+                                <div class="card-body text-light shadow-lg">
+                                    <h1>Sign Up Today</h1>
+                                    <p>Please, fill out the registration form</p>
+                                    <div class="border-primary">
+                                        <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend shadow-lg">
+                                                        <span class="input-group-text"
+                                                            [ngClass]="{'bg-danger text-light': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
+                                                    'bg-success text-white': !signUpForm.get('usernameUp').errors}">Username</span>
+                                                    </div>
+                                                    <input [ngClass]="{'is-invalid': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
+                                                                'is-valid': !signUpForm.get('usernameUp').errors}"
+                                                        type="text" formControlName="usernameUp" class="form-control">
+
+                                                    <div *ngIf="signUpForm.get('usernameUp').hasError('required') && signUpForm.get('usernameUp').touched"
+                                                        class="invalid-feedback">
+                                                        Username is required
+                                                    </div>
+                                                    <div *ngIf="signUpForm.get('usernameUp').hasError('minlength') && signUpForm.get('usernameUp').touched"
+                                                        class="invalid-feedback">
+                                                        Username should be at least 4 characters required
+                                                    </div>
+                                                    <div *ngIf="signUpForm.get('usernameUp').hasError('maxlength') && signUpForm.get('usernameUp').touched"
+                                                        class="invalid-feedback">
+                                                        Username should be no longer than 10 characters
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend shadow-lg">
+                                                        <span class="input-group-text"
+                                                            [ngClass]="{'bg-danger text-light': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched,
+                                                            'bg-success text-white': !signUpForm.get('userpassUp').errors}">
+                                                            Password</span>
+                                                    </div>
+                                                    <input [ngClass]="{'is-invalid': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched,
+                                                            'is-valid': !signUpForm.get('userpassUp').errors}"
+                                                        type="password" formControlName="userpassUp"
+                                                        class="form-control">
+                                                    <div *ngIf="signUpForm.get('userpassUp').hasError('required') && signUpForm.get('userpassUp').touched"
+                                                        class="invalid-feedback">
+                                                        Password is required
+                                                    </div>
+                                                    <div *ngIf="signUpForm.get('userpassUp').hasError('minlength') && signUpForm.get('userpassUp').touched"
+                                                        class="invalid-feedback">
+                                                        Password should be at least 4 characters required
+                                                    </div>
+                                                    <div *ngIf="signUpForm.get('userpassUp').hasError('maxlength') && signUpForm.get('userpassUp').touched"
+                                                        class="invalid-feedback">
+                                                        Password should be no longer than 8 characters
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend shadow-lg">
+                                                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('role').errors && signUpForm.get('role').touched,
+                                                'bg-success text-white': !signUpForm.get('role').errors}">Role</span>
+                                                    </div>
+                                                    <select formControlName="role" class="form-control">
+                                                        <option value="Adult">Adult</option>
+                                                        <option value="Child">Child</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-secondary btn-block shadow-lg"
+                                                    [disabled]="signUpForm.invalid"
+                                                    [ngClass]="{'btn-success': signUpForm.valid}">Create
+                                                    account</button>
+                                            </div>
+                                        </form>
+                                        <div class="container">
+                                            <p>Already signed-up? <a (click)="isSignUp = !isSignUp"
+                                                    style="cursor: pointer;" class="text-light"><strong>Sign-in
+                                                        here!</strong></a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card back regform text-center card-form">
+                                <div class="card-body text-light shadow-lg">
+                                    <h1>Sign In Today</h1>
+                                    <p>Please, enter your username and password</p>
+                                    <div class="border-primary">
+                                        <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend shadow-lg">
+                                                        <span class="input-group-text"
+                                                            [ngClass]="{'bg-danger text-light': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched,
+                                                    'bg-success text-white': !signInForm.get('usernameIn').errors}">Username</span>
+                                                    </div>
+                                                    <input [ngClass]="{'is-invalid': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched,
+                                                                'is-valid': !signInForm.get('usernameIn').errors}"
+                                                        type="text" formControlName="usernameIn" class="form-control">
+
+                                                    <div *ngIf="signInForm.get('usernameIn').hasError('required') && signInForm.get('usernameIn').touched"
+                                                        class="invalid-feedback">
+                                                        Username is required
+                                                    </div>
+                                                    <div *ngIf="signInForm.get('usernameIn').hasError('minlength') && signInForm.get('usernameIn').touched"
+                                                        class="invalid-feedback">
+                                                        Username should be at least 4 characters required
+                                                    </div>
+                                                    <div *ngIf="signInForm.get('usernameIn').hasError('maxlength') && signInForm.get('usernameIn').touched"
+                                                        class="invalid-feedback">
+                                                        Username should be no longer than 10 characters
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group mb-5">
+                                                    <div class="input-group-prepend shadow-lg">
+                                                        <span class="input-group-text"
+                                                            [ngClass]="{'bg-danger text-light': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched,
+                                                            'bg-success text-white': !signInForm.get('userpassIn').errors}">
+                                                            Password</span>
+                                                    </div>
+                                                    <input [ngClass]="{'is-invalid': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched,
+                                                            'is-valid': !signInForm.get('userpassIn').errors}"
+                                                        type="password" formControlName="userpassIn"
+                                                        class="form-control">
+                                                    <div *ngIf="signInForm.get('userpassIn').hasError('required') && signInForm.get('userpassIn').touched"
+                                                        class="invalid-feedback">
+                                                        Password is required
+                                                    </div>
+                                                    <div *ngIf="signInForm.get('userpassIn').hasError('minlength') && signInForm.get('userpassIn').touched"
+                                                        class="invalid-feedback">
+                                                        Password should be at least 4 characters required
+                                                    </div>
+                                                    <div *ngIf="signInForm.get('userpassIn').hasError('maxlength') && signInForm.get('userpassIn').touched"
+                                                        class="invalid-feedback">
+                                                        Password should be no longer than 8 characters
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <button class="btn btn-secondary btn-block shadow-lg"
+                                                    [disabled]="signInForm.invalid"
+                                                    [ngClass]="{'btn-success': signInForm.valid}">Sign in</button>
+                                            </div>
+                                        </form>
+                                        <div class="container">
+                                            <p>Don't have an account? <a (click)="isSignUp = !isSignUp"
+                                                    style="cursor: pointer;" class="text-light"><strong>Sign-up
+                                                        here!</strong></a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isSignedIn" class="row">
+                <div class="card mr-5" style="width: 18rem;">
+                    <img src="https://media.workandmoney.com/10/92/109237ed61a54a9392bcf905bf38d67d.jpg"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Your Own Wallet</h5>
+                        <p class="card-text">Become your own wallet owner. Add expenses, invite family members, and find
+                            out how much you spend!</p>
+                        <a (click)="onWalletCreateDialog()" class="btn btn-primary text-light">Create</a>
+                    </div>
+                </div>
+
+                <div class="card mr-5" style="width: 18rem;">
+                    <img src="https://www.beeprinting.co.uk/wp-content/uploads/2013/07/Three-color-50pcs-lot-Wedding-Invitation-Cards-With-Purple-Ribbon-Printing-Laser-Cut-Wedding-Invitations.jpg"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Check Invites From Other Users</h5>
+                        <p class="card-text">Here, you can look whether other users have invited you to join their
+                            wallets!</p>
+                        <a (click)="onInvitesCheckDialog()" class="btn btn-primary text-light">Check</a>
+                    </div>
+                </div>
+
+                <div class="card mr-5" style="width: 18rem;">
+                    <img src="https://www.underconsideration.com/brandnew/archives/request_logo.png"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Send Requests To Join Wallets</h5>
+                        <p class="card-text">If you want to join your friend's or family's wallets, choose this option
+                            and send a request to the owner of the wallet!</p>
+                        <a (click)="onRequestCreateDialog()" class="btn btn-primary text-light">Send</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- learn more section -->
+
+<section id="explore-head-section">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center py-5">
+                <h1 class="mat-h1">
+                    Explore
+                </h1>
+                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero reiciendis aliquam
+                    unde adipisci mollitia, quaerat a. Deserunt beatae consectetur vero?</p>
+                <a href="" class="btn btn-outline-secondary">Learn more</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- prices section -->
+
+<section id="price-section" class="bg-light text-muted py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="assets\images\explore-section1.jpg" alt="" class="img-fluid nb-3 rounded-circle">
+            </div>
+            <div class="col-md-6">
+                <h3>Explore & Connect</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae, delectus earum. Mollitia omnis
+                    reprehenderit suscipit rem quidem minus quisquam magni!</p>
+                <div class="d-flex">
+                    <div class="p-4 align-self-start">
+                        <i class="fas fa-check fa-2x"></i>
+
+                    </div>
+                    <div class="p-4 align-self-end">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, rerum beatae? Aliquid,
+                        obcaecati qui. Velit voluptatum veniam molestias omnis molestiae rem at assumenda eaque,
+                        officiis sequi ratione magnam quae inventore.
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="p-4 align-self-start">
+                        <i class="fas fa-check fa-2x"></i>
+
+                    </div>
+                    <div class="p-4 align-self-end">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, rerum beatae? Aliquid,
+                        obcaecati qui. Velit voluptatum veniam molestias omnis molestiae rem at assumenda eaque,
+                        officiis sequi ratione magnam quae inventore.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- footer -->
+
+<footer id="main-footer" class="bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center py-4">
+                <h3>XPENSE</h3>
+                <p>Copyright &copy; <span id="year">2020</span></p>
+            </div>
+        </div>
+    </div>
+</footer>

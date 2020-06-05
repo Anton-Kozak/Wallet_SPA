@@ -3,6 +3,7 @@ import { InviteService } from 'src/app/_services/invite.service';
 import { Invite } from 'src/app/_model/invite';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-check-invites',
@@ -11,7 +12,9 @@ import { Router } from '@angular/router';
 })
 export class CheckInvitesComponent implements OnInit {
 
-  constructor(private invService: InviteService, private alertify: AlertifyService, private router: Router) { }
+  constructor(private invService: InviteService, 
+    private alertify: AlertifyService, 
+    public dialogRef: MatDialogRef<CheckInvitesComponent>) { }
   invites: Invite[];
 
   ngOnInit(): void {
@@ -25,7 +28,7 @@ export class CheckInvitesComponent implements OnInit {
     this.invService.accept(walletId).subscribe(response => {
       this.alertify.success(response);
       this.alertify.success("Please, log in to see your wallet");
-      this.router.navigate(['/home']);
+      //this.router.navigate(['/home']);
     }, error => {
       this.alertify.error(error.error);
     });
@@ -37,6 +40,10 @@ export class CheckInvitesComponent implements OnInit {
     }, error => {
       this.alertify.error(error.error);
     })
+  }
+
+  back() {
+    this.dialogRef.close();
   }
 
 }

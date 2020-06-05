@@ -5,6 +5,7 @@ import { WalletService } from 'src/app/_services/wallet.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-wallet',
@@ -13,7 +14,12 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class CreateWalletComponent implements OnInit {
 
-  constructor(private walletService: WalletService, private alertify: AlertifyService, private router: Router, private authService: AuthService) { }
+  constructor(private walletService: WalletService, 
+    private alertify: AlertifyService, 
+    private router: Router, 
+    private authService: AuthService,
+    public dialogRef: MatDialogRef<CreateWalletComponent>,
+    ) { }
   walletForm: FormGroup;
   wallet: Wallet;
   ngOnInit(): void {
@@ -41,8 +47,8 @@ export class CreateWalletComponent implements OnInit {
     });
   }
 
-  goBack() {
-    this.router.navigate(['/home']);
+  back() {
+    this.dialogRef.close();
   }
 
 

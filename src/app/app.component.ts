@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { AuthService } from './_services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,13 +7,24 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'WalletsSPA';
-  @ViewChild("drawer", { static: false }) drawer;
 
 
-  onToggle($event) {
+  constructor(private authService: AuthService) { }
 
-    this.drawer.toggle();
+  hasWallet = false;
+  isAuthorized = false;
+
+  ngOnInit(): void {
+    this.authService.hasWallet.subscribe(res => {
+      this.hasWallet = res;
+    })
+    this.authService.isLoggedIn.subscribe(res => {
+      this.isAuthorized = res;
+    });
+    console.log(this.hasWallet);
+    console.log(this.isAuthorized);
+    
+    
   }
 
 }
