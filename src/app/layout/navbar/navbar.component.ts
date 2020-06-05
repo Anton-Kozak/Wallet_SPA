@@ -1,11 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from '../../_services/alertify.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.component';
 import { NotificationService } from 'src/app/_services/notification.service';
+import { Notification } from 'src/app/_model/notification';
 
 @Component({
   selector: 'app-navbar',
@@ -30,16 +31,6 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.signInForm = new FormGroup({
-    //   'username': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10),]),
-    //   'userpass': new FormControl('', [Validators.required, Validators.minLength(4)])
-    // });
-    // //TODO: КАК НИБУДЬ узанть, правильно ли это сделано
-    // this.authService.checkLogin();
-    // this.authService.isLoggedIn.subscribe(result => {
-    //   this.isLoggedIn = result;
-    // });
-
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       if (notifications != null) {
         console.log("Notifications: " + notifications);
@@ -68,9 +59,6 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/main']);
   }
 
-  test() {
-    this.router.navigate(['/main']);
-  }
 
   onToggle() {
     console.log('etmi test');

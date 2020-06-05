@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InviteService } from 'src/app/_services/invite.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-invite',
@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class CreateInviteComponent implements OnInit {
 
-  constructor(private invService: InviteService, private alertify: AlertifyService, private router: Router) { }
+  constructor(private invService: InviteService, 
+    private alertify: AlertifyService, 
+    public dialogRef: MatDialogRef<CreateInviteComponent>) { }
 
   @Input() email: string = "";
 
@@ -32,7 +34,7 @@ export class CreateInviteComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/main']);
+    this.dialogRef.close();
   }
 
 }

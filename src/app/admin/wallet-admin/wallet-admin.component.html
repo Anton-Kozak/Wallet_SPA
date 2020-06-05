@@ -48,27 +48,11 @@
     </div>
 </div>
 
-<div class="card ">
-    <div class="card-header ">
-      <h5 class="card-title">Email Statistics</h5>
-      <p class="card-category">Last Campaign Performance</p>
+<div class="container">
+    <div class="row">
+        <button (click)="sendInvitation()" class="btn btn-primary">Invite user</button>
     </div>
-    <div class="card-body "><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-      <canvas id="chartEmail" width="478" height="239" class="chartjs-render-monitor" style="display: block; width: 478px; height: 239px;"></canvas>
-    </div>
-    <div class="card-footer ">
-      <div class="legend">
-        <i class="fa fa-circle text-primary"></i> Opened
-        <i class="fa fa-circle text-warning"></i> Read
-        <i class="fa fa-circle text-danger"></i> Deleted
-        <i class="fa fa-circle text-gray"></i> Unopened
-      </div>
-      <hr>
-      <div class="stats">
-        <i class="fa fa-calendar"></i> Number of emails sent
-      </div>
-    </div>
-  </div>
+</div>
 
 <!-- <div class="container">
     <table class="table table-dark table-striped table-hover table-sm text-light">

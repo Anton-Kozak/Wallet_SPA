@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateWalletComponent } from 'src/app/wallet/create-wallet/create-wallet.component';
 import { RequestAccessComponent } from 'src/app/request/request-access/request-access.component';
 import { CheckInvitesComponent } from 'src/app/invites/check-invites/check-invites.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-signin',
@@ -24,8 +24,7 @@ export class SignupSigninComponent implements OnInit {
   constructor(private authService: AuthService,
     private alertify: AlertifyService,
     public dialog: MatDialog,
-    private router: Router,
-    private route: ActivatedRoute) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
@@ -37,7 +36,9 @@ export class SignupSigninComponent implements OnInit {
       'usernameIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       'userpassIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)])
     });
-    this.isSignedIn = localStorage.getItem('token') !== null ? true : false;
+    this.authService.isLoggedIn.subscribe(res => {
+      this.isSignedIn = res;
+    })
   }
 
   onSignUp() {
@@ -57,14 +58,14 @@ export class SignupSigninComponent implements OnInit {
     const password = this.signInForm.value['userpassIn'];
     this.authService.login(username, password).subscribe((data: any) => {
       this.alertify.success("Welcome: " + data.user['userName']);
-      this.router.navigate(['/wallet/home'])
-      // if (this.hasWallet()) {
-      //   this.authService.hasWallet.next(true);
-      // }
-      // else {
-      //   this.isSignedIn = true;
-      //   console.log(this.isSignedIn);
-      // }
+      if (this.hasWallet()) {
+        this.authService.hasWallet.next(true);
+        this.router.navigate(['/wallet/home']);
+      }
+      else {
+        this.isSignedIn = true;
+        console.log(this.isSignedIn);
+      }
     }, error => {
       this.alertify.error(error.error);
     })
@@ -96,6 +97,10 @@ export class SignupSigninComponent implements OnInit {
     const dialogRef = this.dialog.open(RequestAccessComponent);
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 

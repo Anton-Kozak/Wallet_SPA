@@ -22,11 +22,11 @@
           <i [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}} matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="notifications">
+          <p *ngFor="let notification of notifications" class="dropdown-item">{{notification.message}}</p>
         </div>
       </div>
 
       <button (click)="logout()" class="btn btn-primary">logout</button>
-      <button (click)="test()" class="btn btn-primary">test</button>
     </div>
 
     <div class="collapse navbar-collapse justify-content-end" id="navigation">

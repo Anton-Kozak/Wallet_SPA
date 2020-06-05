@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AdminService } from 'src/app/_services/admin.service';
 import { UserForAdmin } from 'src/app/_model/user-for-admin';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateInviteComponent } from 'src/app/invites/create-invite/create-invite.component';
 
 @Component({
   selector: 'app-wallet-admin',
@@ -11,7 +13,9 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class WalletAdminComponent implements OnInit {
 
   //TODO: перекинуть таблицу с пользователями на страницу edit-wallet
-  constructor(private admService: AdminService, private alertify: AlertifyService) { }
+  constructor(private admService: AdminService,
+    public dialog: MatDialog,
+    private alertify: AlertifyService) { }
 
   users: UserForAdmin[] = [];
   ngOnInit(): void {
@@ -27,6 +31,12 @@ export class WalletAdminComponent implements OnInit {
       el.remove(rowIndex);
     }, error => {
       this.alertify.error(error.error);
+    });
+  }
+
+  sendInvitation() {
+    const dialogRef = this.dialog.open(CreateInviteComponent);
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 
