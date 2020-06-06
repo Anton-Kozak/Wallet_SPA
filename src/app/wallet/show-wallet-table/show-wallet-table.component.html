@@ -109,17 +109,17 @@
         </div>
 
     </div>
-    <div class="content">
+    <div *ngIf="first" class="content">
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-img">
                     <div class="image">
                         <img src="../../../assets\images\Food.jpg" alt="Card image cap">
                     </div>
-                    <!-- <div class="card-header">
-                    <h4 class="card-title">Food expenses</h4>
-                    <p class="card-category">Check out how much you have spent this month!</p>
-                </div> -->
+                    <div class="card-header">
+                    <h4 class="card-title"> expenses</h4>
+                    <p class="card-category">Check out how much you have spent this month at {{first.categoryTitle}}!</p>
+                </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
@@ -132,7 +132,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="d-flex" *ngFor="let expense of foodExpenses">
+                                    <tr class="d-flex" *ngFor="let expense of first.expenses">
                                         <td class="col-1">{{expense.id}}</td>
                                         <td class="col-5">{{expense.expenseName}}</td>
                                         <td class="col-4">{{expense.creationDate | date}}</td>
@@ -146,7 +146,7 @@
             </div>
         </div>
 
-        <div class="content">
+        <div *ngIf="second" class="content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-img">
@@ -155,7 +155,7 @@
                         </div>
                         <div class="card-header">
                             <h4 class="card-title">House expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month!</p>
+                            <p class="card-category">Check out how much you have spent this month at {{second.categoryTitle}}!</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -169,7 +169,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="d-flex" *ngFor="let expense of houseExpenses">
+                                        <tr class="d-flex" *ngFor="let expense of second.expenses">
                                             <td class="col-1">{{expense.id}}</td>
                                             <td class="col-5">{{expense.expenseName}}</td>
                                             <td class="col-4">{{expense.creationDate | date}}</td>
@@ -183,7 +183,7 @@
                 </div>
             </div>
 
-            <div class="content">
+            <div *ngIf="third" class="content">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-img">
@@ -192,7 +192,7 @@
                             </div>
                             <div class="card-header">
                                 <h4 class="card-title">Clothes expenses</h4>
-                                <p class="card-category">Check out how much you have spent this month!</p>
+                                <p class="card-category">Check out how much you have spent this month at {{third.categoryTitle}}!</p>
                             </div>
 
                             <div class="card-body">
@@ -207,7 +207,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="d-flex" *ngFor="let expense of clothesExpenses">
+                                            <tr class="d-flex" *ngFor="let expense of third.expenses">
                                                 <td class="col-1">{{expense.id}}</td>
                                                 <td class="col-5">{{expense.expenseName}}</td>
                                                 <td class="col-4">{{expense.creationDate | date}}</td>
@@ -221,7 +221,7 @@
                     </div>
                 </div>
 
-                <div class="content">
+                <div *ngIf="fourth" class="content">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-img">
@@ -230,7 +230,7 @@
                                 </div>
                                 <div class="card-header">
                                     <h4 class="card-title">Entertainment expenses</h4>
-                                    <p class="card-category">Check out how much you have spent this month!</p>
+                                    <p class="card-category">Check out how much you have spent this month at {{fourth.categoryTitle}}!</p>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -244,7 +244,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex" *ngFor="let expense of entExpenses">
+                                                <tr class="d-flex" *ngFor="let expense of fourth.expenses">
                                                     <td class="col-1">{{expense.id}}</td>
                                                     <td class="col-5">{{expense.expenseName}}</td>
                                                     <td class="col-4">{{expense.creationDate | date}}</td>
@@ -258,13 +258,13 @@
                         </div>
                     </div>
 
-                    <div class="content">
+                    <div *ngIf="fifth" class="content">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">Other expenses</h4>
-                                        <p class="card-category">Check out how much you have spent this month!</p>
+                                        <p class="card-category">Check out how much you have spent this month at {{fifth.categoryTitle}}!</p>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -278,7 +278,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="d-flex" *ngFor="let expense of otherExpenses">
+                                                    <tr class="d-flex" *ngFor="let expense of fifth.expenses">
                                                         <td class="col-1">{{expense.id}}</td>
                                                         <td class="col-5">{{expense.expenseName}}</td>
                                                         <td class="col-4">{{expense.creationDate | date}}</td>
@@ -318,111 +318,4 @@
     Limit: {{walletExpenses}} / {{walletLimit}}
     <progressbar class="progress-striped active" [max]="walletLimit" [value]="expensesToShow" [type]="type"></progressbar>
 </div>
-<div class="d-flex justify-content-around">
-    <div class="container">
-        Food
-        <table class="table table-dark table-striped table-hover table-sm">
-            <thead>
-                <tr class="d-flex">
-                    <th class="col-1">#</th>
-                    <th class="col-5">Name</th>
-                    <th class="col-4">Date</th>
-                    <th class="col-2">$</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="d-flex" *ngFor="let expense of foodExpenses">
-                    <td class="col-1">{{expense.id}}</td>
-                    <td class="col-5">{{expense.expenseName}}</td>
-                    <td class="col-4">{{expense.creationDate | date}}</td>
-                    <td class="col-2">{{expense.moneySpent}}</td>
-                </tr>
-                <tr>Total spent: </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="container">
-        Housekeeping
-        <table class="table table-dark table-striped table-hover table-sm">
-            <thead>
-                <tr class="d-flex">
-                    <th class="col-1">#</th>
-                    <th class="col-4">Name</th>
-                    <th class="col-4">Date</th>
-                    <th class="col-3">$</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="d-flex" *ngFor="let expense of houseExpenses">
-                    <td class="col-1">{{expense.id}}</td>
-                    <td class="col-4">{{expense.expenseName}}</td>
-                    <td class="col-4">{{expense.creationDate | date}}</td>
-                    <td class="col-3">{{expense.moneySpent}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="container">
-        Entertainment
-        <table class="table table-dark table-striped table-hover table-sm">
-            <thead>
-                <tr class="d-flex">
-                    <th class="col-1">#</th>
-                    <th class="col-4">Name</th>
-                    <th class="col-4">Date</th>
-                    <th class="col-3">$</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="d-flex" *ngFor="let expense of entExpenses">
-                    <td class="col-1">{{expense.id}}</td>
-                    <td class="col-4">{{expense.expenseName}}</td>
-                    <td class="col-4">{{expense.creationDate | date}}</td>
-                    <td class="col-3">{{expense.moneySpent}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="container">
-        Clothes
-        <table class="table table-dark table-striped table-hover table-sm">
-            <thead>
-                <tr class="d-flex">
-                    <th class="col-1">#</th>
-                    <th class="col-4">Name</th>
-                    <th class="col-4">Date</th>
-                    <th class="col-3">$</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="d-flex" *ngFor="let expense of clothesExpenses">
-                    <td class="col-1">{{expense.id}}</td>
-                    <td class="col-4">{{expense.expenseName}}</td>
-                    <td class="col-4">{{expense.creationDate | date}}</td>
-                    <td class="col-3">{{expense.moneySpent}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="container">
-        Other
-        <table class="table table-dark table-striped table-hover table-sm">
-            <thead>
-                <tr class="d-flex">
-                    <th class="col-1">#</th>
-                    <th class="col-4">Name</th>
-                    <th class="col-4">Date</th>
-                    <th class="col-3">$</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="d-flex" *ngFor="let expense of otherExpenses">
-                    <td class="col-1">{{expense.id}}</td>
-                    <td class="col-4">{{expense.expenseName}}</td>
-                    <td class="col-4">{{expense.creationDate | date}}</td>
-                    <td class="col-3">{{expense.moneySpent}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div> -->
+-->

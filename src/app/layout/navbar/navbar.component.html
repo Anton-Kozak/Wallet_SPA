@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="dropdown">
-        <button type="button" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" (click)="test()" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}} matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="notifications">

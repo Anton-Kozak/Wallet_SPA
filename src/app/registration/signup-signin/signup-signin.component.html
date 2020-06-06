@@ -237,7 +237,7 @@
                         <h5 class="card-title">Check Invites From Other Users</h5>
                         <p class="card-text">Here, you can look whether other users have invited you to join their
                             wallets!</p>
-                        <a (click)="onInvitesCheckDialog()" class="btn btn-primary text-light">Check</a>
+                        <a [matBadge]="invites" matBadgePosition="after" matBadgeColor="accent" (click)="onInvitesCheckDialog()" class="btn btn-primary text-light">Check</a>
                     </div>
                 </div>
 

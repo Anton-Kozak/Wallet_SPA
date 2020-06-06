@@ -39,9 +39,9 @@ export class CreateWalletComponent implements OnInit {
 
     this.walletService.createNewWallet(this.wallet).subscribe((user: any) => {
       this.alertify.success("You have successfully created a wallet");
-      this.authService.logout();
+      // this.authService.logout();
       this.alertify.success("Please, log in to see your wallet");
-      this.router.navigate(['/home']);
+      this.router.navigate(['/main']);
     }, error => {
       this.alertify.error(error.statusText);
     });

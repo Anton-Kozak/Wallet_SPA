@@ -74,4 +74,8 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  test(){
+    this.noteService.deleteNotifications().subscribe();   
+  }
+
 }

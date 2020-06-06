@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { Router } from '@angular/router';
 import { Expense } from 'src/app/_model/expense';
 import { AuthService } from 'src/app/_services/auth.service';
 import { WalletForPage } from 'src/app/_model/wallet-for-page';
@@ -8,6 +7,7 @@ import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-e
 import { MatDialog } from '@angular/material/dialog';
 import { Notification } from 'src/app/_model/notification';
 import { NotificationService } from 'src/app/_services/notification.service';
+import { ExpensesWithCategories } from 'src/app/_model/expensesWithCategories';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -20,11 +20,11 @@ export class ShowWalletTableComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private noteService: NotificationService) { }
-  foodExpenses: Expense[] = [];
-  houseExpenses: Expense[] = [];
-  entExpenses: Expense[] = [];
-  clothesExpenses: Expense[] = [];
-  otherExpenses: Expense[] = [];
+  first: ExpensesWithCategories = {categoryTitle: '', expenses: []};
+  second: ExpensesWithCategories = {categoryTitle: '', expenses: []};
+  third: ExpensesWithCategories = {categoryTitle: '', expenses: []};
+  fourth: ExpensesWithCategories = {categoryTitle: '', expenses: []};
+  fifth: ExpensesWithCategories = {categoryTitle: '', expenses: []};
   walletTitle: string;
   walletLimit: number;
   walletExpenses: number;
@@ -35,34 +35,37 @@ export class ShowWalletTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.authService.getToken().nameid;
-    
     this.expenseService.getWalletData(this.id).subscribe((walletData: WalletForPage) => {
       this.walletTitle = walletData['title'];
       this.expenseService.expensesSubject.subscribe(expData => {
         this.walletExpenses = expData;
         this.expensesToShow = expData;
         console.log(this.walletExpenses);
-        
         this.checkLimit();
       })
       this.walletLimit = walletData['monthlyLimit'];
       this.checkLimit();
     });
     this.expenseService.showAllExpenses();
-    this.expenseService.foodSubject.subscribe(exp => {
-      this.foodExpenses = exp;
+    this.expenseService.firstSubject.subscribe(exp => {
+      this.first.expenses = exp;
+      this.first.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[0] - 1].title;     
     });
-    this.expenseService.entSubject.subscribe(exp => {
-      this.entExpenses = exp;
+    this.expenseService.secondSubject.subscribe(exp => {
+      this.second.expenses = exp;
+      this.second.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[1] - 1].title; 
     });
-    this.expenseService.houseSubject.subscribe(exp => {
-      this.houseExpenses = exp;
+    this.expenseService.thirdSubject.subscribe(exp => {
+      this.third.expenses = exp;
+      this.third.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[2] - 1].title;    
     });
-    this.expenseService.clothesSubject.subscribe(exp => {
-      this.clothesExpenses = exp;
+    this.expenseService.fourthSubject.subscribe(exp => {
+      this.fourth.expenses = exp;
+      this.fourth.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[3] - 1].title;  
     });
-    this.expenseService.otherSubject.subscribe(exp => {
-      this.otherExpenses = exp;
+    this.expenseService.fifthSubject.subscribe(exp => {
+      this.fifth.expenses = exp;
+      this.fifth.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[4] - 1].title;    
     });
 
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
@@ -89,43 +92,6 @@ export class ShowWalletTableComponent implements OnInit {
       }
     }
   }
-
-  // checkRequests() {
-  //   this.router.navigate(['/checkRequests']);
-  // }
-
-  // createInvite() {
-  //   this.router.navigate(['/createInvite']);
-  // }
-
-  // showGraph() {
-  //   this.router.navigate(['/graph']);
-  // }
-
-  // // createExpense() {
-  // //   this.router.navigate(['/createExpense']);
-  // // }
-
-
-  // showWalletStatistics() {
-  //   this.router.navigate(['/getWalletStatistics']);
-  // }
-
-  // categoryStatistics() {
-  //   this.router.navigate(['/catstat'], { queryParams: { category: 1 } });
-  // }
-
-  // userStat() {
-  //   this.router.navigate(['/userStatistics', this.id]);
-  // }
-
-  // editWallet() {
-  //   this.router.navigate(['/editWallet']);
-  // }
-
-  // walletAdmin() {
-  //   this.router.navigate(['/walletAdmin']);
-  // }
 
   openDialog() {
     const dialogRef = this.dialog.open(CreateExpenseComponent);

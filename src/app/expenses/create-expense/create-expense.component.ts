@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CategoryData } from 'src/app/_model/categoryData';
 
 @Component({
   selector: 'app-create-expense',
@@ -14,9 +15,10 @@ export class CreateExpenseComponent implements OnInit {
 
   expense: Expense;
   newExpenseForm: FormGroup;
+  categoryTitles: CategoryData[] = [];
 
-  constructor(private expenseService: ExpenseService, 
-    private alertify: AlertifyService, 
+  constructor(private expenseService: ExpenseService,
+    private alertify: AlertifyService,
     public dialogRef: MatDialogRef<CreateExpenseComponent>) { }
 
   ngOnInit(): void {
@@ -26,10 +28,13 @@ export class CreateExpenseComponent implements OnInit {
       'category': new FormControl('', [Validators.required]),
       'money': new FormControl('', Validators.required)
     })
+    this.categoryTitles = this.expenseService.categoryTitles.filter(value => this.expenseService.categories.includes(value.id));
+   
   }
 
   createExpense() {
     console.log('form submit!');
+    console.log(this.newExpenseForm);
     
     if (this.newExpenseForm.errors == null) {
       this.expense = {

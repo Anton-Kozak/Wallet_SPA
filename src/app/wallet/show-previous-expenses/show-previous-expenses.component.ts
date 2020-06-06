@@ -19,22 +19,22 @@ export class ShowPreviousExpensesComponent implements OnInit {
   otherExpenses: Expense[] = [];
 
   ngOnInit(): void {
-    this.expenseService.getPreviousExpenses();
-    this.expenseService.foodSubject.subscribe(exp => {
-      this.foodExpenses = exp;
-    });
-    this.expenseService.entSubject.subscribe(exp => {
-      this.entExpenses = exp;
-    });
-    this.expenseService.houseSubject.subscribe(exp => {
-      this.houseExpenses = exp;
-    });
-    this.expenseService.clothesSubject.subscribe(exp => {
-      this.clothesExpenses = exp;
-    });
-    this.expenseService.otherSubject.subscribe(exp => {
-      this.otherExpenses = exp;
-    });
+    // this.expenseService.getPreviousExpenses();
+    // this.expenseService.foodSubject.subscribe(exp => {
+    //   this.foodExpenses = exp;
+    // });
+    // this.expenseService.entSubject.subscribe(exp => {
+    //   this.entExpenses = exp;
+    // });
+    // this.expenseService.houseSubject.subscribe(exp => {
+    //   this.houseExpenses = exp;
+    // });
+    // this.expenseService.clothesSubject.subscribe(exp => {
+    //   this.clothesExpenses = exp;
+    // });
+    // this.expenseService.otherSubject.subscribe(exp => {
+    //   this.otherExpenses = exp;
+    // });
   }
 
 }

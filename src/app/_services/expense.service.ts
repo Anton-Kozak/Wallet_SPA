@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { User } from '../_model/user';
 import { Expense } from '../_model/expense';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ExpenseForTable } from '../_model/expense-for-table';
 import { AuthService } from './auth.service';
+import { CategoryData } from '../_model/categoryData';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,32 +15,77 @@ export class ExpenseService {
   baseUrl: string = environment.apiUrl + 'expense/';
 
   initialExpenses: any[] = [];
-  foodExpenses: Expense[] = [];
-  houseExpenses: Expense[] = [];
-  entertainmentExpenses: Expense[] = [];
-  clothesExpenses: Expense[] = [];
-  otherExpenses: Expense[] = [];
+  // foodExpenses: Expense[] = [];
+  // houseExpenses: Expense[] = [];
+  // entertainmentExpenses: Expense[] = [];
+  // clothesExpenses: Expense[] = [];
+  // otherExpenses: Expense[] = [];
 
-  expenses: Expense[] = [];
-  foodSubject = new Subject<Expense[]>();
-  houseSubject = new Subject<Expense[]>();
-  entSubject = new Subject<Expense[]>();
-  clothesSubject = new Subject<Expense[]>();
-  otherSubject = new Subject<Expense[]>();
+  // expenses: Expense[] = [];
+  // foodSubject = new Subject<Expense[]>();
+  // houseSubject = new Subject<Expense[]>();
+  // entSubject = new Subject<Expense[]>();
+  // clothesSubject = new Subject<Expense[]>();
+  // otherSubject = new Subject<Expense[]>();
   expensesSubject = new BehaviorSubject<number>(0);
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  categories: number[] = [];
+  categoryTitles: CategoryData[] = [];
+  firstSubject = new Subject<Expense[]>();
+  firstTitle: string = '';
+  secondSubject = new Subject<Expense[]>();
+  thirdSubject = new Subject<Expense[]>();
+  fourthSubject = new Subject<Expense[]>();
+  fifthSubject = new Subject<Expense[]>();
 
+  firstExpenses: Expense[] = [];
+  secondExpenses: Expense[] = [];
+  thirdExpenses: Expense[] = [];
+  fourthExpenses: Expense[] = [];
+  fifthExpenses: Expense[] = [];
+
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.categoryTitles = [
+      { id: 1, title: 'Food' },
+      { id: 2, title: 'Housekeeping' },
+      { id: 3, title: 'Clothes' },
+      { id: 4, title: 'Entertainment' },
+      { id: 5, title: 'Other' },
+      { id: 6, title: 'Beauty' },
+      { id: 7, title: 'Sport' },
+    ]
   }
+
+  getAllCategories() {
+    this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getAllCategories').subscribe((data: CategoryData[]) => {
+      this.categoryTitles = data;
+    })
+  }
+
   showAllExpenses() {
-    this.http.get(this.baseUrl + this.authService.getToken().nameid).subscribe((expenses: any) => {
+    this.http.get(this.baseUrl + this.authService.getToken().nameid).subscribe((expenses: any[]) => {
       if (expenses != null) {
-        this.initialExpenses = expenses;
-        this.getFoodExpenses();
-        this.getHouseExpenses();
-        this.getEntertainmentExpenses();
-        this.getOtherExpenses();
-        this.getClothesExpenses();
+        let index = 0;
+        for (const key in expenses) {
+          if (expenses.hasOwnProperty(key)) {
+            //name of category
+            this.categories[index++] = +key;
+          }
+        }
+        console.log('cat');
+        
+        console.log(this.categories);
+        
+        this.firstExpenses = expenses[this.categories[0]];
+        this.firstSubject.next(this.firstExpenses);
+        this.secondExpenses = expenses[this.categories[1]];
+        this.secondSubject.next(this.secondExpenses);
+        this.thirdExpenses = expenses[this.categories[2]];
+        this.thirdSubject.next(this.thirdExpenses);
+        this.fourthExpenses = expenses[this.categories[3]];
+        this.fourthSubject.next(this.fourthExpenses);
+        this.fifthExpenses = expenses[this.categories[4]];
+        this.fifthSubject.next(this.fifthExpenses);
       }
     });
   }
@@ -49,38 +94,8 @@ export class ExpenseService {
     this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses').subscribe((expenses: any) => {
       if (expenses != null) {
         this.initialExpenses = expenses;
-        this.getFoodExpenses();
-        this.getHouseExpenses();
-        this.getEntertainmentExpenses();
-        this.getOtherExpenses();
-        this.getClothesExpenses();
       }
     });
-  }
-
-  getFoodExpenses() {
-    this.foodExpenses = this.initialExpenses['food'];
-    this.foodSubject.next(this.foodExpenses);
-  }
-
-  getHouseExpenses() {
-    this.houseExpenses = this.initialExpenses['housekeeping'];
-    this.houseSubject.next(this.houseExpenses);
-  }
-
-  getEntertainmentExpenses() {
-    this.entertainmentExpenses = this.initialExpenses['entertainment'];
-    this.entSubject.next(this.entertainmentExpenses);
-  }
-
-  getClothesExpenses() {
-    this.clothesExpenses = this.initialExpenses['clothes'];
-    this.clothesSubject.next(this.clothesExpenses);
-  }
-
-  getOtherExpenses() {
-    this.otherExpenses = this.initialExpenses['other'];
-    this.otherSubject.next(this.otherExpenses);
   }
 
   getBarExpensesData() {
@@ -92,25 +107,25 @@ export class ExpenseService {
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/new', expense).pipe(map(response => {
       var newExpense: Expense = response['expense'];
       switch (newExpense.expenseCategoryId) {
-        case 1:
-          this.foodExpenses.push(newExpense);
-          this.foodSubject.next(this.foodExpenses);
+        case this.categories[0]:
+          this.firstExpenses.push(newExpense);
+          this.firstSubject.next(this.firstExpenses);
           break;
-        case 2:
-          this.houseExpenses.push(newExpense);
-          this.houseSubject.next(this.houseExpenses);
+        case this.categories[1]:
+          this.secondExpenses.push(newExpense);
+          this.secondSubject.next(this.secondExpenses);
           break;
-        case 3:
-          this.clothesExpenses.push(newExpense);
-          this.clothesSubject.next(this.clothesExpenses);
+        case this.categories[2]:
+          this.thirdExpenses.push(newExpense);
+          this.thirdSubject.next(this.thirdExpenses);
           break;
-        case 4:
-          this.entertainmentExpenses.push(newExpense);
-          this.entSubject.next(this.entertainmentExpenses);
+        case this.categories[3]:
+          this.fourthExpenses.push(newExpense);
+          this.fourthSubject.next(this.fourthExpenses);
           break;
-        case 5:
-          this.otherExpenses.push(newExpense);
-          this.otherSubject.next(this.otherExpenses);
+        case this.categories[4]:
+          this.fifthExpenses.push(newExpense);
+          this.fifthSubject.next(this.fifthExpenses);
           break;
       }
       this.expensesSubject.next(this.expensesSubject.getValue() + newExpense.moneySpent);

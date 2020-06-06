@@ -7,6 +7,8 @@ import { CreateWalletComponent } from 'src/app/wallet/create-wallet/create-walle
 import { RequestAccessComponent } from 'src/app/request/request-access/request-access.component';
 import { CheckInvitesComponent } from 'src/app/invites/check-invites/check-invites.component';
 import { Router } from '@angular/router';
+import { Notification } from 'src/app/_model/notification';
+import { NotificationService } from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-signup-signin',
@@ -21,10 +23,12 @@ export class SignupSigninComponent implements OnInit {
   signInForm: FormGroup;
   isSignUp = true;
   isSignedIn = false;
+  invites: number = 0;
   constructor(private authService: AuthService,
     private alertify: AlertifyService,
     public dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    private noteService: NotificationService) { }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
@@ -64,7 +68,9 @@ export class SignupSigninComponent implements OnInit {
       }
       else {
         this.isSignedIn = true;
-        console.log(this.isSignedIn);
+        this.noteService.getNotifications().subscribe((res: Notification[]) => {
+          this.invites = res.length;
+        })
       }
     }, error => {
       this.alertify.error(error.error);
