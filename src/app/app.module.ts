@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
@@ -93,6 +94,7 @@ export function tokenGetter() {
     MatDialogModule,
     MatTooltipModule,
     MatBadgeModule,
+    DragDropModule,
     ProgressbarModule.forRoot(),
     RouterModule.forRoot(appRoutes),
 
