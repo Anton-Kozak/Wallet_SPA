@@ -23,47 +23,39 @@ export class CreateWalletComponent implements OnInit {
   ) { }
   walletForm: FormGroup;
   wallet: Wallet;
-
-  food = [
-    'Vegetable',
-    'Fruits',
-    'Alcohol',
-    'Sweets'
+  finalCategories: number[] = [
   ];
 
-  advisable = [
-    'Food',
-    'Housekeeping',
-    'Clothes',
-    'Entertainment',
-    'Other'
-  ]
-
-  clothes = [
-    'Formal clothes',
-    'Informal clothes',
-    'Shoes',
-  ];
-
-  entertainment = [
-    'Internet shopping',
-    'Holidays',
-    'Beauty',
-    'Sport'
-  ];
-
-  finalCategories: string[] = [
-  ];
-
-  dragHistory = [];
-
+  isActive: { id: number, status: boolean }[] = [];
 
   ngOnInit(): void {
+    for (let i = 1; i <= 33; i++) {
+      this.isActive.push({ id: i, status: false });
+    }
+    console.log(this.isActive);
+    
     this.walletForm = new FormGroup({
       //TODO: сделать кастомный валидатор
       'title': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
       'limit': new FormControl(0, [Validators.required, Validators.min(10)])
     })
+  }
+
+  toggleCategory(categoryId: number) {
+    if (this.finalCategories.find(n => n === categoryId) === undefined) {
+      this.finalCategories.push(categoryId);
+      this.isActive.find(n=> n.id === categoryId).status = true;     
+    }
+    else {
+      this.finalCategories.splice(this.finalCategories.findIndex(n => n === categoryId), 1);
+      this.isActive.find(n=> n.id === categoryId).status = false;
+    }
+    console.log(this.finalCategories);
+    
+  }
+
+  findCategory(id: number) {
+    return true;
   }
 
 
@@ -76,7 +68,7 @@ export class CreateWalletComponent implements OnInit {
 
     let categories = [];
     for (let i = 0; i < this.finalCategories.length; i++) {
-      categories.push(this.walletService.currentCategories.indexOf(this.finalCategories[i]) + 1);
+      //categories.push(this.walletService.currentCategories.indexOf(this.finalCategories[i]) + 1);
     }
     console.log(categories);
     if (categories.length >= 5) {
@@ -105,51 +97,48 @@ export class CreateWalletComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  chooseCategories() {
 
-  }
-
-  clearCategories() {
-    if (this.dragHistory.length > 0) {
-      switch (this.dragHistory[this.dragHistory.length - 1].from) {
-        case 'food':
-          this.food.push(this.finalCategories[this.finalCategories.length - 1])
-          break;
-        case 'ent':
-          this.entertainment.push(this.finalCategories[this.finalCategories.length - 1])
-          break;
-        case 'clothes':
-          this.clothes.push(this.finalCategories[this.finalCategories.length - 1])
-          break;
-        case 'advisable':
-          this.advisable.push(this.finalCategories[this.finalCategories.length - 1])
-          break;
-      }
-      this.finalCategories.pop();
-      this.dragHistory.pop();
-    }
-  }
+  // clearCategories() {
+  //   if (this.dragHistory.length > 0) {
+  //     switch (this.dragHistory[this.dragHistory.length - 1].from) {
+  //       case 'food':
+  //         this.food.push(this.finalCategories[this.finalCategories.length - 1])
+  //         break;
+  //       case 'ent':
+  //         this.entertainment.push(this.finalCategories[this.finalCategories.length - 1])
+  //         break;
+  //       case 'clothes':
+  //         this.clothes.push(this.finalCategories[this.finalCategories.length - 1])
+  //         break;
+  //       case 'advisable':
+  //         this.advisable.push(this.finalCategories[this.finalCategories.length - 1])
+  //         break;
+  //     }
+  //     this.finalCategories.pop();
+  //     this.dragHistory.pop();
+  //   }
+  // }
 
 
 
-  drop(event: CdkDragDrop<string[]>) {
-    //reorganize
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    }
-    //add to array 
-    else {
+  // drop(event: CdkDragDrop<string[]>) {
+  //   //reorganize
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  //   }
+  //   //add to array 
+  //   else {
 
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.container.data.length);
-      this.dragHistory.push(
-        { from: event.previousContainer.id }
-      )
-      console.log(this.dragHistory);
-    }
-  }
+  //     transferArrayItem(event.previousContainer.data,
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.container.data.length);
+  //     this.dragHistory.push(
+  //       { from: event.previousContainer.id }
+  //     )
+  //     console.log(this.dragHistory);
+  //   }
+  // }
 
 
 
