@@ -13,7 +13,7 @@ export class NavigationGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var token = this.authService.getToken();
     console.log('Navigation guard is activated');
-    
+
     if (token !== null) {
       if (token.hasWallet === 'true') {
         return true;
@@ -24,5 +24,4 @@ export class NavigationGuard implements CanActivate {
     this.router.navigate(['/main']);
     return false;
   }
-
 }

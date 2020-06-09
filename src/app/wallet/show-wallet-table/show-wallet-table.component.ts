@@ -20,11 +20,11 @@ export class ShowWalletTableComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private noteService: NotificationService) { }
-  first: ExpensesWithCategories = {categoryTitle: '', expenses: []};
-  second: ExpensesWithCategories = {categoryTitle: '', expenses: []};
-  third: ExpensesWithCategories = {categoryTitle: '', expenses: []};
-  fourth: ExpensesWithCategories = {categoryTitle: '', expenses: []};
-  fifth: ExpensesWithCategories = {categoryTitle: '', expenses: []};
+  first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  third: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  fourth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  fifth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   walletTitle: string;
   walletLimit: number;
   walletExpenses: number;
@@ -48,24 +48,43 @@ export class ShowWalletTableComponent implements OnInit {
     });
     this.expenseService.showAllExpenses();
     this.expenseService.firstSubject.subscribe(exp => {
-      this.first.expenses = exp;
-      this.first.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[0] - 1].title;     
+      console.log('exp');
+      if (exp != null) {
+        this.first.expenses = exp;
+        this.first.categoryName = this.expenseService.firstExpenses.categoryName;
+        this.first.categoryId = this.expenseService.firstExpenses.categoryId;
+        console.log(this.first.categoryName);
+
+      }
     });
+
     this.expenseService.secondSubject.subscribe(exp => {
-      this.second.expenses = exp;
-      this.second.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[1] - 1].title; 
+      if (exp != null) {
+        this.second.expenses = exp;
+        this.second.categoryName = this.expenseService.secondExpenses.categoryName;
+        this.second.categoryId = this.expenseService.secondExpenses.categoryId;
+      }
     });
     this.expenseService.thirdSubject.subscribe(exp => {
-      this.third.expenses = exp;
-      this.third.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[2] - 1].title;    
+      if (exp != null) {
+        this.third.expenses = exp;
+        this.third.categoryName = this.expenseService.thirdExpenses.categoryName;
+        this.third.categoryId = this.expenseService.thirdExpenses.categoryId;
+      }
     });
     this.expenseService.fourthSubject.subscribe(exp => {
-      this.fourth.expenses = exp;
-      this.fourth.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[3] - 1].title;  
+      if (exp != null) {
+        this.fourth.expenses = exp;
+        this.fourth.categoryName = this.expenseService.fourthExpenses.categoryName;
+        this.fourth.categoryId = this.expenseService.fourthExpenses.categoryId;
+      }
     });
     this.expenseService.fifthSubject.subscribe(exp => {
-      this.fifth.expenses = exp;
-      this.fifth.categoryTitle = this.expenseService.categoryTitles[this.expenseService.categories[4] - 1].title;    
+      if (exp != null) {
+        this.fifth.expenses = exp;
+        this.fifth.categoryName = this.expenseService.fifthExpenses.categoryName;
+        this.fifth.categoryId = this.expenseService.fifthExpenses.categoryId;
+      }
     });
 
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {

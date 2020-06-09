@@ -46,11 +46,90 @@
         </div>
 
         <div class="form-group">
-            <button class="btn btn-outline-secondary btn-block" [disabled]="walletForm.invalid"
-                [ngClass]="{'btn-outline-success': walletForm.valid}">Create wallet</button>
+            <button class="btn btn-outline-secondary btn-block" [disabled]="(walletForm.invalid || finalCategories.length < 5)"
+                [ngClass]="{'btn-outline-success': walletForm.valid && finalCategories.length >= 5}">Create wallet</button>
         </div>
     </form>
     <div class="form-group">
         <button (click)="back()" class="btn btn-outline-warning">Back</button>
     </div>
 </div>
+
+<div class="container">
+    <div class="row">
+      <!-- <button class="btn btn-danger btn-block" (click)="chooseCategories()">Choose categories</button> -->
+      <button [disabled]="dragHistory.length <= 0" class="btn btn-primary btn-block" (click)="clearCategories()">Clear categories</button>
+    </div>
+  </div>
+  
+  <div class="example-container">
+    <h2>Advisable</h2>
+  
+    <div
+      cdkDropList
+      id="advisable"
+      #advisableList="cdkDropList"
+      [cdkDropListData]="advisable"
+      [cdkDropListConnectedTo]="[finalCategoriesList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of advisable" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+  
+  <div class="example-container">
+    <h2>Food</h2>
+  
+    <div
+      cdkDropList
+      id="food"
+      #foodList="cdkDropList"
+      [cdkDropListData]="food"
+      [cdkDropListConnectedTo]="[finalCategoriesList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of food" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+  
+  <div class="example-container">
+    <h2>Clothes</h2>
+    <div
+      cdkDropList
+      id="clothes"
+      #clothesList="cdkDropList"
+      [cdkDropListData]="clothes"
+      [cdkDropListConnectedTo]="[finalCategoriesList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of clothes" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+  
+  <div class="example-container">
+    <h2>Entertainment</h2>
+    <div
+      cdkDropList
+      id="ent"
+      #entList="cdkDropList"
+      [cdkDropListData]="entertainment"
+      [cdkDropListConnectedTo]="[finalCategoriesList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of entertainment" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+  
+  <div class="example-container">
+    <h2>Done</h2>
+  
+    <div
+      cdkDropList
+      #finalCategoriesList="cdkDropList"
+      [cdkDropListData]="finalCategories"
+      
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of finalCategories" cdkDrag>{{item}}</div>
+    </div>
+  </div>

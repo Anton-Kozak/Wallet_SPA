@@ -3,7 +3,6 @@ import { WalletService } from 'src/app/_services/wallet.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Wallet } from 'src/app/_model/wallet';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { AuthService } from 'src/app/_services/auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -13,21 +12,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class EditWalletComponent implements OnInit {
 
-  constructor(private walletService: WalletService, 
-    private alertify: AlertifyService, 
-    private authService: AuthService, 
+  constructor(private walletService: WalletService,
+    private alertify: AlertifyService,
     public dialogRef: MatDialogRef<EditWalletComponent>) { }
 
   editWalletForm: FormGroup;
   walletToEdit: Wallet;
   public currentWallet: Wallet;
   ngOnInit(): void {
-    this.walletService.getCurrentWallet(this.authService.getToken().id).subscribe((wallet: Wallet) => {
-      this.currentWallet = wallet;
-      this.editWalletForm = new FormGroup({
-        'title': new FormControl(this.currentWallet.title, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
-        'limit': new FormControl(this.currentWallet.monthlyLimit, Validators.min(10))
-      })
+    this.currentWallet = this.walletService.currentWallet;
+    this.editWalletForm = new FormGroup({
+      'title': new FormControl(this.currentWallet.title, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
+      'limit': new FormControl(this.currentWallet.monthlyLimit, Validators.min(10))
     })
   }
   //TODO: сделать подтверждение смены названия
@@ -36,9 +32,10 @@ export class EditWalletComponent implements OnInit {
     this.walletToEdit = ({
       title: this.editWalletForm.value['title'],
       monthlyLimit: this.editWalletForm.value['limit'],
+      walletCategories: this.currentWallet.walletCategories,
     });
 
-    this.walletService.editWallet(this.authService.getToken().id, this.walletToEdit).subscribe(response => {
+    this.walletService.editWallet(this.walletToEdit).subscribe(response => {
       this.alertify.success("You have successfully edited your wallet");
     }, error => {
       this.alertify.error(error.error);

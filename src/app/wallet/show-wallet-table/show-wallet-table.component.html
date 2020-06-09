@@ -117,9 +117,10 @@
                         <img src="../../../assets\images\Food.jpg" alt="Card image cap">
                     </div>
                     <div class="card-header">
-                    <h4 class="card-title"> expenses</h4>
-                    <p class="card-category">Check out how much you have spent this month at {{first.categoryTitle}}!</p>
-                </div>
+                        <h4 class="card-title">{{first.categoryName}} expenses</h4>
+                        <p class="card-category">Check out how much you have spent this month at {{first.categoryName}}!
+                        </p>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
@@ -145,7 +146,6 @@
                 </div>
             </div>
         </div>
-
         <div *ngIf="second" class="content">
             <div class="row">
                 <div class="col-md-12">
@@ -154,8 +154,9 @@
                             <img src="../../../assets\images\Housekeeping.jpg" alt="Card image cap">
                         </div>
                         <div class="card-header">
-                            <h4 class="card-title">House expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month at {{second.categoryTitle}}!</p>
+                            <h4 class="card-title">{{second.categoryName}} expenses</h4>
+                            <p class="card-category">Check out how much you have spent this month at
+                                {{second.categoryName}}!</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -191,8 +192,9 @@
                                 <img src="../../../assets\images\Clothes.jpg" alt="Card image cap">
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title">Clothes expenses</h4>
-                                <p class="card-category">Check out how much you have spent this month at {{third.categoryTitle}}!</p>
+                                <h4 class="card-title">{{third.categoryName}} expenses</h4>
+                                <p class="card-category">Check out how much you have spent this month at
+                                    {{third.categoryName}}!</p>
                             </div>
 
                             <div class="card-body">
@@ -229,8 +231,9 @@
                                     <img src="../../../assets\images\Entertainment.jpg" alt="Card image cap">
                                 </div>
                                 <div class="card-header">
-                                    <h4 class="card-title">Entertainment expenses</h4>
-                                    <p class="card-category">Check out how much you have spent this month at {{fourth.categoryTitle}}!</p>
+                                    <h4 class="card-title">{{fourth.categoryName}} expenses</h4>
+                                    <p class="card-category">Check out how much you have spent this month at
+                                        {{fourth.categoryName}}!</p>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -263,8 +266,9 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Other expenses</h4>
-                                        <p class="card-category">Check out how much you have spent this month at {{fifth.categoryTitle}}!</p>
+                                        <h4 class="card-title">{{fifth.categoryName}} expenses</h4>
+                                        <p class="card-category">Check out how much you have spent this month at
+                                            {{fifth.categoryName}}!</p>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">

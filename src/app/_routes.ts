@@ -5,7 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
 import { RequestAccessComponent } from './request/request-access/request-access.component';
 import { CreateInviteComponent } from './invites/create-invite/create-invite.component';
-import { PieGraphComponent } from './graphs/pie-graph/pie-graph.component';
 import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
 import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-statistics.component';
 import { CategoryStatisticsComponent } from './wallet/category-statistics/category-statistics.component';
@@ -16,8 +15,6 @@ import { PhotoComponent } from './photo/photo.component';
 import { ShowWalletTableComponent } from './wallet/show-wallet-table/show-wallet-table.component';
 import { ShowPreviousExpensesComponent } from './wallet/show-previous-expenses/show-previous-expenses.component';
 import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.component';
-import { AppComponent } from './app.component';
-import { SignupSigninComponent } from './registration/signup-signin/signup-signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { NavigationGuard } from './_guards/navigation.guard';
@@ -36,7 +33,7 @@ export const appRoutes: Routes = [
       { path: 'checkInvites', component: CheckInvitesComponent },
       { path: 'createInvite', component: CreateInviteComponent },
       { path: 'createExpense', component: CreateExpenseComponent },
-      { path: 'walletExpenses', component: ShowWalletTableComponent },
+      { path: 'walletExpenses', component: ShowWalletTableComponent, canActivate: [NavigationGuard] },
       { path: 'previousExpenses', component: ShowPreviousExpensesComponent },
       { path: 'getWalletStatistics', component: WalletStatisticsComponent },
       //TODO: вписать в путь сразу :id и как то его получать
@@ -45,7 +42,6 @@ export const appRoutes: Routes = [
       { path: 'createNewWallet', component: CreateWalletComponent },
       { path: 'editWallet', component: EditWalletComponent },
       { path: 'walletAdmin', component: WalletAdminComponent },
-
     ]
   },
 

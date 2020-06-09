@@ -15,6 +15,8 @@ export class WalletService {
   constructor(private http: HttpClient, private authService: AuthService) { }
   baseUrl: string = environment.apiUrl + "wallet/";
 
+  walletCategories: CategoryData[] = [];
+  currentWallet: Wallet;
   currentCategories = [
     'Food',
     'Housekeeping',
@@ -27,16 +29,22 @@ export class WalletService {
 
 
   createNewWallet(walletToCreate: Wallet) {
-    console.log(walletToCreate);
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/createwallet', walletToCreate);
   }
 
-  getCurrentWallet(userId: string) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet');
+  getCurrentWallet() {
+    this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet').subscribe((currentWallet: Wallet) => {
+      this.currentWallet = currentWallet;
+    });
   }
 
 
-  editWallet(userId: string, wallet: Wallet) {
+  getWalletsCategories(){
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getWalletCategories');
+  }
+
+
+  editWallet(wallet: Wallet) {
     return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/editWallet', wallet, { responseType: 'text' });
   }
 

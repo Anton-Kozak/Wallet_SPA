@@ -5,6 +5,7 @@ import { ExpenseService } from 'src/app/_services/expense.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CategoryData } from 'src/app/_model/categoryData';
+import { WalletService } from 'src/app/_services/wallet.service';
 
 @Component({
   selector: 'app-create-expense',
@@ -18,6 +19,7 @@ export class CreateExpenseComponent implements OnInit {
   categoryTitles: CategoryData[] = [];
 
   constructor(private expenseService: ExpenseService,
+    private walletService: WalletService,
     private alertify: AlertifyService,
     public dialogRef: MatDialogRef<CreateExpenseComponent>) { }
 
@@ -28,14 +30,27 @@ export class CreateExpenseComponent implements OnInit {
       'category': new FormControl('', [Validators.required]),
       'money': new FormControl('', Validators.required)
     })
-    this.categoryTitles = this.expenseService.categoryTitles.filter(value => this.expenseService.categories.includes(value.id));
-   
+    // let categories: number[];
+    // this.walletService.getWalletsCategories().subscribe((cat:number[]) => {
+    //   categories = cat;
+    // })
+    // this.categoryTitles = this.expenseService.categoryTitles.filter(value => categories.includes(value.id));
+    this.categoryTitles = [
+      {id: this.expenseService.firstExpenses.categoryId , title: this.expenseService.firstExpenses.categoryName},
+      {id: this.expenseService.secondExpenses.categoryId , title: this.expenseService.secondExpenses.categoryName},
+      {id: this.expenseService.thirdExpenses.categoryId , title: this.expenseService.thirdExpenses.categoryName},
+      {id: this.expenseService.fourthExpenses.categoryId , title: this.expenseService.fourthExpenses.categoryName},
+      {id: this.expenseService.fifthExpenses.categoryId , title: this.expenseService.fifthExpenses.categoryName},
+      ];
+      console.log(this.categoryTitles);
+      
+
   }
 
   createExpense() {
     console.log('form submit!');
     console.log(this.newExpenseForm);
-    
+
     if (this.newExpenseForm.errors == null) {
       this.expense = {
         expenseCategoryId: this.newExpenseForm.value['category'],

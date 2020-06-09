@@ -21,39 +21,40 @@ export class HomeComponent implements OnInit {
   userName: string;
 
 
-  food = [
-    'Vegetable',
-    'Fruits',
-    'Alcohol',
-    'Sweets'
-  ];
+  // food = [
+  //   'Vegetable',
+  //   'Fruits',
+  //   'Alcohol',
+  //   'Sweets'
+  // ];
 
-  advisable = [
-    'Food',
-    'Housekeeping',
-    'Clothes',
-    'Entertainment',
-    'Other'
-  ]
+  // advisable = [
+  //   'Food',
+  //   'Housekeeping',
+  //   'Clothes',
+  //   'Entertainment',
+  //   'Other'
+  // ]
 
-  clothes = [
-    'Formal clothes',
-    'Informal clothes',
-    'Shoes',
-  ];
+  // clothes = [
+  //   'Formal clothes',
+  //   'Informal clothes',
+  //   'Shoes',
+  // ];
 
-  entertainment = [
-    'Internet shopping',
-    'Holidays',
-  ];
+  // entertainment = [
+  //   'Internet shopping',
+  //   'Holidays',
+  // ];
 
-  finalCategories = [
-  ];
+  // finalCategories = [
+  // ];
 
-  dragHistory = [];
+  // dragHistory = [];
 
 
   ngOnInit(): void {
+    this.walletService.getCurrentWallet();
     // this.authService.isLoggedIn.subscribe(result => {
     //   this.isAuthorized = result;
     //   console.log("Is authorized: " + this.isAuthorized);
@@ -80,57 +81,57 @@ export class HomeComponent implements OnInit {
     return false;
   }
 
-  chooseCategories() {
-    let categories = [];  
-    for (let i = 0; i < this.finalCategories.length; i++) {
-      categories.push(this.walletService.currentCategories.indexOf(this.finalCategories[i]) + 1);
-    }
-    console.log(categories);
-    //TODO : сделать больше или равно 5
-    if (categories.length > 0)
-      this.walletService.addCategoriesToWallet(categories).subscribe();
-  }
+  // chooseCategories() {
+  //   let categories = [];  
+  //   for (let i = 0; i < this.finalCategories.length; i++) {
+  //     categories.push(this.walletService.currentCategories.indexOf(this.finalCategories[i]) + 1);
+  //   }
+  //   console.log(categories);
+  //   //TODO : сделать больше или равно 5
+  //   if (categories.length > 0)
+  //     this.walletService.addCategoriesToWallet(categories).subscribe();
+  // }
 
-  clearCategories() {
-    if (this.dragHistory.length > 0) {
-      switch (this.dragHistory[this.dragHistory.length - 1].from) {
-        case 'food':
-          this.food.push(this.finalCategories[this.finalCategories.length - 1])
-          break;
-        case 'ent':
-          this.entertainment.push(this.finalCategories[this.finalCategories.length - 1])
-          break;
-        case 'clothes':
-          this.clothes.push(this.finalCategories[this.finalCategories.length - 1])
-          break;
-        case 'advisable':
-          this.advisable.push(this.finalCategories[this.finalCategories.length - 1])
-          break;
-      }
-      this.finalCategories.pop();
-      this.dragHistory.pop();
-    }
-  }
+  // clearCategories() {
+  //   if (this.dragHistory.length > 0) {
+  //     switch (this.dragHistory[this.dragHistory.length - 1].from) {
+  //       case 'food':
+  //         this.food.push(this.finalCategories[this.finalCategories.length - 1])
+  //         break;
+  //       case 'ent':
+  //         this.entertainment.push(this.finalCategories[this.finalCategories.length - 1])
+  //         break;
+  //       case 'clothes':
+  //         this.clothes.push(this.finalCategories[this.finalCategories.length - 1])
+  //         break;
+  //       case 'advisable':
+  //         this.advisable.push(this.finalCategories[this.finalCategories.length - 1])
+  //         break;
+  //     }
+  //     this.finalCategories.pop();
+  //     this.dragHistory.pop();
+  //   }
+  // }
 
 
 
-  drop(event: CdkDragDrop<string[]>) {
-    //reorganize
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    }
-    //add to array 
-    else {
+  // drop(event: CdkDragDrop<string[]>) {
+  //   //reorganize
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  //   }
+  //   //add to array 
+  //   else {
 
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.container.data.length);
-      this.dragHistory.push(
-        { from: event.previousContainer.id }
-      )
-      console.log(this.dragHistory);
-    }
-  }
+  //     transferArrayItem(event.previousContainer.data,
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.container.data.length);
+  //     this.dragHistory.push(
+  //       { from: event.previousContainer.id }
+  //     )
+  //     console.log(this.dragHistory);
+  //   }
+  // }
 
 }
