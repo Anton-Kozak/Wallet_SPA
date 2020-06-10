@@ -1,62 +1,11 @@
-<!-- <div class="row border m-2">
-    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-4 h-100" style="border:1px solid #333">
-        <div *ngIf="mostUsedUser && mostSpentUser && largestExpense && currentMonthLargestExpense">
-            <p>Most used user: {{mostUsedUser.userName}}</p>
-            <p>Most spent user: {{mostSpentUser.userName}}</p>
-            <p>Largest expense of all time: ${{largestExpense}}</p>
-            <p>This month's largest expense ${{currentMonthLargestExpense}}</p>
-            <p>User who spent the most: <span>{{mostSpentUser.userName}}</span> - ${{mostSpentUser.sum}}</p>
-        </div>
-        <div>
-            <div *ngIf="topFiveUsers" class="container">
-                <app-pie-graph [topFiveUsers]="topFiveUsers"></app-pie-graph>
-            </div>
-            <div *ngIf="lastSixMonths" class="container">
-                <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart>
-            </div>
-            <div *ngIf="compareBarExpenses && chosenCategoryName" class="container">
-                <app-bar-category-comparison [currentMonthbar]="compareBarExpenses['currentMonthData']"
-                    [lastMonthbar]="compareBarExpenses['lastMonthData']" [category]="chosenCategoryName"></app-bar-category-comparison>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-8 col-lg-9 col-xl-8 h-100" style="border:1px solid #ff0000">
-        <div class="container">
-            {{chosenCategoryName}}
-            <table class="table table-dark table-striped table-hover table-sm">
-                <thead>
-                    <tr class="d-flex">
-                        <th class="col-2">Title</th>
-                        <th class="col-2">Username</th>
-                        <th class="col-3">Description</th>
-                        <th class="col-3">Date</th>
-                        <th class="col-1">$</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="d-flex" *ngFor="let expense of expenses">
-                        <td class="col-2">{{expense.expenseTitle}}</td>
-                        <td class="col-2">{{expense.userName}}</td>
-                        <td class="col-3">{{expense.expenseDescription}}</td>
-                        <td class="col-3">{{expense.creationDate | date :'medium'}}</td>
-                        <td class="col-1">{{expense.moneySpent}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div> -->
-
-
-
 <div class="row">
     <div class="col-12">
         <div class="card card-test">
             <div class="image">
-                <img src="../../../assets/images/{{chosenCategoryName}}.jpg" alt="Card image cap">
+                <img src="../../../assets/images/Entertainment.jpg" alt="Card image cap">
             </div>
             <div class="card-header">
-                <h4 class="card-title text-center">{{chosenCategoryName}} expenses</h4>
+                <h4 class="card-title text-center">{{chosenCategoryName}}expenses</h4>
             </div>
         </div>
     </div>
@@ -151,7 +100,6 @@
                 </div>
             </div>
         </div>
-        <!-- stat -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -171,7 +119,6 @@
                 </div>
             </div>
         </div>
-        <!-- end stat -->
         <div class="row">
             <div class="col-12">
                 <div class="card " style="border-radius: 12px;">
@@ -242,7 +189,7 @@
                                     <!-- <a (click)="expenseDelete(expense.id, i)" class="btn"><span class="mr"
                                             style="color: red;"><i class="fa fa-times"></i></span></a>
                                     <a (click)="openDialog(expense.id)" class="btn"><span style="color: green;"><i
-                                                class="fa fa-cog"></i></span></a> -->
+                                                class="fa fa-cog"></i></span></a>  -->
                                 </td>
                             </tr>
                         </tbody>

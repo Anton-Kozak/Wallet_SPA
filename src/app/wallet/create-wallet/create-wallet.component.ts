@@ -33,7 +33,7 @@ export class CreateWalletComponent implements OnInit {
       this.isActive.push({ id: i, status: false });
     }
     console.log(this.isActive);
-    
+
     this.walletForm = new FormGroup({
       //TODO: сделать кастомный валидатор
       'title': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
@@ -42,16 +42,17 @@ export class CreateWalletComponent implements OnInit {
   }
 
   toggleCategory(categoryId: number) {
+
     if (this.finalCategories.find(n => n === categoryId) === undefined) {
-      this.finalCategories.push(categoryId);
-      this.isActive.find(n=> n.id === categoryId).status = true;     
+      if (this.finalCategories.length < 10) {
+        this.finalCategories.push(categoryId);
+        this.isActive.find(n => n.id === categoryId).status = true;
+      }
     }
     else {
       this.finalCategories.splice(this.finalCategories.findIndex(n => n === categoryId), 1);
-      this.isActive.find(n=> n.id === categoryId).status = false;
+      this.isActive.find(n => n.id === categoryId).status = false;
     }
-    console.log(this.finalCategories);
-    
   }
 
   findCategory(id: number) {
@@ -65,15 +66,9 @@ export class CreateWalletComponent implements OnInit {
       monthlyLimit: this.walletForm.value['limit'],
       walletCategories: null,
     });
-
-    let categories = [];
-    for (let i = 0; i < this.finalCategories.length; i++) {
-      //categories.push(this.walletService.currentCategories.indexOf(this.finalCategories[i]) + 1);
-    }
-    console.log(categories);
-    if (categories.length >= 5) {
+    if (this.finalCategories.length >= 5) {
       this.walletService.createNewWallet(this.wallet).subscribe(() => {
-        this.walletService.addCategoriesToWallet(categories).subscribe(() => {
+        this.walletService.addCategoriesToWallet(this.finalCategories).subscribe(() => {
           this.alertify.success("You have successfully created a wallet");
           this.alertify.success("Please, log in to see your wallet");
           this.router.navigate(['/main']);

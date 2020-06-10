@@ -36,52 +36,12 @@
           <i class="nc-icon nc-chart-pie-36"></i>
           <p>Categories</p>
         </a>
-        <div id="collapseExample" class="collapse">
+        <div *ngFor="let category of categoryTitles" id="collapseExample" class="collapse">
           <ul class="nav ml-3">
             <li routerLinkActive="active">
-              <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', 1]">
+              <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', category.id]">
                 <i class="fas fa-pizza-slice"></i>
-                <p>Food Statistics</p>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="collapseExample" class="collapse">
-          <ul class="nav ml-3">
-            <li routerLinkActive="active">
-              <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', 2]">
-                <i class="fas fa-faucet"></i>
-                <p>Housekeeping Statistics</p>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="collapseExample" class="collapse">
-          <ul class="nav ml-3">
-            <li routerLinkActive="active">
-              <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', 3]">
-                <i class="fas fa-tshirt"></i>
-                <p>Clothes Statistics</p>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="collapseExample" class="collapse">
-          <ul class="nav ml-3">
-            <li routerLinkActive="active">
-              <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', 4]">
-                <i class="fas fa-theater-masks"></i>
-                <p>Entertainment Statistics</p>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="collapseExample" class="collapse">
-          <ul class="nav ml-3">
-            <li routerLinkActive="active">
-              <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', 5]">
-                <i class="far fa-chart-bar"></i>
-                <p>Other Statistics</p>
+                <p>{{category.title}} Statistics</p>
               </a>
             </li>
           </ul>
@@ -101,7 +61,8 @@
         </a>
       </li>
       <li routerLinkActive="active">
-       <a (click)="onCreate()"> <!--  [routerLink]="['/createExpense']"> -->
+        <a (click)="onCreate()">
+          <!--  [routerLink]="['/createExpense']"> -->
           <i class="nc-icon nc-money-coins"></i>
           <p>New Expense</p>
         </a>

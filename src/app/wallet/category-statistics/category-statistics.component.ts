@@ -6,6 +6,8 @@ import { CategoryComparison } from 'src/app/_model/category-comparison';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Expense } from 'src/app/_model/expense';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
+import { WalletService } from 'src/app/_services/wallet.service';
+import { CategoryData } from 'src/app/_model/categoryData';
 
 @Component({
   selector: 'app-category-statistics',
@@ -14,18 +16,22 @@ import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 })
 export class CategoryStatisticsComponent implements OnInit {
 
-  constructor(private expService: ExpenseService, private route: ActivatedRoute, private router: Router) {
+  constructor(private expService: ExpenseService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private walletService: WalletService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
   }
-  chosenCategory: number;
-  chosenCategoryName: string;
 
   largestExpense: number;
   currentMonthLargestExpense: number;
   spentThisMonth: number;
   spentAll: number;
+
+  chosenCategory: number;
+  chosenCategoryName: string;
 
   compareBarExpenses: CategoryComparison;
   mostSpentUser: TopUsersStat;
@@ -37,32 +43,13 @@ export class CategoryStatisticsComponent implements OnInit {
   expenses: ExpenseForTable[] = [];
 
   ngOnInit(): void {
-    console.log('Category init');
-
     this.route.params.subscribe(params => {
-      console.log(params['id']);
-
+      this.walletService.getCurrentWallet();
       this.chosenCategory = +params['id'] || 0;
-      switch (this.chosenCategory) {
-        case 1:
-          this.chosenCategoryName = "Food"
-          break;
-        case 2:
-          this.chosenCategoryName = "Housekeeping"
-          break;
-        case 3:
-          this.chosenCategoryName = "Clothes"
-          break;
-        case 4:
-          this.chosenCategoryName = "Entertainment"
-          break;
-        case 5:
-          this.chosenCategoryName = "Other"
-          break;
-        default:
-          this.chosenCategoryName = "Category not found"
-          break;
-      }
+      this.route.data.subscribe((data:CategoryData[]) => {
+        this.chosenCategoryName = data['categories'].find(x=> x.id === this.chosenCategory).title;
+      })
+      
     });
     this.expService.getCategoryStatistics(this.chosenCategory).subscribe(data => {
       this.largestExpense = data['largestExpense'];

@@ -4,29 +4,26 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { CategoryData } from '../_model/categoryData';
-
-
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WalletService {
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {
+  }
   baseUrl: string = environment.apiUrl + "wallet/";
 
   walletCategories: CategoryData[] = [];
-  currentWallet: Wallet;
-  currentCategories = [
-    'Food',
-    'Housekeeping',
-    'Clothes',
-    'Entertainment',
-    'Other',
-    'Beauty',
-    'Sport',
-  ];
 
+  currentWallet: Wallet;
+
+  currentCategories: CategoryData[] = [];
+
+  getAllCategories() {
+    return this.http.get(environment.apiUrl + "expense/" + this.authService.getToken().nameid + '/getAllCategories');
+  }
 
   createNewWallet(walletToCreate: Wallet) {
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/createwallet', walletToCreate);
@@ -39,8 +36,8 @@ export class WalletService {
   }
 
 
-  getWalletsCategories(){
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getWalletCategories');
+  getWalletsCategories() {
+    return this.http.get<CategoryData[]>(this.baseUrl + this.authService.getToken().nameid + '/getWalletCategories');
   }
 
 

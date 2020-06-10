@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { Expense } from 'src/app/_model/expense';
 import { AuthService } from 'src/app/_services/auth.service';
 import { WalletForPage } from 'src/app/_model/wallet-for-page';
 import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-expense.component';
@@ -8,6 +7,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Notification } from 'src/app/_model/notification';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { ExpensesWithCategories } from 'src/app/_model/expensesWithCategories';
+import { WalletService } from 'src/app/_services/wallet.service';
+import { ActivatedRoute } from '@angular/router';
+import { CategoryData } from 'src/app/_model/categoryData';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -19,12 +21,19 @@ export class ShowWalletTableComponent implements OnInit {
   constructor(private expenseService: ExpenseService,
     private authService: AuthService,
     public dialog: MatDialog,
-    private noteService: NotificationService) { }
+    private noteService: NotificationService,
+    private route: ActivatedRoute) { }
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   third: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   fourth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   fifth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  sixth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  seventh: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  eigth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  nineth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  tenth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+
   walletTitle: string;
   walletLimit: number;
   walletExpenses: number;
@@ -32,6 +41,7 @@ export class ShowWalletTableComponent implements OnInit {
   private id;
   expensesToShow: number;
   notifications: Notification[] = [];
+  categories: CategoryData[] = [];
 
   ngOnInit(): void {
     this.id = this.authService.getToken().nameid;
@@ -40,21 +50,23 @@ export class ShowWalletTableComponent implements OnInit {
       this.expenseService.expensesSubject.subscribe(expData => {
         this.walletExpenses = expData;
         this.expensesToShow = expData;
-        console.log(this.walletExpenses);
         this.checkLimit();
       })
       this.walletLimit = walletData['monthlyLimit'];
       this.checkLimit();
     });
+    this.route.data.subscribe(data => {
+      this.categories = data['categories'];
+      console.log(this.categories);
+    })
+
     this.expenseService.showAllExpenses();
     this.expenseService.firstSubject.subscribe(exp => {
-      console.log('exp');
       if (exp != null) {
         this.first.expenses = exp;
         this.first.categoryName = this.expenseService.firstExpenses.categoryName;
         this.first.categoryId = this.expenseService.firstExpenses.categoryId;
         console.log(this.first.categoryName);
-
       }
     });
 
@@ -84,6 +96,46 @@ export class ShowWalletTableComponent implements OnInit {
         this.fifth.expenses = exp;
         this.fifth.categoryName = this.expenseService.fifthExpenses.categoryName;
         this.fifth.categoryId = this.expenseService.fifthExpenses.categoryId;
+      }
+    });
+
+    this.expenseService.sixthSubject.subscribe(exp => {
+      if (exp != null) {
+        this.sixth.expenses = exp;
+        this.sixth.categoryName = this.expenseService.sixthExpenses.categoryName;
+        this.sixth.categoryId = this.expenseService.sixthExpenses.categoryId;
+      }
+    });
+
+    this.expenseService.seventhSubject.subscribe(exp => {
+      if (exp != null) {
+        this.seventh.expenses = exp;
+        this.seventh.categoryName = this.expenseService.seventhExpenses.categoryName;
+        this.seventh.categoryId = this.expenseService.seventhExpenses.categoryId;
+      }
+    });
+
+    this.expenseService.eightthSubject.subscribe(exp => {
+      if (exp != null) {
+        this.eigth.expenses = exp;
+        this.eigth.categoryName = this.expenseService.eightthExpenses.categoryName;
+        this.eigth.categoryId = this.expenseService.eightthExpenses.categoryId;
+      }
+    });
+
+    this.expenseService.ninethSubject.subscribe(exp => {
+      if (exp != null) {
+        this.nineth.expenses = exp;
+        this.nineth.categoryName = this.expenseService.ninethExpenses.categoryName;
+        this.nineth.categoryId = this.expenseService.ninethExpenses.categoryId;
+      }
+    });
+
+    this.expenseService.tenthSubject.subscribe(exp => {
+      if (exp != null) {
+        this.tenth.expenses = exp;
+        this.tenth.categoryName = this.expenseService.tenthExpenses.categoryName;
+        this.tenth.categoryId = this.expenseService.tenthExpenses.categoryId;
       }
     });
 

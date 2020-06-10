@@ -16,81 +16,124 @@ export class ExpenseService {
   baseUrl: string = environment.apiUrl + 'expense/';
 
   initialExpenses: any[] = [];
-  // foodExpenses: Expense[] = [];
-  // houseExpenses: Expense[] = [];
-  // entertainmentExpenses: Expense[] = [];
-  // clothesExpenses: Expense[] = [];
-  // otherExpenses: Expense[] = [];
-
-  // expenses: Expense[] = [];
-  // foodSubject = new Subject<Expense[]>();
-  // houseSubject = new Subject<Expense[]>();
-  // entSubject = new Subject<Expense[]>();
-  // clothesSubject = new Subject<Expense[]>();
-  // otherSubject = new Subject<Expense[]>();
   expensesSubject = new BehaviorSubject<number>(0);
 
-  categories: number[] = [];
-  categoryTitles: CategoryData[] = [];
+  categoryTitles = new Subject<CategoryData[]>();
+
   firstSubject = new Subject<Expense[]>();
-  firstTitle: string = '';
   secondSubject = new Subject<Expense[]>();
   thirdSubject = new Subject<Expense[]>();
   fourthSubject = new Subject<Expense[]>();
   fifthSubject = new Subject<Expense[]>();
+  sixthSubject = new Subject<Expense[]>();
+  seventhSubject = new Subject<Expense[]>();
+  eightthSubject = new Subject<Expense[]>();
+  ninethSubject = new Subject<Expense[]>();
+  tenthSubject = new Subject<Expense[]>();
 
   firstExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   secondExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   thirdExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   fourthExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   fifthExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  sixthExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  seventhExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  eightthExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  ninethExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  tenthExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+
   constructor(private http: HttpClient, private authService: AuthService) {
-    this.categoryTitles = [
-      { id: 1, title: 'Food' },
-      { id: 2, title: 'Housekeeping' },
-      { id: 3, title: 'Clothes' },
-      { id: 4, title: 'Entertainment' },
-      { id: 5, title: 'Other' },
-      { id: 6, title: 'Beauty' },
-      { id: 7, title: 'Sport' },
-    ]
   }
 
-  getAllCategories() {
-    this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getAllCategories').subscribe((data: CategoryData[]) => {
-      this.categoryTitles = data;
-    })
-  }
+
 
   showAllExpenses() {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid).subscribe((expenses: ExpensesWithCategories[]) => {
 
-      if (expenses != null) {     
-
+      if (expenses != null) {
+        console.log(expenses.length);
+        let categoriesCount = 0;
+        let categories: CategoryData[] = [];
         this.firstExpenses.expenses = expenses[0]['expenses'];
         this.firstExpenses.categoryId = expenses[0]['categoryId'];
         this.firstExpenses.categoryName = expenses[0]['categoryName'];
         this.firstSubject.next(this.firstExpenses.expenses);
+        categoriesCount++;
+        categories.push({ id: this.firstExpenses.categoryId, title: this.firstExpenses.categoryName });
 
         this.secondExpenses.expenses = expenses[1]['expenses'];
         this.secondExpenses.categoryId = expenses[1]['categoryId'];
         this.secondExpenses.categoryName = expenses[1]['categoryName'];
         this.secondSubject.next(this.secondExpenses.expenses);
+        categoriesCount++;
+        categories.push({ id: this.secondExpenses.categoryId, title: this.secondExpenses.categoryName });
 
         this.thirdExpenses.expenses = expenses[2]['expenses'];
         this.thirdExpenses.categoryId = expenses[2]['categoryId'];
         this.thirdExpenses.categoryName = expenses[2]['categoryName'];
         this.thirdSubject.next(this.thirdExpenses.expenses);
+        categoriesCount++;
+        categories.push({ id: this.thirdExpenses.categoryId, title: this.thirdExpenses.categoryName });
 
         this.fourthExpenses.expenses = expenses[3]['expenses'];
         this.fourthExpenses.categoryId = expenses[3]['categoryId'];
         this.fourthExpenses.categoryName = expenses[3]['categoryName'];
         this.fourthSubject.next(this.fourthExpenses.expenses);
+        categoriesCount++;
+        categories.push({ id: this.fourthExpenses.categoryId, title: this.fourthExpenses.categoryName });
 
         this.fifthExpenses.expenses = expenses[4]['expenses'];
         this.fifthExpenses.categoryId = expenses[4]['categoryId'];
         this.fifthExpenses.categoryName = expenses[4]['categoryName'];
         this.fifthSubject.next(this.fifthExpenses.expenses);
+        categoriesCount++;
+        categories.push({ id: this.fifthExpenses.categoryId, title: this.fifthExpenses.categoryName });
+
+        if (categoriesCount < expenses.length) {
+          this.sixthExpenses.expenses = expenses[5]['expenses'];
+          this.sixthExpenses.categoryId = expenses[5]['categoryId'];
+          this.sixthExpenses.categoryName = expenses[5]['categoryName'];
+          this.sixthSubject.next(this.sixthExpenses.expenses);
+          categoriesCount++;
+          categories.push({ id: this.sixthExpenses.categoryId, title: this.sixthExpenses.categoryName });
+        }
+        if (categoriesCount < expenses.length) {
+          this.seventhExpenses.expenses = expenses[6]['expenses'];
+          this.seventhExpenses.categoryId = expenses[6]['categoryId'];
+          this.seventhExpenses.categoryName = expenses[6]['categoryName'];
+          this.seventhSubject.next(this.seventhExpenses.expenses);
+          categoriesCount++;
+          categories.push({ id: this.seventhExpenses.categoryId, title: this.seventhExpenses.categoryName });
+        }
+        if (categoriesCount < expenses.length) {
+          this.eightthExpenses.expenses = expenses[7]['expenses'];
+          this.eightthExpenses.categoryId = expenses[7]['categoryId'];
+          this.eightthExpenses.categoryName = expenses[7]['categoryName'];
+          this.eightthSubject.next(this.eightthExpenses.expenses);
+          categoriesCount++;
+          categories.push({ id: this.eightthExpenses.categoryId, title: this.eightthExpenses.categoryName });
+        }
+        if (categoriesCount < expenses.length) {
+          this.ninethExpenses.expenses = expenses[8]['expenses'];
+          this.ninethExpenses.categoryId = expenses[8]['categoryId'];
+          this.ninethExpenses.categoryName = expenses[8]['categoryName'];
+          this.ninethSubject.next(this.ninethExpenses.expenses);
+          categoriesCount++;
+          categories.push({ id: this.ninethExpenses.categoryId, title: this.ninethExpenses.categoryName });
+        }
+        if (categoriesCount < expenses.length) {
+          this.tenthExpenses.expenses = expenses[9]['expenses'];
+          this.tenthExpenses.categoryId = expenses[9]['categoryId'];
+          this.tenthExpenses.categoryName = expenses[9]['categoryName'];
+          this.tenthSubject.next(this.tenthExpenses.expenses);
+          categoriesCount++;
+          categories.push({ id: this.tenthExpenses.categoryId, title: this.tenthExpenses.categoryName });
+        }
+        this.categoryTitles.next(categories);
+        // console.log('all cats');
+        
+        // console.log(categories);
+        
       }
     });
   }

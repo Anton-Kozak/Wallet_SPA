@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { NotificationService } from '../_services/notification.service';
 import { WalletService } from '../_services/wallet.service';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CategoryData } from '../_model/categoryData';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,49 +13,32 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: AuthService, private noteService: NotificationService, private walletService: WalletService) { }
+  constructor(private authService: AuthService, private noteService: NotificationService, private walletService: WalletService, private route: ActivatedRoute) {
+  }
   isAuthorized = false;
   categoriesToAdd: number[] = [];
   notifications;
   //hasWallet = false;
   //TODO: имя пользователя показывать при логине
   userName: string;
+  categories: CategoryData[] = [];
 
 
-  // food = [
-  //   'Vegetable',
-  //   'Fruits',
-  //   'Alcohol',
-  //   'Sweets'
-  // ];
+  ngOnInit(): void {    
+    this.walletService.getCurrentWallet(); 
+    this.route.data.subscribe(data => {
+      this.categories = data['categories'];
+      console.log(this.categories);
+    })
+    // if(this.walletService.currentCategories.length <=0){
+    //   this.walletService.getAllCategories().subscribe((data: CategoryData[])=>{
+    //     this.walletService.currentCategories = data;
+    //     this.categories = this.walletService.currentCategories;
+    //   });   
+    // }
+    // this.categories = this.walletService.currentCategories;
+    
 
-  // advisable = [
-  //   'Food',
-  //   'Housekeeping',
-  //   'Clothes',
-  //   'Entertainment',
-  //   'Other'
-  // ]
-
-  // clothes = [
-  //   'Formal clothes',
-  //   'Informal clothes',
-  //   'Shoes',
-  // ];
-
-  // entertainment = [
-  //   'Internet shopping',
-  //   'Holidays',
-  // ];
-
-  // finalCategories = [
-  // ];
-
-  // dragHistory = [];
-
-
-  ngOnInit(): void {
-    this.walletService.getCurrentWallet();
     // this.authService.isLoggedIn.subscribe(result => {
     //   this.isAuthorized = result;
     //   console.log("Is authorized: " + this.isAuthorized);
