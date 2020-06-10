@@ -45,7 +45,6 @@ import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.c
 import { SignupSigninComponent } from './registration/signup-signin/signup-signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { WalletCategoriesResolver } from './_resolvers/wallet-categories-resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -114,7 +113,7 @@ export function tokenGetter() {
   entryComponents: [
     CreateExpenseComponent,
   ],
-  providers: [WalletCategoriesResolver],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

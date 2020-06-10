@@ -28,17 +28,17 @@ export const appRoutes: Routes = [
   { path: 'main', component: MainPageComponent, canActivate: [MainGuard] },
   {
     path: 'wallet', component: WalletSectionComponent, canActivate: [NavigationGuard], children: [
-      { path: 'home', component: HomeComponent, resolve: { categories: WalletCategoriesResolver } },
+      { path: 'home', component: HomeComponent },
       { path: 'requestAccess', component: RequestAccessComponent },
       { path: 'checkRequests', component: CheckRequestsComponent },
       { path: 'checkInvites', component: CheckInvitesComponent },
       { path: 'createInvite', component: CreateInviteComponent },
       { path: 'createExpense', component: CreateExpenseComponent },
-      { path: 'walletExpenses', component: ShowWalletTableComponent, canActivate: [NavigationGuard], resolve: { categories: WalletCategoriesResolver } },
+      { path: 'walletExpenses', component: ShowWalletTableComponent, canActivate: [NavigationGuard] },
       { path: 'previousExpenses', component: ShowPreviousExpensesComponent },
       { path: 'getWalletStatistics', component: WalletStatisticsComponent },
       //TODO: вписать в путь сразу :id и как то его получать
-      { path: 'catstat/:id', component: CategoryStatisticsComponent, resolve: { categories: WalletCategoriesResolver } },
+      { path: 'catstat/:id', component: CategoryStatisticsComponent },
       { path: 'userStatistics/:id', component: UserStatisticsComponent },
       { path: 'createNewWallet', component: CreateWalletComponent },
       { path: 'editWallet', component: EditWalletComponent },

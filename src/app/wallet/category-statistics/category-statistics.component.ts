@@ -46,10 +46,14 @@ export class CategoryStatisticsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.walletService.getCurrentWallet();
       this.chosenCategory = +params['id'] || 0;
-      this.route.data.subscribe((data:CategoryData[]) => {
-        this.chosenCategoryName = data['categories'].find(x=> x.id === this.chosenCategory).title;
-      })
-      
+      if (this.walletService.currentCategories.length === 0) {
+        this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+          this.walletService.currentCategories = data;
+          this.chosenCategoryName = this.walletService.currentCategories.find(x => x.id === this.chosenCategory).title;
+        });
+      } else
+        this.chosenCategoryName = this.walletService.currentCategories.find(x => x.id === this.chosenCategory).title;
+
     });
     this.expService.getCategoryStatistics(this.chosenCategory).subscribe(data => {
       this.largestExpense = data['largestExpense'];

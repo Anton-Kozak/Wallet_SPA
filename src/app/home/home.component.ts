@@ -3,7 +3,7 @@ import { AuthService } from '../_services/auth.service';
 import { NotificationService } from '../_services/notification.service';
 import { WalletService } from '../_services/wallet.service';
 import { CategoryData } from '../_model/categoryData';
-import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: AuthService, private noteService: NotificationService, private walletService: WalletService, private route: ActivatedRoute) {
+  constructor(private authService: AuthService, private noteService: NotificationService, private walletService: WalletService) {
   }
   isAuthorized = false;
   categoriesToAdd: number[] = [];
@@ -24,20 +24,20 @@ export class HomeComponent implements OnInit {
   categories: CategoryData[] = [];
 
 
-  ngOnInit(): void {    
-    this.walletService.getCurrentWallet(); 
-    this.route.data.subscribe(data => {
-      this.categories = data['categories'];
-      console.log(this.categories);
-    })
-    // if(this.walletService.currentCategories.length <=0){
-    //   this.walletService.getAllCategories().subscribe((data: CategoryData[])=>{
-    //     this.walletService.currentCategories = data;
-    //     this.categories = this.walletService.currentCategories;
-    //   });   
-    // }
-    // this.categories = this.walletService.currentCategories;
-    
+  ngOnInit(): void {
+    this.walletService.getCurrentWallet();
+    // this.route.data.subscribe(data => {
+    //   this.categories = data['categories'];
+    //   console.log(this.categories);
+    // })
+    if (this.walletService.currentCategories.length === 0) {
+      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+        this.walletService.currentCategories = data;
+        this.categories = this.walletService.currentCategories;
+      });
+    } else
+      this.categories = this.walletService.currentCategories;
+
 
     // this.authService.isLoggedIn.subscribe(result => {
     //   this.isAuthorized = result;

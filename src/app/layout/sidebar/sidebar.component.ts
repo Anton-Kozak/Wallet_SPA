@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private authService: AuthService, 
+  constructor(private authService: AuthService,
     private walletService: WalletService,
     private route: ActivatedRoute) { }
   id: string;
@@ -23,14 +23,14 @@ export class SidebarComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
   ngOnInit(): void {
     this.id = this.authService.getToken().nameid;
-    this.route.data.subscribe(data => {
-      this.categoryTitles = data['categories'];
-    })
-    this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-      this.categoryTitles = data;
-      console.log(this.categoryTitles);
-      
-    });
+    if (this.walletService.currentCategories.length === 0) {
+      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+        this.walletService.currentCategories = data;
+        this.categoryTitles = this.walletService.currentCategories;
+      });
+    }
+    else
+      this.categoryTitles = this.walletService.currentCategories;
   }
   close() {
     this.sidenav.close();
