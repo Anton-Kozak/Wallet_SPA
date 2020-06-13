@@ -1,27 +1,3 @@
-<!-- <div class="container">
-    <div class="container">
-        TODO: сделать линк на категорию
-        <p>Most used category: {{mostUsedCategory}}</p>
-        <p>Most spent category: {{mostSpentCategory}}</p>
-        <p>Average daily expenses: {{avgDailyExpenses}}</p>
-        <p>Wallet members: <span *ngFor="let user of walletMembers"> <button class="btn btn-link" type="button" (click)="getUserStatistics(user.id)"> {{user.username}} </button></span></p>
-        <p>Админ кошелька</p>
-        <p>Amount of money spent: {{amountOfMoneySpent}}</p>
-    </div>
-    <div *ngIf="barExpenses" class="container">
-        <app-single-bar-chart [barExpensesList]="barExpenses" [testString]="mostUsedCategory"></app-single-bar-chart>
-    </div>
-    <div *ngIf="topFiveUsers" class="container">
-        <app-pie-graph [topFiveUsers]="topFiveUsers"></app-pie-graph>
-    </div>
-    <div *ngIf="lastSixMonths" class="container">
-        <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart>
-    </div>
-    <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="container">
-        <app-bar-comparison [currentMonthbarExpensesList]="currentMonthDataToCompare"
-            [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
-    </div>
-</div> -->
 <div class="row">
     <div class="col-3">
         <div class="card">
@@ -42,7 +18,8 @@
                                 <span class="text-muted"><small>Add Here Role!</small></span>
                             </div>
                             <div class="col-md-3 col-3 text-right">
-                                <button (click)="getUserStatistics(user.id)" class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                                <button (click)="getUserStatistics(user.id)"
+                                    class="btn btn-sm btn-outline-success btn-round btn-icon"><i
                                         class="fa fa-user"></i></button>
                             </div>
                         </div>
@@ -192,7 +169,8 @@
             </div>
             <div *ngIf="barExpenses" class="card-body ">
                 <div>
-                    <app-single-bar-chart [barExpensesList]="barExpenses"></app-single-bar-chart>
+                    <app-single-bar-chart [categories]="categories" [barExpensesList]="barExpenses">
+                    </app-single-bar-chart>
                 </div>
             </div>
             <div class="card-footer ">
@@ -224,15 +202,15 @@
             </div>
         </div>
     </div>
-    <div class="col-6">
+    <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="col-6">
         <div class="card " style="border-radius: 12px;">
             <div class="card-header ">
                 <h5 class="card-title">Expenses Comparison</h5>
                 <p class="card-category">Last And Current Months</p>
             </div>
-            <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="card-body ">
+            <div  class="card-body ">
                 <div>
-                    <app-bar-comparison [currentMonthbarExpensesList]="currentMonthDataToCompare"
+                    <app-bar-comparison [categories]="categories" [currentMonthbarExpensesList]="currentMonthDataToCompare"
                         [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
                 </div>
             </div>
@@ -244,8 +222,4 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-
-
 </div>

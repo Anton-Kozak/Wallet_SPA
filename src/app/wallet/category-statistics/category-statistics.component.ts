@@ -20,9 +20,9 @@ export class CategoryStatisticsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private walletService: WalletService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
+    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    //   return false;
+    // };
   }
 
   largestExpense: number;
@@ -34,15 +34,21 @@ export class CategoryStatisticsComponent implements OnInit {
   chosenCategoryName: string;
 
   compareBarExpenses: CategoryComparison;
-  mostSpentUser: TopUsersStat;
+  mostSpentUser: TopUsersStat = null;
   //here sum is count
-  mostUsedUser: TopUsersStat;
+  mostUsedUser: TopUsersStat = null;
   topFiveUsers: TopUsersStat[];
   lastSixMonths: LastMonthStat[];
 
   expenses: ExpenseForTable[] = [];
+  showData = true;
+
+  isLoading: boolean;
 
   ngOnInit(): void {
+    this.isLoading = true;
+    console.log('log cat stat');
+    
     this.route.params.subscribe(params => {
       this.walletService.getCurrentWallet();
       this.chosenCategory = +params['id'] || 0;
@@ -50,27 +56,35 @@ export class CategoryStatisticsComponent implements OnInit {
         this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
           this.walletService.currentCategories = data;
           this.chosenCategoryName = this.walletService.currentCategories.find(x => x.id === this.chosenCategory).title;
+          console.log('init sub');
         });
-      } else
+      } else {
         this.chosenCategoryName = this.walletService.currentCategories.find(x => x.id === this.chosenCategory).title;
+        console.log('init sim');
 
-    });
-    this.expService.getCategoryStatistics(this.chosenCategory).subscribe(data => {
-      this.largestExpense = data['largestExpense'];
-      this.currentMonthLargestExpense = data['currentMonthLargestExpense'];
-      this.mostSpentUser = data['mostSpentUser'];
-      this.mostUsedUser = data['mostUsedUser'];
-      this.compareBarExpenses = data['barCompareExpensesWithLastMonth'];
-      this.spentThisMonth = data['spentThisMonth'];
-      this.spentAll = data['spentAll'];
-      this.topFiveUsers = data['topFiveUsers'];
-      this.lastSixMonths = data['lastSixMonths'];
-      console.log(data);
+      }
+      this.expService.getCategoryStatistics(this.chosenCategory).subscribe(data => {
+        if (data['categoryExpenses'].length === 0) {
+          this.isLoading = false;
+          this.showData = false;
+        }
+        else {
+          this.largestExpense = data['largestExpense'];
+          this.currentMonthLargestExpense = data['currentMonthLargestExpense'];
+          this.mostSpentUser = data['mostSpentUser'];
+          this.mostUsedUser = data['mostUsedUser'];
+          this.compareBarExpenses = data['barCompareExpensesWithLastMonth'];
+          this.spentThisMonth = data['spentThisMonth'];
+          this.spentAll = data['spentAll'];
+          this.topFiveUsers = data['topFiveUsers'];
+          this.lastSixMonths = data['lastSixMonths'];
+          this.expenses = data['categoryExpenses'];
+          this.showData = true;
+          this.isLoading = false;
+        }
+      });
     });
 
-    this.expService.getCategoryExpenses(this.chosenCategory).subscribe((data: ExpenseForTable[]) => {
-      this.expenses = data;
-    })
   }
 
 }

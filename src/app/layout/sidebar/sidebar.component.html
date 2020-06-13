@@ -40,8 +40,8 @@
           <ul class="nav ml-3">
             <li routerLinkActive="active">
               <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', category.id]">
-                <i class="fas fa-pizza-slice"></i>
-                <p>{{category.title}} Statistics</p>
+                <i class="fas {{category.icon}}"></i>
+                <p>{{category.title}}</p>
               </a>
             </li>
           </ul>
@@ -58,25 +58,6 @@
         <a [routerLink]="['/wallet/walletAdmin']">
           <i class="nc-icon nc-lock-circle-open"></i>
           <p>Admin Panel</p>
-        </a>
-      </li>
-      <li routerLinkActive="active">
-        <a (click)="onCreate()">
-          <!--  [routerLink]="['/createExpense']"> -->
-          <i class="nc-icon nc-money-coins"></i>
-          <p>New Expense</p>
-        </a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/wallet/checkRequests']">
-          <i class="nc-icon nc-email-85"></i>
-          <p>Check Requests</p>
-        </a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/wallet/createInvite']">
-          <i class="nc-icon nc-simple-add"></i>
-          <p>Invite User</p>
         </a>
       </li>
     </ul>

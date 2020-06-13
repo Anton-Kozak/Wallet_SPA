@@ -175,6 +175,26 @@ export class ExpenseService {
           this.fifthExpenses.expenses.push(newExpense);
           this.fifthSubject.next(this.fifthExpenses.expenses);
           break;
+          case this.sixthExpenses.categoryId:
+          this.sixthExpenses.expenses.push(newExpense);
+          this.sixthSubject.next(this.sixthExpenses.expenses);
+          break;
+          case this.seventhExpenses.categoryId:
+          this.seventhExpenses.expenses.push(newExpense);
+          this.seventhSubject.next(this.seventhExpenses.expenses);
+          break;
+          case this.eightthExpenses.categoryId:
+          this.eightthExpenses.expenses.push(newExpense);
+          this.eightthSubject.next(this.eightthExpenses.expenses);
+          break;
+          case this.ninethExpenses.categoryId:
+          this.ninethExpenses.expenses.push(newExpense);
+          this.ninethSubject.next(this.ninethExpenses.expenses);
+          break;
+          case this.tenthExpenses.categoryId:
+          this.tenthExpenses.expenses.push(newExpense);
+          this.tenthSubject.next(this.tenthExpenses.expenses);
+          break;
       }
       this.expensesSubject.next(this.expensesSubject.getValue() + newExpense.moneySpent);
       return response;

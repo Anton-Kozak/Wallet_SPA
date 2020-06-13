@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ExpenseList } from 'src/app/_model/expense-list';
+import { CategoryData } from 'src/app/_model/categoryData';
 
 @Component({
   selector: 'app-single-bar-chart',
@@ -11,7 +12,7 @@ import { ExpenseList } from 'src/app/_model/expense-list';
 export class SingleBarChartComponent implements OnInit {
 
   @Input() barExpensesList: ExpenseList;
-  @Input() testString: string = "";
+  @Input() categories: CategoryData[];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -31,21 +32,15 @@ export class SingleBarChartComponent implements OnInit {
   public barChartLegend = true;
 
   public barChartData: ChartDataSets[] = [
-    { data: [], label: 'Housekeeping' },
-    { data: [], label: 'Food' },
-    { data: [], label: 'Clothes' },
-    { data: [], label: 'Entertainment' },
-    { data: [], label: 'Other' },
   ];
 
   constructor() { }
 
   ngOnInit() {
-    this.barChartData[0].data = [this.barExpensesList['houseExpenses']];
-    this.barChartData[1].data = [this.barExpensesList['foodExpenses']];
-    this.barChartData[2].data = [this.barExpensesList['clothesExpenses']];
-    this.barChartData[3].data = [this.barExpensesList['entertainmentExpenses']];
-    this.barChartData[4].data = [this.barExpensesList['otherExpenses']];
+    for (let i = 0; i < this.categories.length; i++) {
+      let chartDataSet: ChartDataSets = {label: this.categories[i].title, data: [this.barExpensesList[i]['categoryExpenses']]};
+      this.barChartData.push(chartDataSet);
+    }
   }
 
 

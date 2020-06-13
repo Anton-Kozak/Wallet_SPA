@@ -10,11 +10,7 @@
                     <select [ngClass]="{'is-invalid': newExpenseForm.get('category').errors && newExpenseForm.get('category').touched,
                                     'is-valid': !newExpenseForm.get('category').errors}" formControlName="category"
                         class="form-control">
-                        <option [value]=categoryTitles[0].id>{{categoryTitles[0].title}}</option>
-                        <option [value]=categoryTitles[1].id>{{categoryTitles[1].title}} </option>
-                        <option [value]=categoryTitles[2].id>{{categoryTitles[2].title}}</option>
-                        <option [value]=categoryTitles[3].id>{{categoryTitles[3].title}}</option>
-                        <option [value]=categoryTitles[4].id>{{categoryTitles[4].title}}</option>
+                        <option *ngFor="let category of categoryTitles" [value]=category.id>{{category.title}}</option>
                     </select>
 
                     <div *ngIf="newExpenseForm.get('category').hasError('required') && newExpenseForm.get('category').touched"

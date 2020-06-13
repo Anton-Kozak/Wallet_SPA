@@ -30,21 +30,14 @@ export class CreateExpenseComponent implements OnInit {
       'category': new FormControl('', [Validators.required]),
       'money': new FormControl('', Validators.required)
     })
-    // let categories: number[];
-    // this.walletService.getWalletsCategories().subscribe((cat:number[]) => {
-    //   categories = cat;
-    // })
-    // this.categoryTitles = this.expenseService.categoryTitles.filter(value => categories.includes(value.id));
-    this.categoryTitles = [
-      {id: this.expenseService.firstExpenses.categoryId , title: this.expenseService.firstExpenses.categoryName},
-      {id: this.expenseService.secondExpenses.categoryId , title: this.expenseService.secondExpenses.categoryName},
-      {id: this.expenseService.thirdExpenses.categoryId , title: this.expenseService.thirdExpenses.categoryName},
-      {id: this.expenseService.fourthExpenses.categoryId , title: this.expenseService.fourthExpenses.categoryName},
-      {id: this.expenseService.fifthExpenses.categoryId , title: this.expenseService.fifthExpenses.categoryName},
-      ];
-      console.log(this.categoryTitles);
-      
-
+    if (this.walletService.currentCategories.length === 0) {
+      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+        this.walletService.currentCategories = data;
+        this.categoryTitles = this.walletService.currentCategories;
+      });
+    }
+    else
+      this.categoryTitles = this.walletService.currentCategories;
   }
 
   createExpense() {
