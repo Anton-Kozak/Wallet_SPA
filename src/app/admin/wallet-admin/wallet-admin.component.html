@@ -1,85 +1,128 @@
-<div class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Manage wallet's users</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr class="d-flex">
-                                    <th class="col-2">Username</th>
-                                    <th class="col-3">Date joined</th>
-                                    <th class="col-2">Address</th>
-                                    <th class="col-1">Age</th>
-                                    <th class="col-2">Roles</th>
-                                    <th class="col-1">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr [attr.id]="i" class="d-flex" *ngFor="let user of users; index as i">
-                                    <th class="col-2">{{user.username}}</th>
-                                    <th class="col-3">{{user.dateJoined}}</th>
-                                    <th class="col-2">{{user.address}}</th>
-                                    <th class="col-1">{{user.age}}</th>
-                                    <th class="col-2"><span *ngFor="let role of user.userRoles">{{role}}<br /></span>
-                                    </th>
-                                    <th class="col-1">
-                                        <div *ngIf="!user.userRoles.includes('Admin')">
-                                            <button matTooltip="Block user" class="btn btn-warning btn-sm mr-2"><i
-                                                    class="fa fa-lock"></i></button>
-                                            <button matTooltip="Remove user" (click)="removeUser(user.id, i)"
-                                                class="btn btn-danger btn-sm mr-2"><i
-                                                    class="nc-icon nc-simple-remove "></i></button>
-                                            <button matTooltip="Make this user a moderator"
-                                                *ngIf="user.userRoles.includes('Adult') && !user.userRoles.includes('Admin')"
-                                                class="btn btn-warning btn-sm mr-2"><i
-                                                    class="nc-icon nc-trophy"></i></button>
-                                        </div>
-                                    </th>
-                            </tbody>
-                        </table>
-                    </div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Manage wallet's users</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="d-flex text-center">
+                                <th class="col-4">Username</th>
+                                <th class="col-3">Date joined</th>
+                                <th class="col-2">Roles</th>
+                                <th class="col-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr [attr.id]="i" class="d-flex text-center" *ngFor="let user of users; index as i">
+                                <th class="col-4">{{user.username}}</th>
+                                <th class="col-3">{{user.dateJoined | date :'medium' }}</th>
+                                <th class="col-2"><span *ngFor="let role of user.userRoles">{{role}}<br /></span>
+                                </th>
+                                <th class="col-3">
+                                    <div *ngIf="!user.userRoles.includes('Admin')">
+                                        <button matTooltip="Block user" class="btn btn-warning btn-sm mr-2"><i
+                                                class="fa fa-lock"></i></button>
+                                        <button matTooltip="Remove user" (click)="removeUser(user.id, i)"
+                                            class="btn btn-danger btn-sm mr-2"><i
+                                                class="nc-icon nc-simple-remove "></i></button>
+                                        <button matTooltip="Make this user a moderator"
+                                            *ngIf="user.userRoles.includes('Adult') && !user.userRoles.includes('Admin')"
+                                            class="btn btn-warning btn-sm mr-2"><i
+                                                class="nc-icon nc-trophy"></i></button>
+                                    </div>
+                                </th>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="col-md-8">
+        <div class="mat-elevation-z8">
+            <table style="width: 100%;" mat-table [dataSource]="dataSource">
+          
+              <!-- Position Column -->
+              <ng-container matColumnDef="expenseTitle">
+                <th mat-header-cell *matHeaderCellDef> Expense </th>
+                <td mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> Category </th>
+                <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+              </ng-container>
+          
+              <!-- Weight Column -->
+              <ng-container matColumnDef="userName">
+                <th mat-header-cell *matHeaderCellDef> User </th>
+                <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+              </ng-container>
+          
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="moneySpent">
+                <th mat-header-cell *matHeaderCellDef> $ </th>
+                <td mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
+              </ng-container>
 
-<div class="container">
-    <div class="row">
-        <button (click)="sendInvitation()" class="btn btn-primary">Invite user</button>
+              <ng-container matColumnDef="expenseDescription">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.expenseDescription}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="creationDate">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.creationDate | date :'medium'}} </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          
+            <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+          </div>
+        <!-- <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-3">Title</th>
+                            <th class="col-3">Description</th>
+                            <th class="col-3">Date</th>
+                            <th class="col-1">$</th>
+                            <th class="col-1">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody #table>
+                        <tr [attr.id]="i" class="d-flex" *ngFor="let expense of null; index as i">
+                            <td class="col-3">{{expense.expenseTitle}}</td>
+                            <td class="col-3">{{expense.expenseDescription}}</td>
+                            <td class="col-3">{{expense.creationDate | date :'medium'}}</td>
+                            <td class="col-1">{{expense.moneySpent}}</td>
+                            <td class="col-1">
+                                 <a (click)="expenseDelete(expense.id, i)" class="btn"><span class="mr"
+                                                    style="color: red;"><i class="fa fa-times"></i></span></a>
+                                            <a (click)="openDialog(expense.id)" class="btn"><span style="color: green;"><i
+                                                        class="fa fa-cog"></i></span></a> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
     </div>
 </div>
 
+<div class="row mt-5">
+    <div class="col-md-6">
+        <app-check-requests></app-check-requests>
+    </div>
+</div>
 <!-- <div class="container">
-    <table class="table table-dark table-striped table-hover table-sm text-light">
-        <thead>
-            <tr class="d-flex">
-                <th class="col-2">Username</th>
-                <th class="col-3">Date joined</th>
-                <th class="col-2">Address</th>
-                <th class="col-1">Age</th>
-                <th class="col-2">Roles</th>
-                <th class="col-1">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr [attr.id]="i" class="d-flex" *ngFor="let user of users; index as i">
-                <th class="col-2">{{user.username}}</th>
-                <th class="col-3">{{user.dateJoined}}</th>
-                <th class="col-2">{{user.address}}</th>
-                <th class="col-1">{{user.age}}</th>
-                <th class="col-2"><span *ngFor="let role of user.userRoles">{{role}}<br/></span></th>
-                <th class="col-1">
-                    <button class="btn btn-warning btn-sm">Block</button>
-                    <button (click)="removeUser(user.id, i)" class="btn btn-danger btn-sm">Remove</button>
-                    <button *ngIf="user.userRoles.includes('Adult') && !user.userRoles.includes('Admin')" class="btn btn-warning btn-sm">Make moderator</button>
-                </th>
-            </tr>
-            <tr>Total spent: </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <button (click)="sendInvitation()" class="btn btn-primary">Invite user</button>
+    </div>
 </div> -->

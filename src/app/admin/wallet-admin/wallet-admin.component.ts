@@ -4,6 +4,10 @@ import { UserForAdmin } from 'src/app/_model/user-for-admin';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateInviteComponent } from 'src/app/invites/create-invite/create-invite.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { ExpenseForAdminTable } from 'src/app/_model/expense-for-admin-table';
+
 
 @Component({
   selector: 'app-wallet-admin',
@@ -17,8 +21,17 @@ export class WalletAdminComponent implements OnInit {
     public dialog: MatDialog,
     private alertify: AlertifyService) { }
 
+  displayedColumns: string[] = ['expenseTitle', 'category', 'userName', 'moneySpent', 'expenseDescription', 'creationDate'];
+  dataSource = new MatTableDataSource<ExpenseForAdminTable>();
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+
   users: UserForAdmin[] = [];
   ngOnInit(): void {
+    this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[])=>{
+      this.dataSource.data = expenses;
+    })
+    this.dataSource.paginator = this.paginator;
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
       this.users = usersForAdmin;
     })

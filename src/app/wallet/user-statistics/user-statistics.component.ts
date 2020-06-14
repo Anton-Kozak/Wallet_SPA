@@ -9,6 +9,8 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Expense } from 'src/app/_model/expense';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
+import { WalletService } from 'src/app/_services/wallet.service';
+import { CategoryData } from 'src/app/_model/categoryData';
 
 @Component({
   selector: 'app-user-statistics',
@@ -17,11 +19,15 @@ import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/e
 })
 export class UserStatisticsComponent implements OnInit {
 
-  constructor(private expService: ExpenseService, private route: ActivatedRoute, private alertify: AlertifyService, public dialog: MatDialog) { }
+  constructor(private expService: ExpenseService,
+    private route: ActivatedRoute,
+    private alertify: AlertifyService,
+    public dialog: MatDialog,
+    private walletService: WalletService) { }
 
   spentAll: number;
-  avgDailyExpenses: number;
-  amountOfMoneySpent: number;
+  avgDailyExpenses: number = 0;
+  amountOfMoneySpent: number = 0;
   barExpenses: ExpenseList;
   currentMonthDataToCompare: ExpenseList;
   lastMonthDataToCompare: ExpenseList;
@@ -29,6 +35,7 @@ export class UserStatisticsComponent implements OnInit {
   mostUsedCategory: string;
   lastSixMonths: LastMonthStat[];
   expenses: ExpenseForTable[] = [];
+  categories: CategoryData[] = [];
   private id;
 
   @ViewChild('table') private table: ElementRef;
@@ -36,18 +43,30 @@ export class UserStatisticsComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
-    //console.log(this.id);
+
+    if (this.walletService.currentCategories.length === 0) {
+      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+        this.walletService.currentCategories = data;
+        this.categories = this.walletService.currentCategories;
+      });
+    } else
+      this.categories = this.walletService.currentCategories;
+
 
 
     this.expService.getUserStatistics(this.id).subscribe(response => {
-      this.avgDailyExpenses = response['averageDailyExpense'];
-      this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
-      this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
-      this.barExpenses = response['barExpenses'];
-      this.lastSixMonths = response['lastSixMonths'];
-      this.mostUsedCategory = response['mostUsedCategory'];
-      this.mostSpentCategory = response['mostSpentCategory'];
-      this.amountOfMoneySpent = response['amountOfMoneySpent'];
+      console.log(response);
+
+      if (response['amountOfMoneySpent'] != 0) {
+        this.avgDailyExpenses = response['averageDailyExpense'];
+        this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
+        this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
+        this.barExpenses = response['barExpenses'];
+        this.lastSixMonths = response['lastSixMonths'];
+        this.mostUsedCategory = response['mostUsedCategory'];
+        this.mostSpentCategory = response['mostSpentCategory'];
+        this.amountOfMoneySpent = response['amountOfMoneySpent'];
+      }
     })
 
     this.expService.getUserExpenses(this.id).subscribe((data: ExpenseForTable[]) => {
@@ -67,12 +86,12 @@ export class UserStatisticsComponent implements OnInit {
     });
   }
 
-  expenseEdit(){
+  expenseEdit() {
 
   }
 
   openDialog(id: number): void {
-    var exp = this.expenses.find(x=> x.id === id);
+    var exp = this.expenses.find(x => x.id === id);
     const dialogRef = this.dialog.open(EditExpenseModalComponent, {
       width: '250px',
       data: exp

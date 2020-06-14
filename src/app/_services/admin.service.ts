@@ -22,4 +22,8 @@ export class AdminService {
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/removeUser/' + userId, {}, {responseType: 'text'});
   }
 
+  getAllExpenses(){
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getExpensesData');
+  }
+
 }

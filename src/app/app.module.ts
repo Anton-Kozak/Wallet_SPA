@@ -10,6 +10,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
@@ -95,6 +97,8 @@ export function tokenGetter() {
     MatTooltipModule,
     MatBadgeModule,
     MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule,
     ProgressbarModule.forRoot(),
     RouterModule.forRoot(appRoutes),
 

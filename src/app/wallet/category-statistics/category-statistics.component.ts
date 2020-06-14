@@ -20,9 +20,9 @@ export class CategoryStatisticsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private walletService: WalletService) {
-    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
-    //   return false;
-    // };
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
   }
 
   largestExpense: number;

@@ -1,21 +1,30 @@
-<div class="container">
-    <div class="row">
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th>From</th>
-                    <th>Date</th>
-                    <th>@</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let request of requests">
-                    <td scope="row">{{request.requestCreatorEmail}}</td>
-                    <td>{{request.inviteCreationTime}}</td>
-                    <td><button class="btn btn-success btn-sm mr-2" (click)="acceptRequest(request.requestCreatorEmail)">Accept</button><button
-                            class="btn btn-danger btn-sm" (click)="declineRequest(request.requestCreatorEmail)">Decline</button></td>
-                </tr>
-            </tbody>
-        </table>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">get requests</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="d-flex text-center">
+                        <th class="col-4">From</th>
+                        <th class="col-4">Date</th>
+                        <th class="col-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="d-flex text-center" *ngFor="let request of requests">
+                        <th class="col-4">{{request.requestCreatorEmail}}</th>
+                        <th class="col-4">{{request.inviteCreationTime}}</th>
+                        <th class="col-4">
+                            <button class="btn btn-success btn-sm mr-2"
+                                (click)="acceptRequest(request.requestCreatorEmail)">Accept</button><button
+                                class="btn btn-danger btn-sm"
+                                (click)="declineRequest(request.requestCreatorEmail)">Decline</button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
