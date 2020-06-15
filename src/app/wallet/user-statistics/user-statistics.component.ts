@@ -3,11 +3,9 @@ import { ExpenseList } from 'src/app/_model/expense-list';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { AuthService } from 'src/app/_services/auth.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Expense } from 'src/app/_model/expense';
+import { MatDialog } from '@angular/material/dialog';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
@@ -75,7 +73,6 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   expenseDelete(id: number, rowIndex: number) {
-
     this.expService.onExpenseDelete(id).subscribe((response: any) => {
       this.alertify.success(response);
       var el: any = (document.getElementById(rowIndex.toString())) as HTMLTableElement;
@@ -84,10 +81,6 @@ export class UserStatisticsComponent implements OnInit {
     }, error => {
       this.alertify.error(error.error);
     });
-  }
-
-  expenseEdit() {
-
   }
 
   openDialog(id: number): void {

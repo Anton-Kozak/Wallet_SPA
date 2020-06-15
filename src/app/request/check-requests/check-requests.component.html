@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
     <div class="card-header">
         <h4 class="card-title">get requests</h4>
     </div>
@@ -25,6 +25,50 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div> -->
+
+<div *ngIf="this.requests.length > 0" class="card card-stats">
+    <div class="card-body ">
+        <div class="row">
+            <div class="col-5 col-md-4">
+                <div class="icon-big ml-4">
+                    <i class="fa fa-user-plus text-success"></i>
+                </div>
+            </div>
+            <div class="col-7 col-md-8">
+                <div class="numbers">
+                    <p class="card-category">Get Requests</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer ">
+        <div class="stats">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="d-flex text-center">
+                            <th class="col-4">From</th>
+                            <th class="col-4">Date</th>
+                            <th class="col-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex text-center" *ngFor="let request of requests">
+                            <th class="col-4">{{request.requestCreatorEmail}}</th>
+                            <th class="col-4">{{request.inviteCreationTime}}</th>
+                            <th class="col-4">
+                                <button class="btn btn-success btn-sm mr-2"
+                                    (click)="acceptRequest(request.requestCreatorEmail)">Accept</button><button
+                                    class="btn btn-danger btn-sm"
+                                    (click)="declineRequest(request.requestCreatorEmail)">Decline</button>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

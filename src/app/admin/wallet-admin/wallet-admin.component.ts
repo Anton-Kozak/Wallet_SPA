@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { AdminService } from 'src/app/_services/admin.service';
 import { UserForAdmin } from 'src/app/_model/user-for-admin';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -7,6 +7,8 @@ import { CreateInviteComponent } from 'src/app/invites/create-invite/create-invi
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ExpenseForAdminTable } from 'src/app/_model/expense-for-admin-table';
+import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
+
 
 
 @Component({
@@ -19,22 +21,28 @@ export class WalletAdminComponent implements OnInit {
   //TODO: перекинуть таблицу с пользователями на страницу edit-wallet
   constructor(private admService: AdminService,
     public dialog: MatDialog,
-    private alertify: AlertifyService) { }
+    private alertify: AlertifyService,
+    private adminService: AdminService) { }
 
-  displayedColumns: string[] = ['expenseTitle', 'category', 'userName', 'moneySpent', 'expenseDescription', 'creationDate'];
-  dataSource = new MatTableDataSource<ExpenseForAdminTable>();
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  columnsForExpenses: string[] = ['expenseTitle', 'category', 'userName', 'moneySpent', 'expenseDescription', 'creationDate', 'actions'];
+  columnsForUsers: string[] = ['username', 'dateJoined', 'userRoles', 'actions'];
+  expenses = new MatTableDataSource<ExpenseForAdminTable>();
+  users = new MatTableDataSource<UserForAdmin>();
 
+  @ViewChild('expPaginator') expensePaginator: MatPaginator;
+  @ViewChild('userPaginator') userPaginator: MatPaginator;
 
-  users: UserForAdmin[] = [];
   ngOnInit(): void {
-    this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[])=>{
-      this.dataSource.data = expenses;
+    this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[]) => {
+      this.expenses.data = expenses;     
+      this.expenses.paginator = this.expensePaginator;
     })
-    this.dataSource.paginator = this.paginator;
+
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
-      this.users = usersForAdmin;
-    })
+      this.users.data = usersForAdmin;
+      this.users.paginator = this.userPaginator;
+    });
+
   }
 
   removeUser(userId: string, rowIndex: number) {
@@ -50,6 +58,29 @@ export class WalletAdminComponent implements OnInit {
   sendInvitation() {
     const dialogRef = this.dialog.open(CreateInviteComponent);
     dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  openDialog(id: number): void {
+    var exp = this.expenses.data.find(x => x.id === id);
+    exp.isAdmin = true;
+    const dialogRef = this.dialog.open(EditExpenseModalComponent, {
+      width: '250px',
+      data: exp
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  expenseDelete(id: number, rowIndex: number) {
+    this.adminService.onExpenseDelete(id).subscribe((response: any) => {
+      this.alertify.success(response);
+      this.expenses.data.splice(rowIndex, 1);
+      this.expenses.data = this.expenses.data;
+    }, error => {
+      this.alertify.error(error.error);
     });
   }
 

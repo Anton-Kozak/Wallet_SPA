@@ -15,7 +15,15 @@ body {
     
 }
 
-.mat-typography h5, .mat-h5{
-    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
-    font-size: 1.57em;
+.mat-typography h5, .mat-h5, 
+.mat-typography h4, .mat-h4,
+.mat-typography h3, .mat-h3,
+.mat-typography h2, .mat-h2,
+.mat-typography h1, .mat-h1{
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 1.57em !important;
+}
+
+.mat-typography{
+    font-family: none;
 }

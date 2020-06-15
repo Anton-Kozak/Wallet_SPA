@@ -4,6 +4,7 @@ import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
   selector: 'app-edit-expense-modal',
@@ -12,15 +13,25 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class EditExpenseModalComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<EditExpenseModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private expService: ExpenseService, private authService: AuthService) { }
+  constructor(public dialogRef: MatDialogRef<EditExpenseModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private expService: ExpenseService,
+    private authService: AuthService,
+    private adminService: AdminService) { }
 
   editExpense: FormGroup;
-
+  isAdminEdit = false;
   exp: ExpenseForTable;
   //TODO: сделать полноценный validation 
 
   ngOnInit(): void {
+
     this.exp = this.data;
+    if (this.data['isAdmin'] !== undefined)
+      this.isAdminEdit = true;
+    console.log(this.isAdminEdit);
+
+
     this.editExpense = new FormGroup({
       'title': new FormControl(this.exp.expenseTitle, [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       'money': new FormControl(this.exp.moneySpent, [Validators.required]),
@@ -38,12 +49,29 @@ export class EditExpenseModalComponent implements OnInit {
         expenseTitle: this.editExpense.value['title'],
         expenseDescription: this.editExpense.value['desc'],
         moneySpent: this.editExpense.value['money'],
-        userName: this.authService.getToken().unique_name,
+        userName: this.exp.userName//this.authService.getToken().unique_name,
       };
 
       this.expService.onExpenseEdit(expToEdit).subscribe();
-      this.dialogRef.close("testthis.data");
+      this.dialogRef.close("simple edit");
+    }
+  }
+
+  onAdminEdit() {
+    if (this.editExpense.valid) {
+      var expToEdit: ExpenseForTable = {
+        id: this.exp.id,
+        creationDate: this.editExpense.value['date'],
+        expenseTitle: this.editExpense.value['title'],
+        expenseDescription: this.editExpense.value['desc'],
+        moneySpent: this.editExpense.value['money'],
+        userName: this.exp.userName//this.authService.getToken().unique_name,
+      };
+
+      this.adminService.onExpenseEdit(expToEdit).subscribe();
+      this.dialogRef.close("admin edit");
     }
   }
 
 }
+
