@@ -1,171 +1,183 @@
-<div *ngIf="amountOfMoneySpent > 0 && barExpenses != null">
-    <div class="row">
-        <div class="col-4">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-success">
-                                        <i class="nc-icon nc-chart-bar-32 text-success"></i>
+<div *ngIf="isLoading" class="loader-wrapper">
+    <div class="loader">
+        <div class="face">
+            <div class="circle"></div>
+        </div>
+        <div class="face">
+            <div class="circle"></div>
+        </div>
+    </div>
+</div>
+<div>
+    <div *ngIf="amountOfMoneySpent > 0 && barExpenses != null">
+        <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-success">
+                                            <i class="nc-icon nc-chart-bar-32 text-success"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category mb-2">Most used category</p>
-                                        <p class="card-title">{{mostUsedCategory}}</p>
-                                        <p>
-                                        </p>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category mb-2">Most used category</p>
+                                            <p class="card-title">{{mostUsedCategory}}</p>
+                                            <p>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-sort-amount-asc"></i>
-                                Number of expenses
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-sort-amount-asc"></i>
+                                    Number of expenses
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-primary">
-                                        <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-primary">
+                                            <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category mb-2">Most spent category</p>
-                                        <p class="card-title">{{mostSpentCategory}}</p>
-                                        <p>
-                                        </p>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category mb-2">Most spent category</p>
+                                            <p class="card-title">{{mostSpentCategory}}</p>
+                                            <p>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-money"></i>
-                                Total sum of expenses
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-money"></i>
+                                    Total sum of expenses
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card " style="border-radius: 12px;">
-                        <div class="card-header ">
-                            <h5 class="card-title">Last 6 Months</h5>
-                            <p class="card-category">Line Comparison</p>
-                        </div>
-                        <div *ngIf="lastSixMonths" class="card-body ">
-                            <div>
-                                <!-- <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart> -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card " style="border-radius: 12px;">
+                            <div class="card-header ">
+                                <h5 class="card-title">Last 6 Months</h5>
+                                <p class="card-category">Line Comparison</p>
                             </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-calendar"></i> Add text
+                            <div *ngIf="lastSixMonths" class="card-body ">
+                                <div>
+                                    <!-- <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart> -->
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-calendar"></i> Add text
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card " style="border-radius: 12px;">
-                        <div class="card-header ">
-                            <h5 class="card-title">Expenses Comparison</h5>
-                            <p class="card-category">Last And Current Months</p>
-                        </div>
-                        <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="card-body ">
-                            <div>
-                                <!-- <app-bar-comparison [currentMonthbarExpensesList]="currentMonthDataToCompare"
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card " style="border-radius: 12px;">
+                            <div class="card-header ">
+                                <h5 class="card-title">Expenses Comparison</h5>
+                                <p class="card-category">Last And Current Months</p>
+                            </div>
+                            <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="card-body ">
+                                <div>
+                                    <!-- <app-bar-comparison [currentMonthbarExpensesList]="currentMonthDataToCompare"
                                     [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison> -->
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-calendar"></i> Add text
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-calendar"></i> Add text
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="row">
+                <!-- <div class="row">
 
             </div> -->
-        </div>
-
-        <div class="col-8">
-            <div class="card " style="border-radius: 12px;">
-                <div class="card-header ">
-                    <h5 class="card-title">Wallet Statistics</h5>
-                    <p class="card-category">Expenses For Each Category</p>
-                </div>
-                <div *ngIf="barExpenses" class="card-body ">
-                    <div>
-                        <app-single-bar-chart [categories]="categories" [barExpensesList]="barExpenses">
-                        </app-single-bar-chart>
-                    </div>
-                </div>
-                <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-calendar"></i> Add text
-                    </div>
-                </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Your expenses</h4>
+
+            <div class="col-8">
+                <div class="card " style="border-radius: 12px;">
+                    <div class="card-header ">
+                        <h5 class="card-title">Wallet Statistics</h5>
+                        <p class="card-category">Expenses For Each Category</p>
+                    </div>
+                    <div *ngIf="barExpenses" class="card-body ">
+                        <div>
+                            <app-single-bar-chart [categories]="categories" [barExpensesList]="barExpenses">
+                            </app-single-bar-chart>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-calendar"></i> Add text
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr class="d-flex">
-                                    <th class="col-3">Title</th>
-                                    <th class="col-3">Description</th>
-                                    <th class="col-3">Date</th>
-                                    <th class="col-1">$</th>
-                                    <th class="col-1">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody #table>
-                                <tr [attr.id]="i" class="d-flex" *ngFor="let expense of expenses; index as i">
-                                    <td class="col-3">{{expense.expenseTitle}}</td>
-                                    <td class="col-3">{{expense.expenseDescription}}</td>
-                                    <td class="col-3">{{expense.creationDate | date :'medium'}}</td>
-                                    <td class="col-1">{{expense.moneySpent}}</td>
-                                    <td class="col-1">
-                                        <a (click)="expenseDelete(expense.id, i)" class="btn"><span class="mr"
-                                                style="color: red;"><i class="fa fa-times"></i></span></a>
-                                        <a (click)="openDialog(expense.id)" class="btn"><span style="color: green;"><i
-                                                    class="fa fa-cog"></i></span></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Your expenses</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr class="d-flex">
+                                        <th class="col-3">Title</th>
+                                        <th class="col-3">Description</th>
+                                        <th class="col-3">Date</th>
+                                        <th class="col-1">$</th>
+                                        <th class="col-1">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody #table>
+                                    <tr [attr.id]="i" class="d-flex" *ngFor="let expense of expenses; index as i">
+                                        <td class="col-3">{{expense.expenseTitle}}</td>
+                                        <td class="col-3">{{expense.expenseDescription}}</td>
+                                        <td class="col-3">{{expense.creationDate | date :'medium'}}</td>
+                                        <td class="col-1">{{expense.moneySpent}}</td>
+                                        <td class="col-1">
+                                            <a (click)="expenseDelete(expense.id, i)" class="btn"><span class="mr"
+                                                    style="color: red;"><i class="fa fa-times"></i></span></a>
+                                            <a (click)="openDialog(expense.id)" class="btn"><span
+                                                    style="color: green;"><i class="fa fa-cog"></i></span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div *ngIf="amountOfMoneySpent === 0 && barExpenses == null">
+<div *ngIf="amountOfMoneySpent === 0 && barExpenses == null && isLoading == false">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">

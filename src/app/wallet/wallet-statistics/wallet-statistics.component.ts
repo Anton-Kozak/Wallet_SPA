@@ -11,13 +11,15 @@ import { CategoryData } from 'src/app/_model/categoryData';
 @Component({
   selector: 'app-wallet-statistics',
   templateUrl: './wallet-statistics.component.html',
-  styleUrls: ['./wallet-statistics.component.css']
+  styleUrls: ['./wallet-statistics.component.css', '../../css/spinner.css']
 })
 export class WalletStatisticsComponent implements OnInit {
 
   constructor(private expService: ExpenseService,
     private router: Router,
     private walletService: WalletService) { }
+
+  isLoading: boolean;
 
   avgDailyExpenses: number;
   mostSpentCategory: string;
@@ -39,20 +41,25 @@ export class WalletStatisticsComponent implements OnInit {
       });
     } else
       this.categories = this.walletService.currentCategories;
+    this.isLoading = true;
     this.expService.getWalletStatistics().subscribe(response => {
-      this.avgDailyExpenses = response['averageDailyExpense'];
-      this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
-      this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
-      this.barExpenses = response['barExpenses'];
-      this.lastSixMonths = response['lastSixMonths'];
-      this.topFiveUsers = response['topFiveUsers'];
-      this.mostUsedCategory = response['mostUsedCategory'];
-      this.mostSpentCategory = response['mostSpentCategory'];
-      this.walletMembers = response['walletUsers'];
-      this.amountOfMoneySpent = response['amountOfMoneySpent'];
       console.log(response);
-      
+      this.avgDailyExpenses = response['averageDailyExpense'];
+      this.amountOfMoneySpent = response['amountOfMoneySpent'];
+      if (response['hasExpenseData'] === true) {
+        this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
+        this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
+        this.barExpenses = response['barExpenses'];
+        this.lastSixMonths = response['lastSixMonths'];
+        this.topFiveUsers = response['topFiveUsers'];
+        this.mostUsedCategory = response['mostUsedCategory'];
+        this.mostSpentCategory = response['mostSpentCategory'];
+
+      }
+      this.walletMembers = response['walletUsers'];
+      this.isLoading = false;
     });
+
   }
 
   getUserStatistics(id: string) {

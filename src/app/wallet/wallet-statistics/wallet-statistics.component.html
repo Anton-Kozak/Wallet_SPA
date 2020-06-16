@@ -1,223 +1,256 @@
-<div class="row">
-    <div class="col-3">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Team Members</h4>
-            </div>
-            <div class="card-body">
-                <ul *ngFor="let user of walletMembers" class="list-unstyled team-members">
-                    <li>
-                        <div class="row">
-                            <div class="col-md-2 col-2">
-                                <div class="avatar">
+<div *ngIf="isLoading" class="loader-wrapper">
+    <div class="loader">
+        <div class="face">
+            <div class="circle"></div>
+        </div>
+        <div class="face">
+            <div class="circle"></div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!isLoading">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Team Members</h4>
+                </div>
+                <div class="card-body">
+                    <ul *ngFor="let user of walletMembers" class="list-unstyled team-members">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-2 col-2">
+                                    <div class="avatar">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-7 text-capitalize">
+                                    {{user.username}}
+                                    <br>
+                                    <span class="text-muted"><small>Add Here Role!</small></span>
+                                </div>
+                                <div class="col-md-3 col-3 text-right">
+                                    <button (click)="getUserStatistics(user.id)"
+                                        class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                                            class="fa fa-user"></i></button>
                                 </div>
                             </div>
-                            <div class="col-md-7 col-7 text-capitalize">
-                                {{user.username}}
-                                <br>
-                                <span class="text-muted"><small>Add Here Role!</small></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-success">
+                                <i class="nc-icon nc-chart-bar-32 text-success"></i>
                             </div>
-                            <div class="col-md-3 col-3 text-right">
-                                <button (click)="getUserStatistics(user.id)"
-                                    class="btn btn-sm btn-outline-success btn-round btn-icon"><i
-                                        class="fa fa-user"></i></button>
+                        </div>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="card-category mb-2">Most used category</p>
+                                <p *ngIf="mostUsedCategory != null" class="card-title">{{mostUsedCategory}}</p>
+                                <p *ngIf="mostUsedCategory == null" class="card-title">None found</p>
+                                <p>
+                                </p>
                             </div>
                         </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-5 col-md-4">
-                        <div class="icon-big text-center icon-success">
-                            <i class="nc-icon nc-chart-bar-32 text-success"></i>
-                        </div>
-                    </div>
-                    <div class="col-7 col-md-8">
-                        <div class="numbers">
-                            <p class="card-category mb-2">Most used category</p>
-                            <p class="card-title">{{mostUsedCategory}}</p>
-                            <p>
-                            </p>
-                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-sort-amount-asc"></i>
-                    Number of expenses
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-sort-amount-asc"></i>
+                        <span *ngIf="mostUsedCategory != null">Number of expenses</span>
+                        <span *ngIf="mostUsedCategory == null">Please, add expenses</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-5 col-md-4">
-                        <div class="icon-big text-center icon-primary">
-                            <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-primary">
+                                <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-7 col-md-8">
-                        <div class="numbers">
-                            <p class="card-category mb-2">Most spent category</p>
-                            <p class="card-title">{{mostSpentCategory}}</p>
-                            <p>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-money"></i>
-                    Total sum of expenses
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-5 col-md-4">
-                        <div class="icon-big text-center icon-secondary">
-                            <i class="nc-icon nc-money-coins text-secondary"></i>
-                        </div>
-                    </div>
-                    <div class="col-7 col-md-8">
-                        <div class="numbers">
-                            <p class="card-category mb-2">Average daily expenses</p>
-                            <p class="card-title">{{avgDailyExpenses}}</p>
-                            <p>
-                            </p>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="card-category mb-2">Most spent category</p>
+                                <p *ngIf="mostSpentCategory != null" class="card-title">{{mostSpentCategory}}</p>
+                                <p *ngIf="mostSpentCategory == null" class="card-title">None found</p>
+                                <p>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-refresh"></i>
-                    Per day
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-money"></i>
+                        <span *ngIf="mostSpentCategory != null">Total $ for category</span>
+                        <span *ngIf="mostSpentCategory == null">Please, add expenses</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-5 col-md-4">
-                        <div class="icon-big text-center icon-primary">
-                            <i class="nc-icon nc-money-coins text-primary"></i>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-secondary">
+                                <i class="nc-icon nc-money-coins text-secondary"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-7 col-md-8">
-                        <div class="numbers">
-                            <p class="card-category mb-2">Total money spent</p>
-                            <p class="card-title">{{amountOfMoneySpent}}</p>
-                            <p>
-                            </p>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="card-category mb-2">Average daily expenses</p>
+                                <p *ngIf="avgDailyExpenses != 0" class="card-title">{{avgDailyExpenses}}</p>
+                                <p *ngIf="avgDailyExpenses == 0" class="card-title">0</p>
+                                <p>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-refresh"></i>
+                        <span *ngIf="avgDailyExpenses != 0" class="card-title">Per day</span>
+                        <span *ngIf="avgDailyExpenses == 0" class="card-title">Please, add expenses</span>
+                    </div>
+                </div>
             </div>
-            <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-refresh"></i>
-                    Footer data
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-primary">
+                                <i class="nc-icon nc-money-coins text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="card-category mb-2">Total money spent</p>
+                                <p *ngIf="amountOfMoneySpent != 0" class="card-title">{{amountOfMoneySpent}}</p>
+                                <p *ngIf="amountOfMoneySpent == 0" class="card-title">0</p>
+                                <p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-refresh"></i>
+                        <span *ngIf="amountOfMoneySpent != 0" class="card-title">Total sum</span>
+                        <span *ngIf="amountOfMoneySpent == 0" class="card-title">Please, add expenses</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-4 col-md-4 col-12-sm">
-        <div class="card" style="border-radius: 12px;">
-            <div class="card-header">
-                <h5 class="card-title">Top 5 users</h5>
-                <p class="card-category">Users with most expenses</p>
+    <div class="row">
+        <div class="col-4 col-md-4 col-12-sm">
+            <div class="card" style="border-radius: 12px;">
+                <div class="card-header">
+                    <h5 class="card-title">Top 5 users</h5>
+                    <p class="card-category">Users with most expenses</p>
+                </div>
+                <div class="card-body ">
+                    <app-pie-graph *ngIf="topFiveUsers != null" [topFiveUsers]="topFiveUsers"></app-pie-graph>
+                    <p *ngIf="topFiveUsers == null" class="text-uppercase">Please, add some expenses to see statistics
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-money"></i> Number expenses made
+                    </div>
+                </div>
             </div>
-            <div *ngIf="barExpenses" class="card-body ">
-                <app-pie-graph [topFiveUsers]="topFiveUsers"></app-pie-graph>
-            </div>
-            <div class="card-footer">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-money"></i> Number expenses made
+        </div>
+        <div class="col-8 col-md-8 col-12-sm">
+            <div class="card " style="border-radius: 12px;">
+                <div class="card-header ">
+                    <h5 class="card-title">Wallet Statistics</h5>
+                    <p class="card-category">Expenses For Each Category</p>
+                </div>
+                <div class="card-body ">
+                    <div>
+                        <app-single-bar-chart *ngIf="barExpenses != null && categories != null"
+                            [categories]="categories" [barExpensesList]="barExpenses">
+                        </app-single-bar-chart>
+                        <p *ngIf="barExpenses == null" class="text-uppercase">Please, add some expenses to see
+                            statistics
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-calendar"></i> Add text
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-8 col-md-8 col-12-sm">
-        <div class="card " style="border-radius: 12px;">
-            <div class="card-header ">
-                <h5 class="card-title">Wallet Statistics</h5>
-                <p class="card-category">Expenses For Each Category</p>
-            </div>
-            <div *ngIf="barExpenses" class="card-body ">
-                <div>
-                    <app-single-bar-chart [categories]="categories" [barExpensesList]="barExpenses">
-                    </app-single-bar-chart>
+    <div class="row">
+        <div class="col-6">
+            <div class="card " style="border-radius: 12px;">
+                <div class="card-header ">
+                    <h5 class="card-title">Last 6 Months</h5>
+                    <p class="card-category">Line Comparison</p>
                 </div>
-            </div>
-            <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-calendar"></i> Add text
+                <div class="card-body ">
+                    <div>
+                        <app-line-chart *ngIf="lastSixMonths != null" [lastSixMonths]="lastSixMonths"></app-line-chart>
+                        <p *ngIf="lastSixMonths == null" class="text-uppercase">Please, add some expenses to see
+                            statistics
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <div class="card " style="border-radius: 12px;">
-            <div class="card-header ">
-                <h5 class="card-title">Last 6 Months</h5>
-                <p class="card-category">Line Comparison</p>
-            </div>
-            <div *ngIf="lastSixMonths" class="card-body ">
-                <div>
-                    <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart>
-                </div>
-            </div>
-            <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-calendar"></i> Add text
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-calendar"></i> Add text
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="col-6">
-        <div class="card " style="border-radius: 12px;">
-            <div class="card-header ">
-                <h5 class="card-title">Expenses Comparison</h5>
-                <p class="card-category">Last And Current Months</p>
-            </div>
-            <div  class="card-body ">
-                <div>
-                    <app-bar-comparison [categories]="categories" [currentMonthbarExpensesList]="currentMonthDataToCompare"
-                        [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
+        <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="col-6">
+            <div class="card " style="border-radius: 12px;">
+                <div class="card-header ">
+                    <h5 class="card-title">Expenses Comparison</h5>
+                    <p class="card-category">Last And Current Months</p>
                 </div>
-            </div>
-            <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-calendar"></i> Add text
+                <div class="card-body ">
+                    <div>
+                        <app-bar-comparison *ngIf="currentMonthDataToCompare != null && lastMonthDataToCompare != null"
+                            [categories]="categories" [currentMonthbarExpensesList]="currentMonthDataToCompare"
+                            [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
+                        <p *ngIf="currentMonthDataToCompare == null && lastMonthDataToCompare == null"
+                            class="text-uppercase">Please, add some expenses to see statistics
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-calendar"></i> Add text
+                    </div>
                 </div>
             </div>
         </div>

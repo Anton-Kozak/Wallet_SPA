@@ -45,10 +45,7 @@ export class CategoryStatisticsComponent implements OnInit {
 
   isLoading: boolean;
 
-  ngOnInit(): void {
-    this.isLoading = true;
-    console.log('log cat stat');
-    
+  ngOnInit(): void {   
     this.route.params.subscribe(params => {
       this.walletService.getCurrentWallet();
       this.chosenCategory = +params['id'] || 0;
@@ -56,16 +53,13 @@ export class CategoryStatisticsComponent implements OnInit {
         this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
           this.walletService.currentCategories = data;
           this.chosenCategoryName = this.walletService.currentCategories.find(x => x.id === this.chosenCategory).title;
-          console.log('init sub');
         });
       } else {
         this.chosenCategoryName = this.walletService.currentCategories.find(x => x.id === this.chosenCategory).title;
-        console.log('init sim');
-
       }
+      this.isLoading = true;
       this.expService.getCategoryStatistics(this.chosenCategory).subscribe(data => {
         if (data['categoryExpenses'].length === 0) {
-          this.isLoading = false;
           this.showData = false;
         }
         else {
@@ -79,9 +73,9 @@ export class CategoryStatisticsComponent implements OnInit {
           this.topFiveUsers = data['topFiveUsers'];
           this.lastSixMonths = data['lastSixMonths'];
           this.expenses = data['categoryExpenses'];
-          this.showData = true;
-          this.isLoading = false;
+          this.showData = true;        
         }
+        this.isLoading = false;
       });
     });
 

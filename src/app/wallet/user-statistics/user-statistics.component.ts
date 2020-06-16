@@ -13,7 +13,7 @@ import { CategoryData } from 'src/app/_model/categoryData';
 @Component({
   selector: 'app-user-statistics',
   templateUrl: './user-statistics.component.html',
-  styleUrls: ['./user-statistics.component.css']
+  styleUrls: ['./user-statistics.component.css', '../../css/spinner.css']
 })
 export class UserStatisticsComponent implements OnInit {
 
@@ -22,7 +22,7 @@ export class UserStatisticsComponent implements OnInit {
     private alertify: AlertifyService,
     public dialog: MatDialog,
     private walletService: WalletService) { }
-
+  isLoading: boolean;
   spentAll: number;
   avgDailyExpenses: number = 0;
   amountOfMoneySpent: number = 0;
@@ -41,7 +41,6 @@ export class UserStatisticsComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
-
     if (this.walletService.currentCategories.length === 0) {
       this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
         this.walletService.currentCategories = data;
@@ -51,10 +50,11 @@ export class UserStatisticsComponent implements OnInit {
       this.categories = this.walletService.currentCategories;
 
 
-
+    this.isLoading = true;
     this.expService.getUserStatistics(this.id).subscribe(response => {
-      console.log(response);
-
+      this.expService.getUserExpenses(this.id).subscribe((data: ExpenseForTable[]) => {
+        this.expenses = data;
+      })
       if (response['amountOfMoneySpent'] != 0) {
         this.avgDailyExpenses = response['averageDailyExpense'];
         this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
@@ -65,11 +65,11 @@ export class UserStatisticsComponent implements OnInit {
         this.mostSpentCategory = response['mostSpentCategory'];
         this.amountOfMoneySpent = response['amountOfMoneySpent'];
       }
+      this.isLoading = false;
     })
 
-    this.expService.getUserExpenses(this.id).subscribe((data: ExpenseForTable[]) => {
-      this.expenses = data;
-    })
+
+
   }
 
   expenseDelete(id: number, rowIndex: number) {

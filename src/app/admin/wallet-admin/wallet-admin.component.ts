@@ -28,6 +28,7 @@ export class WalletAdminComponent implements OnInit {
   columnsForUsers: string[] = ['username', 'dateJoined', 'userRoles', 'actions'];
   expenses = new MatTableDataSource<ExpenseForAdminTable>();
   users = new MatTableDataSource<UserForAdmin>();
+  
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
   @ViewChild('userPaginator') userPaginator: MatPaginator;
