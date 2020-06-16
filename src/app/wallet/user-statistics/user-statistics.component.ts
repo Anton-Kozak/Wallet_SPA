@@ -3,7 +3,7 @@ import { ExpenseList } from 'src/app/_model/expense-list';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
@@ -21,7 +21,15 @@ export class UserStatisticsComponent implements OnInit {
     private route: ActivatedRoute,
     private alertify: AlertifyService,
     public dialog: MatDialog,
-    private walletService: WalletService) { }
+    private walletService: WalletService,
+    private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
+
+
+
   isLoading: boolean;
   spentAll: number;
   avgDailyExpenses: number = 0;

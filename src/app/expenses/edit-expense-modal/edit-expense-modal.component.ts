@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AdminService } from 'src/app/_services/admin.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-edit-expense-modal',
@@ -16,7 +17,7 @@ export class EditExpenseModalComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<EditExpenseModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private expService: ExpenseService,
-    private authService: AuthService,
+    private alertify: AlertifyService,
     private adminService: AdminService) { }
 
   editExpense: FormGroup;
@@ -65,11 +66,16 @@ export class EditExpenseModalComponent implements OnInit {
         expenseTitle: this.editExpense.value['title'],
         expenseDescription: this.editExpense.value['desc'],
         moneySpent: this.editExpense.value['money'],
-        userName: this.exp.userName//this.authService.getToken().unique_name,
+        userName: this.exp.userName
       };
-
-      this.adminService.onExpenseEdit(expToEdit).subscribe();
-      this.dialogRef.close("admin edit");
+      if (this.exp.userName == expToEdit.userName && this.exp.creationDate === expToEdit.creationDate && this.exp.expenseTitle === expToEdit.expenseTitle && this.exp.moneySpent === expToEdit.moneySpent) {
+        this.alertify.warning("You have not made any changes!")
+      }
+      else {
+        this.adminService.onExpenseEdit(expToEdit).subscribe((editedExpense: ExpenseForTable) => {
+          this.dialogRef.close(editedExpense);
+        });
+      }
     }
   }
 

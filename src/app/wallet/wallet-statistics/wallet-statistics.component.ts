@@ -65,7 +65,7 @@ export class WalletStatisticsComponent implements OnInit {
   getUserStatistics(id: string) {
     console.log(id);
 
-    this.router.navigate(['/userStatistics', id]);
+    this.router.navigate(['/wallet/userStatistics', id]);
   }
 
 }

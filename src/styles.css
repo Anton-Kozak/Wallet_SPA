@@ -27,3 +27,5 @@ body {
 .mat-typography{
     font-family: none;
 }
+
+.ajs-message, .ajs-warning, .ajs-visible { color: #31708f;  background-color: #d9edf7;  border-color: #31708f; }

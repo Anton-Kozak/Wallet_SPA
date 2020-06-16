@@ -14,7 +14,7 @@ import { CategoryData } from 'src/app/_model/categoryData';
 @Component({
   selector: 'app-show-wallet-table',
   templateUrl: './show-wallet-table.component.html',
-  styleUrls: ['./show-wallet-table.component.css']
+  styleUrls: ['./show-wallet-table.component.css', '../../css/spinner.css']
 })
 export class ShowWalletTableComponent implements OnInit {
 
