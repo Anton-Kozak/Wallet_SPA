@@ -1,7 +1,7 @@
-import { Expense } from './expense';
+import { ExpenseForTable } from './expense-for-table';
 
 export interface ExpensesWithCategories{
-    expenses: Expense[];
+    expenses: ExpenseForTable[];
     categoryId: number;
     categoryName: string;
 }

@@ -29,32 +29,24 @@ export class BarComparisonComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
 
-  public barChartData: ChartDataSets[] = [
-    { data: [], label: 'Last Month' },
-    { data: [], label: 'Current Month' },
-  ];
+  public barChartData: ChartDataSets[] = [];
 
-  constructor() { }
+  constructor() {
+    this.barChartData = [
+      { data: [], label: 'Last Month' },
+      { data: [], label: 'Current Month' },
+    ];
+
+  }
 
   ngOnInit() {
-    
+
     for (let i = 0; i < this.categories.length; i++) {
       this.barChartLabels.push([this.categories[i].title]);
       this.barChartData[1].data[i] = this.currentMonthbarExpensesList[i]['categoryExpenses'];
       this.barChartData[0].data[i] = this.lastMonthbarExpensesList[i]['categoryExpenses'];
     }
-    // this.barChartData[0].data[0] = [this.currentMonthbarExpensesList['houseExpenses']][0];
-    // this.barChartData[0].data[1] = [this.currentMonthbarExpensesList['foodExpenses']][0];
-    // this.barChartData[0].data[2] = [this.currentMonthbarExpensesList['clothesExpenses']][0];
-    // this.barChartData[0].data[3] = [this.currentMonthbarExpensesList['entertainmentExpenses']][0];
-    // this.barChartData[0].data[4] = [this.currentMonthbarExpensesList['otherExpenses']][0];
 
-    // this.barChartData[1].data[0] = [this.lastMonthbarExpensesList['houseExpenses']][0];
-    // this.barChartData[1].data[1] = [this.lastMonthbarExpensesList['foodExpenses']][0];
-    // this.barChartData[1].data[2] = [this.lastMonthbarExpensesList['clothesExpenses']][0];
-    // this.barChartData[1].data[3] = [this.lastMonthbarExpensesList['entertainmentExpenses']][0];
-    // this.barChartData[1].data[4] = [this.lastMonthbarExpensesList['otherExpenses']][0];
-    
 
   }
 

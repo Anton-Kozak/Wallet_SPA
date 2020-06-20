@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Expense } from 'src/app/_model/expense';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { WalletService } from 'src/app/_services/wallet.service';
+import { Expense } from 'src/app/_model/expense';
 
 @Component({
   selector: 'app-create-expense',
@@ -42,7 +42,7 @@ export class CreateExpenseComponent implements OnInit {
 
   createExpense() {
     console.log('form submit!');
-    console.log(this.newExpenseForm);
+    console.log(this.newExpenseForm.value['category']);
 
     if (this.newExpenseForm.errors == null) {
       this.expense = {

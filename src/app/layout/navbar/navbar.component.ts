@@ -17,9 +17,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private router: Router,
-    private alertify: AlertifyService,
     public dialog: MatDialog,
-    private noteService: NotificationService) { }
+    private noteService: NotificationService,) { }
   signInForm: FormGroup;
   currentUserName?: string;
   isLoggedIn = false;
@@ -31,27 +30,15 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.currentUserName = this.authService.getToken().unique_name;
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       if (notifications != null) {
         console.log("Notifications: " + notifications);
-
         this.notifications = notifications;
         this.notificationCount = notifications.length;
       }
     })
 
-  }
-  //TODO: сделать чтобы навбар полностью не убирался, а оставался и показывались только иконки
-
-  onSubmit() {
-    const username = this.signInForm.value['username'];
-    const password = this.signInForm.value['userpass']
-    this.authService.login(username, password).subscribe(() => {
-      this.router.navigate(['/home']);
-      this.alertify.success("Welcome " + this.currentUserName);
-    }, error => {
-      this.alertify.error(error.error);
-    })
   }
 
   logout() {
@@ -74,8 +61,8 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  test(){
-    this.noteService.deleteNotifications().subscribe();   
+  test() {
+    this.noteService.deleteNotifications().subscribe();
   }
 
 }

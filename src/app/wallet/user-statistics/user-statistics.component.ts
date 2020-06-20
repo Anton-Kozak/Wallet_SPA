@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-user-statistics',
@@ -29,6 +30,8 @@ export class UserStatisticsComponent implements OnInit {
   }
 
 
+  columnsForExpenses: string[] = ['expenseTitle', 'category', 'moneySpent', 'expenseDescription', 'creationDate', 'actions'];
+  expenses = new MatTableDataSource<ExpenseForTable>();
 
   isLoading: boolean;
   spentAll: number;
@@ -40,18 +43,14 @@ export class UserStatisticsComponent implements OnInit {
   mostSpentCategory: string;
   mostUsedCategory: string;
   lastSixMonths: LastMonthStat[];
-  expenses: ExpenseForTable[] = [];
   categories: CategoryData[] = [];
   private id;
-
-  @ViewChild('table') private table: ElementRef;
-
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
     if (this.walletService.currentCategories.length === 0) {
-      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-        this.walletService.currentCategories = data;
+      this.walletService.getWalletsCategories().subscribe((categories: CategoryData[]) => {
+        this.walletService.currentCategories = categories;
         this.categories = this.walletService.currentCategories;
       });
     } else
@@ -60,8 +59,8 @@ export class UserStatisticsComponent implements OnInit {
 
     this.isLoading = true;
     this.expService.getUserStatistics(this.id).subscribe(response => {
-      this.expService.getUserExpenses(this.id).subscribe((data: ExpenseForTable[]) => {
-        this.expenses = data;
+      this.expService.getUserExpenses(this.id).subscribe((expensesRecieved: ExpenseForTable[]) => {
+        this.expenses.data = expensesRecieved;
       })
       if (response['amountOfMoneySpent'] != 0) {
         this.avgDailyExpenses = response['averageDailyExpense'];
@@ -75,31 +74,30 @@ export class UserStatisticsComponent implements OnInit {
       }
       this.isLoading = false;
     })
-
-
-
   }
 
   expenseDelete(id: number, rowIndex: number) {
     this.expService.onExpenseDelete(id).subscribe((response: any) => {
       this.alertify.success(response);
-      var el: any = (document.getElementById(rowIndex.toString())) as HTMLTableElement;
-      //var index = el.rowIndex;
-      el.remove(rowIndex);
+      this.expenses.data.splice(rowIndex, 1);
+      this.expenses.data = this.expenses.data;
     }, error => {
       this.alertify.error(error.error);
     });
   }
 
-  openDialog(id: number): void {
-    var exp = this.expenses.find(x => x.id === id);
+  openDialog(id: number, rowIndex: number): void {
+    var exp = this.expenses.data.find(x => x.id === id);
     const dialogRef = this.dialog.open(EditExpenseModalComponent, {
       width: '250px',
       data: exp
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      this.expenses.data[rowIndex].expenseName = result['expenseName'];
+      this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
+      this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
+      this.expenses.data[rowIndex].creationDate = result['creationDate'];
     });
   }
 

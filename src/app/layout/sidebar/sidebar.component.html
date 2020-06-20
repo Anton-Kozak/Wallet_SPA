@@ -54,7 +54,7 @@
           <p>Profile</p>
         </a>
       </li>
-      <li routerLinkActive="active">
+      <li *appHasRole="['Admin']" routerLinkActive="active">
         <a [routerLink]="['/wallet/walletAdmin']">
           <i class="nc-icon nc-lock-circle-open"></i>
           <p>Admin Panel</p>

@@ -88,7 +88,7 @@ export class SignupSigninComponent implements OnInit {
   }
 
   onWalletCreateDialog() {
-    const dialogRef = this.dialog.open(CreateWalletComponent);
+    const dialogRef = this.dialog.open(CreateWalletComponent  );
     dialogRef.afterClosed().subscribe(result => {
     });
   }

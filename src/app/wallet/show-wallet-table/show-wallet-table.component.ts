@@ -53,7 +53,8 @@ export class ShowWalletTableComponent implements OnInit {
         this.walletExpenses = expData;
         this.expensesToShow = expData;
         this.checkLimit();
-      })
+      });
+
       this.walletLimit = walletData['monthlyLimit'];
       this.checkLimit();
       this.expenseService.showAllExpenses();
@@ -62,7 +63,6 @@ export class ShowWalletTableComponent implements OnInit {
           this.first.expenses = exp;
           this.first.categoryName = this.expenseService.firstExpenses.categoryName;
           this.first.categoryId = this.expenseService.firstExpenses.categoryId;
-          console.log(this.first.categoryName);
         }
       });
 

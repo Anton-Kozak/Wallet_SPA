@@ -2,7 +2,7 @@
     <form [formGroup]="editExpense" (ngSubmit)="isAdminEdit != true ? onEdit() : onAdminEdit()">
         <div class="form-group">
             <input type="text" [ngClass]="{'is-invalid': editExpense.get('title').errors && editExpense.get('title').touched,
-            'is-valid': !editExpense.get('title').errors}" formControlName="title" [value]="exp.expenseTitle"
+            'is-valid': !editExpense.get('title').errors}" formControlName="title" [value]="exp.expenseName"
                 class="form-control">
         </div>
         <div *ngIf="editExpense.get('title').hasError('required') && editExpense.get('title').touched"

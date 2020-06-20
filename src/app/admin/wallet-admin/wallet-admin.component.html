@@ -221,34 +221,5 @@
             <mat-paginator #expPaginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
             </mat-paginator>
         </div>
-        <!-- <div class="card-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr class="d-flex">
-                            <th class="col-3">Title</th>
-                            <th class="col-3">Description</th>
-                            <th class="col-3">Date</th>
-                            <th class="col-1">$</th>
-                            <th class="col-1">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody #table>
-                        <tr [attr.id]="i" class="d-flex" *ngFor="let expense of null; index as i">
-                            <td class="col-3">{{expense.expenseTitle}}</td>
-                            <td class="col-3">{{expense.expenseDescription}}</td>
-                            <td class="col-3">{{expense.creationDate | date :'medium'}}</td>
-                            <td class="col-1">{{expense.moneySpent}}</td>
-                            <td class="col-1">
-                                 <a (click)="expenseDelete(expense.id, i)" class="btn"><span class="mr"
-                                                    style="color: red;"><i class="fa fa-times"></i></span></a>
-                                            <a (click)="openDialog(expense.id)" class="btn"><span style="color: green;"><i
-                                                        class="fa fa-cog"></i></span></a> 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> -->
     </div>
 </div>

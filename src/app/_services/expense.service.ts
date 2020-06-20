@@ -20,16 +20,16 @@ export class ExpenseService {
 
   categoryTitles = new Subject<CategoryData[]>();
 
-  firstSubject = new Subject<Expense[]>();
-  secondSubject = new Subject<Expense[]>();
-  thirdSubject = new Subject<Expense[]>();
-  fourthSubject = new Subject<Expense[]>();
-  fifthSubject = new Subject<Expense[]>();
-  sixthSubject = new Subject<Expense[]>();
-  seventhSubject = new Subject<Expense[]>();
-  eightthSubject = new Subject<Expense[]>();
-  ninethSubject = new Subject<Expense[]>();
-  tenthSubject = new Subject<Expense[]>();
+  firstSubject = new Subject<ExpenseForTable[]>();
+  secondSubject = new Subject<ExpenseForTable[]>();
+  thirdSubject = new Subject<ExpenseForTable[]>();
+  fourthSubject = new Subject<ExpenseForTable[]>();
+  fifthSubject = new Subject<ExpenseForTable[]>();
+  sixthSubject = new Subject<ExpenseForTable[]>();
+  seventhSubject = new Subject<ExpenseForTable[]>();
+  eightthSubject = new Subject<ExpenseForTable[]>();
+  ninethSubject = new Subject<ExpenseForTable[]>();
+  tenthSubject = new Subject<ExpenseForTable[]>();
 
   firstExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   secondExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -49,9 +49,10 @@ export class ExpenseService {
 
   showAllExpenses() {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid).subscribe((expenses: ExpensesWithCategories[]) => {
-
       if (expenses != null) {
-        console.log(expenses.length);
+        console.log('ex[[');
+        
+        console.log(expenses);
         let categoriesCount = 0;
         let categories: CategoryData[] = [];
         this.firstExpenses.expenses = expenses[0]['expenses'];
@@ -129,11 +130,7 @@ export class ExpenseService {
           categoriesCount++;
           categories.push({ id: this.tenthExpenses.categoryId, title: this.tenthExpenses.categoryName });
         }
-        this.categoryTitles.next(categories);
-        // console.log('all cats');
-        
-        // console.log(categories);
-        
+        this.categoryTitles.next(categories);      
       }
     });
   }
@@ -153,50 +150,50 @@ export class ExpenseService {
   //TODO: здесь идет система автоматического добавления расходов, нужно подумать как их добавлять на деле
   createExpense(expense: Expense) {
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/new', expense).pipe(map(response => {
-      var newExpense: Expense = response['expense'];
-      switch (newExpense.expenseCategoryId) {
-        case this.firstExpenses.categoryId:
-          this.firstExpenses.expenses.push(newExpense);
+      var receivedExpense: ExpenseForTable = response['expense'];
+        switch (+(expense.expenseCategoryId)) {
+        case this.firstExpenses.categoryId:         
+          this.firstExpenses.expenses.push(receivedExpense);
           this.firstSubject.next(this.firstExpenses.expenses);
           break;
         case this.secondExpenses.categoryId:
-          this.secondExpenses.expenses.push(newExpense);
+          this.secondExpenses.expenses.push(receivedExpense);
           this.secondSubject.next(this.secondExpenses.expenses);
           break;
         case this.thirdExpenses.categoryId:
-          this.thirdExpenses.expenses.push(newExpense);
+          this.thirdExpenses.expenses.push(receivedExpense);
           this.thirdSubject.next(this.thirdExpenses.expenses);
           break;
         case this.fourthExpenses.categoryId:
-          this.fourthExpenses.expenses.push(newExpense);
+          this.fourthExpenses.expenses.push(receivedExpense);
           this.fourthSubject.next(this.fourthExpenses.expenses);
           break;
         case this.fifthExpenses.categoryId:
-          this.fifthExpenses.expenses.push(newExpense);
+          this.fifthExpenses.expenses.push(receivedExpense);
           this.fifthSubject.next(this.fifthExpenses.expenses);
           break;
           case this.sixthExpenses.categoryId:
-          this.sixthExpenses.expenses.push(newExpense);
+          this.sixthExpenses.expenses.push(receivedExpense);
           this.sixthSubject.next(this.sixthExpenses.expenses);
           break;
           case this.seventhExpenses.categoryId:
-          this.seventhExpenses.expenses.push(newExpense);
+          this.seventhExpenses.expenses.push(receivedExpense);
           this.seventhSubject.next(this.seventhExpenses.expenses);
           break;
           case this.eightthExpenses.categoryId:
-          this.eightthExpenses.expenses.push(newExpense);
+          this.eightthExpenses.expenses.push(receivedExpense);
           this.eightthSubject.next(this.eightthExpenses.expenses);
           break;
           case this.ninethExpenses.categoryId:
-          this.ninethExpenses.expenses.push(newExpense);
+          this.ninethExpenses.expenses.push(receivedExpense);
           this.ninethSubject.next(this.ninethExpenses.expenses);
           break;
           case this.tenthExpenses.categoryId:
-          this.tenthExpenses.expenses.push(newExpense);
+          this.tenthExpenses.expenses.push(receivedExpense);
           this.tenthSubject.next(this.tenthExpenses.expenses);
           break;
       }
-      this.expensesSubject.next(this.expensesSubject.getValue() + newExpense.moneySpent);
+      this.expensesSubject.next(this.expensesSubject.getValue() + receivedExpense.moneySpent);
       return response;
     }));
   }
@@ -229,7 +226,7 @@ export class ExpenseService {
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable) {
-    return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit, { responseType: 'text' })
+    return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit)
   }
 
   getWalletData(userId: string) {

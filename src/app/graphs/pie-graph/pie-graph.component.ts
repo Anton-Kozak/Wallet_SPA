@@ -47,17 +47,4 @@ export class PieGraphComponent implements OnInit {
            this.pieChartLabels[i] = this.topFiveUsers[i]['userName'];
     }
   }
-
-
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  
-
 }

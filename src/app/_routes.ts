@@ -20,6 +20,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { NavigationGuard } from './_guards/navigation.guard';
 import { MainGuard } from './_guards/main.guard';
 import { WalletCategoriesResolver } from './_resolvers/wallet-categories-resolver';
+import { AdminGuard } from './_guards/admin.guard';
 
 
 export const appRoutes: Routes = [
@@ -42,7 +43,7 @@ export const appRoutes: Routes = [
       { path: 'userStatistics/:id', component: UserStatisticsComponent },
       { path: 'createNewWallet', component: CreateWalletComponent },
       { path: 'editWallet', component: EditWalletComponent },
-      { path: 'walletAdmin', component: WalletAdminComponent },
+      { path: 'walletAdmin', component: WalletAdminComponent, canActivate:[AdminGuard] },
     ]
   },
 

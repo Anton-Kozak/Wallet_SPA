@@ -6,21 +6,16 @@ import { AuthService } from '../_services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class NavigationGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    var token = this.authService.getToken();
-    console.log('Navigation guard is activated');
-    if (token !== null) {
-      if (token.hasWallet === 'true') {
-        return true;
-      }
-      this.router.navigate(['/main']);
-      return false;
-    }
-    this.router.navigate(['/main']);
+    const userRoles = this.authService.decodedToken.role as Array<string>;
+    if (userRoles.includes("Admin")) {
+      return true;
+    } 
+    this.router.navigate(['/wallet/home']);
     return false;
   }
 }
