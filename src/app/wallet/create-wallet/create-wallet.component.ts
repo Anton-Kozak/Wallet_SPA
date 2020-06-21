@@ -36,7 +36,7 @@ export class CreateWalletComponent implements OnInit {
 
     this.walletForm = new FormGroup({
       //TODO: сделать кастомный валидатор
-      'title': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
+      'title': new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
       'limit': new FormControl(0, [Validators.required, Validators.min(10)])
     })
   }
@@ -70,71 +70,20 @@ export class CreateWalletComponent implements OnInit {
       this.walletService.createNewWallet(this.wallet).subscribe(() => {
         this.walletService.addCategoriesToWallet(this.finalCategories).subscribe(() => {
           this.alertify.success("You have successfully created a wallet");
-          this.alertify.success("Please, log in to see your wallet");
-          this.router.navigate(['/main']);
+          this.dialogRef.close(true);
         }, error => {
           this.alertify.error(error.statusText);
         });
       }, error => {
         this.alertify.error(error.statusText);
       });
-
-
     }
     else {
       this.alertify.error("You need to choose 5 or more categories!");
     }
-
-
   }
 
   back() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
-
-
-  // clearCategories() {
-  //   if (this.dragHistory.length > 0) {
-  //     switch (this.dragHistory[this.dragHistory.length - 1].from) {
-  //       case 'food':
-  //         this.food.push(this.finalCategories[this.finalCategories.length - 1])
-  //         break;
-  //       case 'ent':
-  //         this.entertainment.push(this.finalCategories[this.finalCategories.length - 1])
-  //         break;
-  //       case 'clothes':
-  //         this.clothes.push(this.finalCategories[this.finalCategories.length - 1])
-  //         break;
-  //       case 'advisable':
-  //         this.advisable.push(this.finalCategories[this.finalCategories.length - 1])
-  //         break;
-  //     }
-  //     this.finalCategories.pop();
-  //     this.dragHistory.pop();
-  //   }
-  // }
-
-
-
-  // drop(event: CdkDragDrop<string[]>) {
-  //   //reorganize
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  //   }
-  //   //add to array 
-  //   else {
-
-  //     transferArrayItem(event.previousContainer.data,
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.container.data.length);
-  //     this.dragHistory.push(
-  //       { from: event.previousContainer.id }
-  //     )
-  //     console.log(this.dragHistory);
-  //   }
-  // }
-
-
-
 }

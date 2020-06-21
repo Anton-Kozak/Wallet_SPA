@@ -267,7 +267,7 @@
 
 .card-stats .card-body .numbers {
   text-align: right;
-  font-size: 1.7em;
+  font-size: 1.4em;
 }
 
 .card-stats .card-body .numbers p {
@@ -301,3 +301,58 @@
 .card-stats .icon-big i {
   line-height: 59px;
 }
+
+@media (min-width: 576px) {
+  .card-category {
+    font-size: 13px;
+  }
+}
+
+/* Medium devices (tablets) */
+
+@media (min-width: 768px) {
+  .card-category {
+    font-size: 12px;
+  }
+}
+
+/* Large devices (desktops) */
+
+@media (min-width: 992px) {
+  .card-category {
+    font-size: 14px;
+  }
+}
+
+/* Extra large devices (large desktops) */
+
+@media (min-width: 1200px) {
+  .card-category {
+    font-size: 18px;
+  }
+}
+
+/* The given screen size or smaller */
+
+/* Extra small devices (portrait phones)*/
+
+@media (max-width: 575px) {
+  .card-stats .card-body .numbers {
+    font-size: 1em;
+  }
+}
+
+/* Small devices (landscape phones)*/
+
+@media (max-width: 767px) {
+  .card-title {
+    font-size: 0.8em;
+  }
+}
+
+/* Medium devices (tablets)*/
+
+@media (max-width: 1199px) {}
+
+/* Large devices (desktops)*/
+

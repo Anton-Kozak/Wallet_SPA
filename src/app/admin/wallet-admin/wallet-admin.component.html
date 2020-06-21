@@ -6,50 +6,6 @@
 <hr>
 <div class="row">
     <div class="col-md-5">
-        <!-- <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Users</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr class="d-flex text-center">
-                                        <th class="col-2">User</th>
-                                        <th class="col-4">Date joined</th>
-                                        <th class="col-2">Roles</th>
-                                        <th class="col-4">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr [attr.id]="i" class="d-flex text-center" *ngFor="let user of users; index as i">
-                                        <th class="col-2">{{user.username}}</th>
-                                        <th class="col-4">{{user.dateJoined | date :'medium' }}</th>
-                                        <th class="col-2"><span
-                                                *ngFor="let role of user.userRoles">{{role}}<br /></span>
-                                        </th>
-                                        <th class="col-4">
-                                            <div *ngIf="!user.userRoles.includes('Admin')">
-                                                <button matTooltip="Block user" class="btn btn-warning btn-sm mr-2"><i
-                                                        class="fa fa-lock"></i></button>
-                                                <button matTooltip="Remove user" (click)="removeUser(user.id, i)"
-                                                    class="btn btn-danger btn-sm mr-2"><i
-                                                        class="nc-icon nc-simple-remove "></i></button>
-                                                <button matTooltip="Make this user a moderator"
-                                                    *ngIf="user.userRoles.includes('Adult') && !user.userRoles.includes('Admin')"
-                                                    class="btn btn-warning btn-sm mr-2"><i
-                                                        class="nc-icon nc-trophy"></i></button>
-                                            </div>
-                                        </th>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-stats">
@@ -109,46 +65,7 @@
                                     <tr mat-header-row *matHeaderRowDef="columnsForUsers"></tr>
                                     <tr mat-row *matRowDef="let row; columns: columnsForUsers;"></tr>
                                 </table>
-
-                                <mat-paginator #userPaginator class="users" [pageSizeOptions]="[5]"
-                                    [hidePageSize]="true" showFirstLastButtons>
-                                </mat-paginator>
                             </div>
-                            <!-- <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr class="d-flex text-center">
-                                            <th class="col-2">User</th>
-                                            <th class="col-4">Date joined</th>
-                                            <th class="col-2">Roles</th>
-                                            <th class="col-4">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr [attr.id]="i" class="d-flex text-center"
-                                            *ngFor="let user of users; index as i">
-                                            <th class="col-2">{{user.username}}</th>
-                                            <th class="col-4">{{user.dateJoined | date :'medium' }}</th>
-                                            <th class="col-2"><span
-                                                    *ngFor="let role of user.userRoles">{{role}}<br /></span>
-                                            </th>
-                                            <th class="col-4">
-                                                <div *ngIf="!user.userRoles.includes('Admin')">
-                                                    <button matTooltip="Block user"
-                                                        class="btn btn-warning btn-sm mr-2"><i
-                                                            class="fa fa-lock"></i></button>
-                                                    <button matTooltip="Remove user" (click)="removeUser(user.id, i)"
-                                                        class="btn btn-danger btn-sm mr-2"><i
-                                                            class="nc-icon nc-simple-remove "></i></button>
-                                                    <button matTooltip="Make this user a moderator"
-                                                        *ngIf="user.userRoles.includes('Adult') && !user.userRoles.includes('Admin')"
-                                                        class="btn btn-warning btn-sm mr-2"><i
-                                                            class="nc-icon nc-trophy"></i></button>
-                                                </div>
-                                            </th>
-                                    </tbody>
-                                </table>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -156,7 +73,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <app-check-requests></app-check-requests>
+                <app-check-requests (onUserAdd)="addUserFromRequest($event)"></app-check-requests>
             </div>
         </div>
     </div>

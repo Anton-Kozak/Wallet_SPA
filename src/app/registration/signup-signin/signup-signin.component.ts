@@ -32,7 +32,7 @@ export class SignupSigninComponent implements OnInit {
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
-      'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
+      'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('([0-9].*[a-z])|([a-z].*[0-9])')]),
       'userpassUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
       'role': new FormControl('', Validators.required)
     });
@@ -88,14 +88,18 @@ export class SignupSigninComponent implements OnInit {
   }
 
   onWalletCreateDialog() {
-    const dialogRef = this.dialog.open(CreateWalletComponent  );
-    dialogRef.afterClosed().subscribe(result => {
+    const dialogRef = this.dialog.open(CreateWalletComponent);
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result)
+        this.logout();
     });
   }
 
   onInvitesCheckDialog() {
     const dialogRef = this.dialog.open(CheckInvitesComponent);
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result)
+        this.logout();
     });
   }
 

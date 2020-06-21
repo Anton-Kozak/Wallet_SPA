@@ -75,7 +75,7 @@
                                 <h5 class="card-title">Last 6 Months</h5>
                                 <p class="card-category">Line Comparison</p>
                             </div>
-                            <div  class="card-body ">
+                            <div class="card-body ">
                                 <div>
                                     <!-- <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart> -->
                                 </div>
@@ -96,7 +96,7 @@
                                 <h5 class="card-title">Expenses Comparison</h5>
                                 <p class="card-category">Last And Current Months</p>
                             </div>
-                            <div  class="card-body ">
+                            <div class="card-body ">
                                 <div>
                                     <!-- <app-bar-comparison [currentMonthbarExpensesList]="currentMonthDataToCompare"
                                     [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison> -->
@@ -141,13 +141,13 @@
                             <table style="width: 100%;" mat-table [dataSource]="expenses">
                                 <ng-container matColumnDef="expenseTitle">
                                     <th mat-header-cell *matHeaderCellDef> Expense </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
+                                    <td mat-cell *matCellDef="let element"> {{element.expenseName}} </td>
                                 </ng-container>
 
 
                                 <ng-container matColumnDef="category">
                                     <th mat-header-cell *matHeaderCellDef> Category </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                                    <td mat-cell *matCellDef="let element"> {{element.expenseCategory}} </td>
                                 </ng-container>
 
 
@@ -170,12 +170,12 @@
                                 <ng-container matColumnDef="actions">
                                     <th mat-header-cell *matHeaderCellDef> Actions </th>
                                     <td mat-cell *matCellDef="let element; let i = index">
-                                        <a (click)="openDialog(element.id, i)" class="btn">
+                                        <a *ngIf="isThisUser" (click)="openDialog(element.id, i)" class="btn">
                                             <span style="color: green;">
                                                 <i class="fa fa-cog"></i>
                                             </span>
                                         </a>
-                                        <a (click)="expenseDelete(element.id, i)" class="btn">
+                                        <a *ngIf="isThisUser" (click)="expenseDelete(element.id, i)" class="btn">
                                             <span class="mr" style="color: red;">
                                                 <i class="fa fa-times"></i>
                                             </span>

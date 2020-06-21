@@ -4,7 +4,7 @@
     </div>
     <div class="navbar-wrapper d-flex">
 
-      <button type="button" class="btn btn-outline-dark mr-5" (click)="onToggle()">
+      <button type="button" class="btn btn-outline-secondary mr-5" (click)="onToggle()">
         <i class="nc-icon" [ngClass]="toggleState == false ? 'nc-minimal-left' : 'nc-minimal-right'"></i>
       </button>
       <div class="dropdown">
@@ -14,7 +14,8 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Edit profile</a>
-          <a *appHasRole="['Admin']" class="dropdown-item" style="cursor: pointer;" (click)="onWalletEditDialog()">Edit wallet</a>
+          <a *appHasRole="['Admin']" class="dropdown-item" style="cursor: pointer;" (click)="onWalletEditDialog()">Edit
+            wallet</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </div>
@@ -28,8 +29,10 @@
           <p *ngFor="let notification of notifications" class="dropdown-item">{{notification.message}}</p>
         </div>
       </div>
-      <p>Hello {{currentUserName}}</p>
-      <button (click)="logout()" class="btn btn-primary">logout</button>
+      <div class="d-flex ml-auto">
+        <p class="text-center text-uppercase mr-5">Hello {{currentUserName}}</p>
+        <button (click)="logout()" class="btn btn-outline-secondary mr-5">Logout</button>
+      </div>
     </div>
 
     <div class="collapse navbar-collapse justify-content-end" id="navigation">

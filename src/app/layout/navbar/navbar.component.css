@@ -11,3 +11,61 @@
     padding: 0;
     margin: 0;
 }
+
+.size{
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+}
+
+
+@media (min-width: 576px) {
+    .size {
+        background: red;
+    }
+}
+
+/* Medium devices (tablets) */
+
+@media (min-width: 768px) {
+    .size {
+        background: blue;
+    }
+}
+
+/* Large devices (desktops) */
+
+@media (min-width: 992px) {
+    .size {
+        background: green;
+    }
+}
+
+/* Extra large devices (large desktops) */
+
+@media (min-width: 1200px) {
+    .size {
+        background: yellow;
+    }
+}
+
+/* The given screen size or smaller */
+
+/* Extra small devices (portrait phones)*/
+
+@media (max-width: 575px) {
+    .size{
+        background: coral;
+    }
+}
+
+/* Small devices (landscape phones)*/
+
+@media (max-width: 767px) {
+}
+
+/* Medium devices (tablets)*/
+
+@media (max-width: 1199px) {}
+
+/* Large devices (desktops)*/

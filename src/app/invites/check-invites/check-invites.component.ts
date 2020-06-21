@@ -28,7 +28,7 @@ export class CheckInvitesComponent implements OnInit {
     this.invService.accept(walletId).subscribe(response => {
       this.alertify.success(response);
       this.alertify.success("Please, log in to see your wallet");
-      //this.router.navigate(['/home']);
+      this.dialogRef.close(true);
     }, error => {
       this.alertify.error(error.error);
     });
@@ -43,7 +43,7 @@ export class CheckInvitesComponent implements OnInit {
   }
 
   back() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
 }

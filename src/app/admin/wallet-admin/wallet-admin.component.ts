@@ -32,7 +32,7 @@ export class WalletAdminComponent implements OnInit {
 
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
-  @ViewChild('userPaginator') userPaginator: MatPaginator;
+  // @ViewChild('userPaginator') userPaginator: MatPaginator;
 
   ngOnInit(): void {
     this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[]) => {
@@ -42,7 +42,7 @@ export class WalletAdminComponent implements OnInit {
 
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
       this.users.data = usersForAdmin;
-      this.users.paginator = this.userPaginator;
+      // this.users.paginator = this.userPaginator;
     });
 
   }
@@ -87,6 +87,12 @@ export class WalletAdminComponent implements OnInit {
       this.expenses.data = this.expenses.data;
     }, error => {
       this.alertify.error(error.error);
+    });
+  }
+
+  addUserFromRequest($event) {
+    this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
+      this.users.data = usersForAdmin;
     });
   }
 

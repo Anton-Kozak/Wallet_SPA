@@ -1,122 +1,18 @@
-<!-- <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-3">Fluid jumbo heading</h1>
-        <p class="lead">Welcome,</p>
-        <hr class="my-2">
-        <p>More info</p>
-        <p class="lead">
-            <button *ngIf="!isAuthorized && !hasWallet()" class="btn btn-primary btn-lg mr-3"
-                (click)="goToRegistration()">Create a new account</button>
-            <button *ngIf="isAuthorized && !hasWallet()" class="btn btn-primary btn-lg mr-3"
-                (click)="goToWalletCreation()">Create a wallet</button>
-            <button *ngIf="isAuthorized && !hasWallet()" class="btn btn-primary btn-lg mr-3"
-                (click)="requestWalletAccess()">Request access to a wallet</button>
-                <button *ngIf="isAuthorized && !hasWallet()" class="btn btn-primary btn-lg mr-3"
-                (click)="checkInvites()">Check invites</button>
-            <button *ngIf="isAuthorized && hasWallet()" class="btn btn-primary btn-lg mr-3" (click)="goToWallet()">Go to
-                your wallet</button>
-        </p>
-    </div>
-</div> -->
-
-<!-- <div class="container">
-  <div class="row">
-    <button class="btn btn-danger btn-block" (click)="chooseCategories()">Choose categories</button>
-    <button [disabled]="dragHistory.length <= 0" class="btn btn-primary btn-block" (click)="clearCategories()">Clear categories</button>
-  </div>
-</div>
-
-<div class="example-container">
-  <h2>Advisable</h2>
-
-  <div
-    cdkDropList
-    id="advisable"
-    #advisableList="cdkDropList"
-    [cdkDropListData]="advisable"
-    [cdkDropListConnectedTo]="[finalCategoriesList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of advisable" cdkDrag>{{item}}</div>
-  </div>
-</div>
-
-<div class="example-container">
-  <h2>Food</h2>
-
-  <div
-    cdkDropList
-    id="food"
-    #foodList="cdkDropList"
-    [cdkDropListData]="food"
-    [cdkDropListConnectedTo]="[finalCategoriesList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of food" cdkDrag>{{item}}</div>
-  </div>
-</div>
-
-<div class="example-container">
-  <h2>Clothes</h2>
-  <div
-    cdkDropList
-    id="clothes"
-    #clothesList="cdkDropList"
-    [cdkDropListData]="clothes"
-    [cdkDropListConnectedTo]="[finalCategoriesList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of clothes" cdkDrag>{{item}}</div>
-  </div>
-</div>
-
-<div class="example-container">
-  <h2>Entertainment</h2>
-  <div
-    cdkDropList
-    id="ent"
-    #entList="cdkDropList"
-    [cdkDropListData]="entertainment"
-    [cdkDropListConnectedTo]="[finalCategoriesList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of entertainment" cdkDrag>{{item}}</div>
-  </div>
-</div>
-
-<div class="example-container">
-  <h2>Done</h2>
-
-  <div
-    cdkDropList
-    #finalCategoriesList="cdkDropList"
-    [cdkDropListData]="finalCategories"
-    
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of finalCategories" cdkDrag>{{item}}</div>
-  </div>
-</div> -->
-<div *ngFor="let cat of categories">{{cat.title}}</div>
-
 <div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="card-title">Notifications</h5>
-        <p class="card-category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert
-            McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full
-            documentation.</a></p>
+        <h5 class="card-title">WELCOME</h5>
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="card card-plain">
               <div class="card-header">
-                <h5 class="card-title">Notifications Style</h5>
+                <h5 class="card-title">Home page</h5>
               </div>
               <div class="card-body">
-                <div class="alert alert-info">
+                <!-- <div class="alert alert-info">
                   <span>This is a plain notification</span>
                 </div>
                 <div class="alert alert-info alert-dismissible fade show">
@@ -131,20 +27,90 @@
                   </button>
                   <span data-notify="icon" class="nc-icon nc-bell-55"></span>
                   <span data-notify="message">This is a notification with close button and icon.</span>
+                </div> -->
+                <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="nc-icon nc-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
+                  <span matTooltip="Это начальная страница кошелька. Слева, вы можете найти все нужны разделы."
+                    data-notify="message">This is a home page. To start using your wallet, please check out the left
+                    side of the screen.
+                  </span>
                 </div>
                 <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
                   <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
                     <i class="nc-icon nc-simple-remove"></i>
                   </button>
                   <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
-                  <span data-notify="message">This is a notification with close button and icon and have many lines. You
-                    can see that the icon and the close button are always vertically aligned. This is a beautiful
-                    notification. So you don't have to worry about the style.</span>
+                  <span
+                    matTooltip="Чтобы перейти к кошельку, выберите раздел Your Wallet. Статистика кошелька находится в разделе Wallet Statistics. Создание расходов находится в Your Wallet"
+                    data-notify="message">To go to your wallet, select Your Wallet section. You can create an expense in
+                    the Your Wallet
+                    section. Wallet statistics will
+                    be shown only if you have at least one expense created.
+                  </span>
+                </div>
+                <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="nc-icon nc-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
+                  <span matTooltip="Статистика пользователя находится в User Statitstics" data-notify="message">User
+                    statistics will show you your page with your expenses</span>
+                </div>
+                <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="nc-icon nc-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
+                  <span
+                    matTooltip="Если у вас в кошельке есть несколько пользователей, вы можете посмотреть их статистику. Это можно сделать в разделе Wallet Statistics"
+                    data-notify="message">If you have several users in the wallet, you can find their expenses in
+                    the Wallet Statistics - just press the User icon and you will see their expenses.</span>
+                </div>
+                <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="nc-icon nc-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
+                  <span
+                    matTooltip="Раздел с категориями называется Categories - там вы можете посмотреть отдельно каждую категорию кошелька"
+                    data-notify="message">Categories section can help you look how much you have spent in particular
+                    category.
+                  </span>
+                </div>
+                <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="nc-icon nc-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
+                  <span matTooltip="Страница с профилям Profile Page не работает." data-notify="message">Profile page is
+                    not working - do not go there.</span>
+                </div>
+                <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="nc-icon nc-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
+                  <span
+                    matTooltip="Иногда страницы с графиками могут глючить. Пожалуйста, не перегружайте страницу с графиками."
+                    data-notify="message">Charts may bug out - I would not recommend updating pages with chart
+                    data.</span>
+                </div>
+                <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="nc-icon nc-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
+                  <span
+                    matTooltip="Чтобы добавить новых пользователей, Вы должны быть админом кошелька. Если вы Админ, найдите последний раздел слева."
+                    data-notify="message">If you want to add new members to your wallet, you have to be wallet's admin. You will see Admin section in the sidebar.</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="card card-plain">
               <div class="card-header">
                 <h5 class="card-title">Notification states</h5>
@@ -182,13 +148,13 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
   </div>
 </div>
-
+<!-- 
 <div class="row">
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
@@ -332,4 +298,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

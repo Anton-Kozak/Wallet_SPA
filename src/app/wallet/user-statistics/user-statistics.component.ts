@@ -10,6 +10,7 @@ import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/e
 import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-user-statistics',
@@ -23,6 +24,7 @@ export class UserStatisticsComponent implements OnInit {
     private alertify: AlertifyService,
     public dialog: MatDialog,
     private walletService: WalletService,
+    private authService: AuthService,
     private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -44,10 +46,14 @@ export class UserStatisticsComponent implements OnInit {
   mostUsedCategory: string;
   lastSixMonths: LastMonthStat[];
   categories: CategoryData[] = [];
+  isThisUser: boolean;
   private id;
   ngOnInit(): void {
-
+    this.isThisUser = false;
+    let userId = this.authService.decodedToken.nameid;
     this.id = this.route.snapshot.params['id'];
+    if (userId === this.id)
+      this.isThisUser = true;
     if (this.walletService.currentCategories.length === 0) {
       this.walletService.getWalletsCategories().subscribe((categories: CategoryData[]) => {
         this.walletService.currentCategories = categories;

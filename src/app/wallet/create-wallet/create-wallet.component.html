@@ -4,24 +4,27 @@
       <div class="form-group">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('title').errors && walletForm.get('title').touched,
+            <span matTooltip="Название кошелька" class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('title').errors && walletForm.get('title').touched,
                         'bg-success text-white': !walletForm.get('title').errors}">Wallet Title</span>
           </div>
           <input [ngClass]="{'is-invalid': walletForm.get('title').errors && walletForm.get('title').touched,
                                     'is-valid': !walletForm.get('title').errors}" type="text" formControlName="title"
             class="form-control">
 
-          <div *ngIf="walletForm.get('title').hasError('required') && walletForm.get('title').touched"
+          <div matTooltip="Введите название кошелька"
+            *ngIf="walletForm.get('title').hasError('required') && walletForm.get('title').touched"
             class="invalid-feedback">
             Title is required
           </div>
-          <div *ngIf="walletForm.get('title').hasError('minlength') && walletForm.get('title').touched"
+          <div matTooltip="Название кошелька не может быть меньше 2 символов"
+            *ngIf="walletForm.get('title').hasError('minlength') && walletForm.get('title').touched"
             class="invalid-feedback">
-            Title should be at least 4 characters required
+            Title should be at least 2 characters required
           </div>
-          <div *ngIf="walletForm.get('title').hasError('maxlength') && walletForm.get('title').touched"
+          <div matTooltip="Название кошелька не может быть больше 10 символов"
+            *ngIf="walletForm.get('title').hasError('maxlength') && walletForm.get('title').touched"
             class="invalid-feedback">
-            Title should be no longer than 16 characters
+            Title should be no longer than 10 characters
           </div>
         </div>
       </div>
@@ -29,7 +32,7 @@
       <div class="form-group">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('limit').errors && walletForm.get('limit').touched,
+            <span matTooltip="Лимит кошелька" class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('limit').errors && walletForm.get('limit').touched,
                         'bg-success text-white': !walletForm.get('limit').errors}">Limit</span>
           </div>
           <input [ngClass]="{'is-invalid': walletForm.get('limit').errors && walletForm.get('limit').touched,
@@ -39,75 +42,39 @@
             <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('limit').errors,
                         'bg-success text-white': !walletForm.get('limit').errors}">$</span>
           </div>
-          <div *ngIf="walletForm.get('limit').hasError('min') && walletForm.get('limit').touched"
-            class="invalid-feedback">
-            Limit should be 0 or at least $10
+          <div matTooltip="Лимит кошелька должен быть минимум $10"
+            *ngIf="walletForm.get('limit').hasError('min') && walletForm.get('limit').touched" class="invalid-feedback">
+            Limit should be at least $10
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <button class="btn btn-outline-secondary btn-block"
+        <button matTooltip="Создать кошелёк" class="btn btn-outline-secondary btn-block"
           [disabled]="(walletForm.invalid || finalCategories.length < 5)"
           [ngClass]="{'btn-outline-success': walletForm.valid && finalCategories.length >= 5}">Create wallet</button>
       </div>
     </form>
     <div class="form-group">
-      <button (click)="back()" class="btn btn-outline-warning">Back</button>
+      <button matTooltip="Назад" (click)="back()" class="btn btn-outline-warning">Back</button>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
+      <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+        <i class="nc-icon nc-simple-remove"></i>
+      </button>
+      
+      <span matTooltip="Вы должны выбрать от 5 до 10 категорий для кошелька. После этого, Вам нужно будет войти в аккаунт ещё раз."
+        data-notify="message">You need to choose from 5 to 10 categories for the wallet. After confirming, you will need to log in once more.
+      </span>
     </div>
   </div>
 
-  <!-- <div class="container">
-    <div class="row">
-      <button [disabled]="dragHistory.length <= 0" class="btn btn-primary btn-block" (click)="clearCategories()">Clear
-        categories</button>
-    </div>
-  </div> -->
-
-  <!-- <div class="example-container">
-    <h2>Advisable</h2>
-    <div cdkDropList id="advisable" #advisableList="cdkDropList" [cdkDropListData]="advisable"
-      [cdkDropListConnectedTo]="[finalCategoriesList]" class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of advisable" cdkDrag>{{item}}</div>
-    </div>
-  </div>
-
-  <div class="example-container">
-    <h2>Food</h2>
-
-    <div cdkDropList id="food" #foodList="cdkDropList" [cdkDropListData]="food"
-      [cdkDropListConnectedTo]="[finalCategoriesList]" class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of food" cdkDrag>{{item}}</div>
-    </div>
-  </div>
-
-  <div class="example-container">
-    <h2>Clothes</h2>
-    <div cdkDropList id="clothes" #clothesList="cdkDropList" [cdkDropListData]="clothes"
-      [cdkDropListConnectedTo]="[finalCategoriesList]" class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of clothes" cdkDrag>{{item}}</div>
-    </div>
-  </div>
-
-  <div class="example-container">
-    <h2>Entertainment</h2>
-    <div cdkDropList id="ent" #entList="cdkDropList" [cdkDropListData]="entertainment"
-      [cdkDropListConnectedTo]="[finalCategoriesList]" class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of entertainment" cdkDrag>{{item}}</div>
-    </div>
-  </div>
-
-  <div class="example-container">
-    <h2>Done</h2>
-    <div cdkDropList #finalCategoriesList="cdkDropList" [cdkDropListData]="finalCategories" class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of finalCategories" cdkDrag>{{item}}</div>
-    </div>
-  </div> -->
 
   <div class="row mt-3">
 
-    <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+    <div matTooltip="Еда" class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
       Food
       <div (click)="toggleCategory(1)" [ngClass]="isActive[0].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Food</div>
@@ -125,7 +92,7 @@
         class="category-item p-3 border">Fruits</div>
     </div>
 
-    <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+    <div matTooltip="Быт" class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
       Housekeeping
       <div (click)="toggleCategory(8)" [ngClass]="isActive[7].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Housekeeping</div>
@@ -136,7 +103,7 @@
       <div (click)="toggleCategory(11)" [ngClass]="isActive[10].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Water</div>
     </div>
-    <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+    <div matTooltip="Развлечения" class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
       Entertainment
       <div (click)="toggleCategory(12)" [ngClass]="isActive[11].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Entertainment</div>
@@ -151,7 +118,7 @@
       <div (click)="toggleCategory(17)" [ngClass]="isActive[16].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Smoking</div>
     </div>
-    <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+    <div matTooltip="Медицина" class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
       Medicine
       <div (click)="toggleCategory(18)" [ngClass]="isActive[17].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Medicine</div>
@@ -160,7 +127,7 @@
       <div (click)="toggleCategory(20)" [ngClass]="isActive[19].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Treatment</div>
     </div>
-    <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+    <div matTooltip="Красотв" class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
       Beauty
       <div (click)="toggleCategory(21)" [ngClass]="isActive[20].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Beauty</div>
@@ -172,7 +139,7 @@
         class="category-item p-3 border">Beauty Procedures</div>
 
     </div>
-    <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+    <div matTooltip="Спорт" class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
       Sport
       <div (click)="toggleCategory(25)" [ngClass]="isActive[24].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Sport</div>
@@ -185,7 +152,7 @@
       <div (click)="toggleCategory(29)" [ngClass]="isActive[28].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Sport Activities</div>
     </div>
-    <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+    <div matTooltip="Транспорт" class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
       Transportation
       <div (click)="toggleCategory(30)" [ngClass]="isActive[29].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Transportation</div>
@@ -194,7 +161,7 @@
       <div (click)="toggleCategory(32)" [ngClass]="isActive[31].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Land Transportation</div>
     </div>
-    <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+    <div matTooltip="Другое" class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
       Other
       <div (click)="toggleCategory(33)" [ngClass]="isActive[32].status ? 'alert alert-success' : ''"
         class="category-item p-3 border">Other</div>

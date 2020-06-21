@@ -10,7 +10,7 @@
 </div>
 <div *ngIf="!isLoading">
     <div class="row">
-        <div class="col-3">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Team Members</h4>
@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6">
             <div class="card card-stats">
                 <div class="card-body ">
                     <div class="row">
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6">
             <div class="card card-stats">
                 <div class="card-body ">
                     <div class="row">
@@ -101,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6">
             <div class="card card-stats">
                 <div class="card-body ">
                     <div class="row">
@@ -131,7 +131,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6">
             <div class="card card-stats">
                 <div class="card-body ">
                     <div class="row">
@@ -163,7 +163,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-4 col-md-4 col-12-sm">
+        <div class="col-xl-4 col-md-4 col-sm-12">
             <div class="card" style="border-radius: 12px;">
                 <div class="card-header">
                     <h5 class="card-title">Top 5 users</h5>
@@ -182,7 +182,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-8 col-md-8 col-12-sm">
+        <div class="col-xl-8 col-md-8 col-sm-12">
             <div class="card " style="border-radius: 12px;">
                 <div class="card-header ">
                     <h5 class="card-title">Wallet Statistics</h5>
@@ -208,7 +208,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6 col-sm-12">
             <div class="card " style="border-radius: 12px;">
                 <div class="card-header ">
                     <h5 class="card-title">Last 6 Months</h5>
@@ -230,7 +230,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" class="col-6">
+        <div class="col-md-6 col-sm-12" *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" >
             <div class="card " style="border-radius: 12px;">
                 <div class="card-header ">
                     <h5 class="card-title">Expenses Comparison</h5>

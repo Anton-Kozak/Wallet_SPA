@@ -10,20 +10,8 @@
 </div>
 <div *ngIf="!isLoading">
     <div class="container-fluid mr-5">
-        <div class="row">
-            <!-- <div class="col-lg-2 col-md-3 ">
-            <div class="card card-stats">
-                <div class="card-body">
-                    <div class="numbers">
-                        <button (click)="openDialog()" class="btn btn-warning btn-block mb-3"><span style="font-size: 23px; color: black;">Add Expense</span></button>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <hr>
-                </div>
-            </div>
-        </div> -->
-            <div class="col-lg-2 col-md-3">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -34,7 +22,7 @@
                             </div>
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
-                                    <p class="card-category"> <button (click)="openDialog()"
+                                    <p class="card-category"> <button matTooltip="Добавить новый расход" (click)="openDialog()"
                                             class="btn btn-outline-success btn-block">Add Expense</button>
                                     </p>
                                 </div>
@@ -48,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-3">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -59,7 +47,7 @@
                             </div>
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
-                                    <p class="card-category mb-2">Wallet Title</p>
+                                    <p matTooltip="Название кошелька" class="card-category mb-2">Wallet Title</p>
                                     <p class="card-title text-capitalize">{{walletTitle}}</p>
                                     <p>
                                     </p>
@@ -74,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-3">
+            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -85,7 +73,7 @@
                             </div>
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
-                                    <p class="card-category mb-2">Wallet Limit</p>
+                                    <p matTooltip="Лимит кошелька" class="card-category mb-2">Wallet Limit</p>
                                     <p class="card-title text-capitalize">${{walletLimit}}</p>
                                     <p>
                                     </p>
@@ -100,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12">
                 <div class="card card-stats">
                     <div class="card-body">
                         <div class="numbers">
@@ -168,8 +156,6 @@
                         </div>
                         <div class="card-header">
                             <h4 class="card-title">{{second.categoryName}} expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month at
-                                {{second.categoryName}}!</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -206,8 +192,6 @@
                         </div>
                         <div class="card-header">
                             <h4 class="card-title">{{third.categoryName}} expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month at
-                                {{third.categoryName}}!</p>
                         </div>
 
                         <div class="card-body">
@@ -245,8 +229,6 @@
                         </div>
                         <div class="card-header">
                             <h4 class="card-title">{{fourth.categoryName}} expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month at
-                                {{fourth.categoryName}}!</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -280,8 +262,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">{{fifth.categoryName}} expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month at
-                                {{fifth.categoryName}}!</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -351,8 +331,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">{{seventh.categoryName}} expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month at
-                                {{seventh.categoryName}}!</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -386,8 +364,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">{{eigth.categoryName}} expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month at
-                                {{eigth.categoryName}}!</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -422,8 +398,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">{{nineth.categoryName}} expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month at
-                                {{nineth.categoryName}}!</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -457,8 +431,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">{{tenth.categoryName}} expenses</h4>
-                            <p class="card-category">Check out how much you have spent this month at
-                                {{tenth.categoryName}}!</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
