@@ -12,6 +12,20 @@ a.active>p {
     color: red;
 }
 
+.nav.toggled li>a p {
+    visibility: hidden;
+}
+
+.nav.toggled li>a {
+    margin-left: 5px !important;
+}
+
+@media (max-width: 767px) {
+    .nav li>a {
+        margin-left: 5px !important;
+    }
+}
+
 .nav {
     display: flex;
     flex-wrap: wrap;

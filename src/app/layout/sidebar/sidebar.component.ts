@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CategoryData } from 'src/app/_model/categoryData';
@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
     private walletService: WalletService) { }
   id: string;
   categoryTitles: CategoryData[] = [];
-
+  @Input() toggle: boolean;
   @Output() createExpense = new EventEmitter();
 
   @ViewChild('sidenav') sidenav: MatSidenav;

@@ -13,10 +13,12 @@ export class WalletSectionComponent implements OnInit {
   }
 
   @ViewChild("drawer", { static: false }) drawer;
+  toggleState = false;
 
 
   onToggle($event) {
     this.drawer.toggle();
+    this.toggleState = !this.toggleState;
   }
 
 
