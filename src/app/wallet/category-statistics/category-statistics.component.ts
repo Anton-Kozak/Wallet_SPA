@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { TopUsersStat } from 'src/app/_model/top-users-stat';
 import { CategoryComparison } from 'src/app/_model/category-comparison';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Expense } from 'src/app/_model/expense';
+import { ActivatedRoute } from '@angular/router';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-category-statistics',
@@ -17,12 +18,11 @@ import { CategoryData } from 'src/app/_model/categoryData';
 export class CategoryStatisticsComponent implements OnInit {
 
   constructor(private expService: ExpenseService,
-    private router: Router,
     private route: ActivatedRoute,
     private walletService: WalletService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
+    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    //   return false;
+    // };
   }
 
   largestExpense: number;
@@ -40,14 +40,20 @@ export class CategoryStatisticsComponent implements OnInit {
   topFiveUsers: TopUsersStat[];
   lastSixMonths: LastMonthStat[];
 
-  expenses: ExpenseForTable[] = [];
+  expenses = new MatTableDataSource<ExpenseForTable>();
+  columnsForExpenses: string[] = ['expenseName', 'userName', 'moneySpent', 'expenseDescription', 'creationDate'];
+
   showData = true;
 
   isLoading: boolean;
-
-  ngOnInit(): void {   
+  @ViewChild('paginator') paginator: MatPaginator;
+  ngOnInit(): void {
+    
     this.route.params.subscribe(params => {
+
       this.walletService.getCurrentWallet();
+
+
       this.chosenCategory = +params['id'] || 0;
       if (this.walletService.currentCategories.length === 0) {
         this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
@@ -63,6 +69,9 @@ export class CategoryStatisticsComponent implements OnInit {
           this.showData = false;
         }
         else {
+          //понять почему не работает paginator
+          this.expenses.data = data['categoryExpenses'];
+          setTimeout(() => this.expenses.paginator = this.paginator);
           this.largestExpense = data['largestExpense'];
           this.currentMonthLargestExpense = data['currentMonthLargestExpense'];
           this.mostSpentUser = data['mostSpentUser'];
@@ -72,8 +81,8 @@ export class CategoryStatisticsComponent implements OnInit {
           this.spentAll = data['spentAll'];
           this.topFiveUsers = data['topFiveUsers'];
           this.lastSixMonths = data['lastSixMonths'];
-          this.expenses = data['categoryExpenses'];
-          this.showData = true;        
+
+          this.showData = true;
         }
         this.isLoading = false;
       });

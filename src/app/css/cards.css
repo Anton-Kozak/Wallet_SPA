@@ -302,9 +302,11 @@
   line-height: 59px;
 }
 
+/* small devices */
+
 @media (min-width: 576px) {
-  .card-category {
-    font-size: 13px;
+  .card-category, .card-stats .card-body .numbers, .card-stats .card-body .numbers .card-category {
+    font-size: 1rem;
   }
 }
 
@@ -336,7 +338,7 @@
 
 /* Extra small devices (portrait phones)*/
 
-@media (max-width: 575px) {
+/* @media (max-width: 575px) {
   .card-stats .card-body .numbers {
     font-size: 1em;
   }
@@ -344,15 +346,8 @@
 
 /* Small devices (landscape phones)*/
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .card-title {
-    font-size: 0.8em;
+    font-size: 1.2em;
   }
-}
-
-/* Medium devices (tablets)*/
-
-@media (max-width: 1199px) {}
-
-/* Large devices (desktops)*/
-
+}  */

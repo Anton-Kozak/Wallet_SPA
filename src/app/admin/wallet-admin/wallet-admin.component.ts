@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from 'src/app/_services/admin.service';
 import { UserForAdmin } from 'src/app/_model/user-for-admin';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -8,10 +8,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ExpenseForAdminTable } from 'src/app/_model/expense-for-admin-table';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
-import { ExpenseForTable } from 'src/app/_model/expense-for-table';
-
-
-
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -32,8 +28,6 @@ export class WalletAdminComponent implements OnInit {
 
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
-  // @ViewChild('userPaginator') userPaginator: MatPaginator;
-
   ngOnInit(): void {
     this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[]) => {
       this.expenses.data = expenses;
@@ -42,7 +36,6 @@ export class WalletAdminComponent implements OnInit {
 
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
       this.users.data = usersForAdmin;
-      // this.users.paginator = this.userPaginator;
     });
 
   }

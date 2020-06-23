@@ -5,7 +5,7 @@
                 <img src="../../../assets/images/Entertainment.jpg" alt="Card image cap">
             </div>
             <div class="card-header">
-                <h4 class="card-title text-center">{{chosenCategoryName}}expenses</h4>
+                <h4 class="card-title text-center">{{chosenCategoryName}} expenses</h4>
             </div>
         </div>
     </div>
@@ -22,9 +22,9 @@
 </div>
 <div *ngIf="showData && !isLoading">
     <div class="row">
-        <div class="col-4">
+        <div class="col-md-12 col-lg-5 col-xl-4">
             <div class="row">
-                <div class="col-6">
+                <div class="col-xl-6">
                     <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
@@ -47,9 +47,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-footer ">
+                            <hr>
+                            <div class="stats">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-xl-6">
                     <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
@@ -70,12 +75,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-xl-6">
                     <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
@@ -95,9 +105,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-footer ">
+                            <hr>
+                            <div class="stats">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-xl-6">
                     <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
@@ -117,6 +132,11 @@
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="card-footer ">
+                            <hr>
+                            <div class="stats">
                             </div>
                         </div>
                     </div>
@@ -195,43 +215,37 @@
                 </div>
             </div>
         </div>
-        <div class="col-8">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Your expenses</h4>
-                </div>
-                <div *ngIf="expenses.length > 0" class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr class="d-flex">
-                                    <th class="col-3">Title</th>
-                                    <th class="col-3">Description</th>
-                                    <th class="col-3">Date</th>
-                                    <th class="col-1">$</th>
-                                    <th class="col-1">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody #table>
-                                <tr [attr.id]="i" class="d-flex" *ngFor="let expense of expenses; index as i">
-                                    <td class="col-3">{{expense.expenseTitle}}</td>
-                                    <td class="col-3">{{expense.expenseDescription}}</td>
-                                    <td class="col-3">{{expense.creationDate | date :'medium'}}</td>
-                                    <td class="col-1">{{expense.moneySpent}}</td>
-                                    <td class="col-1">
-                                        <!-- <a (click)="expenseDelete(expense.id, i)" class="btn"><span class="mr"
-                                            style="color: red;"><i class="fa fa-times"></i></span></a>
-                                    <a (click)="openDialog(expense.id)" class="btn"><span style="color: green;"><i
-                                                class="fa fa-cog"></i></span></a>  -->
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div *ngIf="expenses === null || expenses.length === 0">
-                    ---
-                </div>
+        <div *ngIf="expenses.data.length > 0" class="col-md-12 col-lg-7 col-xl-8">
+            <div class="mat-elevation-z8" style="box-shadow: none;">
+                <table style="width: 100%;" mat-table [dataSource]="expenses">
+                    <ng-container matColumnDef="expenseName">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef> Expense </th>
+                        <td mat-cell *matCellDef="let element"> {{element.expenseName}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="userName">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef> User </th>
+                        <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="moneySpent">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef> $ </th>
+                        <td mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="expenseDescription">
+                        <th class="text-center d-none d-lg-table-cell" mat-header-cell *matHeaderCellDef>
+                            Description </th>
+                        <td class="d-none d-lg-table-cell" mat-cell *matCellDef="let element">
+                            {{element.expenseDescription}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="creationDate">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.creationDate | date :'short'}}
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="columnsForExpenses"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnsForExpenses;"></tr>
+                </table>
+                <mat-paginator #paginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
+                </mat-paginator>
             </div>
         </div>
     </div>
@@ -239,32 +253,32 @@
 <div *ngIf="!showData && !isLoading">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats">
-            <div class="card-body ">
-              <div class="row">
-                <div class="col-5 col-md-4">
-                  <div class="icon-big text-center icon-warning">
-                    <i class="fa fa-exclamation-triangle text-warning"></i>
-                  </div>
+            <div class="card card-stats">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-warning">
+                                <i class="fa fa-exclamation-triangle text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="card-category mb-2">{{chosenCategoryName}}</p>
+                                <p class="card-title">No expenses</p>
+                                <p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-7 col-md-8">
-                  <div class="numbers">
-                    <p class="card-category mb-2">{{chosenCategoryName}}</p>
-                    <p class="card-title">No expenses</p>
-                    <p>
-                    </p>
-                  </div>
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-refresh"></i>
+                        Please, add expenses to see statistics
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="card-footer ">
-              <hr>
-              <div class="stats">
-                <i class="fa fa-refresh"></i>
-                Please, add expenses to see statistics
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 </div>
