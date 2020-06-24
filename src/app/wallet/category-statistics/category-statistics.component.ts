@@ -42,7 +42,7 @@ export class CategoryStatisticsComponent implements OnInit {
   lastSixMonths: LastMonthStat[];
 
   expenses = new MatTableDataSource<ExpenseForTable>();
-  columnsForExpenses: string[] = ['expenseName', 'userName', 'moneySpent', 'expenseDescription', 'creationDate'];
+  columnsForExpenses: string[] = ['expenseTitle', 'userName', 'moneySpent', 'expenseDescription', 'creationDate'];
 
   showData = true;
 

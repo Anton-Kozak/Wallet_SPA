@@ -64,9 +64,9 @@ export class WalletAdminComponent implements OnInit {
       data: exp
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result !== null) {
-        this.expenses.data[rowIndex].expenseTitle = result['expenseName'];
+    dialogRef.afterClosed().subscribe(result => {     
+      if (result !== undefined && result !== null) {
+        this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
         this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
         this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
         this.expenses.data[rowIndex].creationDate = result['creationDate'];

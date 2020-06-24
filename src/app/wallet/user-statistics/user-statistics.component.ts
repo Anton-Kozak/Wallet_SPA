@@ -101,7 +101,7 @@ export class UserStatisticsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        this.expenses.data[rowIndex].expenseName = result['expenseName'];
+        this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
         this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
         this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
         this.expenses.data[rowIndex].creationDate = result['creationDate'];

@@ -34,7 +34,7 @@ export class EditExpenseModalComponent implements OnInit {
 
 
     this.editExpense = new FormGroup({
-      'title': new FormControl(this.exp.expenseName, [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
+      'title': new FormControl(this.exp.expenseTitle, [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       'money': new FormControl(this.exp.moneySpent, [Validators.required]),
       'desc': new FormControl(this.exp.expenseDescription, [Validators.minLength(4), Validators.maxLength(20)]),
       'date': new FormControl(this.exp.creationDate, [Validators.required]),
@@ -47,12 +47,12 @@ export class EditExpenseModalComponent implements OnInit {
       var expToEdit: ExpenseForTable = {
         id: this.exp.id,
         creationDate: this.editExpense.value['date'],
-        expenseName: this.editExpense.value['title'],
+        expenseTitle: this.editExpense.value['title'],
         expenseDescription: this.editExpense.value['desc'],
         moneySpent: this.editExpense.value['money'],
         userName: this.exp.userName//this.authService.getToken().unique_name,
       };
-      if (this.exp.userName == expToEdit.userName && this.exp.creationDate === expToEdit.creationDate && this.exp.expenseName === expToEdit.expenseName && this.exp.moneySpent === expToEdit.moneySpent) {
+      if (this.exp.userName == expToEdit.userName && this.exp.creationDate === expToEdit.creationDate && this.exp.expenseTitle === expToEdit.expenseTitle && this.exp.moneySpent === expToEdit.moneySpent) {
         this.alertify.warning("You have not made any changes!")
       }
       else {
@@ -68,16 +68,18 @@ export class EditExpenseModalComponent implements OnInit {
       var expToEdit: ExpenseForTable = {
         id: this.exp.id,
         creationDate: this.editExpense.value['date'],
-        expenseName: this.editExpense.value['title'],
+        expenseTitle: this.editExpense.value['title'],
         expenseDescription: this.editExpense.value['desc'],
         moneySpent: this.editExpense.value['money'],
         userName: this.exp.userName
       };
-      if (this.exp.userName == expToEdit.userName && this.exp.creationDate === expToEdit.creationDate && this.exp.expenseName === expToEdit.expenseName && this.exp.moneySpent === expToEdit.moneySpent) {
+      if (this.exp.userName == expToEdit.userName && this.exp.creationDate === expToEdit.creationDate && this.exp.expenseTitle === expToEdit.expenseTitle && this.exp.moneySpent === expToEdit.moneySpent) {
         this.alertify.warning("You have not made any changes!")
       }
       else {
         this.adminService.onExpenseEdit(expToEdit).subscribe((editedExpense: ExpenseForTable) => {
+          console.log(editedExpense);
+          
           this.dialogRef.close(editedExpense);
         });
       }

@@ -218,9 +218,9 @@
         <div *ngIf="expenses.data.length > 0" class="col-md-12 col-lg-7 col-xl-8">
             <div class="mat-elevation-z8" style="box-shadow: none;">
                 <table style="width: 100%;" mat-table [dataSource]="expenses">
-                    <ng-container matColumnDef="expenseName">
+                    <ng-container matColumnDef="expenseTitle">
                         <th class="text-center" mat-header-cell *matHeaderCellDef> Expense </th>
-                        <td mat-cell *matCellDef="let element"> {{element.expenseName}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
                     </ng-container>
                     <ng-container matColumnDef="userName">
                         <th class="text-center" mat-header-cell *matHeaderCellDef> User </th>

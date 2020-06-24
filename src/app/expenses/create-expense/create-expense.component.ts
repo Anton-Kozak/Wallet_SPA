@@ -47,7 +47,7 @@ export class CreateExpenseComponent implements OnInit {
     if (this.newExpenseForm.errors == null) {
       this.expense = {
         expenseCategoryId: this.newExpenseForm.value['category'],
-        expenseName: this.newExpenseForm.value['title'],
+        expenseTitle: this.newExpenseForm.value['title'],
         expenseDescription: this.newExpenseForm.value['desc'],
         moneySpent: this.newExpenseForm.value['money'],
         creationDate: new Date()

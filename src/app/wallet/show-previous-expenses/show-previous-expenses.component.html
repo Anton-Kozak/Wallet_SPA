@@ -20,7 +20,7 @@
                                 <tbody>
                                     <tr class="d-flex" *ngFor="let expense of foodExpenses">
                                         <td class="col-1">{{expense.id}}</td>
-                                        <td class="col-5">{{expense.expenseName}}</td>
+                                        <td class="col-5">{{expense.expenseTitle}}</td>
                                         <td class="col-4">{{expense.creationDate | date}}</td>
                                         <td class="col-2">{{expense.moneySpent}}</td>
                                     </tr>
@@ -57,7 +57,7 @@
                                     <tbody>
                                         <tr class="d-flex" *ngFor="let expense of houseExpenses">
                                             <td class="col-1">{{expense.id}}</td>
-                                            <td class="col-5">{{expense.expenseName}}</td>
+                                            <td class="col-5">{{expense.expenseTitle}}</td>
                                             <td class="col-4">{{expense.creationDate | date}}</td>
                                             <td class="col-2">{{expense.moneySpent}}</td>
                                         </tr>
@@ -95,7 +95,7 @@
                                         <tbody>
                                             <tr class="d-flex" *ngFor="let expense of clothesExpenses">
                                                 <td class="col-1">{{expense.id}}</td>
-                                                <td class="col-5">{{expense.expenseName}}</td>
+                                                <td class="col-5">{{expense.expenseTitle}}</td>
                                                 <td class="col-4">{{expense.creationDate | date}}</td>
                                                 <td class="col-2">{{expense.moneySpent}}</td>
                                             </tr>
@@ -132,7 +132,7 @@
                                             <tbody>
                                                 <tr class="d-flex" *ngFor="let expense of entExpenses">
                                                     <td class="col-1">{{expense.id}}</td>
-                                                    <td class="col-5">{{expense.expenseName}}</td>
+                                                    <td class="col-5">{{expense.expenseTitle}}</td>
                                                     <td class="col-4">{{expense.creationDate | date}}</td>
                                                     <td class="col-2">{{expense.moneySpent}}</td>
                                                 </tr>
@@ -166,7 +166,7 @@
                                                 <tbody>
                                                     <tr class="d-flex" *ngFor="let expense of otherExpenses">
                                                         <td class="col-1">{{expense.id}}</td>
-                                                        <td class="col-5">{{expense.expenseName}}</td>
+                                                        <td class="col-5">{{expense.expenseTitle}}</td>
                                                         <td class="col-4">{{expense.creationDate | date}}</td>
                                                         <td class="col-2">{{expense.moneySpent}}</td>
                                                     </tr>

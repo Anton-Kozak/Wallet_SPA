@@ -3,7 +3,7 @@ export interface ExpenseForTable {
     userName: string,
     expenseDescription: string,
     expenseCategory?: string,
-    expenseName: string,
+    expenseTitle: string,
     creationDate: Date,
     moneySpent: number
 }
