@@ -112,7 +112,7 @@
                 <div class="col-md-12">
                     <div class="card card-img">
                         <div class="image">
-                            <img src="../../../assets\images\Food.jpg" alt="Card image cap">
+                            <div style="width: 100%; height: 100%; background-color: #cafcfa;"></div>
                         </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{first.categoryName}} expenses</h4>
@@ -148,7 +148,7 @@
                 <div class="col-md-12">
                     <div class="card card-img">
                         <div class="image">
-                            <img src="../../../assets\images\Housekeeping.jpg" alt="Card image cap">
+                            <div style="width: 100%; height: 100%; background-color: #cafcdf;"></div>
                         </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{second.categoryName}} expenses</h4>
@@ -180,11 +180,11 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="third.expenses.length > 0" class="row">
+            <div *ngIf="third" class="row">
                 <div class="col-md-12">
                     <div class="card card-img">
                         <div class="image">
-                            <img src="../../../assets\images\Clothes.jpg" alt="Card image cap">
+                            <div style="width: 100%; height: 100%; background-color: #dafcca;"></div>
                         </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{third.categoryName}} expenses</h4>
@@ -217,11 +217,11 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="fourth.expenses.length > 0" class="row">
+            <div *ngIf="fourth" class="row">
                 <div class="col-md-12">
                     <div class="card card-img">
                         <div class="image">
-                            <img src="../../../assets\images\Entertainment.jpg" alt="Card image cap">
+                            <div style="width: 100%; height: 100%; background-color: #fcf0ca;"></div>
                         </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{fourth.categoryName}} expenses</h4>
@@ -253,9 +253,12 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="fifth.expenses.length > 0" class="row">
+            <div *ngIf="fifth" class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card card-img">
+                        <div class="image">
+                            <div style="width: 100%; height: 100%; background-color: #fcd9ca;"></div>
+                        </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{fifth.categoryName}} expenses</h4>
                         </div>
@@ -286,9 +289,12 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="sixth.categoryId != 0 && sixth.expenses.length > 0" class="row">
+            <div *ngIf="sixth.categoryId != 0" class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card card-img">
+                        <div class="image">
+                            <div style="width: 100%; height: 100%; background-color: #fccaca;"></div>
+                        </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{sixth.categoryName}} expenses</h4>
                             <p class="card-category">Check out how much you have spent this month at
@@ -322,9 +328,12 @@
                 </div>
             </div>
 
-            <div *ngIf="seventh.categoryId != 0 && seventh.expenses.length > 0" class="row">
+            <div *ngIf="seventh.categoryId != 0" class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card card-img">
+                        <div class="image">
+                            <div style="width: 100%; height: 100%; background-color: #fccaea;"></div>
+                        </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{seventh.categoryName}} expenses</h4>
                         </div>
@@ -355,9 +364,12 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="eigth.categoryId != 0 && eigth.expenses.length > 0" class="row">
+            <div *ngIf="eigth.categoryId != 0" class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card card-img">
+                        <div class="image">
+                            <div style="width: 100%; height: 100%; background-color: #eccafc;"></div>
+                        </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{eigth.categoryName}} expenses</h4>
                         </div>
@@ -389,9 +401,12 @@
                 </div>
             </div>
 
-            <div *ngIf="nineth.categoryId != 0 && nineth.expenses.length > 0" class="row">
+            <div *ngIf="nineth.categoryId != 0" class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card card-img">
+                        <div class="image">
+                            <div style="width: 100%; height: 100%; background-color: #d1cafc;"></div>
+                        </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{nineth.categoryName}} expenses</h4>
                         </div>
@@ -422,9 +437,12 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="tenth.categoryId != 0 && tenth.expenses.length > 0" class="row">
+            <div *ngIf="tenth.categoryId != 0" class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card card-img">
+                        <div class="image">
+                            <div style="width: 100%; height: 100%; background-color: #cad8fc;"></div>
+                        </div>
                         <div class="card-header">
                             <h4 class="card-title text-center">{{tenth.categoryName}} expenses</h4>
                         </div>

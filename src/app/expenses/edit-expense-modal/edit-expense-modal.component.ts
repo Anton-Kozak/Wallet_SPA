@@ -36,7 +36,7 @@ export class EditExpenseModalComponent implements OnInit {
     this.editExpense = new FormGroup({
       'title': new FormControl(this.exp.expenseName, [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       'money': new FormControl(this.exp.moneySpent, [Validators.required]),
-      'desc': new FormControl(this.exp.expenseDescription, [Validators.minLength(4), Validators.maxLength(16)]),
+      'desc': new FormControl(this.exp.expenseDescription, [Validators.minLength(4), Validators.maxLength(20)]),
       'date': new FormControl(this.exp.creationDate, [Validators.required]),
     })
   }
@@ -82,6 +82,10 @@ export class EditExpenseModalComponent implements OnInit {
         });
       }
     }
+  }
+
+  back(){
+    this.dialogRef.close(null);
   }
 
 }

@@ -60,16 +60,17 @@ export class WalletAdminComponent implements OnInit {
     var exp = this.expenses.data.find(x => x.id === id);
     exp.isAdmin = true;
     const dialogRef = this.dialog.open(EditExpenseModalComponent, {
-      width: '250px',
+      width: '550px',
       data: exp
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.expenses.data[rowIndex].expenseTitle = result['expenseName'];
-      this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
-      this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-      this.expenses.data[rowIndex].creationDate = result['creationDate'];
+      if (result !== null) {
+        this.expenses.data[rowIndex].expenseTitle = result['expenseName'];
+        this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
+        this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
+        this.expenses.data[rowIndex].creationDate = result['creationDate'];
+      }
     });
   }
 

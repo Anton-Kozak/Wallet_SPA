@@ -50,7 +50,7 @@
                         'bg-success text-white': !newExpenseForm.get('desc').errors}">Description</span>
                     </div>
                     <textarea [ngClass]="{'is-invalid': newExpenseForm.get('desc').errors && newExpenseForm.get('desc').touched,
-                                    'is-valid': !newExpenseForm.get('desc').errors}" type="text" formControlName="desc"
+                                    'is-valid': !newExpenseForm.get('desc').errors}" formControlName="desc"
                         class="form-control"></textarea>
 
                     <div *ngIf="newExpenseForm.get('desc').hasError('minlength') && newExpenseForm.get('desc').touched"
@@ -59,7 +59,7 @@
                     </div>
                     <div *ngIf="newExpenseForm.get('desc').hasError('maxlength') && newExpenseForm.get('desc').touched"
                         class="invalid-feedback">
-                        Description should be no longer than 32 characters
+                        Description should be no longer than 20 characters
                     </div>
                 </div>
             </div>

@@ -95,15 +95,17 @@ export class UserStatisticsComponent implements OnInit {
   openDialog(id: number, rowIndex: number): void {
     var exp = this.expenses.data.find(x => x.id === id);
     const dialogRef = this.dialog.open(EditExpenseModalComponent, {
-      width: '250px',
+      width: '550px',
       data: exp
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.expenses.data[rowIndex].expenseName = result['expenseName'];
-      this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
-      this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-      this.expenses.data[rowIndex].creationDate = result['creationDate'];
+      if (result != null) {
+        this.expenses.data[rowIndex].expenseName = result['expenseName'];
+        this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
+        this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
+        this.expenses.data[rowIndex].creationDate = result['creationDate'];
+      }
     });
   }
 

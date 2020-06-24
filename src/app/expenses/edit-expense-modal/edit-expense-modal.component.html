@@ -1,13 +1,19 @@
-<div mat-dialog-content>
+<!-- <div mat-dialog-content>
     <form [formGroup]="editExpense" (ngSubmit)="isAdminEdit != true ? onEdit() : onAdminEdit()">
         <div class="form-group">
-            <input type="text" [ngClass]="{'is-invalid': editExpense.get('title').errors && editExpense.get('title').touched,
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" [ngClass]="{'bg-danger text-light': editExpense.get('title').errors && editExpense.get('title').touched,
+                        'bg-success text-white': !editExpense.get('title').errors}">Expense Title</span>
+                    <input type="text" [ngClass]="{'is-invalid': editExpense.get('title').errors && editExpense.get('title').touched,
             'is-valid': !editExpense.get('title').errors}" formControlName="title" [value]="exp.expenseName"
-                class="form-control">
-        </div>
-        <div *ngIf="editExpense.get('title').hasError('required') && editExpense.get('title').touched"
-            class="invalid-feedback">
-            Title is required
+                        class="form-control">
+                </div>
+                <div *ngIf="editExpense.get('title').hasError('required') && editExpense.get('title').touched"
+                    class="invalid-feedback">
+                    Title is required
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <input type="text" formControlName="desc" [value]="exp.expenseDescription" class="form-control">
@@ -31,4 +37,78 @@
                 [ngClass]="{'btn-outline-success': editExpense.valid}">Edit</button>
         </div>
     </form>
+</div> -->
+<div mat-dialog-content>
+    <div class="container">
+        <div class="border-primary">
+            <form [formGroup]="editExpense" (ngSubmit)="isAdminEdit != true ? onEdit() : onAdminEdit()">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" [ngClass]="{'bg-danger text-light': editExpense.get('title').errors && editExpense.get('title').touched,
+                        'bg-success text-white': !editExpense.get('title').errors}">Expense Title</span>
+                        </div>
+                        <input [ngClass]="{'is-invalid': editExpense.get('title').errors && editExpense.get('title').touched,
+                                    'is-valid': !editExpense.get('title').errors}" type="text"
+                            formControlName="title" class="form-control">
+
+                        <div *ngIf="editExpense.get('title').hasError('required') && editExpense.get('title').touched"
+                            class="invalid-feedback">
+                            Title is required
+                        </div>
+                        <div *ngIf="editExpense.get('title').hasError('minlength') && editExpense.get('title').touched"
+                            class="invalid-feedback">
+                            Title should be at least 4 characters required
+                        </div>
+                        <div *ngIf="editExpense.get('title').hasError('maxlength') && editExpense.get('title').touched"
+                            class="invalid-feedback">
+                            Title should be no longer than 16 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" [ngClass]="{'bg-danger text-light': editExpense.get('desc').errors && editExpense.get('desc').touched,
+                        'bg-success text-white': !editExpense.get('desc').errors}">Description</span>
+                        </div>
+                        <textarea [ngClass]="{'is-invalid': editExpense.get('desc').errors && editExpense.get('desc').touched,
+                                    'is-valid': !editExpense.get('desc').errors}" type="text" formControlName="desc"
+                            class="form-control"></textarea>
+
+                        <div *ngIf="editExpense.get('desc').hasError('minlength') && editExpense.get('desc').touched"
+                            class="invalid-feedback">
+                            Description should be at least 4 characters required
+                        </div>
+                        <div *ngIf="editExpense.get('desc').hasError('maxlength') && editExpense.get('desc').touched"
+                            class="invalid-feedback">
+                            Description should be no longer than 20 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" [ngClass]="{'bg-danger text-light': editExpense.get('money').errors && editExpense.get('money').touched,
+                        'bg-success text-white': !editExpense.get('money').errors}">$</span>
+                        </div>
+                        <input [ngClass]="{'is-invalid': editExpense.get('money').errors && editExpense.get('money').touched,
+                                    'is-valid': !editExpense.get('money').errors}" type="number"
+                            formControlName="money" class="form-control">
+
+                        <div *ngIf="editExpense.get('money').hasError('required') && editExpense.get('money').touched"
+                            class="invalid-feedback">
+                            Money is required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-secondary btn-block" [disabled]="editExpense.invalid"
+                        [ngClass]="{'btn-outline-success': editExpense.valid}">Edit expense</button>
+
+                </div>
+            </form>
+            <button class="btn btn-warning btn-block" (click)="back()">Back</button>
+        </div>
+    </div>
 </div>
