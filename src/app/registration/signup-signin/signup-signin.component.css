@@ -21,9 +21,6 @@
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-#home-section .home-inner{
-    padding-top: 150px;
-}
 
 .invalid-feedback{
     font-size: 13px;
@@ -86,3 +83,12 @@
 #explore-head-section{
     background: #333;
 }
+
+
+
+
+@media (max-width: 659px) {
+    #home-section, .dark-overlay {
+      height: 1000px;
+    }
+  }

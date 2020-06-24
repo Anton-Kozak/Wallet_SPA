@@ -24,8 +24,8 @@
 </nav>
 
 <header id="home-section">
-    <div class="dark-overlay">
-        <div class="home-inner container">
+    <div class="dark-overlay align-content-center">
+        <div class="home-inner pt-5">
             <div *ngIf="!isSignedIn" class="row">
                 <div class="col-lg-8 d-none d-lg-block">
                     <h1 class="display-4 text-capitalize">Track your expenses easily</h1>
@@ -222,7 +222,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="isSignedIn" class="row">
+            <div *ngIf="isSignedIn" class="row justify-content-center pt-5">
                 <div class="card mr-5" style="width: 18rem;">
                     <img src="https://media.workandmoney.com/10/92/109237ed61a54a9392bcf905bf38d67d.jpg"
                         class="card-img-top" alt="...">
