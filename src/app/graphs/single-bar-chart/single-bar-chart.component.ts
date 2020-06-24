@@ -32,16 +32,6 @@ export class SingleBarChartComponent implements OnInit {
   public barChartLegend = true;
 
   public barChartData: ChartDataSets[] = [
-    // { data: [], label: '' },
-    // { data: [], label: '' },
-    // { data: [], label: '' },
-    // { data: [], label: '' },
-    // { data: [], label: '' },
-    // { data: [], label: '' },
-    // { data: [], label: '' },
-    // { data: [], label: '' },
-    // { data: [], label: '' },
-    // { data: [], label: '' }
   ];
 
   constructor() {  }

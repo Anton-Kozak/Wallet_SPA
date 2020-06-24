@@ -19,7 +19,6 @@ export class CheckRequestsComponent implements OnInit {
 
   columns: string[] = ['from', 'date', 'actions'];
   requests = new MatTableDataSource<Request>();
-  //requests: Request[] = [];
   ngOnInit(): void {
     this.reqService.getRequests(this.authService.getToken().nameid).subscribe((req: Request[]) => {
       this.requests.data = req;

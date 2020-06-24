@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
   isAuthorized = false;
   categoriesToAdd: number[] = [];
   notifications;
-  //hasWallet = false;
   //TODO: имя пользователя показывать при логине
   userName: string;
   categories: CategoryData[] = [];
@@ -33,23 +32,6 @@ export class HomeComponent implements OnInit {
       });
     } else
       this.categories = this.walletService.currentCategories;
-
-
-    // this.authService.isLoggedIn.subscribe(result => {
-    //   this.isAuthorized = result;
-    //   console.log("Is authorized: " + this.isAuthorized);
-    //   if (this.isAuthorized) {
-    //     console.log('Trying to get notifications');
-
-    //     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
-    //       this.notifications = notifications;
-    //       this.notifications.forEach(element => {
-    //         console.log(element.message);
-    //       });
-    //     })
-    //   }
-    // });
-
   }
 
   hasWallet() {

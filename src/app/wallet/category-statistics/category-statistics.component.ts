@@ -3,7 +3,7 @@ import { ExpenseService } from 'src/app/_services/expense.service';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { TopUsersStat } from 'src/app/_model/top-users-stat';
 import { CategoryComparison } from 'src/app/_model/category-comparison';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
@@ -19,11 +19,10 @@ export class CategoryStatisticsComponent implements OnInit {
 
   constructor(private expService: ExpenseService,
     private route: ActivatedRoute,
-    private walletService: WalletService,
-    private router: Router) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
+    private walletService: WalletService) {
+    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    //   return false;
+    // };
   }
 
   largestExpense: number;
