@@ -118,6 +118,10 @@
                                                         class="invalid-feedback">
                                                         Password should be no longer than 8 characters
                                                     </div>
+                                                    <div matTooltip="Пароль должен содержать минимум 1 букву и 1 цифру" *ngIf="signUpForm.get('userpassUp').hasError('pattern') && signUpForm.get('userpassUp').touched"
+                                                        class="invalid-feedback">
+                                                        You need to have at least 1 letter and number
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -140,7 +144,7 @@
                                             </div>
                                         </form>
                                         <div class="container">
-                                            <p matTooltip="Уже есть аккаунт?">Already signed-up? <a matTooltip="Ввойти" (click)="isSignUp = !isSignUp"
+                                            <p matTooltip="Уже есть аккаунт?">Already signed-up? <a matTooltip="Ввойти" (click)="switchCard()"
                                                     style="cursor: pointer;" class="text-light"><strong>Sign-in
                                                         here!</strong></a></p>
                                         </div>
@@ -250,8 +254,8 @@
                         class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 matTooltip="Запросите доступ к кошельку другого пользователя" class="card-title">Send Requests To Join Wallets</h5>
-                        <p matTooltip="Если вы хотите присоединиться к кошельку другого пользователя, Вы можете это сделать отослав запрос на почту этого пользователя. Почта пользователя - имя пользователя + @mail.com" class="card-text">If you want to join your friend's or family's wallets, choose this option
-                            and send a request to the owner of the wallet! You do that by entering user's email - username + @mail.com</p>
+                        <p matTooltip="Если вы хотите присоединиться к кошельку другого пользователя, Вы можете это сделать отослав запрос на имя этого пользователя." class="card-text">If you want to join your friend's or family's wallets, choose this option
+                            and send a request to the owner of the wallet! You do that by entering user's name.</p>
                         <a matTooltip="Запросить доступ" (click)="onRequestCreateDialog()" class="btn btn-primary text-light">Send</a>
                     </div>
                 </div>

@@ -32,8 +32,8 @@ export class SignupSigninComponent implements OnInit {
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
-      'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('([0-9].*[a-z])|([a-z].*[0-9])')]),
-      'userpassUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
+      'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
+      'userpassUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
       'role': new FormControl('', Validators.required)
     });
     this.signInForm = new FormGroup({
@@ -51,6 +51,8 @@ export class SignupSigninComponent implements OnInit {
     const role = this.signUpForm.value['role'];
     this.authService.register(username, password, role).subscribe((data: any) => {
       this.alertify.success(data.data);
+      this.signUpForm.reset();
+      this.signInForm.reset();
       this.isSignUp = false;
     }, error => {
       this.alertify.error(error.error);
@@ -75,6 +77,12 @@ export class SignupSigninComponent implements OnInit {
     }, error => {
       this.alertify.error(error.error);
     })
+  }
+
+  switchCard() {
+    this.isSignUp = !this.isSignUp;
+    this.signUpForm.reset();
+    this.signInForm.reset();
   }
 
   hasWallet() {

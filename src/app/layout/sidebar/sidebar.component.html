@@ -4,13 +4,13 @@
       <li routerLinkActive="active">
         <a [routerLink]="['/wallet/home']">
           <i class="nc-icon nc-shop"></i>
-          <p>Home</p>
+          <p matTooltip="Домашняя страница">Home</p>
         </a>
       </li>
       <li routerLinkActive="active">
         <a [routerLink]="['/wallet/walletExpenses']">
           <i class="nc-icon nc-bank"></i>
-          <p>Your Wallet</p>
+          <p matTooltip="Страница кошелька">Your Wallet</p>
         </a>
       </li>
       <!-- <li routerLinkActive="active">
@@ -22,26 +22,26 @@
       <li routerLinkActive="active">
         <a [routerLink]="['/wallet/getWalletStatistics']">
           <i class="nc-icon nc-chart-bar-32"></i>
-          <p>Wallet Statistics</p>
+          <p matTooltip="Статистика кошелька">Wallet Statistics</p>
         </a>
       </li>
       <li routerLinkActive="active">
         <a [routerLink]="['/wallet/userStatistics/' + id]">
           <i class="nc-icon nc-circle-10"></i>
-          <p>User Statistics</p>
+          <p matTooltip="Статистика пользователей">User Statistics</p>
         </a>
       </li>
       <li>
         <a data-toggle="collapse" data-target="#collapseExample">
           <i class="nc-icon nc-chart-pie-36"></i>
-          <p>Categories</p>
+          <p matTooltip="Ваши категории">Categories</p>
         </a>
-        <div *ngFor="let category of categoryTitles" id="collapseExample" class="collapse">
+        <div *ngFor="let category of categoryTitles" id="collapseExample" class="collapse categories">
           <ul class="nav ml-3">
             <li routerLinkActive="active">
               <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', category.id]">
                 <i class="fas {{category.icon}}"></i>
-                <p>{{category.title}}</p>
+                <p matTooltip="Категория: {{category.title}}">{{category.title}}</p>
               </a>
             </li>
           </ul>
@@ -57,7 +57,7 @@
       <li *appHasRole="['Admin']" routerLinkActive="active">
         <a [routerLink]="['/wallet/walletAdmin']">
           <i class="nc-icon nc-lock-circle-open"></i>
-          <p>Admin Panel</p>
+          <p matTooltip="Страница для админа">Admin Panel</p>
         </a>
       </li>
     </ul>

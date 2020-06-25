@@ -9,7 +9,8 @@ a.active>p {
 }
 
 .nav li.active>a i, .nav li.active>a p {
-    color: red;
+    color: rgb(0, 132, 255);
+    font-weight: 550;
 }
 
 .nav.toggled li>a p {
@@ -21,9 +22,13 @@ a.active>p {
 }
 
 @media (max-width: 767px) {
-    .nav li>a {
+    .nav li>a{
         margin-left: 5px !important;
     }
+    .ml-3, .mx-3 {
+        margin-left: 0 !important;
+    }
+    
 }
 
 .nav {
@@ -88,4 +93,5 @@ ul {
     color: #66615B;
     position: relative;
 }
+
 
