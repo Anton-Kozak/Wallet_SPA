@@ -1,65 +1,65 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
-  <div class="sidebar-wrapper">
-    <ul [ngClass]="toggle === true ? 'toggled':''" class="nav">
-      <li routerLinkActive="active">
-        <a [routerLink]="['/wallet/home']">
-          <i class="nc-icon nc-shop"></i>
-          <p matTooltip="Домашняя страница">Home</p>
-        </a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/wallet/walletExpenses']">
-          <i class="nc-icon nc-bank"></i>
-          <p matTooltip="Страница кошелька">Your Wallet</p>
-        </a>
-      </li>
-      <!-- <li routerLinkActive="active">
-        <a [routerLink]="['/wallet/previousExpenses']">
-          <i class="nc-icon nc-calendar-60"></i>
-          <p>Previous Expenses</p>
-        </a>
-      </li> -->
-      <li routerLinkActive="active">
-        <a [routerLink]="['/wallet/getWalletStatistics']">
-          <i class="nc-icon nc-chart-bar-32"></i>
-          <p matTooltip="Статистика кошелька">Wallet Statistics</p>
-        </a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/wallet/userStatistics/' + id]">
-          <i class="nc-icon nc-circle-10"></i>
-          <p matTooltip="Статистика пользователей">User Statistics</p>
-        </a>
-      </li>
-      <li>
-        <a data-toggle="collapse" data-target="#collapseExample">
-          <i class="nc-icon nc-chart-pie-36"></i>
-          <p matTooltip="Ваши категории">Categories</p>
-        </a>
-        <div *ngFor="let category of categoryTitles" id="collapseExample" class="collapse categories">
-          <ul class="nav ml-3">
+    <div class="sidebar-wrapper">
+        <ul [ngClass]="toggle === true ? 'toggled':''" class="nav">
             <li routerLinkActive="active">
-              <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', category.id]">
-                <i class="fas {{category.icon}}"></i>
-                <p matTooltip="Категория: {{category.title}}">{{category.title}}</p>
-              </a>
+                <a [routerLink]="['/wallet/home']">
+                    <i class="nc-icon nc-shop"></i>
+                    <p matTooltip="Домашняя страница">Home</p>
+                </a>
             </li>
-          </ul>
-        </div>
-      </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/wallet/walletExpenses']">
+                    <i class="nc-icon nc-bank"></i>
+                    <p matTooltip="Страница кошелька">Your Wallet</p>
+                </a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/wallet/previousExpenses']">
+                    <i class="nc-icon nc-calendar-60"></i>
+                    <p matTooltip="Предыдущие расходы">Previous Expenses</p>
+                </a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/wallet/getWalletStatistics']">
+                    <i class="nc-icon nc-chart-bar-32"></i>
+                    <p matTooltip="Статистика кошелька">Wallet Statistics</p>
+                </a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/wallet/userStatistics/' + id]">
+                    <i class="nc-icon nc-circle-10"></i>
+                    <p matTooltip="Статистика пользователей">User Statistics</p>
+                </a>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-target="#collapseExample">
+                    <i class="nc-icon nc-chart-pie-36"></i>
+                    <p matTooltip="Ваши категории">Categories</p>
+                </a>
+                <div *ngFor="let category of categoryTitles" id="collapseExample" class="collapse categories">
+                    <ul class="nav ml-3">
+                        <li routerLinkActive="active">
+                            <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', category.id]">
+                                <i class="fas {{category.icon}}"></i>
+                                <p matTooltip="Категория: {{category.title}}">{{category.title}}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
 
-      <li routerLinkActive="active">
-        <a [routerLink]="['/home2']">
-          <i class="nc-icon nc-badge"></i>
-          <p>Profile</p>
-        </a>
-      </li>
-      <li *appHasRole="['Admin']" routerLinkActive="active">
-        <a [routerLink]="['/wallet/walletAdmin']">
-          <i class="nc-icon nc-lock-circle-open"></i>
-          <p matTooltip="Страница для админа">Admin Panel</p>
-        </a>
-      </li>
-    </ul>
-  </div>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/home2']">
+                    <i class="nc-icon nc-badge"></i>
+                    <p>Profile</p>
+                </a>
+            </li>
+            <li *appHasRole="['Admin']" routerLinkActive="active">
+                <a [routerLink]="['/wallet/walletAdmin']">
+                    <i class="nc-icon nc-lock-circle-open"></i>
+                    <p matTooltip="Страница для админа">Admin Panel</p>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>

@@ -35,10 +35,13 @@ export class BarCategoryComparisonComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
-    this.barChartData[0].data[0] = this.currentMonthbar;
-
-    this.barChartData[1].data[0] = this.lastMonthbar;
+    const last = this.lastMonthbar;
+    this.barChartData[0].data = [this.lastMonthbar];
+   
+    const current = this.currentMonthbar;
+    console.log(this.currentMonthbar);
+    this.barChartData[1].data = [31];
+    console.log(this.barChartData);
     this.barChartLabels[0] = this.category;
     console.log(this.currentMonthbar);
     

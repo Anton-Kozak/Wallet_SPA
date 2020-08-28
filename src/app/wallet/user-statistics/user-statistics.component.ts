@@ -35,19 +35,23 @@ export class UserStatisticsComponent implements OnInit {
   columnsForExpenses: string[] = ['expenseTitle', 'category', 'moneySpent', 'expenseDescription', 'creationDate', 'actions'];
   expenses = new MatTableDataSource<ExpenseForTable>();
 
-  isLoading: boolean;
+
   spentAll: number;
   avgDailyExpenses: number = 0;
   amountOfMoneySpent: number = 0;
   barExpenses: ExpenseList;
-  currentMonthDataToCompare: ExpenseList;
-  lastMonthDataToCompare: ExpenseList;
+  currentMonthDataToCompare: ExpenseList[];
+  lastMonthDataToCompare: ExpenseList[];
   mostSpentCategory: string;
   mostUsedCategory: string;
   lastSixMonths: LastMonthStat[];
   categories: CategoryData[] = [];
+
+  isLoading: boolean;
+  showComparisonData = false;
   isThisUser: boolean;
   private id;
+
   ngOnInit(): void {
     this.isThisUser = false;
     let userId = this.authService.decodedToken.nameid;
@@ -70,8 +74,20 @@ export class UserStatisticsComponent implements OnInit {
       })
       if (response['amountOfMoneySpent'] != 0) {
         this.avgDailyExpenses = response['averageDailyExpense'];
+        let showCurrentComparison = false;
         this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
+        for (let i = 0; i < this.currentMonthDataToCompare.length; i++) {
+          if (this.currentMonthDataToCompare[i].categoryExpenses !== 0)
+            showCurrentComparison = true;
+        }
+        let showPreviousComparison = false;
         this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
+        for (let i = 0; i < this.lastMonthDataToCompare.length; i++) {
+          if (this.lastMonthDataToCompare[i].categoryExpenses !== 0)
+            showPreviousComparison = true;
+        }
+        if (showCurrentComparison && showPreviousComparison)
+          this.showComparisonData = true;
         this.barExpenses = response['barExpenses'];
         this.lastSixMonths = response['lastSixMonths'];
         this.mostUsedCategory = response['mostUsedCategory'];

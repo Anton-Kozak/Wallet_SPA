@@ -50,8 +50,6 @@ export class ExpenseService {
   showAllExpenses() {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid).subscribe((expenses: ExpensesWithCategories[]) => {
       if (expenses != null) {
-        console.log('ex[[');
-        
         console.log(expenses);
         let categoriesCount = 0;
         let categories: CategoryData[] = [];
@@ -135,17 +133,13 @@ export class ExpenseService {
     });
   }
 
-  getPreviousExpenses() {
-    this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses').subscribe((expenses: any) => {
-      if (expenses != null) {
-        this.initialExpenses = expenses;
-      }
-    });
+  getPreviousExpenses(month: number) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses/' + month);
   }
 
-  getBarExpensesData() {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/barExpenses');
-  }
+  // getBarExpensesData() {
+  //   return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/barExpenses');
+  // }
 
   //TODO: здесь идет система автоматического добавления расходов, нужно подумать как их добавлять на деле
   createExpense(expense: Expense) {

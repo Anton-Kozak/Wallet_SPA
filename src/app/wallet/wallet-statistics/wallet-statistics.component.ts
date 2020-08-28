@@ -20,14 +20,15 @@ export class WalletStatisticsComponent implements OnInit {
     private walletService: WalletService) { }
 
   isLoading: boolean;
+  showComparisonData = false;
 
   avgDailyExpenses: number;
   mostSpentCategory: string;
   mostUsedCategory: string;
 
-  currentMonthDataToCompare: ExpenseList;
-  lastMonthDataToCompare: ExpenseList;
-  barExpenses: ExpenseList;
+  currentMonthDataToCompare: ExpenseList[];
+  lastMonthDataToCompare: ExpenseList[];
+  barExpenses: ExpenseList[];
   lastSixMonths: LastMonthStat[];
   topFiveUsers: TopUsersStat[];
   walletMembers: User[];
@@ -39,8 +40,10 @@ export class WalletStatisticsComponent implements OnInit {
         this.walletService.currentCategories = data;
         this.categories = this.walletService.currentCategories;
       });
-    } else
+    } else {
       this.categories = this.walletService.currentCategories;
+    }
+
     this.isLoading = true;
     this.expService.getWalletStatistics().subscribe(response => {
       console.log(response);
@@ -48,7 +51,21 @@ export class WalletStatisticsComponent implements OnInit {
       this.amountOfMoneySpent = response['amountOfMoneySpent'];
       if (response['hasExpenseData'] === true) {
         this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
+        let showCurrentComparison = false;
+        for (let i = 0; i < this.currentMonthDataToCompare.length; i++) {
+          if (this.currentMonthDataToCompare[i].categoryExpenses !== 0)
+            showCurrentComparison = true;
+        }
+        let showPreviousComparison = false;
         this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
+        for (let i = 0; i < this.lastMonthDataToCompare.length; i++) {
+          if (this.lastMonthDataToCompare[i].categoryExpenses !== 0)
+            showPreviousComparison = true;
+        }
+        
+        if (showCurrentComparison && showPreviousComparison)
+          this.showComparisonData = true;
+
         this.barExpenses = response['barExpenses'];
         this.lastSixMonths = response['lastSixMonths'];
         this.topFiveUsers = response['topFiveUsers'];

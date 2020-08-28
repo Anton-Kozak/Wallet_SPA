@@ -25,6 +25,8 @@ export class CategoryStatisticsComponent implements OnInit {
     // };
   }
 
+  showComparisonData = false;
+
   largestExpense: number;
   currentMonthLargestExpense: number;
   spentThisMonth: number;
@@ -33,7 +35,8 @@ export class CategoryStatisticsComponent implements OnInit {
   chosenCategory: number;
   chosenCategoryName: string;
 
-  compareBarExpenses: CategoryComparison;
+  currentMonthData: number;
+  lastMonthData: number;
   mostSpentUser: TopUsersStat = null;
   //here sum is count
   mostUsedUser: TopUsersStat = null;
@@ -70,13 +73,22 @@ export class CategoryStatisticsComponent implements OnInit {
         }
         else {
           //понять почему не работает paginator
+          console.log(data);
+          
           this.expenses.data = data['categoryExpenses'];
           setTimeout(() => this.expenses.paginator = this.paginator);
           this.largestExpense = data['largestExpense'];
           this.currentMonthLargestExpense = data['currentMonthLargestExpense'];
           this.mostSpentUser = data['mostSpentUser'];
           this.mostUsedUser = data['mostUsedUser'];
-          this.compareBarExpenses = data['barCompareExpensesWithLastMonth'];
+          this.currentMonthData = data['barCompareExpensesWithLastMonth']['currentMonthData'];
+          this.lastMonthData= data['barCompareExpensesWithLastMonth']['lastMonthData'];
+
+          if (this.currentMonthData > 0 && this.lastMonthData > 0){
+            console.log('Comparison check', this.currentMonthData, this.lastMonthData);
+            
+            this.showComparisonData = true;
+          }
           this.spentThisMonth = data['spentThisMonth'];
           this.spentAll = data['spentAll'];
           this.topFiveUsers = data['topFiveUsers'];

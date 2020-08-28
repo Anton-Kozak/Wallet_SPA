@@ -40,14 +40,11 @@ export class BarComparisonComponent implements OnInit {
   }
 
   ngOnInit() {
-
     for (let i = 0; i < this.categories.length; i++) {
       this.barChartLabels.push([this.categories[i].title]);
       this.barChartData[1].data[i] = this.currentMonthbarExpensesList[i]['categoryExpenses'];
       this.barChartData[0].data[i] = this.lastMonthbarExpensesList[i]['categoryExpenses'];
     }
-
-
   }
 
 }

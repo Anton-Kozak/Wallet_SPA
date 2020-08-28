@@ -1,31 +1,30 @@
 @media (min-width: 576px) {
-
-    .card-category, .card-stats .card-body .numbers, .card-stats .card-body .numbers .card-category {
+    .card-category,
+    .card-stats .card-body .numbers,
+    .card-stats .card-body .numbers .card-category {
         font-size: 1.1rem;
     }
 }
 
 @media (min-width: 768px) {
-
-    .card-category, .card-stats .card-body .numbers, .card-stats .card-body .numbers .card-category {
+    .card-category,
+    .card-stats .card-body .numbers,
+    .card-stats .card-body .numbers .card-category {
         font-size: 1.2rem;
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) {}
 
-}
-
-@media screen and (min-width: 1200px) {
-
-}
+@media screen and (min-width: 1200px) {}
 
 .mat-elevation-z8 {
     border-radius: 12px !important;
     background-color: white;
     box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.25), 0px 8px 10px 1px rgba(0, 0, 0, 0.03), 0px 3px 14px 2px rgba(0, 0, 0, 0.03);
 }
-.users{
+
+.users {
     box-shadow: none;
 }
 
@@ -37,18 +36,23 @@
     text-align: center;
 }
 
-.mat-header-cell{
+.mat-header-cell {
     text-align: center;
 }
-.mat-paginator{
+
+.mat-paginator {
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
 }
 
-.mat-paginator-outer-container .users{
+.mat-paginator-outer-container .users {
     border-radius: none;
 }
 
-.mat-paginator-page-size{
+.mat-paginator-page-size {
     display: none;
+}
+
+.my-table {
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.25), 0px 8px 10px 1px rgba(0, 0, 0, 0.03), 0px 3px 14px 2px rgba(0, 0, 0, 0.03);
 }

@@ -47,6 +47,8 @@ import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.c
 import { SignupSigninComponent } from './registration/signup-signin/signup-signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { DonutChartComponent } from './graphs/donut-chart/donut-chart.component';
+import { DonutChartCategoriesComponent } from './graphs/donut-chart-categories/donut-chart-categories.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -83,6 +85,8 @@ export function tokenGetter() {
     SignupSigninComponent,
     NotFoundComponent,
     MainPageComponent,
+    DonutChartComponent,
+    DonutChartCategoriesComponent,
   ],
   imports: [
     BrowserModule,

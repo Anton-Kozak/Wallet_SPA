@@ -34,12 +34,13 @@ export class SingleBarChartComponent implements OnInit {
   public barChartData: ChartDataSets[] = [
   ];
 
-  constructor() {  }
+  constructor() { }
   ngOnInit() {
-      for (let i = 0; i < this.categories.length; i++) {
-        this.barChartData.push({ data: [], label: '' });
-        this.barChartData[i] = { label: this.categories[i].title, data: [this.barExpensesList[i]['categoryExpenses']] };
-      }
+    for (let i = 0; i < this.categories.length; i++) {
+      this.barChartData.push({ data: [], label: '' });
+
+      this.barChartData[i] = { label: this.categories[i].title, data: [this.barExpensesList[i]['categoryExpenses']] };
+    }
   }
 
 

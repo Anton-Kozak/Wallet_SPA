@@ -1,3 +1,11 @@
-.hidden{
+.hidden {
     visibility: hidden;
+}
+
+.matpaginator {
+    min-width: 404px;
+}
+
+.mat-header-cell {
+    font-size: 18px;
 }

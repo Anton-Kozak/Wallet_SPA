@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckRequestsComponent } from './check-requests.component';
+import { DonutChartComponent } from './donut-chart.component';
 
-describe('CheckRequestsComponent', () => {
-  let component: CheckRequestsComponent;
-  let fixture: ComponentFixture<CheckRequestsComponent>;
+describe('DonutChartComponent', () => {
+  let component: DonutChartComponent;
+  let fixture: ComponentFixture<DonutChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckRequestsComponent ]
+      declarations: [ DonutChartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckRequestsComponent);
+    fixture = TestBed.createComponent(DonutChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

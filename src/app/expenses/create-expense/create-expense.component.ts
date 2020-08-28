@@ -50,8 +50,9 @@ export class CreateExpenseComponent implements OnInit {
         expenseTitle: this.newExpenseForm.value['title'],
         expenseDescription: this.newExpenseForm.value['desc'],
         moneySpent: this.newExpenseForm.value['money'],
-        creationDate: new Date()
+        creationDate: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 10)  //new Date()
       }
+      console.log('Date', new Date().getFullYear(), new Date().getMonth(), 10);
       this.expenseService.createExpense(this.expense).subscribe((response: any) => {
         if (response['message'] === null) {
           this.alertify.success("You have successfully created an expense!");

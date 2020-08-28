@@ -29,8 +29,7 @@
                                     <span class="text-muted"><small>Add Here Role!</small></span>
                                 </div>
                                 <div class="col-md-3 col-3 text-right">
-                                    <button (click)="getUserStatistics(user.id)"
-                                        class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                                    <button (click)="getUserStatistics(user.id)" class="btn btn-sm btn-outline-success btn-round btn-icon"><i
                                             class="fa fa-user"></i></button>
                                 </div>
                             </div>
@@ -164,7 +163,9 @@
                     <p class="card-category">Users with most expenses</p>
                 </div>
                 <div class="card-body ">
-                    <app-pie-graph *ngIf="topFiveUsers != null" [topFiveUsers]="topFiveUsers"></app-pie-graph>
+                    <div *ngIf="topFiveUsers != null">
+                        <app-pie-graph [topFiveUsers]="topFiveUsers"></app-pie-graph>
+                    </div>
                     <p *ngIf="topFiveUsers == null" class="text-uppercase">Please, add some expenses to see statistics
                     </p>
                 </div>
@@ -183,12 +184,10 @@
                     <p class="card-category">Expenses For Each Category</p>
                 </div>
                 <div class="card-body ">
-                    <div>
-                        <app-single-bar-chart *ngIf="barExpenses != null && categories != null"
-                            [categories]="categories" [barExpensesList]="barExpenses">
+                    <div *ngIf="barExpenses != null && categories.length > 0">
+                        <app-single-bar-chart [categories]="categories" [barExpensesList]="barExpenses">
                         </app-single-bar-chart>
-                        <p *ngIf="barExpenses == null" class="text-uppercase">Please, add some expenses to see
-                            statistics
+                        <p *ngIf="barExpenses == null" class="text-uppercase">Please, add some expenses to see statistics
                         </p>
                     </div>
                 </div>
@@ -202,7 +201,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12" [ngClass]="{'col-md-12': !showComparisonData}">
             <div class="card " style="border-radius: 12px;">
                 <div class="card-header ">
                     <h5 class="card-title">Last 6 Months</h5>
@@ -211,8 +210,7 @@
                 <div class="card-body ">
                     <div>
                         <app-line-chart *ngIf="lastSixMonths != null" [lastSixMonths]="lastSixMonths"></app-line-chart>
-                        <p *ngIf="lastSixMonths == null" class="text-uppercase">Please, add some expenses to see
-                            statistics
+                        <p *ngIf="lastSixMonths == null" class="text-uppercase">Please, add some expenses to see statistics
                         </p>
                     </div>
                 </div>
@@ -224,7 +222,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-sm-12" *ngIf="currentMonthDataToCompare && lastMonthDataToCompare" >
+        <div class="col-md-6 col-sm-12" *ngIf="showComparisonData">
             <div class="card " style="border-radius: 12px;">
                 <div class="card-header ">
                     <h5 class="card-title">Expenses Comparison</h5>
@@ -232,11 +230,8 @@
                 </div>
                 <div class="card-body ">
                     <div>
-                        <app-bar-comparison *ngIf="currentMonthDataToCompare != null && lastMonthDataToCompare != null"
-                            [categories]="categories" [currentMonthbarExpensesList]="currentMonthDataToCompare"
-                            [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
-                        <p *ngIf="currentMonthDataToCompare == null && lastMonthDataToCompare == null"
-                            class="text-uppercase">Please, add some expenses to see statistics
+                        <app-bar-comparison *ngIf="currentMonthDataToCompare != null && lastMonthDataToCompare != null" [categories]="categories" [currentMonthbarExpensesList]="currentMonthDataToCompare" [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
+                        <p *ngIf="currentMonthDataToCompare == null && lastMonthDataToCompare == null" class="text-uppercase">Please, add some expenses to see statistics
                         </p>
                     </div>
                 </div>
