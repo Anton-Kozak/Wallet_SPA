@@ -137,9 +137,6 @@ export class ExpenseService {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses/' + month);
   }
 
-  // getBarExpensesData() {
-  //   return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/barExpenses');
-  // }
 
   //TODO: здесь идет система автоматического добавления расходов, нужно подумать как их добавлять на деле
   createExpense(expense: Expense) {
@@ -202,9 +199,9 @@ export class ExpenseService {
   }
 
 
-  getCategoryExpenses(categoryId: number) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCategoryExpenses/' + categoryId);
-  }
+  // getCategoryExpenses(categoryId: number) {
+  //   return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCategoryExpenses/' + categoryId);
+  // }
 
   getUserStatistics(id: string) {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedUserStatistics/' + id);

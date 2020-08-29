@@ -13,12 +13,11 @@ export class SingleBarChartComponent implements OnInit {
 
   @Input() barExpensesList: ExpenseList;
   @Input() categories: CategoryData[];
-
+  //finalCategories: {data: number, title: string}[] = [];
   public barChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     aspectRatio: 1.2,
-    // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
     plugins: {
       datalabels: {
@@ -41,6 +40,15 @@ export class SingleBarChartComponent implements OnInit {
 
       this.barChartData[i] = { label: this.categories[i].title, data: [this.barExpensesList[i]['categoryExpenses']] };
     }
+
+    // for (let i = 0; i < this.categories.length; i++) {
+    //   if (this.barExpensesList[i]['categoryExpenses'] !== 0)
+    //     this.finalCategories.push({ data: this.barExpensesList[i]['categoryExpenses'], title: this.categories[i].title });
+    // }
+    // for (let i = 0; i < this.finalCategories.length; i++) {
+    //   this.barChartData.push({ data: [], label: '' });
+    //   this.barChartData[i] = { label: this.finalCategories[i].title, data: [this.finalCategories[i].data] };
+    // }
   }
 
 
