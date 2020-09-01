@@ -12,6 +12,23 @@ export class BarCategoryComparisonComponent implements OnInit {
   @Input() currentMonthbar: number;
   @Input() lastMonthbar: number;
   @Input() category: string;
+  colors=[
+    {
+      backgroundColor: [
+        '#aaf0d1',
+        '#f0b4aa',
+        '#f0d6aa',
+        '#beaaf0',
+        '#aacaf0',
+        '#e0aaf0',
+        '#f0e8aa',
+        '#c4f0a2',
+        '#a2e7f0',
+        '#f0a2c4',
+    ]
+    }
+  ];
+
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.

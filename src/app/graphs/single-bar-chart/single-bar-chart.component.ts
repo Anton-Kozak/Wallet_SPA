@@ -3,6 +3,7 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { CategoryData } from 'src/app/_model/categoryData';
+import { MyColors } from 'src/app/_helper/chart-colors';
 
 @Component({
   selector: 'app-single-bar-chart',
@@ -13,7 +14,8 @@ export class SingleBarChartComponent implements OnInit {
 
   @Input() barExpensesList: ExpenseList;
   @Input() categories: CategoryData[];
-  //finalCategories: {data: number, title: string}[] = [];
+  colors: MyColors = new MyColors();
+
   public barChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -38,17 +40,8 @@ export class SingleBarChartComponent implements OnInit {
     for (let i = 0; i < this.categories.length; i++) {
       this.barChartData.push({ data: [], label: '' });
 
-      this.barChartData[i] = { label: this.categories[i].title, data: [this.barExpensesList[i]['categoryExpenses']] };
+      this.barChartData[i] = { label: this.categories[i].title, data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].hoverBackgroundColor };
     }
-
-    // for (let i = 0; i < this.categories.length; i++) {
-    //   if (this.barExpensesList[i]['categoryExpenses'] !== 0)
-    //     this.finalCategories.push({ data: this.barExpensesList[i]['categoryExpenses'], title: this.categories[i].title });
-    // }
-    // for (let i = 0; i < this.finalCategories.length; i++) {
-    //   this.barChartData.push({ data: [], label: '' });
-    //   this.barChartData[i] = { label: this.finalCategories[i].title, data: [this.finalCategories[i].data] };
-    // }
   }
 
 

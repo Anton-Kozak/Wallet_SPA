@@ -3,6 +3,7 @@ import { Label } from 'ng2-charts';
 import { ChartType, ChartDataSets } from 'chart.js';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { CategoryData } from 'src/app/_model/categoryData';
+import { MyColors } from 'src/app/_helper/chart-colors';
 
 @Component({
   selector: 'app-donut-chart-categories',
@@ -16,7 +17,23 @@ export class DonutChartCategoriesComponent implements OnInit {
   public doughnutChartLabels: Label[] = [];
   public doughnutChartData = [];
   public doughnutChartType: ChartType = 'doughnut';
-
+  colors: MyColors = new MyColors();
+  public donutChartColors = [
+    {
+      backgroundColor: [
+        this.colors.colors[0].backgroundColor,
+        this.colors.colors[1].backgroundColor,
+        this.colors.colors[2].backgroundColor,
+        this.colors.colors[3].backgroundColor,
+        this.colors.colors[4].backgroundColor,
+        this.colors.colors[5].backgroundColor,
+        this.colors.colors[6].backgroundColor,
+        this.colors.colors[7].backgroundColor,
+        this.colors.colors[8].backgroundColor,
+        this.colors.colors[9].backgroundColor,
+      ],
+    },
+  ];
   constructor() { }
 
   ngOnInit(): void {

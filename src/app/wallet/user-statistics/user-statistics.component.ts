@@ -39,6 +39,7 @@ export class UserStatisticsComponent implements OnInit {
   spentAll: number;
   avgDailyExpenses: number = 0;
   amountOfMoneySpent: number = 0;
+  largestExpense: number = 0;
   barExpenses: ExpenseList[] = [];
   mostSpentCategory: string;
   mostUsedCategory: string;
@@ -78,6 +79,7 @@ export class UserStatisticsComponent implements OnInit {
       });
       if (response['amountOfMoneySpent'] != 0) {
         this.avgDailyExpenses = response['averageDailyExpense'];
+        this.largestExpense = response['largestExpense'];
         this.barExpenses = response['barExpenses'];
         this.mostUsedCategory = response['mostUsedCategory'];
         this.mostSpentCategory = response['mostSpentCategory'];
@@ -136,7 +138,7 @@ export class UserStatisticsComponent implements OnInit {
       this.date.setMonth(this.date.getMonth() - this.monthNumber)
     else
       this.date.setMonth(this.date.getMonth() + this.monthNumber);
-      this.monthName = this.date.toLocaleString('default', { month: 'long' });
+    this.monthName = this.date.toLocaleString('default', { month: 'long' });
     this.clearData();
     this.getData();
   }

@@ -21,20 +21,27 @@ export class LineChartComponent implements OnInit {
     maintainAspectRatio: false,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+        },
+      }],
       yAxes: [
         {
           id: 'y-axis-0',
           position: 'left',
+          gridLines: {
+            color: 'transparent',
+          },
         },
         {
           id: 'y-axis-1',
           position: 'right',
           gridLines: {
-            color: 'rgba(255,0,0,0.3)',
+            color: 'transparent',
           },
           ticks: {
-            fontColor: 'red',
+            fontColor: 'transparent',
           }
         }
       ]
@@ -54,34 +61,18 @@ export class LineChartComponent implements OnInit {
             content: 'LineAnno'
           }
         },
-      ], 
+      ],
     },
   };
   public lineChartColors: Color[] = [
     { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      backgroundColor: '#aaf0d1',
+      borderColor: '#1e593f',
+      pointBackgroundColor: 'transparent',
+      pointBorderColor: 'transparent',
+      pointHoverBackgroundColor: 'transparent',
+      pointHoverBorderColor: 'transparent'
     },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // red
-      backgroundColor: 'rgba(255,0,0,0.3)',
-      borderColor: 'red',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
   ];
   public lineChartLegend = true;
   public lineChartType = 'line';

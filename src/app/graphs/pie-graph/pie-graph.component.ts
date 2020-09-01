@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { TopUsersStat } from 'src/app/_model/top-users-stat';
+import { MyColors } from 'src/app/_helper/chart-colors';
 
 @Component({
   selector: 'app-pie-graph',
@@ -11,7 +12,7 @@ import { TopUsersStat } from 'src/app/_model/top-users-stat';
 export class PieGraphComponent implements OnInit {
 
   @Input() topFiveUsers: TopUsersStat[];
-
+  colors: MyColors = new MyColors();
   public pieChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -32,19 +33,25 @@ export class PieGraphComponent implements OnInit {
   public pieChartData: number[] = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
-  //public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['rgba(255,0,0,0.7)', 'rgba(0,255,0,0.7)', 'rgba(255,0,255,0.7)', 'rgba(125,152,255,0.7)', 'rgba(238,235,67,0.7)', 'rgba(200,0,200,0.7)'],
+      backgroundColor: [
+        this.colors.colors[0].backgroundColor,
+        this.colors.colors[1].backgroundColor,
+        this.colors.colors[2].backgroundColor,
+        this.colors.colors[3].backgroundColor,
+        this.colors.colors[4].backgroundColor],
     },
   ];
-
   constructor() { }
 
+ 
+
   ngOnInit(): void {
+
     for (let i = 0; i < this.topFiveUsers.length; i++) {
-           this.pieChartData[i] = this.topFiveUsers[i]['sum'];
-           this.pieChartLabels[i] = this.topFiveUsers[i]['userName'];
+      this.pieChartData[i] = this.topFiveUsers[i]['sum'];
+      this.pieChartLabels[i] = this.topFiveUsers[i]['userName'];
     }
   }
 }

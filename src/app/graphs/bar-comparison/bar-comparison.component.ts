@@ -14,6 +14,8 @@ export class BarComparisonComponent implements OnInit {
   @Input() currentMonthbarExpensesList: ExpenseList;
   @Input() lastMonthbarExpensesList: ExpenseList;
   @Input() categories: CategoryData[];
+
+
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
@@ -33,8 +35,8 @@ export class BarComparisonComponent implements OnInit {
 
   constructor() {
     this.barChartData = [
-      { data: [], label: 'Last Month' },
-      { data: [], label: 'Current Month' },
+      { data: [], label: 'Last Month', backgroundColor:'#aaf0d1', borderColor: '#699481' },
+      { data: [], label: 'Current Month', backgroundColor:'#f0b4aa', borderColor:'#876660' },
     ];
 
   }

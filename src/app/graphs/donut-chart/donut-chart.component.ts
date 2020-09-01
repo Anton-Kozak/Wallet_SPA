@@ -8,6 +8,14 @@ import { ChartType } from 'chart.js';
   styleUrls: ['./donut-chart.component.css']
 })
 export class DonutChartComponent implements OnInit {
+  donutColors=[
+    {
+      backgroundColor: [
+        '#aaf0d1',
+        '#f0b4aa',
+    ]
+    }
+  ];
 
   @Input() currentMonthbar: number;
   @Input() lastMonthbar: number;
