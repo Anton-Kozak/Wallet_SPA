@@ -28,21 +28,20 @@
                     <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-primary">
-                                        <i class="nc-icon nc-circle-10 text-primary"></i>
+                                <div class="col-3 col-md-3">
+                                    <div class="icon-big text-center icon-success">
+                                        <i class="nc-icon nc-money-coins text-success"></i>
                                     </div>
                                 </div>
-                                <div class="col-7 col-md-8">
+                                <div class="col-9 col-md-9">
                                     <div class="numbers">
-                                        <p class="card-category mb-2">Most used user</p>
-                                        <div *ngIf="mostSpentUser != null">
-                                            <p class="card-title">{{mostSpentUser.userName}}
-                                            </p>
-                                        </div>
-                                        <div *ngIf="mostSpentUser === null">
-                                            <p class="card-title">---</p>
-                                        </div>
+                                        <p class="card-category mb-2">Current largest expense</p>
+                                        <p *ngIf="currentMonthLargestExpense > 0" class="card-title">
+                                            ${{currentMonthLargestExpense}}</p>
+                                        <p *ngIf="currentMonthLargestExpense === 0" class="card-title">
+                                            ${{currentMonthLargestExpense}}</p>
+                                        <p>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -54,37 +53,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-success">
-                                        <i class="nc-icon nc-circle-10 text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category mb-2">Most used user</p>
-                                        <div *ngIf="mostUsedUser != null">
-                                            <p class="card-title">{{mostUsedUser.userName}} </p>
-                                        </div>
-                                        <div *ngIf="mostUsedUser === null">
-                                            <p class="card-title">---</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer ">
-                                <hr>
-                                <div class="stats">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-xl-6">
                     <div class="card card-stats">
                         <div class="card-body ">
@@ -112,24 +80,56 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6">
+                <!-- <div class="col-xl-6">
                     <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5 col-md-4">
                                     <div class="icon-big text-center icon-success">
-                                        <i class="nc-icon nc-money-coins text-success"></i>
+                                        <i class="nc-icon nc-circle-10 text-success"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category mb-2">Month's largest expense</p>
-                                        <p *ngIf="currentMonthLargestExpense > 0" class="card-title">
-                                            ${{currentMonthLargestExpense}}</p>
-                                        <p *ngIf="currentMonthLargestExpense === 0" class="card-title">
-                                            ${{currentMonthLargestExpense}}</p>
-                                        <p>
-                                        </p>
+                                        <p class="card-category mb-2">Most used user</p>
+                                        <div *ngIf="mostUsedUser != null">
+                                            <p class="card-title">{{mostUsedUser.userName}} </p>
+                                        </div>
+                                        <div *ngIf="mostUsedUser === null">
+                                            <p class="card-title">---</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card card-stats">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-5 col-md-4">
+                                    <div class="icon-big text-center icon-primary">
+                                        <i class="nc-icon nc-circle-10 text-primary"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7 col-md-8">
+                                    <div class="numbers">
+                                        <p class="card-category mb-2">Most Spent User</p>
+                                        <div *ngIf="mostSpentUser != null">
+                                            <p class="card-title text-capitalize">{{mostSpentUser.userName}}
+                                            </p>
+                                        </div>
+                                        <div *ngIf="mostSpentUser === null">
+                                            <p class="card-title">---</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -141,6 +141,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="row">
                 <div class="col-12">
@@ -198,8 +199,6 @@
                             <p class="card-category">Last And Current Months</p>
                         </div>
                         <div *ngIf="chosenCategoryName" class="container">
-                            <!-- <app-bar-category-comparison [currentMonthbar]="currentMonthData" [lastMonthbar]="lastMonthData" [category]="chosenCategoryName">
-                            </app-bar-category-comparison> -->
                             <app-donut-chart [currentMonthbar]="currentMonthData" [lastMonthbar]="lastMonthData" [category]="chosenCategoryName"></app-donut-chart>
                         </div>
                         <div class="card-footer ">

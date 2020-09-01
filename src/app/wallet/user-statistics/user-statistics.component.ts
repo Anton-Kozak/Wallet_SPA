@@ -39,20 +39,22 @@ export class UserStatisticsComponent implements OnInit {
   spentAll: number;
   avgDailyExpenses: number = 0;
   amountOfMoneySpent: number = 0;
-  barExpenses: ExpenseList;
-  currentMonthDataToCompare: ExpenseList[];
-  lastMonthDataToCompare: ExpenseList[];
+  barExpenses: ExpenseList[] = [];
   mostSpentCategory: string;
   mostUsedCategory: string;
-  lastSixMonths: LastMonthStat[];
   categories: CategoryData[] = [];
 
-  isLoading: boolean;
-  showComparisonData = false;
+  isLoading = true;
   isThisUser: boolean;
+  date: Date;
+  monthNumber = 0;
+  monthName: string = '';
   private id;
 
   ngOnInit(): void {
+    this.date = new Date(Date.now());
+    this.date.setMonth(this.date.getMonth() - 1);
+    console.log('Init month', this.date);
     this.isThisUser = false;
     let userId = this.authService.decodedToken.nameid;
     this.id = this.route.snapshot.params['id'];
@@ -65,37 +67,24 @@ export class UserStatisticsComponent implements OnInit {
       });
     } else
       this.categories = this.walletService.currentCategories;
+    this.getData();
+  }
 
-
-    this.isLoading = true;
-    this.expService.getUserStatistics(this.id).subscribe(response => {
-      this.expService.getUserExpenses(this.id).subscribe((expensesRecieved: ExpenseForTable[]) => {
+  private getData() {
+    this.expService.getUserStatistics(this.id, this.monthNumber).subscribe(response => {
+      console.log(response);
+      this.expService.getUserExpenses(this.id, this.monthNumber).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses.data = expensesRecieved;
-      })
+      });
       if (response['amountOfMoneySpent'] != 0) {
         this.avgDailyExpenses = response['averageDailyExpense'];
-        let showCurrentComparison = false;
-        this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
-        for (let i = 0; i < this.currentMonthDataToCompare.length; i++) {
-          if (this.currentMonthDataToCompare[i].categoryExpenses !== 0)
-            showCurrentComparison = true;
-        }
-        let showPreviousComparison = false;
-        this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
-        for (let i = 0; i < this.lastMonthDataToCompare.length; i++) {
-          if (this.lastMonthDataToCompare[i].categoryExpenses !== 0)
-            showPreviousComparison = true;
-        }
-        if (showCurrentComparison && showPreviousComparison)
-          this.showComparisonData = true;
         this.barExpenses = response['barExpenses'];
-        this.lastSixMonths = response['lastSixMonths'];
         this.mostUsedCategory = response['mostUsedCategory'];
         this.mostSpentCategory = response['mostSpentCategory'];
         this.amountOfMoneySpent = response['amountOfMoneySpent'];
       }
       this.isLoading = false;
-    })
+    });
   }
 
   expenseDelete(id: number, rowIndex: number) {
@@ -123,6 +112,44 @@ export class UserStatisticsComponent implements OnInit {
         this.expenses.data[rowIndex].creationDate = result['creationDate'];
       }
     });
+  }
+
+  previousMonth() {
+    this.date = new Date(Date.now());
+    this.monthNumber--;
+    if (this.monthNumber > 0)
+      this.date.setMonth(this.date.getMonth() - this.monthNumber)
+    else
+      this.date.setMonth(this.date.getMonth() + this.monthNumber);
+    console.log(this.date);
+    console.log(this.monthNumber);
+
+    this.monthName = this.date.toLocaleString('default', { month: 'long' });
+    this.clearData();
+    this.getData();
+  }
+
+  next() {
+    this.monthNumber++;
+    this.date = new Date(Date.now());
+    if (this.monthNumber > 0)
+      this.date.setMonth(this.date.getMonth() - this.monthNumber)
+    else
+      this.date.setMonth(this.date.getMonth() + this.monthNumber);
+      this.monthName = this.date.toLocaleString('default', { month: 'long' });
+    this.clearData();
+    this.getData();
+  }
+
+
+  clearData() {
+    this.expenses = new MatTableDataSource<ExpenseForTable>();
+    this.spentAll = 0;
+    this.avgDailyExpenses = 0;
+    this.amountOfMoneySpent = 0;
+    this.barExpenses = [];
+    this.mostSpentCategory = '';
+    this.mostUsedCategory = '';
   }
 
 

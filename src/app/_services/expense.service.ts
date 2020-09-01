@@ -203,12 +203,12 @@ export class ExpenseService {
   //   return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCategoryExpenses/' + categoryId);
   // }
 
-  getUserStatistics(id: string) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedUserStatistics/' + id);
+  getUserStatistics(id: string, month: number) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedUserStatistics/' + id + '/' + month);
   }
 
-  getUserExpenses(id: string) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getUserExpenses/' + id);
+  getUserExpenses(id: string, month: number) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getUserExpenses/' + id + '/' + month);
   }
 
 
