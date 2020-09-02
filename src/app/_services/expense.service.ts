@@ -128,9 +128,13 @@ export class ExpenseService {
           categoriesCount++;
           categories.push({ id: this.tenthExpenses.categoryId, title: this.tenthExpenses.categoryName });
         }
-        this.categoryTitles.next(categories);      
+        this.categoryTitles.next(categories);
       }
     });
+  }
+
+  showDailyExpenses(date: string){
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/dailyExpenses/' + date);
   }
 
   getPreviousExpenses(month: number) {
@@ -142,8 +146,8 @@ export class ExpenseService {
   createExpense(expense: Expense) {
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/new', expense).pipe(map(response => {
       var receivedExpense: ExpenseForTable = response['expense'];
-        switch (+(expense.expenseCategoryId)) {
-        case this.firstExpenses.categoryId:         
+      switch (+(expense.expenseCategoryId)) {
+        case this.firstExpenses.categoryId:
           this.firstExpenses.expenses.push(receivedExpense);
           this.firstSubject.next(this.firstExpenses.expenses);
           break;
@@ -163,23 +167,23 @@ export class ExpenseService {
           this.fifthExpenses.expenses.push(receivedExpense);
           this.fifthSubject.next(this.fifthExpenses.expenses);
           break;
-          case this.sixthExpenses.categoryId:
+        case this.sixthExpenses.categoryId:
           this.sixthExpenses.expenses.push(receivedExpense);
           this.sixthSubject.next(this.sixthExpenses.expenses);
           break;
-          case this.seventhExpenses.categoryId:
+        case this.seventhExpenses.categoryId:
           this.seventhExpenses.expenses.push(receivedExpense);
           this.seventhSubject.next(this.seventhExpenses.expenses);
           break;
-          case this.eightthExpenses.categoryId:
+        case this.eightthExpenses.categoryId:
           this.eightthExpenses.expenses.push(receivedExpense);
           this.eightthSubject.next(this.eightthExpenses.expenses);
           break;
-          case this.ninethExpenses.categoryId:
+        case this.ninethExpenses.categoryId:
           this.ninethExpenses.expenses.push(receivedExpense);
           this.ninethSubject.next(this.ninethExpenses.expenses);
           break;
-          case this.tenthExpenses.categoryId:
+        case this.tenthExpenses.categoryId:
           this.tenthExpenses.expenses.push(receivedExpense);
           this.tenthSubject.next(this.tenthExpenses.expenses);
           break;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { WalletForPage } from 'src/app/_model/wallet-for-page';
@@ -10,6 +10,9 @@ import { ExpensesWithCategories } from 'src/app/_model/expensesWithCategories';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryData } from 'src/app/_model/categoryData';
+import { ExpenseForTable } from 'src/app/_model/expense-for-table';
+import { FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -17,6 +20,7 @@ import { CategoryData } from 'src/app/_model/categoryData';
   styleUrls: ['./show-wallet-table.component.css', '../../css/spinner.css']
 })
 export class ShowWalletTableComponent implements OnInit {
+
 
   constructor(private expenseService: ExpenseService,
     private authService: AuthService,
@@ -33,6 +37,10 @@ export class ShowWalletTableComponent implements OnInit {
   eigth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   nineth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   tenth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+
+  dailyExpenses: ExpenseForTable[] = [];
+  dayForDailyExpenses = new Date();
+  currentSelectedDate: FormControl;
 
   walletTitle: string;
   walletLimit: number;
@@ -134,6 +142,11 @@ export class ShowWalletTableComponent implements OnInit {
           this.tenth.categoryId = this.expenseService.tenthExpenses.categoryId;
         }
       });
+      this.currentSelectedDate = new FormControl(this.dayForDailyExpenses.toDateString());
+      this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
+        this.dailyExpenses = expenses;
+        console.log(expenses);
+      })
       this.isLoading = false;
     });
     this.route.data.subscribe(data => {
@@ -180,7 +193,33 @@ export class ShowWalletTableComponent implements OnInit {
     });
     this.noteService.deleteNotifications().subscribe(() => {
       console.log('Success');
+    })
+  }
 
+
+  changeDay(direction: number) {
+    if (direction === 0)
+      this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() - 1);
+    else
+      this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() + 1);
+    this.updateDailyExpenses();
+  }
+
+  orgValueChange(value: any) {
+    this.dayForDailyExpenses = new Date(value);
+   
+    
+    console.log(value);
+    console.log(new Date(value));
+    
+    this.updateDailyExpenses();
+  }
+
+
+  updateDailyExpenses() {
+    this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
+      this.currentSelectedDate.patchValue(this.dayForDailyExpenses.toDateString());
+      this.dailyExpenses = expenses;
     })
   }
 }

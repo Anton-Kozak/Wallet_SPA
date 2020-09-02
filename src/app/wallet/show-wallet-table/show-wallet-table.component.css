@@ -2,6 +2,33 @@
     max-height: 270px;
 }
 
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.date-picker {
+    visibility: hidden;
+}
+
+.date {
+    margin-left: 150px;
+}
+
+.calendar {
+    width: 10%;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    visibility: hidden;
+}
+
+.header i {
+    font-size: 30px;
+}
+
 @media (min-width: 992px) {
     .add-expense {
         font-size: .9rem;
