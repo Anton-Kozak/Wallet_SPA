@@ -65,9 +65,9 @@ export class LineChartComponent implements OnInit {
     },
   };
   public lineChartColors: Color[] = [
-    { // grey
+    {
       backgroundColor: '#aaf0d1',
-      borderColor: '#1e593f',
+      borderColor: '#82cfac',
       pointBackgroundColor: 'transparent',
       pointBorderColor: 'transparent',
       pointHoverBackgroundColor: 'transparent',
