@@ -51,6 +51,10 @@ body {
     visibility: hidden !important;
 }
 
+.mat-form-field-infix {
+    width: 0px !important;
+}
+
 .mat-drawer-side {
     border-right: solid 1px #c7d6ff !important;
 }

@@ -110,18 +110,18 @@
                 <div class="card-body">
                     <div class="header">
                         <div class="previous-day">
-                            <i (click)="changeDay(0)" class="fas fa-chevron-left"></i>
+                            <i style="font-size: 60px;" (click)="changeDay(0)" class="fas fa-chevron-left"></i>
                         </div>
                         <div class="date">
-                            {{currentSelectedDate.value}}
+                            <div class="date-value">{{currentSelectedDate.value}}</div>
                             <mat-form-field class="calendar">
                                 <input #ref (dateChange)="orgValueChange(ref.value)" [formControl]="currentSelectedDate" class="date-picker" matInput [matDatepicker]="picker3" [value]="currentSelectedDate.value">
-                                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                                <mat-datepicker #picker3></mat-datepicker>
+                                <mat-datepicker-toggle class="dp" matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker class="dp" #picker3></mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="next-day">
-                            <i (click)="changeDay(1)" class="fas fa-chevron-right"></i>
+                            <i style="font-size: 60px;" (click)="changeDay(1)" class="fas fa-chevron-right"></i>
                         </div>
                     </div>
                     <div class="my-table-responsive">

@@ -9,16 +9,53 @@
     background-color: white;
 }
 
+.previous-day,
+.next-day {
+    width: 20%;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.next-day {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.previous-day {
+    display: flex;
+    align-items: center;
+}
+
+.previous-day:hover {
+    background: linear-gradient(to right, rgb(228, 228, 228), #fff);
+    color: rgb(72, 101, 124);
+}
+
+.next-day:hover {
+    background: linear-gradient(to left, rgb(228, 228, 228), #fff);
+    color: rgb(72, 101, 124);
+}
+
+.date {
+    display: flex;
+    align-items: center;
+}
+
+.date-value {
+    font-size: 25px;
+}
+
 .date-picker {
     visibility: hidden;
 }
 
-.date {
-    margin-left: 150px;
-}
-
-.calendar {
-    width: 10%;
+.dp {
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    height: 30px;
+    width: 30x;
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-underline {
@@ -32,5 +69,11 @@
 @media (min-width: 992px) {
     .add-expense {
         font-size: .9rem;
+    }
+}
+
+@media (max-width: 570px) {
+    .date-value {
+        font-size: 20px;
     }
 }
