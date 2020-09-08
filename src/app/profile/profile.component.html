@@ -18,10 +18,12 @@
                 </div>
                 <div class="card-body">
                     <div class="author">
-                        <!-- <a [routerLink]="USER AND HIS STATISTICS"> -->
-                        <img (click)="onImageChange()" class="avatar border-gray" src="{{ photo === null ? imagePath : photo.url}}" alt="...">
-                        <h5 class="title">User name user</h5>
-                        <!-- </a> -->
+                        <div>
+                            <img class="avatar border-gray" src="{{ photo === null ? imagePath : photo.url}}" alt="...">
+                        </div>
+                        <i (click)="onImageChange()" class="fas fa-camera-retro change-image mb-2" style="font-size: 25px;"></i>
+                        <h5 class="title text-capitalize">{{profileData.editUser.firstName}} {{profileData.editUser.lastName}}</h5>
+                        <p class="description text-capitalize">{{profileData.editUser.userName}}</p>
                     </div>
                 </div>
                 <div class="card-footer" *ngIf="profileData">

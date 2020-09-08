@@ -51,13 +51,13 @@ export class WalletService {
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/addCategories', categories);
   }
 
-  getProfileData(){
+  getProfileData() {
     console.log('Profile init');
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/profile');
   }
 
-  updateUserProfile(editUser: UserForProfileEdit){
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/updateProfile', editUser);
+  updateUserProfile(editUser: UserForProfileEdit) {
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/updateProfile', editUser, { responseType: 'text' });
   }
 
 }

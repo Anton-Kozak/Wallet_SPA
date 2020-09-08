@@ -27,6 +27,14 @@ img {
     position: relative;
 }
 
+.card-user .change-image {
+    color: #3b863b;
+}
+
+.card-user .change-image:hover {
+    color: #003b00;
+}
+
 .invalid-feedback {
     display: inline;
 }

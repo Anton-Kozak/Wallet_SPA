@@ -63,20 +63,38 @@ export class ProfileComponent implements OnInit {
 
   editProfile() {
     if (this.editProfileForm.valid) {
-      this.userForEdit = {
-        address: this.editProfileForm.value['address'],
-        company: this.editProfileForm.value['company'],
-        firstName: this.editProfileForm.value['firstName'],
-        lastName: this.editProfileForm.value['lastName'],
-        userName: this.editProfileForm.value['username'],
-        email: this.editProfileForm.value['email'],
-        city: this.editProfileForm.value['city'],
-        country: this.editProfileForm.value['country'],
-        phoneNumber: this.editProfileForm.value['phoneNumber'],
+      if (this.editProfileForm.value['address'] !== this.profileData.editUser.address
+        || this.editProfileForm.value['company'] !== this.profileData.editUser.company
+        || this.editProfileForm.value['firstName'] !== this.profileData.editUser.firstName
+        || this.editProfileForm.value['firstName'] !== this.profileData.editUser.firstName
+        || this.editProfileForm.value['lastName'] !== this.profileData.editUser.lastName
+        || this.editProfileForm.value['username'] !== this.profileData.editUser.userName
+        || this.editProfileForm.value['email'] !== this.profileData.editUser.email
+        || this.editProfileForm.value['city'] !== this.profileData.editUser.city
+        || this.editProfileForm.value['country'] !== this.profileData.editUser.country
+        || this.editProfileForm.value['phoneNumber'] !== this.profileData.editUser.phoneNumber) {
+        this.userForEdit = {
+          address: this.editProfileForm.value['address'],
+          company: this.editProfileForm.value['company'],
+          firstName: this.editProfileForm.value['firstName'],
+          lastName: this.editProfileForm.value['lastName'],
+          userName: this.editProfileForm.value['username'],
+          email: this.editProfileForm.value['email'],
+          city: this.editProfileForm.value['city'],
+          country: this.editProfileForm.value['country'],
+          phoneNumber: this.editProfileForm.value['phoneNumber'],
+        }
+        this.walletService.updateUserProfile(this.userForEdit).subscribe((response: string) => {
+          this.alertify.success(response);
+          this.profileData.editUser.userName = this.editProfileForm.value['username'];
+          this.profileData.editUser.firstName = this.editProfileForm.value['firstName'];
+          this.profileData.editUser.lastName = this.editProfileForm.value['lastName'];
+        }, error => {
+          this.alertify.error(error.statusText);
+        });
+      } else {
+        this.alertify.warning('You have not done any changes!');
       }
-      this.walletService.updateUserProfile(this.userForEdit).subscribe((response: string) => {
-        this.alertify.success(response);
-      });
     }
   }
 
