@@ -1,0 +1,211 @@
+<div *ngIf="isLoading" class="loader-wrapper">
+    <div class="loader">
+        <div class="face">
+            <div class="circle"></div>
+        </div>
+        <div class="face">
+            <div class="circle"></div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!isLoading" class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-user">
+                <div class="image">
+                    <!-- <img src="../../../assets/images/profileheader.jpg" alt="..."> -->
+                    <img src="https://ak.picdn.net/shutterstock/videos/1023421687/thumb/1.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <div class="author">
+                        <!-- <a [routerLink]="USER AND HIS STATISTICS"> -->
+                        <img (click)="onImageChange()" class="avatar border-gray" src="{{ photo === null ? imagePath : photo.url}}" alt="...">
+                        <h5 class="title">User name user</h5>
+                        <!-- </a> -->
+                    </div>
+                </div>
+                <div class="card-footer" *ngIf="profileData">
+                    <hr>
+                    <div class="button-container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-6 ml-auto">
+                                <h5 *ngIf="profileData">{{profileData.dateJoined | date: 'medium'}}<br><small>Date Joined</small></h5>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                                <h5 *ngIf="profileData">${{profileData.moneySpent}}<br><small>Total Spent</small></h5>
+                            </div>
+                            <div class="col-lg-3 mr-auto">
+                                <h5>Role<br><small>Admin</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Team Members</h4>
+                </div>
+                <div class="card-body" *ngIf="profileData">
+                    <ul *ngFor="let teamUser of profileData.walletUsers" class="list-unstyled team-members">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-2 col-2">
+                                    <div class="avatar">
+                                        <img src="{{ teamUser.photoUrl === null ? imagePath : teamUser.photoUrl}}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-7">
+                                    {{teamUser.username}}
+                                    <br />
+                                </div>
+                                <div class="col-md-3 col-3 text-right">
+                                    <btn class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></btn>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card card-user">
+                <div class="card-header">
+                    <h5 class="card-title">Edit Profile</h5>
+                </div>
+                <div *ngIf="editProfileForm" class="card-body">
+                    <form [formGroup]="editProfileForm" (ngSubmit)="editProfile()">
+                        <div class="row">
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <div>
+                                        <label [ngClass]="{'text-danger': editProfileForm.get('company').errors && editProfileForm.get('company').touched,
+                                    'text-success': !editProfileForm.get('company').errors}">Company</label>
+                                        <input [ngClass]="{'text-danger': editProfileForm.get('company').errors && editProfileForm.get('company').touched}" type="text" class="form-control" [value]="profileData.editUser.company" formControlName="company">
+                                    </div>
+                                    <div *ngIf="editProfileForm.get('company').hasError('minlength') && editProfileForm.get('company').touched" class="invalid-feedback">
+                                        Company name should be at least 2 characters
+                                    </div>
+                                    <div *ngIf="editProfileForm.get('company').hasError('pattern') && editProfileForm.get('company').touched" class="invalid-feedback">
+                                        Only digits and letters
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 px-1">
+                                <div class="form-group">
+                                    <label [ngClass]="{'text-danger': editProfileForm.get('username').errors && editProfileForm.get('username').touched,
+                                    'text-success': !editProfileForm.get('username').errors}">Username</label>
+                                    <input [ngClass]="{'text-danger': editProfileForm.get('username').errors && editProfileForm.get('username').touched}" type="text" class="form-control text-capitalize" formControlName="username" [value]="profileData.editUser.userName">
+                                    <div *ngIf="editProfileForm.get('username').hasError('required') && editProfileForm.get('username').touched" class="invalid-feedback">
+                                        User name is required
+                                    </div>
+                                    <div *ngIf="editProfileForm.get('username').hasError('pattern') && editProfileForm.get('username').touched" class="invalid-feedback">
+                                        Only letters
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group ">
+                                    <label [ngClass]="{'text-danger': editProfileForm.get('email').errors && editProfileForm.get('email').touched,
+                                    'text-success': !editProfileForm.get('email').errors}">Email address</label>
+                                    <input [ngClass]="{'text-danger': editProfileForm.get('email').errors && editProfileForm.get('email').touched}" type="email" class="form-control" formControlName="email" [value]="profileData.editUser.email">
+                                    <div *ngIf="editProfileForm.get('email').hasError('required') && editProfileForm.get('email').touched" class="invalid-feedback">
+                                        Email is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label [ngClass]="{'text-danger': editProfileForm.get('firstName').errors && editProfileForm.get('firstName').touched,
+                                    'text-success': !editProfileForm.get('firstName').errors}">First Name</label>
+                                    <input [ngClass]="{'text-danger': editProfileForm.get('firstName').errors && editProfileForm.get('firstName').touched}" type="text" class="form-control" formControlName="firstName" [value]="profileData.editUser.firstName">
+                                    <div *ngIf="editProfileForm.get('firstName').hasError('minlength') && editProfileForm.get('firstName').touched" class="invalid-feedback">
+                                        Minimum 2 characters
+                                    </div>
+                                    <div *ngIf="editProfileForm.get('firstName').hasError('pattern') && editProfileForm.get('firstName').touched" class="invalid-feedback">
+                                        Only letters
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pl-1">
+                                <div class="form-group">
+                                    <label [ngClass]="{'text-danger': editProfileForm.get('lastName').errors && editProfileForm.get('lastName').touched,
+                                    'text-success': !editProfileForm.get('lastName').errors}">Last Name</label>
+                                    <input [ngClass]="{'text-danger': editProfileForm.get('lastName').errors && editProfileForm.get('lastName').touched}" type="text" class="form-control" formControlName="lastName" [value]="profileData.editUser.lastName">
+                                    <div *ngIf="editProfileForm.get('lastName').hasError('minlength') && editProfileForm.get('lastName').touched" class="invalid-feedback">
+                                        Minimum 2 characters
+                                    </div>
+                                    <div *ngIf="editProfileForm.get('lastName').hasError('pattern') && editProfileForm.get('lastName').touched" class="invalid-feedback">
+                                        Only letters
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label [ngClass]="{'text-danger': editProfileForm.get('address').errors && editProfileForm.get('address').touched,
+                                    'text-success': !editProfileForm.get('address').errors}">Address</label>
+                                    <input [ngClass]="{'text-danger': editProfileForm.get('address').errors && editProfileForm.get('address').touched}" type="text" class="form-control" formControlName="address" [value]="profileData.editUser.address">
+                                    <div *ngIf="editProfileForm.get('address').hasError('minlength') && editProfileForm.get('address').touched" class="invalid-feedback">
+                                        Minimum 2 characters
+                                    </div>
+                                    <div *ngIf="editProfileForm.get('address').hasError('pattern') && editProfileForm.get('address').touched" class="invalid-feedback">
+                                        Only digits and letters
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label [ngClass]="{'text-danger': editProfileForm.get('phoneNumber').errors && editProfileForm.get('phoneNumber').touched,
+                                    'text-success': !editProfileForm.get('phoneNumber').errors}">Phone number</label>
+                                    <input [ngClass]="{'text-danger': editProfileForm.get('phoneNumber').errors && editProfileForm.get('phoneNumber').touched}" type="text" class="form-control" formControlName="phoneNumber" [value]="profileData.editUser.phoneNumber">
+                                    <div *ngIf="editProfileForm.get('phoneNumber').hasError('minlength') && editProfileForm.get('phoneNumber').touched" class="invalid-feedback">
+                                        Minimum 4 digits<br>
+                                    </div>
+                                    <div *ngIf="editProfileForm.get('phoneNumber').hasError('pattern') && editProfileForm.get('phoneNumber').touched" class="invalid-feedback">
+                                        Only digits
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label [ngClass]="{'text-danger': editProfileForm.get('city').errors && editProfileForm.get('city').touched,
+                                    'text-success': !editProfileForm.get('city').errors}">City</label>
+                                    <input [ngClass]="{'text-danger': editProfileForm.get('city').errors && editProfileForm.get('city').touched}" type="text" class="form-control" formControlName="city" [value]="profileData.editUser.city">
+                                    <div *ngIf="editProfileForm.get('city').hasError('minlength') && editProfileForm.get('city').touched" class="invalid-feedback">
+                                        Minimum 2 characters
+                                    </div>
+                                    <div *ngIf="editProfileForm.get('city').hasError('pattern') && editProfileForm.get('city').touched" class="invalid-feedback">
+                                        Only digits and letters
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 px-1">
+                                <div class="form-group">
+                                    <label [ngClass]="{'text-danger': editProfileForm.get('country').errors && editProfileForm.get('country').touched,
+                                    'text-success': !editProfileForm.get('country').errors}">Country</label>
+                                    <input [ngClass]="{'text-danger': editProfileForm.get('country').errors && editProfileForm.get('country').touched}" type="text" class="form-control" formControlName="country" [value]="profileData.editUser.country">
+                                    <div *ngIf="editProfileForm.get('country').hasError('minlength') && editProfileForm.get('country').touched" class="invalid-feedback">
+                                        Minimum 2 characters
+                                    </div>
+                                    <div *ngIf="editProfileForm.get('country').hasError('pattern') && editProfileForm.get('country').touched" class="invalid-feedback">
+                                        Only digits and letters
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button class="btn" [disabled]="editProfileForm.invalid" [ngClass]="{'btn-success text-white': editProfileForm.valid, 'btn-danger text-white disabled': editProfileForm.invalid}">Edit Profile</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

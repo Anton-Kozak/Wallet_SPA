@@ -1,0 +1,24 @@
+.outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fileup {
+    display: none;
+}
+
+.avatar {
+    width: 124px;
+    height: 124px;
+    border: 1px solid #000279;
+    position: relative;
+}
+
+.avatar-success {
+    border: 1px solid #00ff00;
+}
+
+.image img {
+    border-radius: 50%;
+}

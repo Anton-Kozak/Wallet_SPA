@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { CategoryData } from '../_model/categoryData';
 import { BehaviorSubject } from 'rxjs';
+import { UserForProfileEdit } from '../_model/user-for-profile-edit';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,15 @@ export class WalletService {
 
   addCategoriesToWallet(categories: number[]) {
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/addCategories', categories);
+  }
+
+  getProfileData(){
+    console.log('Profile init');
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/profile');
+  }
+
+  updateUserProfile(editUser: UserForProfileEdit){
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/updateProfile', editUser);
   }
 
 }

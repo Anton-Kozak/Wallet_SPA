@@ -1,0 +1,33 @@
+<!-- <div class="card">
+    <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+    <button (click)="fileInput.click()">Select File</button>
+    <button (click)="uploadPhoto()">Upload!</button>
+</div> -->
+
+<div class="outer">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="white">Upload an image that you want to use in your profile.</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <div>
+                <button (click)="fileInput.click()" class="btn btn-primary btn-block">Browse</button>
+                <input type="file" class="fileup" (change)="onFileChanged($event)" #fileInput>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="url" class="row image mt-5 mb-5">
+        <img class="avatar" [ngClass]="{'avatar-success': isUploaded}" [src]="url" alt="">
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <input [disabled]="photo === null" class="btn btn-success" type="submit" [value]="isUploaded === true ?'Submited!' :'Submit'" (click)="uploadPhoto()">
+        </div>
+    </div>
+    <div class="row mt-5">
+        <button class="btn btn-warning " (click)="back()">Back</button>
+    </div>
+
+</div>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { JwtModule } from '@auth0/angular-jwt';
@@ -16,6 +16,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProfileModule } from './profile/profile.module';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
@@ -43,9 +47,6 @@ import { EditExpenseModalComponent } from './expenses/edit-expense-modal/edit-ex
 import { HasRoleDirective } from './_directives/hasRole.directive';
 import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
 import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
-import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
-import { PhotoComponent } from './photo/photo.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ShowPreviousExpensesComponent } from './wallet/show-previous-expenses/show-previous-expenses.component';
 import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.component';
 import { SignupSigninComponent } from './registration/signup-signin/signup-signin.component';
@@ -83,7 +84,6 @@ export function tokenGetter() {
     HasRoleDirective,
     EditWalletComponent,
     WalletAdminComponent,
-    PhotoComponent,
     ShowPreviousExpensesComponent,
     WalletSectionComponent,
     SignupSigninComponent,
@@ -125,11 +125,14 @@ export function tokenGetter() {
     BrowserAnimationsModule,
 
     FontAwesomeModule,
+
+    ProfileModule,
   ],
   entryComponents: [
     CreateExpenseComponent,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

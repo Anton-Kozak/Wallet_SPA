@@ -11,7 +11,6 @@ import { CategoryStatisticsComponent } from './wallet/category-statistics/catego
 import { UserStatisticsComponent } from './wallet/user-statistics/user-statistics.component';
 import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
 import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
-import { PhotoComponent } from './photo/photo.component';
 import { ShowWalletTableComponent } from './wallet/show-wallet-table/show-wallet-table.component';
 import { ShowPreviousExpensesComponent } from './wallet/show-previous-expenses/show-previous-expenses.component';
 import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.component';
@@ -30,6 +29,7 @@ export const appRoutes: Routes = [
   {
     path: 'wallet', component: WalletSectionComponent, canActivate: [NavigationGuard], children: [
       { path: 'home', component: HomeComponent },
+      { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
       { path: 'requestAccess', component: RequestAccessComponent },
       { path: 'checkRequests', component: CheckRequestsComponent },
       { path: 'checkInvites', component: CheckInvitesComponent },
@@ -43,13 +43,9 @@ export const appRoutes: Routes = [
       { path: 'userStatistics/:id', component: UserStatisticsComponent },
       { path: 'createNewWallet', component: CreateWalletComponent },
       { path: 'editWallet', component: EditWalletComponent },
-      { path: 'walletAdmin', component: WalletAdminComponent, canActivate:[AdminGuard] },
+      { path: 'walletAdmin', component: WalletAdminComponent, canActivate: [AdminGuard] },
     ]
   },
 
   { path: '**', component: NotFoundComponent },
-
-  { path: 'photo', component: PhotoComponent },
-
-
 ]
