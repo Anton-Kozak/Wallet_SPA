@@ -33,6 +33,13 @@ export class BarCategoryComparisonComponent implements OnInit {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
+    legend: {
+      display: true,
+      labels: {
+        fontColor: '#008855',
+        fontSize: 14
+      },
+    },
     plugins: {
       datalabels: {
         anchor: 'end',

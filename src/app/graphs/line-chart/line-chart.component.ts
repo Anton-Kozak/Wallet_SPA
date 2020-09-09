@@ -46,6 +46,13 @@ export class LineChartComponent implements OnInit {
         }
       ]
     },
+    legend: {
+      display: true,
+      labels: {
+        fontColor: '#008855',
+        fontSize: 14
+      },
+    },
     annotation: {
       annotations: [
         {

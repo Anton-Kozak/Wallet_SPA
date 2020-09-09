@@ -1,56 +1,55 @@
 <nav class="navbar navbar-expand-lg navbar-absolute fixed-top m-0">
-  <div class="nav-container d-flex w-100">
-    <div class="expense-image">
-      <div class="d-flex justify-content-center align-items-center">
-        <div>
-          <img class="img-responsive border border-dark rounded-circle" src="../../../assets/images/x-coin.jpg"
-            style="height: 45px; width: 45px;">
+    <div class="nav-container d-flex w-100">
+        <div class="expense-image">
+            <div class="d-flex justify-content-center align-items-center">
+                <div>
+                    <img class="img-responsive border border-dark rounded-circle" src="../../../assets/images/x-coin.jpg" style="height: 45px; width: 45px;">
+                </div>
+                <div>
+                    <p class="mb-0 ml-2 mat-h5 brand-name">
+                        XPense
+                    </p>
+                </div>
+            </div>
         </div>
-        <div>
-          <p class="mb-0 ml-2 mat-h5 brand-name">
-            XPense
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="d-flex right-nav">
-      <div class="col-1 justify-content-center align-self-center">
-        <button type="button" class="btn btn-outline-secondary toggleButton" (click)="onToggle()">
+        <div class="d-flex right-nav">
+            <div class="col-1 justify-content-center align-self-center">
+                <button type="button" class="btn btn-outline-secondary toggleButton" (click)="onToggle()">
           <i class="nc-icon" [ngClass]="toggleState == false ? 'fa fa-arrow-left' : 'fa fa-arrow-right'"></i>
         </button>
-      </div>
-      <div class="d-flex ml-auto align-items-center justify-content-end col-3 col-sm-5">
-        <div class="dropdown">
-          <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </div>
+            <div class="d-flex ml-auto align-items-center justify-content-end col-3 col-sm-5">
+                <div class="dropdown">
+                    <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="nc-icon nc-settings-gear-65"></i>
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Edit profile</a>
-            <a *appHasRole="['Admin']" class="dropdown-item" style="cursor: pointer;"
-              (click)="onWalletEditDialog()">Edit
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Edit profile</a>
+                        <a *appHasRole="['Admin']" class="dropdown-item" style="cursor: pointer;" (click)="onWalletEditDialog()">Edit
               wallet</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <button type="button" (click)="test()" class="btn button-transparent dropdown-toggle" id="notifications"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown-item">
+                            <label for="theme">Dark Theme</label>
+                            <input type="checkbox" (click)="toggleTheme()" id="theme" name="theme" [formControl]="theme">
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button type="button" (click)="test()" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}}
               matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
           </button>
-          <div class="dropdown-menu" aria-labelledby="notifications">
-            <p *ngFor="let notification of notifications" class="dropdown-item">{{notification.message}}</p>
-          </div>
-        </div>
-       
-          <p class="text-center mr-5 mb-0">Hello {{currentUserName}}</p>
-        
-        <div class="d-flex align-items-center">
+                    <div class="dropdown-menu" aria-labelledby="notifications">
+                        <p *ngFor="let notification of notifications" class="dropdown-item">{{notification.message}}</p>
+                    </div>
+                </div>
 
-          <button (click)="logout()" class="btn btn-outline-secondary mr-5">Logout</button>
+                <p class="text-center mr-5 mb-0">Hello {{currentUserName}}</p>
+
+                <div class="d-flex align-items-center">
+
+                    <button (click)="logout()" class="btn btn-outline-secondary mr-5">Logout</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </nav>

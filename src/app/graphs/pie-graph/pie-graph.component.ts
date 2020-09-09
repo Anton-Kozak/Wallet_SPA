@@ -19,6 +19,10 @@ export class PieGraphComponent implements OnInit {
     aspectRatio: 1.2,
     legend: {
       position: 'top',
+      labels:{
+        fontColor: '#008855',
+        fontSize: 14
+      }
     },
     plugins: {
       datalabels: {

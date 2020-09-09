@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ExpenseList } from 'src/app/_model/expense-list';
@@ -15,12 +15,19 @@ export class SingleBarChartComponent implements OnInit {
   @Input() barExpensesList: ExpenseList;
   @Input() categories: CategoryData[];
   colors: MyColors = new MyColors();
-
+  labelColor = "black";
   public barChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     aspectRatio: 1.2,
     scales: { xAxes: [{}], yAxes: [{}] },
+    legend: {
+      display: true,
+      labels: {
+        fontColor: '#008855',
+        fontSize: 14
+      },
+    },
     plugins: {
       datalabels: {
         anchor: 'end',
@@ -31,9 +38,8 @@ export class SingleBarChartComponent implements OnInit {
   public barChartLabels: Label[] = ['Last Expenses'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
-
-  public barChartData: ChartDataSets[] = [
-  ];
+  public barChartData: ChartDataSets[] = [];
+  
 
   constructor() { }
   ngOnInit() {

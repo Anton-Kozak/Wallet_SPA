@@ -19,7 +19,23 @@ export class BarComparisonComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{}] },
+    scales: {
+      xAxes: [{
+        // ticks: { fontColor: '#008855' },
+        // gridLines: { color: 'white' }
+      }],
+      yAxes: [{
+        // ticks: { fontColor: 'black' },
+        // gridLines: { color: '#d4d4d4' }
+      }]
+    },
+    legend: {
+      display: true,
+      labels: {
+        fontColor: '#008855',
+        fontSize: 14
+      },
+    },
     plugins: {
       datalabels: {
         anchor: 'end',
@@ -35,8 +51,8 @@ export class BarComparisonComponent implements OnInit {
 
   constructor() {
     this.barChartData = [
-      { data: [], label: 'Last Month', backgroundColor:'#aaf0d1', borderColor: '#699481' },
-      { data: [], label: 'Current Month', backgroundColor:'#f0b4aa', borderColor:'#876660' },
+      { data: [], label: 'Last Month', backgroundColor: '#aaf0d1', borderColor: '#699481' },
+      { data: [], label: 'Current Month', backgroundColor: '#f0b4aa', borderColor: '#876660' },
     ];
 
   }

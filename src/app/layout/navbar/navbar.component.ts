@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from '../../_services/alertify.service';
@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.component';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { Notification } from 'src/app/_model/notification';
+import { MyThemeService } from 'src/app/_services/theme.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -18,12 +20,14 @@ export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService,
     private router: Router,
     public dialog: MatDialog,
-    private noteService: NotificationService,) { }
+    private noteService: NotificationService,
+    private themeService: MyThemeService) { }
   signInForm: FormGroup;
   currentUserName?: string;
   isLoggedIn = false;
   notificationCount: number = 0;
   notifications: Notification[] = [];
+  theme = new FormControl(false);
 
   @Output() toggleDrawer = new EventEmitter();
   toggleState = false;
@@ -38,6 +42,14 @@ export class NavbarComponent implements OnInit {
         this.notificationCount = notifications.length;
       }
     })
+
+    this.theme.valueChanges.subscribe(value => {
+      if (value) {
+        this.themeService.toggleDark();
+      } else {
+        this.themeService.toggleLight();
+      }
+    });
 
   }
 
@@ -63,6 +75,10 @@ export class NavbarComponent implements OnInit {
 
   test() {
     this.noteService.deleteNotifications().subscribe();
+  }
+
+  toggleTheme(){
+
   }
 
 }
