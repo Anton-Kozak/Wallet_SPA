@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 export const darkTheme = {
   'content-background': '#424242',
@@ -17,6 +18,7 @@ export const darkTheme = {
   'card-table-header': '#ffc400',
   'card-table-text': '#e4d8c9',
   'text-color': '#ffb204',
+  'table-expense-header': '.65',
 };
 
 export const lightTheme = {
@@ -36,6 +38,7 @@ export const lightTheme = {
   'card-table-header': '#0084ff',
   'card-table-text': 'black',
   'text-color': 'black',
+  'table-expense-header': '1',
 };
 
 @Injectable({
@@ -43,19 +46,31 @@ export const lightTheme = {
 })
 export class MyThemeService {
 
+  currentTheme: string;
+
+  checkTheme() {
+    if (localStorage.getItem('theme') === 'dark') {
+      this.setTheme(darkTheme);
+      this.currentTheme = 'dark';
+    }
+    else {
+      this.setTheme(lightTheme);
+      this.currentTheme = 'light';
+    }
+  }
 
   constructor() {
-
+    this.checkTheme();
   }
   toggleDark() {
     this.setTheme(darkTheme);
-
+    localStorage.setItem('theme', 'dark');
   }
 
 
   toggleLight() {
     this.setTheme(lightTheme);
-
+    localStorage.setItem('theme', 'light');
   }
 
   private setTheme(theme: {}) {

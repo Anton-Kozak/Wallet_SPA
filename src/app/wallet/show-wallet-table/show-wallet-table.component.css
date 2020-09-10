@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
+    background-color: var(--card-background);
 }
 
 .previous-day,
@@ -28,13 +28,13 @@
 }
 
 .previous-day:hover {
-    background: linear-gradient(to right, rgb(228, 228, 228), #fff);
-    color: rgb(72, 101, 124);
+    background: linear-gradient(to right, var(--text-color) 25%, var(--card-background) 100%);
+    color: var(--card-background);
 }
 
 .next-day:hover {
-    background: linear-gradient(to left, rgb(228, 228, 228), #fff);
-    color: rgb(72, 101, 124);
+    background: linear-gradient(to left, var(--text-color), var(--card-background));
+    color: var(--card-background);
 }
 
 .date {
@@ -64,6 +64,10 @@
 
 .header i {
     font-size: 30px;
+}
+
+.image div {
+    opacity: var(--table-expense-header);
 }
 
 @media (min-width: 992px) {

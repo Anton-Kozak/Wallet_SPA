@@ -9,20 +9,20 @@
             <div class="d-flex ml-auto align-items-center justify-content-end col-3 col-sm-5">
                 <div class="dropdown">
                     <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="nc-icon nc-settings-gear-65"></i>
+            <i style="font-size: 22px;" class="nc-icon nc-settings-gear-65"></i>
           </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Edit profile</a>
                         <a *appHasRole="['Admin']" class="dropdown-item" style="cursor: pointer;" (click)="onWalletEditDialog()">Edit wallet</a>
                         <div class="dropdown-item">
                             <label for="theme">Dark Theme</label>
-                            <input type="checkbox" (click)="toggleTheme()" id="theme" name="theme" [formControl]="theme">
+                            <input type="checkbox" [(ngModel)]="isDark" (click)="toggleTheme()" id="theme" name="theme" [formControl]="theme">
                         </div>
                     </div>
                 </div>
                 <div class="dropdown">
                     <button type="button" (click)="test()" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}}
+            <i style="font-size: 22px;" [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}}
               matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
           </button>
                     <div class="dropdown-menu" aria-labelledby="notifications">
@@ -30,11 +30,11 @@
                     </div>
                 </div>
 
-                <p class="text-center mr-5 mb-0">Hello {{currentUserName}}</p>
+                <p style="font-size: 22px;" class="text-center mr-5 mb-0 user">Hello {{currentUserName}}</p>
 
                 <div class="d-flex align-items-center">
 
-                    <button (click)="logout()" class="btn btn-outline-secondary mr-5">Logout</button>
+                    <button (click)="logout()" class="btn mr-5 logout">Logout</button>
                 </div>
             </div>
         </div>

@@ -28,12 +28,16 @@ export class NavbarComponent implements OnInit {
   notificationCount: number = 0;
   notifications: Notification[] = [];
   theme = new FormControl(false);
+  isDark: boolean;
 
   @Output() toggleDrawer = new EventEmitter();
   toggleState = false;
 
 
   ngOnInit(): void {
+    this.isDark = this.themeService.currentTheme === 'dark' ? true : false;
+    console.log(this.isDark, this.themeService.currentTheme);
+    
     this.currentUserName = this.authService.getToken().unique_name;
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       if (notifications != null) {
@@ -77,7 +81,7 @@ export class NavbarComponent implements OnInit {
     this.noteService.deleteNotifications().subscribe();
   }
 
-  toggleTheme(){
+  toggleTheme() {
 
   }
 

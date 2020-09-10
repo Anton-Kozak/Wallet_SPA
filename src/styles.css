@@ -23,6 +23,8 @@
     --card-table-text: black;
     --card-footer-text: #66615B;
     /* ---------------------- */
+    --table-expense-header: 1;
+    /* ---------------------- */
     --text-color: black;
 }
 
@@ -52,6 +54,22 @@ body {
 .mat-h1 {
     font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
     font-size: 1.57em !important;
+}
+
+.mat-button,
+.mat-icon-button,
+.mat-stroked-button {
+    color: var(--text-color)!important;
+}
+
+.mat-calendar {
+    background-color: var(--card-background);
+}
+
+.mat-calendar-body-cell-content,
+.mat-calendar-body-label,
+.mat-calendar-table-header {
+    color: var(--text-color) !important;
 }
 
 .mat-typography {
