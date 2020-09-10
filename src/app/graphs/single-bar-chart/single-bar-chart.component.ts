@@ -24,7 +24,8 @@ export class SingleBarChartComponent implements OnInit {
     legend: {
       display: true,
       labels: {
-        fontColor: '#008855',
+        fontColor: '#ffb204',
+        fontStyle: 'bold',
         fontSize: 14
       },
     },

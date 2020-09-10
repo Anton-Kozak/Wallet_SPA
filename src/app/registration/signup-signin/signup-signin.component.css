@@ -1,6 +1,6 @@
 .invalid-feedback {
     font-weight: bolder;
-    text-shadow:  -1px 1px 7px rgba(0,0,0,0.95);
+    text-shadow: -1px 1px 7px rgba(0, 0, 0, 0.95);
 }
 
 .navbar {
@@ -32,14 +32,15 @@
 }
 
 .regform {
-    background-color: #264653;
+    background-color: #264653 !important;
 }
 
 .card-container {
     perspective: 700px;
 }
 
-.card-flip, .card-container {
+.card-flip,
+.card-container {
     transform-style: preserve-3d;
     transition: all 0.7s ease;
 }
@@ -89,7 +90,8 @@
 }
 
 @media (max-width: 659px) {
-    #home-section, .dark-overlay {
+    #home-section,
+    .dark-overlay {
         height: 1000px;
     }
 }

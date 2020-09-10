@@ -1,6 +1,18 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="sidebar-wrapper">
         <ul [ngClass]="toggle === true ? 'toggled':''" class="nav">
+            <li class="sidebar-header-item">
+                <div class="row sidebar-header">
+                    <div class="image">
+                        <img class="img-responsive border border-dark rounded-circle" src="../../../assets/images/x-coin.jpg" style="height: 45px; width: 45px;">
+                    </div>
+                    <div class="align-self-center">
+                        <p class="mb-0 ml-2 mat-h5 brand-name">
+                            XPense
+                        </p>
+                    </div>
+                </div>
+            </li>
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/home']">
                     <i class="nc-icon nc-shop"></i>

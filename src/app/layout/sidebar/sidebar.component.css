@@ -18,6 +18,14 @@
     margin-left: 5px !important;
 }
 
+.nav.toggled .sidebar-header {
+    justify-content: flex-start;
+}
+
+.nav.toggled .sidebar-header .image {
+    margin-left: 23px;
+}
+
 @media (max-width: 767px) {
     .nav li>a {
         margin-left: 5px !important;
@@ -25,6 +33,12 @@
     .ml-3,
     .mx-3 {
         margin-left: 0 !important;
+    }
+    .sidebar-header {
+        justify-content: flex-start!important;
+    }
+    .sidebar-header .image {
+        margin-left: 23px !important;
     }
 }
 
@@ -39,7 +53,7 @@
 .sidebar,
 .nav {
     width: 260px;
-    margin-top: 20px;
+    margin-top: 0px;
     display: block;
 }
 
@@ -51,6 +65,25 @@ ul {
     padding-inline-start: 40px;
 }
 
+.sidebar-header-item {
+    padding-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    background-color: var(--sidebar-header-item);
+    border-bottom-color: var(--navbar-borders) !important;
+    border-bottom: 1px solid;
+}
+
+.sidebar-header {
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+}
+
+.brand-name {
+    color: var(--text-color);
+}
+
 .sidebar .nav li>a {
     margin: 10px 15px 0;
     display: block;
@@ -59,7 +92,7 @@ ul {
     position: relative;
     text-transform: uppercase;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
     padding: 10px 8px;
     line-height: 30px;
     opacity: .7;

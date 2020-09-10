@@ -2,21 +2,24 @@
 
 @import url("./app/css/icons.css");
 @import url("./app/css/cards.css");
+@import url("./app/css/tables.css");
 :root {
     --content-background: #dee8f1;
     /* ---------------------- */
     --sidebar-background: #e3f2ff;
+    --sidebar-header-item: #bde0ff;
     --sidebar-item: #66615B;
     --sidebar-item-selected: #0084ff;
     /* ---------------------- */
     --navbar-background: #eef7ff;
     --navbar-borders: #c7d6ff;
     --navbar-text: black;
+    --navbar-icons: #0084ff;
     /* ---------------------- */
-    --card-background: white;
+    --card-background: #fffffff5;
     --card-header-text: black;
     --card-description-text: #9A9A9A;
-    --card-table-header: black;
+    --card-table-header: #0084ff;
     --card-table-text: black;
     --card-footer-text: #66615B;
     /* ---------------------- */
@@ -80,21 +83,39 @@ body {
     border-right: solid 1px var(--navbar-borders) !important;
 }
 
+.mat-table,
+.mat-paginator {
+    background-color: var(--card-background) !important;
+}
+
+th.mat-header-cell {
+    color: var(--card-table-header) !important;
+}
+
+td.mat-cell {
+    color: var(--card-table-text) !important;
+}
+
+.mat-paginator-range-label,
+.mat-paginator-range-actions button {
+    color: var(--card-table-header) !important;
+}
+
 
 /* scroll */
 
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #F5F5F5;
-    border-radius: 10px;
+    border-radius: 3px;
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 4px;
     background-color: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    border-radius: 3px;
     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122, 153, 217)), color-stop(0.72, rgb(73, 125, 189)), color-stop(0.86, rgb(28, 58, 148)));
 }

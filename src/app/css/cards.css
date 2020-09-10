@@ -87,6 +87,10 @@
     border-top-right-radius: 12px;
 }
 
+.card-img .card-header .card-title {
+    color: var(--card-table-header);
+}
+
 .card-img .image img {
     border-radius: 12px;
     width: 100%;

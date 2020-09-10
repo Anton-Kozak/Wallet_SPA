@@ -1,0 +1,7 @@
+.table tr {
+    color: var(--card-table-text);
+}
+
+.table thead tr {
+    color: var(--card-table-header);
+}
