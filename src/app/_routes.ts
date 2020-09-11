@@ -20,6 +20,7 @@ import { NavigationGuard } from './_guards/navigation.guard';
 import { MainGuard } from './_guards/main.guard';
 import { WalletCategoriesResolver } from './_resolvers/wallet-categories-resolver';
 import { AdminGuard } from './_guards/admin.guard';
+import { ManualComparisonComponent } from './wallet/manual-comparison/manual-comparison.component';
 
 
 export const appRoutes: Routes = [
@@ -35,6 +36,7 @@ export const appRoutes: Routes = [
       { path: 'checkInvites', component: CheckInvitesComponent },
       { path: 'createInvite', component: CreateInviteComponent },
       { path: 'createExpense', component: CreateExpenseComponent },
+      { path: 'compare', component: ManualComparisonComponent },
       { path: 'walletExpenses', component: ShowWalletTableComponent, canActivate: [NavigationGuard] },
       { path: 'previousExpenses', component: ShowPreviousExpensesComponent },
       { path: 'getWalletStatistics', component: WalletStatisticsComponent },

@@ -1,0 +1,69 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--card-background);
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* width: 50%; */
+    justify-content: center;
+}
+
+.date-outer {
+    display: flex;
+    justify-content: center;
+}
+
+.data-column {
+    justify-content: center;
+}
+
+.date-value {
+    font-size: 25px;
+    margin-right: 0;
+}
+
+.date-picker {
+    visibility: hidden;
+}
+
+.dp {
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    height: 30px;
+    width: 30x;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    visibility: hidden;
+}
+
+.header i {
+    font-size: 30px;
+}
+
+.image div {
+    opacity: var(--table-expense-header);
+}
+
+.mat-header-cell {
+    text-align: center;
+}
+
+.mat-paginator {
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.mat-paginator-outer-container .users {
+    border-radius: none;
+}
+
+.mat-paginator-page-size {
+    display: none;
+}

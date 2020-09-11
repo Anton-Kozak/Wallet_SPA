@@ -54,6 +54,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { DonutChartComponent } from './graphs/donut-chart/donut-chart.component';
 import { DonutChartCategoriesComponent } from './graphs/donut-chart-categories/donut-chart-categories.component';
+import { ManualComparisonComponent } from './wallet/manual-comparison/manual-comparison.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -91,6 +92,7 @@ export function tokenGetter() {
     MainPageComponent,
     DonutChartComponent,
     DonutChartCategoriesComponent,
+    ManualComparisonComponent,
   ],
   imports: [
     BrowserModule,

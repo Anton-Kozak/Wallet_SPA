@@ -32,6 +32,8 @@ export class WalletAdminComponent implements OnInit {
     this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[]) => {
       this.expenses.data = expenses;
       this.expenses.paginator = this.expensePaginator;
+      console.log(this.expenses.paginator);
+      
     })
 
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {

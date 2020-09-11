@@ -54,7 +54,7 @@ export class UserStatisticsComponent implements OnInit {
 
   ngOnInit(): void {
     this.date = new Date(Date.now());
-    this.date.setMonth(this.date.getMonth() - 1);
+    this.date.setMonth(this.date.getMonth());
     console.log('Init month', this.date);
     this.isThisUser = false;
     let userId = this.authService.decodedToken.nameid;
@@ -68,13 +68,13 @@ export class UserStatisticsComponent implements OnInit {
       });
     } else
       this.categories = this.walletService.currentCategories;
-    this.getData();
+    this.getData(this.date);
   }
 
-  private getData() {
-    this.expService.getUserStatistics(this.id, this.monthNumber).subscribe(response => {
+  private getData(date: Date) {
+    this.expService.getUserStatistics(this.id, date.toUTCString()).subscribe(response => {
       console.log(response);
-      this.expService.getUserExpenses(this.id, this.monthNumber).subscribe((expensesRecieved: ExpenseForTable[]) => {
+      this.expService.getUserExpenses(this.id, date.toUTCString()).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses.data = expensesRecieved;
       });
       if (response['amountOfMoneySpent'] != 0) {
@@ -128,7 +128,7 @@ export class UserStatisticsComponent implements OnInit {
 
     this.monthName = this.date.toLocaleString('default', { month: 'long' });
     this.clearData();
-    this.getData();
+    this.getData(this.date);
   }
 
   next() {
@@ -140,7 +140,7 @@ export class UserStatisticsComponent implements OnInit {
       this.date.setMonth(this.date.getMonth() + this.monthNumber);
     this.monthName = this.date.toLocaleString('default', { month: 'long' });
     this.clearData();
-    this.getData();
+    this.getData(this.date);
   }
 
 

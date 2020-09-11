@@ -50,6 +50,7 @@ export class LineChartComponent implements OnInit {
       display: true,
       labels: {
         fontColor: '#008855',
+        fontStyle: 'bold',
         fontSize: 14
       },
     },

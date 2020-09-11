@@ -48,12 +48,12 @@ export class ShowPreviousExpensesComponent implements OnInit {
     } else {
       this.categories = this.walletService.currentCategories;
     }
-    this.getData();
+    this.getData(this.date);
   }
 
 
-  getData() {
-    this.expenseService.getPreviousExpenses(this.monthNumber).subscribe((expenses: ExpensesWithCategories[]) => {
+  getData(date: Date) {
+    this.expenseService.getPreviousExpenses(date.toUTCString()).subscribe((expenses: ExpensesWithCategories[]) => {
       this.isLoading = true;
       // console.log(expenses);
       this.barExpenses = expenses['previousExpensesBars'];
@@ -134,7 +134,7 @@ export class ShowPreviousExpensesComponent implements OnInit {
     
     this.monthName = this.date.toLocaleString('default', { month: 'long' });
     this.clearData();
-    this.getData();
+    this.getData(this.date);
   }
 
   next() {
@@ -145,7 +145,7 @@ export class ShowPreviousExpensesComponent implements OnInit {
      
       this.monthName = this.date.toLocaleString('default', { month: 'long' });
       this.clearData();
-      this.getData();
+      this.getData(this.date);
 
     }
   }

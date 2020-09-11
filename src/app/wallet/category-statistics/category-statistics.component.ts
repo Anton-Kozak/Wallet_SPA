@@ -53,10 +53,7 @@ export class CategoryStatisticsComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
-
       this.walletService.getCurrentWallet();
-
-
       this.chosenCategory = +params['id'] || 0;
       if (this.walletService.currentCategories.length === 0) {
         this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
@@ -67,7 +64,7 @@ export class CategoryStatisticsComponent implements OnInit {
         this.chosenCategoryName = this.walletService.currentCategories.find(x => x.id === this.chosenCategory).title;
       }
       this.isLoading = true;
-      this.expService.getCategoryStatistics(this.chosenCategory).subscribe(data => {
+      this.expService.getCategoryStatistics(this.chosenCategory, new Date(Date.now()).toUTCString()).subscribe(data => {
         if (data['categoryExpenses'].length === 0) {
           this.showData = false;
         }

@@ -26,6 +26,10 @@
     --table-expense-header: 1;
     /* ---------------------- */
     --text-color: black;
+    /* ---------------------- */
+    --spinner-first: #00e1ff;
+    --spinner-second: #006eff;
+    /* ---------------------- */
 }
 
 * {

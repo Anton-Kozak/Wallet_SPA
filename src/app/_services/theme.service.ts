@@ -19,6 +19,8 @@ export const darkTheme = {
   'card-table-text': '#e4d8c9',
   'text-color': '#ffb204',
   'table-expense-header': '.65',
+  'spinner-first': '#ffc107',
+  'spinner-second': '#008855',
 };
 
 export const lightTheme = {
@@ -39,6 +41,8 @@ export const lightTheme = {
   'card-table-text': 'black',
   'text-color': 'black',
   'table-expense-header': '1',
+  'spinner-first': '#00e1ff',
+  'spinner-second': '#006eff',
 };
 
 @Injectable({

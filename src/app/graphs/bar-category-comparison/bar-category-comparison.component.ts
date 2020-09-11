@@ -12,7 +12,8 @@ export class BarCategoryComparisonComponent implements OnInit {
   @Input() currentMonthbar: number;
   @Input() lastMonthbar: number;
   @Input() category: string;
-  colors=[
+
+  colors = [
     {
       backgroundColor: [
         '#aaf0d1',
@@ -25,7 +26,7 @@ export class BarCategoryComparisonComponent implements OnInit {
         '#c4f0a2',
         '#a2e7f0',
         '#f0a2c4',
-    ]
+      ]
     }
   ];
 
@@ -52,23 +53,23 @@ export class BarCategoryComparisonComponent implements OnInit {
   public barChartLegend = true;
 
   public barChartData: ChartDataSets[] = [
-    { data: [], label: 'Last Month' },
-    { data: [], label: 'Current Month' },
+    { data: [], label: '' },
+    { data: [], label: '' },
   ];
 
   constructor() { }
 
   ngOnInit() {
+    
     const last = this.lastMonthbar;
     this.barChartData[0].data = [this.lastMonthbar];
-   
     const current = this.currentMonthbar;
     console.log(this.currentMonthbar);
     this.barChartData[1].data = [31];
     console.log(this.barChartData);
     this.barChartLabels[0] = this.category;
     console.log(this.currentMonthbar);
-    
+
 
   }
 

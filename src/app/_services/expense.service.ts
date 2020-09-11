@@ -133,12 +133,12 @@ export class ExpenseService {
     });
   }
 
-  showDailyExpenses(date: string){
+  showDailyExpenses(date: string) {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/dailyExpenses/' + date);
   }
 
-  getPreviousExpenses(month: number) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses/' + month);
+  getPreviousExpenses(date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses/' + date);
   }
 
 
@@ -193,26 +193,22 @@ export class ExpenseService {
     }));
   }
 
-  getWalletStatistics() {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedStatistics');
+  getWalletStatistics(date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedStatistics/' + date);
   }
 
 
-  getCategoryStatistics(categoryId: number) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedCategoryStatistics/' + categoryId)
+  getCategoryStatistics(categoryId: number, date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedCategoryStatistics/' + categoryId + '/' + date)
   }
 
 
-  // getCategoryExpenses(categoryId: number) {
-  //   return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCategoryExpenses/' + categoryId);
-  // }
-
-  getUserStatistics(id: string, month: number) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedUserStatistics/' + id + '/' + month);
+  getUserStatistics(id: string, date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedUserStatistics/' + id + '/' + date);
   }
 
-  getUserExpenses(id: string, month: number) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getUserExpenses/' + id + '/' + month);
+  getUserExpenses(id: string, date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getUserExpenses/' + id + '/' + date);
   }
 
 
@@ -231,6 +227,14 @@ export class ExpenseService {
     }));
   }
 
+
+  getSpecifiedMonthsData(firstMonth: string, secondMonth: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/specificMonthsData/' + firstMonth + '/' + secondMonth);
+  }
+
+  getSpecifiedMonthsExpense(firstMonth: string, secondMonth: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/specificMonthsExpenses/' + firstMonth + '/' + secondMonth);
+  }
 
 
 

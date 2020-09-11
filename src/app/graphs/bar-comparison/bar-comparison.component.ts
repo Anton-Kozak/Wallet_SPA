@@ -14,7 +14,8 @@ export class BarComparisonComponent implements OnInit {
   @Input() currentMonthbarExpensesList: ExpenseList;
   @Input() lastMonthbarExpensesList: ExpenseList;
   @Input() categories: CategoryData[];
-
+  date: Date;
+  prevDate: Date;
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -33,6 +34,7 @@ export class BarComparisonComponent implements OnInit {
       display: true,
       labels: {
         fontColor: '#008855',
+        fontStyle: 'bold',
         fontSize: 14
       },
     },
@@ -58,6 +60,12 @@ export class BarComparisonComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.date = new Date(Date.now());
+    this.prevDate = new Date(Date.now());
+    this.date.setMonth(this.date.getMonth());
+    this.prevDate.setMonth(this.date.getMonth() -1);
+    this.barChartData[0].label = this.date.toLocaleString('default', { month: 'long' });
+    this.barChartData[1].label = this.prevDate.toLocaleString('default', { month: 'long' });
     for (let i = 0; i < this.categories.length; i++) {
       this.barChartLabels.push([this.categories[i].title]);
       this.barChartData[1].data[i] = this.currentMonthbarExpensesList[i]['categoryExpenses'];

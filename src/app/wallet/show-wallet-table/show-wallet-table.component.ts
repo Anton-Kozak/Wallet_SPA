@@ -7,12 +7,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { Notification } from 'src/app/_model/notification';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { ExpensesWithCategories } from 'src/app/_model/expensesWithCategories';
-import { WalletService } from 'src/app/_services/wallet.service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { FormControl } from '@angular/forms';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -207,11 +206,8 @@ export class ShowWalletTableComponent implements OnInit {
 
   orgValueChange(value: any) {
     this.dayForDailyExpenses = new Date(value);
-   
-    
     console.log(value);
-    console.log(new Date(value));
-    
+    console.log(new Date(value)); 
     this.updateDailyExpenses();
   }
 
