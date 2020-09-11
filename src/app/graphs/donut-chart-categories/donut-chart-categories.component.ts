@@ -17,6 +17,19 @@ export class DonutChartCategoriesComponent implements OnInit {
   public doughnutChartLabels: Label[] = [];
   public doughnutChartData = [];
   public doughnutChartType: ChartType = 'doughnut';
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    // maintainAspectRatio: false,
+    // aspectRatio: 1.2,
+    legend: {
+      position: 'top',
+      labels:{
+        fontColor: '#008855',
+        fontStyle: 'bold',
+        fontSize: 14
+      }
+    },
+  };
   colors: MyColors = new MyColors();
   public donutChartColors = [
     {

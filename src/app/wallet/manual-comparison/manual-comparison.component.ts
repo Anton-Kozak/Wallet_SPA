@@ -84,13 +84,7 @@ export class ManualComparisonComponent implements OnInit {
   }
 
   selectDates() {
-    // this.expenseService.getSpecifiedMonthsExpense(this.firstDay.toDateString(), this.secondDay.toDateString()).subscribe((response: ExpenseForTable[]) => {
-    //   this.firstMonthExpenses.data = response;
-    //   console.log(this.firstMonthExpenses.paginator);
-
-    // });
     this.expenseService.getSpecifiedMonthsData(this.firstDay.toDateString(), this.secondDay.toDateString()).subscribe(response => {
-      //console.log(response);
       this.firstMonthMostSpent = response['firstMonthMostSpent'];
       this.firstMonthMostUsed = response['firstMonthMostUsed'];
       this.firstLargestExpense = response['firstLargestExpense'];
@@ -98,7 +92,6 @@ export class ManualComparisonComponent implements OnInit {
       this.firstMonthPreviousExpensesBars = response['firstMonthPreviousExpensesBars'];
       this.firstMonthTopFiveUsers = response['firstMonthTopFiveUsers'];
       this.firstMonthExpenses.data = response['firstMonthExpenses'];
-      // this.firstMonthExpenses.paginator = this.fp;
       this.firstMonthTotal = response['firstMonthTotal'];
 
       this.secondMonthMostSpent = response['secondMonthMostSpent'];
@@ -108,7 +101,6 @@ export class ManualComparisonComponent implements OnInit {
       this.secondMonthPreviousExpensesBars = response['secondMonthPreviousExpensesBars'];
       this.secondMonthTopFiveUsers = response['secondMonthTopFiveUsers'];
       this.secondMonthExpenses.data = response['secondMonthExpenses'];
-      // this.secondMonthExpenses.paginator = this.sp;
       this.secondMonthTotal = response['secondMonthTotal'];
       this.showData = true;
     });

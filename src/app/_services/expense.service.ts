@@ -231,11 +231,4 @@ export class ExpenseService {
   getSpecifiedMonthsData(firstMonth: string, secondMonth: string) {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/specificMonthsData/' + firstMonth + '/' + secondMonth);
   }
-
-  getSpecifiedMonthsExpense(firstMonth: string, secondMonth: string) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/specificMonthsExpenses/' + firstMonth + '/' + secondMonth);
-  }
-
-
-
 }
