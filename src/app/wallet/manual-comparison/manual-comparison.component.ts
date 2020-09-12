@@ -85,6 +85,8 @@ export class ManualComparisonComponent implements OnInit {
 
   selectDates() {
     this.expenseService.getSpecifiedMonthsData(this.firstDay.toDateString(), this.secondDay.toDateString()).subscribe(response => {
+      console.log(response);
+      
       this.firstMonthMostSpent = response['firstMonthMostSpent'];
       this.firstMonthMostUsed = response['firstMonthMostUsed'];
       this.firstLargestExpense = response['firstLargestExpense'];

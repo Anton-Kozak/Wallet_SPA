@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="col-2">
-            <button class="btn btn-block btn-warning" (click)="selectDates()">Select Dates</button>
+            <button class="btn btn-block select-date" (click)="selectDates()">Select Dates</button>
         </div>
         <div class="date-outer col-5">
             <div class="date card pl-3 pr-3">
@@ -128,13 +128,13 @@
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-primary">
-                                    <i class="nc-icon nc-money-coins text-primary"></i>
+                                <div class="icon-big text-center icon-success">
+                                    <i class="nc-icon nc-money-coins text-success"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
-                                    <p class="card-category mb-2">Total spent</p>
+                                    <p class="card-category mb-2">Largest expense spent</p>
                                     <p *ngIf="firstLargestExpense != 0" class="card-title">{{firstLargestExpense}}</p>
                                     <p *ngIf="firstLargestExpense == 0" class="card-title">0</p>
                                 </div>
@@ -321,12 +321,12 @@
                         <div class="row">
                             <div class="col-5 col-md-4">
                                 <div class="icon-big text-center icon-primary">
-                                    <i class="nc-icon nc-money-coins text-primary"></i>
+                                    <i class="nc-icon nc-money-coins text-success"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
-                                    <p class="card-category mb-2">Total spent</p>
+                                    <p class="card-category mb-2">Largest expense</p>
                                     <p *ngIf="secondLargestExpense != 0" class="card-title">{{secondLargestExpense}}</p>
                                     <p *ngIf="secondLargestExpense == 0" class="card-title">0</p>
                                 </div>

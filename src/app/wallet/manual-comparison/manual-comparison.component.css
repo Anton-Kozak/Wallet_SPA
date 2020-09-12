@@ -5,6 +5,16 @@
     background-color: var(--card-background);
 }
 
+.select-date {
+    background-color: var(--sidebar-item-selected);
+    color: var(--card-background);
+}
+
+.select-date:hover {
+    filter: brightness(125%);
+    background-color: var(--sidebar-item-selected);
+}
+
 .date {
     display: flex;
     flex-direction: row;
