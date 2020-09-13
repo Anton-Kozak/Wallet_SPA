@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
@@ -19,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileModule } from './profile/profile.module';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 import { AppComponent } from './app.component';
@@ -58,6 +60,10 @@ import { ManualComparisonComponent } from './wallet/manual-comparison/manual-com
 
 export function tokenGetter() {
   return localStorage.getItem('token');
+}
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, './assets/locale/', '.json');
 }
 
 @NgModule({
@@ -113,6 +119,14 @@ export function tokenGetter() {
     MatProgressSpinnerModule,
     MatTableModule,
     MatPaginatorModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
     ProgressbarModule.forRoot(),
     RouterModule.forRoot(appRoutes),
 

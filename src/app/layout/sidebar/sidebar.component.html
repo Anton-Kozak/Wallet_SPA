@@ -16,37 +16,37 @@
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/home']">
                     <i class="nc-icon nc-shop"></i>
-                    <p matTooltip="Домашняя страница">Home</p>
+                    <p>{{'Sidebar.Home' | translate}}</p>
                 </a>
             </li>
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/walletExpenses']">
                     <i class="nc-icon nc-bank"></i>
-                    <p matTooltip="Страница кошелька">Your Wallet</p>
+                    <p>{{'Sidebar.YourWallet' | translate}}</p>
                 </a>
             </li>
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/previousExpenses']">
                     <i class="nc-icon nc-calendar-60"></i>
-                    <p matTooltip="Предыдущие расходы">Previous Expenses</p>
+                    <p>{{'Sidebar.Previous' | translate}}</p>
                 </a>
             </li>
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/getWalletStatistics']">
                     <i class="nc-icon nc-chart-bar-32"></i>
-                    <p matTooltip="Статистика кошелька">Wallet Statistics</p>
+                    <p>{{'Sidebar.WalletStatistics' | translate}}</p>
                 </a>
             </li>
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/userStatistics/' + id]">
                     <i class="nc-icon nc-circle-10"></i>
-                    <p matTooltip="Статистика пользователей">User Statistics</p>
+                    <p>{{'Sidebar.UserStatistics' | translate}}</p>
                 </a>
             </li>
             <li>
                 <a data-toggle="collapse" data-target="#collapseExample">
                     <i class="nc-icon nc-chart-pie-36"></i>
-                    <p matTooltip="Ваши категории">Categories</p>
+                    <p>{{'Sidebar.Categories' | translate}}</p>
                 </a>
                 <div *ngFor="let category of categoryTitles" id="collapseExample" class="collapse categories">
                     <ul class="nav ml-3">
@@ -62,19 +62,19 @@
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/compare']">
                     <i class="nc-icon nc-badge"></i>
-                    <p>Compare custom dates</p>
+                    <p>{{'Sidebar.CompareCustom' | translate}}</p>
                 </a>
             </li>
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/profile']">
                     <i class="nc-icon nc-badge"></i>
-                    <p>Profile</p>
+                    <p>{{'Sidebar.Profile' | translate}}</p>
                 </a>
             </li>
             <li *appHasRole="['Admin']" routerLinkActive="active">
                 <a [routerLink]="['/wallet/walletAdmin']">
                     <i class="nc-icon nc-lock-circle-open"></i>
-                    <p matTooltip="Страница для админа">Admin Panel</p>
+                    <p>{{'Sidebar.Admin' | translate}}</p>
                 </a>
             </li>
         </ul>

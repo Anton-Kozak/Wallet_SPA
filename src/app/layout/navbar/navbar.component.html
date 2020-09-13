@@ -12,12 +12,20 @@
             <i style="font-size: 22px;" class="nc-icon nc-settings-gear-65"></i>
           </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit profile</a>
-                        <a *appHasRole="['Admin']" class="dropdown-item" style="cursor: pointer;" (click)="onWalletEditDialog()">Edit wallet</a>
+                        <a class="dropdown-item" href="#">{{'Navbar.EditProfile' | translate}}</a>
+                        <a *appHasRole="['Admin']" class="dropdown-item" style="cursor: pointer;" (click)="onWalletEditDialog()">{{'Navbar.EditWallet' | translate}}</a>
                         <div class="dropdown-item">
-                            <label for="theme">Dark Theme</label>
+                            <label for="theme">{{'Navbar.Theme' | translate}}</label>
                             <input type="checkbox" [(ngModel)]="isDark" (click)="toggleTheme()" id="theme" name="theme" [formControl]="theme">
                         </div>
+                    </div>
+                    <div class="">
+                        <label>
+                            {{ 'HOME.SELECT' | translate }}
+                            <select #langSelect (change)="translate.use(langSelect.value)">
+                              <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+                            </select>
+                          </label>
                     </div>
                 </div>
                 <div class="dropdown">
@@ -30,11 +38,11 @@
                     </div>
                 </div>
 
-                <p style="font-size: 22px;" class="text-center mr-5 mb-0 user">Hello {{currentUserName}}</p>
+                <p style="font-size: 22px;" class="text-center mr-5 mb-0 user">{{'Navbar.Hello' | translate}} {{currentUserName}}</p>
 
                 <div class="d-flex align-items-center">
 
-                    <button (click)="logout()" class="btn mr-5 logout">Logout</button>
+                    <button (click)="logout()" class="btn mr-5 logout">{{'Navbar.Logout' | translate}}</button>
                 </div>
             </div>
         </div>

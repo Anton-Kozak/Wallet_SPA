@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                            <p class="card-category mb-2">Most used category</p>
+                                            <p class="card-category mb-2">{{'Expenses.MostUsed' | translate}}</p>
                                             <p class="card-title">{{mostUsedCategory}}</p>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                            <p class="card-category mb-2">Most spent category</p>
+                                            <p class="card-category mb-2">{{'Expenses.MostSpent' | translate}}</p>
                                             <p class="card-title">{{mostSpentCategory}}</p>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@
                                     </div>
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                            <p class="card-category mb-2">Largest Monthly Expense</p>
+                                            <p class="card-category mb-2">{{'Expenses.Largest' | translate}}</p>
                                             <p class="card-title">{{largestExpense}}</p>
                                         </div>
                                     </div>
@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                            <p class="card-category mb-2">Average Daily Spent</p>
+                                            <p class="card-category mb-2">{{'Expenses.Average' | translate}}</p>
                                             <p class="card-title">{{avgDailyExpenses}}</p>
                                         </div>
                                     </div>
@@ -177,13 +177,12 @@
                                 <div class="row">
                                     <div class="col-5 col-md-4">
                                         <div class="icon-big text-center icon-success">
-                                            <!-- <i class="nc-icon nc-chart-bar-32 text-success"></i> -->
                                             <i class="fas fa-donate text-warning"></i>
                                         </div>
                                     </div>
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                            <p class="card-category mb-2">Total spent</p>
+                                            <p class="card-category mb-2">{{'Expenses.Total' | translate}}</p>
                                             <p class="card-title">{{amountOfMoneySpent}}</p>
                                         </div>
                                     </div>
@@ -245,8 +244,8 @@
             <div class="col-lg-8 col-md-12">
                 <div class="card" style="border-radius: 12px;">
                     <div class="card-header ">
-                        <h5 class="card-title">Expenses For Each Category</h5>
-                        <p class="card-category">For this user</p>
+                        <h5 class="card-title">{{'Expenses.ExpenseForCategory' | translate}}</h5>
+                        <p class="card-category">{{'Expenses.ExpenseForCatDesc' | translate}}</p>
                     </div>
                     <div *ngIf="barExpenses" class="card-body ">
                         <div *ngIf="barExpenses != null && categories.length > 0">
@@ -265,11 +264,11 @@
                     <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
                         <table style="width: 100%;" mat-table [dataSource]="expenses">
                             <ng-container matColumnDef="expenseTitle">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> Expense </th>
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Expense' | translate}} </th>
                                 <td mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
                             </ng-container>
                             <ng-container matColumnDef="category">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> Category </th>
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Category' | translate}} </th>
                                 <td mat-cell *matCellDef="let element"> {{element.expenseCategory}} </td>
                             </ng-container>
                             <ng-container matColumnDef="moneySpent">
@@ -277,16 +276,16 @@
                                 <td mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
                             </ng-container>
                             <ng-container matColumnDef="expenseDescription">
-                                <th class="text-center d-none d-xl-table-cell" mat-header-cell *matHeaderCellDef> Description </th>
+                                <th class="text-center d-none d-xl-table-cell" mat-header-cell *matHeaderCellDef> {{'Expenses.Details' | translate}} </th>
                                 <td class="d-none d-xl-table-cell" mat-cell *matCellDef="let element"> {{element.expenseDescription}} </td>
                             </ng-container>
                             <ng-container matColumnDef="creationDate">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Date' | translate}} </th>
                                 <td mat-cell *matCellDef="let element"> {{element.creationDate | date :'short'}}
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="actions">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> Actions </th>
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Actions' | translate}} </th>
                                 <td mat-cell *matCellDef="let element; let i = index">
                                     <a *ngIf="isThisUser" (click)="openDialog(element.id, i)" class="btn">
                                         <span style="color: green;">

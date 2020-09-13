@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-9 col-md-9">
                                     <div class="numbers">
-                                        <p class="card-category mb-2">Current largest expense</p>
+                                        <p class="card-category mb-2">{{'Expenses.CurrentLargest' | translate}}</p>
                                         <p *ngIf="currentMonthLargestExpense > 0" class="card-title">
                                             ${{currentMonthLargestExpense}}</p>
                                         <p *ngIf="currentMonthLargestExpense === 0" class="card-title">
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category mb-2">Largest Expense</p>
+                                        <p class="card-category mb-2">{{'Expenses.Largest' | translate}}</p>
                                         <p *ngIf="largestExpense > 0" class="card-title">${{largestExpense}}</p>
                                         <p *ngIf="largestExpense === 0" class="card-title">${{largestExpense}}</p>
                                         <p>
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category mb-2">Most Spent User</p>
+                                        <p class="card-category mb-2">{{'Expenses.MostSpent' | translate}}</p>
                                         <div *ngIf="mostSpentUser != null">
                                             <p class="card-title text-capitalize">{{mostSpentUser.userName}}
                                             </p>
@@ -147,8 +147,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Top 5 users</h5>
-                            <p class="card-category">Users with most expenses</p>
+                            <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
+                            <p class="card-category">{{'Expenses.TopDesc' | translate}}</p>
                         </div>
                         <div *ngIf="topFiveUsers" class="card-body ">
                             <app-pie-graph [topFiveUsers]="topFiveUsers"></app-pie-graph>
@@ -169,8 +169,8 @@
                 <div class="col-12">
                     <div class="card " style="border-radius: 12px;">
                         <div class="card-header ">
-                            <h5 class="card-title">Last 6 Months</h5>
-                            <p class="card-category">Line Comparison</p>
+                            <h5 class="card-title">{{'Expenses.Last' | translate}}</h5>
+                            <p class="card-category">{{'Expenses.LastDesc' | translate}}</p>
                         </div>
                         <div *ngIf="lastSixMonths" class="card-body ">
                             <div>
@@ -195,8 +195,8 @@
                 <div class="col-12">
                     <div class="card " style="border-radius: 12px;">
                         <div class="card-header ">
-                            <h5 class="card-title">Expenses Comparison</h5>
-                            <p class="card-category">Last And Current Months</p>
+                            <h5 class="card-title">{{'Expenses.ExpenseCompare' | translate}}</h5>
+                            <p class="card-category">{{'Expenses.ExpenseCompareDesc' | translate}}</p>
                         </div>
                         <div *ngIf="chosenCategoryName" class="container">
                             <app-donut-chart [currentMonthbar]="currentMonthData" [lastMonthbar]="lastMonthData" [category]="chosenCategoryName"></app-donut-chart>
@@ -216,11 +216,11 @@
                 <div class="mat-elevation-z8" style="box-shadow: none;">
                     <table style="width: 100%;" mat-table [dataSource]="expenses">
                         <ng-container matColumnDef="expenseTitle">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef> Expense </th>
+                            <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Expense' | translate}} </th>
                             <td mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
                         </ng-container>
                         <ng-container matColumnDef="userName">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef> User </th>
+                            <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.User' | translate}} </th>
                             <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
                         </ng-container>
                         <ng-container matColumnDef="moneySpent">
@@ -229,12 +229,12 @@
                         </ng-container>
                         <ng-container matColumnDef="expenseDescription">
                             <th class="text-center d-none d-lg-table-cell" mat-header-cell *matHeaderCellDef>
-                                Description </th>
+                                {{'Expenses.Details' | translate}} </th>
                             <td class="d-none d-lg-table-cell" mat-cell *matCellDef="let element">
                                 {{element.expenseDescription}} </td>
                         </ng-container>
                         <ng-container matColumnDef="creationDate">
-                            <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
+                            <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Date' | translate}} </th>
                             <td mat-cell *matCellDef="let element"> {{element.creationDate | date :'short'}}
                             </td>
                         </ng-container>

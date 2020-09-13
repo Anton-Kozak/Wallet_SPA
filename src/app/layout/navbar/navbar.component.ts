@@ -8,6 +8,7 @@ import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.comp
 import { NotificationService } from 'src/app/_services/notification.service';
 import { Notification } from 'src/app/_model/notification';
 import { MyThemeService } from 'src/app/_services/theme.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -21,7 +22,13 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private noteService: NotificationService,
-    private themeService: MyThemeService) { }
+    private themeService: MyThemeService,
+    public translate: TranslateService) {
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+  }
   signInForm: FormGroup;
   currentUserName?: string;
   isLoggedIn = false;
@@ -37,7 +44,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.isDark = this.themeService.currentTheme === 'dark' ? true : false;
     console.log(this.isDark, this.themeService.currentTheme);
-    
+
     this.currentUserName = this.authService.getToken().unique_name;
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       if (notifications != null) {

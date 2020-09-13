@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category add-expense"> <button matTooltip="Добавить новый расход" (click)="openDialog()" class="btn btn-outline-success btn-block">Add Expense</button>
+                                        <p class="card-category add-expense"> <button matTooltip="Добавить новый расход" (click)="openDialog()" class="btn btn-outline-success btn-block">{{'Expenses.Add' | translate}}</button>
                                         </p>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p matTooltip="Название кошелька" class="card-category mb-2">Wallet Title</p>
+                                        <p matTooltip="Название кошелька" class="card-category mb-2">{{'Expenses.WalletTitle' | translate}}</p>
                                         <p class="card-title text-capitalize">{{walletTitle}}</p>
                                         <p>
                                         </p>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p matTooltip="Лимит кошелька" class="card-category mb-2">Wallet Limit</p>
+                                        <p matTooltip="Лимит кошелька" class="card-category mb-2">{{'Expenses.WalletLimit' | translate}}</p>
                                         <p class="card-title text-capitalize">${{walletLimit}}</p>
                                         <p>
                                         </p>
@@ -92,7 +92,7 @@
                     <div class="card card-stats">
                         <div class="card-body">
                             <div class="numbers">
-                                <p class="card-category mb-3">Limit: {{walletExpenses}} / {{walletLimit}}</p>
+                                <p class="card-category mb-3">{{'Expenses.Limit' | translate}}: {{walletExpenses}} / {{walletLimit}}</p>
                             </div>
                             <progressbar class="progress-striped active mb-2" [max]="walletLimit" [value]="expensesToShow" [type]="type"></progressbar>
                         </div>
@@ -128,10 +128,10 @@
                         <table class="table">
                             <thead class="text-primary text-center">
                                 <tr class="d-flex text-center">
-                                    <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                    <th class="col-lg-2 col-md-3">Title</th>
-                                    <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                    <th class="col-lg-3 col-md-3">Date</th>
+                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                     <th class="col-lg-2 col-md-3">$</th>
                                 </tr>
                             </thead>
@@ -161,17 +161,17 @@
                                 <div style="width: 100%; height: 100%; background-color: #cafcfa;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{first.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{first.categoryName}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive ">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
@@ -197,17 +197,17 @@
                                 <div style="width: 100%; height: 100%; background-color: #cafcdf;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{second.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{second.categoryName}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
@@ -233,7 +233,7 @@
                                 <div style="width: 100%; height: 100%; background-color: #dafcca;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{third.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{third.categoryName}} </h4>
                             </div>
 
                             <div class="card-body">
@@ -241,10 +241,10 @@
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
@@ -270,17 +270,17 @@
                                 <div style="width: 100%; height: 100%; background-color: #fcf0ca;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{fourth.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{fourth.categoryName}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
@@ -306,17 +306,17 @@
                                 <div style="width: 100%; height: 100%; background-color: #fcd9ca;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{fifth.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{fifth.categoryName}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
@@ -342,7 +342,7 @@
                                 <div style="width: 100%; height: 100%; background-color: #fccaca;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{sixth.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{sixth.categoryName}} </h4>
                                 <p class="card-category">Check out how much you have spent this month at {{sixth.categoryName}}!
                                 </p>
                             </div>
@@ -351,10 +351,10 @@
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
@@ -381,17 +381,17 @@
                                 <div style="width: 100%; height: 100%; background-color: #fccaea;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{seventh.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{seventh.categoryName}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
@@ -417,17 +417,17 @@
                                 <div style="width: 100%; height: 100%; background-color: #eccafc;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{eigth.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{eigth.categoryName}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
@@ -454,17 +454,17 @@
                                 <div style="width: 100%; height: 100%; background-color: #d1cafc;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{nineth.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{nineth.categoryName}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
@@ -490,17 +490,17 @@
                                 <div style="width: 100%; height: 100%; background-color: #cad8fc;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{tenth.categoryName}} expenses</h4>
+                                <h4 class="card-title text-center">{{tenth.categoryName}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">User</th>
-                                                <th class="col-lg-2 col-md-3">Title</th>
-                                                <th class="col-lg-3 d-none d-lg-table-cell">Details</th>
-                                                <th class="col-lg-3 col-md-3">Date</th>
+                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
+                                                <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>

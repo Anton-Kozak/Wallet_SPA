@@ -1,0 +1,86 @@
+{
+    "Navbar": {
+        "Hello": "Hello",
+        "Logout": "Logout",
+        "EditWallet": "Edit Wallet",
+        "EditProfile": "Edit Profile",
+        "Theme": "Dark Theme"
+    },
+    "Sidebar": {
+        "Home": "Home",
+        "YourWallet": "Your Wallet",
+        "Previous": "Previous Expenses",
+        "WalletStatistics": "Wallet Statistics",
+        "UserStatistics": "User Statistics",
+        "Categories": "Wallet Categories",
+        "CompareCustom": "Custom Date Compare",
+        "Profile": "Profile",
+        "Admin": "Admin Panel"
+    },
+    "Expenses": {
+        "Add": "Add",
+        "WalletTitle": "Wallet Title",
+        "WalletLimit": "Wallet Limit",
+        "Limit": "Limit",
+        "User": "User",
+        "Title": "Title",
+        "Details": "Details",
+        "Date": "Date",
+        "Expenses": "Expenses",
+        "Expense": "Expense",
+        "Category": "Category",
+        "Actions": "Actions",
+        "Top": "Top 5 users",
+        "TopDesc": "Users With Most Expenses",
+        "CategoryCompare": "Category Comparison",
+        "TeamMembers": "Team Members",
+        "MostUsed": "Most Used On",
+        "MostSpent": "Most Spent On",
+        "Average": "Average Daily Expenses",
+        "Total": "Total Spent",
+        "Largest": "Largest Monthly Expense",
+        "CurrentLargest": "Current Largest Expense",
+        "WalletStatistics": "Wallet Statistics",
+        "WalletStatDesc": "Expenses For Each Category",
+        "Last": "Last 6 months",
+        "LastDesc": "Line Comparison",
+        "ExpensesCompare": "Expenses Comparison",
+        "ExpensesCompareDesc": "Previous And Current Months",
+        "ExpenseForCategory": "Expenses For Each Category",
+        "ExpenseForCatDesc": "For Current User"
+    },
+    "CustomCompare": {
+        "Select": "Select Dates",
+        "SelectFirst": "Select First Date",
+        "SelectSecond": "Select Second Date"
+    },
+    "Profile": {
+        "Joined": "Date Joined",
+        "Roles": "Roles",
+        "Company": "Company",
+        "Username": "Username",
+        "Email": "Email",
+        "Firstname": "First Name",
+        "Lastname": "Last Name",
+        "Address": "Address",
+        "Phone": "Phone number",
+        "City": "City",
+        "Country": "Country",
+        "Edit": "Edit Profile",
+        "Upload": "Upload an image that you want to use in your profile!",
+        "Browse": "Browse",
+        "Submit": "Submit",
+        "Back": "Back",
+        "Validation": {
+            "Company": "Company name should be at least 2 characters",
+            "Username": "User name is required",
+            "Email": "Email is required",
+            "Minimum2": "Minimum 2 characters required",
+            "Minimum4": "Minimum 4 characters required",
+            "OnlyLetters": "Only letters are allowed",
+            "LettersDigits": "Only letters and digits are allowed",
+            "Digits": "Only digits are allowed"
+
+        }
+    }
+}

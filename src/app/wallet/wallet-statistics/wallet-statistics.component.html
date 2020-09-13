@@ -13,7 +13,7 @@
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Team Members</h4>
+                    <h4 class="card-title">{{'Expenses.TeamMembers' | translate}}</h4>
                 </div>
                 <div class="card-body">
                     <ul *ngFor="let user of walletMembers" class="list-unstyled team-members">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="card-category mb-2">Most used on</p>
+                                <p class="card-category mb-2">{{'Expenses.MostUsed' | translate}}</p>
                                 <p *ngIf="mostUsedCategory != null" class="card-title">{{mostUsedCategory}}</p>
                                 <p *ngIf="mostUsedCategory == null" class="card-title">None found</p>
                             </div>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="card-category mb-2">Most spent on</p>
+                                <p class="card-category mb-2">{{'Expenses.MostSpent' | translate}}</p>
                                 <p *ngIf="mostSpentCategory != null" class="card-title">{{mostSpentCategory}}</p>
                                 <p *ngIf="mostSpentCategory == null" class="card-title">None found</p>
                             </div>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="card-category mb-2">Average daily expenses</p>
+                                <p class="card-category mb-2">{{'Expenses.Average' | translate}}</p>
                                 <p *ngIf="avgDailyExpenses != 0" class="card-title">{{avgDailyExpenses}}</p>
                                 <p *ngIf="avgDailyExpenses == 0" class="card-title">0</p>
                             </div>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="card-category mb-2">Total spent</p>
+                                <p class="card-category mb-2">{{'Expenses.Total' | translate}}</p>
                                 <p *ngIf="amountOfMoneySpent != 0" class="card-title">{{amountOfMoneySpent}}</p>
                                 <p *ngIf="amountOfMoneySpent == 0" class="card-title">0</p>
                                 <p>
@@ -159,8 +159,8 @@
         <div class="col-xl-4 col-md-4 col-sm-12">
             <div class="card" style="border-radius: 12px;">
                 <div class="card-header">
-                    <h5 class="card-title">Top 5 users</h5>
-                    <p class="card-category">Users with most expenses</p>
+                    <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
+                    <p class="card-category">{{'Expenses.TopDesc' | translate}}</p>
                 </div>
                 <div class="card-body ">
                     <div *ngIf="topFiveUsers != null">
@@ -180,8 +180,8 @@
         <div class="col-xl-8 col-md-8 col-sm-12">
             <div class="card " style="border-radius: 12px;">
                 <div class="card-header ">
-                    <h5 class="card-title">Wallet Statistics</h5>
-                    <p class="card-category">Expenses For Each Category</p>
+                    <h5 class="card-title">{{'Expenses.WalletStatistics' | translate}}</h5>
+                    <p class="card-category">{{'Expenses.WalletStatDesc' | translate}}</p>
                 </div>
                 <div class="card-body ">
                     <div *ngIf="barExpenses != null && categories.length > 0">
@@ -204,8 +204,8 @@
         <div class="col-md-6 col-sm-12" [ngClass]="{'col-md-12': !showComparisonData}">
             <div class="card " style="border-radius: 12px;">
                 <div class="card-header ">
-                    <h5 class="card-title">Last 6 Months</h5>
-                    <p class="card-category">Line Comparison</p>
+                    <h5 class="card-title">{{'Expenses.Last' | translate}}</h5>
+                    <p class="card-category">{{'Expenses.LastDesc' | translate}}</p>
                 </div>
                 <div class="card-body ">
                     <div>
@@ -225,8 +225,8 @@
         <div class="col-md-6 col-sm-12" *ngIf="showComparisonData">
             <div class="card " style="border-radius: 12px;">
                 <div class="card-header ">
-                    <h5 class="card-title">Expenses Comparison</h5>
-                    <p class="card-category">Last And Current Months</p>
+                    <h5 class="card-title">{{'Expenses.ExpensesCompare' | translate}}</h5>
+                    <p class="card-category">{{'Expenses.ExpensesCompareDesc' | translate}}</p>
                 </div>
                 <div class="card-body ">
                     <div>

@@ -4,6 +4,7 @@ import { ProfileComponent } from './profile.component';
 import { RouterModule } from '@angular/router';
 import { ImageModalComponent } from './image-modal/image-modal.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -13,6 +14,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     RouterModule.forChild([{ path: '', component: ProfileComponent }]),
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule.forChild({
+      extend: true,
+    })
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
