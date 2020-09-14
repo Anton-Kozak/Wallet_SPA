@@ -65,12 +65,12 @@
                     <p>{{'Sidebar.CompareCustom' | translate}}</p>
                 </a>
             </li>
-            <li routerLinkActive="active">
+            <!-- <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/profile']">
                     <i class="nc-icon nc-badge"></i>
                     <p>{{'Sidebar.Profile' | translate}}</p>
                 </a>
-            </li>
+            </li> -->
             <li *appHasRole="['Admin']" routerLinkActive="active">
                 <a [routerLink]="['/wallet/walletAdmin']">
                     <i class="nc-icon nc-lock-circle-open"></i>
