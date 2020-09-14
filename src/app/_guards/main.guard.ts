@@ -13,7 +13,6 @@ export class MainGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var token = this.authService.getToken();
     console.log('Main guard is activated');
-
     if (token !== null) {
       if (token.hasWallet === 'true') {
         if (this.router.url !== '/')
@@ -26,5 +25,4 @@ export class MainGuard implements CanActivate {
     }
     return true;
   }
-
 }

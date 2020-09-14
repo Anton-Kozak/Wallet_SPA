@@ -24,7 +24,8 @@ export class AuthService {
   }
 
   login(username: string, userpass: string) {
-    return this.http.post(this.baseUrl + 'login', { username: username, password: userpass }).pipe(map((response: any) => {
+    let date = new Date().toUTCString();
+    return this.http.post(this.baseUrl + 'login', { username: username, password: userpass, date: date }).pipe(map((response: any) => {
       if (response) {
         localStorage.setItem('token', response.token);
         this.isLoggedIn.next(true);
@@ -46,10 +47,6 @@ export class AuthService {
       return this.decodedToken;
     }
     return null;
-  }
-
-  checkLogin() {
-    this.isLoggedIn.next(!this.jwtHelper.isTokenExpired(localStorage.getItem('token')));
   }
 
   checkUserWallet() {

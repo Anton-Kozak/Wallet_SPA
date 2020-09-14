@@ -30,6 +30,15 @@ i,
     color: var(--text-color);
 }
 
+.user {
+    justify-content: center;
+    align-items: center;
+}
+
+.user div {
+    font-size: 20px;
+}
+
 .toggleButton,
 .logout {
     border-color: var(--navbar-icons) !important;
@@ -66,6 +75,32 @@ i,
 .dropdown-menu a,
 .dropdown-menu label {
     color: var(--text-color);
+}
+
+.lang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.active-lang {
+    filter: brightness(120%);
+}
+
+.inactive {
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.inactive:hover {
+    filter: brightness(105%);
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }
 
 @media (max-width: 767px) {

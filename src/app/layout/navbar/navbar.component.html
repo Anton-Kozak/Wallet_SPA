@@ -7,10 +7,17 @@
         </div>
         <div class="d-flex right-nav">
             <div class="d-flex ml-auto align-items-center justify-content-end col-3 col-sm-5">
+                <div class="lang">
+                    <div (click)="translate.use('en'); activeLang = 'en'" class="inactive" [ngClass]="{'active-lang': activeLang === 'en'}">
+                        ENG
+                    </div>
+                    <div>/</div>
+                    <div (click)="translate.use('ru'); activeLang = 'ru'" class="inactive" [ngClass]="{'active-lang': activeLang === 'ru'}">РУС</div>
+                </div>
                 <div class="dropdown">
                     <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i style="font-size: 22px;" class="nc-icon nc-settings-gear-65"></i>
-          </button>
+                        <i style="font-size: 22px;" class="nc-icon nc-settings-gear-65"></i>
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">{{'Navbar.EditProfile' | translate}}</a>
                         <a *appHasRole="['Admin']" class="dropdown-item" style="cursor: pointer;" (click)="onWalletEditDialog()">{{'Navbar.EditWallet' | translate}}</a>
@@ -19,27 +26,20 @@
                             <input type="checkbox" [(ngModel)]="isDark" (click)="toggleTheme()" id="theme" name="theme" [formControl]="theme">
                         </div>
                     </div>
-                    <div class="">
-                        <label>
-                            {{ 'HOME.SELECT' | translate }}
-                            <select #langSelect (change)="translate.use(langSelect.value)">
-                              <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
-                            </select>
-                          </label>
-                    </div>
                 </div>
                 <div class="dropdown">
                     <button type="button" (click)="test()" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i style="font-size: 22px;" [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}}
-              matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
-          </button>
+                        <i style="font-size: 22px;" [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}}
+                        matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
+                     </button>
                     <div class="dropdown-menu" aria-labelledby="notifications">
                         <p *ngFor="let notification of notifications" class="dropdown-item">{{notification.message}}</p>
                     </div>
                 </div>
-
-                <p style="font-size: 22px;" class="text-center mr-5 mb-0 user">{{'Navbar.Hello' | translate}} {{currentUserName}}</p>
-
+                <div class="d-flex text-center mr-5 user">
+                    <div class="mr-3">{{'Navbar.Hello' | translate}} {{currentUserName}}</div>
+                    <img class="avatar border-gray" src="{{ photo === null ? '../../assets/images/default-avatar.png' : photo.url}}" alt="...">
+                </div>
                 <div class="d-flex align-items-center">
 
                     <button (click)="logout()" class="btn mr-5 logout">{{'Navbar.Logout' | translate}}</button>

@@ -9,6 +9,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
 import { Notification } from 'src/app/_model/notification';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Photo } from 'src/app/_model/photo';
 
 
 @Component({
@@ -26,8 +27,8 @@ export class NavbarComponent implements OnInit {
     public translate: TranslateService) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+    this.activeLang = translate.getBrowserLang();
+    translate.use(this.activeLang.match(/en|ru/) ? this.activeLang : 'en');
   }
   signInForm: FormGroup;
   currentUserName?: string;
@@ -36,6 +37,8 @@ export class NavbarComponent implements OnInit {
   notifications: Notification[] = [];
   theme = new FormControl(false);
   isDark: boolean;
+  activeLang: string;
+  photo: Photo = null;
 
   @Output() toggleDrawer = new EventEmitter();
   toggleState = false;
@@ -44,7 +47,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.isDark = this.themeService.currentTheme === 'dark' ? true : false;
     console.log(this.isDark, this.themeService.currentTheme);
-
+    this.getPhoto();
     this.currentUserName = this.authService.getToken().unique_name;
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       if (notifications != null) {
@@ -62,6 +65,12 @@ export class NavbarComponent implements OnInit {
       }
     });
 
+  }
+
+  getPhoto() {
+    this.authService.getPhoto().subscribe((data: Photo) => {
+      this.photo = data;
+    })
   }
 
   logout() {
