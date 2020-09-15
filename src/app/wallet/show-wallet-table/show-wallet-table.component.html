@@ -128,19 +128,19 @@
                         <table class="table">
                             <thead class="text-primary text-center">
                                 <tr class="d-flex text-center">
-                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                    <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                     <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                     <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                    <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                     <th class="col-lg-2 col-md-3">$</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="d-flex text-center" *ngFor="let expense of dailyExpenses">
-                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                    <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                     <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                     <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                    <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                    <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                     <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                 </tr>
                             </tbody>
@@ -161,26 +161,26 @@
                                 <div style="width: 100%; height: 100%; background-color: #cafcfa;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{first.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +first.categoryName | translate}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive ">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of first.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -197,26 +197,26 @@
                                 <div style="width: 100%; height: 100%; background-color: #cafcdf;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{second.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +second.categoryName | translate}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of second.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -233,7 +233,7 @@
                                 <div style="width: 100%; height: 100%; background-color: #dafcca;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{third.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +third.categoryName | translate}} </h4>
                             </div>
 
                             <div class="card-body">
@@ -241,19 +241,19 @@
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of third.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -270,26 +270,26 @@
                                 <div style="width: 100%; height: 100%; background-color: #fcf0ca;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{fourth.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +fourth.categoryName | translate}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of fourth.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -306,26 +306,26 @@
                                 <div style="width: 100%; height: 100%; background-color: #fcd9ca;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{fifth.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +fifth.categoryName | translate}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of fifth.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -342,7 +342,7 @@
                                 <div style="width: 100%; height: 100%; background-color: #fccaca;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{sixth.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +sixth.categoryName | translate}} </h4>
                                 <p class="card-category">Check out how much you have spent this month at {{sixth.categoryName}}!
                                 </p>
                             </div>
@@ -351,19 +351,19 @@
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of sixth.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -381,26 +381,26 @@
                                 <div style="width: 100%; height: 100%; background-color: #fccaea;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{seventh.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +seventh.categoryName | translate}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of seventh.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -417,26 +417,26 @@
                                 <div style="width: 100%; height: 100%; background-color: #eccafc;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{eigth.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +eigth.categoryName | translate}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of eigth.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -454,26 +454,26 @@
                                 <div style="width: 100%; height: 100%; background-color: #d1cafc;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{nineth.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +nineth.categoryName | translate}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of nineth.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -490,26 +490,26 @@
                                 <div style="width: 100%; height: 100%; background-color: #cad8fc;"></div>
                             </div>
                             <div class="card-header">
-                                <h4 class="card-title text-center">{{tenth.categoryName}} </h4>
+                                <h4 class="card-title text-center">{{'ExpenseCategory.' +tenth.categoryName | translate}} </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class="text-primary text-center">
                                             <tr class="d-flex text-center">
-                                                <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
+                                                <th class="col-lg-3 col-md-3">{{'Expenses.User' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
                                                 <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
+                                                <th class="col-lg-2 col-md-2">{{'Expenses.Date' | translate}}</th>
                                                 <th class="col-lg-2 col-md-3">$</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="d-flex text-center" *ngFor="let expense of tenth.expenses">
-                                                <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
+                                                <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-3">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>

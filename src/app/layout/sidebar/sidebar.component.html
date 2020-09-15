@@ -53,7 +53,7 @@
                         <li routerLinkActive="active">
                             <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', category.id]">
                                 <i class="fas {{category.icon}}"></i>
-                                <p matTooltip="Категория: {{category.title}}">{{category.title}}</p>
+                                <p matTooltip="Категория: {{category.title}}">{{'ExpenseCategory.' + category.title | translate}}</p>
                             </a>
                         </li>
                     </ul>
@@ -61,16 +61,16 @@
             </li>
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/compare']">
-                    <i class="nc-icon nc-badge"></i>
+                    <i class="far fa-calendar-alt"></i>
                     <p>{{'Sidebar.CompareCustom' | translate}}</p>
                 </a>
             </li>
-            <!-- <li routerLinkActive="active">
+            <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/profile']">
                     <i class="nc-icon nc-badge"></i>
                     <p>{{'Sidebar.Profile' | translate}}</p>
                 </a>
-            </li> -->
+            </li>
             <li *appHasRole="['Admin']" routerLinkActive="active">
                 <a [routerLink]="['/wallet/walletAdmin']">
                     <i class="nc-icon nc-lock-circle-open"></i>

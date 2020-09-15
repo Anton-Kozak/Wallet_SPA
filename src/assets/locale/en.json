@@ -82,5 +82,40 @@
             "Digits": "Only digits are allowed"
 
         }
+    },
+    "ExpenseCategory": {
+        "Food": "Food",
+        "Sweets": "Sweets",
+        "Vegetables": "Vegetables",
+        "Alcohol": "Alcohol",
+        "Meat": "Meat",
+        "Fast food": "Fast food",
+        "Fruits": "Fruits",
+        "Housekeeping": "Housekeeping",
+        "Electricity": "Electricity",
+        "Gas": "Gas",
+        "Water": "Water",
+        "Entertainment": "Entertainment",
+        "Internet shopping": "Internet shopping",
+        "Restaurants": "Restaurants",
+        "Cinema": "Cinema",
+        "Theatre": "Theatre",
+        "Smoking": "Smoking",
+        "Medicine": "Medicine",
+        "Medicaments": "Medicaments",
+        "Treatment": "Treatment",
+        "Beauty": "Beauty",
+        "Beauty accessories": "Beauty accessories",
+        "Beauty products": "Beauty products",
+        "Beauty procedures": "Beauty procedures",
+        "Sport": "Sport",
+        "Sport events": "Sport events",
+        "Sport gambling": "Sport gambling",
+        "Sport inventory": "Sport inventory",
+        "Sport activities": "Sport activities",
+        "Transportation": "Transportation",
+        "Air transportation": "Air transportation",
+        "Land Transportation": "Land Transportation",
+        "Other": "Other"
     }
 }

@@ -43,7 +43,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category mb-2">{{'Expenses.MostSpent' | translate}}</p>
-                                    <p *ngIf="firstMonthMostSpent != null" class="card-title">{{firstMonthMostSpent}}</p>
+                                    <p *ngIf="firstMonthMostSpent != null" class="card-title">{{'ExpenseCategory.' +firstMonthMostSpent | translate}}</p>
                                     <p *ngIf="firstMonthMostSpent == null" class="card-title">None found</p>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category mb-2">{{'Expenses.MostUsed' | translate}}</p>
-                                    <p *ngIf="firstMonthMostUsed != null" class="card-title">{{firstMonthMostUsed}}</p>
+                                    <p *ngIf="firstMonthMostUsed != null" class="card-title">{{'ExpenseCategory.' +firstMonthMostUsed | translate}}</p>
                                     <p *ngIf="firstMonthMostUsed == null" class="card-title">None found</p>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category mb-2">{{'Expenses.MostSpent' | translate}}</p>
-                                    <p *ngIf="secondMonthMostSpent != null" class="card-title">{{secondMonthMostSpent}}</p>
+                                    <p *ngIf="secondMonthMostSpent != null" class="card-title">{{'ExpenseCategory.' +secondMonthMostSpent | translate}}</p>
                                     <p *ngIf="secondMonthMostSpent == null" class="card-title">None found</p>
                                 </div>
                             </div>
@@ -255,7 +255,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category mb-2">{{'Expenses.MostUsed' | translate}}</p>
-                                    <p *ngIf="secondMonthMostUsed != null" class="card-title">{{secondMonthMostUsed}}</p>
+                                    <p *ngIf="secondMonthMostUsed != null" class="card-title">{{'ExpenseCategory.' +secondMonthMostUsed | translate}}</p>
                                     <p *ngIf="secondMonthMostUsed == null" class="card-title">None found</p>
                                 </div>
                             </div>
@@ -278,7 +278,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category mb-2">{{'Expenses.Average' | translate}}</p>
-                                    <p *ngIf="secondMonthAverage != 0" class="card-title">{{secondMonthAverage}}</p>
+                                    <p *ngIf="secondMonthAverage != 0" class="card-title">{{'ExpenseCategory.' +secondMonthAverage |translate}}</p>
                                     <p *ngIf="secondMonthAverage == 0" class="card-title">0</p>
                                 </div>
                             </div>
