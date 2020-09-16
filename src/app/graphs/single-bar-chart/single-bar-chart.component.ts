@@ -4,6 +4,7 @@ import { Label } from 'ng2-charts';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { MyColors } from 'src/app/_helper/chart-colors';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-single-bar-chart',
@@ -20,13 +21,23 @@ export class SingleBarChartComponent implements OnInit {
     responsive: true,
     maintainAspectRatio: false,
     aspectRatio: 1.2,
-    scales: { xAxes: [{}], yAxes: [{}] },
+    scales: {
+      xAxes: [{
+        ticks: {
+          fontColor: '#008855',
+        },
+      }],
+      yAxes: [{
+        ticks: {
+          fontColor: '#008855',
+        },
+      }]
+    },
     legend: {
       display: true,
       labels: {
         fontColor: '#008855',
-        fontStyle: 'bold',
-        fontSize: 14
+        fontSize: 13
       },
     },
     plugins: {
@@ -40,16 +51,24 @@ export class SingleBarChartComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartData: ChartDataSets[] = [];
-  
+  private barLabels: string[] = [];
+
 
   constructor() { }
   ngOnInit() {
-    for (let i = 0; i < this.categories.length; i++) {
-      this.barChartData.push({ data: [], label: '' });
+    // this.translate.get('Food').subscribe(res => {
+    //   console.log(res);
 
-      this.barChartData[i] = { label: this.categories[i].title, data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].hoverBackgroundColor };
+    // });
+
+    // for (let i = 0; i < this.categories.length; i++) {
+    //   this.barChartData.push({ data: [], label: '' });
+    //   this.translate.get(this.categories[i].title).subscribe(translation => {
+    //     this.barLabels.push(translation);
+    //   });
+    // }
+    for (let i = 0; i < this.categories.length; i++) {
+      this.barChartData[i] = { label: this.barLabels[i], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].hoverBackgroundColor };
     }
   }
-
-
 }

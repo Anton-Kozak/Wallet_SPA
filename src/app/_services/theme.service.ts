@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ChartOptions } from 'chart.js';
+import { ThemeService } from 'ng2-charts';
 
 export const darkTheme = {
   'content-background': '#424242',
@@ -51,6 +53,7 @@ export class MyThemeService {
 
   currentTheme: string;
 
+
   checkTheme() {
     if (localStorage.getItem('theme') === 'dark') {
       this.setTheme(darkTheme);
@@ -59,21 +62,36 @@ export class MyThemeService {
     else {
       this.setTheme(lightTheme);
       this.currentTheme = 'light';
+      localStorage.setItem('theme', 'light');
     }
   }
 
-  constructor() {
+  constructor(private themeService: ThemeService) {
     this.checkTheme();
   }
   toggleDark() {
     this.setTheme(darkTheme);
     localStorage.setItem('theme', 'dark');
+    let overrides: ChartOptions;
+    overrides = {
+      legend: {
+        labels: { fontColor: '#ffb204' }
+      },
+    };
+    this.themeService.setColorschemesOptions(overrides);
   }
 
 
   toggleLight() {
     this.setTheme(lightTheme);
     localStorage.setItem('theme', 'light');
+    let overrides: ChartOptions;
+    overrides = {
+      legend: {
+        labels: { fontColor: 'black' }
+      },
+    };
+    this.themeService.setColorschemesOptions(overrides);
   }
 
   private setTheme(theme: {}) {

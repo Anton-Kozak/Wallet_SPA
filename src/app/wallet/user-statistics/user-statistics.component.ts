@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject, Output } from '@angular/core';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
@@ -11,6 +11,8 @@ import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/_services/auth.service';
+import { EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-user-statistics',
@@ -44,6 +46,9 @@ export class UserStatisticsComponent implements OnInit {
   mostSpentCategory: string;
   mostUsedCategory: string;
   categories: CategoryData[] = [];
+  currentMonthData: number;
+  previousMonthData: number;
+  lastSixMonths: { month: string, expenseSum: number }[] = [];
 
   isLoading = true;
   isThisUser: boolean;
@@ -51,6 +56,9 @@ export class UserStatisticsComponent implements OnInit {
   monthNumber = 0;
   monthName: string = '';
   private id;
+  theme = false;
+  @Output() themeChange = new EventEmitter<boolean>();
+
 
   ngOnInit(): void {
     this.date = new Date(Date.now());
@@ -73,7 +81,7 @@ export class UserStatisticsComponent implements OnInit {
 
   private getData(date: Date) {
     this.expService.getUserStatistics(this.id, date.toUTCString()).subscribe(response => {
-      console.log(response);
+      console.log('User statistics', response);
       this.expService.getUserExpenses(this.id, date.toUTCString()).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses.data = expensesRecieved;
       });
@@ -84,6 +92,9 @@ export class UserStatisticsComponent implements OnInit {
         this.mostUsedCategory = response['mostUsedCategory'];
         this.mostSpentCategory = response['mostSpentCategory'];
         this.amountOfMoneySpent = response['amountOfMoneySpent'];
+        this.currentMonthData = response['monthCompareData']['currentMonthData'];
+        this.previousMonthData = response['monthCompareData']['lastMonthData'];
+        this.lastSixMonths = response['lastSixMonths'];
       }
       this.isLoading = false;
     });

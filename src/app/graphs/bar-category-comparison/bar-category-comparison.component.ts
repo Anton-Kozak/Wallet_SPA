@@ -33,7 +33,17 @@ export class BarCategoryComparisonComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{}] },
+    scales: {
+      xAxes: [{
+        ticks: {
+          fontColor: '#008855',
+        },
+      }], yAxes: [{
+        ticks: {
+          fontColor: '#008855',
+        },
+      }]
+    },
     legend: {
       display: true,
       labels: {
@@ -60,7 +70,7 @@ export class BarCategoryComparisonComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+
     const last = this.lastMonthbar;
     this.barChartData[0].data = [this.lastMonthbar];
     const current = this.currentMonthbar;

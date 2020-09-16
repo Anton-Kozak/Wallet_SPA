@@ -22,20 +22,21 @@ export class BarComparisonComponent implements OnInit {
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
       xAxes: [{
-        // ticks: { fontColor: '#008855' },
-        // gridLines: { color: 'white' }
+        ticks: {
+          fontColor: '#008855',
+        },
       }],
       yAxes: [{
-        // ticks: { fontColor: 'black' },
-        // gridLines: { color: '#d4d4d4' }
+        ticks: {
+          fontColor: '#008855',
+        },
       }]
     },
     legend: {
       display: true,
       labels: {
         fontColor: '#008855',
-        fontStyle: 'bold',
-        fontSize: 14
+        fontSize: 13
       },
     },
     plugins: {
@@ -63,7 +64,7 @@ export class BarComparisonComponent implements OnInit {
     this.date = new Date(Date.now());
     this.prevDate = new Date(Date.now());
     this.date.setMonth(this.date.getMonth());
-    this.prevDate.setMonth(this.date.getMonth() -1);
+    this.prevDate.setMonth(this.date.getMonth() - 1);
     this.barChartData[0].label = this.date.toLocaleString('default', { month: 'long' });
     this.barChartData[1].label = this.prevDate.toLocaleString('default', { month: 'long' });
     for (let i = 0; i < this.categories.length; i++) {

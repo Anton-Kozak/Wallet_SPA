@@ -25,9 +25,15 @@ export class LineChartComponent implements OnInit {
         gridLines: {
           color: 'transparent',
         },
+        ticks: {
+          fontColor: '#008855',
+        },
       }],
       yAxes: [
         {
+          ticks: {
+            fontColor: '#008855',
+          },
           id: 'y-axis-0',
           position: 'left',
           gridLines: {
@@ -50,8 +56,7 @@ export class LineChartComponent implements OnInit {
       display: true,
       labels: {
         fontColor: '#008855',
-        fontStyle: 'bold',
-        fontSize: 14
+        fontSize: 13
       },
     },
     annotation: {

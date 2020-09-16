@@ -21,8 +21,7 @@ export class PieGraphComponent implements OnInit {
       position: 'top',
       labels:{
         fontColor: '#008855',
-        fontStyle: 'bold',
-        fontSize: 14
+        fontSize: 13
       }
     },
     plugins: {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Label, MultiDataSet } from 'ng2-charts';
-import { ChartType } from 'chart.js';
+import { Label, MultiDataSet, ThemeService } from 'ng2-charts';
+import { ChartOptions, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-donut-chart',
@@ -8,18 +8,19 @@ import { ChartType } from 'chart.js';
   styleUrls: ['./donut-chart.component.css']
 })
 export class DonutChartComponent implements OnInit {
-  donutColors=[
+  donutColors = [
     {
       backgroundColor: [
         '#aaf0d1',
         '#f0b4aa',
-    ]
+      ]
     }
   ];
 
   @Input() currentMonthbar: number;
   @Input() lastMonthbar: number;
   @Input() category: string;
+
   public doughnutChartLabels: Label[] = ['Current Month', 'Last Month'];
   public doughnutChartData = [];
   public doughnutChartType: ChartType = 'doughnut';
@@ -30,5 +31,8 @@ export class DonutChartComponent implements OnInit {
     this.doughnutChartData.push(this.currentMonthbar);
     this.doughnutChartData.push(this.lastMonthbar);
   }
+
+
+  
 
 }

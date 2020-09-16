@@ -23,6 +23,7 @@
                             <div class="numbers">
                                 <p class="card-category add-expense"> <button (click)="previousMonth()" class="btn btn-outline-success btn-block">Previous</button>
                                 </p>
+
                             </div>
                         </div>
                     </div>
@@ -197,7 +198,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div *ngIf="lastSixMonths" class="row">
+                <div *ngIf="lastSixMonths" class="row">
                     <div class="col-12">
                         <div class="card " style="border-radius: 12px;">
                             <div class="card-header ">
@@ -217,8 +218,8 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
-                <!-- <div *ngIf="showComparisonData && currentMonthDataToCompare && lastMonthDataToCompare" class="row">
+                </div>
+                <div *ngIf="currentMonthData !== 0 && previousMonthData !== 0" class="row">
                     <div class="col-12">
                         <div class="card " style="border-radius: 12px;">
                             <div class="card-header ">
@@ -227,7 +228,7 @@
                             </div>
                             <div class="card-body ">
                                 <div>
-                                    <app-bar-comparison [currentMonthbarExpensesList]="currentMonthDataToCompare" [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
+                                    <app-donut-chart [currentMonthbar]="currentMonthData" [lastMonthbar]="previousMonthData" [category]=""></app-donut-chart>
                                 </div>
                             </div>
                             <div class="card-footer ">
@@ -238,7 +239,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
 
             <div class="col-lg-8 col-md-12">
