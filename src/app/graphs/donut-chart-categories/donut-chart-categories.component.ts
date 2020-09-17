@@ -4,6 +4,7 @@ import { ChartType, ChartDataSets, ChartOptions } from 'chart.js';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { MyColors } from 'src/app/_helper/chart-colors';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-donut-chart-categories',
@@ -23,13 +24,14 @@ export class DonutChartCategoriesComponent implements OnInit {
     aspectRatio: 1.3,
     legend: {
       position: 'top',
-      labels:{
+      labels: {
         fontColor: '#008855',
         fontSize: 13
       }
     },
   };
   colors: MyColors = new MyColors();
+  labels: { [key: string]: string }[] = [];
   public donutChartColors = [
     {
       backgroundColor: [
@@ -46,12 +48,31 @@ export class DonutChartCategoriesComponent implements OnInit {
       ],
     },
   ];
-  constructor() { }
+  constructor(private translate: TranslateService) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < this.categories.length; i++) {
-      this.doughnutChartLabels.push([this.categories[i].title]);
-      this.doughnutChartData[i] = this.barExpensesList[i]['categoryExpenses'];
+    this.translate.onLangChange.subscribe(() => {
+      this.translateLabels();
+    });
+    this.translateLabels();
+  }
+
+  translateLabels() {
+    if (this.translate.currentLang === 'en') {
+      this.labels = this.translate.translations.en.ExpenseCategory;
+      this.doughnutChartLabels = [];
+      for (let i = 0; i < this.categories.length; i++) {
+        this.doughnutChartLabels.push(this.labels[this.categories[i].title]);
+        this.doughnutChartData[i] = this.barExpensesList[i]['categoryExpenses'];
+      }
+    }
+    else if (this.translate.currentLang === 'ru') {
+      this.labels = this.translate.translations.ru.ExpenseCategory;
+      this.doughnutChartLabels = [];
+      for (let i = 0; i < this.categories.length; i++) {
+        this.doughnutChartLabels.push(this.labels[this.categories[i].title]);
+        this.doughnutChartData[i] = this.barExpensesList[i]['categoryExpenses'];
+      }
     }
   }
 }

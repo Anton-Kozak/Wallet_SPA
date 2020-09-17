@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Label, Color, BaseChartDirective } from 'ng2-charts';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
@@ -53,11 +54,7 @@ export class LineChartComponent implements OnInit {
       ]
     },
     legend: {
-      display: true,
-      labels: {
-        fontColor: '#008855',
-        fontSize: 13
-      },
+      display: false,
     },
     annotation: {
       annotations: [
@@ -89,16 +86,33 @@ export class LineChartComponent implements OnInit {
   ];
   public lineChartLegend = true;
   public lineChartType = 'line';
-
+  months: { [key: string]: string }[] = [];
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
-  constructor() { }
+  constructor(private translate: TranslateService) { }
 
   ngOnInit() {
     this.lastSixMonths = this.lastSixMonths.reverse();
-    for (let i = 0; i < this.lastSixMonths.length; i++) {
-      this.lineChartData[0].data[i] = [this.lastSixMonths[i]['expenseSum']][0];
-      this.lineChartLabels[i] = this.lastSixMonths[i]['month'];
+    this.translate.onLangChange.subscribe(() => {
+      this.translateLabels();
+    });
+    this.translateLabels();
+  }
+
+  translateLabels() {
+    if (this.translate.currentLang === 'en') {
+      this.months = this.translate.translations.en.Months;
+      for (let i = 0; i < this.lastSixMonths.length; i++) {
+        this.lineChartData[0].data[i] = [this.lastSixMonths[i]['expenseSum']][0];
+        this.lineChartLabels[i] = this.months[this.lastSixMonths[i]['month']];
+      }
+    }
+    else if (this.translate.currentLang === 'ru') {
+      this.months = this.translate.translations.ru.Months;
+      for (let i = 0; i < this.lastSixMonths.length; i++) {
+        this.lineChartData[0].data[i] = [this.lastSixMonths[i]['expenseSum']][0];
+        this.lineChartLabels[i] = this.months[this.lastSixMonths[i]['month']];
+      }
     }
   }
 }

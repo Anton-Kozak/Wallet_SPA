@@ -8,11 +8,11 @@
         <div class="d-flex right-nav">
             <div class="d-flex ml-auto align-items-center justify-content-end col-3 col-sm-5">
                 <div class="lang">
-                    <div (click)="translate.use('en'); activeLang = 'en'" class="inactive" [ngClass]="{'active-lang': activeLang === 'en'}">
+                    <div (click)="changeLang('en')" class="inactive" [ngClass]="{'active-lang': activeLang === 'en'}">
                         ENG
                     </div>
                     <div>/</div>
-                    <div (click)="translate.use('ru'); activeLang = 'ru'" class="inactive" [ngClass]="{'active-lang': activeLang === 'ru'}">РУС</div>
+                    <div (click)="changeLang('ru')" class="inactive" [ngClass]="{'active-lang': activeLang === 'ru'}">РУС</div>
                 </div>
                 <div class="dropdown">
                     <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

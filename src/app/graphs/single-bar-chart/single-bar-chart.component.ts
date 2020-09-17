@@ -4,7 +4,7 @@ import { Label } from 'ng2-charts';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { MyColors } from 'src/app/_helper/chart-colors';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-single-bar-chart',
@@ -47,28 +47,35 @@ export class SingleBarChartComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = ['Last Expenses'];
+  public barChartLabels: Label[] = [''];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartData: ChartDataSets[] = [];
-  private barLabels: string[] = [];
+  labels: { [key: string]: string }[] = [];
 
+  constructor(private translate: TranslateService) {
 
-  constructor() { }
+  }
   ngOnInit() {
-    // this.translate.get('Food').subscribe(res => {
-    //   console.log(res);
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.translateLabels();
+    });
+    this.translateLabels();
+  }
 
-    // });
+  translateLabels() {
+    if (this.translate.currentLang === 'en') {
+      this.labels = this.translate.translations.en.ExpenseCategory;
+      for (let i = 0; i < this.categories.length; i++) {
+        this.barChartData[i] = { label: this.labels[this.categories[i].title], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].hoverBackgroundColor };
 
-    // for (let i = 0; i < this.categories.length; i++) {
-    //   this.barChartData.push({ data: [], label: '' });
-    //   this.translate.get(this.categories[i].title).subscribe(translation => {
-    //     this.barLabels.push(translation);
-    //   });
-    // }
-    for (let i = 0; i < this.categories.length; i++) {
-      this.barChartData[i] = { label: this.barLabels[i], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].hoverBackgroundColor };
+      }
+    }
+    else if (this.translate.currentLang === 'ru') {
+      this.labels = this.translate.translations.ru.ExpenseCategory;
+      for (let i = 0; i < this.categories.length; i++) {
+        this.barChartData[i] = { label: this.labels[this.categories[i].title], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].hoverBackgroundColor };
+      }
     }
   }
 }

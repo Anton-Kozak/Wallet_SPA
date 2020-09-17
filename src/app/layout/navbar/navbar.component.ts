@@ -27,8 +27,14 @@ export class NavbarComponent implements OnInit {
     public translate: TranslateService) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
-    this.activeLang = translate.getBrowserLang();
-    translate.use(this.activeLang.match(/en|ru/) ? this.activeLang : 'en');
+    if (localStorage.getItem('language') !== null) {
+      this.translate.use(localStorage.getItem('language'));
+      this.activeLang = localStorage.getItem('language');
+    }
+    else {
+      this.activeLang = translate.getBrowserLang();
+      translate.use(this.activeLang.match(/en|ru/) ? this.activeLang : 'en');
+    }
   }
   signInForm: FormGroup;
   currentUserName?: string;
@@ -45,6 +51,7 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.isDark = this.themeService.currentTheme === 'dark' ? true : false;
     console.log(this.isDark, this.themeService.currentTheme);
     this.getPhoto();
@@ -64,7 +71,12 @@ export class NavbarComponent implements OnInit {
         this.themeService.toggleLight();
       }
     });
+  }
 
+  changeLang(lang: string) {
+    localStorage.setItem('language', lang);
+    this.translate.use(lang);
+    this.activeLang = lang;
   }
 
   getPhoto() {
