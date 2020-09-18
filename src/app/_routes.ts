@@ -1,7 +1,6 @@
 import { Routes } from "@angular/router";
 import { CheckRequestsComponent } from "./request/check-requests/check-requests.component";
 import { CheckInvitesComponent } from "./invites/check-invites/check-invites.component";
-import { HomeComponent } from './home/home.component';
 import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
 import { RequestAccessComponent } from './request/request-access/request-access.component';
 import { CreateInviteComponent } from './invites/create-invite/create-invite.component';
@@ -20,15 +19,24 @@ import { NavigationGuard } from './_guards/navigation.guard';
 import { MainGuard } from './_guards/main.guard';
 import { AdminGuard } from './_guards/admin.guard';
 import { ManualComparisonComponent } from './wallet/manual-comparison/manual-comparison.component';
+import { MainComponent } from './initial-pages/main/main.component';
+import { HomeComponent } from './initial-pages/home/home.component';
+import { ContactsComponent } from './initial-pages/contacts/contacts.component';
+import { SignupSigninComponent } from './initial-pages/signup-signin/signup-signin.component';
+import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
 
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/wallet/home', pathMatch: 'full' },
-
-  { path: 'main', component: MainPageComponent, canActivate: [MainGuard], },
+  { path: 'main', component: MainComponent, children: [
+    { path: 'home', component: HomeComponent },
+    { path: 'reg', component: SignupSigninComponent },
+    { path: 'contacts', component: ContactsComponent },
+    { path: 'no-wallet', component: NoWalletComponent },
+  ]},
+  // { path: 'main', component: MainPageComponent, canActivate: [MainGuard], },
   {
     path: 'wallet', component: WalletSectionComponent, canActivate: [NavigationGuard], canActivateChild: [NavigationGuard], children: [
-      { path: 'home', component: HomeComponent },
       { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
       { path: 'requestAccess', component: RequestAccessComponent },
       { path: 'checkRequests', component: CheckRequestsComponent },

@@ -21,6 +21,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileModule } from './profile/profile.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AnimateModule } from './_helper/animate/animate.module';
+
 
 
 import { AppComponent } from './app.component';
@@ -30,7 +32,7 @@ import { CreateExpenseComponent } from './expenses/create-expense/create-expense
 import { CheckRequestsComponent } from './request/check-requests/check-requests.component';
 import { CheckInvitesComponent } from './invites/check-invites/check-invites.component';
 import { appRoutes } from './_routes';
-import { HomeComponent } from './home/home.component';
+// import { HomeComponent } from './home/home.component';
 import { ShowWalletTableComponent } from './wallet/show-wallet-table/show-wallet-table.component';
 import { RequestAccessComponent } from './request/request-access/request-access.component';
 import { CreateInviteComponent } from './invites/create-invite/create-invite.component';
@@ -51,12 +53,18 @@ import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component'
 import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
 import { ShowPreviousExpensesComponent } from './wallet/show-previous-expenses/show-previous-expenses.component';
 import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.component';
-import { SignupSigninComponent } from './registration/signup-signin/signup-signin.component';
+import { SignupSigninComponent } from './initial-pages/signup-signin/signup-signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { DonutChartComponent } from './graphs/donut-chart/donut-chart.component';
 import { DonutChartCategoriesComponent } from './graphs/donut-chart-categories/donut-chart-categories.component';
 import { ManualComparisonComponent } from './wallet/manual-comparison/manual-comparison.component';
+import { InitialNavbarComponent } from './layout/initial-navbar/initial-navbar.component';
+import { ContactsComponent } from './initial-pages/contacts/contacts.component';
+import { MainComponent } from './initial-pages/main/main.component';
+import { HomeComponent } from './initial-pages/home/home.component';
+import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -99,6 +107,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     DonutChartComponent,
     DonutChartCategoriesComponent,
     ManualComparisonComponent,
+    InitialNavbarComponent,
+    ContactsComponent,
+    MainComponent,
+    NoWalletComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,6 +131,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MatProgressSpinnerModule,
     MatTableModule,
     MatPaginatorModule,
+    AnimateModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

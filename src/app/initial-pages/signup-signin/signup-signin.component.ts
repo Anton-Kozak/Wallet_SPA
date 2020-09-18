@@ -3,9 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateWalletComponent } from 'src/app/wallet/create-wallet/create-wallet.component';
-import { RequestAccessComponent } from 'src/app/request/request-access/request-access.component';
-import { CheckInvitesComponent } from 'src/app/invites/check-invites/check-invites.component';
+
 import { Router } from '@angular/router';
 import { Notification } from 'src/app/_model/notification';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -23,12 +21,11 @@ export class SignupSigninComponent implements OnInit {
   signInForm: FormGroup;
   isSignUp = true;
   isSignedIn = false;
-  invites: number = 0;
+ 
   constructor(private authService: AuthService,
     private alertify: AlertifyService,
-    public dialog: MatDialog,
     private router: Router,
-    private noteService: NotificationService) { }
+   ) { }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
@@ -40,9 +37,6 @@ export class SignupSigninComponent implements OnInit {
       'usernameIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       'userpassIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)])
     });
-    this.authService.isLoggedIn.subscribe(res => {
-      this.isSignedIn = res;
-    })
   }
 
   onSignUp() {
@@ -70,10 +64,9 @@ export class SignupSigninComponent implements OnInit {
         this.router.navigate(['/wallet/home']);
       }
       else {
-        this.isSignedIn = true;
-        this.noteService.getNotifications().subscribe((res: Notification[]) => {
-          this.invites = res.length;
-        })
+        console.log('I have no wallet');
+        
+        this.router.navigate(['/main/no-wallet']);
       }
     }, error => {
       this.alertify.error('Incorrect username or password');
@@ -96,31 +89,10 @@ export class SignupSigninComponent implements OnInit {
     return false;
   }
 
-  onWalletCreateDialog() {
-    const dialogRef = this.dialog.open(CreateWalletComponent);
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result)
-        this.logout();
-    });
-  }
-
-  onInvitesCheckDialog() {
-    const dialogRef = this.dialog.open(CheckInvitesComponent);
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result)
-        this.logout();
-    });
-  }
-
-  onRequestCreateDialog() {
-    const dialogRef = this.dialog.open(RequestAccessComponent);
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
+ 
 
   logout() {
     this.authService.logout();
   }
-
 
 }

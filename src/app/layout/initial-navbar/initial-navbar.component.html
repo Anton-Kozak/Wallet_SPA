@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <div class="container">
+        <a href="" class="navbar-brand">Xpense</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a [routerLink]="['home']" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['reg']" class="nav-link">Registration</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Learn more</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Prices</a>
+                </li>
+                <li *ngIf="isSignedIn" class="nav-item">
+                    <a (click)="logout()" style="cursor: pointer;" class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

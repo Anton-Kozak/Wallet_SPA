@@ -1,0 +1,29 @@
+<div class="row justify-content-center pt-5">
+    <div class="card mr-5" style="width: 18rem;">
+        <img src="https://media.workandmoney.com/10/92/109237ed61a54a9392bcf905bf38d67d.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 matTooltip="Создайте свой собственный кошелёк" class="card-title">Create Your Own Wallet</h5>
+            <p matTooltip="Создание собственного кошелька позволяет добавлять расходы, приглашать новых пользователей, и смотреть статистику!" class="card-text">Become your own wallet owner. Add expenses, invite family members, and find out how much you spend!</p>
+            <a matTooltip="Создать кошелёк" (click)="onWalletCreateDialog()" class="btn btn-primary text-light">Create</a>
+        </div>
+    </div>
+
+    <div class="card mr-5" style="width: 18rem;">
+        <img src="https://www.beeprinting.co.uk/wp-content/uploads/2013/07/Three-color-50pcs-lot-Wedding-Invitation-Cards-With-Purple-Ribbon-Printing-Laser-Cut-Wedding-Invitations.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 matTooltip="Приглашение от других пользователей" class="card-title">Check Invites From Other Users</h5>
+            <p matTooltip="Здесь, вы можете посмотреть есть ли у вас приглашение от других пользователей для доступа к их кошельку." class="card-text">Here, you can look whether other users have invited you to join their wallets!
+            </p>
+            <a matTooltip="Проверить приглашения" [matBadge]="invites" matBadgePosition="after" matBadgeColor="accent" (click)="onInvitesCheckDialog()" class="btn btn-primary text-light">Check</a>
+        </div>
+    </div>
+
+    <div class="card mr-5" style="width: 18rem;">
+        <img src="https://www.underconsideration.com/brandnew/archives/request_logo.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 matTooltip="Запросите доступ к кошельку другого пользователя" class="card-title">Send Requests To Join Wallets</h5>
+            <p matTooltip="Если вы хотите присоединиться к кошельку другого пользователя, Вы можете это сделать отослав запрос на имя этого пользователя." class="card-text">If you want to join your friend's or family's wallets, choose this option and send a request to the owner of the wallet! You do that by entering user's name.</p>
+            <a matTooltip="Запросить доступ" (click)="onRequestCreateDialog()" class="btn btn-primary text-light">Send</a>
+        </div>
+    </div>
+</div>
