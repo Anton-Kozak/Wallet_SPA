@@ -21,7 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileModule } from './profile/profile.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AnimateModule } from './_helper/animate/animate.module';
+
 
 
 
@@ -131,7 +131,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MatProgressSpinnerModule,
     MatTableModule,
     MatPaginatorModule,
-    AnimateModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
