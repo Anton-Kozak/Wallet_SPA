@@ -33,10 +33,12 @@ export class ShowPreviousExpensesComponent implements OnInit {
   categories: CategoryData[] = [];
   monthNumber = 1;
   monthName: string = '';
+  year: string;
   date: Date;
   ngOnInit(): void {
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth() - 1);
+    this.year = this.date.getFullYear().toLocaleString().replace(',', '');
     console.log('Init month', this.date);
 
     this.monthName = this.date.toLocaleString('default', { month: 'long' });
@@ -131,8 +133,9 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.date.setMonth(this.date.getMonth() - this.monthNumber);
     console.log(this.date);
     console.log(this.monthNumber);
-    
+
     this.monthName = this.date.toLocaleString('default', { month: 'long' });
+    this.year = this.date.getFullYear().toLocaleString();
     this.clearData();
     this.getData(this.date);
   }
@@ -142,8 +145,11 @@ export class ShowPreviousExpensesComponent implements OnInit {
       this.monthNumber--;
       this.date = new Date(Date.now());
       this.date.setMonth(this.date.getMonth() - this.monthNumber);
-     
+
       this.monthName = this.date.toLocaleString('default', { month: 'long' });
+      this.year = this.date.getFullYear().toLocaleString();
+      console.log(this.year);
+
       this.clearData();
       this.getData(this.date);
 

@@ -17,12 +17,16 @@
 }
 
 .dark-overlay {
+    display: flex;
+    /* flex-direction: row; */
     justify-content: center;
     align-items: center;
 }
 
 .text {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .title {

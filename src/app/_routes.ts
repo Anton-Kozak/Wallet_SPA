@@ -24,21 +24,25 @@ import { HomeComponent } from './initial-pages/home/home.component';
 import { ContactsComponent } from './initial-pages/contacts/contacts.component';
 import { SignupSigninComponent } from './initial-pages/signup-signin/signup-signin.component';
 import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
+import { RegGuard } from './_guards/reg.guard';
+import { AboutComponent } from './initial-pages/about/about.component';
+import { HomeWalletComponent } from './home-wallet/home-wallet.component';
 
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/wallet/home', pathMatch: 'full' },
-  { path: 'main', component: MainComponent, children: [
+  { path: 'main', component: MainComponent, canActivate: [MainGuard], children: [
     { path: 'home', component: HomeComponent },
-    { path: 'reg', component: SignupSigninComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'reg', component: SignupSigninComponent, canActivate: [RegGuard] },
     { path: 'contacts', component: ContactsComponent },
     { path: 'no-wallet', component: NoWalletComponent },
   ]},
-  // { path: 'main', component: MainPageComponent, canActivate: [MainGuard], },
   {
     path: 'wallet', component: WalletSectionComponent, canActivate: [NavigationGuard], canActivateChild: [NavigationGuard], children: [
       { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
       { path: 'requestAccess', component: RequestAccessComponent },
+      { path: 'home-wallet', component: HomeWalletComponent },
       { path: 'checkRequests', component: CheckRequestsComponent },
       { path: 'checkInvites', component: CheckInvitesComponent },
       { path: 'createInvite', component: CreateInviteComponent },

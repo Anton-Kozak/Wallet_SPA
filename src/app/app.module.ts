@@ -64,6 +64,8 @@ import { ContactsComponent } from './initial-pages/contacts/contacts.component';
 import { MainComponent } from './initial-pages/main/main.component';
 import { HomeComponent } from './initial-pages/home/home.component';
 import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
+import { AboutComponent } from './initial-pages/about/about.component';
+import { HomeWalletComponent } from './home-wallet/home-wallet.component';
 
 
 export function tokenGetter() {
@@ -111,6 +113,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     ContactsComponent,
     MainComponent,
     NoWalletComponent,
+    AboutComponent,
+    HomeWalletComponent,
   ],
   imports: [
     BrowserModule,

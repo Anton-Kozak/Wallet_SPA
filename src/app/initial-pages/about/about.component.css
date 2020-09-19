@@ -1,0 +1,23 @@
+.background {
+    background-image: url(src\assets\images\about\bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.about {
+    margin-top: 100px;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.img-text {
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
@@ -13,7 +13,7 @@ import { CategoryData } from 'src/app/_model/categoryData';
   templateUrl: './wallet-statistics.component.html',
   styleUrls: ['./wallet-statistics.component.css', '../../css/spinner.css']
 })
-export class WalletStatisticsComponent implements OnInit {
+export class WalletStatisticsComponent implements OnInit  {
 
   constructor(private expService: ExpenseService,
     private router: Router,
@@ -34,7 +34,11 @@ export class WalletStatisticsComponent implements OnInit {
   walletMembers: User[];
   amountOfMoneySpent: number;
   categories: CategoryData[] = [];
+
+
+
   ngOnInit(): void {
+
     if (this.walletService.currentCategories.length === 0) {
       this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
         this.walletService.currentCategories = data;
@@ -62,7 +66,7 @@ export class WalletStatisticsComponent implements OnInit {
           if (this.lastMonthDataToCompare[i].categoryExpenses !== 0)
             showPreviousComparison = true;
         }
-        
+
         if (showCurrentComparison && showPreviousComparison)
           this.showComparisonData = true;
 
@@ -85,4 +89,5 @@ export class WalletStatisticsComponent implements OnInit {
     this.router.navigate(['/wallet/userStatistics', id]);
   }
 
+ 
 }

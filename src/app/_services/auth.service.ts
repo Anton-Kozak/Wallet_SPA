@@ -15,7 +15,8 @@ export class AuthService {
   decodedToken: any;
   baseUrl: string = environment.apiUrl + "auth/";
 
-  isLoggedIn = new BehaviorSubject<boolean>(!this.jwtHelper.isTokenExpired(localStorage.getItem('token')));
+  // isLoggedIn = new BehaviorSubject<boolean>(!this.jwtHelper.isTokenExpired(localStorage.getItem('token')));
+  isLoggedIn = new BehaviorSubject<boolean>(this.getToken() !== null);
   hasWallet = new BehaviorSubject<boolean>(this.checkUserWallet());
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -76,7 +77,7 @@ export class AuthService {
     return this.http.get("http://localhost:5000/api/" + 'photo/' + this.getToken().nameid);
   }
 
-  addPhoto(photo: any){
+  addPhoto(photo: any) {
     return this.http.post("http://localhost:5000/api/" + 'photo/' + this.getToken().nameid, photo);
   }
 

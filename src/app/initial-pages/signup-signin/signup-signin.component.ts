@@ -61,7 +61,7 @@ export class SignupSigninComponent implements OnInit {
       this.alertify.success("Welcome: " + data.user['userName']);
       if (this.hasWallet()) {
         this.authService.hasWallet.next(true);
-        this.router.navigate(['/wallet/home']);
+        this.router.navigate(['/wallet/home-wallet']);
       }
       else {
         console.log('I have no wallet');

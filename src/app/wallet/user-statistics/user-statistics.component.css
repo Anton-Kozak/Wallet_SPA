@@ -22,3 +22,58 @@
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
 }
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--card-background);
+    border-radius: 8px;
+}
+
+.previous-day,
+.next-day {
+    width: 20%;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.next-day {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.previous-day {
+    display: flex;
+    align-items: center;
+}
+
+.previous-day .left,
+.next-day .right {
+    color: var(--sidebar-item-selected);
+}
+
+.previous-day:hover {
+    background: linear-gradient(to right, var(--sidebar-item-selected) 25%, var(--card-background) 100%);
+}
+
+.previous-day:hover .left,
+.next-day:hover .right {
+    color: var(--card-background);
+}
+
+.next-day:hover {
+    background: linear-gradient(to left, var(--sidebar-item-selected), var(--card-background));
+    color: var(--card-background);
+}
+
+.date {
+    display: flex;
+    align-items: center;
+}
+
+.date-value {
+    font-size: 40px;
+    color: var(--sidebar-item-selected);
+}

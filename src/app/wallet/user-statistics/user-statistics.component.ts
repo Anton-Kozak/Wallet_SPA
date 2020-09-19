@@ -48,6 +48,7 @@ export class UserStatisticsComponent implements OnInit {
   categories: CategoryData[] = [];
   currentMonthData: number;
   previousMonthData: number;
+  year: string;
   lastSixMonths: { month: string, expenseSum: number }[] = [];
 
   isLoading = true;
@@ -63,6 +64,8 @@ export class UserStatisticsComponent implements OnInit {
   ngOnInit(): void {
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth());
+    this.year = this.date.getFullYear().toLocaleString().replace(',', '');
+    this.monthName = this.date.toLocaleString('default', { month: 'long' });
     console.log('Init month', this.date);
     this.isThisUser = false;
     let userId = this.authService.decodedToken.nameid;
@@ -134,9 +137,7 @@ export class UserStatisticsComponent implements OnInit {
       this.date.setMonth(this.date.getMonth() - this.monthNumber)
     else
       this.date.setMonth(this.date.getMonth() + this.monthNumber);
-    console.log(this.date);
-    console.log(this.monthNumber);
-
+    this.year = this.date.getFullYear().toLocaleString().replace(',', '');
     this.monthName = this.date.toLocaleString('default', { month: 'long' });
     this.clearData();
     this.getData(this.date);
@@ -150,6 +151,7 @@ export class UserStatisticsComponent implements OnInit {
     else
       this.date.setMonth(this.date.getMonth() + this.monthNumber);
     this.monthName = this.date.toLocaleString('default', { month: 'long' });
+    this.year = this.date.getFullYear().toLocaleString().replace(',', '');
     this.clearData();
     this.getData(this.date);
   }

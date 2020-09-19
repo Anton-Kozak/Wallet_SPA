@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { MatSidenavContainer } from '@angular/material/sidenav';
+import * as AOS from 'aos';
 @Component({
   selector: 'app-wallet-section',
   templateUrl: './wallet-section.component.html',
@@ -19,6 +20,17 @@ export class WalletSectionComponent implements OnInit {
   onToggle($event) {
     this.drawer.toggle();
     this.toggleState = !this.toggleState;
+  }
+
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
+    // console.log($event['Window']);
+    console.log("scrolling ws");
+  }
+
+  @ViewChild(MatSidenavContainer) sidenavContainer: MatSidenavContainer;
+
+  ngAfterViewInit() {
+    this.sidenavContainer.scrollable.elementScrolled().subscribe(() => AOS.refresh());
   }
 
 
