@@ -1,6 +1,6 @@
 <div>
     <div class="row justify-content-center">
-        <div class="date-outer col-5">
+        <div class="date-outer col-5" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
             <div class="date card pl-3 pr-3">
                 <div class="mr-2">{{'CustomCompare.SelectFirst' | translate}}:</div>
                 <div class="date-value">{{firstDate.value}}</div>
@@ -11,10 +11,10 @@
                 </mat-form-field>
             </div>
         </div>
-        <div class="col-2">
+        <div class="col-2" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="300">
             <button class="btn btn-block select-date" (click)="selectDates()">{{'CustomCompare.Select' | translate}}</button>
         </div>
-        <div class="date-outer col-5">
+        <div class="date-outer col-5" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
             <div class="date card pl-3 pr-3">
                 <div class="mr-2">{{'CustomCompare.SelectSecond' | translate}}:</div>
                 <div class="date-value">{{secondDate.value}}</div>
@@ -31,7 +31,7 @@
     <div class="row mt-5 data-column" [hidden]="!showData">
         <div class="col-5">
 
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-left': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-left-s': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-left-t': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-left-f': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -123,7 +123,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-left-x': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-left': showData}">
                 <div class="card" style="border-radius: 12px;">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.CategoryCompare' | translate}}</h5>
@@ -167,7 +167,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-left': showData}">
                 <div class="card" style="border-radius: 12px;">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
@@ -185,7 +185,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 card">
+            <div class="col-12 card" [ngClass]="{'fade-in-left': showData}">
                 <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
                     <table style="width: 100%;" mat-table [dataSource]="firstMonthExpenses">
                         <ng-container matColumnDef="expenseTitle">
@@ -220,7 +220,7 @@
             </div>
         </div>
         <div class="col-5">
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-right': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -243,7 +243,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-right-s': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -266,7 +266,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-right-t': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -278,7 +278,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category mb-2">{{'Expenses.Average' | translate}}</p>
-                                    <p *ngIf="secondMonthAverage != 0" class="card-title">{{'ExpenseCategory.' +secondMonthAverage |translate}}</p>
+                                    <p *ngIf="secondMonthAverage != 0" class="card-title">{{secondMonthAverage}}</p>
                                     <p *ngIf="secondMonthAverage == 0" class="card-title">0</p>
                                 </div>
                             </div>
@@ -289,7 +289,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-right-f': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -312,7 +312,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-right-x': showData}">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -335,7 +335,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-right': showData}">
                 <div class="card" style="border-radius: 12px;">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.CategoryCompare' | translate}}</h5>
@@ -353,7 +353,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" [ngClass]="{'fade-in-right': showData}">
                 <div class="card" style="border-radius: 12px;">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
@@ -371,7 +371,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 card">
+            <div class="col-12 card" [ngClass]="{'fade-in-right': showData}">
                 <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
                     <table style="width: 100%;" mat-table [dataSource]="secondMonthExpenses">
                         <ng-container matColumnDef="expenseTitle">
