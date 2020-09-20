@@ -2,9 +2,9 @@
     <div class="dark-overlay">
         <div class="row text">
             <p class="text-center title mb-5" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" data-aos-delay="0">XPense</p>
-            <p class="description text-uppercase" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="1200">An effective solution to manage your finances!</p>
-            <button *ngIf="!isSignedIn" [routerLink]="['/main/reg']" class="btn btn-outline-warning" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" data-aos-delay="2200">Start Now</button>
-            <button *ngIf="isSignedIn" [routerLink]="['/main/reg']" class="btn btn-outline-warning" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" data-aos-delay="2200">Continue</button>
+            <p class="description text-uppercase" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="1200">{{"Home.TitleDesc" | translate}} </p>
+            <button *ngIf="!isSignedIn" [routerLink]="['/main/reg']" class="btn btn-outline-warning" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" data-aos-delay="2200">{{"Home.Start" | translate}}</button>
+            <button *ngIf="isSignedIn" [routerLink]="['/main/reg']" class="btn btn-outline-warning" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" data-aos-delay="2200">Cont{{"Home.Continue" | translate}}inue</button>
 
         </div>
     </div>
@@ -12,19 +12,19 @@
 <div class="main-section container">
     <div class="row mb-5 mt-5">
         <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
-            <img src="../../../assets/images/home/001-wallet.svg" class="img-fluid w-25 mb-4">
-            <h3 class="card-title">Money Savings</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <img src="assets/images/home/001-wallet.svg" class="img-fluid w-25 mb-4">
+            <h3 class="card-title">{{"Home.SaveMoney" | translate}}</h3>
+            <p>{{"Home.SaveText" | translate}}</p>
         </div>
         <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
-            <img src="../../../assets/images/home/004-cart.svg" class="img-fluid w-25 mb-4">
-            <h3 class="card-title">Online Shoppings</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <img src="assets/images/home/004-cart.svg" class="img-fluid w-25 mb-4">
+            <h3 class="card-title">{{"Home.ControlBudget" | translate}}</h3>
+            <p>{{"Home.ControlText" | translate}}</p>
         </div>
         <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
-            <img src="../../../assets/images/home/006-credit-card.svg" class="img-fluid w-25 mb-4">
-            <h3 class="card-title">Credit / Debit Cards</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <img src="assets/images/home/006-credit-card.svg" class="img-fluid w-25 mb-4">
+            <h3 class="card-title">{{"Home.TrackExpenses" | translate}}</h3>
+            <p>{{"Home.TrackText" | translate}}</p>
         </div>
     </div>
 </div>
@@ -34,19 +34,19 @@
         <div class="row pt-5">
             <div class="col-lg-6 mb-5">
                 <div class="image" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
-                    <img src="../../../assets/images/home/home middle.jpg" class="img-fluid">
+                    <img src="assets/images/home/home middle.jpg" class="img-fluid">
                 </div>
             </div>
             <div class="col-lg-5 ml-auto text" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
                 <div class="mb-4">
-                    <h3 class="h3 mb-4 text-black">BENEFITS</h3>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    <h3 class="h3 mb-4 text-black">{{"Home.Benefits" | translate}}</h3>
                 </div>
                 <div class="mb-4">
                     <ul class="list-unstyled ul-check success">
-                        <li>Officia quaerat eaque neque</li>
-                        <li>Lorem ipsum dolor sit amet</li>
-                        <li>Consectetur adipisicing elit</li>
+                        <li>{{"Home.Benefit1" | translate}}</li>
+                        <li>{{"Home.Benefit2" | translate}}</li>
+                        <li>{{"Home.Benefit3" | translate}}</li>
+                        <li>{{"Home.Benefit4" | translate}}</li>
                     </ul>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AuthService } from 'src/app/_services/auth.service';
+
+import { PhotoService } from 'src/app/_services/photo.service';
 
 
 
@@ -14,7 +15,7 @@ export class ImageModalComponent implements OnInit {
   isUploaded = false;
   url;
   constructor(public dialogRef: MatDialogRef<ImageModalComponent>,
-    private authService: AuthService,) { }
+    private photoService: PhotoService,) { }
 
   ngOnInit(): void {
   }
@@ -43,7 +44,7 @@ export class ImageModalComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('Name', this.photo.name);
     uploadData.append('File', this.photo);
-    this.authService.addPhoto(uploadData).subscribe(response => {
+    this.photoService.addPhoto(uploadData).subscribe(response => {
       console.log(response);
       this.isUploaded = true;
       this.dialogRef.close();

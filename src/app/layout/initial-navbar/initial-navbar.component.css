@@ -2,3 +2,23 @@
     border-bottom: #008ed6 3px solid;
     opacity: 0.8;
 }
+
+.lang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.active-lang {
+    filter: brightness(120%);
+}
+
+.inactive {
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.inactive:hover {
+    filter: brightness(105%);
+}

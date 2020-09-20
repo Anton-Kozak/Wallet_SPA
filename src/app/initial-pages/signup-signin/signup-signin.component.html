@@ -3,13 +3,13 @@
         <div class="home-inner pt-5 container">
             <div class="row mt-5">
                 <div class="col-lg-8 d-none d-lg-block" wmAnimate="fadeInRight">
-                    <h1 class="display-4 text-capitalize text-light" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">Track your expenses easily</h1>
+                    <h1 class="display-4 text-capitalize text-light" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0"> {{"Registration.Benefits" | translate}}</h1>
                     <div class="d-flex" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
                         <div class="p-4 align-self-start">
                             <i class="fas fa-check fa-2x text-light"></i>
                         </div>
                         <div class="p-4 align-self-end text-light">
-                            Simple system of managing expenses
+                            {{"Registration.Benefit1" | translate}}
                         </div>
                     </div>
                     <div class="d-flex" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
@@ -17,7 +17,7 @@
                             <i class="fas fa-check fa-2x text-light"></i>
                         </div>
                         <div class="p-4 align-self-end text-light">
-                            Invite up to 5 users
+                            {{"Registration.Benefit2" | translate}}
                         </div>
                     </div>
                     <div class="d-flex" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="300">
@@ -25,7 +25,7 @@
                             <i class="fas fa-check fa-2x text-light"></i>
                         </div>
                         <div class="p-4 align-self-end text-light">
-                            Enjoy variety of statistical data
+                            {{"Registration.Benefits" | translate}}
                         </div>
                     </div>
                 </div>
@@ -35,15 +35,15 @@
                         <div class="card-flip" [ngClass]="{flip: !isSignUp}">
                             <div class="card front regform text-center card-form">
                                 <div class="card-body text-light shadow-lg">
-                                    <h1 matTooltip="Регистрация">Sign Up Today</h1>
-                                    <p>Please, fill out the registration form</p>
+                                    <h1> {{"Registration.SignUp" | translate}}</h1>
+                                    <p> {{"Registration.Fill" | translate}}</p>
                                     <div class="border-primary">
                                         <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend shadow-lg">
                                                         <span matTooltip="Имя пользователя" class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
-                                                    'bg-success text-white': !signUpForm.get('usernameUp').errors}">Username</span>
+                                                    'bg-success text-white': !signUpForm.get('usernameUp').errors}"> {{"Registration.Username" | translate}}</span>
                                                     </div>
                                                     <input [ngClass]="{'is-invalid': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
                                                                 'is-valid': !signUpForm.get('usernameUp').errors}" type="text" formControlName="usernameUp" class="form-control">
@@ -67,7 +67,7 @@
                                                     <div class="input-group-prepend shadow-lg">
                                                         <span matTooltip="Пароль" class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched,
                                                             'bg-success text-white': !signUpForm.get('userpassUp').errors}">
-                                                            Password</span>
+                                                            {{"Registration.Password" | translate}}</span>
                                                     </div>
                                                     <input [ngClass]="{'is-invalid': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched,
                                                             'is-valid': !signUpForm.get('userpassUp').errors}" type="password" formControlName="userpassUp" class="form-control">
@@ -88,38 +88,36 @@
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend shadow-lg">
-                                                        <span matTooltip="Роль пользователя" class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('role').errors && signUpForm.get('role').touched,
-                                                'bg-success text-white': !signUpForm.get('role').errors}">Role</span>
+                                                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('role').errors && signUpForm.get('role').touched,
+                                                'bg-success text-white': !signUpForm.get('role').errors}"> {{"Registration.Role" | translate}}</span>
                                                     </div>
                                                     <select formControlName="role" class="form-control">
-                                                        <option selected matTooltip="Взрослый" value="Adult">Adult</option>
-                                                        <option matTooltip="Ребенок" value="Child">Child</option>
+                                                        <option value="Adult"> {{"Registration.Adult" | translate}}</option>
+                                                        <option value="Child"> {{"Registration.Child" | translate}}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <button matTooltip="Зарегестрироваться" class="btn btn-secondary btn-block shadow-lg" [disabled]="signUpForm.invalid" [ngClass]="{'btn-success': signUpForm.valid}">Create
-                                                    account</button>
+                                                <button class="btn btn-secondary btn-block shadow-lg" [disabled]="signUpForm.invalid" [ngClass]="{'btn-success': signUpForm.valid}"> {{"Registration.Create" | translate}}</button>
                                             </div>
                                         </form>
                                         <div class="container">
-                                            <p matTooltip="Уже есть аккаунт?">Already signed-up? <a matTooltip="Ввойти" (click)="switchCard()" style="cursor: pointer;" class="text-light"><strong>Sign-in
-                                                        here!</strong></a></p>
+                                            <p> {{"Registration.SignInTip" | translate}} <a matTooltip="Ввойти" (click)="switchCard()" style="cursor: pointer;" class="text-light"><strong> {{"Registration.SignInHere" | translate}}</strong></a></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card back regform text-center card-form">
                                 <div class="card-body text-light shadow-lg">
-                                    <h1 matTooltip="Ввойти в аккаунт">Sign In Today</h1>
-                                    <p matTooltip="Введите имя пользователя и пароль">Please, enter your username and password</p>
+                                    <h1> {{"Registration.SignIn" | translate}}</h1>
+                                    <p> {{"Registration.Please" | translate}}</p>
                                     <div class="border-primary">
                                         <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <div matTooltip="Имя пользователя" class="input-group-prepend shadow-lg">
                                                         <span class="input-group-text" [ngClass]="{'bg-danger text-light': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched,
-                                                    'bg-success text-white': !signInForm.get('usernameIn').errors}">Username</span>
+                                                    'bg-success text-white': !signInForm.get('usernameIn').errors}"> {{"Registration.Username" | translate}}</span>
                                                     </div>
                                                     <input [ngClass]="{'is-invalid': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched,
                                                                 'is-valid': !signInForm.get('usernameIn').errors}" type="text" formControlName="usernameIn" class="form-control">
@@ -140,7 +138,7 @@
                                                     <div class="input-group-prepend shadow-lg">
                                                         <span matTooltip="Пароль" class="input-group-text" [ngClass]="{'bg-danger text-light': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched,
                                                             'bg-success text-white': !signInForm.get('userpassIn').errors}">
-                                                            Password</span>
+                                                            {{"Registration.Password" | translate}}</span>
                                                     </div>
                                                     <input [ngClass]="{'is-invalid': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched,
                                                             'is-valid': !signInForm.get('userpassIn').errors}" type="password" formControlName="userpassIn" class="form-control">
@@ -156,12 +154,11 @@
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
-                                                <button matTooltip="Ввойти" class="btn btn-secondary btn-block shadow-lg" [disabled]="signInForm.invalid" [ngClass]="{'btn-success': signInForm.valid}">Sign in</button>
+                                                <button class="btn btn-secondary btn-block shadow-lg" [disabled]="signInForm.invalid" [ngClass]="{'btn-success': signInForm.valid}"> {{"Registration.Signin" | translate}}</button>
                                             </div>
                                         </form>
                                         <div class="container">
-                                            <p matTooltip="Нет аккаунт?">Don't have an account? <a matTooltip="Зарегистрируйтесь!" (click)="isSignUp = !isSignUp" style="cursor: pointer;" class="text-light"><strong>Sign-up
-                                                        here!</strong></a></p>
+                                            <p matTooltip="Нет аккаунт?"> {{"Registration.SignUpTip" | translate}} <a matTooltip="Зарегистрируйтесь!" (click)="isSignUp = !isSignUp" style="cursor: pointer;" class="text-light"><strong> {{"Registration.SignUpHere" | translate}}</strong></a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -181,18 +178,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="assets\images\explore-section1.jpg" alt="" class="img-fluid nb-3 rounded-circle">
+                <img src="assets\images\reg\img.jpg" alt="" class="img-fluid nb-3 rounded-circle">
             </div>
             <div class="col-md-6">
-                <h3>Explore & Connect</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae, delectus earum. Mollitia omnis reprehenderit suscipit rem quidem minus quisquam magni!</p>
+                <h1> {{"Registration.Why" | translate}}</h1>
                 <div class="d-flex">
                     <div class="p-4 align-self-start">
                         <i class="fas fa-check fa-2x"></i>
 
                     </div>
                     <div class="p-4 align-self-end">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, rerum beatae? Aliquid, obcaecati qui. Velit voluptatum veniam molestias omnis molestiae rem at assumenda eaque, officiis sequi ratione magnam quae inventore.
+                        {{"Registration.Expl1" | translate}} </div>
+                </div>
+                <div class="d-flex">
+                    <div class="p-4 align-self-start">
+                        <i class="fas fa-check fa-2x"></i>
+
+                    </div>
+                    <div class="p-4 align-self-end">
+                        {{"Registration.Expl2" | translate}}
                     </div>
                 </div>
                 <div class="d-flex">
@@ -201,8 +205,7 @@
 
                     </div>
                     <div class="p-4 align-self-end">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, rerum beatae? Aliquid, obcaecati qui. Velit voluptatum veniam molestias omnis molestiae rem at assumenda eaque, officiis sequi ratione magnam quae inventore.
-                    </div>
+                        {{"Registration.Expl3" | translate}} </div>
                 </div>
             </div>
         </div>

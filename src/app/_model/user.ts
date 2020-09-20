@@ -5,4 +5,6 @@ export interface User {
     email: string;
     username: string;
     walletID?: number;
+    photoUrl?: string;
+    dateJoined: Date
 }

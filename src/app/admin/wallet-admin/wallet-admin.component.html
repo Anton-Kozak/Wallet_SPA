@@ -1,13 +1,7 @@
 <div class="row">
-    <div class="col-md-12">
-        <button (click)="sendInvitation()" class="btn btn-primary btn-block">Add new user</button>
-    </div>
-</div>
-<hr>
-<div class="row">
     <div class="col-md-5">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -18,7 +12,7 @@
                             </div>
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
-                                    <p class="card-category">Manage Wallet's Users</p>
+                                    <p class="card-category">{{"Admin.WalletUsers" | translate}}</p>
                                 </div>
                             </div>
                         </div>
@@ -30,26 +24,26 @@
 
                                     <!-- Position Column -->
                                     <ng-container matColumnDef="username">
-                                        <th mat-header-cell *matHeaderCellDef> Username </th>
+                                        <th mat-header-cell *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
                                         <td mat-cell *matCellDef="let element"> {{element.username}} </td>
                                     </ng-container>
 
                                     <!-- Name Column -->
                                     <ng-container matColumnDef="dateJoined">
-                                        <th mat-header-cell *matHeaderCellDef> Date Joined </th>
+                                        <th mat-header-cell *matHeaderCellDef> {{"Profile.Joined" | translate}} </th>
                                         <td mat-cell *matCellDef="let element"> {{element.dateJoined | date:'medium'}}
                                         </td>
                                     </ng-container>
 
                                     <!-- Weight Column -->
                                     <ng-container matColumnDef="userRoles">
-                                        <th mat-header-cell *matHeaderCellDef> Roles </th>
+                                        <th mat-header-cell *matHeaderCellDef> {{"Profile.Roles" | translate}} </th>
                                         <td mat-cell *matCellDef="let element"> {{element.userRoles}} </td>
                                     </ng-container>
 
                                     <!-- Symbol Column -->
                                     <ng-container matColumnDef="actions">
-                                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                                        <th mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
                                         <td mat-cell *matCellDef="let element">
                                             <div *ngIf="!element.userRoles.includes('Admin')">
                                                 <a matTooltip="Block user" class="mr-2"><i class="fa fa-lock"></i></a>
@@ -67,27 +61,30 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <button (click)="sendInvitation()" class="btn btn-block mb-2 add-user font-weight-bold">{{"Admin.InviteUser" | translate}}</button>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row mt-2">
+            <div class="col-md-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="350">
                 <app-check-requests (onUserAdd)="addUserFromRequest($event)"></app-check-requests>
             </div>
         </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
         <div class="mat-elevation-z8">
             <table style="width: 100%;" mat-table [dataSource]="expenses">
                 <ng-container matColumnDef="expenseTitle">
-                    <th mat-header-cell *matHeaderCellDef> Expense </th>
+                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Expense" | translate}} </th>
                     <td mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
                 </ng-container>
                 <ng-container matColumnDef="category">
-                    <th mat-header-cell *matHeaderCellDef> Category </th>
+                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Category" | translate}} </th>
                     <td mat-cell *matCellDef="let element"> {{element.category}} </td>
                 </ng-container>
                 <ng-container matColumnDef="userName">
-                    <th mat-header-cell *matHeaderCellDef> User </th>
+                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
                     <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
                 </ng-container>
                 <ng-container matColumnDef="moneySpent">
@@ -95,65 +92,15 @@
                     <td mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
                 </ng-container>
                 <ng-container matColumnDef="expenseDescription">
-                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Details" | translate}} </th>
                     <td mat-cell *matCellDef="let element"> {{element.expenseDescription}} </td>
                 </ng-container>
                 <ng-container matColumnDef="creationDate">
-                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Date" | translate}} </th>
                     <td mat-cell *matCellDef="let element"> {{element.creationDate | date :'medium'}} </td>
                 </ng-container>
                 <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef> Actions </th>
-                    <td mat-cell *matCellDef="let element; let i = index">
-                        <a (click)="openDialog(element.id, i)" class="btn">
-                            <span style="color: green;">
-                                <i class="fa fa-cog"></i>
-                            </span>
-                        </a>
-                        <a (click)="expenseDelete(element.id, i)" class="btn">
-                            <span class="mr" style="color: red;">
-                                <i class="fa fa-times"></i>
-                            </span>
-                        </a>
-                    </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="columnsForExpenses"></tr>
-                <tr mat-row *matRowDef="let row; columns: columnsForExpenses;"></tr>
-            </table>
-
-            <mat-paginator #expPaginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
-            </mat-paginator>
-        </div>
-    </div>
-    <div class="col-md-7">
-        <div class="mat-elevation-z8">
-            <table style="width: 100%;" mat-table [dataSource]="expenses">
-                <ng-container matColumnDef="expenseTitle">
-                    <th mat-header-cell *matHeaderCellDef> Expense </th>
-                    <td mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
-                </ng-container>
-                <ng-container matColumnDef="category">
-                    <th mat-header-cell *matHeaderCellDef> Category </th>
-                    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-                </ng-container>
-                <ng-container matColumnDef="userName">
-                    <th mat-header-cell *matHeaderCellDef> User </th>
-                    <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
-                </ng-container>
-                <ng-container matColumnDef="moneySpent">
-                    <th mat-header-cell *matHeaderCellDef> $ </th>
-                    <td mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
-                </ng-container>
-                <ng-container matColumnDef="expenseDescription">
-                    <th mat-header-cell *matHeaderCellDef> Description </th>
-                    <td mat-cell *matCellDef="let element"> {{element.expenseDescription}} </td>
-                </ng-container>
-                <ng-container matColumnDef="creationDate">
-                    <th mat-header-cell *matHeaderCellDef> Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.creationDate | date :'medium'}} </td>
-                </ng-container>
-                <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef> Actions </th>
+                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
                     <td mat-cell *matCellDef="let element; let i = index">
                         <a (click)="openDialog(element.id, i)" class="btn">
                             <span style="color: green;">

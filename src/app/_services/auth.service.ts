@@ -73,16 +73,6 @@ export class AuthService {
   }
 
   //TODO: сделать отдельный сервис для фото
-  getPhoto() {
-    return this.http.get("http://localhost:5000/api/" + 'photo/' + this.getToken().nameid);
-  }
-
-  addPhoto(photo: any) {
-    return this.http.post("http://localhost:5000/api/" + 'photo/' + this.getToken().nameid, photo);
-  }
-
-  deletePhoto() {
-    return this.http.delete("http://localhost:5000/api/" + 'photo/' + this.getToken().nameid);
-  }
+ 
 
 }

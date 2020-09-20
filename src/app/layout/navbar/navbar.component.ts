@@ -1,8 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
-import { AlertifyService } from '../../_services/alertify.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.component';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -10,6 +8,8 @@ import { Notification } from 'src/app/_model/notification';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Photo } from 'src/app/_model/photo';
+import { PhotoService } from 'src/app/_services/photo.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 
 @Component({
@@ -19,7 +19,8 @@ import { Photo } from 'src/app/_model/photo';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService,
+  constructor(private photoService: PhotoService,
+    private authService: AuthService,
     private router: Router,
     public dialog: MatDialog,
     private noteService: NotificationService,
@@ -80,7 +81,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getPhoto() {
-    this.authService.getPhoto().subscribe((data: Photo) => {
+    this.photoService.getPhoto().subscribe((data: Photo) => {
       this.photo = data;
     })
   }

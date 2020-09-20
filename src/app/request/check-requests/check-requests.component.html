@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-7 col-md-8">
                         <div class="numbers">
-                            <p class="card-category">Get Requests</p>
+                            <p class="card-category">{{"Admin.GetRequests" | translate}}</p>
                         </div>
                     </div>
                 </div>
@@ -20,29 +20,26 @@
                     <div class="mat-elevation-z8 box text-center">
                         <table style="width: 100%;" mat-table [dataSource]="requests">
                             <ng-container matColumnDef="from">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> From </th>
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{"Admin.From" | translate}} </th>
                                 <td mat-cell *matCellDef="let element"> {{element.requestCreatorEmail}} </td>
                             </ng-container>
                             <ng-container matColumnDef="date">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> Date </th>
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{"Expenses.Date" | translate}} </th>
                                 <td mat-cell *matCellDef="let element"> {{element.inviteCreationTime | date:'medium'}}
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="actions">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> Actions </th>
+                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
                                 <td mat-cell *matCellDef="let element; let i = index">
-                                    <button  matTooltip="Принять нового пользователя" class="btn btn-success btn-sm mr-2"
-                                        (click)="acceptRequest(element.requestCreatorEmail, i)">Accept</button>
-                                    <button matTooltip="Отклонить нового пользователя" class="btn btn-danger btn-sm"
-                                        (click)="declineRequest(element.requestCreatorEmail, i)">Decline</button>
+                                    <button matTooltip="Принять нового пользователя" class="btn btn-success btn-sm mr-2" (click)="acceptRequest(element.requestCreatorEmail, i)">Accept</button>
+                                    <button matTooltip="Отклонить нового пользователя" class="btn btn-danger btn-sm" (click)="declineRequest(element.requestCreatorEmail, i)">Decline</button>
                                 </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="columns"></tr>
                             <tr mat-row *matRowDef="let row; columns: columns;"></tr>
                         </table>
 
-                        <mat-paginator #userPaginator class="box" [pageSizeOptions]="[5]" [hidePageSize]="true"
-                            showFirstLastButtons>
+                        <mat-paginator #userPaginator class="box" [pageSizeOptions]="[5]" [hidePageSize]="true" showFirstLastButtons>
                         </mat-paginator>
                     </div>
                 </div>

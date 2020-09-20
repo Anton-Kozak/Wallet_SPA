@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -8,14 +9,34 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./initial-navbar.component.css']
 })
 export class InitialNavbarComponent implements OnInit {
-
-  constructor(private authService: AuthService, private router: Router) { }
+  activeLang: string;
   isSignedIn: boolean;
+
+  
+  constructor(private authService: AuthService, private router: Router, public translate: TranslateService) {
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
+    if (localStorage.getItem('language') !== null) {
+      this.translate.use(localStorage.getItem('language'));
+      this.activeLang = localStorage.getItem('language');
+    }
+    else {
+      this.activeLang = translate.getBrowserLang();
+      translate.use(this.activeLang.match(/en|ru/) ? this.activeLang : 'en');
+    }
+  }
+
   ngOnInit(): void {
     this.authService.isLoggedIn.subscribe(res => {
       this.isSignedIn = res;
       console.log('Is loged in', this.isSignedIn);
     })
+  }
+
+  changeLang(lang: string) {
+    localStorage.setItem('language', lang);
+    this.translate.use(lang);
+    this.activeLang = lang;
   }
 
   logout() {

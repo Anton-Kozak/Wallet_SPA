@@ -41,18 +41,21 @@ i,
 
 .toggleButton,
 .logout {
-    border-color: var(--navbar-icons) !important;
+    border-color: var(--navbar-icons);
+    background-color: transparent;
+    color: var(--button-text);
 }
 
+.toggleButton:hover i,
 .toggleButton:hover,
 .logout:hover {
-    filter: opacity(60%);
-    border-color: var(--navbar-icons) !important;
+    color: var(--button-text-hover) !important;
+    background-color: var(--navbar-icons);
 }
 
 .toggleButton i,
 .logout {
-    color: var(--navbar-icons) !important;
+    color: var(--button-text) !important;
 }
 
 .right-nav {

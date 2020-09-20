@@ -22,6 +22,8 @@ export const darkTheme = {
   'table-expense-header': '.65',
   'spinner-first': '#ffc107',
   'spinner-second': '#008855',
+  'button-text' : '#ffb204',
+  'button-text-hover' : 'black',
 };
 
 export const lightTheme = {
@@ -44,6 +46,8 @@ export const lightTheme = {
   'table-expense-header': '1',
   'spinner-first': '#00e1ff',
   'spinner-second': '#006eff',
+  'button-text' : '#0084ff',
+  'button-text-hover' : 'white',
 };
 
 @Injectable({

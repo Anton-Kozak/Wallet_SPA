@@ -1,3 +1,19 @@
 :host {
     background-color: var(--background-color);
 }
+
+.avatar {
+    /* border-radius: 50%; */
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0;
+}
+
+.avatar-image {
+    max-height: 100%;
+    max-width: auto;
+}
+
+.user-details {
+    align-items: center;
+}

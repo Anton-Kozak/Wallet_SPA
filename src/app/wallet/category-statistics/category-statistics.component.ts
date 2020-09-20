@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { TopUsersStat } from 'src/app/_model/top-users-stat';
-import { CategoryComparison } from 'src/app/_model/category-comparison';
 import { ActivatedRoute } from '@angular/router';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { WalletService } from 'src/app/_services/wallet.service';
@@ -27,17 +26,17 @@ export class CategoryStatisticsComponent implements OnInit {
 
   showComparisonData = false;
 
-  largestExpense: number;
-  currentMonthLargestExpense: number;
-  spentThisMonth: number;
-  spentAll: number;
+  // largestExpense: number;
+  // currentMonthLargestExpense: number;
+  // spentThisMonth: number;
+  // spentAll: number;
 
   chosenCategory: number;
   chosenCategoryName: string;
 
   currentMonthData: number;
   lastMonthData: number;
-  mostSpentUser: TopUsersStat = null;
+  //mostSpentUser: TopUsersStat = null;
   //here sum is count
   mostUsedUser: TopUsersStat = null;
   topFiveUsers: TopUsersStat[];
@@ -69,14 +68,11 @@ export class CategoryStatisticsComponent implements OnInit {
           this.showData = false;
         }
         else {
-          //понять почему не работает paginator
-          console.log(data);
-          
           this.expenses.data = data['categoryExpenses'];
           setTimeout(() => this.expenses.paginator = this.paginator);
-          this.largestExpense = data['largestExpense'];
-          this.currentMonthLargestExpense = data['currentMonthLargestExpense'];
-          this.mostSpentUser = data['mostSpentUser'];
+          // this.largestExpense = data['largestExpense'];
+          // this.currentMonthLargestExpense = data['currentMonthLargestExpense'];
+          // this.mostSpentUser = data['mostSpentUser'];
           this.mostUsedUser = data['mostUsedUser'];
           this.currentMonthData = data['barCompareExpensesWithLastMonth']['currentMonthData'];
           this.lastMonthData= data['barCompareExpensesWithLastMonth']['lastMonthData'];
@@ -86,8 +82,6 @@ export class CategoryStatisticsComponent implements OnInit {
             
             this.showComparisonData = true;
           }
-          this.spentThisMonth = data['spentThisMonth'];
-          this.spentAll = data['spentAll'];
           this.topFiveUsers = data['topFiveUsers'];
           this.lastSixMonths = data['lastSixMonths'];
 

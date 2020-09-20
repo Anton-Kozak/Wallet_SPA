@@ -51,7 +51,7 @@
                 <div *ngFor="let category of categoryTitles" id="collapseExample" class="collapse categories">
                     <ul class="nav ml-3">
                         <li routerLinkActive="active">
-                            <a style="font-size: 10px;" [routerLink]="['/wallet/catstat', category.id]">
+                            <a style="font-size: 10px;" [routerLink]="['/wallet/catstat/' + category.id]">
                                 <i class="fas {{category.icon}}"></i>
                                 <p matTooltip="Категория: {{category.title}}">{{'ExpenseCategory.' + category.title | translate}}</p>
                             </a>

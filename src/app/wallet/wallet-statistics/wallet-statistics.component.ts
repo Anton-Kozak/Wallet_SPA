@@ -78,6 +78,8 @@ export class WalletStatisticsComponent implements OnInit  {
 
       }
       this.walletMembers = response['walletUsers'];
+      console.log(this.walletMembers);
+      
       this.isLoading = false;
     });
 

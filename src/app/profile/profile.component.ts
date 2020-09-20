@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ImageModalComponent } from './image-modal/image-modal.component';
 import { Photo } from '../_model/photo';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -8,6 +7,7 @@ import { ProfileData } from '../_model/profile-data';
 import { WalletService } from '../_services/wallet.service';
 import { UserForProfileEdit } from '../_model/user-for-profile-edit';
 import { AlertifyService } from '../_services/alertify.service';
+import { PhotoService } from '../_services/photo.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   profileData: ProfileData = null;
   userForEdit: UserForProfileEdit;
   isLoading: boolean;
-  constructor(public dialog: MatDialog, private authService: AuthService, private walletService: WalletService, private alertify: AlertifyService) { }
+  constructor(public dialog: MatDialog, private photoService: PhotoService, private walletService: WalletService, private alertify: AlertifyService) { }
   ngOnInit(): void {
     this.isLoading = true;
     this.walletService.getProfileData().subscribe((profileData: ProfileData) => {
@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getPhoto() {
-    this.authService.getPhoto().subscribe((data: Photo) => {
+    this.photoService.getPhoto().subscribe((data: Photo) => {
       this.photo = data;
     })
   }

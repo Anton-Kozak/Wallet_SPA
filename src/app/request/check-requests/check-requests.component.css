@@ -1,3 +1,8 @@
-.box{
+.box {
     box-shadow: none;
+}
+
+.mat-header-cell {
+    text-align: center;
+    font-size: 20px;
 }

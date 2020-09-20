@@ -1,15 +1,3 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card card-test">
-            <div class="image">
-                <div style="width: 100%; height: 100%; background-color: #cafcdf;"></div>
-            </div>
-            <div class="card-header">
-                <h4 class="card-title text-center">{{'ExpenseCategory.' +chosenCategoryName | translate}} expenses</h4>
-            </div>
-        </div>
-    </div>
-</div>
 <div *ngIf="isLoading">
     <div class="loader">
         <div class="face">
@@ -20,10 +8,22 @@
         </div>
     </div>
 </div>
+<div *ngIf="!isLoading" class="row">
+    <div class="col-12" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+        <div class="card card-test">
+            <div class="image">
+                <div style="width: 100%; height: 100%; background-color: #cafcdf;"></div>
+            </div>
+            <div class="card-header">
+                <h4 class="card-title text-center font-weight-bold">{{'ExpenseCategory.' +chosenCategoryName | translate}}</h4>
+            </div>
+        </div>
+    </div>
+</div>
 <div *ngIf="showData && !isLoading">
     <div class="row">
         <div class="col-md-12 col-lg-5 col-xl-4">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xl-6">
                     <div class="card card-stats">
                         <div class="card-body ">
@@ -80,71 +80,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-xl-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-success">
-                                        <i class="nc-icon nc-circle-10 text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category mb-2">Most used user</p>
-                                        <div *ngIf="mostUsedUser != null">
-                                            <p class="card-title">{{mostUsedUser.userName}} </p>
-                                        </div>
-                                        <div *ngIf="mostUsedUser === null">
-                                            <p class="card-title">---</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer ">
-                                <hr>
-                                <div class="stats">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
+            </div> -->
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-primary">
-                                        <i class="nc-icon nc-circle-10 text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category mb-2">{{'Expenses.MostSpent' | translate}}</p>
-                                        <div *ngIf="mostSpentUser != null">
-                                            <p class="card-title text-capitalize">{{mostSpentUser.userName}}
-                                            </p>
-                                        </div>
-                                        <div *ngIf="mostSpentUser === null">
-                                            <p class="card-title">---</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-12">
+                <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
@@ -166,7 +104,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
                     <div class="card " style="border-radius: 12px;">
                         <div class="card-header ">
                             <h5 class="card-title">{{'Expenses.Last' | translate}}</h5>
@@ -192,7 +130,7 @@
                 </div>
             </div>
             <div class="row" *ngIf="showComparisonData">
-                <div class="col-12">
+                <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="300">
                     <div class="card " style="border-radius: 12px;">
                         <div class="card-header ">
                             <h5 class="card-title">{{'Expenses.ExpenseCompare' | translate}}</h5>
@@ -211,7 +149,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="expenses.data.length > 0" class="col-md-12 col-lg-7 col-xl-8">
+        <div *ngIf="expenses.data.length > 0" class="col-md-12 col-lg-7 col-xl-8" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="250">
             <div class="card">
                 <div class="mat-elevation-z8" style="box-shadow: none;">
                     <table style="width: 100%;" mat-table [dataSource]="expenses">
@@ -241,7 +179,7 @@
                         <tr mat-header-row *matHeaderRowDef="columnsForExpenses"></tr>
                         <tr mat-row *matRowDef="let row; columns: columnsForExpenses;"></tr>
                     </table>
-                    <mat-paginator #paginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
+                    <mat-paginator *ngIf="expenses.data.length > 10" #paginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
                     </mat-paginator>
                 </div>
             </div>
