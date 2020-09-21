@@ -1,0 +1,15 @@
+<div class="tips container">
+    <div *ngFor="let tip of tips" class="card" style="border-radius: 12px;">
+        <div class="card-header">
+            <h5 class="card-titletext-uppercase">{{tip.title}}</h5>
+        </div>
+        <div class="card-body">
+            <div class="card-text">
+                {{tip.tip}}
+            </div>
+        </div>
+        <div class="card-footer">
+            <hr>
+        </div>
+    </div>
+</div>

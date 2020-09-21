@@ -13,7 +13,7 @@ export const darkTheme = {
   'navbar-borders': '#ffb204',
   'navbar-icons': '#ffb204',
   'card-background': '#273442', //#62759e #273442  #83adc7
-  'card-header-text': 'black',
+  'card-tip-text': 'white',
   'card-description-text': '#e4d8c9',
   'card-footer-text': '#e4d8c9',
   'card-table-header': '#ffc400',
@@ -37,7 +37,7 @@ export const lightTheme = {
   'navbar-borders': '#c7d6ff',
   'navbar-icons': '#0084ff',
   'card-background': 'white',
-  'card-header-text': 'black',
+  'card-tip-text': 'black',
   'card-description-text': '#9A9A9A',
   'card-footer-text': '#66615B',
   'card-table-header': '#0084ff',

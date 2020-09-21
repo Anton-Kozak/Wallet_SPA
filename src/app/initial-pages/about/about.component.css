@@ -21,3 +21,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.title {
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #005050;
+}
+
+.text {
+    font-size: 24px;
+    line-height: 1.5;
+}

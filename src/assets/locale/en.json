@@ -15,13 +15,14 @@
         "Categories": "Wallet Categories",
         "CompareCustom": "Custom Date Compare",
         "Profile": "Profile",
-        "Admin": "Admin Panel"
+        "Admin": "Admin Panel",
+        "Tips": "Tips"
     },
     "Expenses": {
         "Add": "Add",
         "WalletTitle": "Wallet Title",
-        "WalletLimit": "Wallet Limit",
-        "Limit": "Limit",
+        "WalletLimit": "Wallet Budget",
+        "Limit": "Budget",
         "User": "User",
         "Title": "Title",
         "Details": "Details",
@@ -192,5 +193,9 @@
         "Expl1": "XPense can help you with your everyday expenses. Most of people have no idea how much they spend on various products and services. If you are intersted in learning about your spending habits, XPense will help you a lot!",
         "Expl2": "If you want to save up and need to make sure that you spend less to keep within budget - XPense will help you achieve that! Establish a budget and get notifications when you reach a certain stage!",
         "Expl3": "If you want to change your lifestyle and forget about loans and living on tick, XPense has a great section with tips that will help you understand how to balance your expenses!"
+    },
+    "Tips": {
+        "Tip1": "Tip1Text",
+        "Tip2": "Tip2Text"
     }
 }

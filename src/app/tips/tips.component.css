@@ -1,0 +1,4 @@
+.card-text {
+    color: var(--card-tip-text);
+    font-size: 16px;
+}

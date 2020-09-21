@@ -49,7 +49,7 @@ export class NavigationGuard implements CanActivate {
       console.log('Forced logout');
 
       this.authService.logout();
-      this.router.navigate(['/main']);
+      this.router.navigate(['/main/reg']);
       return false;
     }
   }

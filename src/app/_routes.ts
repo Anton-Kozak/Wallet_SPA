@@ -27,6 +27,7 @@ import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component
 import { RegGuard } from './_guards/reg.guard';
 import { AboutComponent } from './initial-pages/about/about.component';
 import { HomeWalletComponent } from './home-wallet/home-wallet.component';
+import { TipsComponent } from './tips/tips.component';
 
 
 export const appRoutes: Routes = [
@@ -43,6 +44,7 @@ export const appRoutes: Routes = [
       { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
       { path: 'requestAccess', component: RequestAccessComponent },
       { path: 'home-wallet', component: HomeWalletComponent },
+      { path: 'tips', component: TipsComponent },
       { path: 'checkRequests', component: CheckRequestsComponent },
       { path: 'checkInvites', component: CheckInvitesComponent },
       { path: 'createInvite', component: CreateInviteComponent },

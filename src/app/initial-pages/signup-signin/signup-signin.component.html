@@ -2,35 +2,35 @@
     <div class="dark-overlay align-content-center">
         <div class="home-inner pt-5 container">
             <div class="row mt-5">
-                <div class="col-lg-8 d-none d-lg-block" wmAnimate="fadeInRight">
-                    <h1 class="display-4 text-capitalize text-light" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0"> {{"Registration.Benefits" | translate}}</h1>
-                    <div class="d-flex" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
+                <div class="col-lg-8 d-none d-lg-block">
+                    <p class="display-4 text-capitalize text-light title" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0"> {{"Registration.Benefits" | translate}}</p>
+                    <div class="d-flex" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
                         <div class="p-4 align-self-start">
-                            <i class="fas fa-check fa-2x text-light"></i>
+                            <i class="fas fa-check fa-3x text-light"></i>
                         </div>
-                        <div class="p-4 align-self-end text-light">
+                        <div class="p-4 align-self-end text-light benefits">
                             {{"Registration.Benefit1" | translate}}
                         </div>
                     </div>
-                    <div class="d-flex" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
+                    <div class="d-flex" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
                         <div class="p-4 align-self-start">
-                            <i class="fas fa-check fa-2x text-light"></i>
+                            <i class="fas fa-check fa-3x text-light"></i>
                         </div>
-                        <div class="p-4 align-self-end text-light">
+                        <div class="p-4 align-self-end text-light benefits">
                             {{"Registration.Benefit2" | translate}}
                         </div>
                     </div>
-                    <div class="d-flex" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="300">
+                    <div class="d-flex" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="300">
                         <div class="p-4 align-self-start">
-                            <i class="fas fa-check fa-2x text-light"></i>
+                            <i class="fas fa-check fa-3x text-light"></i>
                         </div>
-                        <div class="p-4 align-self-end text-light">
+                        <div class="p-4 align-self-end text-light benefits">
                             {{"Registration.Benefits" | translate}}
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4" data-aos="slide-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+                <div class="col-lg-4" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                     <div class="card-container" wmAnimate="fadeInLeft">
                         <div class="card-flip" [ngClass]="{flip: !isSignUp}">
                             <div class="card front regform text-center card-form">
@@ -171,40 +171,25 @@
         </div>
     </div>
 </header>
-
-<!-- prices section -->
-
-<section id="price-section" class="bg-light text-muted py-5">
+<section class="bg-light text-muted py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="assets\images\reg\img.jpg" alt="" class="img-fluid nb-3 rounded-circle">
+        <div class="row align-items-center">
+            <div class="col-md-6" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+                <img src="assets\images\reg\img.jpg" alt="" class="img-fluid">
             </div>
             <div class="col-md-6">
-                <h1> {{"Registration.Why" | translate}}</h1>
-                <div class="d-flex">
-                    <div class="p-4 align-self-start">
-                        <i class="fas fa-check fa-2x"></i>
-
-                    </div>
-                    <div class="p-4 align-self-end">
+                <p class="why" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100"> {{"Registration.Why" | translate}}</p>
+                <div class="d-flex" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
+                    <div class="p-4 benefits">
                         {{"Registration.Expl1" | translate}} </div>
                 </div>
-                <div class="d-flex">
-                    <div class="p-4 align-self-start">
-                        <i class="fas fa-check fa-2x"></i>
-
-                    </div>
-                    <div class="p-4 align-self-end">
+                <div class="d-flex" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="400">
+                    <div class="p-4 benefits">
                         {{"Registration.Expl2" | translate}}
                     </div>
                 </div>
-                <div class="d-flex">
-                    <div class="p-4 align-self-start">
-                        <i class="fas fa-check fa-2x"></i>
-
-                    </div>
-                    <div class="p-4 align-self-end">
+                <div class="d-flex align-items-center" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="600">
+                    <div class="p-4 benefits">
                         {{"Registration.Expl3" | translate}} </div>
                 </div>
             </div>

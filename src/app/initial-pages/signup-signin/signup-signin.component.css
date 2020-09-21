@@ -3,6 +3,19 @@
     text-shadow: -1px 1px 7px rgba(0, 0, 0, 0.95);
 }
 
+.title,
+.why {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.benefits {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: black;
+}
+
 #reg-section {
     background: url(src\assets\images\home.jpg);
     background-repeat: no-repeat;

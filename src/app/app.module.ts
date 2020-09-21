@@ -66,6 +66,7 @@ import { HomeComponent } from './initial-pages/home/home.component';
 import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
 import { AboutComponent } from './initial-pages/about/about.component';
 import { HomeWalletComponent } from './home-wallet/home-wallet.component';
+import { TipsComponent } from './tips/tips.component';
 
 
 export function tokenGetter() {
@@ -115,6 +116,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     NoWalletComponent,
     AboutComponent,
     HomeWalletComponent,
+    TipsComponent,
   ],
   imports: [
     BrowserModule,
