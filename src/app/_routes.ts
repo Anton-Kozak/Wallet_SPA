@@ -14,31 +14,17 @@ import { ShowWalletTableComponent } from './wallet/show-wallet-table/show-wallet
 import { ShowPreviousExpensesComponent } from './wallet/show-previous-expenses/show-previous-expenses.component';
 import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { MainPageComponent } from './main-page/main-page.component';
 import { NavigationGuard } from './_guards/navigation.guard';
-import { MainGuard } from './_guards/main.guard';
 import { AdminGuard } from './_guards/admin.guard';
 import { ManualComparisonComponent } from './wallet/manual-comparison/manual-comparison.component';
-import { MainComponent } from './initial-pages/main/main.component';
-import { HomeComponent } from './initial-pages/home/home.component';
-import { ContactsComponent } from './initial-pages/contacts/contacts.component';
-import { SignupSigninComponent } from './initial-pages/signup-signin/signup-signin.component';
-import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
-import { RegGuard } from './_guards/reg.guard';
-import { AboutComponent } from './initial-pages/about/about.component';
 import { HomeWalletComponent } from './home-wallet/home-wallet.component';
 import { TipsComponent } from './tips/tips.component';
+// import { MainGuard } from './_guards/main.guard';
 
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/wallet/home', pathMatch: 'full' },
-  { path: 'main', component: MainComponent, canActivate: [MainGuard], children: [
-    { path: 'home', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'reg', component: SignupSigninComponent, canActivate: [RegGuard] },
-    { path: 'contacts', component: ContactsComponent },
-    { path: 'no-wallet', component: NoWalletComponent },
-  ]},
+  { path: 'main', loadChildren: './initial-pages/main/main.module#MainModule' },
   {
     path: 'wallet', component: WalletSectionComponent, canActivate: [NavigationGuard], canActivateChild: [NavigationGuard], children: [
       { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },

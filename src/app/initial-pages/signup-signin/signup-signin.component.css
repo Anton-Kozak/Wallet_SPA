@@ -3,6 +3,10 @@
     text-shadow: -1px 1px 7px rgba(0, 0, 0, 0.95);
 }
 
+.why {
+    line-height: 1.3;
+}
+
 .title,
 .why {
     font-size: 30px;
@@ -17,7 +21,7 @@
 }
 
 #reg-section {
-    background: url(src\assets\images\home.jpg);
+    background: url("src\assets\images\home.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

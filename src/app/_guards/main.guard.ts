@@ -15,14 +15,18 @@ export class MainGuard implements CanActivate {
     console.log('Main guard is activated');
     if (token !== null) {
       if (token.hasWallet === 'true') {
-        if (this.router.url !== '/')
+        if (this.router.url !== '/'){
+          console.log(this.router.url);
           this.router.navigate([this.router.url]);
+        }
         else
           this.router.navigate(['/wallet/home']);
         return false;
       }
       return true;
     }
+    console.log('no token found');
+    
     return true;
   }
 }

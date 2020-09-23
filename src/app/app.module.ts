@@ -8,7 +8,6 @@ import { ChartsModule } from 'ng2-charts';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -53,29 +52,29 @@ import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component'
 import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
 import { ShowPreviousExpensesComponent } from './wallet/show-previous-expenses/show-previous-expenses.component';
 import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.component';
-import { SignupSigninComponent } from './initial-pages/signup-signin/signup-signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { MainPageComponent } from './main-page/main-page.component';
 import { DonutChartComponent } from './graphs/donut-chart/donut-chart.component';
 import { DonutChartCategoriesComponent } from './graphs/donut-chart-categories/donut-chart-categories.component';
 import { ManualComparisonComponent } from './wallet/manual-comparison/manual-comparison.component';
-import { InitialNavbarComponent } from './layout/initial-navbar/initial-navbar.component';
-import { ContactsComponent } from './initial-pages/contacts/contacts.component';
-import { MainComponent } from './initial-pages/main/main.component';
-import { HomeComponent } from './initial-pages/home/home.component';
-import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
-import { AboutComponent } from './initial-pages/about/about.component';
+// import { InitialNavbarComponent } from './layout/initial-navbar/initial-navbar.component';
+// import { ContactsComponent } from './initial-pages/contacts/contacts.component';
+// import { HomeComponent } from './initial-pages/home/home.component';
+// import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
+// import { AboutComponent } from './initial-pages/about/about.component';
 import { HomeWalletComponent } from './home-wallet/home-wallet.component';
 import { TipsComponent } from './tips/tips.component';
+// import { StartNowModule } from './initial-pages/signup-signin/start-now.module';
+import { MainModule } from './initial-pages/main/main.module';
 
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, './assets/locale/', '.json');
+}
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
-export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, './assets/locale/', '.json');
-}
 
 @NgModule({
   declarations: [
@@ -85,7 +84,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     CreateExpenseComponent,
     CheckRequestsComponent,
     CheckInvitesComponent,
-    HomeComponent,
+    // HomeComponent,
     ShowWalletTableComponent,
     RequestAccessComponent,
     CreateInviteComponent,
@@ -104,17 +103,14 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     WalletAdminComponent,
     ShowPreviousExpensesComponent,
     WalletSectionComponent,
-    SignupSigninComponent,
     NotFoundComponent,
-    MainPageComponent,
     DonutChartComponent,
     DonutChartCategoriesComponent,
     ManualComparisonComponent,
-    InitialNavbarComponent,
-    ContactsComponent,
-    MainComponent,
-    NoWalletComponent,
-    AboutComponent,
+    // InitialNavbarComponent,
+    // ContactsComponent,
+    // NoWalletComponent,
+    // AboutComponent,
     HomeWalletComponent,
     TipsComponent,
   ],
@@ -133,7 +129,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     FileUploadModule,
     MatDialogModule,
     MatTooltipModule,
-    MatBadgeModule,
     MatProgressSpinnerModule,
     MatTableModule,
     MatPaginatorModule,
@@ -143,10 +138,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
+        
       },
     }),
     ProgressbarModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    
 
     JwtModule.forRoot({
       config: {
@@ -159,8 +156,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     BrowserAnimationsModule,
 
     FontAwesomeModule,
-
+    //Lazy loading
     ProfileModule,
+    // StartNowModule,
+    MainModule,
   ],
   entryComponents: [
     CreateExpenseComponent,

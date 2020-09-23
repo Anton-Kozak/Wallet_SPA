@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { MatDialog } from '@angular/material/dialog';
-
 import { Router } from '@angular/router';
-import { Notification } from 'src/app/_model/notification';
-import { NotificationService } from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-signup-signin',
@@ -28,6 +24,7 @@ export class SignupSigninComponent implements OnInit {
    ) { }
 
   ngOnInit(): void {
+    console.log('reg start');
     this.signUpForm = new FormGroup({
       'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
       'userpassUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
