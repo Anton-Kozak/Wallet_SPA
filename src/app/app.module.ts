@@ -4,18 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
-import { ChartsModule } from 'ng2-charts';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileModule } from './profile/profile.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -25,45 +18,21 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './layout/navbar/navbar.component';
-import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
-import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
-import { CheckRequestsComponent } from './request/check-requests/check-requests.component';
-import { CheckInvitesComponent } from './invites/check-invites/check-invites.component';
+// import { CreateWalletComponent } from './wallet/create-wallet/create-wallet.component';
+// import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
+// import { CheckRequestsComponent } from './request/check-requests/check-requests.component';
+// import { CheckInvitesComponent } from './invites/check-invites/check-invites.component';
 import { appRoutes } from './_routes';
-// import { HomeComponent } from './home/home.component';
-import { ShowWalletTableComponent } from './wallet/show-wallet-table/show-wallet-table.component';
-import { RequestAccessComponent } from './request/request-access/request-access.component';
-import { CreateInviteComponent } from './invites/create-invite/create-invite.component';
-import { PieGraphComponent } from './graphs/pie-graph/pie-graph.component';
-import { UserStatisticsComponent } from './wallet/user-statistics/user-statistics.component';
-import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-statistics.component';
-import { SingleBarChartComponent } from './graphs/single-bar-chart/single-bar-chart.component';
-import { LineChartComponent } from './graphs/line-chart/line-chart.component';
-import { BarComparisonComponent } from './graphs/bar-comparison/bar-comparison.component';
-import { CategoryStatisticsComponent } from './wallet/category-statistics/category-statistics.component';
-import { BarCategoryComparisonComponent } from './graphs/bar-category-comparison/bar-category-comparison.component';
+// import { RequestAccessComponent } from './request/request-access/request-access.component';
+// import { CreateInviteComponent } from './invites/create-invite/create-invite.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { EditExpenseModalComponent } from './expenses/edit-expense-modal/edit-expense-modal.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
-import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
-import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
-import { ShowPreviousExpensesComponent } from './wallet/show-previous-expenses/show-previous-expenses.component';
-import { WalletSectionComponent } from './wallet/wallet-section/wallet-section.component';
+// import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
+// import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
+
 import { NotFoundComponent } from './not-found/not-found.component';
-import { DonutChartComponent } from './graphs/donut-chart/donut-chart.component';
-import { DonutChartCategoriesComponent } from './graphs/donut-chart-categories/donut-chart-categories.component';
-import { ManualComparisonComponent } from './wallet/manual-comparison/manual-comparison.component';
-// import { InitialNavbarComponent } from './layout/initial-navbar/initial-navbar.component';
-// import { ContactsComponent } from './initial-pages/contacts/contacts.component';
-// import { HomeComponent } from './initial-pages/home/home.component';
-// import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
-// import { AboutComponent } from './initial-pages/about/about.component';
-import { HomeWalletComponent } from './home-wallet/home-wallet.component';
-import { TipsComponent } from './tips/tips.component';
-// import { StartNowModule } from './initial-pages/signup-signin/start-now.module';
+// import { HomeWalletComponent } from './home-wallet/home-wallet.component';
+// import { TipsComponent } from './tips/tips.component';
 import { MainModule } from './initial-pages/main/main.module';
 
 
@@ -79,40 +48,26 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    CreateWalletComponent,
-    CreateExpenseComponent,
-    CheckRequestsComponent,
-    CheckInvitesComponent,
-    // HomeComponent,
-    ShowWalletTableComponent,
-    RequestAccessComponent,
-    CreateInviteComponent,
-    PieGraphComponent,
-    UserStatisticsComponent,
-    WalletStatisticsComponent,
-    SingleBarChartComponent,
-    LineChartComponent,
-    BarComparisonComponent,
-    CategoryStatisticsComponent,
-    BarCategoryComparisonComponent,
-    SidebarComponent,
-    EditExpenseModalComponent,
+    // NavbarComponent,
+    // CreateWalletComponent,
+    // CreateExpenseComponent,
+    // CheckRequestsComponent,
+    // CheckInvitesComponent,
+    // RequestAccessComponent,
+    // CreateInviteComponent,
+    // UserStatisticsComponent,
+    // WalletStatisticsComponent,
+    // CategoryStatisticsComponent,
+   // SidebarComponent,
     HasRoleDirective,
-    EditWalletComponent,
-    WalletAdminComponent,
-    ShowPreviousExpensesComponent,
-    WalletSectionComponent,
+    // EditWalletComponent,
+    // WalletAdminComponent,
+    // ShowPreviousExpensesComponent,
+    // WalletSectionComponent,
     NotFoundComponent,
-    DonutChartComponent,
-    DonutChartCategoriesComponent,
-    ManualComparisonComponent,
-    // InitialNavbarComponent,
-    // ContactsComponent,
-    // NoWalletComponent,
-    // AboutComponent,
-    HomeWalletComponent,
-    TipsComponent,
+    // ManualComparisonComponent,
+    // HomeWalletComponent,
+    // TipsComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,18 +75,12 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSidenavModule,
-    MatDatepickerModule,
+    // MatSidenavModule,
     MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ChartsModule,
     FileUploadModule,
     MatDialogModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    MatTableModule,
-    MatPaginatorModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -141,7 +90,6 @@ export function tokenGetter() {
         
       },
     }),
-    ProgressbarModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     
 
@@ -162,7 +110,7 @@ export function tokenGetter() {
     MainModule,
   ],
   entryComponents: [
-    CreateExpenseComponent,
+    // CreateExpenseComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 // import { RegGuard } from 'src/app/_guards/reg.guard';
 import { MainComponent } from './main.component';
 import { InitialNavbarComponent } from 'src/app/layout/initial-navbar/initial-navbar.component';
 import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/translate-shared-lazy.module';
 import { MainGuard } from 'src/app/_guards/main.guard';
+import { CommonModule } from '@angular/common';
 // import { ContactsComponent } from '../contacts/contacts.component';
 
 // import { NoWalletComponent } from '../no-wallet/no-wallet.component';
@@ -27,8 +26,6 @@ const routes: Routes = [
     declarations: [MainComponent, InitialNavbarComponent],
     imports: [
         CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
         RouterModule.forChild(routes),
         TranslateSharedLazyModule
     ],
