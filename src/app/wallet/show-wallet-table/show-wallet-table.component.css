@@ -16,6 +16,11 @@
     border-radius: 8px;
 }
 
+.previous-day .left,
+.next-day .right {
+    color: var(--sidebar-item-selected);
+}
+
 .next-day {
     display: flex;
     justify-content: flex-end;
@@ -28,12 +33,16 @@
 }
 
 .previous-day:hover {
-    background: linear-gradient(to right, var(--text-color) 25%, var(--card-background) 100%);
+    background: linear-gradient(to right, var(--sidebar-item-selected) 25%, var(--card-background) 100%);
+}
+
+.previous-day:hover .left,
+.next-day:hover .right {
     color: var(--card-background);
 }
 
 .next-day:hover {
-    background: linear-gradient(to left, var(--text-color), var(--card-background));
+    background: linear-gradient(to left, var(--sidebar-item-selected), var(--card-background));
     color: var(--card-background);
 }
 
@@ -44,6 +53,8 @@
 
 .date-value {
     font-size: 25px;
+    color: var(--sidebar-item-selected) !important;
+    font-weight: bold;
 }
 
 .date-picker {
@@ -69,6 +80,19 @@
 
 .image div {
     opacity: var(--table-expense-header);
+}
+
+.add-expense-button {
+    height: 80%;
+    border-color: var(--navbar-icons);
+    background-color: transparent;
+    color: var(--button-text);
+    box-shadow: 0px 0px 20px -4px var(--navbar-icons);
+}
+
+.add-expense-button:hover {
+    color: var(--button-text-hover);
+    background-color: var(--navbar-icons);
 }
 
 @media (min-width: 992px) {

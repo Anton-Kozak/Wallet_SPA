@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-expense.component';
-
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 
 
@@ -20,6 +20,7 @@ import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-e
     MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
+    MatMomentDateModule,
     ProgressbarModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],

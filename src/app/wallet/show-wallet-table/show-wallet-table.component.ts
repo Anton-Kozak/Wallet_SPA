@@ -11,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { FormControl } from '@angular/forms';
-
+import * as moment from 'moment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -25,7 +26,7 @@ export class ShowWalletTableComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private noteService: NotificationService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private translateService: TranslateService) { }
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   third: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -52,6 +53,11 @@ export class ShowWalletTableComponent implements OnInit {
   isLoading: boolean;
 
   ngOnInit(): void {
+    if (this.translateService.currentLang === 'en') {
+      moment.locale('en');
+    }
+    else if (this.translateService.currentLang === 'ru')
+      moment.locale('ru');
     this.id = this.authService.getToken().nameid;
     this.isLoading = true;
     this.expenseService.getWalletData(this.id).subscribe((walletData: WalletForPage) => {
@@ -141,7 +147,7 @@ export class ShowWalletTableComponent implements OnInit {
           this.tenth.categoryId = this.expenseService.tenthExpenses.categoryId;
         }
       });
-      this.currentSelectedDate = new FormControl(this.dayForDailyExpenses.toDateString());
+      this.currentSelectedDate = new FormControl(moment(this.dayForDailyExpenses).format('LL'));
       this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
         this.dailyExpenses = expenses;
         console.log(expenses);
@@ -152,12 +158,20 @@ export class ShowWalletTableComponent implements OnInit {
       this.categories = data['categories'];
     })
 
-
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        moment.locale('en');
+      }
+      else if (this.translateService.currentLang === 'ru')
+        moment.locale('ru');
+      this.currentSelectedDate = new FormControl(moment(this.dayForDailyExpenses).format('LL'));
+    })
 
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       this.notifications = notifications;
     })
   }
+
 
   checkLimit() {
     if (this.walletLimit != 0) {
@@ -201,20 +215,19 @@ export class ShowWalletTableComponent implements OnInit {
       this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() - 1);
     else
       this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() + 1);
+   
     this.updateDailyExpenses();
   }
 
   orgValueChange(value: any) {
     this.dayForDailyExpenses = new Date(value);
-    console.log(value);
-    console.log(new Date(value)); 
     this.updateDailyExpenses();
   }
 
 
   updateDailyExpenses() {
     this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
-      this.currentSelectedDate.patchValue(this.dayForDailyExpenses.toDateString());
+      this.currentSelectedDate.patchValue(moment(this.dayForDailyExpenses).format('LL'));
       this.dailyExpenses = expenses;
     })
   }

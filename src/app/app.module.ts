@@ -5,7 +5,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatNativeDateModule, } from '@angular/material/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -38,9 +37,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    MatNativeDateModule,
-    
+    HttpClientModule,  
     MatProgressSpinnerModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',

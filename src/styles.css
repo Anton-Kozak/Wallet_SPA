@@ -63,7 +63,7 @@ body {
 .mat-button,
 .mat-icon-button,
 .mat-stroked-button {
-    color: var(--text-color)!important;
+    color: var(--sidebar-item-selected)!important;
 }
 
 .mat-calendar {
