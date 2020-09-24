@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { ImageModalComponent } from './image-modal/image-modal.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { FileUploadModule } from 'ng2-file-upload';
+import { TranslateSharedLazyModule } from '../shared/translate-shared-lazy/translate-shared-lazy.module';
 
 
 @NgModule({
@@ -14,9 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule.forChild([{ path: '', component: ProfileComponent }]),
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule.forChild({
-      extend: true,
-    })
+    FileUploadModule,
+    TranslateSharedLazyModule
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

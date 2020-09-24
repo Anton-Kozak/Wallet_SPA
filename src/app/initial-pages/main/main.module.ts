@@ -6,6 +6,7 @@ import { InitialNavbarComponent } from 'src/app/layout/initial-navbar/initial-na
 import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/translate-shared-lazy.module';
 import { MainGuard } from 'src/app/_guards/main.guard';
 import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
 // import { ContactsComponent } from '../contacts/contacts.component';
 
 // import { NoWalletComponent } from '../no-wallet/no-wallet.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        TranslateSharedLazyModule
+        TranslateSharedLazyModule,
+        MatDialogModule
     ],
 })
 export class MainModule { }

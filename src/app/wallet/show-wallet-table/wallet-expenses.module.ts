@@ -6,11 +6,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-expense.component';
+
 
 
 
 @NgModule({
-  declarations: [ShowWalletTableComponent],
+  declarations: [ShowWalletTableComponent, CreateExpenseComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: ShowWalletTableComponent }]),
@@ -20,6 +22,8 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
     ReactiveFormsModule,
     ProgressbarModule.forRoot()
   ],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
+
+
 })
 export class WalletExpensesModule { }

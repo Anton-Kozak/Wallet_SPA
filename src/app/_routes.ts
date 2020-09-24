@@ -24,7 +24,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/wallet/home', pathMatch: 'full' },
-  { path: 'main', loadChildren: './initial-pages/main/main.module#MainModule' },
+  { path: 'main', loadChildren: () => import('./initial-pages/main/main.module').then(m => m.MainModule) },
   {
     path: 'wallet', loadChildren: () => import('./wallet/wallet.module').then(m => m.WalletModule)
     // path: 'wallet', component: WalletSectionComponent, canActivate: [NavigationGuard], canActivateChild: [NavigationGuard], children: [

@@ -21,7 +21,8 @@
 }
 
 #reg-section {
-    background: url("src\assets\images\home.jpg");
+    /* background: url(src\assets\images\home.jpg); */
+    background-image: url("src\assets\images\home.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

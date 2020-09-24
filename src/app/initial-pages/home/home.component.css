@@ -1,5 +1,5 @@
 .home-section {
-    background: url("src/assets/images/home/home2.jpg");
+    background: url(src/assets/images/home/home2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
