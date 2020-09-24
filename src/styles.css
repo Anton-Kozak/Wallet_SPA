@@ -123,6 +123,10 @@ td.mat-cell {
     color: var(--card-table-header) !important;
 }
 
+.mat-dialog-container {
+    background-color: var(--card-background) !important;
+}
+
 
 /* scroll */
 

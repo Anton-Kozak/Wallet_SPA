@@ -48,6 +48,7 @@
 
 .date-picker {
     visibility: hidden;
+    width: 0px;
 }
 
 .dp {

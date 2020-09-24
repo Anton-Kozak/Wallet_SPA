@@ -20,6 +20,7 @@
     },
     "Expenses": {
         "Add": "Add",
+        "Edit": "Edit",
         "WalletTitle": "Wallet Title",
         "WalletLimit": "Wallet Budget",
         "Limit": "Budget",
@@ -48,7 +49,8 @@
         "ExpensesCompare": "Expenses Comparison",
         "ExpensesCompareDesc": "Previous And Current Months",
         "ExpenseForCategory": "Expenses For Each Category",
-        "ExpenseForCatDesc": "For Current User"
+        "ExpenseForCatDesc": "For Current User",
+        "CreateExpense": "Create Expense"
     },
     "CustomCompare": {
         "Select": "Select Dates",
@@ -198,5 +200,21 @@
     "Tips": {
         "Tip1": "Tip1Text",
         "Tip2": "Tip2Text"
+    },
+    "Validation": {
+        "CategoryReq": "Category is required",
+        "TitleRe": "Title is required",
+        "TitleMin": "Title should be at least 4 characters required",
+        "TitleMax": "Title should be no longer than 16 characters",
+        "DescMin": "Description should be at least 4 characters required",
+        "DescMax": "Description should be no longer than 20 characters",
+        "MoneyReq": "Money is required",
+        "UserReq": "Username is required",
+        "UserMin": "Username should be at least 4 characters required",
+        "UserMax": "Username should be no longer than 10 characters",
+        "PassReq": "Password is required",
+        "PassMin": "Password should be at least 4 characters required",
+        "PassMax": "Password should be no longer than 8 characters",
+        "PassVal": "You need to have at least 1 letter and number"
     }
 }

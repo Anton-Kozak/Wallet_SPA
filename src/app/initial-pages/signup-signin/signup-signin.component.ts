@@ -26,7 +26,7 @@ export class SignupSigninComponent implements OnInit {
   ngOnInit(): void {
     console.log('reg start');
     this.signUpForm = new FormGroup({
-      'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
+      'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       'userpassUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
       'role': new FormControl('', Validators.required)
     });

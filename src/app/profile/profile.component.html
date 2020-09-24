@@ -29,14 +29,18 @@
                     <hr>
                     <div class="button-container">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-6 ml-auto">
-                                <h5 *ngIf="profileData">{{profileData.dateJoined | date: 'medium'}}<br><small>{{'Profile.Joined' | translate}}</small></h5>
+                            <div class="col-lg-4 col-md-6 col-6 ml-auto">
+                                <h5 *ngIf="profileData">{{'Profile.Joined' | translate}}</h5>
+                                <p class="profile-data">{{profileData.dateJoined | date: 'medium'}}</p>
                             </div>
                             <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-                                <h5 *ngIf="profileData">${{profileData.moneySpent}}<br><small>{{'Expenses.Total' | translate}}</small></h5>
+                                <h5 *ngIf="profileData">{{'Expenses.Total' | translate}}</h5>
+                                <p class="profile-data"> ${{profileData.moneySpent}}</p>
+
                             </div>
-                            <div class="col-lg-3 mr-auto">
-                                <h5>{{'Profile.Roles' | translate}}<br><small>Admin</small></h5>
+                            <div class="col-lg-4 mr-auto">
+                                <h5>{{'Profile.Roles' | translate}}</h5>
+                                <p class="profile-data">Admin</p>
                             </div>
                         </div>
                     </div>

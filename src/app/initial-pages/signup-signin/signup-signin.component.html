@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col-lg-4" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
-                    <div class="card-container" wmAnimate="fadeInLeft">
+                    <div class="card-container">
                         <div class="card-flip" [ngClass]="{flip: !isSignUp}">
                             <div class="card front regform text-center card-form">
                                 <div class="card-body text-light shadow-lg">
@@ -42,46 +42,43 @@
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend shadow-lg">
-                                                        <span matTooltip="Имя пользователя" class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
+                                                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
                                                     'bg-success text-white': !signUpForm.get('usernameUp').errors}"> {{"Registration.Username" | translate}}</span>
                                                     </div>
                                                     <input [ngClass]="{'is-invalid': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
                                                                 'is-valid': !signUpForm.get('usernameUp').errors}" type="text" formControlName="usernameUp" class="form-control">
 
-                                                    <div matTooltip="Нужно ввести имя пользователя" *ngIf="signUpForm.get('usernameUp').hasError('required') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
-                                                        Username is required
+                                                    <div *ngIf="signUpForm.get('usernameUp').hasError('required') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
+                                                        {{"Validation.UserReq" | translate}}
                                                     </div>
-                                                    <div matTooltip="Имя не может быть меньше 4 символов" *ngIf="signUpForm.get('usernameUp').hasError('minlength') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
-                                                        Username should be at least 4 characters required
+                                                    <div *ngIf="signUpForm.get('usernameUp').hasError('minlength') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
+                                                        {{"Validation.UserMin" | translate}}
                                                     </div>
-                                                    <div matTooltip="Имя не может быть больше 10 символов" *ngIf="signUpForm.get('usernameUp').hasError('maxlength') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
-                                                        Username should be no longer than 10 characters
-                                                    </div>
-                                                    <div matTooltip="Имя должно содержать минимум 1 букву и 1 цифру" *ngIf="signUpForm.get('usernameUp').hasError('pattern') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
-                                                        You need to have at least 1 letter and number
+                                                    <div *ngIf="signUpForm.get('usernameUp').hasError('maxlength') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
+                                                        {{"Validation.UserMax" | translate}}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend shadow-lg">
-                                                        <span matTooltip="Пароль" class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched,
+                                                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched,
                                                             'bg-success text-white': !signUpForm.get('userpassUp').errors}">
                                                             {{"Registration.Password" | translate}}</span>
                                                     </div>
                                                     <input [ngClass]="{'is-invalid': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched,
                                                             'is-valid': !signUpForm.get('userpassUp').errors}" type="password" formControlName="userpassUp" class="form-control">
-                                                    <div matTooltip="Нужно ввести пароль" *ngIf="signUpForm.get('userpassUp').hasError('required') && signUpForm.get('userpassUp').touched" class="invalid-feedback">
-                                                        Password is required
+                                                    <div *ngIf="signUpForm.get('userpassUp').hasError('required') && signUpForm.get('userpassUp').touched" class="invalid-feedback">
+                                                        {{"Validation.PassReq" | translate}}
                                                     </div>
-                                                    <div matTooltip="Пароль не может быть меньше 4 символов" *ngIf="signUpForm.get('userpassUp').hasError('minlength') && signUpForm.get('userpassUp').touched" class="invalid-feedback">
-                                                        Password should be at least 4 characters required
+                                                    <div *ngIf="signUpForm.get('userpassUp').hasError('minlength') && signUpForm.get('userpassUp').touched" class="invalid-feedback">
+                                                        {{"Validation.PassMin" | translate}}
                                                     </div>
-                                                    <div matTooltip="Пароль не может быть больше 8 символов" *ngIf="signUpForm.get('userpassUp').hasError('maxlength') && signUpForm.get('userpassUp').touched" class="invalid-feedback">
-                                                        Password should be no longer than 8 characters
+                                                    <div *ngIf="signUpForm.get('userpassUp').hasError('maxlength') && signUpForm.get('userpassUp').touched" class="invalid-feedback">
+                                                        {{"Validation.PassMax" | translate}}
                                                     </div>
-                                                    <div matTooltip="Пароль должен содержать минимум 1 букву и 1 цифру" *ngIf="signUpForm.get('userpassUp').hasError('pattern') && signUpForm.get('userpassUp').touched" class="invalid-feedback">
-                                                        You need to have at least 1 letter and number
+                                                    <div *ngIf="signUpForm.get('userpassUp').hasError('pattern') && signUpForm.get('userpassUp').touched" class="invalid-feedback">
+                                                        {{"Validation.PassVal" | translate}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -102,7 +99,7 @@
                                             </div>
                                         </form>
                                         <div class="container">
-                                            <p> {{"Registration.SignInTip" | translate}} <a matTooltip="Ввойти" (click)="switchCard()" style="cursor: pointer;" class="text-light"><strong> {{"Registration.SignInHere" | translate}}</strong></a></p>
+                                            <p> {{"Registration.SignInTip" | translate}} <a (click)="switchCard()" style="cursor: pointer;" class="text-light"><strong> {{"Registration.SignInHere" | translate}}</strong></a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -115,41 +112,41 @@
                                         <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
-                                                    <div matTooltip="Имя пользователя" class="input-group-prepend shadow-lg">
+                                                    <div class="input-group-prepend shadow-lg">
                                                         <span class="input-group-text" [ngClass]="{'bg-danger text-light': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched,
                                                     'bg-success text-white': !signInForm.get('usernameIn').errors}"> {{"Registration.Username" | translate}}</span>
                                                     </div>
                                                     <input [ngClass]="{'is-invalid': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched,
                                                                 'is-valid': !signInForm.get('usernameIn').errors}" type="text" formControlName="usernameIn" class="form-control">
 
-                                                    <div matTooltip="Введите имя пользователя" *ngIf="signInForm.get('usernameIn').hasError('required') && signInForm.get('usernameIn').touched" class="invalid-feedback">
-                                                        Username is required
+                                                    <div *ngIf="signInForm.get('usernameIn').hasError('required') && signInForm.get('usernameIn').touched" class="invalid-feedback">
+                                                        {{"Validation.UserReq" | translate}}
                                                     </div>
-                                                    <div matTooltip="Имя пользователя не может быть меньше 4 символов" *ngIf="signInForm.get('usernameIn').hasError('minlength') && signInForm.get('usernameIn').touched" class="invalid-feedback">
-                                                        Username should be at least 4 characters required
+                                                    <div *ngIf="signInForm.get('usernameIn').hasError('minlength') && signInForm.get('usernameIn').touched" class="invalid-feedback">
+                                                        {{"Validation.UserMin" | translate}}
                                                     </div>
-                                                    <div matTooltip="Имя пользователя не может быть больше 10 символов" *ngIf="signInForm.get('usernameIn').hasError('maxlength') && signInForm.get('usernameIn').touched" class="invalid-feedback">
-                                                        Username should be no longer than 10 characters
+                                                    <div *ngIf="signInForm.get('usernameIn').hasError('maxlength') && signInForm.get('usernameIn').touched" class="invalid-feedback">
+                                                        {{"Validation.UserMax" | translate}}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="input-group mb-5">
                                                     <div class="input-group-prepend shadow-lg">
-                                                        <span matTooltip="Пароль" class="input-group-text" [ngClass]="{'bg-danger text-light': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched,
+                                                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched,
                                                             'bg-success text-white': !signInForm.get('userpassIn').errors}">
                                                             {{"Registration.Password" | translate}}</span>
                                                     </div>
                                                     <input [ngClass]="{'is-invalid': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched,
                                                             'is-valid': !signInForm.get('userpassIn').errors}" type="password" formControlName="userpassIn" class="form-control">
-                                                    <div matTooltip="Введите пароль" *ngIf="signInForm.get('userpassIn').hasError('required') && signInForm.get('userpassIn').touched" class="invalid-feedback">
-                                                        Password is required
+                                                    <div *ngIf="signInForm.get('userpassIn').hasError('required') && signInForm.get('userpassIn').touched" class="invalid-feedback">
+                                                        {{"Validation.PassReq" | translate}}
                                                     </div>
-                                                    <div matTooltip="Пароль не может быть меньше 4 символов" *ngIf="signInForm.get('userpassIn').hasError('minlength') && signInForm.get('userpassIn').touched" class="invalid-feedback">
-                                                        Password should be at least 4 characters required
+                                                    <div *ngIf="signInForm.get('userpassIn').hasError('minlength') && signInForm.get('userpassIn').touched" class="invalid-feedback">
+                                                        {{"Validation.PassMin" | translate}}
                                                     </div>
-                                                    <div matTooltip="Пароль не может быть больше 8 символов" *ngIf="signInForm.get('userpassIn').hasError('maxlength') && signInForm.get('userpassIn').touched" class="invalid-feedback">
-                                                        Password should be no longer than 8 characters
+                                                    <div *ngIf="signInForm.get('userpassIn').hasError('maxlength') && signInForm.get('userpassIn').touched" class="invalid-feedback">
+                                                        {{"Validation.PassMax" | translate}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,7 +155,7 @@
                                             </div>
                                         </form>
                                         <div class="container">
-                                            <p matTooltip="Нет аккаунт?"> {{"Registration.SignUpTip" | translate}} <a matTooltip="Зарегистрируйтесь!" (click)="isSignUp = !isSignUp" style="cursor: pointer;" class="text-light"><strong> {{"Registration.SignUpHere" | translate}}</strong></a></p>
+                                            <p> {{"Registration.SignUpTip" | translate}} <a (click)="isSignUp = !isSignUp" style="cursor: pointer;" class="text-light"><strong> {{"Registration.SignUpHere" | translate}}</strong></a></p>
                                         </div>
                                     </div>
                                 </div>

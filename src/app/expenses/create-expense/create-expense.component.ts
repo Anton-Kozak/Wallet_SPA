@@ -25,10 +25,10 @@ export class CreateExpenseComponent implements OnInit {
 
   ngOnInit(): void {
     this.newExpenseForm = new FormGroup({
-      'title': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
-      'desc': new FormControl('', [Validators.minLength(4), Validators.maxLength(20)]),
-      'category': new FormControl('', [Validators.required]),
-      'money': new FormControl('', Validators.required)
+      'title': new FormControl('', { updateOn: 'blur', validators: [Validators.required, Validators.minLength(4), Validators.maxLength(16)] }),
+      'desc': new FormControl('', { updateOn: 'blur', validators: [Validators.minLength(4), Validators.maxLength(20)] }),
+      'category': new FormControl('1', [Validators.required]),
+      'money': new FormControl('', { updateOn: 'blur', validators: Validators.required })
     })
     if (this.walletService.currentCategories.length === 0) {
       this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
