@@ -38,13 +38,23 @@
     font-size: 30px !important;
 }
 
+.buttons {
+    height: 100px;
+}
+
+.edit-wallet {
+    box-shadow: 0px 0px 20px -4px #28a745;
+}
+
 .add-user {
     border-color: var(--navbar-icons);
     background-color: transparent;
     color: var(--button-text);
+    box-shadow: 0px 0px 20px -4px var(--navbar-icons);
 }
 
 .add-user:hover {
     color: var(--button-text-hover);
     background-color: var(--navbar-icons);
+    box-shadow: 0px 0px 20px -4px var(--button-text-hover);
 }

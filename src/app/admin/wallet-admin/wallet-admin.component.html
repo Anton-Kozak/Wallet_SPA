@@ -1,5 +1,13 @@
 <div class="row">
     <div class="col-md-5">
+        <div class="row justify-content-around mb-3">
+            <div class="col-6">
+                <button (click)="sendInvitation()" class="btn buttons add-user btn-block font-weight-bold">{{"Admin.InviteUser" | translate}}</button>
+            </div>
+            <div class="col-6">
+                <button (click)="onWalletEditDialog()" class="btn btn-outline-success btn-block buttons edit-wallet font-weight-bold">{{"Admin.WalletEdit" | translate}}</button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                 <div class="card card-stats">
@@ -61,9 +69,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <button (click)="sendInvitation()" class="btn btn-block mb-2 add-user font-weight-bold">{{"Admin.InviteUser" | translate}}</button>
-                </div>
+
             </div>
         </div>
         <div class="row mt-2">

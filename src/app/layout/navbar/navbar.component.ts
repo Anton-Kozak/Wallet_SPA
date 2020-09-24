@@ -98,13 +98,7 @@ export class NavbarComponent implements OnInit {
     this.toggleDrawer.emit();
   }
 
-  //TODO: сделать редактирование чисто для админа кошелька
-  onWalletEditDialog() {
-    const dialogRef = this.dialog.open(EditWalletComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+
 
   test() {
     this.noteService.deleteNotifications().subscribe();

@@ -20,7 +20,6 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">{{'Navbar.EditProfile' | translate}}</a>
-                        <a *appHasRole="['Admin']" class="dropdown-item" style="cursor: pointer;" (click)="onWalletEditDialog()">{{'Navbar.EditWallet' | translate}}</a>
                         <div class="dropdown-item">
                             <label for="theme">{{'Navbar.Theme' | translate}}</label>
                             <input type="checkbox" [(ngModel)]="isDark" (click)="toggleTheme()" id="theme" name="theme" [formControl]="theme">

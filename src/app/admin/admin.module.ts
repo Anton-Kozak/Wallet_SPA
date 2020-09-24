@@ -9,12 +9,13 @@ import { MatTableModule } from '@angular/material/table';
 import { CheckRequestsComponent } from '../request/check-requests/check-requests.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateInviteComponent } from '../invites/create-invite/create-invite.component';
+import { EditWalletComponent } from '../wallet/edit-wallet/edit-wallet.component';
 
 
 
 
 @NgModule({
-  declarations: [WalletAdminComponent, CheckRequestsComponent, CreateInviteComponent],
+  declarations: [WalletAdminComponent, CheckRequestsComponent, CreateInviteComponent, EditWalletComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: WalletAdminComponent }]),

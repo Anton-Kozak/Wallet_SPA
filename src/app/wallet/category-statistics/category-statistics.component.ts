@@ -52,7 +52,7 @@ export class CategoryStatisticsComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
-      this.walletService.getCurrentWallet();
+      this.walletService.getCurrentWallet().subscribe();
       this.chosenCategory = +params['id'] || 0;
       if (this.walletService.currentCategories.length === 0) {
         this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {

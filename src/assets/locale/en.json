@@ -136,7 +136,8 @@
         "WalletUsers": "Wallet Users",
         "InviteUser": "Invite New User",
         "GetRequests": "New Requests",
-        "From": "From"
+        "From": "From",
+        "WalletEdit": "Edit Wallet"
     },
     "Navigation": {
         "Home": "Home",

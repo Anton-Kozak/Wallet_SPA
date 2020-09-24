@@ -30,10 +30,14 @@ export class WalletService {
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/createwallet', walletToCreate);
   }
 
+  // getCurrentWallet() {
+  //   this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet').subscribe((currentWallet: Wallet) => {
+  //     this.currentWallet = currentWallet;
+  //   });
+  // }
+
   getCurrentWallet() {
-    this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet').subscribe((currentWallet: Wallet) => {
-      this.currentWallet = currentWallet;
-    });
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet');
   }
 
 

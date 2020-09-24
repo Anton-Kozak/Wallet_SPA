@@ -20,11 +20,14 @@ export class EditWalletComponent implements OnInit {
   walletToEdit: Wallet;
   public currentWallet: Wallet;
   ngOnInit(): void {
-    this.currentWallet = this.walletService.currentWallet;
-    this.editWalletForm = new FormGroup({
-      'title': new FormControl(this.currentWallet.title, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
-      'limit': new FormControl(this.currentWallet.monthlyLimit, Validators.min(10))
-    })
+    this.walletService.getCurrentWallet().subscribe((currentWallet: Wallet) => {
+      this.currentWallet = currentWallet;
+      console.log(this.currentWallet);
+      this.editWalletForm = new FormGroup({
+        'title': new FormControl(this.currentWallet.title, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
+        'limit': new FormControl(this.currentWallet.monthlyLimit, Validators.min(10))
+      });
+    });
   }
   //TODO: сделать подтверждение смены названия
   //подумать о том, как себя должен вести кошелёк когда происходит смена имени и лимита, и что должно происходить у других пользователей
