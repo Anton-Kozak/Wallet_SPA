@@ -12,6 +12,8 @@ import { CategoryData } from 'src/app/_model/categoryData';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/_services/auth.service';
 import { EventEmitter } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 
 
 @Component({
@@ -27,7 +29,8 @@ export class UserStatisticsComponent implements OnInit {
     public dialog: MatDialog,
     private walletService: WalletService,
     private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private translateService: TranslateService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
@@ -62,6 +65,19 @@ export class UserStatisticsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (this.translateService.currentLang === 'en') {
+      moment.locale('en');
+    }
+    else if (this.translateService.currentLang === 'ru')
+      moment.locale('ru');
+
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        moment.locale('en');
+      }
+      else if (this.translateService.currentLang === 'ru')
+        moment.locale('ru');
+    })
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth());
     this.year = this.date.getFullYear().toLocaleString().replace(',', '');
@@ -166,6 +182,8 @@ export class UserStatisticsComponent implements OnInit {
     this.mostSpentCategory = '';
     this.mostUsedCategory = '';
   }
-
+  getFormat(date) {
+    return moment(date).format('lll');
+  }
 
 }

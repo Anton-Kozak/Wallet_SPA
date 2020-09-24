@@ -41,7 +41,7 @@ export class ShowWalletTableComponent implements OnInit {
   dailyExpenses: ExpenseForTable[] = [];
   dayForDailyExpenses = new Date();
   currentSelectedDate: FormControl;
-
+  moment: any = moment;
   walletTitle: string;
   walletLimit: number;
   walletExpenses: number;
@@ -54,10 +54,21 @@ export class ShowWalletTableComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
+      this.moment.locale('en');
     }
     else if (this.translateService.currentLang === 'ru')
-      moment.locale('ru');
+    this.moment.locale('ru');
+    
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        this.moment.locale('en');
+      }
+      else if (this.translateService.currentLang === 'ru')
+      this.moment.locale('ru');
+      this.currentSelectedDate = new FormControl(this.moment(this.dayForDailyExpenses).format('LL'));
+    })
+
+
     this.id = this.authService.getToken().nameid;
     this.isLoading = true;
     this.expenseService.getWalletData(this.id).subscribe((walletData: WalletForPage) => {
@@ -158,15 +169,7 @@ export class ShowWalletTableComponent implements OnInit {
       this.categories = data['categories'];
     })
 
-    this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      }
-      else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
-      this.currentSelectedDate = new FormControl(moment(this.dayForDailyExpenses).format('LL'));
-    })
-
+    
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       this.notifications = notifications;
     })
@@ -215,7 +218,7 @@ export class ShowWalletTableComponent implements OnInit {
       this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() - 1);
     else
       this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() + 1);
-   
+
     this.updateDailyExpenses();
   }
 
@@ -224,10 +227,14 @@ export class ShowWalletTableComponent implements OnInit {
     this.updateDailyExpenses();
   }
 
+  getFormat(date){
+    return moment(date).format('lll');
+  }
+
 
   updateDailyExpenses() {
     this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
-      this.currentSelectedDate.patchValue(moment(this.dayForDailyExpenses).format('LL'));
+      this.currentSelectedDate.patchValue(this.moment(this.dayForDailyExpenses).format('LLL'));
       this.dailyExpenses = expenses;
     })
   }

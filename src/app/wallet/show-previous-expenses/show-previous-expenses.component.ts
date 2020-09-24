@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { Expense } from 'src/app/_model/expense';
 import { ExpensesWithCategories } from 'src/app/_model/expensesWithCategories';
 import { TopUsersStat } from 'src/app/_model/top-users-stat';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { ExpenseList } from 'src/app/_model/expense-list';
-
+import * as moment from 'moment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-show-previous-expenses',
@@ -15,7 +15,7 @@ import { ExpenseList } from 'src/app/_model/expense-list';
 })
 export class ShowPreviousExpensesComponent implements OnInit {
 
-  constructor(private expenseService: ExpenseService, private walletService: WalletService) { }
+  constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService) { }
 
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -36,6 +36,20 @@ export class ShowPreviousExpensesComponent implements OnInit {
   year: string;
   date: Date;
   ngOnInit(): void {
+    if (this.translateService.currentLang === 'en') {
+      moment.locale('en');
+    }
+    else if (this.translateService.currentLang === 'ru')
+      moment.locale('ru');
+
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        moment.locale('en');
+      }
+      else if (this.translateService.currentLang === 'ru')
+        moment.locale('ru');
+    })
+
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth() - 1);
     this.year = this.date.getFullYear().toLocaleString().replace(',', '');
@@ -169,5 +183,9 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.tenth = { categoryName: '', expenses: [], categoryId: 0 };
     this.topFiveUsers = null;
     this.barExpenses = null;
+  }
+
+  getFormat(date) {
+    return moment(date).format('lll');
   }
 }

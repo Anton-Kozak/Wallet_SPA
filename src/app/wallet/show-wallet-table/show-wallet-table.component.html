@@ -94,7 +94,7 @@
                     <div class="card card-stats">
                         <div class="card-body">
                             <div class="numbers">
-                                <p class="card-category mb-3">{{'Expenses.Limit' | translate}}: {{walletExpenses}} / {{walletLimit}}</p>
+                                <p class="card-category mb-3">{{'Expenses.WalletLimit' | translate}}: {{walletExpenses}} / {{walletLimit}}</p>
                             </div>
                             <progressbar class="progress-striped active mb-2" [max]="walletLimit" [value]="expensesToShow" [type]="type"></progressbar>
                         </div>
@@ -111,8 +111,8 @@
             <div class="card card-stats" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="300">
                 <div class="card-body">
                     <div class="header">
-                        <div class="previous-day">
-                            <i style="font-size: 60px;" (click)="changeDay(0)" class="fas fa-chevron-left left"></i>
+                        <div class="previous-day" (click)="changeDay(0)">
+                            <i style="font-size: 60px;" class="fas fa-chevron-left left"></i>
                         </div>
                         <div class="date">
                             <div class="date-value">{{currentSelectedDate.value}}</div>
@@ -122,8 +122,8 @@
                                 <mat-datepicker class="dp" #picker3></mat-datepicker>
                             </mat-form-field>
                         </div>
-                        <div class="next-day">
-                            <i style="font-size: 60px;" (click)="changeDay(1)" class="fas fa-chevron-right right"></i>
+                        <div class="next-day" (click)="changeDay(1)">
+                            <i style="font-size: 60px;" class="fas fa-chevron-right right"></i>
                         </div>
                     </div>
                     <div class="my-table-responsive">
@@ -142,7 +142,7 @@
                                     <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                     <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                     <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                    <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                    <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                     <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                 </tr>
                             </tbody>
@@ -182,7 +182,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -218,7 +218,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -255,7 +255,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -291,7 +291,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -327,7 +327,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -365,7 +365,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -402,7 +402,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -438,7 +438,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -475,7 +475,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>
@@ -511,7 +511,7 @@
                                                 <td class="col-lg-3 col-md-3">{{expense.userName}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
                                                 <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                <td class="col-lg-2">{{expense.creationDate | date :"medium"}}</td>
+                                                <td class="col-lg-2">{{getFormat(expense.creationDate)}}</td>
                                                 <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
                                             </tr>
                                         </tbody>

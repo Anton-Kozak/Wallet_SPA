@@ -21,9 +21,8 @@
     "Expenses": {
         "Add": "Добавить расход",
         "Edit": "Редактировать",
-        "WalletTitle": "Название Кошелька",
-        "WalletLimit": "Бюджет Кошелька",
-        "Limit": "Бюджет",
+        "WalletTitle": "Кошелек",
+        "WalletLimit": "Бюджет",
         "User": "Пользователь",
         "Title": "Название",
         "Details": "Детали",

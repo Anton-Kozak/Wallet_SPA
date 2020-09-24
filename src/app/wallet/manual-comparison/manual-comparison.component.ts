@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { ExpenseList } from 'src/app/_model/expense-list';
@@ -51,10 +53,26 @@ export class ManualComparisonComponent implements OnInit {
   secondMonthTopFiveUsers: TopUsersStat[];
   secondMonthExpenses = new MatTableDataSource<ExpenseForTable>();
   //@ViewChild('secondPaginator') sp: MatPaginator;
-  constructor(private expenseService: ExpenseService, private walletService: WalletService) { }
+  constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService) { }
 
   ngOnInit(): void {
-    // this.firstMonthExpenses.paginator = this.fp;
+
+    if (this.translateService.currentLang === 'en') {
+      moment.locale('en');
+    }
+    else if (this.translateService.currentLang === 'ru')
+      moment.locale('ru');
+
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        moment.locale('en');
+      }
+      else if (this.translateService.currentLang === 'ru')
+        moment.locale('ru');
+      this.firstDate = new FormControl(moment(this.firstDay).format('LL'));
+      this.secondDate = new FormControl(moment(this.secondDay).format('LL'));
+    })
+
     this.firstDate = new FormControl(this.firstDay.toDateString());
     this.secondDate = new FormControl(this.secondDay.toDateString());
     if (this.walletService.currentCategories.length === 0) {
@@ -71,22 +89,18 @@ export class ManualComparisonComponent implements OnInit {
   orgValueChangeFirst(value: any) {
     this.firstDay = new Date(value);
     this.firstDate = new FormControl(this.firstDay.toDateString());
-    console.log(value);
-    console.log(new Date(value));
   }
 
 
   orgValueChangeSecond(value: any) {
     this.secondDay = new Date(value);
     this.secondDate = new FormControl(this.secondDay.toDateString());
-    console.log(value);
-    console.log(new Date(value));
   }
 
   selectDates() {
     this.expenseService.getSpecifiedMonthsData(this.firstDay.toDateString(), this.secondDay.toDateString()).subscribe(response => {
       console.log(response);
-      
+
       this.firstMonthMostSpent = response['firstMonthMostSpent'];
       this.firstMonthMostUsed = response['firstMonthMostUsed'];
       this.firstLargestExpense = response['firstLargestExpense'];

@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 
 @NgModule({
@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
         MatDatepickerModule,
         MatTableModule,
         MatPaginatorModule,
+        MatMomentDateModule,
         GraphsModule
     ],
     schemas: [NO_ERRORS_SCHEMA]
