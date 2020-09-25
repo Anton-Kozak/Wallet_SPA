@@ -56,3 +56,26 @@
     font-size: 40px;
     color: var(--sidebar-item-selected);
 }
+
+@media (max-width: 992px) {
+    .date-header,
+    .date-cell {
+        width: 27%;
+    }
+}
+
+@media (max-width: 500px) {
+    .no-pad {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+}
+
+@media (max-width: 405px) {
+    .table-head {
+        font-size: 10px !important;
+    }
+    .table-text {
+        font-size: 10px !important;
+    }
+}

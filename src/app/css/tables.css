@@ -5,3 +5,71 @@
 .table thead tr {
     color: var(--card-table-header);
 }
+
+.user-cell,
+.details-cell,
+.user-header,
+.details-header {
+    width: 25% !important;
+}
+
+.title-cell,
+.date-cell,
+.money-cell,
+.title-header,
+.date-header,
+.money-header {
+    width: 16% !important;
+}
+
+@media (max-width: 992px) {
+    .details-cell,
+    .details-header {
+        display: none !important;
+    }
+    .user-header,
+    .user-cell {
+        width: 30% !important;
+    }
+    .title-header,
+    .title-cell {
+        width: 32% !important;
+    }
+    .date-header,
+    .date-cell {
+        width: 20% !important;
+    }
+    .money-cell,
+    .money-header {
+        width: 15% !important;
+    }
+}
+
+@media (max-width: 405px) {
+    .table-head {
+        font-size: 9px !important;
+    }
+    .table-text {
+        font-size: 9px !important;
+    }
+}
+
+@media (max-width: 660px) {
+    .date-value {
+        font-size: 20px;
+    }
+    .left,
+    .right {
+        font-size: 50px !important;
+    }
+}
+
+@media (max-width: 570px) {
+    .date-value {
+        font-size: 15px !important;
+    }
+    .left,
+    .right {
+        font-size: 40px !important;
+    }
+}

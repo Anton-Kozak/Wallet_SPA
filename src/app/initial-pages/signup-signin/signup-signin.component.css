@@ -102,9 +102,15 @@
     background: #333;
 }
 
+
+/* 
+.outer {
+    min-width: 400px;
+} */
+
 @media (max-width: 659px) {
-    #home-section,
+    /* #home-section,
     .dark-overlay {
         height: 1000px;
-    }
+    } */
 }

@@ -88,11 +88,35 @@
     background-color: transparent;
     color: var(--button-text);
     box-shadow: 0px 0px 20px -4px var(--navbar-icons);
+    min-height: 120px;
+    margin-bottom: 10px;
 }
 
 .add-expense-button:hover {
     color: var(--button-text-hover);
     background-color: var(--navbar-icons);
+}
+
+.user-cell,
+.details-cell,
+.user-header,
+.details-header {
+    width: 25%;
+}
+
+.title-cell,
+.date-cell,
+.money-cell,
+.title-header,
+.date-header,
+.money-header {
+    width: 16%;
+}
+
+.table td,
+.table th {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 @media (min-width: 992px) {
@@ -101,8 +125,55 @@
     }
 }
 
-@media (max-width: 570px) {
+@media (max-width: 992px) {
+    .details-cell,
+    .details-header {
+        display: none;
+    }
+    .user-header,
+    .user-cell {
+        width: 30%;
+    }
+    .title-header,
+    .title-cell {
+        width: 32%;
+    }
+    .date-header,
+    .date-cell {
+        width: 20%;
+    }
+    .money-cell,
+    .money-header {
+        width: 15%;
+    }
+}
+
+
+/* @media (max-width: 660px) {
     .date-value {
         font-size: 20px;
+    }
+    .left,
+    .right {
+        font-size: 50px !important;
+    }
+} */
+
+@media (max-width: 570px) {
+    .date-value {
+        font-size: 15px;
+    }
+    .left,
+    .right {
+        font-size: 40px !important;
+    }
+}
+
+@media (max-width: 405px) {
+    .table-head {
+        font-size: 11px !important;
+    }
+    .table-text {
+        font-size: 11px !important;
     }
 }

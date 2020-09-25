@@ -24,10 +24,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-8">
+            <div class="col-xl-8 col-md-12 no-pad">
                 <div class="content">
                     <div *ngIf="first.categoryId != 0" class="row" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #cafcfa;"></div>
@@ -38,22 +38,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive ">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of first.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of first.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div *ngIf="second.categoryId != 0" class="row" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #cafcdf;"></div>
@@ -74,22 +74,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of second.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of second.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div *ngIf="third.categoryId != 0" class="row" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #dafcca;"></div>
@@ -111,22 +111,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of third.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of third.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                     <div *ngIf="fourth.categoryId != 0" class="row" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #fcf0ca;"></div>
@@ -147,22 +147,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of fourth.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of fourth.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -172,7 +172,7 @@
                         </div>
                     </div>
                     <div *ngIf="fifth.categoryId != 0" class="row" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #fcd9ca;"></div>
@@ -183,22 +183,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of fifth.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of fifth.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -208,7 +208,7 @@
                         </div>
                     </div>
                     <div *ngIf="sixth.categoryId != 0" class="row" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #fccaca;"></div>
@@ -221,22 +221,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of sixth.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of sixth.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -247,7 +247,7 @@
                     </div>
 
                     <div *ngIf="seventh.categoryId != 0" class="row" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #fccaea;"></div>
@@ -258,22 +258,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of seventh.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of seventh.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -283,7 +283,7 @@
                         </div>
                     </div>
                     <div *ngIf="eigth.categoryId != 0" class="row" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #eccafc;"></div>
@@ -294,22 +294,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of eigth.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of eigth.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -320,7 +320,7 @@
                     </div>
 
                     <div *ngIf="nineth.categoryId != 0" class="row" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #d1cafc;"></div>
@@ -331,22 +331,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of nineth.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of nineth.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -356,7 +356,7 @@
                         </div>
                     </div>
                     <div *ngIf="tenth.categoryId != 0" class="row" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
-                        <div class="col-md-12">
+                        <div class="col-md-12 no-pad">
                             <div class="card card-img">
                                 <div class="image">
                                     <div style="width: 100%; height: 100%; background-color: #cad8fc;"></div>
@@ -367,22 +367,22 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <thead class="text-primary text-center">
+                                            <thead class="text-primary text-center table-head">
                                                 <tr class="d-flex text-center">
-                                                    <th class="col-lg-2 col-lg-2 col-md-3">{{'Expenses.User' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">{{'Expenses.Title' | translate}}</th>
-                                                    <th class="col-lg-3 d-none d-lg-table-cell">{{'Expenses.Details' | translate}}</th>
-                                                    <th class="col-lg-3 col-md-3">{{'Expenses.Date' | translate}}</th>
-                                                    <th class="col-lg-2 col-md-3">$</th>
+                                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
+                                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
+                                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
+                                                    <th class="money-header">$</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="d-flex text-center" *ngFor="let expense of tenth.expenses">
-                                                    <td class="col-lg-2 col-md-3">{{expense.userName}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.expenseTitle}}</td>
-                                                    <td class="col-lg-3 d-none d-lg-table-cell">{{expense.expenseDescription}}</td>
-                                                    <td class="col-lg-3">{{getFormat(expense.creationDate)}}</td>
-                                                    <td class="col-lg-2 col-md-3">{{expense.moneySpent}}</td>
+                                                <tr class="d-flex text-center table-text" *ngFor="let expense of tenth.expenses">
+                                                    <td class="user-cell">{{expense.userName}}</td>
+                                                    <td class="title-cell">{{expense.expenseTitle}}</td>
+                                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
+                                                    <td class="money-cell">{{expense.moneySpent}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -393,7 +393,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-xl-4 col-md-12 no-pad">
                 <div class="card" style="border-radius: 12px;" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>

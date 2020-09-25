@@ -16,7 +16,7 @@ export class PieGraphComponent implements OnInit {
   public pieChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    aspectRatio: 1.2,
+    aspectRatio: 0.7,
     legend: {
       position: 'top',
       labels:{

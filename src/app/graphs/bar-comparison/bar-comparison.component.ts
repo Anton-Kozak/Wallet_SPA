@@ -20,6 +20,8 @@ export class BarComparisonComponent implements OnInit {
 
   public barChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    aspectRatio: 0.7,
     scales: {
       xAxes: [{
         ticks: {

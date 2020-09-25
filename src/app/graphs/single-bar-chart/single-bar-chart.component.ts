@@ -20,7 +20,7 @@ export class SingleBarChartComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    aspectRatio: 1.2,
+    aspectRatio: 0.7,
     scales: {
       xAxes: [{
         ticks: {

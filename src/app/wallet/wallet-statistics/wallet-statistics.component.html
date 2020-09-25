@@ -20,19 +20,15 @@
                         <ul *ngFor="let user of walletMembers" class="list-unstyled team-members">
                             <li>
                                 <div class="row user-details">
-                                    <div class="col-md-2 col-2">
+                                    <div class="col-md-3 col-sm-2 col-4">
                                         <div class="avatar">
-                                            <img class="avatar-image" src="{{user.photoUrl !== null ? user.photoUrl : '../../assets/images/default-avatar.png'}}" alt="">
+                                            <img style="cursor: pointer;" class="avatar-image" (click)="getUserStatistics(user.id)" src="{{user.photoUrl !== null ? user.photoUrl : '../../assets/images/default-avatar.png'}}" alt="">
                                         </div>
                                     </div>
-                                    <div class="col-md-7 col-7 text-capitalize">
+                                    <div class="col-md-8 col-sm-7 col-8 text-capitalize">
                                         {{user.username}}
                                         <br>
                                         <span class="text-muted"><small>{{'Profile.Joined' | translate}}: {{user.dateJoined | date: 'short'}}</small></span>
-                                    </div>
-                                    <div class="col-md-3 col-3 text-right">
-                                        <button (click)="getUserStatistics(user.id)" class="btn btn-sm btn-outline-success btn-round btn-icon"><i
-                                            class="fa fa-user"></i></button>
                                     </div>
                                 </div>
                             </li>

@@ -77,3 +77,18 @@
     font-size: 40px;
     color: var(--sidebar-item-selected);
 }
+
+@media (max-width: 405px) {
+    .table-head {
+        font-size: 11px !important;
+    }
+    .table-text {
+        font-size: 10px !important;
+    }
+    .edit,
+    .delete {
+        font-size: .85rem !important;
+        padding: 0 !important;
+        padding-left: 10px !important;
+    }
+}

@@ -227,35 +227,35 @@
                     <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
                         <table style="width: 100%;" mat-table [dataSource]="expenses">
                             <ng-container matColumnDef="expenseTitle">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Expense' | translate}} </th>
-                                <td mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
+                                <th class="text-center table-head title-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Expense' | translate}} </th>
+                                <td class="table-text title-cell" mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
                             </ng-container>
                             <ng-container matColumnDef="category">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Category' | translate}} </th>
-                                <td mat-cell *matCellDef="let element"> {{'ExpenseCategory.' + element.expenseCategory | translate}} </td>
+                                <th class="text-center table-head" mat-header-cell *matHeaderCellDef> {{'Expenses.Category' | translate}} </th>
+                                <td class="table-text" mat-cell *matCellDef="let element"> {{'ExpenseCategory.' + element.expenseCategory | translate}} </td>
                             </ng-container>
                             <ng-container matColumnDef="moneySpent">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> $ </th>
-                                <td mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
+                                <th class="text-center table-head money-header" mat-header-cell *matHeaderCellDef> $ </th>
+                                <td class="table-text money-cell" mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
                             </ng-container>
                             <ng-container matColumnDef="expenseDescription">
-                                <th class="text-center d-none d-xl-table-cell" mat-header-cell *matHeaderCellDef> {{'Expenses.Details' | translate}} </th>
-                                <td class="d-none d-xl-table-cell" mat-cell *matCellDef="let element"> {{element.expenseDescription}} </td>
+                                <th class="text-center table-head d-none d-xl-table-cell" mat-header-cell *matHeaderCellDef> {{'Expenses.Details' | translate}} </th>
+                                <td class="table-text" class="d-none d-xl-table-cell" mat-cell *matCellDef="let element"> {{element.expenseDescription}} </td>
                             </ng-container>
                             <ng-container matColumnDef="creationDate">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Date' | translate}} </th>
-                                <td mat-cell *matCellDef="let element"> {{getFormat(element.creationDate)}}
+                                <th class="text-center table-head date-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Date' | translate}} </th>
+                                <td class="table-text date-cell" mat-cell *matCellDef="let element"> {{getFormat(element.creationDate)}}
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="actions">
-                                <th class="text-center" mat-header-cell *matHeaderCellDef> {{'Expenses.Actions' | translate}} </th>
-                                <td mat-cell *matCellDef="let element; let i = index">
-                                    <a *ngIf="isThisUser" (click)="openDialog(element.id, i)" class="btn">
+                                <th class="text-center table-head" mat-header-cell *matHeaderCellDef> {{'Expenses.Actions' | translate}} </th>
+                                <td class="table-text" mat-cell *matCellDef="let element; let i = index">
+                                    <a *ngIf="isThisUser" (click)="openDialog(element.id, i)" class="btn edit">
                                         <span style="color: green;">
                                                 <i class="fa fa-cog"></i>
                                             </span>
                                     </a>
-                                    <a *ngIf="isThisUser" (click)="expenseDelete(element.id, i)" class="btn">
+                                    <a *ngIf="isThisUser" (click)="expenseDelete(element.id, i)" class="btn delete">
                                         <span class="mr" style="color: red;">
                                                 <i class="fa fa-times"></i>
                                             </span>
