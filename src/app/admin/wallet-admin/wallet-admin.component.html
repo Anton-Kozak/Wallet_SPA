@@ -29,30 +29,22 @@
                         <div class="stats">
                             <div class="mat-elevation-z8 users">
                                 <table style="width: 100%;" mat-table [dataSource]="users">
-
-                                    <!-- Position Column -->
                                     <ng-container matColumnDef="username">
-                                        <th mat-header-cell *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
-                                        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+                                        <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
+                                        <td class="text-center table-text" mat-cell *matCellDef="let element"> {{element.username}} </td>
                                     </ng-container>
-
-                                    <!-- Name Column -->
                                     <ng-container matColumnDef="dateJoined">
-                                        <th mat-header-cell *matHeaderCellDef> {{"Profile.Joined" | translate}} </th>
-                                        <td mat-cell *matCellDef="let element"> {{element.dateJoined | date:'medium'}}
+                                        <th class="text-center table-head date-table-header" mat-header-cell *matHeaderCellDef> {{"Profile.Joined" | translate}} </th>
+                                        <td class="text-center table-text" mat-cell *matCellDef="let element"> {{element.dateJoined | date:'medium'}}
                                         </td>
                                     </ng-container>
-
-                                    <!-- Weight Column -->
                                     <ng-container matColumnDef="userRoles">
-                                        <th mat-header-cell *matHeaderCellDef> {{"Profile.Roles" | translate}} </th>
-                                        <td mat-cell *matCellDef="let element"> {{element.userRoles}} </td>
+                                        <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef> {{"Profile.Roles" | translate}} </th>
+                                        <td class="text-center table-text" mat-cell *matCellDef="let element"> {{element.userRoles}} </td>
                                     </ng-container>
-
-                                    <!-- Symbol Column -->
                                     <ng-container matColumnDef="actions">
-                                        <th mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
-                                        <td mat-cell *matCellDef="let element">
+                                        <th class="table-text" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
+                                        <td class="table-text" mat-cell *matCellDef="let element">
                                             <div *ngIf="!element.userRoles.includes('Admin')">
                                                 <a matTooltip="Block user" class="mr-2"><i class="fa fa-lock"></i></a>
                                                 <a matTooltip="Remove user" class="mr-2"><i
@@ -72,7 +64,8 @@
 
             </div>
         </div>
-        <div class="row mt-2">
+
+        <div *ngIf="" class="row mt-2">
             <div class="col-md-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="350">
                 <app-check-requests (onUserAdd)="addUserFromRequest($event)"></app-check-requests>
             </div>
@@ -82,38 +75,38 @@
         <div class="mat-elevation-z8">
             <table style="width: 100%;" mat-table [dataSource]="expenses">
                 <ng-container matColumnDef="expenseTitle">
-                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Expense" | translate}} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
+                    <th class="text-center table-head title-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.Expense" | translate}} </th>
+                    <td class="table-text title-table-cell" mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
                 </ng-container>
                 <ng-container matColumnDef="category">
-                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Category" | translate}} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                    <th class="text-center table-head category-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.Category" | translate}} </th>
+                    <td class="text-center table-text category-table-cell" mat-cell *matCellDef="let element"> {{element.category}} </td>
                 </ng-container>
                 <ng-container matColumnDef="userName">
-                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                    <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
+                    <td class="table-text user-table-cell " mat-cell *matCellDef="let element"> {{element.userName}} </td>
                 </ng-container>
                 <ng-container matColumnDef="moneySpent">
-                    <th mat-header-cell *matHeaderCellDef> $ </th>
-                    <td mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
+                    <th class="text-center table-head money-table-header" mat-header-cell *matHeaderCellDef> $ </th>
+                    <td class="table-text money-table-cell" mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
                 </ng-container>
                 <ng-container matColumnDef="expenseDescription">
-                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Details" | translate}} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.expenseDescription}} </td>
+                    <th class="text-center table-head d-none d-xl-table-cell" mat-header-cell *matHeaderCellDef> {{"Expenses.Details" | translate}} </th>
+                    <td class="text-center table-cell d-none d-xl-table-cell" mat-cell *matCellDef="let element"> {{element.expenseDescription}} </td>
                 </ng-container>
                 <ng-container matColumnDef="creationDate">
-                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Date" | translate}} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.creationDate | date :'medium'}} </td>
+                    <th class="text-center table-head date-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.Date" | translate}} </th>
+                    <td class="table-text date-table-cell" mat-cell *matCellDef="let element"> {{element.creationDate | date :'medium'}} </td>
                 </ng-container>
                 <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
-                    <td mat-cell *matCellDef="let element; let i = index">
-                        <a (click)="openDialog(element.id, i)" class="btn">
+                    <th class="text-center table-head" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
+                    <td class="table-text" mat-cell *matCellDef="let element; let i = index">
+                        <a (click)="openDialog(element.id, i)" class="btn edit">
                             <span style="color: green;">
                                 <i class="fa fa-cog"></i>
                             </span>
                         </a>
-                        <a (click)="expenseDelete(element.id, i)" class="btn">
+                        <a (click)="expenseDelete(element.id, i)" class="btn delete">
                             <span class="mr" style="color: red;">
                                 <i class="fa fa-times"></i>
                             </span>

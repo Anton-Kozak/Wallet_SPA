@@ -76,6 +76,15 @@
     }
 } */
 
+@media (max-width: 405px) {
+    .edit,
+    .delete {
+        font-size: .85rem !important;
+        padding: 0 !important;
+        padding-left: 10px !important;
+    }
+}
+
 @keyframes glowing {
     0% {
         box-shadow: 0px 0px 20px -4px var(--navbar-icons);
