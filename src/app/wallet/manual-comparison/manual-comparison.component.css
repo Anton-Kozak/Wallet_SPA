@@ -179,3 +179,12 @@
         opacity: 1;
     }
 }
+
+@media (max-width: 405px) {
+    .table-head {
+        font-size: 11px !important;
+    }
+    .table-text {
+        font-size: 10px !important;
+    }
+}

@@ -20,8 +20,8 @@ export class DonutChartCategoriesComponent implements OnInit {
   public doughnutChartType: ChartType = 'doughnut';
   public pieChartOptions: ChartOptions = {
     responsive: true,
-    // maintainAspectRatio: false,
-    aspectRatio: 1.3,
+    maintainAspectRatio: false,
+    aspectRatio: 0.7,
     legend: {
       position: 'top',
       labels: {

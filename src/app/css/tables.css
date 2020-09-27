@@ -27,17 +27,37 @@
     .details-header {
         display: none !important;
     }
+    .user-table-header,
+    .user-table-cell {
+        width: 20% !important;
+    }
+    .title-table-header,
+    .title-table-cell {
+        width: 20% !important;
+    }
+    .date-table-header,
+    .date-table-cell {
+        width: 25% !important;
+    }
+    .category-table-header,
+    .category-table-cell {
+        width: 25% !important;
+    }
+    .money-table-cell,
+    .money-table-header {
+        width: 10% !important;
+    }
     .user-header,
     .user-cell {
         width: 30% !important;
     }
     .title-header,
     .title-cell {
-        width: 32% !important;
+        width: 30% !important;
     }
     .date-header,
     .date-cell {
-        width: 20% !important;
+        width: 25% !important;
     }
     .money-cell,
     .money-header {
@@ -51,6 +71,9 @@
     }
     .table-text {
         font-size: 9px !important;
+    }
+    .mat-paginator-range-label {
+        margin: 0 !important;
     }
 }
 

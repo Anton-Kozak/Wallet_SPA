@@ -24,7 +24,18 @@ export class DonutChartComponent implements OnInit {
   public doughnutChartLabels: Label[] = ['Current Month', 'Last Month'];
   public doughnutChartData = [];
   public doughnutChartType: ChartType = 'doughnut';
-
+  public doughnutChartOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    aspectRatio: 0.7,
+    legend: {
+      display: true,
+      labels: {
+        fontSize: 13,
+        fontStyle: 'bold'
+      },
+    },
+  };
   constructor() { }
 
   ngOnInit(): void {

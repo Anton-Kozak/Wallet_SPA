@@ -44,6 +44,7 @@
 
 .edit-wallet {
     box-shadow: 0px 0px 20px -4px #28a745;
+    animation: walletglow 10000ms infinite;
 }
 
 .add-user {
@@ -51,10 +52,62 @@
     background-color: transparent;
     color: var(--button-text);
     box-shadow: 0px 0px 20px -4px var(--navbar-icons);
+    animation: glowing 10000ms infinite;
 }
 
 .add-user:hover {
     color: var(--button-text-hover);
     background-color: var(--navbar-icons);
     box-shadow: 0px 0px 20px -4px var(--button-text-hover);
+}
+
+@media (max-width: 1150px) {
+    .add-user,
+    .edit-wallet {
+        font-size: .85rem;
+    }
+}
+
+
+/* @media(max-width: 1020px) {
+    .add-user,
+    .edit-wallet {
+        font-size: .75rem;
+    }
+} */
+
+@keyframes glowing {
+    0% {
+        box-shadow: 0px 0px 20px -4px var(--navbar-icons);
+    }
+    60% {
+        box-shadow: 0px 0px 20px -4px var(--navbar-icons);
+    }
+    70% {
+        box-shadow: 0px 0px -10px -4px var(--navbar-icons);
+    }
+    75% {
+        box-shadow: 0px 0px 20px -4px var(--navbar-icons);
+    }
+    100% {
+        box-shadow: 0px 0px 20px -4px var(--navbar-icons);
+    }
+}
+
+@keyframes walletglow {
+    0% {
+        box-shadow: 0px 0px 20px -4px #28a745;
+    }
+    40% {
+        box-shadow: 0px 0px 20px -4px #28a745;
+    }
+    45% {
+        box-shadow: none;
+    }
+    55% {
+        box-shadow: 0px 0px 20px -4px #28a745;
+    }
+    100% {
+        box-shadow: 0px 0px 20px -4px #28a745;
+    }
 }
