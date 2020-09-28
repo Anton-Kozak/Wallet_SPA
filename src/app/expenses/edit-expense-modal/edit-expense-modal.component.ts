@@ -6,7 +6,7 @@ import { ExpenseService } from 'src/app/_services/expense.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AdminService } from 'src/app/_services/admin.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-edit-expense-modal',
   templateUrl: './edit-expense-modal.component.html',
@@ -37,7 +37,7 @@ export class EditExpenseModalComponent implements OnInit {
       'title': new FormControl(this.exp.expenseTitle, [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       'money': new FormControl(this.exp.moneySpent, [Validators.required]),
       'desc': new FormControl(this.exp.expenseDescription, [Validators.minLength(4), Validators.maxLength(20)]),
-      'date': new FormControl(this.exp.creationDate, [Validators.required]),
+      'date': new FormControl(this.getFormat(this.exp.creationDate), [Validators.required]),
     })
   }
 
@@ -61,6 +61,10 @@ export class EditExpenseModalComponent implements OnInit {
         });
       }
     }
+  }
+
+  getFormat(date){
+    return moment(date).format('lll');
   }
 
   onAdminEdit() {

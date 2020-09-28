@@ -1,5 +1,5 @@
 <div mat-dialog-content>
-    <div class="container">
+    <div class="container outer">
         <div class="border-primary">
             <form [formGroup]="editExpense" (ngSubmit)="isAdminEdit != true ? onEdit() : onAdminEdit()">
                 <div class="form-group">
@@ -9,7 +9,7 @@
                         'bg-success text-white': !editExpense.get('title').errors}">{{'Expenses.Title' | translate}}</span>
                         </div>
                         <input [ngClass]="{'is-invalid': editExpense.get('title').errors && editExpense.get('title').touched,
-                                    'is-valid': !editExpense.get('title').errors}" type="text" formControlName="title" class="form-control">
+                                    'is-valid': !editExpense.get('title').errors}" type="text" formControlName="title" class="form-control input-data">
 
                         <div *ngIf="editExpense.get('title').hasError('required') && editExpense.get('title').touched" class="invalid-feedback">
                             {{'Validation.TitleRe' | translate}}
@@ -29,7 +29,22 @@
                         'bg-success text-white': !editExpense.get('desc').errors}">{{'Expenses.Details' | translate}}</span>
                         </div>
                         <textarea [ngClass]="{'is-invalid': editExpense.get('desc').errors && editExpense.get('desc').touched,
-                                    'is-valid': !editExpense.get('desc').errors}" type="text" formControlName="desc" class="form-control"></textarea>
+                                    'is-valid': !editExpense.get('desc').errors}" type="text" formControlName="desc" class="form-control input-data"></textarea>
+
+                        <div *ngIf="editExpense.get('desc').hasError('minlength') && editExpense.get('desc').touched" class="invalid-feedback">
+                            {{'Validation.DescMin' | translate}} </div>
+                        <div *ngIf="editExpense.get('desc').hasError('maxlength') && editExpense.get('desc').touched" class="invalid-feedback">
+                            {{'Validation.DescMax' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-success text-white">{{'Expenses.Date' | translate}}</span>
+                        </div>
+                        <input class="is-valid" disabled formControlName="date" class="form-control input-data">
+
 
                         <div *ngIf="editExpense.get('desc').hasError('minlength') && editExpense.get('desc').touched" class="invalid-feedback">
                             {{'Validation.DescMin' | translate}} </div>
@@ -45,7 +60,7 @@
                         'bg-success text-white': !editExpense.get('money').errors}">$</span>
                         </div>
                         <input [ngClass]="{'is-invalid': editExpense.get('money').errors && editExpense.get('money').touched,
-                                    'is-valid': !editExpense.get('money').errors}" type="number" formControlName="money" class="form-control">
+                                    'is-valid': !editExpense.get('money').errors}" type="number" formControlName="money" class="form-control input-data">
 
                         <div *ngIf="editExpense.get('money').hasError('required') && editExpense.get('money').touched" class="invalid-feedback">
                             {{'Validation.MoneyReq' | translate}}

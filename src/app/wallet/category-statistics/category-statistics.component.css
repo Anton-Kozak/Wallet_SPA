@@ -61,3 +61,15 @@
 .image {
     opacity: var(--table-expense-header);
 }
+
+@media(max-width: 450px) {
+    .table-head {
+        font-size: 15px !important;
+    }
+    .table-text {
+        font-size: 12px !important;
+    }
+    .table-head:last-of-type {
+        padding-right: 0px !important;
+    }
+}

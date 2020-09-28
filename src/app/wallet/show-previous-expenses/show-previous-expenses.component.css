@@ -64,10 +64,39 @@
     }
 }
 
+@media (max-width: 570px) {
+    .date-value {
+        font-size: 30px !important;
+    }
+    .left,
+    .right {
+        font-size: 40px !important;
+    }
+}
+
 @media (max-width: 500px) {
     .no-pad {
         padding-right: 0px !important;
         padding-left: 0px !important;
+    }
+}
+
+@media (max-width: 465px) {
+    .date-value {
+        font-size: 20px !important;
+    }
+    .left,
+    .right {
+        font-size: 30px !important;
+    }
+}
+
+@media (max-width: 445px) {
+    .table-head {
+        font-size: 12px !important;
+    }
+    .table-text {
+        font-size: 12px !important;
     }
 }
 
@@ -77,5 +106,23 @@
     }
     .table-text {
         font-size: 10px !important;
+    }
+}
+
+@media (max-width: 373px) {
+    .table-head {
+        font-size: 9px !important;
+    }
+    .table-text {
+        font-size: 9px !important;
+    }
+}
+
+@media (max-width: 350px) {
+    .table-head {
+        font-size: 7px !important;
+    }
+    .table-text {
+        font-size: 8px !important;
     }
 }

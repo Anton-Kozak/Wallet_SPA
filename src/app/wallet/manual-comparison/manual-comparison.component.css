@@ -180,7 +180,22 @@
     }
 }
 
-@media (max-width: 405px) {
+@media(max-width: 1490px) {
+    .date-value {
+        font-size: 22px !important;
+    }
+}
+
+@media(max-width: 1170px) {
+    .table-head {
+        font-size: 13px !important;
+    }
+    .table-text {
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 1100px) {
     .table-head {
         font-size: 11px !important;
     }

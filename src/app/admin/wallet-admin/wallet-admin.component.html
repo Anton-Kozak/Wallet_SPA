@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-xl-5 col-md-12">
         <div class="row justify-content-around mb-3">
             <div class="col-lg-6 mb-3">
                 <button (click)="sendInvitation()" class="btn buttons add-user btn-block font-weight-bold">{{"Admin.InviteUser" | translate}}</button>
@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-7" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
+    <div class="col-xl-7 col-md-12" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
         <div class="mat-elevation-z8">
             <table style="width: 100%;" mat-table [dataSource]="expenses">
                 <ng-container matColumnDef="expenseTitle">

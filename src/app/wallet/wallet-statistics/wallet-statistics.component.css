@@ -17,3 +17,22 @@
 .user-details {
     align-items: center;
 }
+
+@media (max-width: 350px) {
+    .compare {
+        padding-left: 2px !important;
+        padding-right: 2px!important;
+    }
+}
+
+
+/* в общий */
+
+@media (max-width: 300px) {
+    .card-title {
+        font-size: 15px !important;
+    }
+    .card-category {
+        font-size: 13px !important;
+    }
+}

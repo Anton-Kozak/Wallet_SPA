@@ -10,7 +10,7 @@
 </div>
 <div *ngIf="!isLoading" class="content">
     <div class="row">
-        <div class="col-md-4" data-aos="fade-right" data-aos-duration="600" data-aos-once="true" data-aos-delay="0">
+        <div class="col-xl-4 col-md-12 col-12" data-aos="fade-right" data-aos-duration="600" data-aos-once="true" data-aos-delay="0">
             <div class="card card-user">
                 <div class="image">
                     <img src="https://ak.picdn.net/shutterstock/videos/1023421687/thumb/1.jpg" alt="...">
@@ -30,16 +30,16 @@
                     <div class="button-container">
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-6 ml-auto">
-                                <h5 *ngIf="profileData">{{'Profile.Joined' | translate}}</h5>
+                                <h5 class="joined" *ngIf="profileData">{{'Profile.Joined' | translate}}</h5>
                                 <p class="profile-data">{{profileData.dateJoined | date: 'medium'}}</p>
                             </div>
                             <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-                                <h5 *ngIf="profileData">{{'Expenses.Total' | translate}}</h5>
+                                <h5 class="total" *ngIf="profileData">{{'Expenses.Total' | translate}}</h5>
                                 <p class="profile-data"> ${{profileData.moneySpent}}</p>
 
                             </div>
                             <div class="col-lg-4 mr-auto">
-                                <h5>{{'Profile.Roles' | translate}}</h5>
+                                <h5 class="roles">{{'Profile.Roles' | translate}}</h5>
                                 <p class="profile-data">Admin</p>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-7 col-7">
-                                    {{teamUser.username}}
+                                    <p class="team-user text-capitalize">{{teamUser.username}}</p>
                                     <br />
                                 </div>
                                 <div class="col-md-3 col-3 text-right">
@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8" data-aos="fade-down" data-aos-duration="600" data-aos-once="true" data-aos-delay="300">
+        <div class="col-xl-8 col-md-12 col-12" data-aos="fade-down" data-aos-duration="600" data-aos-once="true" data-aos-delay="300">
             <div class="card card-user">
                 <div class="card-header">
                     <h5 class="card-title">{{'Profile.Edit' | translate}}</h5>

@@ -7,13 +7,13 @@
         </div>
         <div class="d-flex right-nav">
             <div class="d-flex ml-auto align-items-center justify-content-end col-3 col-sm-5">
-                <div class="lang">
-                    <div (click)="changeLang('en')" class="inactive" [ngClass]="{'active-lang': activeLang === 'en'}">
+                <!-- <div class="lang">
+                    <div  class="inactive" [ngClass]="{'active-lang': activeLang === 'en'}">
                         ENG
                     </div>
                     <div>/</div>
-                    <div (click)="changeLang('ru')" class="inactive" [ngClass]="{'active-lang': activeLang === 'ru'}">РУС</div>
-                </div>
+                    <div  class="inactive" [ngClass]="{'active-lang': activeLang === 'ru'}">РУС</div>
+                </div> -->
                 <div class="dropdown">
                     <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i style="font-size: 22px;" class="nc-icon nc-settings-gear-65"></i>
@@ -23,6 +23,10 @@
                         <div class="dropdown-item">
                             <label for="theme">{{'Navbar.Theme' | translate}}</label>
                             <input type="checkbox" [(ngModel)]="isDark" (click)="toggleTheme()" id="theme" name="theme" [formControl]="theme">
+                        </div>
+                        <div class="dropdown-item language-item">
+                            <img (click)="changeLang('ru')" class="language" [ngClass]="{'active-lang': activeLang === 'ru', 'inactive': activeLang === 'en' }" src="assets/images/rus.png" alt="russian_language">
+                            <img (click)="changeLang('en')" class="language" [ngClass]="{'active-lang': activeLang === 'en', 'inactive': activeLang === 'ru' }" src="assets/images/usa.png" alt="english_language">
                         </div>
                     </div>
                 </div>

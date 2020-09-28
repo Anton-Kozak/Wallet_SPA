@@ -127,9 +127,19 @@ td.mat-cell {
     background-color: var(--card-background) !important;
 }
 
-th.mat-header-cell:first-of-type {
+td.mat-cell:first-of-type {
     padding-left: 0px !important;
 }
+
+td.mat-cell:last-of-type {
+    padding-right: 5px !important;
+}
+
+
+/* media */
+
+
+/* 
 
 td.mat-cell:first-of-type,
 td.mat-footer-cell:first-of-type,
@@ -141,7 +151,7 @@ td.mat-cell:last-of-type {
 
 th.mat-header-cell:last-of-type {
     padding-right: 0px !important;
-}
+} */
 
 
 /* scroll */

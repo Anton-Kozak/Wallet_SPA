@@ -47,3 +47,15 @@ img {
 .button-container h5 {
     font-weight: bold;
 }
+
+.team-user {
+    font-size: 22px;
+}
+
+@media(max-width: 1360px) {
+    .roles,
+    .total,
+    .joined {
+        font-size: 1rem !important;
+    }
+}

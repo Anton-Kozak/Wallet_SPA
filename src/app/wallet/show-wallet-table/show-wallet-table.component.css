@@ -167,17 +167,6 @@
     }
 }
 
-
-/* @media (max-width: 660px) {
-    .date-value {
-        font-size: 20px;
-    }
-    .left,
-    .right {
-        font-size: 50px !important;
-    }
-} */
-
 @media (max-width: 570px) {
     .date-value {
         font-size: 15px;
