@@ -24,7 +24,7 @@
     </div>
     <div *ngIf="amountOfMoneySpent > 0 && barExpenses != null && !isLoading">
         <div class="row">
-            <div class="col-lg-4 col-md-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+            <div class="col-lg-4 col-md-12 mob" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                 <div class="row">
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                         <div class="card card-stats">
@@ -204,7 +204,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 mob">
                 <div class="card" style="border-radius: 12px;" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                     <div class="card-header ">
                         <h5 class="card-title">{{'Expenses.ExpenseForCategory' | translate}}</h5>
@@ -248,8 +248,8 @@
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="actions">
-                                <th class="text-center table-head" mat-header-cell *matHeaderCellDef> {{'Expenses.Actions' | translate}} </th>
-                                <td class="table-text" mat-cell *matCellDef="let element; let i = index">
+                                <th class="text-center table-head action-head" mat-header-cell *matHeaderCellDef> {{'Expenses.Actions' | translate}} </th>
+                                <td class="table-text action-cell" mat-cell *matCellDef="let element; let i = index">
                                     <a *ngIf="isThisUser" (click)="openDialog(element.id, i)" class="btn edit">
                                         <span style="color: green;">
                                                 <i class="fa fa-cog"></i>

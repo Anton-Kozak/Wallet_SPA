@@ -41,16 +41,15 @@ export class EditExpenseModalComponent implements OnInit {
     })
   }
 
-  //TODO: убрать запрос на authservice и указывать username сразу в ExpenseForTable
   onEdit() {
     if (this.editExpense.valid) {
       var expToEdit: ExpenseForTable = {
         id: this.exp.id,
-        creationDate: this.editExpense.value['date'],
+        creationDate: this.exp.creationDate,
         expenseTitle: this.editExpense.value['title'],
         expenseDescription: this.editExpense.value['desc'],
         moneySpent: this.editExpense.value['money'],
-        userName: this.exp.userName//this.authService.getToken().unique_name,
+        userName: this.exp.userName
       };
       if (this.exp.userName == expToEdit.userName && this.exp.creationDate === expToEdit.creationDate && this.exp.expenseTitle === expToEdit.expenseTitle && this.exp.moneySpent === expToEdit.moneySpent) {
         this.alertify.warning("You have not made any changes!")
@@ -58,6 +57,9 @@ export class EditExpenseModalComponent implements OnInit {
       else {
         this.expService.onExpenseEdit(expToEdit).subscribe((editedExpense: ExpenseForTable) => {
           this.dialogRef.close(editedExpense);
+        }, error=>{
+          console.log(error);
+          
         });
       }
     }

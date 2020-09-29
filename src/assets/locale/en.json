@@ -196,6 +196,21 @@
         "Expl2": "If you want to save up and need to make sure that you spend less to keep within budget - XPense will help you achieve that! Establish a budget and get notifications when you reach a certain stage!",
         "Expl3": "If you want to change your lifestyle and forget about loans and living on tick, XPense has a great section with tips that will help you understand how to balance your expenses!"
     },
+    "NoWallet": {
+        "CreateWalletTitle": "Create Your Own Wallet",
+        "CreateWalletText": "Become your own wallet owner. Add expenses, invite family members, and find out how much you spend!",
+        "Create": "Create",
+        "Check": "Check",
+        "Send": "Send",
+        "Accept": "Accept",
+        "Decline": "Decline",
+        "Enter": "Enter username",
+        "CheckInvTitle": "Check Invites From Other Users",
+        "CheckInvText": "Here, you can look whether other users have invited you to join their wallets!",
+        "SendReqTitle": "Send Requests To Join Wallets",
+        "SendReqText": "If you want to join your friend's or family's wallets, choose this option and send a request to the owner of the wallet! You do that by entering user's name.",
+        "TipForCreate": "You need to choose from 5 to 10 categories for the wallet. After confirming, you will need to log in once more"
+    },
     "Tips": {
         "Tip1": "Tip1Text",
         "Tip2": "Tip2Text"
@@ -203,16 +218,19 @@
     "Validation": {
         "CategoryReq": "Category is required",
         "TitleRe": "Title is required",
-        "TitleMin": "Title should be at least 4 characters required",
+        "TitleMin": "Title should be at least 4 characters",
         "TitleMax": "Title should be no longer than 16 characters",
-        "DescMin": "Description should be at least 4 characters required",
+        "WalletMin": "Wallet title  should be at least 2 characters",
+        "WalletMax": "Wallet title  should be no longer 10 characters ",
+        "LimitMin": "Limit should be at least $10",
+        "DescMin": "Description should be at least 4 characters",
         "DescMax": "Description should be no longer than 20 characters",
         "MoneyReq": "Money is required",
         "UserReq": "Username is required",
-        "UserMin": "Username should be at least 4 characters required",
+        "UserMin": "Username should be at least 4 characters",
         "UserMax": "Username should be no longer than 10 characters",
         "PassReq": "Password is required",
-        "PassMin": "Password should be at least 4 characters required",
+        "PassMin": "Password should be at least 4 characters",
         "PassMax": "Password should be no longer than 8 characters",
         "PassVal": "You need to have at least 1 letter and number"
     }

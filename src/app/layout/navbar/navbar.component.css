@@ -80,6 +80,10 @@ i,
     color: var(--text-color);
 }
 
+.notifications {
+    color: var(--text-color);
+}
+
 .lang {
     display: flex;
     justify-content: center;

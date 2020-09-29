@@ -80,7 +80,7 @@ export class WalletStatisticsComponent implements OnInit  {
 
       }
       this.walletMembers = response['walletUsers'];
-      console.log(this.walletMembers);
+      console.log('users', this.walletMembers);
       
       this.isLoading = false;
     });

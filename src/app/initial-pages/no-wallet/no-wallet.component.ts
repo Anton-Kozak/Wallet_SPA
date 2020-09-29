@@ -7,6 +7,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-no-wallet',
   templateUrl: './no-wallet.component.html',
@@ -14,7 +15,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class NoWalletComponent implements OnInit {
   invites: number = 0;
-  constructor(public dialog: MatDialog, private noteService: NotificationService, private authService: AuthService, private translateService: TranslateService, private titleService: Title) { }
+  constructor(public dialog: MatDialog, 
+    private noteService: NotificationService, 
+    private authService: AuthService, 
+    private translateService: TranslateService, 
+    private titleService: Title,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.noteService.getNotifications().subscribe((res: Notification[]) => {
@@ -37,18 +43,24 @@ export class NoWalletComponent implements OnInit {
 
 
   onWalletCreateDialog() {
-    const dialogRef = this.dialog.open(CreateWalletComponent);
+    const dialogRef = this.dialog.open(CreateWalletComponent, {
+      height: '95vh'
+    });
     dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result)
+      if (result){
         this.authService.logout();
+        this.router.navigate(['/main/reg']);
+      }
     });
   }
 
   onInvitesCheckDialog() {
     const dialogRef = this.dialog.open(CheckInvitesComponent);
     dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result)
+      if (result){
         this.authService.logout();
+        this.router.navigate(['/main/reg']);
+      }
     });
   }
 

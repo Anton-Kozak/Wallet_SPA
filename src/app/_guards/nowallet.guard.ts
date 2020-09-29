@@ -6,31 +6,30 @@ import { AuthService } from '../_services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class MainGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) { };
+export class NowalletGuard implements CanActivate {
+  constructor(private router: Router, private authService: AuthService) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var token = this.authService.getToken();
-    console.log('Main guard is activated');
+    console.log('No wallet guard is activated');
     if (token !== null) {
+      console.log('token exists');
+      
       if (token.hasWallet === 'true') {
-        console.log('Main guard has wallet true');
-
-        if (this.router.url !== '/') {
-          console.log('router is not /');
-          this.router.navigate([this.router.url]);
-        }
-        else {
-          console.log('main guard going to home wallet');
-          this.router.navigate(['/wallet/home-wallet']);
-        }
+        console.log('has wallet, trying to got to wallet home');
+        
+        this.router.navigate(['/wallet/home-wallet']);
         return false;
       }
-      return true;
+      else {
+        console.log('Wallet is not found, going to no wallet section');
+        return true;
+      }
     }
-    console.log('no token found');
-
-    return true;
+    this.router.navigate(['/main/reg']);
+    return false;
   }
 }
+
+

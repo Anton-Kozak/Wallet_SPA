@@ -217,6 +217,8 @@ export class ExpenseService {
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable) {
+    console.log('edit expene', expenseToEdit);
+    
     return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit)
   }
 

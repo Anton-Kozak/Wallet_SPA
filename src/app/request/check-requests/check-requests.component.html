@@ -1,4 +1,4 @@
-<div *ngIf="requests !== null" class="row">
+<div *ngIf="requests.data.length > 0" class="row">
     <div class="col-md-12">
         <div class="card card-stats">
             <div class="card-body ">
@@ -31,8 +31,8 @@
                             <ng-container matColumnDef="actions">
                                 <th class="text-center table-head" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
                                 <td class="text-center table-text" mat-cell *matCellDef="let element; let i = index">
-                                    <button matTooltip="Принять нового пользователя" class="btn btn-success btn-sm mr-2" (click)="acceptRequest(element.requestCreatorEmail, i)">Accept</button>
-                                    <button matTooltip="Отклонить нового пользователя" class="btn btn-danger btn-sm" (click)="declineRequest(element.requestCreatorEmail, i)">Decline</button>
+                                    <button class="btn btn-success btn-sm mr-2" (click)="acceptRequest(element.requestCreatorEmail, i)">{{'NoWallet.Accept' | translate}}</button>
+                                    <button class="btn btn-danger btn-sm" (click)="declineRequest(element.requestCreatorEmail, i)">{{'NoWallet.Decline' | translate}}</button>
                                 </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="columns"></tr>

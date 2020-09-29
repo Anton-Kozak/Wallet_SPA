@@ -7,6 +7,7 @@ import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/
 import { MainGuard } from 'src/app/_guards/main.guard';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NowalletGuard } from 'src/app/_guards/nowallet.guard';
 // import { ContactsComponent } from '../contacts/contacts.component';
 
 // import { NoWalletComponent } from '../no-wallet/no-wallet.component';
@@ -18,7 +19,7 @@ const routes: Routes = [
             { path: 'home', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) },
             { path: 'about', loadChildren: () => import('../about/about.module').then(m => m.AboutModule) },
             { path: 'reg', loadChildren: () => import('../signup-signin/start-now.module').then(m => m.StartNowModule) },
-            { path: 'no-wallet', loadChildren: () => import('../no-wallet/no-wallet.module').then(m => m.NoWalletModule) },
+            { path: 'no-wallet', loadChildren: () => import('../no-wallet/no-wallet.module').then(m => m.NoWalletModule), canActivate: [NowalletGuard] },
         ]
     },
 ];
