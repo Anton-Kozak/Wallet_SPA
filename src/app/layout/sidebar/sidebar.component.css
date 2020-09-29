@@ -143,3 +143,7 @@
         opacity: 1;
         top: 7px;
     }
+    
+    .custom {
+        font-size: 12px;
+    }

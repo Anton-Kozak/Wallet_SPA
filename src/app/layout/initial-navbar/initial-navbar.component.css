@@ -10,15 +10,27 @@
     margin-right: 20px;
 }
 
+.language-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.language {
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+}
+
 .active-lang {
-    filter: brightness(120%);
+    filter: brightness(100%);
 }
 
 .inactive {
-    color: var(--text-color);
+    filter: brightness(50%);
     cursor: pointer;
 }
 
 .inactive:hover {
-    filter: brightness(105%);
+    filter: brightness(70%);
 }

@@ -4,13 +4,10 @@
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- <div class="lang">
-            <div (click)="changeLang('en')" class="inactive" [ngClass]="{'active-lang': activeLang === 'en'}">
-                ENG
-            </div>
-            <div>/</div>
-            <div (click)="changeLang('ru')" class="inactive" [ngClass]="{'active-lang': activeLang === 'ru'}">РУС</div>
-        </div> -->
+        <div class="language-item">
+            <img (click)="changeLang('ru')" class="language mr-3" [ngClass]="{'active-lang': activeLang === 'ru', 'inactive': activeLang === 'en' }" src="assets/images/rus.png" alt="russian_language">
+            <img (click)="changeLang('en')" class="language" [ngClass]="{'active-lang': activeLang === 'en', 'inactive': activeLang === 'ru' }" src="assets/images/usa.png" alt="english_language">
+        </div>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
