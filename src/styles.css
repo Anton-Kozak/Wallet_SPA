@@ -102,7 +102,9 @@ body {
 }
 
 .mat-drawer-side {
-    border-right: solid 1px var(--navbar-borders) !important;
+    /* outline: solid 1px var(--navbar-borders) !important; */
+    border: none !important;
+    /* border-right: solid 1px var(--navbar-borders) !important; */
 }
 
 .mat-table,

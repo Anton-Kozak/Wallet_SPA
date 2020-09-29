@@ -34,7 +34,7 @@ export const lightTheme = {
   'sidebar-item-selected': '#0084ff',
   'navbar-background': '#eef7ff',
   'navbar-text': 'black',
-  'navbar-borders': '#c7d6ff',
+  'navbar-borders': '#a6bdff',
   'navbar-icons': '#0084ff',
   'card-background': 'white',
   'card-tip-text': 'black',
