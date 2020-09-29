@@ -1,5 +1,6 @@
 .background {
     background-image: url(src\assets\images\about\bg.jpg);
+    /* filter: brightness(90%); */
     background-repeat: no-repeat;
     background-size: auto auto;
     background-attachment: fixed;

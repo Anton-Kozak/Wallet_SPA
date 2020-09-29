@@ -10,21 +10,21 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li routerLinkActive="active" class="nav-item">
                     <a [routerLink]="['home']" class="nav-link">{{"Navigation.Home" | translate}}</a>
                 </li>
-                <li *ngIf="!isSignedIn" class="nav-item">
+                <li routerLinkActive="active" *ngIf="!isSignedIn" class="nav-item">
                     <a [routerLink]="['reg']" class="nav-link">{{"Navigation.Start" | translate}}</a>
                 </li>
-                <li *ngIf="isSignedIn" class="nav-item">
+                <li routerLinkActive="active" *ngIf="isSignedIn" class="nav-item">
                     <a [routerLink]="['no-wallet']" class="nav-link">{{"Navigation.Create" | translate}}</a>
                 </li>
-                <li class="nav-item">
+                <li routerLinkActive="active" class="nav-item">
                     <a [routerLink]="['about']" class="nav-link">{{"Navigation.About" | translate}}</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li routerLinkActive="active" class="nav-item">
                     <a href="" class="nav-link">{{"Navigation.Contacts" | translate}}</a>
-                </li>
+                </li> -->
                 <li *ngIf="isSignedIn" class="nav-item">
                     <a (click)="logout()" style="cursor: pointer;" class="nav-link">{{"Navbar.Logout" | translate}}</a>
                 </li>

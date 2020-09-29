@@ -5,6 +5,8 @@ import { CheckInvitesComponent } from 'src/app/invites/check-invites/check-invit
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-no-wallet',
   templateUrl: './no-wallet.component.html',
@@ -12,12 +14,25 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class NoWalletComponent implements OnInit {
   invites: number = 0;
-  constructor(public dialog: MatDialog, private noteService: NotificationService, private authService: AuthService) { }
+  constructor(public dialog: MatDialog, private noteService: NotificationService, private authService: AuthService, private translateService: TranslateService, private titleService: Title) { }
 
   ngOnInit(): void {
     this.noteService.getNotifications().subscribe((res: Notification[]) => {
       this.invites = res.length;
     });
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
+
+  }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Create Wallet');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Создайте Кошелёк');
+    }
   }
 
 

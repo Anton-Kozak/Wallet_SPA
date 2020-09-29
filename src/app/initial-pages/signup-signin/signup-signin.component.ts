@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signup-signin',
@@ -21,6 +23,8 @@ export class SignupSigninComponent implements OnInit {
   constructor(private authService: AuthService,
     private alertify: AlertifyService,
     private router: Router,
+    private translateService: TranslateService, 
+    private titleService: Title
    ) { }
 
   ngOnInit(): void {
@@ -34,6 +38,19 @@ export class SignupSigninComponent implements OnInit {
       'usernameIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       'userpassIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)])
     });
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
+
+  }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Start Now');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Ввойдите или зарегестрируйтесь');
+    }
   }
 
   onSignUp() {
