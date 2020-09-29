@@ -7,6 +7,8 @@ import { User } from 'src/app/_model/user';
 import { Router } from '@angular/router';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-wallet-statistics',
@@ -17,7 +19,7 @@ export class WalletStatisticsComponent implements OnInit  {
 
   constructor(private expService: ExpenseService,
     private router: Router,
-    private walletService: WalletService) { }
+    private walletService: WalletService, private translateService: TranslateService, private titleService: Title) { }
 
   isLoading: boolean;
   showComparisonData = false;
@@ -82,7 +84,19 @@ export class WalletStatisticsComponent implements OnInit  {
       
       this.isLoading = false;
     });
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
 
+  }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Wallet Statistics');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Статистика Кошелька');
+    }
   }
 
   getUserStatistics(id: string) {

@@ -7,6 +7,7 @@ import { CategoryData } from 'src/app/_model/categoryData';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-show-previous-expenses',
@@ -15,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ShowPreviousExpensesComponent implements OnInit {
 
-  constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService) { }
+  constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService, private titleService: Title) { }
 
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -65,6 +66,19 @@ export class ShowPreviousExpensesComponent implements OnInit {
       this.categories = this.walletService.currentCategories;
     }
     this.getData(this.date);
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
+
+  }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Previous Expenses');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Прошлые Траты');
+    }
   }
 
 

@@ -9,6 +9,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ExpenseForAdminTable } from 'src/app/_model/expense-for-admin-table';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
 import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.component';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -20,28 +22,44 @@ export class WalletAdminComponent implements OnInit {
   constructor(private admService: AdminService,
     public dialog: MatDialog,
     private alertify: AlertifyService,
-    private adminService: AdminService) { }
+    private adminService: AdminService,
+    public translate: TranslateService, private titleService: Title) {
+  }
 
   columnsForExpenses: string[] = ['expenseTitle', 'category', 'userName', 'moneySpent', 'expenseDescription', 'creationDate', 'actions'];
   columnsForUsers: string[] = ['username', 'dateJoined', 'userRoles', 'actions'];
   expenses = new MatTableDataSource<ExpenseForAdminTable>();
   users = new MatTableDataSource<UserForAdmin>();
 
-
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
   ngOnInit(): void {
     this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[]) => {
       this.expenses.data = expenses;
       this.expenses.paginator = this.expensePaginator;
-      console.log(this.expenses.paginator);
-      
-    })
 
+    })
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
       this.users.data = usersForAdmin;
     });
+    this.setTitle(this.translate.currentLang);
+    this.translate.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
 
   }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Admin panel');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Админ Панель');
+    }
+  }
+
+
+
+
+
 
   removeUser(userId: string, rowIndex: number) {
     this.admService.removeUser(userId).subscribe(response => {
@@ -67,7 +85,7 @@ export class WalletAdminComponent implements OnInit {
       data: exp
     });
 
-    dialogRef.afterClosed().subscribe(result => {     
+    dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined && result !== null) {
         this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
         this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];

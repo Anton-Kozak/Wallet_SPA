@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, Inject, Output } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ExpenseList } from 'src/app/_model/expense-list';
-import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,6 +13,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class UserStatisticsComponent implements OnInit {
     private walletService: WalletService,
     private authService: AuthService,
     private router: Router,
-    private translateService: TranslateService) {
+    private translateService: TranslateService, private titleService: Title) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
@@ -96,6 +96,19 @@ export class UserStatisticsComponent implements OnInit {
     } else
       this.categories = this.walletService.currentCategories;
     this.getData(this.date);
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
+
+  }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Your Expenses');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Ваши Траты');
+    }
   }
 
   private getData(date: Date) {

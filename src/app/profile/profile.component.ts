@@ -8,6 +8,8 @@ import { WalletService } from '../_services/wallet.service';
 import { UserForProfileEdit } from '../_model/user-for-profile-edit';
 import { AlertifyService } from '../_services/alertify.service';
 import { PhotoService } from '../_services/photo.service';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +25,7 @@ export class ProfileComponent implements OnInit {
   profileData: ProfileData = null;
   userForEdit: UserForProfileEdit;
   isLoading: boolean;
-  constructor(public dialog: MatDialog, private photoService: PhotoService, private walletService: WalletService, private alertify: AlertifyService) { }
+  constructor(public dialog: MatDialog, private photoService: PhotoService, private walletService: WalletService, private alertify: AlertifyService, public translate: TranslateService, private titleService: Title) { }
   ngOnInit(): void {
     this.isLoading = true;
     this.walletService.getProfileData().subscribe((profileData: ProfileData) => {
@@ -45,7 +47,21 @@ export class ProfileComponent implements OnInit {
     })
 
     this.getPhoto();
+    this.setTitle(this.translate.currentLang);
+    this.translate.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
+
   }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Your Profile');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Ваш Профиль');
+    }
+  }
+
 
   onImageChange() {
     const dialogRef = this.dialog.open(ImageModalComponent);

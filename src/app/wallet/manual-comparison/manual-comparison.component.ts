@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { CategoryData } from 'src/app/_model/categoryData';
@@ -53,7 +54,7 @@ export class ManualComparisonComponent implements OnInit {
   secondMonthTopFiveUsers: TopUsersStat[];
   secondMonthExpenses = new MatTableDataSource<ExpenseForTable>();
   //@ViewChild('secondPaginator') sp: MatPaginator;
-  constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService) { }
+  constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService, private titleService: Title) { }
 
   ngOnInit(): void {
 
@@ -83,7 +84,19 @@ export class ManualComparisonComponent implements OnInit {
     } else {
       this.categories = this.walletService.currentCategories;
     }
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
 
+  }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Date Comparison');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Сравнение по дате');
+    }
   }
 
   orgValueChangeFirst(value: any) {

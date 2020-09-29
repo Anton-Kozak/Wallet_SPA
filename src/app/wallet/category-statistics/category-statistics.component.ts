@@ -8,6 +8,8 @@ import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-category-statistics',
@@ -18,26 +20,15 @@ export class CategoryStatisticsComponent implements OnInit {
 
   constructor(private expService: ExpenseService,
     private route: ActivatedRoute,
-    private walletService: WalletService) {
-    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
-    //   return false;
-    // };
+    private walletService: WalletService, private translateService: TranslateService, private titleService: Title) {
   }
 
   showComparisonData = false;
-
-  // largestExpense: number;
-  // currentMonthLargestExpense: number;
-  // spentThisMonth: number;
-  // spentAll: number;
-
   chosenCategory: number;
   chosenCategoryName: string;
 
   currentMonthData: number;
   lastMonthData: number;
-  //mostSpentUser: TopUsersStat = null;
-  //here sum is count
   mostUsedUser: TopUsersStat = null;
   topFiveUsers: TopUsersStat[];
   lastSixMonths: LastMonthStat[];
@@ -70,9 +61,6 @@ export class CategoryStatisticsComponent implements OnInit {
         else {
           this.expenses.data = data['categoryExpenses'];
           setTimeout(() => this.expenses.paginator = this.paginator);
-          // this.largestExpense = data['largestExpense'];
-          // this.currentMonthLargestExpense = data['currentMonthLargestExpense'];
-          // this.mostSpentUser = data['mostSpentUser'];
           this.mostUsedUser = data['mostUsedUser'];
           this.currentMonthData = data['barCompareExpensesWithLastMonth']['currentMonthData'];
           this.lastMonthData= data['barCompareExpensesWithLastMonth']['lastMonthData'];
@@ -90,7 +78,19 @@ export class CategoryStatisticsComponent implements OnInit {
         this.isLoading = false;
       });
     });
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
 
+  }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Category Statistics');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Статистика Категории');
+    }
   }
 
 }

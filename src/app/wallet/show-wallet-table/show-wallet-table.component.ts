@@ -13,6 +13,7 @@ import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -26,7 +27,7 @@ export class ShowWalletTableComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private noteService: NotificationService,
-    private route: ActivatedRoute, private translateService: TranslateService) { }
+    private route: ActivatedRoute, private translateService: TranslateService, private titleService: Title) { }
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   third: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -57,14 +58,14 @@ export class ShowWalletTableComponent implements OnInit {
       this.moment.locale('en');
     }
     else if (this.translateService.currentLang === 'ru')
-    this.moment.locale('ru');
-    
+      this.moment.locale('ru');
+
     this.translateService.onLangChange.subscribe(() => {
       if (this.translateService.currentLang === 'en') {
         this.moment.locale('en');
       }
       else if (this.translateService.currentLang === 'ru')
-      this.moment.locale('ru');
+        this.moment.locale('ru');
       this.currentSelectedDate = new FormControl(this.moment(this.dayForDailyExpenses).format('LL'));
     })
 
@@ -169,10 +170,23 @@ export class ShowWalletTableComponent implements OnInit {
       this.categories = data['categories'];
     })
 
-    
+
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       this.notifications = notifications;
     })
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe(lang => {
+      this.setTitle(lang['lang']);
+    });
+
+  }
+  setTitle(lang: string) {
+    if (lang === 'en') {
+      this.titleService.setTitle('Your Wallet');
+    }
+    else if (lang === 'ru') {
+      this.titleService.setTitle('Ваш Кошелёк');
+    }
   }
 
 
@@ -227,7 +241,7 @@ export class ShowWalletTableComponent implements OnInit {
     this.updateDailyExpenses();
   }
 
-  getFormat(date){
+  getFormat(date) {
     return moment(date).format('lll');
   }
 

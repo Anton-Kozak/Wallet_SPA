@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import * as AOS from 'aos';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +10,7 @@ import * as AOS from 'aos';
 export class AppComponent {
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private titleService: Title) { }
 
   hasWallet = false;
   isAuthorized = false;

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http'
@@ -61,7 +61,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
