@@ -17,7 +17,7 @@ export class CreateExpenseComponent implements OnInit {
   expense: Expense;
   newExpenseForm: FormGroup;
   categoryTitles: CategoryData[] = [];
-
+  isLoading = false;
   constructor(private expenseService: ExpenseService,
     private walletService: WalletService,
     private alertify: AlertifyService,
@@ -41,29 +41,31 @@ export class CreateExpenseComponent implements OnInit {
   }
 
   createExpense() {
-    console.log('form submit!');
-    console.log(this.newExpenseForm.value['category']);
 
-    if (this.newExpenseForm.errors == null) {
+
+    if (this.newExpenseForm.errors == null && this.isLoading === false) {
       this.expense = {
         expenseCategoryId: this.newExpenseForm.value['category'],
         expenseTitle: this.newExpenseForm.value['title'],
         expenseDescription: this.newExpenseForm.value['desc'],
         moneySpent: this.newExpenseForm.value['money'],
-        creationDate: new Date()//new Date(new Date().getFullYear(), new Date().getMonth() - 1, 10)
+        creationDate: new Date()
       }
-      console.log('Date', new Date().getFullYear(), new Date().getMonth(), 10);
+      this.isLoading = true;
       this.expenseService.createExpense(this.expense).subscribe((response: any) => {
         if (response['message'] === null) {
           this.alertify.success("You have successfully created an expense!");
+          this.isLoading = false;
           this.dialogRef.close();
         }
         else {
           this.alertify.warning(response['message']);
+          this.isLoading = false;
           this.dialogRef.close();
         }
       }, error => {
         this.alertify.error("You did not create an expense");
+        this.isLoading = false;
       });
     }
   }

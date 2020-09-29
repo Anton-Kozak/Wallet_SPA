@@ -1,0 +1,13 @@
+.message {
+    font-size: 16px;
+}
+
+.alert-info {
+    background-color: var(--home-tips);
+    color: var(--text-color);
+}
+
+.nc-icon {
+    color: var(--text-color);
+    margin-right: 5px;
+}

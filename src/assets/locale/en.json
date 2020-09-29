@@ -145,7 +145,8 @@
         "Start": "Start Now",
         "About": "About Us",
         "Contacts": "Contacts",
-        "Create": "Create Wallet"
+        "Create": "Create Wallet",
+        "404": "Oops. This page does not exist."
     },
     "Home": {
         "SaveMoney": "Save Money",
@@ -233,5 +234,21 @@
         "PassMin": "Password should be at least 4 characters",
         "PassMax": "Password should be no longer than 8 characters",
         "PassVal": "You need to have at least 1 letter and number"
+    },
+    "HomeWallet": {
+        "Welcome": "Welcome",
+        "Home page": "Home page",
+        "a": "This is a home page. To start using your wallet, please check out the left side of the screen.",
+        "b": "To go to your wallet, select Your Wallet section. You can create an expense in the Your Wallet section. Wallet statistics will be shown only if you have at least one expense created.",
+        "c": "User statistics will show you your page with your expenses",
+        "d": "If you have several users in the wallet, you can find their expenses in the Wallet Statistics - just press the User icon and you will see their expenses.",
+        "e": "Categories section can help you look how much you have spent in particular category.",
+        "f": "Home page will look differently.",
+        "g": "You can edit your profile in the Profile Page - upload a photo or fill out personal info",
+        "h": "If you want to add new members to your wallet, you have to be wallet's admin. You will see Admin section in the sidebar.",
+        "k": "Click the cogwheel and you will find settings for the site. You can change language and theme.",
+        "l": "Section with tips contains useful information for developing better spending habits.",
+        "m": "Texts under certain sections and cards are static - I just haven't decided what to use :)",
+        "n": "All notifications are in English :("
     }
 }

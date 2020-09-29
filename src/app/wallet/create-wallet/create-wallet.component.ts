@@ -25,6 +25,7 @@ export class CreateWalletComponent implements OnInit {
   wallet: Wallet;
   finalCategories: number[] = [
   ];
+  createLoading = false;
 
   isActive: { id: number, status: boolean }[] = [];
 
@@ -61,26 +62,28 @@ export class CreateWalletComponent implements OnInit {
 
 
   createWallet() {
+    console.log('create');
+    
     this.wallet = ({
       title: this.walletForm.value['title'],
       monthlyLimit: this.walletForm.value['limit'],
       walletCategories: null,
     });
-    if (this.finalCategories.length >= 5) {
-      this.walletService.createNewWallet(this.wallet).subscribe(() => {
-        this.walletService.addCategoriesToWallet(this.finalCategories).subscribe(() => {
-          this.alertify.success("You have successfully created a wallet");
-          this.dialogRef.close(true);
+      if (this.finalCategories.length >= 5) {
+        this.walletService.createNewWallet(this.wallet).subscribe(() => {
+          this.walletService.addCategoriesToWallet(this.finalCategories).subscribe(() => {
+            this.alertify.success("You have successfully created a wallet");
+            this.dialogRef.close(true);
+          }, error => {
+            this.alertify.error(error.statusText);
+          });
         }, error => {
           this.alertify.error(error.statusText);
         });
-      }, error => {
-        this.alertify.error(error.statusText);
-      });
-    }
-    else {
-      this.alertify.error("You need to choose 5 or more categories!");
-    }
+      }
+      else {
+        this.alertify.error("You need to choose 5 or more categories!");
+      }
   }
 
   back() {

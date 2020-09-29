@@ -24,6 +24,7 @@ export const darkTheme = {
   'spinner-second': '#008855',
   'button-text' : '#ffb204',
   'button-text-hover' : 'black',
+  'home-tips' : "#1c2a38"
 };
 
 export const lightTheme = {
@@ -48,6 +49,7 @@ export const lightTheme = {
   'spinner-second': '#006eff',
   'button-text' : '#0084ff',
   'button-text-hover' : 'white',
+  'home-tips' : "#eef7ff",
 };
 
 @Injectable({

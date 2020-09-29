@@ -96,7 +96,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button class="btn btn-secondary btn-block shadow-lg" [disabled]="signUpForm.invalid" [ngClass]="{'btn-success': signUpForm.valid}"> {{"Registration.Create" | translate}}</button>
+                                                    <button class="btn btn-secondary btn-block" [class.spinner]="signUpLoading" [disabled]="signUpForm.invalid  && !signUpLoading" [ngClass]="{'btn-success': signUpForm.valid, 'btn-loading':signUpLoading}"> <span [ngClass]="{'button-text':signUpLoading}">{{"Registration.Create" | translate}}</span></button>
                                                 </div>
                                             </form>
                                             <div class="container">
@@ -152,7 +152,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-3">
-                                                    <button class="btn btn-secondary btn-block shadow-lg" [disabled]="signInForm.invalid" [ngClass]="{'btn-success': signInForm.valid}"> {{"Registration.Signin" | translate}}</button>
+                                                    <button class="btn btn-secondary btn-block" [class.spinner]="signInLoading" [disabled]="signInForm.invalid && !signInLoading" [ngClass]="{'btn-success': signInForm.valid, 'btn-loading':signInLoading}"> <span [ngClass]="{'button-text':signInLoading}">{{"Registration.Signin" | translate}}</span></button>
                                                 </div>
                                             </form>
                                             <div class="container">

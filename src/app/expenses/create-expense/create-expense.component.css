@@ -1,1 +1,8 @@
-@import url("../../css/modals.css")
+@import url("../../css/modals.css");
+.btn-loading {
+    background-color: #0a30136e;
+}
+
+.button-text {
+    opacity: .3;
+}

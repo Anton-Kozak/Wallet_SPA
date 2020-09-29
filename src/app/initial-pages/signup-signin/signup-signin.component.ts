@@ -19,13 +19,15 @@ export class SignupSigninComponent implements OnInit {
   signInForm: FormGroup;
   isSignUp = true;
   isSignedIn = false;
- 
+  signInLoading = false;
+  signUpLoading = false;
+
   constructor(private authService: AuthService,
     private alertify: AlertifyService,
     private router: Router,
-    private translateService: TranslateService, 
+    private translateService: TranslateService,
     private titleService: Title
-   ) { }
+  ) { }
 
   ngOnInit(): void {
     console.log('reg start');
@@ -54,6 +56,7 @@ export class SignupSigninComponent implements OnInit {
   }
 
   onSignUp() {
+    this.signUpLoading = true;
     const username = this.signUpForm.value['usernameUp'];
     const password = this.signUpForm.value['userpassUp'];
     const role = this.signUpForm.value['role'];
@@ -62,13 +65,15 @@ export class SignupSigninComponent implements OnInit {
       this.signUpForm.reset();
       this.signInForm.reset();
       this.isSignUp = false;
+      this.signUpLoading = false;
     }, error => {
       this.alertify.error(error.error);
-      console.log(error.message);
+      this.signUpLoading = false;
     })
   }
 
   onSignIn() {
+    this.signInLoading = true;
     const username = this.signInForm.value['usernameIn'];
     const password = this.signInForm.value['userpassIn'];
     this.authService.login(username, password).subscribe((data: any) => {
@@ -79,11 +84,12 @@ export class SignupSigninComponent implements OnInit {
       }
       else {
         console.log('I have no wallet');
-        
         this.router.navigate(['/main/no-wallet']);
       }
+      this.signInLoading = false;
     }, error => {
       this.alertify.error('Incorrect username or password');
+      this.signInLoading = false;
     })
   }
 
@@ -103,7 +109,7 @@ export class SignupSigninComponent implements OnInit {
     return false;
   }
 
- 
+
 
   logout() {
     this.authService.logout();

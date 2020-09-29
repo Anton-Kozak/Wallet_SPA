@@ -2,3 +2,27 @@
     font-size: 18px;
     font-weight: bold;
 }
+
+.spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+    border-radius: 50%;
+    border: 2px solid #00ff37;
+    border-top-color: #00a738;
+    animation: spinner .8s linear infinite;
+}
+
+.btn-loading {
+    background-color: #0a30136e;
+}
+
+.button-text {
+    opacity: .3;
+}
