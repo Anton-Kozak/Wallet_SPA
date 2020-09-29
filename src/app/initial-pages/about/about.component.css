@@ -1,7 +1,7 @@
 .background {
     background-image: url(src\assets\images\about\bg.jpg);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto auto;
     background-attachment: fixed;
     height: 100%;
     width: 100%;
@@ -12,6 +12,10 @@
     position: relative;
     text-align: center;
     color: white;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .img-text {

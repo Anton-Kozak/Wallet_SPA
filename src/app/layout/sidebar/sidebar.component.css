@@ -76,6 +76,7 @@
         margin-bottom: 10px;
         padding-bottom: 10px;
         background-color: var(--sidebar-header-item);
+        border-right: 1px solid var(--navbar-borders);
         border-bottom-color: var(--navbar-borders) !important;
         border-bottom: 1px solid;
     }
