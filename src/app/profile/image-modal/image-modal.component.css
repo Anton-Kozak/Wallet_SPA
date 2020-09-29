@@ -1,3 +1,4 @@
+@import url("../../css/modals.css");
 .outer {
     display: flex;
     flex-direction: column;

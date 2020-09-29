@@ -8,7 +8,7 @@
                         'bg-success text-white': !newExpenseForm.get('category').errors}">{{'Expenses.Category' | translate}}</span>
                     </div>
                     <select [ngClass]="{'is-invalid': newExpenseForm.get('category').errors && newExpenseForm.get('category').touched,
-                                    'is-valid': !newExpenseForm.get('category').errors}" formControlName="category" class="form-control">
+                                    'is-valid': !newExpenseForm.get('category').errors}" formControlName="category" class="form-control input-data">
                         <option *ngFor="let category of categoryTitles" [value]=category.id>{{'ExpenseCategory.' + category.title | translate}}</option>
                     </select>
 
@@ -24,7 +24,7 @@
                         'bg-success text-white': !newExpenseForm.get('title').errors}">{{'Expenses.Title' | translate}}</span>
                     </div>
                     <input [ngClass]="{'is-invalid': newExpenseForm.get('title').errors && newExpenseForm.get('title').touched,
-                                    'is-valid': !newExpenseForm.get('title').errors}" type="text" formControlName="title" class="form-control">
+                                    'is-valid': !newExpenseForm.get('title').errors}" type="text" formControlName="title" class="form-control input-data">
 
                     <div *ngIf="newExpenseForm.get('title').hasError('required') && newExpenseForm.get('title').touched" class="invalid-feedback">
                         {{'Validation.TitleRe' | translate}}
@@ -44,7 +44,7 @@
                         'bg-success text-white': !newExpenseForm.get('desc').errors}">{{'Expenses.Details' | translate}}</span>
                     </div>
                     <textarea [ngClass]="{'is-invalid': newExpenseForm.get('desc').errors && newExpenseForm.get('desc').touched,
-                                    'is-valid': !newExpenseForm.get('desc').errors}" formControlName="desc" class="form-control"></textarea>
+                                    'is-valid': !newExpenseForm.get('desc').errors}" formControlName="desc" class="form-control input-data"></textarea>
 
                     <div *ngIf="newExpenseForm.get('desc').hasError('minlength') && newExpenseForm.get('desc').touched" class="invalid-feedback">
                         {{'Validation.DescMin' | translate}}
@@ -61,7 +61,7 @@
                         'bg-success text-white': !newExpenseForm.get('money').errors}">$</span>
                     </div>
                     <input [ngClass]="{'is-invalid': newExpenseForm.get('money').errors && newExpenseForm.get('money').touched,
-                                    'is-valid': !newExpenseForm.get('money').errors}" type="number" formControlName="money" class="form-control">
+                                    'is-valid': !newExpenseForm.get('money').errors}" type="number" formControlName="money" class="form-control input-data">
 
                     <div *ngIf="newExpenseForm.get('money').hasError('required') && newExpenseForm.get('money').touched" class="invalid-feedback">
                         {{'Validation.MoneyReq' | translate}}

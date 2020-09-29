@@ -71,7 +71,7 @@ i,
 }
 
 .dropdown-item:hover {
-    filter: brightness(150%);
+    filter: brightness(125%);
     background-color: var(--navbar-background);
 }
 
@@ -110,7 +110,7 @@ i,
 }
 
 .inactive:hover {
-    filter: brightness(105%);
+    filter: brightness(70%);
 }
 
 .avatar {
