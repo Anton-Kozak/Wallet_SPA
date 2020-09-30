@@ -136,6 +136,10 @@ td.mat-cell:last-of-type {
     padding-right: 5px !important;
 }
 
+.navbar-toggler {
+    margin-right: auto !important;
+}
+
 @media(max-width: 400px) {
     th.mat-header-cell:first-of-type,
     td.mat-cell:first-of-type,
