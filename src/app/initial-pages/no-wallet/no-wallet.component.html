@@ -1,7 +1,7 @@
 <div class="background">
     <div class="dark-overlay">
-        <div class="row cards">
-            <div class="card mr-5" style="width: 18rem;" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+        <div class="row container selection-row">
+            <div class="card col-xl-3 col-lg-3 col-md-12 col-12" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                 <img src="https://media.workandmoney.com/10/92/109237ed61a54a9392bcf905bf38d67d.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{'NoWallet.CreateWalletTitle' | translate}}</h5>
@@ -10,7 +10,7 @@
                 </div>
             </div>
 
-            <div class="card mr-5" style="width: 18rem;" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
+            <div *ngIf="invites > 0" class="card col-xl-3 col-lg-3 col-md-12 col-12" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
                 <img src="https://www.beeprinting.co.uk/wp-content/uploads/2013/07/Three-color-50pcs-lot-Wedding-Invitation-Cards-With-Purple-Ribbon-Printing-Laser-Cut-Wedding-Invitations.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{'NoWallet.CheckInvTitle' | translate}}</h5>
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="card mr-5" style="width: 18rem;" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="400">
+            <div class="card col-xl-3 col-lg-3 col-md-12 col-12" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="400">
                 <img src="https://www.underconsideration.com/brandnew/archives/request_logo.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{'NoWallet.SendReqTitle' | translate}}</h5>

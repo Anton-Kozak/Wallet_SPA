@@ -37,6 +37,7 @@ export class ShowPreviousExpensesComponent implements OnInit {
   year: string;
   date: Date;
   ngOnInit(): void {
+    this.isLoading = true;
     if (this.translateService.currentLang === 'en') {
       moment.locale('en');
     }
@@ -85,65 +86,65 @@ export class ShowPreviousExpensesComponent implements OnInit {
   getData(date: Date) {
     this.expenseService.getPreviousExpenses(date.toUTCString()).subscribe((expenses: ExpensesWithCategories[]) => {
       this.isLoading = true;
-      // console.log(expenses);
+      console.log('exp', expenses);
       this.barExpenses = expenses['previousExpensesBars'];
-      //console.log(this.barExpenses);
-
       this.topFiveUsers = expenses['topFiveUsers'];
-      if (expenses['previousMonthExpenses'][0]['expenses'].length > 0) {
-        this.first.expenses = expenses['previousMonthExpenses'][0]['expenses'];
-        this.first.categoryId = expenses['previousMonthExpenses'][0]['categoryId'];
-        this.first.categoryName = expenses['previousMonthExpenses'][0]['categoryName'];
-      }
-      if (expenses['previousMonthExpenses'][1]['expenses'].length > 0) {
-        this.second.expenses = expenses['previousMonthExpenses'][1]['expenses'];
-        this.second.categoryId = expenses['previousMonthExpenses'][1]['categoryId'];
-        this.second.categoryName = expenses['previousMonthExpenses'][1]['categoryName'];
-      }
-      if (expenses['previousMonthExpenses'][2]['expenses'].length > 0) {
-        this.third.expenses = expenses['previousMonthExpenses'][2]['expenses'];
-        this.third.categoryId = expenses['previousMonthExpenses'][2]['categoryId'];
-        this.third.categoryName = expenses['previousMonthExpenses'][2]['categoryName'];
-      }
-      if (expenses['previousMonthExpenses'][3]['expenses'].length > 0) {
-        this.fourth.expenses = expenses['previousMonthExpenses'][3]['expenses'];
-        this.fourth.categoryId = expenses['previousMonthExpenses'][3]['categoryId'];
-        this.fourth.categoryName = expenses['previousMonthExpenses'][3]['categoryName'];
-      }
-      if (expenses['previousMonthExpenses'][4]['expenses'].length > 0) {
-        this.fifth.expenses = expenses['previousMonthExpenses'][4]['expenses'];
-        this.fifth.categoryId = expenses['previousMonthExpenses'][4]['categoryId'];
-        this.fifth.categoryName = expenses['previousMonthExpenses'][4]['categoryName'];
-      }
-      if (expenses['previousMonthExpenses'].length > 5) {
-        if (expenses['previousMonthExpenses'][5]['expenses'].length > 0) {
-          this.sixth.expenses = expenses['previousMonthExpenses'][5]['expenses'];
-          this.sixth.categoryId = expenses['previousMonthExpenses'][5]['categoryId'];
-          this.sixth.categoryName = expenses['previousMonthExpenses'][5]['categoryName'];
+      if (this.topFiveUsers.length > 0) {
+        if (expenses['previousMonthExpenses'][0]['expenses'].length > 0) {
+          this.first.expenses = expenses['previousMonthExpenses'][0]['expenses'];
+          this.first.categoryId = expenses['previousMonthExpenses'][0]['categoryId'];
+          this.first.categoryName = expenses['previousMonthExpenses'][0]['categoryName'];
         }
-        if (expenses['previousMonthExpenses'].length > 6) {
-          if (expenses['previousMonthExpenses'][6]['expenses'].length > 0) {
-            this.seventh.expenses = expenses['previousMonthExpenses'][6]['expenses'];
-            this.seventh.categoryId = expenses['previousMonthExpenses'][6]['categoryId'];
-            this.seventh.categoryName = expenses['previousMonthExpenses'][6]['categoryName'];
+        if (expenses['previousMonthExpenses'][1]['expenses'].length > 0) {
+          this.second.expenses = expenses['previousMonthExpenses'][1]['expenses'];
+          this.second.categoryId = expenses['previousMonthExpenses'][1]['categoryId'];
+          this.second.categoryName = expenses['previousMonthExpenses'][1]['categoryName'];
+        }
+        if (expenses['previousMonthExpenses'][2]['expenses'].length > 0) {
+          this.third.expenses = expenses['previousMonthExpenses'][2]['expenses'];
+          this.third.categoryId = expenses['previousMonthExpenses'][2]['categoryId'];
+          this.third.categoryName = expenses['previousMonthExpenses'][2]['categoryName'];
+        }
+        if (expenses['previousMonthExpenses'][3]['expenses'].length > 0) {
+          this.fourth.expenses = expenses['previousMonthExpenses'][3]['expenses'];
+          this.fourth.categoryId = expenses['previousMonthExpenses'][3]['categoryId'];
+          this.fourth.categoryName = expenses['previousMonthExpenses'][3]['categoryName'];
+        }
+        if (expenses['previousMonthExpenses'][4]['expenses'].length > 0) {
+          this.fifth.expenses = expenses['previousMonthExpenses'][4]['expenses'];
+          this.fifth.categoryId = expenses['previousMonthExpenses'][4]['categoryId'];
+          this.fifth.categoryName = expenses['previousMonthExpenses'][4]['categoryName'];
+        }
+        if (expenses['previousMonthExpenses'].length > 5) {
+          if (expenses['previousMonthExpenses'][5]['expenses'].length > 0) {
+            this.sixth.expenses = expenses['previousMonthExpenses'][5]['expenses'];
+            this.sixth.categoryId = expenses['previousMonthExpenses'][5]['categoryId'];
+            this.sixth.categoryName = expenses['previousMonthExpenses'][5]['categoryName'];
           }
-          if (expenses['previousMonthExpenses'].length > 7) {
-            if (expenses['previousMonthExpenses'][7]['expenses'].length > 0) {
-              this.eigth.expenses = expenses['previousMonthExpenses'][7]['expenses'];
-              this.eigth.categoryId = expenses['previousMonthExpenses'][7]['categoryId'];
-              this.eigth.categoryName = expenses['previousMonthExpenses'][7]['categoryName'];
+          if (expenses['previousMonthExpenses'].length > 6) {
+            if (expenses['previousMonthExpenses'][6]['expenses'].length > 0) {
+              this.seventh.expenses = expenses['previousMonthExpenses'][6]['expenses'];
+              this.seventh.categoryId = expenses['previousMonthExpenses'][6]['categoryId'];
+              this.seventh.categoryName = expenses['previousMonthExpenses'][6]['categoryName'];
             }
-            if (expenses['previousMonthExpenses'].length > 8) {
-              if (expenses['previousMonthExpenses'][8]['expenses'].length > 0) {
-                this.nineth.expenses = expenses['previousMonthExpenses'][8]['expenses'];
-                this.nineth.categoryId = expenses['previousMonthExpenses'][8]['categoryId'];
-                this.nineth.categoryName = expenses['previousMonthExpenses'][8]['categoryName'];
+            if (expenses['previousMonthExpenses'].length > 7) {
+              if (expenses['previousMonthExpenses'][7]['expenses'].length > 0) {
+                this.eigth.expenses = expenses['previousMonthExpenses'][7]['expenses'];
+                this.eigth.categoryId = expenses['previousMonthExpenses'][7]['categoryId'];
+                this.eigth.categoryName = expenses['previousMonthExpenses'][7]['categoryName'];
               }
-              if (expenses['previousMonthExpenses'].length > 9) {
-                if (expenses['previousMonthExpenses'][9]['expenses'].length > 0) {
-                  this.tenth.expenses = expenses['previousMonthExpenses'][9]['expenses'];
-                  this.tenth.categoryId = expenses['previousMonthExpenses'][9]['categoryId'];
-                  this.tenth.categoryName = expenses['previousMonthExpenses'][9]['categoryName'];
+              if (expenses['previousMonthExpenses'].length > 8) {
+                if (expenses['previousMonthExpenses'][8]['expenses'].length > 0) {
+                  this.nineth.expenses = expenses['previousMonthExpenses'][8]['expenses'];
+                  this.nineth.categoryId = expenses['previousMonthExpenses'][8]['categoryId'];
+                  this.nineth.categoryName = expenses['previousMonthExpenses'][8]['categoryName'];
+                }
+                if (expenses['previousMonthExpenses'].length > 9) {
+                  if (expenses['previousMonthExpenses'][9]['expenses'].length > 0) {
+                    this.tenth.expenses = expenses['previousMonthExpenses'][9]['expenses'];
+                    this.tenth.categoryId = expenses['previousMonthExpenses'][9]['categoryId'];
+                    this.tenth.categoryName = expenses['previousMonthExpenses'][9]['categoryName'];
+                  }
                 }
               }
             }
@@ -151,19 +152,20 @@ export class ShowPreviousExpensesComponent implements OnInit {
         }
       }
       this.isLoading = false;
-      //console.log(this.isLoading);
     });
   }
 
   previousMonth() {
     this.date = new Date(Date.now());
+    //console.log('first day', new Date(this.date.getFullYear(), this.date.getMonth(), 1));
+    
     this.monthNumber++;
-    this.date.setMonth(this.date.getMonth() - this.monthNumber);
-    console.log(this.date);
-    console.log(this.monthNumber);
+    this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
+    console.log('should be first day of previous month', this.date);
+    // console.log(this.monthNumber);
 
     this.monthName = this.date.toLocaleString('default', { month: 'long' });
-    this.year = this.date.getFullYear().toLocaleString();
+    this.year = this.date.getFullYear().toLocaleString().replace(',', '');
     this.clearData();
     this.getData(this.date);
   }
@@ -172,11 +174,11 @@ export class ShowPreviousExpensesComponent implements OnInit {
     if (this.monthNumber - 1 !== 0) {
       this.monthNumber--;
       this.date = new Date(Date.now());
-      this.date.setMonth(this.date.getMonth() - this.monthNumber);
+      this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
 
       this.monthName = this.date.toLocaleString('default', { month: 'long' });
-      this.year = this.date.getFullYear().toLocaleString();
-      console.log(this.year);
+      this.year = this.date.getFullYear().toLocaleString().replace(',', '');
+      //console.log(this.year);
 
       this.clearData();
       this.getData(this.date);
@@ -195,7 +197,7 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.eigth = { categoryName: '', expenses: [], categoryId: 0 };
     this.nineth = { categoryName: '', expenses: [], categoryId: 0 };
     this.tenth = { categoryName: '', expenses: [], categoryId: 0 };
-    this.topFiveUsers = null;
+    this.topFiveUsers = [];
     this.barExpenses = null;
   }
 

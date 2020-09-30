@@ -37,7 +37,7 @@ export class CreateWalletComponent implements OnInit {
 
     this.walletForm = new FormGroup({
       //TODO: сделать кастомный валидатор
-      'title': new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
+      'title': new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16)]),
       'limit': new FormControl(0, [Validators.required, Validators.min(10)])
     })
   }

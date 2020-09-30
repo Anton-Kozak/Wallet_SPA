@@ -109,7 +109,7 @@
                                 <tr class="d-flex text-center">
                                     <th class="user-header">{{'Expenses.User' | translate}}</th>
                                     <th class="title-header">{{'Expenses.Title' | translate}}</th>
-                                    <th class="details-header">{{'Expenses.Details' | translate}}</th>
+                                    <th class="details-header">{{'Expenses.Category' | translate}}</th>
                                     <th class="date-header">{{'Expenses.Date' | translate}}</th>
                                     <th class="money-header">$</th>
                                 </tr>
@@ -118,7 +118,7 @@
                                 <tr class="d-flex text-center table-text" *ngFor="let expense of dailyExpenses">
                                     <td class="user-cell">{{expense.userName}}</td>
                                     <td class="title-cell">{{expense.expenseTitle}}</td>
-                                    <td class="details-cell">{{expense.expenseDescription}}</td>
+                                    <td class="details-cell">{{'ExpenseCategory.' + expense.expenseCategory | translate}}</td>
                                     <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
                                     <td class="money-cell">{{expense.moneySpent}}</td>
                                 </tr>
@@ -322,8 +322,6 @@
                             </div>
                             <div class="card-header">
                                 <h4 class="card-title text-center font-weight-bold">{{'ExpenseCategory.' +sixth.categoryName | translate}} </h4>
-                                <p class="card-category">Check out how much you have spent this month at {{sixth.categoryName}}!
-                                </p>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

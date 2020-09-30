@@ -32,13 +32,13 @@ export class SignupSigninComponent implements OnInit {
   ngOnInit(): void {
     console.log('reg start');
     this.signUpForm = new FormGroup({
-      'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
+      'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[a-zA-Z0-9]+')]),
       'userpassUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
-      'role': new FormControl('', Validators.required)
+      // 'role': new FormControl('', Validators.required)
     });
     this.signInForm = new FormGroup({
-      'usernameIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
-      'userpassIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)])
+      'usernameIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[a-zA-Z0-9]+')]),
+      'userpassIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')])
     });
     this.setTitle(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe(lang => {
@@ -59,7 +59,7 @@ export class SignupSigninComponent implements OnInit {
     this.signUpLoading = true;
     const username = this.signUpForm.value['usernameUp'];
     const password = this.signUpForm.value['userpassUp'];
-    const role = this.signUpForm.value['role'];
+    const role = 'Adult';
     this.authService.register(username, password, role).subscribe((data: any) => {
       this.alertify.success(data.data);
       this.signUpForm.reset();

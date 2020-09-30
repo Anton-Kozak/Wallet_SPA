@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ChartOptions } from 'chart.js';
 import { ThemeService } from 'ng2-charts';
+import { BehaviorSubject } from 'rxjs';
 
 export const darkTheme = {
   'content-background': '#424242',
@@ -57,17 +58,17 @@ export const lightTheme = {
 })
 export class MyThemeService {
 
-  currentTheme: string;
+  currentTheme = new BehaviorSubject<string>(localStorage.getItem('theme'));
 
 
   checkTheme() {
     if (localStorage.getItem('theme') === 'dark') {
       this.setTheme(darkTheme);
-      this.currentTheme = 'dark';
+      this.currentTheme.next('dark');
     }
     else {
       this.setTheme(lightTheme);
-      this.currentTheme = 'light';
+      this.currentTheme.next('light');
       localStorage.setItem('theme', 'light');
     }
   }

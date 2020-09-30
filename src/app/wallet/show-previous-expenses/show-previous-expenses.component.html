@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-8 col-md-12 no-pad">
+            <div *ngIf="topFiveUsers.length > 0" class="col-xl-8 col-md-12 no-pad">
                 <div class="content">
                     <div *ngIf="first.categoryId != 0" class="row" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
                         <div class="col-md-12 no-pad">
@@ -391,7 +391,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-12 no-pad">
+            <div *ngIf="topFiveUsers.length > 0" class="col-xl-4 col-md-12 no-pad">
                 <div class="card" style="border-radius: 12px;" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
@@ -431,7 +431,36 @@
                     </div>
                 </div>
             </div>
-
+            <div *ngIf="topFiveUsers.length === 0" class="col-12">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="fa fa-exclamation-triangle text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-title">{{'Expenses.Nothing' | translate}} </p>
+                                            <p>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-refresh"></i> {{'Expenses.Nothing' | translate}} {{'Expenses.On' |translate}} {{'Months.' + monthName | translate}}, {{year}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
     background-image: url(src\assets\images\about\bg.jpg);
     /* filter: brightness(90%); */
     background-repeat: no-repeat;
-    background-size: auto auto;
+    background-size: 100%;
     background-attachment: fixed;
     height: 100%;
     width: 100%;
@@ -17,6 +17,10 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+}
+
+.about-stripe {
+    width: 100%;
 }
 
 .img-text {
@@ -37,4 +41,10 @@
 .text {
     font-size: 24px;
     line-height: 1.5;
+}
+
+@media(max-width: 800px) {
+    .img-text {
+        font-size: 30px;
+    }
 }

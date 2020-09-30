@@ -143,8 +143,10 @@ export class ExpenseService {
 
 
   //TODO: здесь идет система автоматического добавления расходов, нужно подумать как их добавлять на деле
-  createExpense(expense: Expense) {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/new', expense).pipe(map(response => {
+  createExpense(expense: Expense, offset: number) {
+    console.log('expense to send', expense);
+
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/new/' + offset, expense ).pipe(map(response => {
       var receivedExpense: ExpenseForTable = response['expense'];
       switch (+(expense.expenseCategoryId)) {
         case this.firstExpenses.categoryId:
@@ -218,7 +220,7 @@ export class ExpenseService {
 
   onExpenseEdit(expenseToEdit: ExpenseForTable) {
     console.log('edit expene', expenseToEdit);
-    
+
     return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit)
   }
 

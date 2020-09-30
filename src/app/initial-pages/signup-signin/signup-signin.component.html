@@ -5,7 +5,7 @@
                 <div class="row mt-5">
                     <div class="col-lg-8 d-none d-lg-block">
                         <p class="display-4 text-capitalize text-light title" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0"> {{"Registration.Benefits" | translate}}</p>
-                        <div class="d-flex" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
+                        <div class="d-flex" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
                             <div class="p-4 align-self-start">
                                 <i class="fas fa-check fa-3x text-light"></i>
                             </div>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+                    <div class="col-lg-4" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                         <div class="card-container">
                             <div class="card-flip" [ngClass]="{flip: !isSignUp}">
                                 <div class="card front regform text-center card-form">
@@ -58,6 +58,9 @@
                                                         <div *ngIf="signUpForm.get('usernameUp').hasError('maxlength') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
                                                             {{"Validation.UserMax" | translate}}
                                                         </div>
+                                                        <div *ngIf="signUpForm.get('usernameUp').hasError('pattern') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
+                                                            {{"Validation.UserPat" | translate}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -83,7 +86,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend shadow-lg">
                                                             <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('role').errors && signUpForm.get('role').touched,
@@ -94,7 +97,7 @@
                                                         <option value="Child"> {{"Registration.Child" | translate}}</option>
                                                     </select>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group">
                                                     <button class="btn btn-secondary btn-block" [class.spinner]="signUpLoading" [disabled]="signUpForm.invalid  && !signUpLoading" [ngClass]="{'btn-success': signUpForm.valid, 'btn-loading':signUpLoading}"> <span [ngClass]="{'button-text':signUpLoading}">{{"Registration.Create" | translate}}</span></button>
                                                 </div>
@@ -123,6 +126,9 @@
                                                         <div *ngIf="signInForm.get('usernameIn').hasError('required') && signInForm.get('usernameIn').touched" class="invalid-feedback">
                                                             {{"Validation.UserReq" | translate}}
                                                         </div>
+                                                        <div *ngIf="signInForm.get('usernameIn').hasError('pattern') && signInForm.get('usernameIn').touched" class="invalid-feedback">
+                                                            {{"Validation.UserPat" | translate}}
+                                                        </div>
                                                         <div *ngIf="signInForm.get('usernameIn').hasError('minlength') && signInForm.get('usernameIn').touched" class="invalid-feedback">
                                                             {{"Validation.UserMin" | translate}}
                                                         </div>
@@ -148,6 +154,9 @@
                                                         </div>
                                                         <div *ngIf="signInForm.get('userpassIn').hasError('maxlength') && signInForm.get('userpassIn').touched" class="invalid-feedback">
                                                             {{"Validation.PassMax" | translate}}
+                                                        </div>
+                                                        <div *ngIf="signInForm.get('userpassIn').hasError('pattern') && signInForm.get('userpassIn').touched" class="invalid-feedback">
+                                                            {{"Validation.PassVal" | translate}}
                                                         </div>
                                                     </div>
                                                 </div>

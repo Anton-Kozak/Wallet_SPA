@@ -90,6 +90,11 @@
     font-size: 27px;
 }
 
+.img {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 @media (max-width: 1200px) {
     .home-section,
     .home-section .dark-overlay {

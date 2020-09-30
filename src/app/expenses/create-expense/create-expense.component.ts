@@ -6,7 +6,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { Expense } from 'src/app/_model/expense';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-create-expense',
   templateUrl: './create-expense.component.html',
@@ -42,17 +42,18 @@ export class CreateExpenseComponent implements OnInit {
 
   createExpense() {
 
-
+    var date = new Date();
     if (this.newExpenseForm.errors == null && this.isLoading === false) {
       this.expense = {
         expenseCategoryId: this.newExpenseForm.value['category'],
         expenseTitle: this.newExpenseForm.value['title'],
         expenseDescription: this.newExpenseForm.value['desc'],
         moneySpent: this.newExpenseForm.value['money'],
-        creationDate: new Date()
+        creationDate: date
       }
+
       this.isLoading = true;
-      this.expenseService.createExpense(this.expense).subscribe((response: any) => {
+      this.expenseService.createExpense(this.expense, (date.getTimezoneOffset() / 60) * -1).subscribe((response: any) => {
         if (response['message'] === null) {
           this.alertify.success("You have successfully created an expense!");
           this.isLoading = false;
@@ -68,8 +69,8 @@ export class CreateExpenseComponent implements OnInit {
         this.isLoading = false;
       });
     }
-  }
 
+  }
   back() {
     this.dialogRef.close();
   }

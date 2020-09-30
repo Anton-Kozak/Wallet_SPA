@@ -53,7 +53,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.isDark = this.themeService.currentTheme === 'dark' ? true : false;
+    this.themeService.currentTheme.subscribe(theme => {
+      theme === 'dark' ? this.isDark = true : this.isDark = false;
+    })
     console.log(this.isDark, this.themeService.currentTheme);
     this.getPhoto();
     this.currentUserName = this.authService.getToken().unique_name;
