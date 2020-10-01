@@ -46,10 +46,10 @@
                                         <th class="table-text" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
                                         <td class="table-text" mat-cell *matCellDef="let element">
                                             <div *ngIf="!element.userRoles.includes('Admin')">
-                                                <a matTooltip="Block user" class="mr-2"><i class="fa fa-lock"></i></a>
-                                                <a matTooltip="Remove user" class="mr-2"><i
+                                                <a class="mr-2"><i class="fa fa-lock"></i></a>
+                                                <a class="mr-2"><i
                                                         class="fa fa-user-times"></i></a>
-                                                <a matTooltip="Make this user a moderator" *ngIf="element.userRoles.includes('Adult') && !element.userRoles.includes('Admin')" class="mr-2"><i class="fa fa-users-cog"></i></a>
+                                                <a *ngIf="element.userRoles.includes('Adult') && !element.userRoles.includes('Admin')" class="mr-2"><i class="fa fa-users-cog"></i></a>
                                             </div>
                                         </td>
                                     </ng-container>

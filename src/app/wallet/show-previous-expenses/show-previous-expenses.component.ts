@@ -28,7 +28,7 @@ export class ShowPreviousExpensesComponent implements OnInit {
   eigth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   nineth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   tenth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  isLoading: boolean;
+  isLoading: boolean = true;
   topFiveUsers: TopUsersStat[];
   barExpenses: ExpenseList[];
   categories: CategoryData[] = [];
@@ -86,7 +86,6 @@ export class ShowPreviousExpensesComponent implements OnInit {
   getData(date: Date) {
     this.expenseService.getPreviousExpenses(date.toUTCString()).subscribe((expenses: ExpensesWithCategories[]) => {
       this.isLoading = true;
-      console.log('exp', expenses);
       this.barExpenses = expenses['previousExpensesBars'];
       this.topFiveUsers = expenses['topFiveUsers'];
       if (this.topFiveUsers.length > 0) {
@@ -157,13 +156,9 @@ export class ShowPreviousExpensesComponent implements OnInit {
 
   previousMonth() {
     this.date = new Date(Date.now());
-    //console.log('first day', new Date(this.date.getFullYear(), this.date.getMonth(), 1));
-    
     this.monthNumber++;
     this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
     console.log('should be first day of previous month', this.date);
-    // console.log(this.monthNumber);
-
     this.monthName = this.date.toLocaleString('default', { month: 'long' });
     this.year = this.date.getFullYear().toLocaleString().replace(',', '');
     this.clearData();
@@ -175,18 +170,15 @@ export class ShowPreviousExpensesComponent implements OnInit {
       this.monthNumber--;
       this.date = new Date(Date.now());
       this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
-
       this.monthName = this.date.toLocaleString('default', { month: 'long' });
       this.year = this.date.getFullYear().toLocaleString().replace(',', '');
-      //console.log(this.year);
-
       this.clearData();
       this.getData(this.date);
-
     }
   }
 
   clearData() {
+    this.isLoading = true;
     this.first = { categoryName: '', expenses: [], categoryId: 0 };
     this.second = { categoryName: '', expenses: [], categoryId: 0 };
     this.third = { categoryName: '', expenses: [], categoryId: 0 };

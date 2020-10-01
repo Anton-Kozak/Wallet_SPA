@@ -140,6 +140,37 @@ td.mat-cell:last-of-type {
     margin-right: auto !important;
 }
 
+
+/* accordion for sidebar */
+
+.mat-expansion-panel {
+    background-color: var(--sidebar-background) !important;
+    padding: 0 !important;
+    margin: 10px 15px 0 !important;
+    box-shadow: none !important;
+}
+
+.mat-expansion-panel-header:hover {
+    background-color: var(--sidebar-background) !important;
+}
+
+.mat-expansion-panel-header-title:hover {
+    color: var(--sidebar-item) !important;
+}
+
+.mat-expansion-panel-header {
+    padding: 0 !important;
+    padding-left: 8px !important;
+}
+
+.mat-expansion-panel-header-title {
+    margin-right: 0 !important;
+}
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
 @media(max-width: 400px) {
     th.mat-header-cell:first-of-type,
     td.mat-cell:first-of-type,

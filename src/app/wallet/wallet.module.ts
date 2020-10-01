@@ -12,6 +12,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AdminGuard } from '../_guards/admin.guard';
 import { HasRoleDirective } from '../_directives/hasRole.directive';
 import { MatBadgeModule } from '@angular/material/badge';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 const routes: Routes = [
   {
     path: '', component: WalletSectionComponent, canActivate: [NavigationGuard], canActivateChild: [NavigationGuard], children: [
@@ -40,7 +43,8 @@ const routes: Routes = [
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatExpansionModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })
