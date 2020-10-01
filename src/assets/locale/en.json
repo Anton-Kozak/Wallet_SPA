@@ -253,5 +253,17 @@
         "l": "Section with tips contains useful information for developing better spending habits.",
         "m": "Texts under certain sections and cards are static - I just haven't decided what to use :)",
         "n": "All notifications are in English :("
+    },
+    "Footer": {
+        "Top5": "Most Spent",
+        "CatComp": "Percentage of expenses made",
+        "BarStat": "Current categories expenses",
+        "Last6": "Dynamic of your expenses over 6 months",
+        "ExpComp": "See changes in your spending habits",
+        "NumberExp": "Number of expenses",
+        "TotalCat": "Total $ for category",
+        "PerDay": "Per day",
+        "TotalSum": "Total sum",
+        "Largest": "Largest Expense"
     }
 }

@@ -9,7 +9,7 @@ import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-wallet-statistics',
   templateUrl: './wallet-statistics.component.html',
@@ -40,7 +40,19 @@ export class WalletStatisticsComponent implements OnInit  {
 
 
   ngOnInit(): void {
+    if (this.translateService.currentLang === 'en') {
+      moment.locale('en');
+    }
+    else if (this.translateService.currentLang === 'ru')
+      moment.locale('ru');
 
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        moment.locale('en');
+      }
+      else if (this.translateService.currentLang === 'ru')
+        moment.locale('ru');
+    })
     if (this.walletService.currentCategories.length === 0) {
       this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
         this.walletService.currentCategories = data;
@@ -105,5 +117,9 @@ export class WalletStatisticsComponent implements OnInit  {
     this.router.navigate(['/wallet/userStatistics', id]);
   }
 
+
+  getFormat(date){
+    return moment(date).format('lll');
+  }
  
 }

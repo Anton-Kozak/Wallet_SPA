@@ -10,7 +10,7 @@ import { AlertifyService } from '../_services/alertify.service';
 import { PhotoService } from '../_services/photo.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -25,8 +25,23 @@ export class ProfileComponent implements OnInit {
   profileData: ProfileData = null;
   userForEdit: UserForProfileEdit;
   isLoading: boolean;
-  constructor(public dialog: MatDialog, private photoService: PhotoService, private walletService: WalletService, private alertify: AlertifyService, public translate: TranslateService, private titleService: Title) { }
+  constructor(public dialog: MatDialog, private photoService: PhotoService, private walletService: WalletService, private alertify: AlertifyService, public translateService: TranslateService, private titleService: Title) { }
   ngOnInit(): void {
+
+    if (this.translateService.currentLang === 'en') {
+      moment.locale('en');
+    }
+    else if (this.translateService.currentLang === 'ru')
+      moment.locale('ru');
+
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        moment.locale('en');
+      }
+      else if (this.translateService.currentLang === 'ru')
+        moment.locale('ru');
+    })
+
     this.isLoading = true;
     this.walletService.getProfileData().subscribe((profileData: ProfileData) => {
       this.profileData = profileData;
@@ -47,8 +62,8 @@ export class ProfileComponent implements OnInit {
     })
 
     this.getPhoto();
-    this.setTitle(this.translate.currentLang);
-    this.translate.onLangChange.subscribe(lang => {
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe(lang => {
       this.setTitle(lang['lang']);
     });
 
@@ -112,6 +127,10 @@ export class ProfileComponent implements OnInit {
         this.alertify.warning('You have not done any changes!');
       }
     }
+  }
+
+  getFormat(date){
+    return moment(date).format('lll');
   }
 
 

@@ -39,7 +39,7 @@
                         <div class="card-footer">
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-money"></i> Number expenses made
+                                <i class="fa fa-money"></i> {{'Footer.NumberExp' | translate}}
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         <div class="card-footer ">
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-calendar"></i> Add text
+                                <i class="fa fa-calendar"></i> {{'Footer.Last6' | translate}}
                             </div>
                         </div>
                     </div>
@@ -75,8 +75,8 @@
                 <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="300">
                     <div class="card " style="border-radius: 12px;">
                         <div class="card-header ">
-                            <h5 class="card-title">{{'Expenses.ExpenseCompare' | translate}}</h5>
-                            <p class="card-category">{{'Expenses.ExpenseCompareDesc' | translate}}</p>
+                            <h5 class="card-title">{{'Expenses.ExpensesCompare' | translate}}</h5>
+                            <p class="card-category">{{'Expenses.ExpensesCompareDesc' | translate}}</p>
                         </div>
                         <div *ngIf="chosenCategoryName" class="container">
                             <app-donut-chart [currentMonthbar]="currentMonthData" [lastMonthbar]="lastMonthData" [category]="chosenCategoryName"></app-donut-chart>
@@ -84,7 +84,7 @@
                         <div class="card-footer ">
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-calendar"></i> Add text
+                                <i class="fa fa-calendar"></i> {{'Footer.BarStat' | translate}}
                             </div>
                         </div>
                     </div>

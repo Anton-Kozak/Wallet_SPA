@@ -395,38 +395,34 @@
                 <div class="card" style="border-radius: 12px;" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
-                        <p class="card-category">In {{monthName}}</p>
+                        <p class="card-category">{{'Months.' + monthName | translate}}</p>
                     </div>
                     <div class="card-body ">
                         <div *ngIf="topFiveUsers != null">
                             <app-pie-graph [topFiveUsers]="topFiveUsers"></app-pie-graph>
                         </div>
-                        <p *ngIf="topFiveUsers == null" class="text-uppercase">No one was spending in {{monthName}}
-                        </p>
                     </div>
                     <div class="card-footer">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-money"></i> Number expenses made
+                            <i class="fa fa-money"></i> {{'Footer.Top5' | translate}}
                         </div>
                     </div>
                 </div>
                 <div class="card" style="border-radius: 12px;" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.CategoryCompare' | translate}}</h5>
-                        <p class="card-category">In {{monthName}}</p>
+                        <p class="card-category">{{'Months.' + monthName | translate}}</p>
                     </div>
                     <div class="card-body ">
                         <div *ngIf="barExpenses != null && categories.length > 0">
                             <app-donut-chart-categories [categories]="categories" [barExpensesList]="barExpenses"></app-donut-chart-categories>
                         </div>
-                        <p *ngIf="topFiveUsers == null" class="text-uppercase">No one was spending in {{monthName}}
-                        </p>
                     </div>
                     <div class="card-footer">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-money"></i> Number expenses made
+                            <i class="fas fa-chart-pie"></i> {{'Footer.CatComp' | translate}}
                         </div>
                     </div>
                 </div>

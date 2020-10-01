@@ -28,7 +28,7 @@
                                     <div class="col-md-8 col-sm-7 col-8 text-capitalize">
                                         {{user.username}}
                                         <br>
-                                        <span class="text-muted"><small>{{'Profile.Joined' | translate}}: {{user.dateJoined | date: 'short'}}</small></span>
+                                        <span class="text-muted"><small>{{'Profile.Joined' | translate}}: {{getFormat(user.dateJoined)}}</small></span>
                                     </div>
                                 </div>
                             </li>
@@ -60,7 +60,7 @@
                         <hr>
                         <div class="stats">
                             <i class="fa fa-sort-amount-asc"></i>
-                            <span *ngIf="mostUsedCategory != null">Number of expenses</span>
+                            <span *ngIf="mostUsedCategory != null">{{'Footer.NumberExp' | translate}}</span>
                             <span *ngIf="mostUsedCategory == null">Please, add expenses</span>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         <hr>
                         <div class="stats">
                             <i class="fa fa-money"></i>
-                            <span *ngIf="mostSpentCategory != null">Total $ for category</span>
+                            <span *ngIf="mostSpentCategory != null">{{'Footer.TotalCat' | translate}}</span>
                             <span *ngIf="mostSpentCategory == null">Please, add expenses</span>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         <hr>
                         <div class="stats">
                             <i class="fa fa-refresh"></i>
-                            <span *ngIf="avgDailyExpenses != 0" class="card-title">Per day</span>
+                            <span *ngIf="avgDailyExpenses != 0" class="card-title">{{'Footer.PerDay' | translate}}</span>
                             <span *ngIf="avgDailyExpenses == 0" class="card-title">Please, add expenses</span>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                         <hr>
                         <div class="stats">
                             <i class="fa fa-refresh"></i>
-                            <span *ngIf="amountOfMoneySpent != 0" class="card-title">Total sum</span>
+                            <span *ngIf="amountOfMoneySpent != 0" class="card-title">{{'Footer.TotalSum' | translate}}</span>
                             <span *ngIf="amountOfMoneySpent == 0" class="card-title">Please, add expenses</span>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
                     <div class="card-footer">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-money"></i> Number expenses made
+                            <i class="fa fa-money"></i> {{'Footer.Top5' | translate}}
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-calendar"></i> Add text
+                            <i class="fas fa-chart-bar"></i>{{'Footer.BarStat' | translate}}
                         </div>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-calendar"></i> Add text
+                            <i class="fa fa-calendar"></i> {{'Footer.Last6' | translate}}
                         </div>
                     </div>
                 </div>
@@ -237,7 +237,7 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-calendar"></i> Add text
+                            <i class="fas fa-project-diagram"></i>{{'Footer.ExpComp' | translate}}
                         </div>
                     </div>
                 </div>
