@@ -133,7 +133,20 @@
         "September": "Сентябрь",
         "October": "Октябрь",
         "November": "Ноябрь",
-        "December": "Декабрь"
+        "December": "Декабрь",
+
+        "january": "январь",
+        "february": "февраль",
+        "march": "март",
+        "april": "апрель",
+        "may": "май",
+        "june": "июнь",
+        "july": "июль",
+        "august": "август",
+        "september": "сентябрь",
+        "october": "октябрь",
+        "november": "ноябрь",
+        "december": "декабрь"
     },
     "Admin": {
         "WalletUsers": "Пользователи Кошелька",
