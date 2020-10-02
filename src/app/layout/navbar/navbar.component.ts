@@ -1,8 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.component';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { Notification } from 'src/app/_model/notification';
 import { MyThemeService } from 'src/app/_services/theme.service';
@@ -42,9 +41,8 @@ export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   notificationCount: number = 0;
   notifications: Notification[] = [];
-  theme = new FormControl(false);
-  isDark: boolean;
   activeLang: string;
+  activeTheme: string;
   photo: Photo = null;
 
   @Output() toggleDrawer = new EventEmitter();
@@ -54,9 +52,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
 
     this.themeService.currentTheme.subscribe(theme => {
-      theme === 'dark' ? this.isDark = true : this.isDark = false;
+      this.activeTheme = theme;
+      console.log(this.activeTheme);
     })
-    console.log(this.isDark, this.themeService.currentTheme);
     this.getPhoto();
     this.currentUserName = this.authService.getToken().unique_name;
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
@@ -67,19 +65,19 @@ export class NavbarComponent implements OnInit {
       }
     })
 
-    this.theme.valueChanges.subscribe(value => {
-      if (value) {
-        this.themeService.toggleDark();
-      } else {
-        this.themeService.toggleLight();
-      }
-    });
   }
 
   changeLang(lang: string) {
     localStorage.setItem('language', lang);
     this.translate.use(lang);
     this.activeLang = lang;
+  }
+
+  changeTheme(theme: string) {
+    if (theme === 'toLight')
+      this.themeService.toggleLight();
+    else if (theme === 'toDark')
+      this.themeService.toggleDark();      
   }
 
   getPhoto() {

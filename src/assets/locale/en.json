@@ -4,7 +4,8 @@
         "Logout": "Logout",
         "EditWallet": "Edit Wallet",
         "EditProfile": "Edit Profile",
-        "Theme": "Dark Theme"
+        "ThemeDark": "Dark Theme",
+        "ThemeLight": "Light Theme"
     },
     "Sidebar": {
         "Home": "Home",

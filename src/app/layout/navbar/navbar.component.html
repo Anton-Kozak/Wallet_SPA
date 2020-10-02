@@ -7,22 +7,22 @@
         </div>
         <div class="d-flex right-nav">
             <div class="d-flex ml-auto align-items-center justify-content-end col-3 col-sm-5">
-                <!-- <div class="lang">
-                    <div  class="inactive" [ngClass]="{'active-lang': activeLang === 'en'}">
-                        ENG
-                    </div>
-                    <div>/</div>
-                    <div  class="inactive" [ngClass]="{'active-lang': activeLang === 'ru'}">РУС</div>
-                </div> -->
                 <div class="dropdown">
                     <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i style="font-size: 22px;" class="nc-icon nc-settings-gear-65"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">{{'Navbar.EditProfile' | translate}}</a>
-                        <div class="dropdown-item">
-                            <label for="theme">{{'Navbar.Theme' | translate}}</label>
-                            <input type="checkbox" [(ngModel)]="isDark" (click)="toggleTheme()" id="theme" name="theme" [formControl]="theme">
+                        <div class="dropdown-item theme-item">
+                            <!-- <label for="theme">{{'Navbar.Theme' | translate}}</label> -->
+                            <div class="themeChange" *ngIf="activeTheme === 'dark'" (click)="changeTheme('toLight')">
+                                <i class="fas fa-sun mr-3"></i>
+                                <p>{{'Navbar.ThemeLight' | translate}}</p>
+                            </div>
+                            <div class="themeChange" *ngIf="activeTheme === 'light'" (click)="changeTheme('toDark')">
+                                <i class="far fa-moon mr-3"></i>
+                                <p>{{'Navbar.ThemeDark' | translate}}</p>
+                            </div>
                         </div>
                         <div class="dropdown-item language-item">
                             <img (click)="changeLang('ru')" class="language" [ngClass]="{'active-lang': activeLang === 'ru', 'inactive': activeLang === 'en' }" src="assets/images/rus.png" alt="russian_language">

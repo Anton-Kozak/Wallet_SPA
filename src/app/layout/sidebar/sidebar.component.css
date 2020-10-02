@@ -58,6 +58,9 @@
         .nav li>a {
             margin-left: 5px !important;
         }
+        .nav li>.acc-outer {
+            margin-left: 5px !important;
+        }
         .ml-3,
         .mx-3 {
             margin-left: 0 !important;

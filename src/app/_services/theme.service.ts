@@ -62,6 +62,8 @@ export class MyThemeService {
 
 
   checkTheme() {
+    console.log('check theme service');
+    
     if (localStorage.getItem('theme') === 'dark') {
       this.setTheme(darkTheme);
       this.currentTheme.next('dark');
@@ -77,6 +79,7 @@ export class MyThemeService {
     this.checkTheme();
   }
   toggleDark() {
+    this.currentTheme.next('dark');
     this.setTheme(darkTheme);
     localStorage.setItem('theme', 'dark');
     let overrides: ChartOptions;
@@ -90,6 +93,7 @@ export class MyThemeService {
 
 
   toggleLight() {
+    this.currentTheme.next('light');
     this.setTheme(lightTheme);
     localStorage.setItem('theme', 'light');
     let overrides: ChartOptions;
