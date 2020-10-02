@@ -146,7 +146,8 @@ td.mat-cell:last-of-type {
 .mat-expansion-panel {
     background-color: var(--sidebar-background) !important;
     padding: 0 !important;
-    margin: 10px 15px 0 !important;
+    margin: 0 !important;
+    margin-right: 1px !important;
     box-shadow: none !important;
 }
 
@@ -170,6 +171,13 @@ td.mat-cell:last-of-type {
 .mat-expansion-panel-body {
     padding: 0 !important;
 }
+
+
+/* @media(max-width: 690px) {
+    .mat-expansion-panel {
+        margin-left: 5px !important;
+    }
+} */
 
 @media(max-width: 400px) {
     th.mat-header-cell:first-of-type,

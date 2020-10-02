@@ -32,7 +32,7 @@ export class AdminService {
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable) {
-    return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit);
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit);
   }
 
 

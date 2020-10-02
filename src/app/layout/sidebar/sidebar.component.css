@@ -18,6 +18,14 @@
         margin-left: 5px !important;
     }
     
+    .nav.toggled li>.acc-outer {
+        margin-left: 5px !important;
+    }
+    
+    .acc-outer {
+        margin: 10px 15px 0;
+    }
+    
     .nav.toggled .sidebar-header {
         justify-content: flex-start;
     }
@@ -28,7 +36,7 @@
     
     .cat-acc {
         width: 100%;
-        font-size: 12px;
+        font-size: 13px;
         color: var(--sidebar-item);
         text-transform: uppercase;
     }

@@ -44,28 +44,30 @@
                 </a>
             </li>
             <li>
-                <mat-accordion>
-                    <mat-expansion-panel hideToggle>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <a class="cat-acc">
-                                    <i class="nc-icon nc-chart-pie-36"></i>
-                                    <p>{{'Sidebar.Categories' | translate}}</p>
-                                </a>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <div *ngFor="let category of categoryTitles">
-                            <ul class="nav">
-                                <li routerLinkActive="active">
-                                    <a class="categories" style="font-size: 10px;" [routerLink]="['/wallet/catstat/' + category.id]">
-                                        <i class="fas {{category.icon}}"></i>
-                                        <p>{{'ExpenseCategory.' + category.title | translate}}</p>
+                <div class="acc-outer">
+                    <mat-accordion>
+                        <mat-expansion-panel hideToggle>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <a class="cat-acc">
+                                        <i class="nc-icon nc-chart-pie-36"></i>
+                                        <p class="mt-2">{{'Sidebar.Categories' | translate}}</p>
                                     </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </mat-expansion-panel>
-                </mat-accordion>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div *ngFor="let category of categoryTitles">
+                                <ul class="nav">
+                                    <li routerLinkActive="active">
+                                        <a class="categories" style="font-size: 10px;" [routerLink]="['/wallet/catstat/' + category.id]">
+                                            <i class="fas {{category.icon}}"></i>
+                                            <p>{{'ExpenseCategory.' + category.title | translate}}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
             </li>
             <li routerLinkActive="active">
                 <a [routerLink]="['/wallet/compare']">
