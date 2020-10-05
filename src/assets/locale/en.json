@@ -4,8 +4,8 @@
         "Logout": "Logout",
         "EditWallet": "Edit Wallet",
         "EditProfile": "Edit Profile",
-        "ThemeDark": "Dark Theme",
-        "ThemeLight": "Light Theme"
+        "DarkTheme": "Dark Theme",
+        "LightTheme": "Light Theme"
     },
     "Sidebar": {
         "Home": "Home",
@@ -265,7 +265,8 @@
         "k": "Click the cogwheel and you will find settings for the site. You can change language and theme.",
         "l": "Section with tips contains useful information for developing better spending habits.",
         "m": "Texts under certain sections and cards are static - I just haven't decided what to use :)",
-        "n": "All notifications are in English :("
+        "n": "All notifications are in English :(",
+        "p": "To change theme, click on Sun or Moon. the text will be later"
     },
     "Footer": {
         "Top5": "Most Spent",
@@ -278,5 +279,12 @@
         "PerDay": "Per day",
         "TotalSum": "Total sum",
         "Largest": "Largest Expense"
+    },
+    "Placeholders": {
+        "Username": "Enter your user name",
+        "Password": "Enter your password",
+        "Wallet": "Enter wallet's name",
+        "AddUser": "Enter user's name",
+        "AddExpense": "Add name of expense"
     }
 }

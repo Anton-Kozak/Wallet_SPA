@@ -102,6 +102,20 @@
     background: #333;
 }
 
+::placeholder {
+    font-size: 12px;
+}
+
+.input-group-prepend {
+    width: 110px;
+    text-align: center;
+}
+
+.input-group-prepend .input-group-text {
+    width: 100%;
+    justify-content: center;
+}
+
 @keyframes spinner {
     to {
         transform: rotate(360deg);

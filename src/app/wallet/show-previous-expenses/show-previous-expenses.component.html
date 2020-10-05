@@ -16,7 +16,9 @@
                     <i style="font-size: 60px;" class="fas fa-chevron-left left ml-3"></i>
                 </div>
                 <div class="date">
-                    <div class="date-value">{{'Months.' + monthName | translate}}, {{year}}</div>
+                    <!-- <div class="date-value">{{'Months.' + monthName | translate}}, {{year}}</div> -->
+                    <div class="date-value text-capitalize">{{monthName}}, {{year}}</div>
+
                 </div>
                 <div class="next-day" (click)="next()">
                     <i style="font-size: 60px;" class="fas fa-chevron-right right mr-3"></i>
@@ -395,7 +397,7 @@
                 <div class="card" style="border-radius: 12px;" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
-                        <p class="card-category">{{'Months.' + monthName | translate}}</p>
+                        <p class="card-category">{{monthName}}</p>
                     </div>
                     <div class="card-body ">
                         <div *ngIf="topFiveUsers != null">
@@ -412,7 +414,7 @@
                 <div class="card" style="border-radius: 12px;" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.CategoryCompare' | translate}}</h5>
-                        <p class="card-category">{{'Months.' + monthName | translate}}</p>
+                        <p class="card-category">{{monthName}}</p>
                     </div>
                     <div class="card-body ">
                         <div *ngIf="barExpenses != null && categories.length > 0">
@@ -450,7 +452,7 @@
                             <div class="card-footer ">
                                 <hr>
                                 <div class="stats">
-                                    <i class="fa fa-refresh"></i> {{'Expenses.Nothing' | translate}} {{'Expenses.On' |translate}} {{'Months.' + monthName | translate}}, {{year}}
+                                    <i class="fa fa-refresh"></i> {{'Expenses.Nothing' | translate}} {{'Expenses.On' |translate}} {{monthName}}, {{year}}
                                 </div>
                             </div>
                         </div>

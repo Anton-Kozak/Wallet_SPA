@@ -46,7 +46,7 @@
                                                             <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
                                                     'bg-success text-white': !signUpForm.get('usernameUp').errors}"> {{"Registration.Username" | translate}}</span>
                                                         </div>
-                                                        <input [ngClass]="{'is-invalid': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
+                                                        <input placeholder="{{ 'Placeholders.Username' | translate}}" [ngClass]="{'is-invalid': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched,
                                                                 'is-valid': !signUpForm.get('usernameUp').errors}" type="text" formControlName="usernameUp" class="form-control">
 
                                                         <div *ngIf="signUpForm.get('usernameUp').hasError('required') && signUpForm.get('usernameUp').touched" class="invalid-feedback">
@@ -70,7 +70,7 @@
                                                             'bg-success text-white': !signUpForm.get('userpassUp').errors}">
                                                             {{"Registration.Password" | translate}}</span>
                                                         </div>
-                                                        <input [ngClass]="{'is-invalid': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched,
+                                                        <input placeholder="{{ 'Placeholders.Password' | translate}}" [ngClass]="{'is-invalid': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched,
                                                             'is-valid': !signUpForm.get('userpassUp').errors}" type="password" formControlName="userpassUp" class="form-control">
                                                         <div *ngIf="signUpForm.get('userpassUp').hasError('required') && signUpForm.get('userpassUp').touched" class="invalid-feedback">
                                                             {{"Validation.PassReq" | translate}}

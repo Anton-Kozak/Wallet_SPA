@@ -6,3 +6,11 @@
 .button-text {
     opacity: .3;
 }
+
+select {
+    -o-appearance: none;
+    -ms-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
