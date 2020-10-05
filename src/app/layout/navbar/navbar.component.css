@@ -167,11 +167,38 @@ i,
     }
 }
 
+@media (max-width: 410px) {
+    .user div {
+        font-size: .85rem;
+    }
+    i {
+        font-size: 20px !important;
+    }
+}
+
 @media (max-width: 380px) {
     .user div {
         font-size: .7rem;
     }
     .logout {
         font-size: .7rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .user div {
+        font-size: .6rem;
+    }
+    .logout {
+        font-size: .6rem;
+    }
+    i {
+        font-size: 17px !important;
+    }
+}
+
+@media (max-width: 340px) {
+    .user div {
+        display: none
     }
 }

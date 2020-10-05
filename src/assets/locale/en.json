@@ -153,7 +153,9 @@
         "InviteUser": "Invite New User",
         "GetRequests": "New Requests",
         "From": "From",
-        "WalletEdit": "Edit Wallet"
+        "WalletEdit": "Edit Wallet",
+        "AdminRole": "Admin ",
+        "AdultRole": "Adult "
     },
     "Navigation": {
         "Home": "Home",

@@ -14,14 +14,13 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">{{'Navbar.EditProfile' | translate}}</a>
                         <div class="dropdown-item theme-item">
-                            <!-- <label for="theme">{{'Navbar.Theme' | translate}}</label> -->
                             <div class="themeChange" *ngIf="activeTheme === 'dark'" (click)="changeTheme('toLight')">
                                 <i class="fas fa-sun mr-3"></i>
-                                <!-- <p>{{'Navbar.LightTheme' | translate}}</p> -->
+                                <p>{{'Navbar.LightTheme' | translate}}</p>
                             </div>
                             <div class="themeChange" *ngIf="activeTheme === 'light'" (click)="changeTheme('toDark')">
                                 <i class="far fa-moon mr-3"></i>
-                                <!-- <p>{{'Navbar.DarkTheme' | translate}}</p> -->
+                                <p>{{'Navbar.DarkTheme' | translate}}</p>
                             </div>
                         </div>
                         <div class="dropdown-item language-item">
@@ -31,7 +30,7 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button type="button" (click)="test()" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" *ngIf="notificationCount > 0" (click)="checkNotifications()" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i style="font-size: 22px;" [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}}
                         matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
                      </button>
@@ -39,7 +38,7 @@
                         <p *ngFor="let notification of notifications" class="dropdown-item notifications">{{notification.message}}</p>
                     </div>
                 </div>
-                <div class="d-flex text-center mr-5 user">
+                <div class="d-flex text-center mr-5 ml-3 user">
                     <div class="mr-3">{{'Navbar.Hello' | translate}} {{currentUserName}}</div>
                     <a *ngIf="photo" [routerLink]="['/wallet/profile']"><img class="avatar border-gray" src="{{ photo === null ? '../../assets/images/default-avatar.png' : photo.url}}" alt="..."></a>
                 </div>

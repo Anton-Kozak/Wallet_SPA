@@ -35,7 +35,7 @@
                                     </ng-container>
                                     <ng-container matColumnDef="dateJoined">
                                         <th class="text-center table-head date-table-header" mat-header-cell *matHeaderCellDef> {{"Profile.Joined" | translate}} </th>
-                                        <td class="text-center table-text" mat-cell *matCellDef="let element"> {{element.dateJoined | date:'medium'}}
+                                        <td class="text-center table-text" mat-cell *matCellDef="let element"> {{getFormat(element.dateJoined)}}
                                         </td>
                                     </ng-container>
                                     <ng-container matColumnDef="userRoles">

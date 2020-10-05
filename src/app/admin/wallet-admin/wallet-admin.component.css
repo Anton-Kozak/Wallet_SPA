@@ -98,9 +98,9 @@
         }
     }
     
-    @media (max-width: 405px) {
+    @media (max-width: 500px) {
         .table-head {
-            font-size: 11px !important;
+            font-size: 9px !important;
         }
         .table-text {
             font-size: 9px !important;

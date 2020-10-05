@@ -77,7 +77,7 @@ export class NavbarComponent implements OnInit {
     if (theme === 'toLight')
       this.themeService.toggleLight();
     else if (theme === 'toDark')
-      this.themeService.toggleDark();      
+      this.themeService.toggleDark();
   }
 
   getPhoto() {
@@ -100,12 +100,10 @@ export class NavbarComponent implements OnInit {
 
 
 
-  test() {
-    this.noteService.deleteNotifications().subscribe();
+  checkNotifications() {
+    this.noteService.deleteNotifications().subscribe(() => {
+      this.notificationCount = 0;
+      this.notifications = null;
+    });
   }
-
-  toggleTheme() {
-
-  }
-
 }
