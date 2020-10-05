@@ -75,15 +75,17 @@ export class UserStatisticsComponent implements OnInit {
       if (this.translateService.currentLang === 'en') {
         moment.locale('en');
       }
-      else if (this.translateService.currentLang === 'ru')
+      else if (this.translateService.currentLang === 'ru') {
         moment.locale('ru');
+      }
+      this.monthName = moment(this.date).format('MMMM');
     })
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth());
-    this.year = this.date.getFullYear().toLocaleString().replace(',', '');
-    this.monthName = this.date.toLocaleString('default', { month: 'long' });
-    console.log('Init month', this.date);
+    this.year = moment(this.date).format('YYYY');
+    this.monthName = moment(this.date).format('MMMM');
     this.isThisUser = false;
+
     let userId = this.authService.decodedToken.nameid;
     this.id = this.route.snapshot.params['id'];
     if (userId === this.id)
@@ -163,27 +165,29 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   previousMonth() {
+    this.isLoading = true;
     this.date = new Date(Date.now());
     this.monthNumber--;
     if (this.monthNumber > 0)
       this.date.setMonth(this.date.getMonth() - this.monthNumber)
     else
       this.date.setMonth(this.date.getMonth() + this.monthNumber);
-    this.year = this.date.getFullYear().toLocaleString().replace(',', '');
-    this.monthName = this.date.toLocaleString('default', { month: 'long' });
+    this.year = moment(this.date).format('YYYY');
+    this.monthName = moment(this.date).format('MMMM');
     this.clearData();
     this.getData(this.date);
   }
 
   next() {
+    this.isLoading = true;
     this.monthNumber++;
     this.date = new Date(Date.now());
     if (this.monthNumber > 0)
       this.date.setMonth(this.date.getMonth() - this.monthNumber)
     else
       this.date.setMonth(this.date.getMonth() + this.monthNumber);
-    this.monthName = this.date.toLocaleString('default', { month: 'long' });
-    this.year = this.date.getFullYear().toLocaleString().replace(',', '');
+    this.monthName = moment(this.date).format('MMMM');
+    this.year = moment(this.date).format('YYYY');
     this.clearData();
     this.getData(this.date);
   }

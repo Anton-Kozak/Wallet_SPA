@@ -47,18 +47,17 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.translateService.onLangChange.subscribe(() => {
       if (this.translateService.currentLang === 'en') {
         moment.locale('en');
-        this.monthName = moment(this.date).format('MMMM');
       }
       else if (this.translateService.currentLang === 'ru')
         moment.locale('ru');
-        this.monthName = moment(this.date).format('MMMM');
+      this.monthName = moment(this.date).format('MMMM');
     })
 
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth() - 1);
     this.year = moment(this.date).format('YYYY');
     console.log(this.year.length);
-    
+
     console.log('Init month', this.date);
     this.monthName = moment(this.date).format('MMMM');
     if (this.walletService.currentCategories.length === 0) {
@@ -158,23 +157,27 @@ export class ShowPreviousExpensesComponent implements OnInit {
   }
 
   previousMonth() {
+    this.isLoading = true;
     this.date = new Date(Date.now());
     this.monthNumber++;
     this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
     console.log('should be first day of previous month', this.date);
-    this.monthName = this.date.toLocaleString('default', { month: 'long' });
-    this.year = this.date.getFullYear().toLocaleString().replace(',', '');
+    //this.monthName = this.date.toLocaleString('default', { month: 'long' });
+    this.monthName = moment(this.date).format('MMMM');
+    this.year = moment(this.date).format('YYYY');
     this.clearData();
     this.getData(this.date);
   }
 
   next() {
+    this.isLoading = true;
     if (this.monthNumber - 1 !== 0) {
       this.monthNumber--;
       this.date = new Date(Date.now());
       this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
-      this.monthName = this.date.toLocaleString('default', { month: 'long' });
-      this.year = this.date.getFullYear().toLocaleString().replace(',', '');
+      //this.monthName = this.date.toLocaleString('default', { month: 'long' });
+      this.monthName = moment(this.date).format('MMMM');
+      this.year = moment(this.date).format('YYYY');
       this.clearData();
       this.getData(this.date);
     }
