@@ -115,7 +115,7 @@
                         </ng-container>
                         <ng-container matColumnDef="creationDate">
                             <th class="text-center table-head" mat-header-cell *matHeaderCellDef> {{'Expenses.Date' | translate}} </th>
-                            <td class="table-text" mat-cell *matCellDef="let element"> {{element.creationDate | date :'short'}}
+                            <td class="table-text" mat-cell *matCellDef="let element"> {{getFormat(element.creationDate)}}
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="columnsForExpenses"></tr>
@@ -141,8 +141,8 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="card-category mb-2">{{chosenCategoryName}}</p>
-                                <p class="card-title">No expenses</p>
+                                <p class="card-category mb-2">{{'ExpenseCategory.' +chosenCategoryName | translate}}</p>
+                                <p class="card-title">{{'Expenses.Nothing' | translate}} </p>
                                 <p>
                                 </p>
                             </div>
@@ -152,7 +152,7 @@
                 <div class="card-footer ">
                     <hr>
                     <div class="stats">
-                        <i class="fa fa-refresh"></i> Please, add expenses to see statistics
+                        <i class="fa fa-refresh"></i> {{'Expenses.Nothing' | translate}}
                     </div>
                 </div>
             </div>

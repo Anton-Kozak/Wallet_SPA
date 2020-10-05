@@ -80,7 +80,7 @@
                 </ng-container>
                 <ng-container matColumnDef="category">
                     <th class="text-center table-head category-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.Category" | translate}} </th>
-                    <td class="text-center table-text category-table-cell" mat-cell *matCellDef="let element"> {{element.category}} </td>
+                    <td class="text-center table-text category-table-cell" mat-cell *matCellDef="let element"> {{'ExpenseCategory.' + element.category | translate}} </td>
                 </ng-container>
                 <ng-container matColumnDef="userName">
                     <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
@@ -96,7 +96,7 @@
                 </ng-container>
                 <ng-container matColumnDef="creationDate">
                     <th class="text-center table-head date-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.Date" | translate}} </th>
-                    <td class="table-text date-table-cell" mat-cell *matCellDef="let element"> {{element.creationDate | date :'medium'}} </td>
+                    <td class="table-text date-table-cell" mat-cell *matCellDef="let element"> {{getFormat(element.creationDate)}} </td>
                 </ng-container>
                 <ng-container matColumnDef="actions">
                     <th class="text-center table-head" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>

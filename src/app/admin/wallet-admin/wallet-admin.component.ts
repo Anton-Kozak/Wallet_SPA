@@ -11,6 +11,7 @@ import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/e
 import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.component';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -33,6 +34,21 @@ export class WalletAdminComponent implements OnInit {
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
   ngOnInit(): void {
+
+    if (this.translate.currentLang === 'en') {
+      moment.locale('en');
+    }
+    else if (this.translate.currentLang === 'ru')
+      moment.locale('ru');
+
+    this.translate.onLangChange.subscribe(() => {
+      if (this.translate.currentLang === 'en') {
+        moment.locale('en');
+      }
+      else if (this.translate.currentLang === 'ru')
+        moment.locale('ru');
+    })
+
     this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[]) => {
       this.expenses.data = expenses;
       this.expenses.paginator = this.expensePaginator;
@@ -117,6 +133,10 @@ export class WalletAdminComponent implements OnInit {
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
       this.users.data = usersForAdmin;
     });
+  }
+
+  getFormat(date) {
+    return moment(date).format('lll');
   }
 
 }

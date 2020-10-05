@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-category-statistics',
@@ -41,7 +42,19 @@ export class CategoryStatisticsComponent implements OnInit {
   isLoading: boolean;
   @ViewChild('paginator') paginator: MatPaginator;
   ngOnInit(): void {
+    if (this.translateService.currentLang === 'en') {
+      moment.locale('en');
+    }
+    else if (this.translateService.currentLang === 'ru')
+      moment.locale('ru');
 
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        moment.locale('en');
+      }
+      else if (this.translateService.currentLang === 'ru')
+        moment.locale('ru');
+    })
     this.route.params.subscribe(params => {
       this.walletService.getCurrentWallet().subscribe();
       this.chosenCategory = +params['id'] || 0;
@@ -63,11 +76,11 @@ export class CategoryStatisticsComponent implements OnInit {
           setTimeout(() => this.expenses.paginator = this.paginator);
           this.mostUsedUser = data['mostUsedUser'];
           this.currentMonthData = data['barCompareExpensesWithLastMonth']['currentMonthData'];
-          this.lastMonthData= data['barCompareExpensesWithLastMonth']['lastMonthData'];
+          this.lastMonthData = data['barCompareExpensesWithLastMonth']['lastMonthData'];
 
-          if (this.currentMonthData > 0 && this.lastMonthData > 0){
+          if (this.currentMonthData > 0 && this.lastMonthData > 0) {
             console.log('Comparison check', this.currentMonthData, this.lastMonthData);
-            
+
             this.showComparisonData = true;
           }
           this.topFiveUsers = data['topFiveUsers'];
@@ -91,6 +104,10 @@ export class CategoryStatisticsComponent implements OnInit {
     else if (lang === 'ru') {
       this.titleService.setTitle('Статистика Категории');
     }
+  }
+
+  getFormat(date) {
+    return moment(date).format('lll');
   }
 
 }
