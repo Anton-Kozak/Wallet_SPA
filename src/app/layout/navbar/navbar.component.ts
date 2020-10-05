@@ -44,7 +44,6 @@ export class NavbarComponent implements OnInit {
   activeLang: string;
   activeTheme: string;
   photo: Photo = null;
-
   @Output() toggleDrawer = new EventEmitter();
   toggleState = false;
 
@@ -53,13 +52,11 @@ export class NavbarComponent implements OnInit {
 
     this.themeService.currentTheme.subscribe(theme => {
       this.activeTheme = theme;
-      console.log(this.activeTheme);
     })
     this.getPhoto();
     this.currentUserName = this.authService.getToken().unique_name;
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       if (notifications != null) {
-        console.log("Notifications: " + notifications);
         this.notifications = notifications;
         this.notificationCount = notifications.length;
       }
@@ -103,7 +100,9 @@ export class NavbarComponent implements OnInit {
   checkNotifications() {
     this.noteService.deleteNotifications().subscribe(() => {
       this.notificationCount = 0;
-      this.notifications = null;
+      setTimeout(() => {
+        this.notifications = [];
+      }, 20000);
     });
   }
 }

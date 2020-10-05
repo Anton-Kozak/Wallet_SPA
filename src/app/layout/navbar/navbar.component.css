@@ -64,6 +64,9 @@ i,
 
 .dropdown-item {
     font-size: 18px;
+    width: 250px !important;
+    height: auto;
+    white-space: pre-wrap;
 }
 
 .dropdown-toggle:after {
@@ -87,6 +90,8 @@ i,
 .notifications {
     color: var(--text-color);
 }
+
+.notifications div {}
 
 .lang {
     display: flex;

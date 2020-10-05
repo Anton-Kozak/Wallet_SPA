@@ -133,13 +133,16 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   expenseDelete(id: number, rowIndex: number) {
-    this.expService.onExpenseDelete(id).subscribe((response: any) => {
-      this.alertify.success(response);
-      this.expenses.data.splice(rowIndex, 1);
-      this.expenses.data = this.expenses.data;
-    }, error => {
-      this.alertify.error(error.error);
-    });
+    let deleteConfirmation = confirm(this.translateService.currentLang === 'en' ? "Do you really want to delete this expense?" : "Вы действительно хотите удалить этот расход?");
+    if (deleteConfirmation) {
+      this.expService.onExpenseDelete(id).subscribe((response: any) => {
+        this.alertify.success(response);
+        this.expenses.data.splice(rowIndex, 1);
+        this.expenses.data = this.expenses.data;
+      }, error => {
+        this.alertify.error(error.error);
+      });
+    }
   }
 
   openDialog(id: number, rowIndex: number): void {

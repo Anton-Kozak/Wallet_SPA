@@ -30,12 +30,17 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button type="button" *ngIf="notificationCount > 0" (click)="checkNotifications()" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" (click)="checkNotifications()" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i style="font-size: 22px;" [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}}
                         matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
                      </button>
-                    <div class="dropdown-menu" aria-labelledby="notifications">
-                        <p *ngFor="let notification of notifications" class="dropdown-item notifications">{{notification.message}}</p>
+                    <div *ngIf="notifications.length === 0" class="dropdown-menu notification-menu" aria-labelledby="notifications">
+                        <div class="notifications m-2">{{'Navbar.NoNote' | translate}}</div>
+                    </div>
+                    <div *ngIf="notifications.length !== 0" class="dropdown-menu notification-menu" aria-labelledby="notifications">
+                        <div *ngFor="let notification of notifications" class="dropdown-item notifications">
+                            <p>{{notification.message}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex text-center mr-5 ml-3 user">

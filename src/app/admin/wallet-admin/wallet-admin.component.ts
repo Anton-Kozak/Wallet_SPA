@@ -120,13 +120,16 @@ export class WalletAdminComponent implements OnInit {
   }
 
   expenseDelete(id: number, rowIndex: number) {
-    this.adminService.onExpenseDelete(id).subscribe((response: any) => {
-      this.alertify.success(response);
-      this.expenses.data.splice(rowIndex, 1);
-      this.expenses.data = this.expenses.data;
-    }, error => {
-      this.alertify.error(error.error);
-    });
+    let deleteConfirmation = confirm(this.translate.currentLang === 'en' ? "Do you really want to delete this expense?" : "Вы действительно хотите удалить этот расход?");
+    if (deleteConfirmation) {
+      this.adminService.onExpenseDelete(id).subscribe((response: any) => {
+        this.alertify.success(response);
+        this.expenses.data.splice(rowIndex, 1);
+        this.expenses.data = this.expenses.data;
+      }, error => {
+        this.alertify.error(error.error);
+      });
+    }
   }
 
   addUserFromRequest($event) {

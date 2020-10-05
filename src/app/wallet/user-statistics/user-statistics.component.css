@@ -118,6 +118,27 @@
     }
 }
 
+@media (max-width: 500px) {
+    .table-head {
+        font-size: 9px !important;
+    }
+    .table-text {
+        font-size: 9px !important;
+    }
+    .table-head:first-of-type {
+        padding-left: 10px;
+    }
+    .table-head:last-of-type {
+        padding-right: 10px;
+    }
+    .edit,
+    .delete {
+        font-size: .85rem !important;
+        padding: 0 !important;
+        padding-left: 10px !important;
+    }
+}
+
 
 /* mobile */
 
@@ -132,18 +153,6 @@
 }
 
 @media (max-width: 405px) {
-    .table-head {
-        font-size: 11px !important;
-    }
-    .table-text {
-        font-size: 10px !important;
-    }
-    .edit,
-    .delete {
-        font-size: .85rem !important;
-        padding: 0 !important;
-        padding-left: 10px !important;
-    }
     .mob {
         padding-left: 5px !important;
         padding-right: 5px !important;

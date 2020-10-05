@@ -5,7 +5,8 @@
         "EditWallet": "Edit Wallet",
         "EditProfile": "Edit Profile",
         "DarkTheme": "Dark Theme",
-        "LightTheme": "Light Theme"
+        "LightTheme": "Light Theme",
+        "NoNote": "No Notifications"
     },
     "Sidebar": {
         "Home": "Home",
