@@ -3,6 +3,6 @@ export interface Expense {
     expenseCategoryId: number,
     expenseTitle: string,
     expenseDescription?: string,
-    creationDate: Date,
+    creationDate: string,
     moneySpent: number
 }

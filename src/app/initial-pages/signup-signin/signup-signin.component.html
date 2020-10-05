@@ -86,18 +86,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="form-group">
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend shadow-lg">
-                                                            <span class="input-group-text" [ngClass]="{'bg-danger text-light': signUpForm.get('role').errors && signUpForm.get('role').touched,
-                                                'bg-success text-white': !signUpForm.get('role').errors}"> {{"Registration.Role" | translate}}</span>
-                                                        </div>
-                                                        <select formControlName="role" class="form-control">
-                                                        <option value="Adult"> {{"Registration.Adult" | translate}}</option>
-                                                        <option value="Child"> {{"Registration.Child" | translate}}</option>
-                                                    </select>
-                                                    </div>
-                                                </div> -->
                                                 <div class="form-group">
                                                     <button class="btn btn-secondary btn-block" [class.spinner]="signUpLoading" [disabled]="signUpForm.invalid  && !signUpLoading" [ngClass]="{'btn-success': signUpForm.valid, 'btn-loading':signUpLoading}"> <span [ngClass]="{'button-text':signUpLoading}">{{"Registration.Create" | translate}}</span></button>
                                                 </div>
@@ -120,7 +108,7 @@
                                                             <span class="input-group-text" [ngClass]="{'bg-danger text-light': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched,
                                                     'bg-success text-white': !signInForm.get('usernameIn').errors}"> {{"Registration.Username" | translate}}</span>
                                                         </div>
-                                                        <input [ngClass]="{'is-invalid': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched,
+                                                        <input placeholder="{{ 'Placeholders.Username' | translate}}" [ngClass]="{'is-invalid': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched,
                                                                 'is-valid': !signInForm.get('usernameIn').errors}" type="text" formControlName="usernameIn" class="form-control">
 
                                                         <div *ngIf="signInForm.get('usernameIn').hasError('required') && signInForm.get('usernameIn').touched" class="invalid-feedback">
@@ -144,7 +132,7 @@
                                                             'bg-success text-white': !signInForm.get('userpassIn').errors}">
                                                             {{"Registration.Password" | translate}}</span>
                                                         </div>
-                                                        <input [ngClass]="{'is-invalid': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched,
+                                                        <input placeholder="{{ 'Placeholders.Password' | translate}}" [ngClass]="{'is-invalid': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched,
                                                             'is-valid': !signInForm.get('userpassIn').errors}" type="password" formControlName="userpassIn" class="form-control">
                                                         <div *ngIf="signInForm.get('userpassIn').hasError('required') && signInForm.get('userpassIn').touched" class="invalid-feedback">
                                                             {{"Validation.PassReq" | translate}}

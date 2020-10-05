@@ -212,9 +212,13 @@ export class ShowWalletTableComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(CreateExpenseComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if (this.moment(this.dayForDailyExpenses).format('ll') === this.moment(new Date()).format('ll'))
-        this.updateDailyExpenses();
+    dialogRef.afterClosed().subscribe(newExpense => {
+      if (newExpense !== null) {
+        console.log('res', newExpense);
+
+        if (this.moment(this.dayForDailyExpenses).format('ll') === this.moment(new Date()).format('ll'))
+          this.updateDailyExpenses();
+      }
     });
   }
 
@@ -252,5 +256,6 @@ export class ShowWalletTableComponent implements OnInit {
       this.currentSelectedDate.patchValue(this.moment(this.dayForDailyExpenses).format('ll'));
       this.dailyExpenses = expenses;
     })
+    
   }
 }

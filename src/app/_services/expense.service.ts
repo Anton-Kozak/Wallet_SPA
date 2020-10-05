@@ -143,15 +143,15 @@ export class ExpenseService {
 
 
   //TODO: здесь идет система автоматического добавления расходов, нужно подумать как их добавлять на деле
-  createExpense(expense: Expense, offset: number) {
-    console.log('expense to send', expense);
-
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/new/' + offset, expense ).pipe(map(response => {
+  createExpense(expense: Expense) {
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/new', expense ).pipe(map(response => {
       var receivedExpense: ExpenseForTable = response['expense'];
       switch (+(expense.expenseCategoryId)) {
         case this.firstExpenses.categoryId:
           this.firstExpenses.expenses.push(receivedExpense);
+          console.log('pushed meat', this.firstExpenses.expenses);
           this.firstSubject.next(this.firstExpenses.expenses);
+          console.log('nexted meat', this.firstSubject);
           break;
         case this.secondExpenses.categoryId:
           this.secondExpenses.expenses.push(receivedExpense);
