@@ -3,7 +3,7 @@
         <div class="date-outer col-lg-5 col-md-12 col-12" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
             <div class="date card px-3">
                 <div class="mr-2">{{'CustomCompare.SelectFirst' | translate}}:</div>
-                <div class="date-value">{{firstDate.value}}</div>
+                <div class="date-value">{{getFormat(firstDate.value)}}</div>
                 <mat-form-field class="calendar">
                     <input #ref1 (dateChange)="orgValueChangeFirst(ref1.value)" [formControl]="firstDate" class="date-picker" matInput [matDatepicker]="picker1" [value]="firstDate.value">
                     <mat-datepicker-toggle class="dp" matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -17,7 +17,7 @@
         <div class="date-outer col-lg-5 col-md-12 col-12" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
             <div class="date card px-3">
                 <div class="mr-2">{{'CustomCompare.SelectSecond' | translate}}:</div>
-                <div class="date-value">{{secondDate.value}}</div>
+                <div class="date-value">{{getFormat(secondDate.value)}}</div>
                 <mat-form-field class="calendar">
                     <input #ref2 (dateChange)="orgValueChangeSecond(ref2.value)" [formControl]="secondDate" class="date-picker" matInput [matDatepicker]="picker2" [value]="secondDate.value">
                     <mat-datepicker-toggle class="dp" matSuffix [for]="picker2"></mat-datepicker-toggle>

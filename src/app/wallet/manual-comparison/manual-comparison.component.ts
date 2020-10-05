@@ -33,7 +33,6 @@ export class ManualComparisonComponent implements OnInit {
   firstMonthPreviousExpensesBars: ExpenseList[];
   firstMonthTopFiveUsers: TopUsersStat[];
   firstMonthExpenses = new MatTableDataSource<ExpenseForTable>();
-  // @ViewChild('firstPaginator') fp: MatPaginator;
   @ViewChild('firstPaginator') set firstMatPaginator(paginator: MatPaginator) {
     this.firstMonthExpenses.paginator = paginator;
   }
@@ -53,7 +52,6 @@ export class ManualComparisonComponent implements OnInit {
   secondMonthPreviousExpensesBars: ExpenseList[];
   secondMonthTopFiveUsers: TopUsersStat[];
   secondMonthExpenses = new MatTableDataSource<ExpenseForTable>();
-  //@ViewChild('secondPaginator') sp: MatPaginator;
   constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService, private titleService: Title) { }
 
   ngOnInit(): void {
@@ -70,8 +68,8 @@ export class ManualComparisonComponent implements OnInit {
       }
       else if (this.translateService.currentLang === 'ru')
         moment.locale('ru');
-      this.firstDate = new FormControl(moment(this.firstDay).format('LL'));
-      this.secondDate = new FormControl(moment(this.secondDay).format('LL'));
+      this.firstDate = new FormControl(this.firstDay.toDateString());
+      this.secondDate = new FormControl(this.secondDay.toDateString());
     })
 
     this.firstDate = new FormControl(this.firstDay.toDateString());
@@ -133,6 +131,10 @@ export class ManualComparisonComponent implements OnInit {
       this.secondMonthTotal = response['secondMonthTotal'];
       this.showData = true;
     });
+  }
+
+  getFormat(date) {
+    return moment(date).format('ll');
   }
 
 }
