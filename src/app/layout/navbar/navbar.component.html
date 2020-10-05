@@ -12,7 +12,7 @@
                         <i style="font-size: 22px;" class="nc-icon nc-settings-gear-65"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">{{'Navbar.EditProfile' | translate}}</a>
+                        <a class="dropdown-item" [routerLink]="['/wallet/profile']">{{'Navbar.EditProfile' | translate}}</a>
                         <div class="dropdown-item theme-item">
                             <div class="themeChange" *ngIf="activeTheme === 'dark'" (click)="changeTheme('toLight')">
                                 <i class="fas fa-sun mr-3"></i>

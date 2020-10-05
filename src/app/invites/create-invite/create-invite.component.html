@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
         <form class="form-group">
+            <p class="invite">{{'Admin.InviteUserPlace'| translate}}</p>
             <input type="email" [(ngModel)]="email" name="email" class="form-control input-data">
             <button (click)="onSubmit()" class="btn btn-outline-secondary btn-block mt-2">{{'NoWallet.Send'| translate}}</button>
             <button class="btn btn-warning btn-block" (click)="goBack()">{{'Profile.Back'| translate}}</button>

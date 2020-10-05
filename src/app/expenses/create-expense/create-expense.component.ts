@@ -44,8 +44,8 @@ export class CreateExpenseComponent implements OnInit {
 
   setForm() {
     this.newExpenseForm = new FormGroup({
-      'title': new FormControl('', { updateOn: 'blur', validators: [Validators.required, Validators.minLength(4), Validators.maxLength(16)] }),
-      'desc': new FormControl('', { updateOn: 'blur', validators: [Validators.minLength(4), Validators.maxLength(20)] }),
+      'title': new FormControl('', { updateOn: 'blur', validators: [Validators.required, Validators.minLength(4), Validators.maxLength(25)] }),
+      'desc': new FormControl('', { updateOn: 'blur', validators: [Validators.minLength(4), Validators.maxLength(50)] }),
       'category': new FormControl(this.categoryTitles[0].id, [Validators.required]),
       'money': new FormControl('', { updateOn: 'blur', validators: Validators.required })
     })

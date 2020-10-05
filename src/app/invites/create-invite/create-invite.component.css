@@ -1,1 +1,4 @@
 @import url("../../css/modals.css");
+.invite {
+    color: var(--text-color);
+}

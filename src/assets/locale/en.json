@@ -156,7 +156,8 @@
         "From": "From",
         "WalletEdit": "Edit Wallet",
         "AdminRole": "Admin ",
-        "AdultRole": "Adult "
+        "AdultRole": "Adult ",
+        "InviteUserPlace": "Enter user's name to invite to your wallet!"
     },
     "Navigation": {
         "Home": "Home",
@@ -223,7 +224,7 @@
         "Send": "Send",
         "Accept": "Accept",
         "Decline": "Decline",
-        "Enter": "Enter username",
+        "Enter": "Enter username that you want to request access to a wallet from!",
         "CheckInvTitle": "Check Invites From Other Users",
         "CheckInvText": "Here, you can look whether other users have invited you to join their wallets!",
         "SendReqTitle": "Send Requests To Join Wallets",
@@ -240,7 +241,7 @@
         "TitleMin": "Title should be at least 4 characters",
         "TitleMax": "Title should be no longer than 16 characters",
         "WalletMin": "Wallet title  should be at least 2 characters",
-        "WalletMax": "Wallet title  should be no longer 16 characters ",
+        "WalletMax": "Wallet title  should be no longer 20 characters ",
         "LimitMin": "Limit should be at least $10",
         "DescMin": "Description should be at least 4 characters",
         "DescMax": "Description should be no longer than 20 characters",
@@ -251,7 +252,7 @@
         "UserMax": "Username should be no longer than 10 characters",
         "PassReq": "Password is required",
         "PassMin": "Password should be at least 4 characters",
-        "PassMax": "Password should be no longer than 8 characters",
+        "PassMax": "Password should be no longer than 16 characters",
         "PassVal": "You need to have at least 1 letter and number"
     },
     "HomeWallet": {

@@ -5,23 +5,19 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" [ngClass]="{'bg-danger text-light': editWalletForm.get('title').errors && editWalletForm.get('title').touched,
-                            'bg-success text-white': !editWalletForm.get('title').errors}">Wallet Title</span>
+                            'bg-success text-white': !editWalletForm.get('title').errors}">{{'Expenses.WalletTitle' | translate}}</span>
                     </div>
                     <input [ngClass]="{'is-invalid': editWalletForm.get('title').errors && editWalletForm.get('title').touched,
-                                        'is-valid': !editWalletForm.get('title').errors}" type="text" formControlName="title"
-                        class="form-control">
-    
-                    <div *ngIf="editWalletForm.get('title').hasError('required') && editWalletForm.get('title').touched"
-                        class="invalid-feedback">
-                        Title is required
+                                        'is-valid': !editWalletForm.get('title').errors}" type="text" formControlName="title" class="form-control">
+
+                    <div *ngIf="editWalletForm.get('title').hasError('required') && editWalletForm.get('title').touched" class="invalid-feedback">
+                        {{'Validation.TitleRe' | translate}}
                     </div>
-                    <div *ngIf="editWalletForm.get('title').hasError('minlength') && editWalletForm.get('title').touched"
-                        class="invalid-feedback">
-                        Title should be at least 4 characters required
+                    <div *ngIf="editWalletForm.get('title').hasError('minlength') && editWalletForm.get('title').touched" class="invalid-feedback">
+                        {{'Validation.WalletMin' | translate}}
                     </div>
-                    <div *ngIf="editWalletForm.get('title').hasError('maxlength') && editWalletForm.get('title').touched"
-                        class="invalid-feedback">
-                        Title should be no longer than 16 characters
+                    <div *ngIf="editWalletForm.get('title').hasError('maxlength') && editWalletForm.get('title').touched" class="invalid-feedback">
+                        {{'Validation.WalletMax' | translate}}
                     </div>
                 </div>
             </div>
@@ -29,30 +25,27 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" [ngClass]="{'bg-danger text-light': editWalletForm.get('limit').errors && editWalletForm.get('limit').touched,
-                            'bg-success text-white': !editWalletForm.get('limit').errors}">Limit</span>
+                            'bg-success text-white': !editWalletForm.get('limit').errors}">{{'Expenses.WalletLimit' | translate}}</span>
                     </div>
                     <input [ngClass]="{'is-invalid': editWalletForm.get('limit').errors && editWalletForm.get('limit').touched,
-                                        'is-valid': !editWalletForm.get('limit').errors}" type="number" formControlName="limit"
-                        class="form-control">
-                        <div class="input-group-append">
-                            <span class="input-group-text" [ngClass]="{'bg-danger text-light': editWalletForm.get('limit').errors,
+                                        'is-valid': !editWalletForm.get('limit').errors}" type="number" formControlName="limit" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': editWalletForm.get('limit').errors,
                             'bg-success text-white': !editWalletForm.get('limit').errors}">$</span>
-                        </div>
-                    <div *ngIf="editWalletForm.get('limit').hasError('min') && editWalletForm.get('limit').touched"
-                        class="invalid-feedback">
-                        Limit should be 0 or at least $10
+                    </div>
+                    <div *ngIf="editWalletForm.get('limit').hasError('min') && editWalletForm.get('limit').touched" class="invalid-feedback">
+                        {{'Validation.LimitMin' | translate}}
                     </div>
                 </div>
             </div>
-    
+
             <div class="form-group">
-                <button class="btn btn-outline-secondary btn-block" [disabled]="editWalletForm.invalid"
-                    [ngClass]="{'btn-outline-success': editWalletForm.valid}">Edit wallet</button>
+                <button class="btn btn-outline-secondary btn-block" [disabled]="editWalletForm.invalid" [ngClass]="{'btn-outline-success': editWalletForm.valid}">{{'Navbar.EditWallet' | translate}}</button>
             </div>
         </form>
-        
+
     </div>
     <div class="form-group">
-        <button (click)="goBack()" class="btn btn-outline-warning">Back</button>
+        <button (click)="goBack()" class="btn btn-block btn-outline-warning">{{'Profile.Back' | translate}}</button>
     </div>
 </div>
