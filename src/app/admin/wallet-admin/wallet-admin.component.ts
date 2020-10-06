@@ -77,15 +77,12 @@ export class WalletAdminComponent implements OnInit {
   }
 
 
-
-
-
-
   removeUser(userId: string, rowIndex: number) {
+    let res = confirm(this.translate.currentLang === 'en' ? "Do you really want to remove this user from your wallet?" : "Вы действительно хотите убрать этого пользователя из Вашего кошелька?")
     this.admService.removeUser(userId).subscribe(response => {
+      this.users.data.splice(rowIndex, 1);
       this.alertify.success(response);
-      var el: any = (document.getElementById(rowIndex.toString())) as HTMLTableElement;
-      el.remove(rowIndex);
+      this.users.data = this.users.data;
     }, error => {
       this.alertify.error(error.error);
     });

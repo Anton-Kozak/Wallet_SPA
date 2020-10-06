@@ -44,12 +44,11 @@
                                     </ng-container>
                                     <ng-container matColumnDef="actions">
                                         <th class="table-text" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
-                                        <td class="table-text" mat-cell *matCellDef="let element">
+                                        <td class="table-text" mat-cell *matCellDef="let element; let i = index">
                                             <div *ngIf="!element.userRoles.includes('Admin')">
-                                                <a class="mr-2"><i class="fa fa-lock"></i></a>
-                                                <a class="mr-2"><i
-                                                        class="fa fa-user-times"></i></a>
-                                                <a *ngIf="element.userRoles.includes('Adult') && !element.userRoles.includes('Admin')" class="mr-2"><i class="fa fa-users-cog"></i></a>
+                                                <!-- <a class="mr-2"><i class="fa fa-lock"></i></a> -->
+                                                <a (click)="removeUser(element.id, i)" class="mr-2"><i class="fa fa-2x fa-user-times text-danger"></i></a>
+                                                <!-- <a *ngIf="element.userRoles.includes('Adult') && !element.userRoles.includes('Admin')" class="mr-2"><i class="fa fa-users-cog"></i></a> -->
                                             </div>
                                         </td>
                                     </ng-container>
