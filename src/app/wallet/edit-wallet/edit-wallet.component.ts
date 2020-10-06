@@ -25,6 +25,7 @@ export class EditWalletComponent implements OnInit {
       console.log(this.currentWallet);
       this.editWalletForm = new FormGroup({
         'title': new FormControl(this.currentWallet.title, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
+        'currency': new FormControl(this.currentWallet.currency, Validators.required),
         'limit': new FormControl(this.currentWallet.monthlyLimit, Validators.min(10))
       });
     });
@@ -36,6 +37,7 @@ export class EditWalletComponent implements OnInit {
       title: this.editWalletForm.value['title'],
       monthlyLimit: this.editWalletForm.value['limit'],
       walletCategories: this.currentWallet.walletCategories,
+      currency: this.editWalletForm.value['currency']
     });
 
     this.walletService.editWallet(this.walletToEdit).subscribe(response => {

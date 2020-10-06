@@ -205,7 +205,7 @@
                             <td class="table-text category-table-cell" mat-cell *matCellDef="let element"> {{element.expenseCategory}} </td>
                         </ng-container>
                         <ng-container matColumnDef="moneySpent">
-                            <th class="text-center table-head money-table-header" mat-header-cell *matHeaderCellDef> $ </th>
+                            <th class="text-center table-head money-table-header" mat-header-cell *matHeaderCellDef> {{'Currency.' + walletCurrency + 'Sign' | translate}} </th>
                             <td class="table-text money-table-cell " mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
                         </ng-container>
                         <ng-container matColumnDef="creationDate">
@@ -396,7 +396,7 @@
                             <td class="table-text category-cell" mat-cell *matCellDef="let element"> {{element.expenseCategory}} </td>
                         </ng-container>
                         <ng-container matColumnDef="moneySpent">
-                            <th class="text-center table-head money-header" mat-header-cell *matHeaderCellDef> $ </th>
+                            <th class="text-center table-head money-header" mat-header-cell *matHeaderCellDef> {{'Currency.' + walletCurrency + 'Sign' | translate}} </th>
                             <td class="table-text money-cell" mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
                         </ng-container>
                         <ng-container matColumnDef="creationDate">

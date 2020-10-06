@@ -22,21 +22,41 @@
 
             <div class="form-group">
                 <div class="input-group mb-3">
+                    <div class="input-group-prepend currency-label">
+                        <span class="input-group-text w-100" [ngClass]="{'bg-danger text-light': walletForm.get('currency').errors && walletForm.get('currency').touched,
+                        'bg-success text-white': !walletForm.get('currency').errors}">{{'Expenses.Currency' | translate}}</span>
+                    </div>
+                    <div class="input-group-append currency-data">
+                        <select [ngClass]="{'is-invalid': walletForm.get('currency').errors && walletForm.get('currency').touched,
+                        'is-valid': !walletForm.get('currency').errors}" formControlName="currency" class="form-control select-currency w-100">
+                            <option value="USD">{{'Currency.USD' | translate}} $</option>
+                            <option value="RUB">{{'Currency.RUB' | translate}} ₽</option>
+                            <option value="UAH">{{'Currency.UAH' | translate}} ₴</option>
+                            <option value="EUR">{{'Currency.EUR' | translate}} €</option>
+                            <option value="GBP">{{'Currency.GBP' | translate}} £</option>
+                            <option value="RON">{{'Currency.RON' | translate}} lei</option>
+                            <option value="PLN">{{'Currency.PLN' | translate}} zł</option>
+                            <option value="CHF">{{'Currency.CHF' | translate}} CHF</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3 w-100">
                     <div class="input-group-prepend">
                         <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('limit').errors && walletForm.get('limit').touched,
                         'bg-success text-white': !walletForm.get('limit').errors}">{{'Expenses.WalletLimit' | translate}}</span>
                     </div>
                     <input [ngClass]="{'is-invalid': walletForm.get('limit').errors && walletForm.get('limit').touched,
                                     'is-valid': !walletForm.get('limit').errors}" type="number" formControlName="limit" class="form-control">
-                    <div class="input-group-append">
-                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('limit').errors,
-                        'bg-success text-white': !walletForm.get('limit').errors}">$</span>
-                    </div>
                     <div *ngIf="walletForm.get('limit').hasError('min') && walletForm.get('limit').touched" class="invalid-feedback">
                         {{'Validation.LimitMin' | translate}}
                     </div>
                 </div>
             </div>
+
+
 
             <div class="form-group">
                 <button (click)="createWallet()" class="btn btn-outline-secondary btn-block" [disabled]="walletForm.invalid || finalCategories.length < 5 && !createLoading" [ngClass]="{'btn-outline-success': walletForm.valid && finalCategories.length >= 5}">{{'NoWallet.Create' | translate}}</button>

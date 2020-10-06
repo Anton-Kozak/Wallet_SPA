@@ -51,7 +51,7 @@
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category mb-2">{{'Expenses.WalletLimit' | translate}}</p>
-                                        <p class="card-title text-capitalize">${{walletLimit}}</p>
+                                        <p class="card-title text-capitalize">{{'Currency.' + walletCurrency + 'Sign' | translate}} {{walletLimit}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                     <div class="card card-stats">
                         <div class="card-body">
                             <div class="numbers">
-                                <p class="card-category mb-3">{{'Expenses.WalletLimit' | translate}}: {{walletExpenses}} / {{walletLimit}}</p>
+                                <p class="card-category mb-3">{{'Expenses.WalletLimit' | translate}}: {{walletExpenses}} / {{walletLimit}} ({{'Currency.' + walletCurrency | translate}})</p>
                             </div>
                             <progressbar class="progress-striped active mb-2" [max]="walletLimit" [value]="expensesToShow" [type]="type"></progressbar>
                         </div>
@@ -107,7 +107,7 @@
                                     <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                     <th class="details-header">{{'Expenses.Category' | translate}}</th>
                                     <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                    <th class="money-header">$</th>
+                                    <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -147,7 +147,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -183,7 +183,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -220,7 +220,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -256,7 +256,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -292,7 +292,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -328,7 +328,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -365,7 +365,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -401,7 +401,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -438,7 +438,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -474,7 +474,7 @@
                                                 <th class="title-header">{{'Expenses.Title' | translate}}</th>
                                                 <th class="details-header">{{'Expenses.Details' | translate}}</th>
                                                 <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                                <th class="money-header">$</th>
+                                                <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

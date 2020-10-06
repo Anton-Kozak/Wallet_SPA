@@ -3,10 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Wallet } from 'src/app/_model/wallet';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/_services/auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-wallet',
@@ -17,9 +15,8 @@ export class CreateWalletComponent implements OnInit {
 
   constructor(private walletService: WalletService,
     private alertify: AlertifyService,
-    private router: Router,
-    private authService: AuthService,
     public dialogRef: MatDialogRef<CreateWalletComponent>,
+    private translateService: TranslateService
   ) { }
   walletForm: FormGroup;
   wallet: Wallet;
@@ -38,6 +35,7 @@ export class CreateWalletComponent implements OnInit {
     this.walletForm = new FormGroup({
       //TODO: сделать кастомный валидатор
       'title': new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+      'currency': new FormControl('USD', Validators.required),
       'limit': new FormControl(0, [Validators.required, Validators.min(10)])
     })
   }
@@ -56,19 +54,16 @@ export class CreateWalletComponent implements OnInit {
     }
   }
 
-  findCategory(id: number) {
-    return true;
-  }
-
-
   createWallet() {
-    console.log('create');
-    
-    this.wallet = ({
-      title: this.walletForm.value['title'],
-      monthlyLimit: this.walletForm.value['limit'],
-      walletCategories: null,
-    });
+    let res = confirm(this.translateService.currentLang === 'en' ? 'Are you sure you want to create a wallet with these categories?' : "Вы уверенны в своем выборе?");
+    if (res) {
+      this.wallet = ({
+        title: this.walletForm.value['title'],
+        monthlyLimit: this.walletForm.value['limit'],
+        walletCategories: null,
+        currency: this.walletForm.value['currency']
+
+      });
       if (this.finalCategories.length >= 5) {
         this.walletService.createNewWallet(this.wallet).subscribe(() => {
           this.walletService.addCategoriesToWallet(this.finalCategories).subscribe(() => {
@@ -84,6 +79,7 @@ export class CreateWalletComponent implements OnInit {
       else {
         this.alertify.error("You need to choose 5 or more categories!");
       }
+    }
   }
 
   back() {

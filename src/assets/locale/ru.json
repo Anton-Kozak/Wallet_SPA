@@ -32,6 +32,7 @@
         "Details": "Детали",
         "Date": "Дата",
         "Expenses": "Расходы",
+        "Currency": "Валюта",
         "Expense": "Расход",
         "Category": "Категория",
         "Actions": "Действия",
@@ -286,5 +287,23 @@
         "Wallet": "Введите название Вашего кошелька",
         "AddUser": "Введите имя пользователя которого хотите пригласить",
         "AddExpense": "Введите название расхода"
+    },
+    "Currency": {
+        "USD": "ДОЛ",
+        "USDSign": "$",
+        "RUB": "РУБ",
+        "RUBSign": "₽",
+        "UAH": "ГРН",
+        "UAHSign": "₴",
+        "EUR": "ЕВР",
+        "EURSign": "€",
+        "GBP": "ФУНТ",
+        "GBPSign": "£",
+        "RON": "РУМ",
+        "RONSign": "lei",
+        "PLN": "ПОЛ",
+        "PLNSign": "zł",
+        "CHF": "ШВЦ",
+        "CHFSign": "CHF"
     }
 }

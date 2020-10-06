@@ -219,7 +219,7 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-calendar"></i> Add text
+                            <i class="fa fa-calendar"></i>
                         </div>
                     </div>
                 </div>
@@ -235,7 +235,7 @@
                                 <td class="table-text category-cell" mat-cell *matCellDef="let element"> {{'ExpenseCategory.' + element.expenseCategory | translate}} </td>
                             </ng-container>
                             <ng-container matColumnDef="moneySpent">
-                                <th class="text-center table-head money-header" mat-header-cell *matHeaderCellDef> $ </th>
+                                <th class="text-center table-head money-header" mat-header-cell *matHeaderCellDef> {{'Currency.' + walletCurrency + 'Sign' | translate}} </th>
                                 <td class="table-text money-cell" mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
                             </ng-container>
                             <ng-container matColumnDef="expenseDescription">

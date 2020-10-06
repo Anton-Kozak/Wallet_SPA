@@ -12,6 +12,7 @@ import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.comp
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { WalletService } from 'src/app/_services/wallet.service';
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -24,17 +25,20 @@ export class WalletAdminComponent implements OnInit {
     public dialog: MatDialog,
     private alertify: AlertifyService,
     private adminService: AdminService,
-    public translate: TranslateService, private titleService: Title) {
+    public translate: TranslateService, private titleService: Title, private walletService: WalletService) {
   }
 
   columnsForExpenses: string[] = ['expenseTitle', 'category', 'userName', 'moneySpent', 'expenseDescription', 'creationDate', 'actions'];
   columnsForUsers: string[] = ['username', 'dateJoined', 'userRoles', 'actions'];
   expenses = new MatTableDataSource<ExpenseForAdminTable>();
   users = new MatTableDataSource<UserForAdmin>();
+  walletCurrency: string = 'USD';
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
   ngOnInit(): void {
-
+    this.walletService.getCurrentWallet().subscribe(wallet=>{
+      this.walletCurrency = wallet['currency'];
+    })
     if (this.translate.currentLang === 'en') {
       moment.locale('en');
     }

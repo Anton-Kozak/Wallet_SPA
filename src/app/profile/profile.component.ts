@@ -25,9 +25,13 @@ export class ProfileComponent implements OnInit {
   profileData: ProfileData = null;
   userForEdit: UserForProfileEdit;
   isLoading: boolean;
+  walletCurrency: string = 'USD';
+
   constructor(public dialog: MatDialog, private photoService: PhotoService, private walletService: WalletService, private alertify: AlertifyService, public translateService: TranslateService, private titleService: Title) { }
   ngOnInit(): void {
-
+    this.walletService.getCurrentWallet().subscribe(wallet=>{
+      this.walletCurrency = wallet['currency'];
+    })
     if (this.translateService.currentLang === 'en') {
       moment.locale('en');
     }

@@ -45,6 +45,7 @@ export class ShowWalletTableComponent implements OnInit {
   moment: any = moment;
   walletTitle: string;
   walletLimit: number;
+  walletCurrency: string;
   walletExpenses: number;
   type: string;
   private id;
@@ -74,6 +75,7 @@ export class ShowWalletTableComponent implements OnInit {
     this.isLoading = true;
     this.expenseService.getWalletData(this.id).subscribe((walletData: WalletForPage) => {
       this.walletTitle = walletData['title'];
+      this.walletCurrency = walletData['currency'];
       this.expenseService.expensesSubject.subscribe(expData => {
         this.walletExpenses = expData;
         this.expensesToShow = expData;

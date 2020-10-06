@@ -32,6 +32,7 @@
         "Details": "Details",
         "Date": "Date",
         "Expenses": "Expenses",
+        "Currency": "Currency",
         "Expense": "Expense",
         "Category": "Category",
         "Actions": "Actions",
@@ -290,5 +291,23 @@
         "Wallet": "Enter wallet's name",
         "AddUser": "Enter user's name",
         "AddExpense": "Add name of expense"
+    },
+    "Currency": {
+        "USD": "USD",
+        "USDSign": "$",
+        "RUB": "RUB",
+        "RUBSign": "₽",
+        "UAH": "UAH",
+        "UAHSign": "₴",
+        "EUR": "EUR",
+        "EURSign": "€",
+        "GBP": "GBP",
+        "GBPSign": "£",
+        "RON": "RON",
+        "RONSign": "lei",
+        "PLN": "PLN",
+        "PLNSign": "zł",
+        "CHF": "CHF",
+        "CHFSign": "CHF"
     }
 }

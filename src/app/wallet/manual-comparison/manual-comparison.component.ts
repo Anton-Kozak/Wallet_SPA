@@ -52,10 +52,15 @@ export class ManualComparisonComponent implements OnInit {
   secondMonthPreviousExpensesBars: ExpenseList[];
   secondMonthTopFiveUsers: TopUsersStat[];
   secondMonthExpenses = new MatTableDataSource<ExpenseForTable>();
+
+  walletCurrency: string = 'USD';
+
   constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService, private titleService: Title) { }
 
   ngOnInit(): void {
-
+    this.walletService.getCurrentWallet().subscribe(wallet=>{
+      this.walletCurrency = wallet['currency'];
+    })
     if (this.translateService.currentLang === 'en') {
       moment.locale('en');
     }

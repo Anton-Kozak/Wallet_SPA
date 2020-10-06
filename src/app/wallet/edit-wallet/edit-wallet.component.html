@@ -21,6 +21,29 @@
                     </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend currency-label">
+                        <span class="input-group-text w-100" [ngClass]="{'bg-danger text-light': editWalletForm.get('currency').errors && editWalletForm.get('currency').touched,
+                        'bg-success text-white': !editWalletForm.get('currency').errors}">{{'Expenses.Currency' | translate}}</span>
+                    </div>
+                    <div class="input-group-append currency-data">
+                        <select [ngClass]="{'is-invalid': editWalletForm.get('currency').errors && editWalletForm.get('currency').touched,
+                        'is-valid': !editWalletForm.get('currency').errors}" formControlName="currency" class="form-control select-currency w-100">
+                            <option value="USD">{{'Currency.USD' | translate}} $</option>
+                            <option value="RUB">{{'Currency.RUB' | translate}} ₽</option>
+                            <option value="UAH">{{'Currency.UAH' | translate}} ₴</option>
+                            <option value="EUR">{{'Currency.EUR' | translate}} €</option>
+                            <option value="GBP">{{'Currency.GBP' | translate}} £</option>
+                            <option value="RON">{{'Currency.RON' | translate}} lei</option>
+                            <option value="PLN">{{'Currency.PLN' | translate}} zł</option>
+                            <option value="CHF">{{'Currency.CHF' | translate}} CHF</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -29,10 +52,6 @@
                     </div>
                     <input [ngClass]="{'is-invalid': editWalletForm.get('limit').errors && editWalletForm.get('limit').touched,
                                         'is-valid': !editWalletForm.get('limit').errors}" type="number" formControlName="limit" class="form-control">
-                    <div class="input-group-append">
-                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': editWalletForm.get('limit').errors,
-                            'bg-success text-white': !editWalletForm.get('limit').errors}">$</span>
-                    </div>
                     <div *ngIf="editWalletForm.get('limit').hasError('min') && editWalletForm.get('limit').touched" class="invalid-feedback">
                         {{'Validation.LimitMin' | translate}}
                     </div>

@@ -32,6 +32,7 @@ export class ShowPreviousExpensesComponent implements OnInit {
   topFiveUsers: TopUsersStat[];
   barExpenses: ExpenseList[];
   categories: CategoryData[] = [];
+  walletCurrency: string = 'USD';
   monthNumber = 1;
   monthName: string = '';
   year: string;
@@ -56,8 +57,6 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth() - 1);
     this.year = moment(this.date).format('YYYY');
-    console.log(this.year.length);
-
     console.log('Init month', this.date);
     this.monthName = moment(this.date).format('MMMM');
     if (this.walletService.currentCategories.length === 0) {
@@ -68,6 +67,12 @@ export class ShowPreviousExpensesComponent implements OnInit {
     } else {
       this.categories = this.walletService.currentCategories;
     }
+    this.walletService.getCurrentWallet().subscribe(wallet=>{
+      this.walletCurrency = wallet['currency'];
+    })
+
+    
+
     this.getData(this.date);
     this.setTitle(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe(lang => {

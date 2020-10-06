@@ -26,3 +26,52 @@
 .button-text {
     opacity: .3;
 }
+
+.select-currency {
+    appearance: none;
+    width: 100%;
+}
+
+.currency-label {
+    width: 12% !important;
+}
+
+.currency-data {
+    width: 88% !important;
+}
+
+@media(max-width: 1000px) {
+    .currency-label {
+        width: 20% !important;
+    }
+    .currency-data {
+        width: 80% !important;
+    }
+}
+
+@media(max-width: 650px) {
+    .currency-label {
+        width: 30% !important;
+    }
+    .currency-data {
+        width: 70% !important;
+    }
+}
+
+@media(max-width: 500px) {
+    .currency-label {
+        width: 35% !important;
+    }
+    .currency-data {
+        width: 65% !important;
+    }
+}
+
+@media(max-width: 450px) {
+    .currency-label {
+        width: 50% !important;
+    }
+    .currency-data {
+        width: 50% !important;
+    }
+}

@@ -59,6 +59,7 @@ export class UserStatisticsComponent implements OnInit {
   date: Date;
   monthNumber = 0;
   monthName: string = '';
+  walletCurrency: string = 'USD';
   private id;
   theme = false;
   @Output() themeChange = new EventEmitter<boolean>();
@@ -85,7 +86,9 @@ export class UserStatisticsComponent implements OnInit {
     this.year = moment(this.date).format('YYYY');
     this.monthName = moment(this.date).format('MMMM');
     this.isThisUser = false;
-
+    this.walletService.getCurrentWallet().subscribe(wallet=>{
+      this.walletCurrency = wallet['currency'];
+    })
     let userId = this.authService.decodedToken.nameid;
     this.id = this.route.snapshot.params['id'];
     if (userId === this.id)

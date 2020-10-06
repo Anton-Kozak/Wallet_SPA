@@ -33,6 +33,7 @@ export class CategoryStatisticsComponent implements OnInit {
   mostUsedUser: TopUsersStat = null;
   topFiveUsers: TopUsersStat[];
   lastSixMonths: LastMonthStat[];
+  walletCurrency: string = 'USD';
 
   expenses = new MatTableDataSource<ExpenseForTable>();
   columnsForExpenses: string[] = ['expenseTitle', 'userName', 'moneySpent', 'expenseDescription', 'creationDate'];
@@ -42,6 +43,9 @@ export class CategoryStatisticsComponent implements OnInit {
   isLoading: boolean;
   @ViewChild('paginator') paginator: MatPaginator;
   ngOnInit(): void {
+    this.walletService.getCurrentWallet().subscribe(wallet=>{
+      this.walletCurrency = wallet['currency'];
+    })
     if (this.translateService.currentLang === 'en') {
       moment.locale('en');
     }

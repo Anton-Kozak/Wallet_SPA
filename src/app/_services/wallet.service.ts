@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { CategoryData } from '../_model/categoryData';
-import { BehaviorSubject } from 'rxjs';
 import { UserForProfileEdit } from '../_model/user-for-profile-edit';
-
+import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +17,6 @@ export class WalletService {
   baseUrl: string = environment.apiUrl + "wallet/";
 
   walletCategories: CategoryData[] = [];
-
-  currentWallet: Wallet;
 
   currentCategories: CategoryData[] = [];
 
@@ -33,6 +31,7 @@ export class WalletService {
   // getCurrentWallet() {
   //   this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet').subscribe((currentWallet: Wallet) => {
   //     this.currentWallet = currentWallet;
+  //     return currentWallet;
   //   });
   // }
 

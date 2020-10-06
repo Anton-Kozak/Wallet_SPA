@@ -87,7 +87,7 @@
                     <td class="table-text user-table-cell " mat-cell *matCellDef="let element"> {{element.userName}} </td>
                 </ng-container>
                 <ng-container matColumnDef="moneySpent">
-                    <th class="text-center table-head money-table-header" mat-header-cell *matHeaderCellDef> $ </th>
+                    <th class="text-center table-head money-table-header" mat-header-cell *matHeaderCellDef> {{'Currency.' + walletCurrency + 'Sign' | translate}} </th>
                     <td class="table-text money-table-cell" mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
                 </ng-container>
                 <ng-container matColumnDef="expenseDescription">
