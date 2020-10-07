@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+h1 {
+    color: var(--text-color);
+}
+
 .fileup {
     display: none;
 }

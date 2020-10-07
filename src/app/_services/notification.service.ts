@@ -18,7 +18,7 @@ export class NotificationService {
 
 
   deleteNotifications() {
-    return this.http.delete(this.baseUrl + this.authService.getToken().nameid + '/deleteNotification');
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/deleteNotification', {});
   }
 
 }

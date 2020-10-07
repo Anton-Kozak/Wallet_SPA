@@ -67,11 +67,13 @@ export class MyThemeService {
     if (localStorage.getItem('theme') === 'dark') {
       this.setTheme(darkTheme);
       this.currentTheme.next('dark');
+      this.toggleDark();
     }
     else {
       this.setTheme(lightTheme);
       this.currentTheme.next('light');
       localStorage.setItem('theme', 'light');
+      this.toggleLight();
     }
   }
 
@@ -79,6 +81,8 @@ export class MyThemeService {
     this.checkTheme();
   }
   toggleDark() {
+    console.log('toggled dark');
+    
     this.currentTheme.next('dark');
     this.setTheme(darkTheme);
     localStorage.setItem('theme', 'dark');
@@ -93,6 +97,7 @@ export class MyThemeService {
 
 
   toggleLight() {
+    console.log('toggled light');
     this.currentTheme.next('light');
     this.setTheme(lightTheme);
     localStorage.setItem('theme', 'light');

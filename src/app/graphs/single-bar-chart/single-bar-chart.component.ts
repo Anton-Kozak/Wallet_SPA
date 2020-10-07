@@ -5,6 +5,7 @@ import { ExpenseList } from 'src/app/_model/expense-list';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { MyColors } from 'src/app/_helper/chart-colors';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { MyThemeService } from 'src/app/_services/theme.service';
 
 @Component({
   selector: 'app-single-bar-chart',

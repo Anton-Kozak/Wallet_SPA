@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <table class="table table-dark">
+        <table class="table">
             <thead>
                 <tr>
                     <th>{{'Admin.From' | translate}}</th>
@@ -13,7 +13,7 @@
                 <tr *ngFor="let invite of invites">
                     <td scope="row">{{invite.inviteCreatorEmail}}</td>
                     <td>{{invite.walletTitle}}</td>
-                    <td>{{invite.inviteCreationTime}}</td>
+                    <td>{{getFormat(invite.inviteCreationTime)}}</td>
                     <td><button class="btn btn-success btn-sm mr-2" (click)="acceptInvite(invite.walletId)">{{'NoWallet.Accept' | translate}}</button>
                         <button class="btn btn-danger btn-sm" (click)="declineInvite(invite.walletId)">{{'NoWallet.Decline' | translate}}</button>
                 </tr>

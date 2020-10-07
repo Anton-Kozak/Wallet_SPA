@@ -3,6 +3,12 @@
     font-weight: bold;
 }
 
+
+/* .outer,
+.mat-typography {
+    background-color: white !important;
+} */
+
 .spinner:before {
     content: '';
     box-sizing: border-box;

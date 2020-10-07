@@ -1,33 +1,34 @@
 <mat-dialog-content class="mat-typography">
-    <div class="container">
-        <form [formGroup]="walletForm">
-            <div class="form-group">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('title').errors && walletForm.get('title').touched,
+    <div class="outer">
+        <div class="container">
+            <form [formGroup]="walletForm">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('title').errors && walletForm.get('title').touched,
                         'bg-success text-white': !walletForm.get('title').errors}">{{'Expenses.WalletTitle' | translate}}</span>
-                    </div>
-                    <input [ngClass]="{'is-invalid': walletForm.get('title').errors && walletForm.get('title').touched,
+                        </div>
+                        <input [ngClass]="{'is-invalid': walletForm.get('title').errors && walletForm.get('title').touched,
                                     'is-valid': !walletForm.get('title').errors}" type="text" formControlName="title" class="form-control">
 
-                    <div *ngIf="walletForm.get('title').hasError('required') && walletForm.get('title').touched" class="invalid-feedback">
-                        {{'Validation.TitleRe' | translate}}
+                        <div *ngIf="walletForm.get('title').hasError('required') && walletForm.get('title').touched" class="invalid-feedback">
+                            {{'Validation.TitleRe' | translate}}
+                        </div>
+                        <div *ngIf="walletForm.get('title').hasError('minlength') && walletForm.get('title').touched" class="invalid-feedback">
+                            {{'Validation.WalletMin' | translate}} </div>
+                        <div *ngIf="walletForm.get('title').hasError('maxlength') && walletForm.get('title').touched" class="invalid-feedback">
+                            {{'Validation.WalletMax' | translate}} </div>
                     </div>
-                    <div *ngIf="walletForm.get('title').hasError('minlength') && walletForm.get('title').touched" class="invalid-feedback">
-                        {{'Validation.WalletMin' | translate}} </div>
-                    <div *ngIf="walletForm.get('title').hasError('maxlength') && walletForm.get('title').touched" class="invalid-feedback">
-                        {{'Validation.WalletMax' | translate}} </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend currency-label">
-                        <span class="input-group-text w-100" [ngClass]="{'bg-danger text-light': walletForm.get('currency').errors && walletForm.get('currency').touched,
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend currency-label">
+                            <span class="input-group-text w-100" [ngClass]="{'bg-danger text-light': walletForm.get('currency').errors && walletForm.get('currency').touched,
                         'bg-success text-white': !walletForm.get('currency').errors}">{{'Expenses.Currency' | translate}}</span>
-                    </div>
-                    <div class="input-group-append currency-data">
-                        <select [ngClass]="{'is-invalid': walletForm.get('currency').errors && walletForm.get('currency').touched,
+                        </div>
+                        <div class="input-group-append currency-data">
+                            <select [ngClass]="{'is-invalid': walletForm.get('currency').errors && walletForm.get('currency').touched,
                         'is-valid': !walletForm.get('currency').errors}" formControlName="currency" class="form-control select-currency w-100">
                             <option value="USD">{{'Currency.USD' | translate}} $</option>
                             <option value="RUB">{{'Currency.RUB' | translate}} ₽</option>
@@ -38,107 +39,107 @@
                             <option value="PLN">{{'Currency.PLN' | translate}} zł</option>
                             <option value="CHF">{{'Currency.CHF' | translate}} CHF</option>
                         </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="input-group mb-3 w-100">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('limit').errors && walletForm.get('limit').touched,
+                <div class="form-group">
+                    <div class="input-group mb-3 w-100">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" [ngClass]="{'bg-danger text-light': walletForm.get('limit').errors && walletForm.get('limit').touched,
                         'bg-success text-white': !walletForm.get('limit').errors}">{{'Expenses.WalletLimit' | translate}}</span>
-                    </div>
-                    <input [ngClass]="{'is-invalid': walletForm.get('limit').errors && walletForm.get('limit').touched,
+                        </div>
+                        <input [ngClass]="{'is-invalid': walletForm.get('limit').errors && walletForm.get('limit').touched,
                                     'is-valid': !walletForm.get('limit').errors}" type="number" formControlName="limit" class="form-control">
-                    <div *ngIf="walletForm.get('limit').hasError('min') && walletForm.get('limit').touched" class="invalid-feedback">
-                        {{'Validation.LimitMin' | translate}}
+                        <div *ngIf="walletForm.get('limit').hasError('min') && walletForm.get('limit').touched" class="invalid-feedback">
+                            {{'Validation.LimitMin' | translate}}
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
 
+                <div class="form-group">
+                    <button (click)="createWallet()" class="btn btn-outline-secondary btn-block" [disabled]="walletForm.invalid || finalCategories.length < 5 && !createLoading" [ngClass]="{'btn-outline-success': walletForm.valid && finalCategories.length >= 5}">{{'NoWallet.Create' | translate}}</button>
+                </div>
+            </form>
             <div class="form-group">
-                <button (click)="createWallet()" class="btn btn-outline-secondary btn-block" [disabled]="walletForm.invalid || finalCategories.length < 5 && !createLoading" [ngClass]="{'btn-outline-success': walletForm.valid && finalCategories.length >= 5}">{{'NoWallet.Create' | translate}}</button>
+                <button (click)="back()" class="btn btn-block btn-outline-warning">{{'Profile.Back' | translate}}</button>
             </div>
-        </form>
-        <div class="form-group">
-            <button (click)="back()" class="btn btn-outline-warning">{{'Profile.Back' | translate}}</button>
         </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
-            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+        <div class="row justify-content-center">
+            <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
+                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
         <i class="nc-icon nc-simple-remove"></i>
       </button>
 
-            <span data-notify="message">{{'NoWallet.TipForCreate' | translate }}</span>
+                <span data-notify="message">{{'NoWallet.TipForCreate' | translate }}</span>
+            </div>
         </div>
+
+
+        <div class="row mt-3">
+
+            <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+                <p class="category-title">{{'ExpenseCategory.Food' | translate }}</p>
+                <div (click)="toggleCategory(1)" [ngClass]="isActive[0].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Food' | translate }}</div>
+                <div (click)="toggleCategory(2)" [ngClass]="isActive[1].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Vegetables' | translate }}</div>
+                <div (click)="toggleCategory(3)" [ngClass]="isActive[2].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Meat' | translate }}</div>
+                <div (click)="toggleCategory(4)" [ngClass]="isActive[3].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Alcohol' | translate }}</div>
+                <div (click)="toggleCategory(5)" [ngClass]="isActive[4].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sweets' | translate }}</div>
+                <div (click)="toggleCategory(6)" [ngClass]="isActive[5].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Fast food' | translate }}</div>
+                <div (click)="toggleCategory(7)" [ngClass]="isActive[6].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Fruits' | translate }}</div>
+            </div>
+
+            <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+                <p class="category-title">{{'ExpenseCategory.Housekeeping' | translate }}</p>
+                <div (click)="toggleCategory(8)" [ngClass]="isActive[7].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Housekeeping' | translate }}</div>
+                <div (click)="toggleCategory(9)" [ngClass]="isActive[8].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Electricity' | translate }}</div>
+                <div (click)="toggleCategory(10)" [ngClass]="isActive[9].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Gas' | translate }}</div>
+                <div (click)="toggleCategory(11)" [ngClass]="isActive[10].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Water' | translate }}</div>
+            </div>
+            <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+                <p class="category-title">{{'ExpenseCategory.Entertainment' | translate }}</p>
+                <div (click)="toggleCategory(12)" [ngClass]="isActive[11].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Entertainment' | translate }}</div>
+                <div (click)="toggleCategory(13)" [ngClass]="isActive[12].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Internet shopping' | translate }}</div>
+                <div (click)="toggleCategory(14)" [ngClass]="isActive[13].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Restaurants' | translate }}</div>
+                <div (click)="toggleCategory(15)" [ngClass]="isActive[14].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Cinema' | translate }}</div>
+                <div (click)="toggleCategory(16)" [ngClass]="isActive[15].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Theatre' | translate }}</div>
+                <div (click)="toggleCategory(17)" [ngClass]="isActive[16].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Smoking' | translate }}</div>
+            </div>
+            <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+                <p class="category-title">{{'ExpenseCategory.Medicine' | translate }}</p>
+                <div (click)="toggleCategory(18)" [ngClass]="isActive[17].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Medicine' | translate }}</div>
+                <div (click)="toggleCategory(19)" [ngClass]="isActive[18].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Medicaments' | translate }}</div>
+                <div (click)="toggleCategory(20)" [ngClass]="isActive[19].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Treatment' | translate }}</div>
+            </div>
+            <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+                <p class="category-title">{{'ExpenseCategory.Beauty' | translate }}</p>
+                <div (click)="toggleCategory(21)" [ngClass]="isActive[20].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Beauty' | translate }}</div>
+                <div (click)="toggleCategory(22)" [ngClass]="isActive[21].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Beauty accessories' | translate }}</div>
+                <div (click)="toggleCategory(23)" [ngClass]="isActive[22].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Beauty products' | translate }}</div>
+                <div (click)="toggleCategory(24)" [ngClass]="isActive[23].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Beauty procedures' | translate }}</div>
+
+            </div>
+            <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+                <p class="category-title"> {{'ExpenseCategory.Sport' | translate }}</p>
+                <div (click)="toggleCategory(25)" [ngClass]="isActive[24].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport' | translate }}</div>
+                <div (click)="toggleCategory(26)" [ngClass]="isActive[25].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport events' | translate }}</div>
+                <div (click)="toggleCategory(27)" [ngClass]="isActive[26].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport gambling' | translate }}</div>
+                <div (click)="toggleCategory(28)" [ngClass]="isActive[27].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport inventory' | translate }}</div>
+                <div (click)="toggleCategory(29)" [ngClass]="isActive[28].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport activities' | translate }}</div>
+            </div>
+            <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+                <p class="category-title">{{'ExpenseCategory.Transportation' | translate }}</p>
+                <div (click)="toggleCategory(30)" [ngClass]="isActive[29].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Transportation' | translate }}</div>
+                <div (click)="toggleCategory(31)" [ngClass]="isActive[30].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Air transportation' | translate }}</div>
+                <div (click)="toggleCategory(32)" [ngClass]="isActive[31].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Land Transportation' | translate }}</div>
+            </div>
+            <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+                <p class="category-title">{{'ExpenseCategory.Other' | translate }}</p>
+                <div (click)="toggleCategory(33)" [ngClass]="isActive[32].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Other' | translate }}</div>
+            </div>
+        </div>
+
     </div>
-
-
-    <div class="row mt-3">
-
-        <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
-            <p class="category-title">{{'ExpenseCategory.Food' | translate }}</p>
-            <div (click)="toggleCategory(1)" [ngClass]="isActive[0].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Food' | translate }}</div>
-            <div (click)="toggleCategory(2)" [ngClass]="isActive[1].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Vegetables' | translate }}</div>
-            <div (click)="toggleCategory(3)" [ngClass]="isActive[2].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Meat' | translate }}</div>
-            <div (click)="toggleCategory(4)" [ngClass]="isActive[3].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Alcohol' | translate }}</div>
-            <div (click)="toggleCategory(5)" [ngClass]="isActive[4].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sweets' | translate }}</div>
-            <div (click)="toggleCategory(6)" [ngClass]="isActive[5].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Fast food' | translate }}</div>
-            <div (click)="toggleCategory(7)" [ngClass]="isActive[6].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Fruits' | translate }}</div>
-        </div>
-
-        <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
-            <p class="category-title">{{'ExpenseCategory.Housekeeping' | translate }}</p>
-            <div (click)="toggleCategory(8)" [ngClass]="isActive[7].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Housekeeping' | translate }}</div>
-            <div (click)="toggleCategory(9)" [ngClass]="isActive[8].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Electricity' | translate }}</div>
-            <div (click)="toggleCategory(10)" [ngClass]="isActive[9].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Gas' | translate }}</div>
-            <div (click)="toggleCategory(11)" [ngClass]="isActive[10].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Water' | translate }}</div>
-        </div>
-        <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
-            <p class="category-title">{{'ExpenseCategory.Entertainment' | translate }}</p>
-            <div (click)="toggleCategory(12)" [ngClass]="isActive[11].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Entertainment' | translate }}</div>
-            <div (click)="toggleCategory(13)" [ngClass]="isActive[12].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Internet shopping' | translate }}</div>
-            <div (click)="toggleCategory(14)" [ngClass]="isActive[13].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Restaurants' | translate }}</div>
-            <div (click)="toggleCategory(15)" [ngClass]="isActive[14].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Cinema' | translate }}</div>
-            <div (click)="toggleCategory(16)" [ngClass]="isActive[15].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Theatre' | translate }}</div>
-            <div (click)="toggleCategory(17)" [ngClass]="isActive[16].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Smoking' | translate }}</div>
-        </div>
-        <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
-            <p class="category-title">{{'ExpenseCategory.Medicine' | translate }}</p>
-            <div (click)="toggleCategory(18)" [ngClass]="isActive[17].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Medicine' | translate }}</div>
-            <div (click)="toggleCategory(19)" [ngClass]="isActive[18].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Medicaments' | translate }}</div>
-            <div (click)="toggleCategory(20)" [ngClass]="isActive[19].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Treatment' | translate }}</div>
-        </div>
-        <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
-            <p class="category-title">{{'ExpenseCategory.Beauty' | translate }}</p>
-            <div (click)="toggleCategory(21)" [ngClass]="isActive[20].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Beauty' | translate }}</div>
-            <div (click)="toggleCategory(22)" [ngClass]="isActive[21].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Beauty accessories' | translate }}</div>
-            <div (click)="toggleCategory(23)" [ngClass]="isActive[22].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Beauty products' | translate }}</div>
-            <div (click)="toggleCategory(24)" [ngClass]="isActive[23].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Beauty procedures' | translate }}</div>
-
-        </div>
-        <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
-            <p class="category-title"> {{'ExpenseCategory.Sport' | translate }}</p>
-            <div (click)="toggleCategory(25)" [ngClass]="isActive[24].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport' | translate }}</div>
-            <div (click)="toggleCategory(26)" [ngClass]="isActive[25].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport events' | translate }}</div>
-            <div (click)="toggleCategory(27)" [ngClass]="isActive[26].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport gambling' | translate }}</div>
-            <div (click)="toggleCategory(28)" [ngClass]="isActive[27].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport inventory' | translate }}</div>
-            <div (click)="toggleCategory(29)" [ngClass]="isActive[28].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Sport activities' | translate }}</div>
-        </div>
-        <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
-            <p class="category-title">{{'ExpenseCategory.Transportation' | translate }}</p>
-            <div (click)="toggleCategory(30)" [ngClass]="isActive[29].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Transportation' | translate }}</div>
-            <div (click)="toggleCategory(31)" [ngClass]="isActive[30].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Air transportation' | translate }}</div>
-            <div (click)="toggleCategory(32)" [ngClass]="isActive[31].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Land Transportation' | translate }}</div>
-        </div>
-        <div class="category-group col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
-            <p class="category-title">{{'ExpenseCategory.Other' | translate }}</p>
-            <div (click)="toggleCategory(33)" [ngClass]="isActive[32].status ? 'alert alert-success' : ''" class="category-item p-3 border">{{'ExpenseCategory.Other' | translate }}</div>
-        </div>
-    </div>
-
-
 </mat-dialog-content>

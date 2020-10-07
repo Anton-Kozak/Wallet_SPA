@@ -28,7 +28,7 @@ export class AdminService {
   }
 
   onExpenseDelete(id: number) {
-    return this.http.delete(this.baseUrl + this.authService.getToken().nameid + '/expenseDelete/' + id, { responseType: 'text' });
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/expenseDelete/' + id, {},  {responseType: 'text'});
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable) {

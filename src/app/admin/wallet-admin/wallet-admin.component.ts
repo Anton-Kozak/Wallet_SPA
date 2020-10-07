@@ -36,7 +36,7 @@ export class WalletAdminComponent implements OnInit {
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
   ngOnInit(): void {
-    this.walletService.getCurrentWallet().subscribe(wallet=>{
+    this.walletService.getCurrentWallet().subscribe(wallet => {
       this.walletCurrency = wallet['currency'];
     })
     if (this.translate.currentLang === 'en') {
@@ -120,12 +120,13 @@ export class WalletAdminComponent implements OnInit {
     });
   }
 
-  expenseDelete(id: number, rowIndex: number) {
+  expenseDelete(id: number, rowIndex: number, elem: any) {
     let deleteConfirmation = confirm(this.translate.currentLang === 'en' ? "Do you really want to delete this expense?" : "Вы действительно хотите удалить этот расход?");
     if (deleteConfirmation) {
       this.adminService.onExpenseDelete(id).subscribe((response: any) => {
         this.alertify.success(response);
-        this.expenses.data.splice(rowIndex, 1);
+        let indexOfItemToDelete = this.expenses.data.indexOf(elem);
+        this.expenses.data.splice(indexOfItemToDelete, 1);
         this.expenses.data = this.expenses.data;
       }, error => {
         this.alertify.error(error.error);

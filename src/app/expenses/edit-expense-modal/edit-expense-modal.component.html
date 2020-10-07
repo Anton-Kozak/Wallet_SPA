@@ -57,7 +57,7 @@
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" [ngClass]="{'bg-danger text-light': editExpense.get('money').errors && editExpense.get('money').touched,
-                        'bg-success text-white': !editExpense.get('money').errors}">$</span>
+                        'bg-success text-white': !editExpense.get('money').errors}">{{'Expenses.Cost' | translate}}</span>
                         </div>
                         <input [ngClass]="{'is-invalid': editExpense.get('money').errors && editExpense.get('money').touched,
                                     'is-valid': !editExpense.get('money').errors}" type="number" formControlName="money" class="form-control input-data">
