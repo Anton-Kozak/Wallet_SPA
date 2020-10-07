@@ -125,6 +125,7 @@ td.mat-cell {
 
 .mat-dialog-container {
     background-color: var(--card-background) !important;
+    color: var(--text-color) !important;
     margin-top: 50px;
 }
 
