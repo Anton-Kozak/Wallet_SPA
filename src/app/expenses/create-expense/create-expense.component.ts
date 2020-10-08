@@ -53,7 +53,8 @@ export class CreateExpenseComponent implements OnInit {
   createExpense() {
 
     var date = moment(new Date).format();
-    if (this.newExpenseForm.errors == null && this.isLoading === false) {
+    if (this.newExpenseForm.errors == null && this.isLoading === false && this.newExpenseForm.valid) {
+      this.isLoading = true;
       this.expense = {
         expenseCategoryId: this.newExpenseForm.value['category'],
         expenseTitle: this.newExpenseForm.value['title'],
@@ -62,7 +63,7 @@ export class CreateExpenseComponent implements OnInit {
         creationDate: date
       }
 
-      this.isLoading = true;
+
       this.expenseService.createExpense(this.expense).subscribe((response: any) => {
         if (response['message'] === null) {
           this.alertify.success("You have successfully created an expense!");

@@ -89,6 +89,7 @@ export class SignupSigninComponent implements OnInit {
       this.signInLoading = false;
     }, error => {
       this.alertify.error('Incorrect username or password');
+      console.log(error);
       this.signInLoading = false;
     })
   }

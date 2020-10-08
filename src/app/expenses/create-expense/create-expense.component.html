@@ -58,7 +58,10 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" [ngClass]="{'bg-danger text-light': newExpenseForm.get('money').errors && newExpenseForm.get('money').touched,
-                        'bg-success text-white': !newExpenseForm.get('money').errors}">{{'Expenses.Cost' | translate}}</span>
+                        'bg-success text-white': !newExpenseForm.get('money').errors}">
+                        <!-- {{'Expenses.Cost' | translate}} -->
+                        <i style="font-size: 1.3rem;" class="fas fa-money-bill-alt"></i>
+                    </span>
                     </div>
                     <input [ngClass]="{'is-invalid': newExpenseForm.get('money').errors && newExpenseForm.get('money').touched,
                                     'is-valid': !newExpenseForm.get('money').errors}" type="number" formControlName="money" class="form-control input-data">
@@ -69,7 +72,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <button (click)="createExpense()" class="btn btn-outline-secondary btn-block" [disabled]="newExpenseForm.invalid && isLoading" [ngClass]="{'btn-outline-success': newExpenseForm.valid, 'btn-loading' : isLoading}"><span [ngClass]="{'button-text': isLoading}">{{'Expenses.CreateExpense' | translate}}</span></button>
+                <button (click)="createExpense()" class="btn btn-outline-secondary btn-block" [disabled]="!newExpenseForm.valid || isLoading" [ngClass]="{'btn-outline-success': newExpenseForm.valid, 'btn-loading' : isLoading}"><span [ngClass]="{'button-text': isLoading}">{{'Expenses.CreateExpense' | translate}}</span></button>
             </div>
         </form>
         <button class="btn btn-warning btn-block" (click)="back()">{{'Profile.Back' | translate}}</button>

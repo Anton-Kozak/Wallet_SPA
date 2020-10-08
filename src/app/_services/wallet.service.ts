@@ -46,7 +46,7 @@ export class WalletService {
 
 
   editWallet(wallet: Wallet) {
-    return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/editWallet', wallet, { responseType: 'text' });
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/editWallet', { wallet });
   }
 
 

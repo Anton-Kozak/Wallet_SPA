@@ -29,10 +29,15 @@
     </div>
 
     <div class="row mt-5 data-column" [hidden]="!showData">
-        <div class="col-lg-6 col-sm-12 col-12">
+        <div *ngIf="firstMonthTotal == 0" class="col-lg-6 col-sm-12 col-12">
+            <div style="font-size: 22px;" class="card col-12 p-5 text-uppercase text-center">
+                {{'Expenses.Nothing' | translate}} {{'Expenses.On' | translate}} {{getFormat(firstDate.value)}}
+            </div>
+        </div>
+        <div *ngIf="firstMonthTotal > 0" class="col-lg-6 col-sm-12 col-12">
             <div class="d-lg-none">
                 <div class="card p-3 text-center text-uppercase">
-                    {{firstDate.value}}
+                    {{getFormat(firstDate.value)}}
                 </div>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left': showData}">
@@ -223,7 +228,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-sm-12 col-12">
+        <div *ngIf="secondMonthTotal == 0" class="col-lg-6 col-sm-12 col-12">
+            <div style="font-size: 22px;" class="card col-12 p-5 text-uppercase text-center">
+                {{'Expenses.Nothing' | translate}} {{'Expenses.On' | translate}} {{getFormat(secondDate.value)}}
+            </div>
+        </div>
+        <div *ngIf="secondMonthTotal > 0" class="col-lg-6 col-sm-12 col-12">
             <div class="d-lg-none mt-5">
                 <div class="card p-3 text-center text-uppercase">
                     {{secondDate.value}}

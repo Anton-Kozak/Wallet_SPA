@@ -28,7 +28,7 @@ export class ManualComparisonComponent implements OnInit {
   firstMonthMostSpent: string = '';
   firstMonthMostUsed: string = '';
   firstMonthAverage: number;
-  firstMonthTotal: number;
+  firstMonthTotal: number = 0;
   firstLargestExpense: number;
   firstMonthPreviousExpensesBars: ExpenseList[];
   firstMonthTopFiveUsers: TopUsersStat[];
@@ -58,7 +58,7 @@ export class ManualComparisonComponent implements OnInit {
   constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService, private titleService: Title) { }
 
   ngOnInit(): void {
-    this.walletService.getCurrentWallet().subscribe(wallet=>{
+    this.walletService.getCurrentWallet().subscribe(wallet => {
       this.walletCurrency = wallet['currency'];
     })
     if (this.translateService.currentLang === 'en') {
@@ -114,26 +114,38 @@ export class ManualComparisonComponent implements OnInit {
   }
 
   selectDates() {
+    this.firstMonthPreviousExpensesBars = null;
+    this.secondMonthPreviousExpensesBars = null;
+    this.firstMonthTopFiveUsers = null;
+    this.secondMonthTopFiveUsers = null;
     this.expenseService.getSpecifiedMonthsData(this.firstDay.toDateString(), this.secondDay.toDateString()).subscribe(response => {
       console.log(response);
-
-      this.firstMonthMostSpent = response['firstMonthMostSpent'];
-      this.firstMonthMostUsed = response['firstMonthMostUsed'];
-      this.firstLargestExpense = response['firstLargestExpense'];
-      this.firstMonthAverage = response['firstMonthAverage'];
-      this.firstMonthPreviousExpensesBars = response['firstMonthPreviousExpensesBars'];
-      this.firstMonthTopFiveUsers = response['firstMonthTopFiveUsers'];
-      this.firstMonthExpenses.data = response['firstMonthExpenses'];
-      this.firstMonthTotal = response['firstMonthTotal'];
-
-      this.secondMonthMostSpent = response['secondMonthMostSpent'];
-      this.secondMonthMostUsed = response['secondMonthMostUsed'];
-      this.secondLargestExpense = response['secondLargestExpense'];
-      this.secondMonthAverage = response['secondMonthAverage'];
-      this.secondMonthPreviousExpensesBars = response['secondMonthPreviousExpensesBars'];
-      this.secondMonthTopFiveUsers = response['secondMonthTopFiveUsers'];
-      this.secondMonthExpenses.data = response['secondMonthExpenses'];
-      this.secondMonthTotal = response['secondMonthTotal'];
+      if (response['firstMonthTotal'] > 0) {
+        this.firstMonthMostSpent = response['firstMonthMostSpent'];
+        this.firstMonthMostUsed = response['firstMonthMostUsed'];
+        this.firstLargestExpense = response['firstLargestExpense'];
+        this.firstMonthAverage = response['firstMonthAverage'];
+        this.firstMonthPreviousExpensesBars = response['firstMonthPreviousExpensesBars'];
+        this.firstMonthTopFiveUsers = response['firstMonthTopFiveUsers'];
+        this.firstMonthExpenses.data = response['firstMonthExpenses'];
+        this.firstMonthTotal = response['firstMonthTotal'];
+      }
+      else {
+        this.firstMonthTotal = 0;
+      }
+      if (response['secondMonthTotal'] > 0) {
+        this.secondMonthMostSpent = response['secondMonthMostSpent'];
+        this.secondMonthMostUsed = response['secondMonthMostUsed'];
+        this.secondLargestExpense = response['secondLargestExpense'];
+        this.secondMonthAverage = response['secondMonthAverage'];
+        this.secondMonthPreviousExpensesBars = response['secondMonthPreviousExpensesBars'];
+        this.secondMonthTopFiveUsers = response['secondMonthTopFiveUsers'];
+        this.secondMonthExpenses.data = response['secondMonthExpenses'];
+        this.secondMonthTotal = response['secondMonthTotal'];
+      }
+      else {
+        this.secondMonthTotal = 0;
+      }
       this.showData = true;
     });
   }
