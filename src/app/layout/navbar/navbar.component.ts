@@ -90,7 +90,6 @@ export class NavbarComponent implements OnInit {
 
 
   onToggle() {
-    console.log('etmi test');
     this.toggleState = !this.toggleState;
     this.toggleDrawer.emit();
   }

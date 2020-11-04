@@ -116,7 +116,6 @@ export class WalletAdminComponent implements OnInit {
   onWalletEditDialog() {
     const dialogRef = this.dialog.open(EditWalletComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 

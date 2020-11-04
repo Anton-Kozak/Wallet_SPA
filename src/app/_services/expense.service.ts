@@ -50,7 +50,7 @@ export class ExpenseService {
   showAllExpenses() {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid).subscribe((expenses: ExpensesWithCategories[]) => {
       if (expenses != null) {
-        console.log(expenses);
+        //console.log(expenses);
         let categoriesCount = 0;
         let categories: CategoryData[] = [];
         this.firstExpenses.expenses = expenses[0]['expenses'];
@@ -149,9 +149,7 @@ export class ExpenseService {
       switch (+(expense.expenseCategoryId)) {
         case this.firstExpenses.categoryId:
           this.firstExpenses.expenses.push(receivedExpense);
-          console.log('pushed meat', this.firstExpenses.expenses);
           this.firstSubject.next(this.firstExpenses.expenses);
-          console.log('nexted meat', this.firstSubject);
           break;
         case this.secondExpenses.categoryId:
           this.secondExpenses.expenses.push(receivedExpense);
@@ -219,8 +217,6 @@ export class ExpenseService {
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable) {
-    console.log('edit expene', expenseToEdit);
-
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit)
   }
 

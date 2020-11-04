@@ -164,7 +164,6 @@ export class ShowWalletTableComponent implements OnInit {
       this.currentSelectedDate = new FormControl(moment(this.dayForDailyExpenses).format('LL'));
       this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
         this.dailyExpenses = expenses;
-        console.log(expenses);
       })
       this.isLoading = false;
     });
@@ -216,8 +215,6 @@ export class ShowWalletTableComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateExpenseComponent);
     dialogRef.afterClosed().subscribe(newExpense => {
       if (newExpense !== null) {
-        console.log('res', newExpense);
-
         if (this.moment(this.dayForDailyExpenses).format('ll') === this.moment(new Date()).format('ll'))
           this.updateDailyExpenses();
       }
@@ -226,10 +223,8 @@ export class ShowWalletTableComponent implements OnInit {
 
   showNotifications() {
     this.notifications.forEach(element => {
-      console.log(element.message);
     });
     this.noteService.deleteNotifications().subscribe(() => {
-      console.log('Success');
     })
   }
 

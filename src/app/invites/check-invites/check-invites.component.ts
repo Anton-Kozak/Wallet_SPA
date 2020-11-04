@@ -34,7 +34,6 @@ export class CheckInvitesComponent implements OnInit {
     })
     this.invService.checkInvites().subscribe((inv: Invite[]) => {
       this.invites = inv;
-      console.log(this.invites);
     })
   }
 

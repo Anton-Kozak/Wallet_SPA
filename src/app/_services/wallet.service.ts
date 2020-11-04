@@ -45,8 +45,8 @@ export class WalletService {
   }
 
 
-  editWallet(wallet: Wallet) {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/editWallet', { wallet });
+  editWallet(walletToEdit: Wallet) {
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/editWallet',  walletToEdit, { responseType: 'text' } );
   }
 
 
@@ -55,7 +55,6 @@ export class WalletService {
   }
 
   getProfileData() {
-    console.log('Profile init');
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/profile');
   }
 

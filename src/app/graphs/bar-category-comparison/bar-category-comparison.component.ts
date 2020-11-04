@@ -74,13 +74,8 @@ export class BarCategoryComparisonComponent implements OnInit {
     const last = this.lastMonthbar;
     this.barChartData[0].data = [this.lastMonthbar];
     const current = this.currentMonthbar;
-    console.log(this.currentMonthbar);
     this.barChartData[1].data = [31];
-    console.log(this.barChartData);
     this.barChartLabels[0] = this.category;
-    console.log(this.currentMonthbar);
-
-
   }
 
 }

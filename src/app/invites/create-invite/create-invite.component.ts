@@ -23,7 +23,6 @@ export class CreateInviteComponent implements OnInit {
     if (this.email.length >= 4) {
       this.invService.createInvite(this.email).subscribe((response: any) => {
         this.alertify.success(response);
-        console.log(response);
       }, error => {
         this.alertify.error(error.error)
       });

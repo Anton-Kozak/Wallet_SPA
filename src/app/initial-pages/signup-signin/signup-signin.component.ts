@@ -30,7 +30,6 @@ export class SignupSigninComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('reg start');
     this.signUpForm = new FormGroup({
       'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[a-zA-Z0-9]+')]),
       'userpassUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
@@ -83,13 +82,12 @@ export class SignupSigninComponent implements OnInit {
         this.router.navigate(['/wallet/home-wallet']);
       }
       else {
-        console.log('I have no wallet');
+        //console.log('I have no wallet');
         this.router.navigate(['/main/no-wallet']);
       }
       this.signInLoading = false;
     }, error => {
       this.alertify.error('Incorrect username or password');
-      console.log(error);
       this.signInLoading = false;
     })
   }
@@ -102,7 +100,6 @@ export class SignupSigninComponent implements OnInit {
 
   hasWallet() {
     if (this.authService.getToken() !== null) {
-      console.log(this.authService.getToken());
       if (this.authService.getToken().hasWallet === "true")
         return true;
       return false;

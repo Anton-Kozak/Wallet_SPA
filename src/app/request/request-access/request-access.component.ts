@@ -25,7 +25,6 @@ export class RequestAccessComponent implements OnInit {
     if (this.email.length >= 4) {
       this.reqService.createRequestForAccess(this.email).subscribe((response: any) => {
         this.alertify.success(response);
-        console.log(response);
       }, error => {
         this.alertify.error(error.error)
       });

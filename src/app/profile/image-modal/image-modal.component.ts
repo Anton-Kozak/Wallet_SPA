@@ -21,10 +21,7 @@ export class ImageModalComponent implements OnInit {
   }
 
   onFileChanged(event) {
-    console.log('selected');
-
     this.photo = event.target.files[0];
-    console.log(this.photo);
 
     var reader = new FileReader();
 
@@ -45,7 +42,6 @@ export class ImageModalComponent implements OnInit {
     uploadData.append('Name', this.photo.name);
     uploadData.append('File', this.photo);
     this.photoService.addPhoto(uploadData).subscribe(response => {
-      console.log(response);
       this.isUploaded = true;
       this.dialogRef.close();
     });

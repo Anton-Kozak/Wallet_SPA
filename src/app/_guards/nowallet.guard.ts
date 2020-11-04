@@ -12,18 +12,18 @@ export class NowalletGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var token = this.authService.getToken();
-    console.log('No wallet guard is activated');
+    //console.log('No wallet guard is activated');
     if (token !== null) {
-      console.log('token exists');
+      //console.log('token exists');
       
       if (token.hasWallet === 'true') {
-        console.log('has wallet, trying to got to wallet home');
+        //console.log('has wallet, trying to got to wallet home');
         
         this.router.navigate(['/wallet/home-wallet']);
         return false;
       }
       else {
-        console.log('Wallet is not found, going to no wallet section');
+        //console.log('Wallet is not found, going to no wallet section');
         return true;
       }
     }

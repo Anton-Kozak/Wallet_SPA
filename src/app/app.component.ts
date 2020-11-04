@@ -23,9 +23,6 @@ export class AppComponent {
     this.authService.isLoggedIn.subscribe(res => {
       this.isAuthorized = res;
     });
-    console.log(this.hasWallet);
-    console.log(this.isAuthorized);
-
 
   }
 

@@ -30,7 +30,6 @@ export class CreateWalletComponent implements OnInit {
     for (let i = 1; i <= 33; i++) {
       this.isActive.push({ id: i, status: false });
     }
-    console.log(this.isActive);
 
     this.walletForm = new FormGroup({
       //TODO: сделать кастомный валидатор

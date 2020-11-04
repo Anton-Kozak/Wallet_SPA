@@ -12,17 +12,17 @@ export class NavigationGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var token = this.authService.getToken();
-    console.log('Navigation guard is activated');
+    //console.log('Navigation guard is activated');
     if (token !== null) {
       if (new Date(token.exp * 1000).toUTCString() > new Date().toUTCString()) {
-        console.log("Has token", token);
-        console.log('Expiration', new Date(token.exp * 1000));
-        console.log('Current time', new Date());
+        // console.log("Has token", token);
+        // console.log('Expiration', new Date(token.exp * 1000));
+        // console.log('Current time', new Date());
         if (token.hasWallet === 'true') {
           return true;
         }
       }
-      console.log('Forced logout');
+      //console.log('Forced logout');
       this.authService.logout();
       this.router.navigate(['/main/reg']);
       return false;
@@ -34,7 +34,7 @@ export class NavigationGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var token = this.authService.getToken();
-    console.log('Navigation guard is activated');
+    //console.log('Navigation guard is activated');
     if (token !== null) {
 
       if (new Date(token.exp * 1000) > new Date()) {
@@ -45,7 +45,7 @@ export class NavigationGuard implements CanActivate {
           return true;
         }
       }
-      console.log('Forced logout');
+      //console.log('Forced logout');
 
       this.authService.logout();
       this.router.navigate(['/main/reg']);

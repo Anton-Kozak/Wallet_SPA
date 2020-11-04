@@ -49,7 +49,6 @@ export class ProfileComponent implements OnInit {
     this.isLoading = true;
     this.walletService.getProfileData().subscribe((profileData: ProfileData) => {
       this.profileData = profileData;
-      console.log('Profile', profileData);
       //todo: сделать валидацию как и везде
       this.editProfileForm = new FormGroup({
         'company': new FormControl(this.profileData.editUser.company, [Validators.minLength(2), Validators.maxLength(32), Validators.pattern("[A-Za-z0-9 \.]+")]),
@@ -85,7 +84,6 @@ export class ProfileComponent implements OnInit {
   onImageChange() {
     const dialogRef = this.dialog.open(ImageModalComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       this.getPhoto();
     });
   }

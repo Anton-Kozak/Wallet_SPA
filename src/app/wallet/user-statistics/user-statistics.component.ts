@@ -118,7 +118,6 @@ export class UserStatisticsComponent implements OnInit {
 
   private getData(date: Date) {
     this.expService.getUserStatistics(this.id, date.toUTCString()).subscribe(response => {
-      console.log('User statistics', response);
       this.expService.getUserExpenses(this.id, date.toUTCString()).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses.data = expensesRecieved;
       });

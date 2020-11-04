@@ -1,9 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ExpenseForTable } from 'src/app/_model/expense-for-table';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { AuthService } from 'src/app/_services/auth.service';
 import { AdminService } from 'src/app/_services/admin.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import * as moment from 'moment';
@@ -30,9 +29,6 @@ export class EditExpenseModalComponent implements OnInit {
     this.exp = this.data;
     if (this.data['isAdmin'] !== undefined)
       this.isAdminEdit = true;
-    console.log(this.isAdminEdit);
-
-
     this.editExpense = new FormGroup({
       'title': new FormControl(this.exp.expenseTitle, [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       'money': new FormControl(this.exp.moneySpent, [Validators.required]),
@@ -56,10 +52,10 @@ export class EditExpenseModalComponent implements OnInit {
       }
       else {
         this.expService.onExpenseEdit(expToEdit).subscribe((editedExpense: ExpenseForTable) => {
+          this.alertify.success('Вы успешно обновили расход!')
           this.dialogRef.close(editedExpense);
         }, error=>{
-          console.log(error);
-          
+          this.alertify.error(error);
         });
       }
     }
@@ -84,9 +80,10 @@ export class EditExpenseModalComponent implements OnInit {
       }
       else {
         this.adminService.onExpenseEdit(expToEdit).subscribe((editedExpense: ExpenseForTable) => {
-          console.log(editedExpense);
-          
+          this.alertify.success('Вы успешно обновили расход!')
           this.dialogRef.close(editedExpense);
+        }, error=>{
+          this.alertify.error(error);
         });
       }
     }

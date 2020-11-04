@@ -23,8 +23,6 @@ export class WalletSectionComponent implements OnInit {
   }
 
   @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
-    // console.log($event['Window']);
-    console.log("scrolling ws");
   }
 
   @ViewChild(MatSidenavContainer) sidenavContainer: MatSidenavContainer;

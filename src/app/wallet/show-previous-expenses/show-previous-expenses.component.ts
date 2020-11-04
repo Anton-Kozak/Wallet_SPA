@@ -57,7 +57,6 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth() - 1);
     this.year = moment(this.date).format('YYYY');
-    console.log('Init month', this.date);
     this.monthName = moment(this.date).format('MMMM');
     if (this.walletService.currentCategories.length === 0) {
       this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
@@ -166,8 +165,6 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.date = new Date(Date.now());
     this.monthNumber++;
     this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
-    console.log('should be first day of previous month', this.date);
-    //this.monthName = this.date.toLocaleString('default', { month: 'long' });
     this.monthName = moment(this.date).format('MMMM');
     this.year = moment(this.date).format('YYYY');
     this.clearData();
@@ -180,7 +177,6 @@ export class ShowPreviousExpensesComponent implements OnInit {
       this.monthNumber--;
       this.date = new Date(Date.now());
       this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
-      //this.monthName = this.date.toLocaleString('default', { month: 'long' });
       this.monthName = moment(this.date).format('MMMM');
       this.year = moment(this.date).format('YYYY');
       this.clearData();

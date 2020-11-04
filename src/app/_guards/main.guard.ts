@@ -12,24 +12,24 @@ export class MainGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var token = this.authService.getToken();
-    console.log('Main guard is activated');
+    //console.log('Main guard is activated');
     if (token !== null) {
       if (token.hasWallet === 'true') {
-        console.log('Main guard has wallet true');
+        //console.log('Main guard has wallet true');
 
         if (this.router.url !== '/') {
-          console.log('router is not /');
+         // console.log('router is not /');
           this.router.navigate([this.router.url]);
         }
         else {
-          console.log('main guard going to home wallet');
+          //console.log('main guard going to home wallet');
           this.router.navigate(['/wallet/home-wallet']);
         }
         return false;
       }
       return true;
     }
-    console.log('no token found');
+    //console.log('no token found');
 
     return true;
   }

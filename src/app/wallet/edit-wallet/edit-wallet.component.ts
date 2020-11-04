@@ -22,7 +22,6 @@ export class EditWalletComponent implements OnInit {
   ngOnInit(): void {
     this.walletService.getCurrentWallet().subscribe((currentWallet: Wallet) => {
       this.currentWallet = currentWallet;
-      console.log(this.currentWallet);
       this.editWalletForm = new FormGroup({
         'title': new FormControl(this.currentWallet.title, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
         'currency': new FormControl(this.currentWallet.currency, Validators.required),

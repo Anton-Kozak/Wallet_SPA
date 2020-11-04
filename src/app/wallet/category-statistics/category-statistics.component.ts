@@ -83,7 +83,6 @@ export class CategoryStatisticsComponent implements OnInit {
           this.lastMonthData = data['barCompareExpensesWithLastMonth']['lastMonthData'];
 
           if (this.currentMonthData > 0 && this.lastMonthData > 0) {
-            console.log('Comparison check', this.currentMonthData, this.lastMonthData);
 
             this.showComparisonData = true;
           }
