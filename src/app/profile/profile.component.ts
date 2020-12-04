@@ -135,5 +135,5 @@ export class ProfileComponent implements OnInit {
     return moment(date).format('lll');
   }
 
-
+//todo: проверка ошибки когда не получается найти картинку по ссылке
 }
