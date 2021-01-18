@@ -28,16 +28,18 @@ export class ShowWalletTableComponent implements OnInit {
     public dialog: MatDialog,
     private noteService: NotificationService,
     private route: ActivatedRoute, private translateService: TranslateService, private titleService: Title) { }
-  first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  third: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  fourth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  fifth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  sixth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  seventh: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  eigth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  nineth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
-  tenth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  //old approach with 10 subjects
+  
+  // first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  // second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  // third: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  // fourth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  // fifth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  // sixth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  // seventh: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  // eigth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  // nineth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
+  // tenth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
 
   dailyExpenses: ExpenseForTable[] = [];
   dayForDailyExpenses = new Date();
