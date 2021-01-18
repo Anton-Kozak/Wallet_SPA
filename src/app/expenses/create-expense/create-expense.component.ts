@@ -77,6 +77,8 @@ export class CreateExpenseComponent implements OnInit {
         }
       }, error => {
         this.alertify.error("You did not create an expense");
+        console.error(error);
+
         this.isLoading = false;
       });
     }
