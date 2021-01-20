@@ -13,6 +13,7 @@ import { AdminGuard } from '../_guards/admin.guard';
 import { HasRoleDirective } from '../_directives/hasRole.directive';
 import { MatBadgeModule } from '@angular/material/badge';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { CardModule } from '../shared/card/card.module';
 
 
 const routes: Routes = [
@@ -44,7 +45,7 @@ const routes: Routes = [
     MatDialogModule,
     ReactiveFormsModule,
     MatBadgeModule,
-    MatExpansionModule
+    MatExpansionModule,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

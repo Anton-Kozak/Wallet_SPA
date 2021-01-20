@@ -29,11 +29,16 @@
                 <div class="row">
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="0">
-                        <div class="card card-stats">
+                        <app-card [classes]="['nc-icon nc-chart-bar-32 text-success', 'fa fa-sort-amount-asc']"
+                            [mainText]="'Expenses.MostUsed'" [subText]="'ExpenseCategory.'+mostUsedCategory"
+                            [subTextNone]="'None found'" [hasFooter]="true" [footerText]="'Footer.NumberExp'"
+                            [footerTextNone]="'Please, add expenses'">
+                        </app-card>
+                        <!-- <div class="card card-stats">
                             <div class="card-body ">
                                 <div class="row">
                                     <div class="col-5 col-md-4">
-                                        <div class="icon-big text-center icon-success">
+                                        <div class="icon-big text-center">
                                             <i class="nc-icon nc-chart-bar-32 text-success"></i>
                                         </div>
                                     </div>
@@ -52,7 +57,7 @@
                                     <i class="fa fa-sort-amount-asc"></i> {{'Footer.NumberExp' | translate}}
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="row">
@@ -235,10 +240,12 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="!isLoading" class="card" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+                <div *ngIf="!isLoading" class="card" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true"
+                    data-aos-delay="0">
                     <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
-                        <app-table-with-expenses *ngIf="expensesToSend.length > 0 && !isLoading" [tableData]='expensesToSend' [tableHeaders]='columnsForExpenses'
-                            [isThisUser]='isThisUser' [walletCurrency]='walletCurrency'></app-table-with-expenses>
+                        <app-table-with-expenses *ngIf="expensesToSend.length > 0 && !isLoading"
+                            [tableData]='expensesToSend' [tableHeaders]='columnsForExpenses' [isThisUser]='isThisUser'
+                            [walletCurrency]='walletCurrency'></app-table-with-expenses>
                         <!-- <table style="width: 100%;" mat-table [dataSource]="expenses">
                             <ng-container matColumnDef="expenseTitle">
                                 <th class="text-center table-head title-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Expense' | translate}} </th>
@@ -280,7 +287,7 @@
                             <tr mat-header-row *matHeaderRowDef="columnsForExpenses"></tr>
                             <tr mat-row *matRowDef="let row; columns: columnsForExpenses;"></tr>
                         </table> -->
-                        
+
                     </div>
                 </div>
             </div>

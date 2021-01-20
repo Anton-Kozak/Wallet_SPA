@@ -4,6 +4,7 @@ import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/
 import { RouterModule } from '@angular/router';
 import { WalletStatisticsComponent } from './wallet-statistics.component';
 import { GraphsModule } from 'src/app/shared/graphs.module';
+import { CardModule } from 'src/app/shared/card/card.module';
 
 
 
@@ -15,7 +16,8 @@ import { GraphsModule } from 'src/app/shared/graphs.module';
     CommonModule,
     RouterModule.forChild([{ path: '', component: WalletStatisticsComponent }]),
     TranslateSharedLazyModule,
-    GraphsModule
+    GraphsModule,
+    CardModule
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

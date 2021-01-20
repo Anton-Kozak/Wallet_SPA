@@ -7,6 +7,7 @@ import { UserStatisticsComponent } from './user-statistics.component';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from '../../shared/table-with-expenses/table.module';
+import { CardModule } from 'src/app/shared/card/card.module';
 
 
 
@@ -20,7 +21,8 @@ import { TableModule } from '../../shared/table-with-expenses/table.module';
         FormsModule,
         ReactiveFormsModule,
         GraphsModule,
-        TableModule
+        TableModule,
+        CardModule
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

@@ -1,0 +1,30 @@
+<div class="card card-stats">
+    <div class="card-body ">
+        <div class="row">
+            <div class="col-5 col-md-4">
+                <div class="icon-big text-center">
+                    <i [ngClass]="classes[0]"></i>
+                    <!-- 0 - иконка + цвет
+                        class="fas fa-wallet text-primary" -->
+                </div>
+            </div>
+            <div class="col-7 col-md-8">
+                <div class="numbers">
+                    <p class="card-category mb-2">{{mainText | translate}}</p>
+                    <p *ngIf="subText !== null" class="card-title text-capitalize">{{subText | translate}}</p>
+                    <p *ngIf="subText == null" class="card-title text-capitalize">{{subTextNone}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <hr>
+        <div class="stats" *ngIf="hasFooter">
+            <i [ngClass]="classes[1]"></i>
+            <!-- 1 - иконка для футера
+                 class="fa fa-sort-amount-asc" -->
+            <span *ngIf="footerText !== null">{{footerText | translate}}</span>
+            <span *ngIf="footerText == null">{{footerTextNone}}</span>
+        </div>
+    </div>
+</div>

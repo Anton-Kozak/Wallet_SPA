@@ -11,7 +11,8 @@
     </div>
     <div *ngIf="!isLoading" class="scroll">
         <div class="row">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12" data-aos="fade-right" data-aos-duration="1200"
+                data-aos-once="true" data-aos-delay="0">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">{{'Expenses.TeamMembers' | translate}}</h4>
@@ -22,13 +23,17 @@
                                 <div class="row user-details">
                                     <div class="col-md-3 col-sm-2 col-4">
                                         <div class="avatar">
-                                            <img style="cursor: pointer;" class="avatar-image" (click)="getUserStatistics(user.id)" src="{{user.photoUrl !== null ? user.photoUrl : '../../assets/images/default-avatar.png'}}" alt="">
+                                            <img style="cursor: pointer;" class="avatar-image"
+                                                (click)="getUserStatistics(user.id)"
+                                                src="{{user.photoUrl !== null ? user.photoUrl : '../../assets/images/default-avatar.png'}}"
+                                                alt="">
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-sm-7 col-8 text-capitalize">
                                         {{user.username}}
                                         <br>
-                                        <span class="text-muted"><small>{{'Profile.Joined' | translate}}: {{getFormat(user.dateJoined)}}</small></span>
+                                        <span class="text-muted"><small>{{'Profile.Joined' | translate}}:
+                                                {{getFormat(user.dateJoined)}}</small></span>
                                     </div>
                                 </div>
                             </li>
@@ -38,19 +43,27 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
-                <div class="card card-stats">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
+                data-aos-once="true" data-aos-delay="0">
+                <app-card
+                    [classes]="['nc-icon nc-chart-bar-32 text-success', 'fa fa-sort-amount-asc']"
+                    [mainText]="'Expenses.MostUsed'" [subText]="'ExpenseCategory.'+mostUsedCategory"
+                    [subTextNone]="'None found'" [hasFooter]="true" [footerText]="'Footer.NumberExp'"
+                    [footerTextNone]="'Please, add expenses'">
+                </app-card>
+                <!-- <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-success">
+                                <div class="icon-big text-center">
                                     <i class="nc-icon nc-chart-bar-32 text-success"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category mb-2">{{'Expenses.MostUsed' | translate}}</p>
-                                    <p *ngIf="mostUsedCategory != null" class="card-title">{{'ExpenseCategory.' +mostUsedCategory | translate}}</p>
+                                    <p *ngIf="mostUsedCategory != null" class="card-title">{{'ExpenseCategory.'
+                                        +mostUsedCategory | translate}}</p>
                                     <p *ngIf="mostUsedCategory == null" class="card-title">None found</p>
                                 </div>
                             </div>
@@ -64,9 +77,10 @@
                             <span *ngIf="mostUsedCategory == null">Please, add expenses</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="150">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
+                data-aos-once="true" data-aos-delay="150">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -78,7 +92,8 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category mb-2">{{'Expenses.MostSpent' | translate}}</p>
-                                    <p *ngIf="mostSpentCategory != null" class="card-title">{{'ExpenseCategory.' +mostSpentCategory| translate}}</p>
+                                    <p *ngIf="mostSpentCategory != null" class="card-title">{{'ExpenseCategory.'
+                                        +mostSpentCategory| translate}}</p>
                                     <p *ngIf="mostSpentCategory == null" class="card-title">None found</p>
                                 </div>
                             </div>
@@ -94,7 +109,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="300">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
+                data-aos-once="true" data-aos-delay="300">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -116,13 +132,15 @@
                         <hr>
                         <div class="stats">
                             <i class="fa fa-refresh"></i>
-                            <span *ngIf="avgDailyExpenses != 0" class="card-title">{{'Footer.PerDay' | translate}}</span>
+                            <span *ngIf="avgDailyExpenses != 0" class="card-title">{{'Footer.PerDay' |
+                                translate}}</span>
                             <span *ngIf="avgDailyExpenses == 0" class="card-title">Please, add expenses</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="450">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
+                data-aos-once="true" data-aos-delay="450">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -146,7 +164,8 @@
                         <hr>
                         <div class="stats">
                             <i class="fa fa-refresh"></i>
-                            <span *ngIf="amountOfMoneySpent != 0" class="card-title">{{'Footer.TotalSum' | translate}}</span>
+                            <span *ngIf="amountOfMoneySpent != 0" class="card-title">{{'Footer.TotalSum' |
+                                translate}}</span>
                             <span *ngIf="amountOfMoneySpent == 0" class="card-title">Please, add expenses</span>
                         </div>
                     </div>
@@ -154,7 +173,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-4 col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
+            <div class="col-xl-4 col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
+                data-aos-delay="100">
                 <div class="card" style="border-radius: 12px;">
                     <div class="card-header">
                         <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
@@ -164,7 +184,8 @@
                         <div *ngIf="topFiveUsers != null">
                             <app-pie-graph [topFiveUsers]="topFiveUsers"></app-pie-graph>
                         </div>
-                        <p *ngIf="topFiveUsers == null" class="text-uppercase">Please, add some expenses to see statistics
+                        <p *ngIf="topFiveUsers == null" class="text-uppercase">Please, add some expenses to see
+                            statistics
                         </p>
                     </div>
                     <div class="card-footer">
@@ -176,7 +197,8 @@
                 </div>
             </div>
             <div class="col-xl-8 col-12">
-                <div class="card " style="border-radius: 12px;" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
+                <div class="card " style="border-radius: 12px;" data-aos="fade-down" data-aos-duration="1200"
+                    data-aos-once="true" data-aos-delay="200">
                     <div class="card-header ">
                         <h5 class="card-title">{{'Expenses.WalletStatistics' | translate}}</h5>
                         <p class="card-category">{{'Expenses.WalletStatDesc' | translate}}</p>
@@ -185,7 +207,8 @@
                         <div *ngIf="barExpenses != null && categories.length > 0">
                             <app-single-bar-chart [categories]="categories" [barExpensesList]="barExpenses">
                             </app-single-bar-chart>
-                            <p *ngIf="barExpenses == null" class="text-uppercase">Please, add some expenses to see statistics
+                            <p *ngIf="barExpenses == null" class="text-uppercase">Please, add some expenses to see
+                                statistics
                             </p>
                         </div>
                     </div>
@@ -200,7 +223,8 @@
         </div>
 
         <div class="row">
-            <div class="col-xl-6 col-12" [ngClass]="{'col-md-12': !showComparisonData}" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
+            <div class="col-xl-6 col-12" [ngClass]="{'col-md-12': !showComparisonData}" data-aos="fade-right"
+                data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
                 <div class="card " style="border-radius: 12px;">
                     <div class="card-header ">
                         <h5 class="card-title">{{'Expenses.Last' | translate}}</h5>
@@ -208,8 +232,10 @@
                     </div>
                     <div class="card-body ">
                         <div>
-                            <app-line-chart *ngIf="lastSixMonths != null" [lastSixMonths]="lastSixMonths"></app-line-chart>
-                            <p *ngIf="lastSixMonths == null" class="text-uppercase">Please, add some expenses to see statistics
+                            <app-line-chart *ngIf="lastSixMonths != null" [lastSixMonths]="lastSixMonths">
+                            </app-line-chart>
+                            <p *ngIf="lastSixMonths == null" class="text-uppercase">Please, add some expenses to see
+                                statistics
                             </p>
                         </div>
                     </div>
@@ -221,7 +247,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 col-12 compare" *ngIf="showComparisonData" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="300">
+            <div class="col-xl-6 col-12 compare" *ngIf="showComparisonData" data-aos="fade-up" data-aos-duration="1200"
+                data-aos-once="true" data-aos-delay="300">
                 <div class="card " style="border-radius: 12px;">
                     <div class="card-header ">
                         <h5 class="card-title">{{'Expenses.ExpensesCompare' | translate}}</h5>
@@ -229,8 +256,12 @@
                     </div>
                     <div class="card-body ">
                         <div>
-                            <app-bar-comparison *ngIf="currentMonthDataToCompare != null && lastMonthDataToCompare != null" [categories]="categories" [currentMonthbarExpensesList]="currentMonthDataToCompare" [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
-                            <p *ngIf="currentMonthDataToCompare == null && lastMonthDataToCompare == null" class="text-uppercase">Please, add some expenses to see statistics
+                            <app-bar-comparison
+                                *ngIf="currentMonthDataToCompare != null && lastMonthDataToCompare != null"
+                                [categories]="categories" [currentMonthbarExpensesList]="currentMonthDataToCompare"
+                                [lastMonthbarExpensesList]="lastMonthDataToCompare"></app-bar-comparison>
+                            <p *ngIf="currentMonthDataToCompare == null && lastMonthDataToCompare == null"
+                                class="text-uppercase">Please, add some expenses to see statistics
                             </p>
                         </div>
                     </div>
