@@ -111,7 +111,7 @@
                             <i style="font-size: 60px;" class="fas fa-chevron-right right"></i>
                         </div>
                     </div>
-                    <div class="my-table-responsive">
+                    <div class="text-center">
                         <app-table-with-expenses *ngIf="dailyExpenses.length > 0 && !isLoading"
                             [tableData]='dailyExpenses' [tableHeaders]='["userName", "expenseTitle", "category", "creationDate", "moneySpent"]' [isThisUser]='null'
                             [walletCurrency]='walletCurrency'></app-table-with-expenses>
@@ -136,9 +136,6 @@
                             </tbody>
                         </table> -->
                     </div>
-                </div>
-                <div class="card-footer">
-                    <hr>
                 </div>
             </div>
         </div>

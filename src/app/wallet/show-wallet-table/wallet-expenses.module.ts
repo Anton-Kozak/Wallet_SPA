@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-expense.component';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
-import { TableModule } from 'src/app/table-with-expenses/table.module';
+import { TableModule } from '../../shared/table-with-expenses/table.module';
 // import { TableWithExpensesComponent } from 'src/app/table-with-expenses/table-with-expenses.component';
 
 

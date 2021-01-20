@@ -1,19 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { ExpenseForTable } from '../_model/expense-for-table';
+import { ExpenseForTable } from '../../_model/expense-for-table';
 import * as moment from 'moment';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
     selector: 'app-table-with-expenses',
     templateUrl: './table-with-expenses.component.html',
     styleUrls: ['./table-with-expenses.component.css']
 })
-export class TableWithExpensesComponent implements OnInit {
+export class TableWithExpensesComponent implements OnInit, OnChanges {
 
     @Input('tableHeaders') tableHeaders: string[] = [];
     @Input('tableData') tableData: ExpenseForTable[] = [];
@@ -22,7 +23,7 @@ export class TableWithExpensesComponent implements OnInit {
 
 
     expenses = new MatTableDataSource<ExpenseForTable>();
-
+    @ViewChild('expPaginator') expensePaginator: MatPaginator;
     constructor(
         public dialog: MatDialog,
         private expService: ExpenseService,
@@ -30,15 +31,24 @@ export class TableWithExpensesComponent implements OnInit {
         private translateService: TranslateService) {
 
     }
-
-    ngOnInit(): void {
-        this.expenses.data = this.tableData;
-        console.log(this.expenses.data);
-        console.log('mat', this.expenses.data);
-
+    ngOnChanges(changes: SimpleChanges): void {
+        this.setData();
     }
 
- 
+    ngOnInit(): void {
+        this.setData();
+    }
+
+
+    setData() {
+        this.expenses.data = this.tableData;
+        setTimeout(() => {
+            this.expenses.paginator = this.expensePaginator;
+
+        }, 1);
+    }
+
+
     //for user stats
     openDialog(id: number, rowIndex: number): void {
         var exp = this.expenses.data.find(x => x.id === id);
