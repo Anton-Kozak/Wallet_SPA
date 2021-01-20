@@ -39,7 +39,7 @@ export class UserStatisticsComponent implements OnInit {
 
   columnsForExpenses: string[] = ['expenseTitle', 'category', 'moneySpent', 'expenseDescription', 'creationDate', 'actions'];
   expenses = new MatTableDataSource<ExpenseForTable>();
-
+  expensesToSend: ExpenseForTable[] = [];
 
   spentAll: number;
   avgDailyExpenses: number = 0;
@@ -86,7 +86,7 @@ export class UserStatisticsComponent implements OnInit {
     this.year = moment(this.date).format('YYYY');
     this.monthName = moment(this.date).format('MMMM');
     this.isThisUser = false;
-    this.walletService.getCurrentWallet().subscribe(wallet=>{
+    this.walletService.getCurrentWallet().subscribe(wallet => {
       this.walletCurrency = wallet['currency'];
     })
     let userId = this.authService.decodedToken.nameid;
@@ -118,8 +118,10 @@ export class UserStatisticsComponent implements OnInit {
 
   private getData(date: Date) {
     this.expService.getUserStatistics(this.id, date.toUTCString()).subscribe(response => {
+      this.isLoading = true;
       this.expService.getUserExpenses(this.id, date.toUTCString()).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses.data = expensesRecieved;
+        this.expensesToSend = expensesRecieved;
       });
       if (response['amountOfMoneySpent'] != 0) {
         this.avgDailyExpenses = response['averageDailyExpense'];

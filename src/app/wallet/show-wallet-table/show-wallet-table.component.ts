@@ -29,7 +29,7 @@ export class ShowWalletTableComponent implements OnInit {
     private noteService: NotificationService,
     private route: ActivatedRoute, private translateService: TranslateService, private titleService: Title) { }
   //old approach with 10 subjects
-  
+
   // first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   // second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   // third: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -95,7 +95,7 @@ export class ShowWalletTableComponent implements OnInit {
       this.walletLimit = walletData['monthlyLimit'];
       this.checkLimit();
       this.expenseService.showAllExpenses();
-      if (true) {
+      {
         /*
         this.expenseService.firstSubject.subscribe(exp => {
           if (exp != null) {

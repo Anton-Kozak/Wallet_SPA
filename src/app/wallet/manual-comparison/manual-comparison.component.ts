@@ -22,6 +22,7 @@ export class ManualComparisonComponent implements OnInit {
   columnsForSecondExpenses: string[] = ['expenseTitle', 'userName', 'category', 'moneySpent', 'creationDate'];
   columnsForFirstExpenses: string[] = ['expenseTitle', 'userName', 'category', 'moneySpent', 'creationDate'];
   showData = false;
+  //TODO: сделать это обьектом
   //first month
   firstDate: FormControl;
   firstDay = new Date();

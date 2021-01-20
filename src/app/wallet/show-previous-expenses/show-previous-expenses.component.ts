@@ -16,6 +16,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class ShowPreviousExpensesComponent implements OnInit {
 
+  //TODO: таблицы сделать компонентом для уменьшения кода
   constructor(private expenseService: ExpenseService, private walletService: WalletService, private translateService: TranslateService, private titleService: Title) { }
 
   // first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
