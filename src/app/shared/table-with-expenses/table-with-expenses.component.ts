@@ -8,6 +8,7 @@ import { ExpenseService } from 'src/app/_services/expense.service';
 import { ExpenseForTable } from '../../_model/expense-for-table';
 import * as moment from 'moment';
 import { MatPaginator } from '@angular/material/paginator';
+import { ExpenseForAdminTable } from 'src/app/_model/expense-for-admin-table';
 
 @Component({
     selector: 'app-table-with-expenses',
@@ -17,12 +18,12 @@ import { MatPaginator } from '@angular/material/paginator';
 export class TableWithExpensesComponent implements OnInit, OnChanges {
 
     @Input('tableHeaders') tableHeaders: string[] = [];
-    @Input('tableData') tableData: ExpenseForTable[] = [];
+    @Input('tableData') tableData: ExpenseForTable[] | ExpenseForAdminTable[] = [];
     @Input('isThisUser') isThisUser: boolean = false;
     @Input('walletCurrency') walletCurrency: string = 'USD';
 
 
-    expenses = new MatTableDataSource<ExpenseForTable>();
+    expenses = new MatTableDataSource<ExpenseForTable | ExpenseForAdminTable>();
     @ViewChild('expPaginator') expensePaginator: MatPaginator;
     constructor(
         public dialog: MatDialog,

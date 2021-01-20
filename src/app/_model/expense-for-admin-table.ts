@@ -1,10 +1,5 @@
-export interface ExpenseForAdminTable {
-    id: number,
-    userName: string,
-    expenseDescription: string,
-    expenseTitle: string,
-    creationDate: Date,
-    moneySpent: number,
-    category: string,
+import { ExpenseForTable } from "./expense-for-table";
+
+export interface ExpenseForAdminTable extends ExpenseForTable {
     isAdmin: boolean,
 }

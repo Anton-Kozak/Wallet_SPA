@@ -30,9 +30,10 @@ export class WalletAdminComponent implements OnInit {
 
   columnsForExpenses: string[] = ['expenseTitle', 'category', 'userName', 'moneySpent', 'expenseDescription', 'creationDate', 'actions'];
   columnsForUsers: string[] = ['username', 'dateJoined', 'userRoles', 'actions'];
-  expenses = new MatTableDataSource<ExpenseForAdminTable>();
+  expenses: ExpenseForAdminTable[] = [];
   users = new MatTableDataSource<UserForAdmin>();
   walletCurrency: string = 'USD';
+  isLoading: boolean = false;
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
   ngOnInit(): void {
@@ -54,9 +55,12 @@ export class WalletAdminComponent implements OnInit {
     })
 
     this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[]) => {
-      this.expenses.data = expenses;
-      this.expenses.paginator = this.expensePaginator;
-
+      this.isLoading = true;
+      this.expenses = expenses;
+      console.log(expenses);
+      
+      //this.expenses.paginator = this.expensePaginator;
+      this.isLoading = false;
     })
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
       this.users.data = usersForAdmin;
@@ -94,23 +98,23 @@ export class WalletAdminComponent implements OnInit {
     });
   }
 
-  openDialog(id: number, rowIndex: number): void {
-    var exp = this.expenses.data.find(x => x.id === id);
-    exp.isAdmin = true;
-    const dialogRef = this.dialog.open(EditExpenseModalComponent, {
-      width: '550px',
-      data: exp
-    });
+  // openDialog(id: number, rowIndex: number): void {
+  //   var exp = this.expenses.data.find(x => x.id === id);
+  //   exp.isAdmin = true;
+  //   const dialogRef = this.dialog.open(EditExpenseModalComponent, {
+  //     width: '550px',
+  //     data: exp
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined && result !== null) {
-        this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
-        this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
-        this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-        this.expenses.data[rowIndex].creationDate = result['creationDate'];
-      }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result !== undefined && result !== null) {
+  //       this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
+  //       this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
+  //       this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
+  //       this.expenses.data[rowIndex].creationDate = result['creationDate'];
+  //     }
+  //   });
+  // }
 
 
   onWalletEditDialog() {
@@ -119,19 +123,19 @@ export class WalletAdminComponent implements OnInit {
     });
   }
 
-  expenseDelete(id: number, rowIndex: number, elem: any) {
-    let deleteConfirmation = confirm(this.translate.currentLang === 'en' ? "Do you really want to delete this expense?" : "Вы действительно хотите удалить этот расход?");
-    if (deleteConfirmation) {
-      this.adminService.onExpenseDelete(id).subscribe((response: any) => {
-        this.alertify.success(response);
-        let indexOfItemToDelete = this.expenses.data.indexOf(elem);
-        this.expenses.data.splice(indexOfItemToDelete, 1);
-        this.expenses.data = this.expenses.data;
-      }, error => {
-        this.alertify.error(error.error);
-      });
-    }
-  }
+  // expenseDelete(id: number, rowIndex: number, elem: any) {
+  //   let deleteConfirmation = confirm(this.translate.currentLang === 'en' ? "Do you really want to delete this expense?" : "Вы действительно хотите удалить этот расход?");
+  //   if (deleteConfirmation) {
+  //     this.adminService.onExpenseDelete(id).subscribe((response: any) => {
+  //       this.alertify.success(response);
+  //       let indexOfItemToDelete = this.expenses.data.indexOf(elem);
+  //       this.expenses.data.splice(indexOfItemToDelete, 1);
+  //       this.expenses.data = this.expenses.data;
+  //     }, error => {
+  //       this.alertify.error(error.error);
+  //     });
+  //   }
+  // }
 
   addUserFromRequest($event) {
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {

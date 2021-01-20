@@ -121,7 +121,7 @@ export class UserStatisticsComponent implements OnInit {
       this.isLoading = true;
       this.expService.getUserExpenses(this.id, date.toUTCString()).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses.data = expensesRecieved;
-        this.expensesToSend = expensesRecieved;
+        this.expensesToSend = expensesRecieved;       
       });
       if (response['amountOfMoneySpent'] != 0) {
         this.avgDailyExpenses = response['averageDailyExpense'];

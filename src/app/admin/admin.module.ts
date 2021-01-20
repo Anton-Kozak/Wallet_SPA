@@ -10,6 +10,7 @@ import { CheckRequestsComponent } from '../request/check-requests/check-requests
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateInviteComponent } from '../invites/create-invite/create-invite.component';
 import { EditWalletComponent } from '../wallet/edit-wallet/edit-wallet.component';
+import { TableModule } from '../shared/table-with-expenses/table.module';
 
 
 
@@ -24,6 +25,7 @@ import { EditWalletComponent } from '../wallet/edit-wallet/edit-wallet.component
     MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
+    TableModule,
     ProgressbarModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],

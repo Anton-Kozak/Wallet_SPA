@@ -1,15 +1,29 @@
-<div class="row">
+<div *ngIf="isLoading" class="loader-wrapper">
+    <div class="loader">
+        <div class="face">
+            <div class="circle"></div>
+        </div>
+        <div class="face">
+            <div class="circle"></div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!isLoading" class="row">
     <div class="col-xl-5 col-md-12">
         <div class="row justify-content-around mb-3">
             <div class="col-lg-6 mb-3">
-                <button (click)="sendInvitation()" class="btn buttons add-user btn-block font-weight-bold">{{"Admin.InviteUser" | translate}}</button>
+                <button (click)="sendInvitation()"
+                    class="btn buttons add-user btn-block font-weight-bold">{{"Admin.InviteUser" | translate}}</button>
             </div>
             <div class="col-lg-6">
-                <button (click)="onWalletEditDialog()" class="btn btn-outline-success btn-block buttons edit-wallet font-weight-bold">{{"Admin.WalletEdit" | translate}}</button>
+                <button (click)="onWalletEditDialog()"
+                    class="btn btn-outline-success btn-block buttons edit-wallet font-weight-bold">{{"Admin.WalletEdit"
+                    | translate}}</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+            <div class="col-md-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
+                data-aos-delay="0">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
@@ -30,24 +44,32 @@
                             <div class="mat-elevation-z8 users">
                                 <table style="width: 100%;" mat-table [dataSource]="users">
                                     <ng-container matColumnDef="username">
-                                        <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
-                                        <td class="text-center table-text" mat-cell *matCellDef="let element"> {{element.username}} </td>
+                                        <th class="text-center table-head user-table-header" mat-header-cell
+                                            *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
+                                        <td class="text-center table-text" mat-cell *matCellDef="let element">
+                                            {{element.username}} </td>
                                     </ng-container>
                                     <ng-container matColumnDef="dateJoined">
-                                        <th class="text-center table-head date-table-header" mat-header-cell *matHeaderCellDef> {{"Profile.Joined" | translate}} </th>
-                                        <td class="text-center table-text" mat-cell *matCellDef="let element"> {{getFormat(element.dateJoined)}}
+                                        <th class="text-center table-head date-table-header" mat-header-cell
+                                            *matHeaderCellDef> {{"Profile.Joined" | translate}} </th>
+                                        <td class="text-center table-text" mat-cell *matCellDef="let element">
+                                            {{getFormat(element.dateJoined)}}
                                         </td>
                                     </ng-container>
                                     <ng-container matColumnDef="userRoles">
-                                        <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef> {{"Profile.Roles" | translate}} </th>
-                                        <td class="text-center table-text" mat-cell *matCellDef="let element"> {{element.userRoles}} </td>
+                                        <th class="text-center table-head user-table-header" mat-header-cell
+                                            *matHeaderCellDef> {{"Profile.Roles" | translate}} </th>
+                                        <td class="text-center table-text" mat-cell *matCellDef="let element">
+                                            {{element.userRoles}} </td>
                                     </ng-container>
                                     <ng-container matColumnDef="actions">
-                                        <th class="table-text" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
+                                        <th class="table-text" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" |
+                                            translate}} </th>
                                         <td class="table-text" mat-cell *matCellDef="let element; let i = index">
                                             <div *ngIf="!element.userRoles.includes('Admin')">
                                                 <!-- <a class="mr-2"><i class="fa fa-lock"></i></a> -->
-                                                <a (click)="removeUser(element.id, i)" class="mr-2"><i class="fa fa-2x fa-user-times text-danger"></i></a>
+                                                <a (click)="removeUser(element.id, i)" class="mr-2"><i
+                                                        class="fa fa-2x fa-user-times text-danger"></i></a>
                                                 <!-- <a *ngIf="element.userRoles.includes('Adult') && !element.userRoles.includes('Admin')" class="mr-2"><i class="fa fa-users-cog"></i></a> -->
                                             </div>
                                         </td>
@@ -65,14 +87,19 @@
         </div>
 
         <div class="row mt-2">
-            <div class="col-md-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true" data-aos-delay="350">
+            <div class="col-md-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
+                data-aos-delay="350">
                 <app-check-requests (onUserAdd)="addUserFromRequest($event)"></app-check-requests>
             </div>
         </div>
     </div>
-    <div class="col-xl-7 col-md-12" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
-        <div class="mat-elevation-z8">
-            <table style="width: 100%;" mat-table [dataSource]="expenses">
+    <div class="col-xl-7 col-md-12" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true"
+        data-aos-delay="200">
+        <div class="mat-elevation-z8 text-center">
+            <app-table-with-expenses *ngIf="expenses.length > 0" [tableData]='expenses'
+                [tableHeaders]='columnsForExpenses' [isThisUser]='null' [walletCurrency]='walletCurrency'>
+            </app-table-with-expenses>
+            <!-- <table style="width: 100%;" mat-table [dataSource]="expenses">
                 <ng-container matColumnDef="expenseTitle">
                     <th class="text-center table-head title-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.Expense" | translate}} </th>
                     <td class="table-text title-table-cell" mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
@@ -115,9 +142,8 @@
                 <tr mat-header-row *matHeaderRowDef="columnsForExpenses"></tr>
                 <tr mat-row *matRowDef="let row; columns: columnsForExpenses;"></tr>
             </table>
-
             <mat-paginator #expPaginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
-            </mat-paginator>
+            </mat-paginator> -->
         </div>
     </div>
 </div>
