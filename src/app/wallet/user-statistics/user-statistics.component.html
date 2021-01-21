@@ -63,11 +63,16 @@
                 <div class="row">
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="100">
-                        <div class="card card-stats">
+                        <app-card [classes]="['nc-icon nc-chart-bar-32 text-primary', 'fa fa-money']"
+                            [mainText]="'Expenses.MostSpent'" [subText]="'ExpenseCategory.'+mostSpentCategory"
+                            [subTextNone]="'None found'" [hasFooter]="true" [footerText]="'Footer.TotalCat'"
+                            [footerTextNone]="'Please, add expenses'">
+                        </app-card>
+                        <!-- <div class="card card-stats">
                             <div class="card-body ">
                                 <div class="row">
                                     <div class="col-5 col-md-4">
-                                        <div class="icon-big text-center icon-primary">
+                                        <div class="icon-big text-center">
                                             <i class="nc-icon nc-chart-bar-32 text-primary"></i>
                                         </div>
                                     </div>
@@ -86,13 +91,18 @@
                                     <i class="fa fa-money"></i> {{'Footer.TotalCat' | translate}}
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="200">
-                        <div class="card card-stats">
+                        <app-card [classes]="['nc-icon nc-money-coins text-success', 'fa fa-money']"
+                            [mainText]="'Expenses.Largest'" [subText]="largestExpense" [subTextNone]="'None found'"
+                            [hasFooter]="true" [footerText]="'Footer.Largest'"
+                            [footerTextNone]="'Please, add expenses'">
+                        </app-card>
+                        <!-- <div class="card card-stats">
                             <div class="card-body ">
                                 <div class="row">
                                     <div class="col-5 col-md-4">
@@ -114,13 +124,17 @@
                                     <i class="fa fa-money"></i> {{'Footer.Largest' | translate}}
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="300">
-                        <div class="card card-stats">
+                        <app-card [classes]="['nc-icon nc-money-coins text-secondary', 'fa fa-money']"
+                            [mainText]="'Expenses.Average'" [subText]="avgDailyExpenses" [subTextNone]="'None found'"
+                            [hasFooter]="true" [footerText]="'Footer.PerDay'" [footerTextNone]="'Please, add expenses'">
+                        </app-card>
+                        <!-- <div class="card card-stats">
                             <div class="card-body ">
                                 <div class="row">
                                     <div class="col-5 col-md-4">
@@ -142,13 +156,18 @@
                                     <i class="fa fa-money"></i>{{'Footer.PerDay' | translate}}
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="400">
-                        <div class="card card-stats">
+                        <app-card [classes]="['fas fa-donate text-warning', 'fas fa-hand-holding-usd']"
+                            [mainText]="'Expenses.Total'" [subText]="amountOfMoneySpent" [subTextNone]="'None found'"
+                            [hasFooter]="true" [footerText]="'Footer.TotalSum'"
+                            [footerTextNone]="'Please, add expenses'">
+                        </app-card>
+                        <!-- <div class="card card-stats">
                             <div class="card-body ">
                                 <div class="row">
                                     <div class="col-5 col-md-4">
@@ -170,7 +189,7 @@
                                     <i class="fas fa-hand-holding-usd"></i> {{'Footer.TotalSum' | translate}}
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div *ngIf="lastSixMonths" class="row">

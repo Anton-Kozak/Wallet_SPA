@@ -1,25 +1,30 @@
 <div>
     <div class="row">
-        <div class="date-outer col-lg-5 col-md-12 col-12" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
+        <div class="date-outer col-lg-5 col-md-12 col-12" data-aos="fade-down" data-aos-duration="1200"
+            data-aos-once="true" data-aos-delay="200">
             <div class="date card px-3">
                 <div class="mr-2">{{'CustomCompare.SelectFirst' | translate}}:</div>
                 <div class="date-value">{{getFormat(firstDate.value)}}</div>
                 <mat-form-field class="calendar">
-                    <input #ref1 (dateChange)="orgValueChangeFirst(ref1.value)" [formControl]="firstDate" class="date-picker" matInput [matDatepicker]="picker1" [value]="firstDate.value">
+                    <input #ref1 (dateChange)="orgValueChangeFirst(ref1.value)" [formControl]="firstDate"
+                        class="date-picker" matInput [matDatepicker]="picker1" [value]="firstDate.value">
                     <mat-datepicker-toggle class="dp" matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker class="dp" #picker1></mat-datepicker>
                 </mat-form-field>
             </div>
         </div>
-        <div class="col-lg-2 col-md-12 col-12 mb-3 date-outer" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="300">
+        <div class="col-lg-2 col-md-12 col-12 mb-3 date-outer" data-aos="fade-up" data-aos-duration="1200"
+            data-aos-once="true" data-aos-delay="300">
             <button class="btn select-date" (click)="selectDates()">{{'CustomCompare.Select' | translate}}</button>
         </div>
-        <div class="date-outer col-lg-5 col-md-12 col-12" data-aos="fade-down" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
+        <div class="date-outer col-lg-5 col-md-12 col-12" data-aos="fade-down" data-aos-duration="1200"
+            data-aos-once="true" data-aos-delay="200">
             <div class="date card px-3">
                 <div class="mr-2">{{'CustomCompare.SelectSecond' | translate}}:</div>
                 <div class="date-value">{{getFormat(secondDate.value)}}</div>
                 <mat-form-field class="calendar">
-                    <input #ref2 (dateChange)="orgValueChangeSecond(ref2.value)" [formControl]="secondDate" class="date-picker" matInput [matDatepicker]="picker2" [value]="secondDate.value">
+                    <input #ref2 (dateChange)="orgValueChangeSecond(ref2.value)" [formControl]="secondDate"
+                        class="date-picker" matInput [matDatepicker]="picker2" [value]="secondDate.value">
                     <mat-datepicker-toggle class="dp" matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker class="dp" #picker2></mat-datepicker>
                 </mat-form-field>
@@ -41,119 +46,34 @@
                 </div>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-success">
-                                    <i class="nc-icon nc-chart-bar-32 text-success"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.MostSpent' | translate}}</p>
-                                    <p *ngIf="firstMonthMostSpent != null" class="card-title">{{'ExpenseCategory.' +firstMonthMostSpent | translate}}</p>
-                                    <p *ngIf="firstMonthMostSpent == null" class="card-title">None found</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-chart-bar-32 text-success', null]" [mainText]="'Expenses.MostSpent'"
+                    [subText]="'ExpenseCategory.'+firstMonthMostSpent" [subTextNone]="'None found'" [hasFooter]="false"
+                    [footerText]="null" [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-s': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-primary">
-                                    <i class="nc-icon nc-chart-bar-32 text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.MostUsed' | translate}}</p>
-                                    <p *ngIf="firstMonthMostUsed != null" class="card-title">{{'ExpenseCategory.' +firstMonthMostUsed | translate}}</p>
-                                    <p *ngIf="firstMonthMostUsed == null" class="card-title">None found</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-chart-bar-32 text-primary', null]" [mainText]="'Expenses.MostUsed'"
+                    [subText]="'ExpenseCategory.'+firstMonthMostUsed" [subTextNone]="'None found'" [hasFooter]="false"
+                    [footerText]="null" [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-t': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-secondary">
-                                    <i class="nc-icon nc-money-coins text-secondary"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.Average' | translate}}</p>
-                                    <p *ngIf="firstMonthAverage != 0" class="card-title">{{firstMonthAverage}}</p>
-                                    <p *ngIf="firstMonthAverage == 0" class="card-title">0</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-money-coins text-secondary', null]" [mainText]="'Expenses.Average'"
+                    [subText]="firstMonthAverage" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-f': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-primary">
-                                    <i class="nc-icon nc-money-coins text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.Total' | translate}}</p>
-                                    <p *ngIf="firstMonthTotal != 0" class="card-title">{{firstMonthTotal}}</p>
-                                    <p *ngIf="firstMonthTotal == 0" class="card-title">0</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-money-coins text-primary', null]" [mainText]="'Expenses.Total'"
+                    [subText]="firstMonthTotal" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-x': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-success">
-                                    <i class="nc-icon nc-money-coins text-success"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.Largest' | translate}}</p>
-                                    <p *ngIf="firstLargestExpense != 0" class="card-title">{{firstLargestExpense}}</p>
-                                    <p *ngIf="firstLargestExpense == 0" class="card-title">0</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-money-coins text-success', null]" [mainText]="'Expenses.Largest'"
+                    [subText]="firstLargestExpense" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left': showData}">
                 <div class="card" style="border-radius: 12px;">
@@ -163,7 +83,8 @@
                     </div>
                     <div class="card-body ">
                         <div *ngIf="firstMonthPreviousExpensesBars != null && categories.length > 0">
-                            <app-donut-chart-categories [categories]="categories" [barExpensesList]="firstMonthPreviousExpensesBars"></app-donut-chart-categories>
+                            <app-donut-chart-categories [categories]="categories"
+                                [barExpensesList]="firstMonthPreviousExpensesBars"></app-donut-chart-categories>
                         </div>
                         <!-- <p *ngIf="topFiveUsers == null" class="text-uppercase">No one was spending in {{monthName}}
                         </p> -->
@@ -198,24 +119,34 @@
                 <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
                     <table style="width: 100%;" mat-table [dataSource]="firstMonthExpenses">
                         <ng-container matColumnDef="expenseTitle">
-                            <th class="text-center table-head title-table-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Expense' | translate}} </th>
-                            <td class="table-text title-table-cell" mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
+                            <th class="text-center table-head title-table-header" mat-header-cell *matHeaderCellDef>
+                                {{'Expenses.Expense' | translate}} </th>
+                            <td class="table-text title-table-cell" mat-cell *matCellDef="let element">
+                                {{element.expenseTitle}} </td>
                         </ng-container>
                         <ng-container matColumnDef="userName">
-                            <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef> {{'Expenses.User' | translate}} </th>
-                            <td class="table-text user-table-cell" mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                            <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef>
+                                {{'Expenses.User' | translate}} </th>
+                            <td class="table-text user-table-cell" mat-cell *matCellDef="let element">
+                                {{element.userName}} </td>
                         </ng-container>
                         <ng-container matColumnDef="category">
-                            <th class="text-center table-head category-table-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Category' | translate}} </th>
-                            <td class="table-text category-table-cell" mat-cell *matCellDef="let element"> {{element.expenseCategory}} </td>
+                            <th class="text-center table-head category-table-header" mat-header-cell *matHeaderCellDef>
+                                {{'Expenses.Category' | translate}} </th>
+                            <td class="table-text category-table-cell" mat-cell *matCellDef="let element">
+                                {{element.expenseCategory}} </td>
                         </ng-container>
                         <ng-container matColumnDef="moneySpent">
-                            <th class="text-center table-head money-table-header" mat-header-cell *matHeaderCellDef> {{'Currency.' + walletCurrency + 'Sign' | translate}} </th>
-                            <td class="table-text money-table-cell " mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
+                            <th class="text-center table-head money-table-header" mat-header-cell *matHeaderCellDef>
+                                {{'Currency.' + walletCurrency + 'Sign' | translate}} </th>
+                            <td class="table-text money-table-cell " mat-cell *matCellDef="let element">
+                                {{element.moneySpent}} </td>
                         </ng-container>
                         <ng-container matColumnDef="creationDate">
-                            <th class="text-center table-head date-table-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Date' | translate}} </th>
-                            <td class="table-text date-table-cell" mat-cell *matCellDef="let element"> {{element.creationDate | date :'short'}}
+                            <th class="text-center table-head date-table-header" mat-header-cell *matHeaderCellDef>
+                                {{'Expenses.Date' | translate}} </th>
+                            <td class="table-text date-table-cell" mat-cell *matCellDef="let element">
+                                {{element.creationDate | date :'short'}}
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="columnsForSecondExpenses"></tr>
@@ -240,119 +171,34 @@
                 </div>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-success">
-                                    <i class="nc-icon nc-chart-bar-32 text-success"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.MostSpent' | translate}}</p>
-                                    <p *ngIf="secondMonthMostSpent != null" class="card-title">{{'ExpenseCategory.' +secondMonthMostSpent | translate}}</p>
-                                    <p *ngIf="secondMonthMostSpent == null" class="card-title">None found</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-chart-bar-32 text-success', null]" [mainText]="'Expenses.MostSpent'"
+                    [subText]="'ExpenseCategory.'+secondMonthMostSpent" [subTextNone]="'None found'" [hasFooter]="false"
+                    [footerText]="null" [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-s': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-primary">
-                                    <i class="nc-icon nc-chart-bar-32 text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.MostUsed' | translate}}</p>
-                                    <p *ngIf="secondMonthMostUsed != null" class="card-title">{{'ExpenseCategory.' +secondMonthMostUsed | translate}}</p>
-                                    <p *ngIf="secondMonthMostUsed == null" class="card-title">None found</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-chart-bar-32 text-primary', null]" [mainText]="'Expenses.MostUsed'"
+                    [subText]="'ExpenseCategory.'+secondMonthMostUsed" [subTextNone]="'None found'" [hasFooter]="false"
+                    [footerText]="null" [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-t': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-secondary">
-                                    <i class="nc-icon nc-money-coins text-secondary"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.Average' | translate}}</p>
-                                    <p *ngIf="secondMonthAverage != 0" class="card-title">{{secondMonthAverage}}</p>
-                                    <p *ngIf="secondMonthAverage == 0" class="card-title">0</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-money-coins text-secondary', null]" [mainText]="'Expenses.Average'"
+                    [subText]="secondMonthAverage" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-f': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-primary">
-                                    <i class="nc-icon nc-money-coins text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.Total' | translate}}</p>
-                                    <p *ngIf="secondMonthTotal != 0" class="card-title">{{secondMonthTotal}}</p>
-                                    <p *ngIf="secondMonthTotal == 0" class="card-title">0</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-money-coins text-primary', null]" [mainText]="'Expenses.Total'"
+                    [subText]="secondMonthTotal" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-x': showData}">
-                <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-primary">
-                                    <i class="nc-icon nc-money-coins text-success"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.Largest' | translate}}</p>
-                                    <p *ngIf="secondLargestExpense != 0" class="card-title">{{secondLargestExpense}}</p>
-                                    <p *ngIf="secondLargestExpense == 0" class="card-title">0</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                    </div>
-                </div>
+                <app-card [classes]="['nc-icon nc-money-coins text-success', null]" [mainText]="'Expenses.Largest'"
+                    [subText]="secondLargestExpense" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [footerTextNone]="null">
+                </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right': showData}">
                 <div class="card" style="border-radius: 12px;">
@@ -361,7 +207,8 @@
                     </div>
                     <div class="card-body ">
                         <div *ngIf="secondMonthPreviousExpensesBars != null && categories.length > 0">
-                            <app-donut-chart-categories [categories]="categories" [barExpensesList]="secondMonthPreviousExpensesBars"></app-donut-chart-categories>
+                            <app-donut-chart-categories [categories]="categories"
+                                [barExpensesList]="secondMonthPreviousExpensesBars"></app-donut-chart-categories>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -394,30 +241,41 @@
                 <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
                     <table style="width: 100%;" mat-table [dataSource]="secondMonthExpenses">
                         <ng-container matColumnDef="expenseTitle">
-                            <th class="text-center table-head title-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Expense' | translate}} </th>
-                            <td class="table-text title-cell" mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
+                            <th class="text-center table-head title-header" mat-header-cell *matHeaderCellDef>
+                                {{'Expenses.Expense' | translate}} </th>
+                            <td class="table-text title-cell" mat-cell *matCellDef="let element">
+                                {{element.expenseTitle}} </td>
                         </ng-container>
                         <ng-container matColumnDef="userName">
-                            <th class="text-center table-head user-header" mat-header-cell *matHeaderCellDef> {{'Expenses.User' | translate}} </th>
-                            <td class="table-text user-cell" mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                            <th class="text-center table-head user-header" mat-header-cell *matHeaderCellDef>
+                                {{'Expenses.User' | translate}} </th>
+                            <td class="table-text user-cell" mat-cell *matCellDef="let element"> {{element.userName}}
+                            </td>
                         </ng-container>
                         <ng-container matColumnDef="category">
-                            <th class="text-center table-head category-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Category' | translate}} </th>
-                            <td class="table-text category-cell" mat-cell *matCellDef="let element"> {{element.expenseCategory}} </td>
+                            <th class="text-center table-head category-header" mat-header-cell *matHeaderCellDef>
+                                {{'Expenses.Category' | translate}} </th>
+                            <td class="table-text category-cell" mat-cell *matCellDef="let element">
+                                {{element.expenseCategory}} </td>
                         </ng-container>
                         <ng-container matColumnDef="moneySpent">
-                            <th class="text-center table-head money-header" mat-header-cell *matHeaderCellDef> {{'Currency.' + walletCurrency + 'Sign' | translate}} </th>
-                            <td class="table-text money-cell" mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
+                            <th class="text-center table-head money-header" mat-header-cell *matHeaderCellDef>
+                                {{'Currency.' + walletCurrency + 'Sign' | translate}} </th>
+                            <td class="table-text money-cell" mat-cell *matCellDef="let element"> {{element.moneySpent}}
+                            </td>
                         </ng-container>
                         <ng-container matColumnDef="creationDate">
-                            <th class="text-center table-head date-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Date' | translate}} </th>
-                            <td class="table-text date-cell" mat-cell *matCellDef="let element"> {{element.creationDate | date :'short'}}
+                            <th class="text-center table-head date-header" mat-header-cell *matHeaderCellDef>
+                                {{'Expenses.Date' | translate}} </th>
+                            <td class="table-text date-cell" mat-cell *matCellDef="let element"> {{element.creationDate
+                                | date :'short'}}
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="columnsForSecondExpenses"></tr>
                         <tr mat-row *matRowDef="let row; columns: columnsForSecondExpenses;"></tr>
                     </table>
-                    <mat-paginator #secondPaginator [pageSizeOptions]="[10]" [hidePageSize]="true" showsecondLastButtons>
+                    <mat-paginator #secondPaginator [pageSizeOptions]="[10]" [hidePageSize]="true"
+                        showsecondLastButtons>
                     </mat-paginator>
                 </div>
             </div>

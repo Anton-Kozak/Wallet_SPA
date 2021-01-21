@@ -45,43 +45,20 @@
         <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
                 data-aos-once="true" data-aos-delay="0">
-                <app-card
-                    [classes]="['nc-icon nc-chart-bar-32 text-success', 'fa fa-sort-amount-asc']"
+                <app-card [classes]="['nc-icon nc-chart-bar-32 text-success', 'fa fa-sort-amount-asc']"
                     [mainText]="'Expenses.MostUsed'" [subText]="'ExpenseCategory.'+mostUsedCategory"
                     [subTextNone]="'None found'" [hasFooter]="true" [footerText]="'Footer.NumberExp'"
                     [footerTextNone]="'Please, add expenses'">
                 </app-card>
-                <!-- <div class="card card-stats">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center">
-                                    <i class="nc-icon nc-chart-bar-32 text-success"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
-                                <div class="numbers">
-                                    <p class="card-category mb-2">{{'Expenses.MostUsed' | translate}}</p>
-                                    <p *ngIf="mostUsedCategory != null" class="card-title">{{'ExpenseCategory.'
-                                        +mostUsedCategory | translate}}</p>
-                                    <p *ngIf="mostUsedCategory == null" class="card-title">None found</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                        <div class="stats">
-                            <i class="fa fa-sort-amount-asc"></i>
-                            <span *ngIf="mostUsedCategory != null">{{'Footer.NumberExp' | translate}}</span>
-                            <span *ngIf="mostUsedCategory == null">Please, add expenses</span>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
                 data-aos-once="true" data-aos-delay="150">
-                <div class="card card-stats">
+                <app-card [classes]="['nc-icon nc-chart-bar-32 text-primary', 'fa fa-money']"
+                    [mainText]="'Expenses.MostSpent'" [subText]="'ExpenseCategory.'+mostSpentCategory"
+                    [subTextNone]="'None found'" [hasFooter]="true" [footerText]="'Footer.TotalCat'"
+                    [footerTextNone]="'Please, add expenses'">
+                </app-card>
+                <!-- <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-5 col-md-4">
@@ -107,11 +84,15 @@
                             <span *ngIf="mostSpentCategory == null">Please, add expenses</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
                 data-aos-once="true" data-aos-delay="300">
-                <div class="card card-stats">
+                <app-card [classes]="['nc-icon nc-money-coins text-secondary', 'fa fa-refresh']"
+                    [mainText]="'Expenses.Average'" [subText]="avgDailyExpenses" [subTextNone]="0" [hasFooter]="true"
+                    [footerText]="'Footer.PerDay'" [footerTextNone]="'Please, add expenses'">
+                </app-card>
+                <!-- <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-5 col-md-4">
@@ -137,11 +118,15 @@
                             <span *ngIf="avgDailyExpenses == 0" class="card-title">Please, add expenses</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
                 data-aos-once="true" data-aos-delay="450">
-                <div class="card card-stats">
+                <app-card [classes]="['nc-icon nc-money-coins text-primary', 'fa fa-refresh']"
+                    [mainText]="'Expenses.Total'" [subText]="amountOfMoneySpent" [subTextNone]="0" [hasFooter]="true"
+                    [footerText]="'Footer.TotalSum'" [footerTextNone]="'Please, add expenses'">
+                </app-card>
+                <!-- <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-5 col-md-4">
@@ -169,7 +154,7 @@
                             <span *ngIf="amountOfMoneySpent == 0" class="card-title">Please, add expenses</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="row">

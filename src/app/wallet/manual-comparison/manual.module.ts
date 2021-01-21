@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { CardModule } from 'src/app/shared/card/card.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
         MatTableModule,
         MatPaginatorModule,
         MatMomentDateModule,
-        GraphsModule
+        GraphsModule,
+        CardModule
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })
