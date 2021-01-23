@@ -61,7 +61,6 @@ export class ExpenseService {
 
 
   showAllExpenses() {
-    console.log('test');
     return this.http.get(this.baseUrl + this.authService.getToken().nameid).subscribe((expenses: ExpensesWithCategories[]) => {
       if (expenses != null) {
         console.log('We get to subject filling' + expenses.length);
@@ -169,7 +168,6 @@ export class ExpenseService {
       }
       else
         console.log('Nothing has been found');
-
     });
   }
 
@@ -184,14 +182,14 @@ export class ExpenseService {
 
   createExpense(expense: Expense) {
     return this.http.post<ExpenseForTable>(this.baseUrl + this.authService.getToken().nameid + '/new', expense).pipe(map(response => {
-      //console.log('Reeived expense: ' + JSON.stringify(response), 'sent expense:', expense);
       const receivedExpense: ExpenseForTable = response['expense'];
       let currentExpenses = this.allExpenses;
+      //находим массив с нужной категорий расходов, и добавляем туда созданый расход
       const index = currentExpenses.findIndex(exp => exp.categoryId == expense.expenseCategoryId);
       currentExpenses[index].expenses.push(receivedExpense);
       this.expenseSubjects.next(currentExpenses);
       //old approach with 10 subjects
-      if (true) {
+      {
         /* switch (+(expense.expenseCategoryId)) {
           case this.firstExpenses.categoryId:
             this.firstExpenses.expenses.push(receivedExpense);

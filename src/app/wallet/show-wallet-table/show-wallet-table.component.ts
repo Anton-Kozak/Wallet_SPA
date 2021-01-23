@@ -51,7 +51,7 @@ export class ShowWalletTableComponent implements OnInit {
   walletExpenses: number;
   type: string;
   private id;
-  expensesToShow: number;
+  // expensesToShow: number;
   notifications: Notification[] = [];
   categories: CategoryData[] = [];
   isLoading: boolean;
@@ -83,7 +83,7 @@ export class ShowWalletTableComponent implements OnInit {
       this.walletCurrency = walletData['currency'];
       this.expenseService.expensesSubject.subscribe(expData => {
         this.walletExpenses = expData;
-        this.expensesToShow = expData;
+        // this.expensesToShow = expData;
         this.checkLimit();
       });
 
@@ -207,8 +207,6 @@ export class ShowWalletTableComponent implements OnInit {
 
   checkLimit() {
     if (this.walletLimit != 0) {
-      this.expensesToShow = this.walletExpenses;
-
       if (this.walletExpenses < 0.25 * this.walletLimit) {
         this.type = 'success';
       } else if (this.walletExpenses < 0.5 * this.walletLimit) {
@@ -219,7 +217,6 @@ export class ShowWalletTableComponent implements OnInit {
         this.type = 'danger';
       }
       else if (this.walletExpenses >= this.walletLimit) {
-        this.expensesToShow = this.walletLimit;
         this.type = 'danger';
       }
     }

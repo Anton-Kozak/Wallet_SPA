@@ -30,7 +30,6 @@ export class EditWalletComponent implements OnInit {
     });
   }
   //TODO: сделать подтверждение смены названия
-  //подумать о том, как себя должен вести кошелёк когда происходит смена имени и лимита, и что должно происходить у других пользователей
   walletEdit() {
     this.walletToEdit = ({
       title: this.editWalletForm.value['title'],
