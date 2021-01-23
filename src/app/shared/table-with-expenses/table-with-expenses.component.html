@@ -53,7 +53,8 @@
         <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
         <tr mat-row *matRowDef="let row; columns: tableHeaders;"></tr>
     </table>
-    <div class="matpaginator">
+    <div *ngIf="!hasPaginator" style="height: 30px;"></div>
+    <div *ngIf="hasPaginator" class="matpaginator">
         <mat-paginator #expPaginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
         </mat-paginator>
     </div>

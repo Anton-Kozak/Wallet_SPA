@@ -118,6 +118,7 @@ td.mat-cell {
     color: var(--card-table-text) !important;
 }
 
+
 .mat-paginator-range-label,
 .mat-paginator-range-actions button {
     color: var(--card-table-header) !important;

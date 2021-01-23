@@ -71,8 +71,4 @@ export class AuthService {
     })
     return isMatch;
   }
-
-  //TODO: сделать отдельный сервис для фото
- 
-
 }

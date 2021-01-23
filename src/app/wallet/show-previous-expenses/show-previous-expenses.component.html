@@ -29,8 +29,8 @@
             <div *ngIf="topFiveUsers.length > 0" class="col-xl-8 col-md-12 no-pad">
                 <div class="content">
                     <div *ngFor="let exp of expensesWithCategories">
-                        <div *ngIf="exp.categoryId != 0 && exp.expenses.length > 0" class="row" data-aos="fade-left" data-aos-duration="1200"
-                            data-aos-once="true" data-aos-delay="100">
+                        <div *ngIf="exp.categoryId != 0 && exp.expenses.length > 0" class="row" data-aos="fade-left"
+                            data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
                             <div class="col-md-12 no-pad">
                                 <div class="card card-img">
                                     <div class="image">
@@ -40,8 +40,14 @@
                                         <h4 class="card-title text-center font-weight-bold">{{'ExpenseCategory.'
                                             +exp.categoryName | translate}} </h4>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive ">
+                                    <div class="text-center">
+                                        <app-table-with-expenses *ngIf="exp.expenses.length > 0 && !isLoading"
+                                            [tableData]='exp.expenses'
+                                            [tableHeaders]='["userName", "expenseTitle", "expenseDescription", "creationDate", "moneySpent"]'
+                                            [isThisUser]='null' [walletCurrency]='walletCurrency'
+                                            [hasPaginator]="false">
+                                        </app-table-with-expenses>
+                                        <!-- <div class="table-responsive ">
                                             <table class="table">
                                                 <thead class="text-primary text-center table-head">
                                                     <tr class="d-flex text-center">
@@ -65,7 +71,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

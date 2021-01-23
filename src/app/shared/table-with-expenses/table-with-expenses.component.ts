@@ -21,6 +21,7 @@ export class TableWithExpensesComponent implements OnInit, OnChanges {
     @Input('tableData') tableData: ExpenseForTable[] | ExpenseForAdminTable[] = [];
     @Input('isThisUser') isThisUser: boolean = false;
     @Input('walletCurrency') walletCurrency: string = 'USD';
+    @Input('hasPaginator') hasPaginator: boolean = true;
 
 
     expenses = new MatTableDataSource<ExpenseForTable | ExpenseForAdminTable>();
@@ -43,10 +44,10 @@ export class TableWithExpensesComponent implements OnInit, OnChanges {
 
     setData() {
         this.expenses.data = this.tableData;
-        setTimeout(() => {
-            this.expenses.paginator = this.expensePaginator;
-
-        }, 1);
+        if (this.hasPaginator)
+            setTimeout(() => {
+                this.expenses.paginator = this.expensePaginator;
+            }, 1);
     }
 
 

@@ -481,8 +481,13 @@
                                 <h4 class="card-title text-center font-weight-bold">{{'ExpenseCategory.'
                                     +exp.categoryName | translate}} </h4>
                             </div>
-                            <div class="card-body">
-                                <div class="table-responsive ">
+                            <div class="text-center">
+                                <app-table-with-expenses *ngIf="exp.expenses.length > 0 && !isLoading"
+                                    [tableData]='exp.expenses'
+                                    [tableHeaders]='["userName", "expenseTitle", "expenseDescription", "creationDate", "moneySpent"]'
+                                    [isThisUser]='null' [walletCurrency]='walletCurrency' [hasPaginator]="false">
+                                </app-table-with-expenses>
+                                <!-- <div class="table-responsive ">
                                     <table class="table">
                                         <thead class="table-head text-center">
                                             <tr class="d-flex">
@@ -505,7 +510,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

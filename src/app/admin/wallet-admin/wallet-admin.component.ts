@@ -7,7 +7,6 @@ import { CreateInviteComponent } from 'src/app/invites/create-invite/create-invi
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ExpenseForAdminTable } from 'src/app/_model/expense-for-admin-table';
-import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
 import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.component';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';

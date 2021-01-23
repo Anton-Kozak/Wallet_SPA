@@ -182,7 +182,6 @@ export class ExpenseService {
   }
 
 
-  //TODO: здесь идет система автоматического добавления расходов, нужно подумать как их добавлять на деле
   createExpense(expense: Expense) {
     return this.http.post<ExpenseForTable>(this.baseUrl + this.authService.getToken().nameid + '/new', expense).pipe(map(response => {
       //console.log('Reeived expense: ' + JSON.stringify(response), 'sent expense:', expense);

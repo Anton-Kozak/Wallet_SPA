@@ -4,6 +4,7 @@ import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/
 import { RouterModule } from '@angular/router';
 import { ShowPreviousExpensesComponent } from './show-previous-expenses.component';
 import { GraphsModule } from 'src/app/shared/graphs.module';
+import { TableModule } from 'src/app/shared/table-with-expenses/table.module';
 
 
 
@@ -14,7 +15,8 @@ import { GraphsModule } from 'src/app/shared/graphs.module';
         CommonModule,
         RouterModule.forChild([{ path: '', component: ShowPreviousExpensesComponent }]),
         TranslateSharedLazyModule,
-        GraphsModule
+        GraphsModule,
+        TableModule
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })
