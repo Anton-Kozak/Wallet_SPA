@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors, FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
@@ -26,15 +26,16 @@ export class SignupSigninComponent implements OnInit {
     private alertify: AlertifyService,
     private router: Router,
     private translateService: TranslateService,
-    private titleService: Title
+    private titleService: Title,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.signUpForm = new FormGroup({
+    this.signUpForm = this.formBuilder.group({
       'usernameUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[a-zA-Z0-9]+')]),
       'userpassUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
-      // 'role': new FormControl('', Validators.required)
-    });
+      'userRepeatPassUp': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')]),
+    }, { validator: this.MustMatch('userpassUp', 'userRepeatPassUp') });
     this.signInForm = new FormGroup({
       'usernameIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[a-zA-Z0-9]+')]),
       'userpassIn': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16), Validators.pattern('([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])')])
@@ -44,6 +45,25 @@ export class SignupSigninComponent implements OnInit {
       this.setTitle(lang['lang']);
     });
 
+  }
+
+  MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (matchingControl.value.length > 3 && control.value.length > 3) {
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+          // return if another validator has already found an error on the matchingControl
+          return;
+        }
+        // set error on matchingControl if validation fails
+        if (control.value !== matchingControl.value) {
+          matchingControl.setErrors({ mustMatch: true });
+        } else {
+          matchingControl.setErrors(null);
+        }
+      }
+    }
   }
   setTitle(lang: string) {
     if (lang === 'en') {

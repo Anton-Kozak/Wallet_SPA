@@ -198,6 +198,7 @@
         "Fill": "Please, fill out the registration form",
         "Username": "Username",
         "Password": "Password",
+        "PasswordRepeat": "Repeat Password",
         "Role": "Role",
         "Adult": "Adult",
         "Child": "Child",
@@ -255,7 +256,8 @@
         "PassReq": "Password is required",
         "PassMin": "Password should be at least 4 characters",
         "PassMax": "Password should be no longer than 16 characters",
-        "PassVal": "You need to have at least 1 letter and number"
+        "PassVal": "You need to have at least 1 letter and number",
+        "MustMatch": "Passwords must match!"
     },
     "HomeWallet": {
         "Welcome": "Welcome",
@@ -289,6 +291,7 @@
     "Placeholders": {
         "Username": "Enter your user name",
         "Password": "Enter your password",
+        "PasswordRepeat": "Repeat your password",
         "Wallet": "Enter wallet's name",
         "AddUser": "Enter user's name",
         "AddExpense": "Add name of expense"
