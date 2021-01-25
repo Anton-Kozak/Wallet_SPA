@@ -45,7 +45,7 @@
                                         <h1> {{"Registration.SignUp" | translate}}</h1>
                                         <p> {{"Registration.Fill" | translate}}</p>
                                         <div class="border-primary">
-                                            <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+                                            <form  [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
                                                 <div class="form-group">
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend shadow-lg">
@@ -146,7 +146,7 @@
                                                 <div class="form-group">
                                                     <button class="btn btn-secondary btn-block"
                                                         [class.spinner]="signUpLoading"
-                                                        [disabled]="signUpForm.invalid  && !signUpLoading || signUpForm.get('userRepeatPassUp').value !== signUpForm.get('userpassUp').value"
+                                                        [disabled]="signUpForm.invalid && !signUpLoading"
                                                         [ngClass]="{'btn-success': signUpForm.valid, 'btn-loading':signUpLoading}">
                                                         <span
                                                             [ngClass]="{'button-text':signUpLoading}">{{"Registration.Create"
@@ -241,7 +241,7 @@
                                             </form>
                                             <div class="container">
                                                 <p> {{"Registration.SignUpTip" | translate}} <a
-                                                        (click)="isSignUp = !isSignUp" style="cursor: pointer;"
+                                                        (click)="switchCard()" style="cursor: pointer;"
                                                         class="text-light"><strong> {{"Registration.SignUpHere" |
                                                             translate}}</strong></a></p>
                                             </div>
@@ -293,9 +293,9 @@
     <footer id="main-footer" class="bg-dark">
         <div class="container">
             <div class="row">
-                <div class="col text-center py-4">
-                    <h3>XPENSE</h3>
-                    <p>Copyright &copy; <span id="year">2020</span></p>
+                <div class="col text-center py-4 text-light">
+                    <h3>Just Expense</h3>
+                    <p>Copyright &copy; <span id="year">2021</span></p>
                 </div>
             </div>
         </div>

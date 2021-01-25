@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors, FormBuilder } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors, FormBuilder, FormGroupDirective } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class SignupSigninComponent implements OnInit {
   isSignedIn = false;
   signInLoading = false;
   signUpLoading = false;
-
+  @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
   constructor(private authService: AuthService,
     private alertify: AlertifyService,
     private router: Router,
@@ -75,11 +75,11 @@ export class SignupSigninComponent implements OnInit {
   }
 
   onSignUp() {
-    this.signUpLoading = true;
     const username = this.signUpForm.value['usernameUp'];
     const password = this.signUpForm.value['userpassUp'];
     const role = 'Adult';
     this.authService.register(username, password, role).subscribe((data: any) => {
+      this.signUpLoading = true;
       this.alertify.success(data.data);
       this.signUpForm.reset();
       this.signInForm.reset();
@@ -102,7 +102,6 @@ export class SignupSigninComponent implements OnInit {
         this.router.navigate(['/wallet/home-wallet']);
       }
       else {
-        //console.log('I have no wallet');
         this.router.navigate(['/main/no-wallet']);
       }
       this.signInLoading = false;
@@ -113,9 +112,21 @@ export class SignupSigninComponent implements OnInit {
   }
 
   switchCard() {
+    if (this.isSignUp) {
+      this.signUpForm.reset({
+        userpassIn: [],
+        usernameUp: [],
+        userRepeatPassUp: [],
+        validator: this.MustMatch('userpassUp', 'userRepeatPassUp')
+      });
+    }
+    else {
+      this.signInForm.reset({
+        usernameIn: [],
+        userpassIn: []
+      });
+    }
     this.isSignUp = !this.isSignUp;
-    this.signUpForm.reset();
-    this.signInForm.reset();
   }
 
   hasWallet() {
