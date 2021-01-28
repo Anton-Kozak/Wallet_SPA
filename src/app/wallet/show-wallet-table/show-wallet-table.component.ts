@@ -14,6 +14,7 @@ import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
+import { MyThemeService } from 'src/app/_services/theme.service';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -27,9 +28,14 @@ export class ShowWalletTableComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private noteService: NotificationService,
-    private route: ActivatedRoute, private translateService: TranslateService, private titleService: Title) { }
-  //old approach with 10 subjects
+    private route: ActivatedRoute,
+    private translateService: TranslateService,
+    private titleService: Title,
+    private themeService: MyThemeService) { }
 
+  colors: string[] = []; //['#F4B41C', '#F4A719', '#F39916', '#F38C13', '#CB7510', '#C0650C', '#B65509', '#AC4606', '#A13603', '#972600'];
+
+  //old approach with 10 subjects
   // first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   // second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   // third: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -73,7 +79,12 @@ export class ShowWalletTableComponent implements OnInit {
       else if (this.translateService.currentLang === 'ru')
         this.moment.locale('ru');
       this.currentSelectedDate = new FormControl(this.moment(this.dayForDailyExpenses).format('LL'));
-    })
+    });
+
+    this.themeService.getCurrentColors().subscribe(colors => {
+      this.colors = colors;
+      console.log('colors', colors);
+    });
 
 
     this.id = this.authService.getToken().nameid;

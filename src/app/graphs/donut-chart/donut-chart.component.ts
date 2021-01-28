@@ -11,9 +11,9 @@ export class DonutChartComponent implements OnInit {
   donutColors = [
     {
       backgroundColor: [
-        '#aaf0d1',
-        '#f0b4aa',
-      ]
+        '#F4B41C',
+        '#972600',
+      ],
     }
   ];
 

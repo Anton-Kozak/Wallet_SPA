@@ -2,42 +2,59 @@
     <div class="nav-container d-flex w-100">
         <div class="expense-image">
             <button type="button" class="btn toggleButton" (click)="onToggle()">
-                    <i class="nc-icon" [ngClass]="toggleState == false ? 'fa fa-arrow-left' : 'fa fa-arrow-right'"></i>
-                </button>
+                <i class="nc-icon" [ngClass]="toggleState == false ? 'fa fa-arrow-left' : 'fa fa-arrow-right'"></i>
+            </button>
         </div>
         <div class="d-flex right-nav">
             <div class="d-flex ml-auto align-items-center justify-content-end col-3 col-sm-5">
                 <div class="dropdown">
-                    <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn button-transparent dropdown-toggle pr-0 pl-0"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i style="font-size: 22px;" class="nc-icon nc-settings-gear-65"></i>
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" [routerLink]="['/wallet/profile']">{{'Navbar.EditProfile' | translate}}</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <a class="dropdown-item" [routerLink]="['/wallet/profile']">{{'Navbar.EditProfile' |
+                            translate}}</a>
                         <div class="dropdown-item theme-item">
-                            <div class="themeChange" *ngIf="activeTheme === 'dark'" (click)="changeTheme('toLight')">
-                                <i class="fas fa-sun mr-3"></i>
+                            <div class="themeChange" [ngClass]="{'active-theme': activeTheme === 'light'}"
+                                (click)="changeTheme('light')">
+                                <i class="fas fa-moon"></i>
                                 <p>{{'Navbar.LightTheme' | translate}}</p>
                             </div>
-                            <div class="themeChange" *ngIf="activeTheme === 'light'" (click)="changeTheme('toDark')">
-                                <i class="far fa-moon mr-3"></i>
+                            <div class="themeChange" [ngClass]="{'active-theme': activeTheme === 'dark'}"
+                                (click)="changeTheme('dark')">
+                                <i class="fas fa-sun"></i>
                                 <p>{{'Navbar.DarkTheme' | translate}}</p>
+                            </div>
+                            <div class="themeChange" [ngClass]="{'active-theme': activeTheme === 'blue'}"
+                                (click)="changeTheme('blue')">
+                                <i class="fas fa-sun"></i>
+                                <p>Blue theme</p>
                             </div>
                         </div>
                         <div class="dropdown-item language-item">
-                            <img (click)="changeLang('ru')" class="language" [ngClass]="{'active-lang': activeLang === 'ru', 'inactive': activeLang === 'en' }" src="assets/images/rus.png" alt="russian_language">
-                            <img (click)="changeLang('en')" class="language" [ngClass]="{'active-lang': activeLang === 'en', 'inactive': activeLang === 'ru' }" src="assets/images/usa.png" alt="english_language">
+                            <img (click)="changeLang('ru')" class="language"
+                                [ngClass]="{'active-lang': activeLang === 'ru', 'inactive': activeLang === 'en' }"
+                                src="assets/images/rus.png" alt="russian_language">
+                            <img (click)="changeLang('en')" class="language"
+                                [ngClass]="{'active-lang': activeLang === 'en', 'inactive': activeLang === 'ru' }"
+                                src="assets/images/usa.png" alt="english_language">
                         </div>
                     </div>
                 </div>
                 <div class="dropdown">
-                    <button type="button" (click)="checkNotifications()" class="btn button-transparent dropdown-toggle" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i style="font-size: 22px;" [matBadgeHidden]="notificationCount === 0 ? true : false" matBadge={{notificationCount}}
-                        matBadgeSize="small" matBadgeColor="warn" class="nc-icon nc-bell-55"></i>
-                     </button>
-                    <div *ngIf="notifications.length === 0" class="dropdown-menu notification-menu" aria-labelledby="notifications">
+                    <button type="button" (click)="checkNotifications()" class="btn button-transparent dropdown-toggle"
+                        id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i style="font-size: 22px;" [matBadgeHidden]="notificationCount === 0 ? true : false"
+                            matBadge={{notificationCount}} matBadgeSize="small" matBadgeColor="warn"
+                            class="nc-icon nc-bell-55"></i>
+                    </button>
+                    <div *ngIf="notifications.length === 0" class="dropdown-menu notification-menu"
+                        aria-labelledby="notifications">
                         <div class="notifications m-2">{{'Navbar.NoNote' | translate}}</div>
                     </div>
-                    <div *ngIf="notifications.length !== 0" class="dropdown-menu notification-menu" aria-labelledby="notifications">
+                    <div *ngIf="notifications.length !== 0" class="dropdown-menu notification-menu"
+                        aria-labelledby="notifications">
                         <div *ngFor="let notification of notifications" class="dropdown-item notifications">
                             <p>{{notification.message}}</p>
                         </div>
@@ -45,7 +62,9 @@
                 </div>
                 <div class="d-flex text-center mr-5 ml-3 user">
                     <div class="mr-3">{{'Navbar.Hello' | translate}} {{currentUserName}}</div>
-                    <a *ngIf="photo" [routerLink]="['/wallet/profile']"><img class="avatar border-gray" src="{{ photo === null ? '../../assets/images/default-avatar.png' : photo.url}}" alt="..."></a>
+                    <a *ngIf="photo" [routerLink]="['/wallet/profile']"><img class="avatar border-gray"
+                            src="{{ photo === null ? '../../assets/images/default-avatar.png' : photo.url}}"
+                            alt="..."></a>
                 </div>
                 <div class="d-flex align-items-center">
 

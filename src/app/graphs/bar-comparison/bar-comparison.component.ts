@@ -25,13 +25,13 @@ export class BarComparisonComponent implements OnInit {
     scales: {
       xAxes: [{
         ticks: {
-          fontColor: '#008855',
+          fontColor: '#F4B41C',
           fontSize: 14
         },
       }],
       yAxes: [{
         ticks: {
-          fontColor: '#008855',
+          fontColor: '#F4B41C',
           fontSize: 14
         },
       }]
@@ -39,7 +39,7 @@ export class BarComparisonComponent implements OnInit {
     legend: {
       display: true,
       labels: {
-        fontColor: '#008855',
+        fontColor: '#F4B41C',
         fontSize: 13
       },
     },
@@ -59,8 +59,8 @@ export class BarComparisonComponent implements OnInit {
 
   constructor(private translate: TranslateService) {
     this.barChartData = [
-      { data: [], label: 'Last Month', backgroundColor: '#aaf0d1', borderColor: '#699481' },
-      { data: [], label: 'Current Month', backgroundColor: '#f0b4aa', borderColor: '#876660' },
+      { data: [], label: 'Last Month', backgroundColor: '#F4B41C', borderColor: '#fad378', hoverBackgroundColor: '#c28f17', hoverBorderColor: '#fad378' },
+      { data: [], label: 'Current Month', backgroundColor: '#972600', borderColor: '#91513c', hoverBackgroundColor: '#91513c', hoverBorderColor: '#91513c' },
     ];
 
   }

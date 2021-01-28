@@ -2,16 +2,16 @@ export class MyColors {
     colors: { backgroundColor: string, borderColor: string, hoverBackgroundColor: string }[] = [];
     constructor() {
         this.colors = [
-            { backgroundColor: '#aaf0d1', borderColor: '#1e593f', hoverBackgroundColor: '#99f0c9' },
-            { backgroundColor: '#f0b4aa', borderColor: '#ed634c', hoverBackgroundColor: '#eb9688' },
-            { backgroundColor: '#f0d6aa', borderColor: '#e8ae4d', hoverBackgroundColor: '#edc787' },
-            { backgroundColor: '#beaaf0', borderColor: '#7b4fe8', hoverBackgroundColor: '#a183eb' },
-            { backgroundColor: '#aacaf0', borderColor: '#4e93e6', hoverBackgroundColor: '#82b3ed' },
-            { backgroundColor: '#e0aaf0', borderColor: '#cd5fed', hoverBackgroundColor: '#d486eb' },
-            { backgroundColor: '#f0e8aa', borderColor: '#e8d648', hoverBackgroundColor: '#ede180' },
-            { backgroundColor: '#c4f0a2', borderColor: '#83e339', hoverBackgroundColor: '#abeb7a' },
-            { backgroundColor: '#a2e7f0', borderColor: '#4ed5e6', hoverBackgroundColor: '#82e1ed' },
-            { backgroundColor: '#f0a2c4', borderColor: '#de4588', hoverBackgroundColor: '#e874a7' },
+            { backgroundColor: '#F4B41C', borderColor: '#fad378', hoverBackgroundColor: '#c28f17' },
+            { backgroundColor: '#F4A719', borderColor: '#f7ce81', hoverBackgroundColor: '#c78814' },
+            { backgroundColor: '#F39916', borderColor: '#e8ae4d', hoverBackgroundColor: '#e8ae4d' },
+            { backgroundColor: '#F38C13', borderColor: '#f5cc90', hoverBackgroundColor: '#f5cc90' },
+            { backgroundColor: '#CB7510', borderColor: '#cc9f6a', hoverBackgroundColor: '#cc9f6a' },
+            { backgroundColor: '#C0650C', borderColor: '#bf8e5e', hoverBackgroundColor: '#bf8e5e' },
+            { backgroundColor: '#B65509', borderColor: '#b37d54', hoverBackgroundColor: '#b37d54' },
+            { backgroundColor: '#AC4606', borderColor: '#a36c49', hoverBackgroundColor: '#a36c49' },
+            { backgroundColor: '#A13603', borderColor: '#9c6043', hoverBackgroundColor: '#9c6043' },
+            { backgroundColor: '#972600', borderColor: '#91513c', hoverBackgroundColor: '#91513c' },
         ]
     }
 }

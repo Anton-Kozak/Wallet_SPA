@@ -25,7 +25,7 @@ export class DonutChartCategoriesComponent implements OnInit {
     legend: {
       position: 'top',
       labels: {
-        fontColor: '#008855',
+        fontColor: '#F4B41C',
         fontSize: 13
       }
     },

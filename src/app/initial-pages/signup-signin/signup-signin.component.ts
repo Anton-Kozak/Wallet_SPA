@@ -81,8 +81,8 @@ export class SignupSigninComponent implements OnInit {
     this.authService.register(username, password, role).subscribe((data: any) => {
       this.signUpLoading = true;
       this.alertify.success(data.data);
-      this.signUpForm.reset();
-      this.signInForm.reset();
+      this.resetSignUpForm();
+      this.resetSignInForm();
       this.isSignUp = false;
       this.signUpLoading = false;
     }, error => {
@@ -111,20 +111,27 @@ export class SignupSigninComponent implements OnInit {
     })
   }
 
+  resetSignUpForm() {
+    this.signUpForm.reset({
+      userpassIn: [],
+      usernameUp: [],
+      userRepeatPassUp: [],
+      validator: this.MustMatch('userpassUp', 'userRepeatPassUp')
+    });
+  }
+  resetSignInForm() {
+    this.signInForm.reset({
+      usernameIn: [],
+      userpassIn: []
+    });
+  }
+
   switchCard() {
     if (this.isSignUp) {
-      this.signUpForm.reset({
-        userpassIn: [],
-        usernameUp: [],
-        userRepeatPassUp: [],
-        validator: this.MustMatch('userpassUp', 'userRepeatPassUp')
-      });
+      this.resetSignUpForm();
     }
     else {
-      this.signInForm.reset({
-        usernameIn: [],
-        userpassIn: []
-      });
+      this.resetSignInForm();
     }
     this.isSignUp = !this.isSignUp;
   }

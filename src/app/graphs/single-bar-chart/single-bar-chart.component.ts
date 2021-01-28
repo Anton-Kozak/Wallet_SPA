@@ -30,14 +30,14 @@ export class SingleBarChartComponent implements OnInit {
       }],
       yAxes: [{
         ticks: {
-          fontColor: '#008855',
+          fontColor: '#AC4606',
         },
       }]
     },
     legend: {
       display: true,
       labels: {
-        fontColor: '#008855',
+        fontColor: '#972600',
         fontSize: 13
       },
     },
@@ -68,14 +68,14 @@ export class SingleBarChartComponent implements OnInit {
     if (this.translate.currentLang === 'en') {
       this.labels = this.translate.translations.en.ExpenseCategory;
       for (let i = 0; i < this.categories.length; i++) {
-        this.barChartData[i] = { label: this.labels[this.categories[i].title], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].hoverBackgroundColor };
+        this.barChartData[i] = { label: this.labels[this.categories[i].title], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].backgroundColor };
 
       }
     }
     else if (this.translate.currentLang === 'ru') {
       this.labels = this.translate.translations.ru.ExpenseCategory;
       for (let i = 0; i < this.categories.length; i++) {
-        this.barChartData[i] = { label: this.labels[this.categories[i].title], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].hoverBackgroundColor };
+        this.barChartData[i] = { label: this.labels[this.categories[i].title], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].backgroundColor };
       }
     }
   }

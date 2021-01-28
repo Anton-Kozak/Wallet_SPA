@@ -22,6 +22,7 @@
     --card-table-header: #0084ff;
     --card-table-text: black;
     --card-footer-text: #66615B;
+    --card-borders: '#007bff';
     /* ---------------------- */
     --table-expense-header: 1;
     /* ---------------------- */
@@ -36,8 +37,7 @@
     font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }
 
-html,
-body {
+html, body {
     min-height: 100%;
     font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }
@@ -46,23 +46,12 @@ body {
     margin: 0;
 }
 
-.mat-typography h5,
-.mat-h5,
-.mat-typography h4,
-.mat-h4,
-.mat-typography h3,
-.mat-h3,
-.mat-typography h2,
-.mat-h2,
-.mat-typography h1,
-.mat-h1 {
+.mat-typography h5, .mat-h5, .mat-typography h4, .mat-h4, .mat-typography h3, .mat-h3, .mat-typography h2, .mat-h2, .mat-typography h1, .mat-h1 {
     font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
     font-size: 1.57em !important;
 }
 
-.mat-button,
-.mat-icon-button,
-.mat-stroked-button {
+.mat-button, .mat-icon-button, .mat-stroked-button {
     color: var(--sidebar-item-selected)!important;
 }
 
@@ -70,9 +59,7 @@ body {
     background-color: var(--card-background);
 }
 
-.mat-calendar-body-cell-content,
-.mat-calendar-body-label,
-.mat-calendar-table-header {
+.mat-calendar-body-cell-content, .mat-calendar-body-label, .mat-calendar-table-header {
     color: var(--text-color) !important;
 }
 
@@ -80,9 +67,7 @@ body {
     font-family: none;
 }
 
-.ajs-message,
-.ajs-warning,
-.ajs-visible {
+.ajs-message, .ajs-warning, .ajs-visible {
     color: #31708f;
     background-color: #d9edf7;
     border-color: #31708f;
@@ -105,8 +90,7 @@ body {
     border: none !important;
 }
 
-.mat-table,
-.mat-paginator {
+.mat-table, .mat-paginator {
     background-color: var(--card-background) !important;
 }
 
@@ -118,9 +102,7 @@ td.mat-cell {
     color: var(--card-table-text) !important;
 }
 
-
-.mat-paginator-range-label,
-.mat-paginator-range-actions button {
+.mat-paginator-range-label, .mat-paginator-range-actions button {
     color: var(--card-table-header) !important;
 }
 
@@ -141,7 +123,6 @@ td.mat-cell:last-of-type {
 .navbar-toggler {
     margin-right: auto !important;
 }
-
 
 /* accordion for sidebar */
 
@@ -175,15 +156,11 @@ td.mat-cell:last-of-type {
 }
 
 @media(max-width: 400px) {
-    th.mat-header-cell:first-of-type,
-    td.mat-cell:first-of-type,
-    td.mat-cell:last-of-type,
-    th.mat-header-cell:last-of-type {
+    th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-cell:last-of-type, th.mat-header-cell:last-of-type {
         padding-left: 5px !important;
         padding-right: 5px !important;
     }
 }
-
 
 /* scroll */
 

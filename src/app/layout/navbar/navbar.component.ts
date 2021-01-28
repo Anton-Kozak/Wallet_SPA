@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.themeService.currentTheme.subscribe(theme => {
+    this.themeService.getCurrentTheme().subscribe(theme => {
       this.activeTheme = theme;
     })
     this.getPhoto();
@@ -71,10 +71,20 @@ export class NavbarComponent implements OnInit {
   }
 
   changeTheme(theme: string) {
-    if (theme === 'toLight')
-      this.themeService.toggleLight();
-    else if (theme === 'toDark')
-      this.themeService.toggleDark();
+    switch (theme) {
+      case 'light':
+        this.themeService.toggleLight();
+        break;
+      case 'dark':
+        this.themeService.toggleDark();
+        break;
+      case 'blue':
+        this.themeService.toggleBlue();
+        break;
+      default:
+        this.themeService.toggleLight();
+        break;
+    }
   }
 
   getPhoto() {

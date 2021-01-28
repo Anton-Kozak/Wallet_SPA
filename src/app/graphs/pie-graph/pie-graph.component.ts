@@ -20,7 +20,7 @@ export class PieGraphComponent implements OnInit {
     legend: {
       position: 'top',
       labels:{
-        fontColor: '#008855',
+        fontColor: '#AC4606',
         fontSize: 13
       }
     },

@@ -79,26 +79,6 @@
                             [tableData]='dailyExpenses'
                             [tableHeaders]='["userName", "expenseTitle", "category", "creationDate", "moneySpent"]'
                             [isThisUser]='null' [walletCurrency]='walletCurrency'></app-table-with-expenses>
-                        <!-- <table class="table">
-                            <thead class="text-primary text-center table-head">
-                                <tr class="d-flex text-center">
-                                    <th class="user-header">{{'Expenses.User' | translate}}</th>
-                                    <th class="title-header">{{'Expenses.Title' | translate}}</th>
-                                    <th class="details-header">{{'Expenses.Category' | translate}}</th>
-                                    <th class="date-header">{{'Expenses.Date' | translate}}</th>
-                                    <th class="money-header">{{'Currency.' + walletCurrency + 'Sign' | translate}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="d-flex text-center table-text" *ngFor="let expense of dailyExpenses">
-                                    <td class="user-cell">{{expense.userName}}</td>
-                                    <td class="title-cell">{{expense.expenseTitle}}</td>
-                                    <td class="details-cell">{{'ExpenseCategory.' + expense.expenseCategory | translate}}</td>
-                                    <td class="date-cell">{{getFormat(expense.creationDate)}}</td>
-                                    <td class="money-cell">{{expense.moneySpent}}</td>
-                                </tr>
-                            </tbody>
-                        </table> -->
                     </div>
                 </div>
             </div>
@@ -469,13 +449,13 @@
                     </div>
                 </div>
             </div> -->
-            <div *ngFor="let exp of expensesWithCategories">
-                <div *ngIf="exp.expenses.length > 0" class="row" data-aos="fade-right" data-aos-duration="1300"
+            <div *ngFor="let exp of expensesWithCategories; let i = index ">
+                <div *ngIf="exp.expenses.length > 0 && colors !== null" class="row" data-aos="fade-right" data-aos-duration="1300"
                     data-aos-delay="100" data-aos-once="true">
                     <div class="col-md-12">
                         <div class="card card-img">
                             <div class="image">
-                                <div style="width: 100%; height: 100%; background-color: #cafcfa;"></div>
+                                <div [style]="'width: 100%; height: 100%; background-color:' + colors[i] + ';'"></div>
                             </div>
                             <div class="card-header">
                                 <h4 class="card-title text-center font-weight-bold">{{'ExpenseCategory.'

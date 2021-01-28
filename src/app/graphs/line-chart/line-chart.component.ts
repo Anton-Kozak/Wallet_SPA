@@ -27,13 +27,13 @@ export class LineChartComponent implements OnInit {
           color: 'transparent',
         },
         ticks: {
-          fontColor: '#008855',
+          fontColor: '#AC4606',
         },
       }],
       yAxes: [
         {
           ticks: {
-            fontColor: '#008855',
+            fontColor: '#AC4606',
           },
           id: 'y-axis-0',
           position: 'left',
@@ -76,8 +76,8 @@ export class LineChartComponent implements OnInit {
   };
   public lineChartColors: Color[] = [
     {
-      backgroundColor: '#aaf0d1',
-      borderColor: '#82cfac',
+      backgroundColor: '#F4B41C',
+      borderColor: 'transparent',
       pointBackgroundColor: 'transparent',
       pointBorderColor: 'transparent',
       pointHoverBackgroundColor: 'transparent',
