@@ -15,7 +15,7 @@ import * as moment from 'moment';
   templateUrl: './wallet-statistics.component.html',
   styleUrls: ['./wallet-statistics.component.css', '../../css/spinner.css']
 })
-export class WalletStatisticsComponent implements OnInit  {
+export class WalletStatisticsComponent implements OnInit {
 
   constructor(private expService: ExpenseService,
     private router: Router,
@@ -87,10 +87,15 @@ export class WalletStatisticsComponent implements OnInit  {
         this.lastSixMonths = response['lastSixMonths'];
         this.topFiveUsers = response['topFiveUsers'];
         this.mostUsedCategory = response['mostUsedCategory'];
+        console.log('most spend', response['mostSpentCategory']);
+
         this.mostSpentCategory = response['mostSpentCategory'];
 
+      } else {
+        this.mostSpentCategory = 'null';
+        this.mostUsedCategory = 'null';
       }
-      this.walletMembers = response['walletUsers'];     
+      this.walletMembers = response['walletUsers'];
       this.isLoading = false;
     });
     this.setTitle(this.translateService.currentLang);
@@ -113,8 +118,8 @@ export class WalletStatisticsComponent implements OnInit  {
   }
 
 
-  getFormat(date){
+  getFormat(date) {
     return moment(date).format('lll');
   }
- 
+
 }
