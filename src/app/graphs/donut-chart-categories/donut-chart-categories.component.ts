@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Label } from 'ng2-charts';
-import { ChartType, ChartDataSets, ChartOptions } from 'chart.js';
+import { ChartType, ChartOptions } from 'chart.js';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { MyColors } from 'src/app/_helper/chart-colors';
@@ -56,7 +56,7 @@ export class DonutChartCategoriesComponent implements OnInit {
     this.translateLabels();
   }
 
-  translateLabels() {
+  translateLabels(): void {
     if (this.translate.currentLang === 'en') {
       this.labels = this.translate.translations.en.ExpenseCategory;
       this.doughnutChartLabels = [];

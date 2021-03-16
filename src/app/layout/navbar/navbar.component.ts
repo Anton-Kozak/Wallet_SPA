@@ -62,13 +62,13 @@ export class NavbarComponent implements OnInit {
       });
   }
 
-  changeLang(lang: string) {
+  changeLang(lang: string): void {
     localStorage.setItem('language', lang);
     this.translate.use(lang);
     this.activeLang = lang;
   }
 
-  changeTheme(theme: string) {
+  changeTheme(theme: string): void {
     switch (theme) {
       case 'light':
         this.themeService.toggleLight();
@@ -85,24 +85,24 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  getPhoto() {
+  getPhoto(): void {
     this.photoService.getPhoto().subscribe((data: Photo) => {
       console.log('Photo: ', data);
       this.photo = data;
     });
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.router.navigate(['/main/home']);
   }
 
-  onToggle() {
+  onToggle(): void {
     this.toggleState = !this.toggleState;
     this.toggleDrawer.emit();
   }
 
-  checkNotifications() {
+  checkNotifications(): void {
     this.noteService.deleteNotifications().subscribe(() => {
       this.notificationCount = 0;
       setTimeout(() => {

@@ -4,8 +4,7 @@ import { Label } from 'ng2-charts';
 import { ExpenseList } from 'src/app/_model/expense-list';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { MyColors } from 'src/app/_helper/chart-colors';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { MyThemeService } from 'src/app/_services/theme.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-single-bar-chart',
@@ -58,14 +57,14 @@ export class SingleBarChartComponent implements OnInit {
   labels: { [key: string]: string }[] = [];
 
   constructor(private translate: TranslateService) {}
-  ngOnInit() {
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+  ngOnInit(): void {
+    this.translate.onLangChange.subscribe(() => {
       this.translateLabels();
     });
     this.translateLabels();
   }
 
-  translateLabels() {
+  translateLabels(): void {
     if (this.translate.currentLang === 'en') {
       this.labels = this.translate.translations.en.ExpenseCategory;
       for (let i = 0; i < this.categories.length; i++) {

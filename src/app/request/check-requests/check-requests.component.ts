@@ -31,7 +31,7 @@ export class CheckRequestsComponent implements OnInit {
       });
   }
   //TODO: обновлять таблицу при добавлении пользователя
-  acceptRequest(email: string, rowIndex: number) {
+  acceptRequest(email: string, rowIndex: number): void {
     this.reqService
       .acceptRequest(email, this.authService.getToken().nameid)
       .subscribe(
@@ -47,7 +47,7 @@ export class CheckRequestsComponent implements OnInit {
       );
   }
 
-  declineRequest(email: string, rowIndex: number) {
+  declineRequest(email: string, rowIndex: number): void {
     this.reqService.declineRequest(email).subscribe(
       (response) => {
         this.requests.data.splice(rowIndex, 1);

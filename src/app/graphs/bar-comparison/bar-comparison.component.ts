@@ -81,7 +81,7 @@ export class BarComparisonComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.translate.onLangChange.subscribe(() => {
       this.translateLabels();
     });
@@ -93,7 +93,7 @@ export class BarComparisonComponent implements OnInit {
     this.translateLabels();
   }
 
-  translateLabels() {
+  translateLabels(): void {
     if (this.translate.currentLang === 'en') {
       this.labels = this.translate.translations.en.ExpenseCategory;
       this.months = this.translate.translations.en.Months;

@@ -110,7 +110,7 @@ export class ProfileComponent implements OnInit {
       this.setTitle(lang['lang']);
     });
   }
-  setTitle(lang: string) {
+  setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Your Profile');
     } else if (lang === 'ru') {
@@ -118,20 +118,20 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onImageChange() {
+  onImageChange(): void {
     const dialogRef = this.dialog.open(ImageModalComponent);
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(() => {
       this.getPhoto();
     });
   }
 
-  getPhoto() {
+  getPhoto(): void {
     this.photoService.getPhoto().subscribe((data: Photo) => {
       this.photo = data;
     });
   }
 
-  editProfile() {
+  editProfile(): void {
     if (this.editProfileForm.valid) {
       if (
         this.editProfileForm.value['address'] !==
@@ -188,7 +188,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  getFormat(date) {
+  getFormat(date: Date): string {
     return moment(date).format('lll');
   }
 

@@ -34,13 +34,13 @@ export class InitialNavbarComponent implements OnInit {
     });
   }
 
-  changeLang(lang: string) {
+  changeLang(lang: string): void {
     localStorage.setItem('language', lang);
     this.translate.use(lang);
     this.activeLang = lang;
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.router.navigate(['/main/reg']);
   }

@@ -45,11 +45,11 @@ export class SidebarComponent implements OnInit {
       this.getIcons();
     }
   }
-  close() {
+  close(): void {
     this.sidenav.close();
   }
 
-  getIcons() {
+  getIcons(): void {
     for (let i = 0; i < this.categoryTitles.length; i++) {
       switch (this.categoryTitles[i].title) {
         case 'Food':
@@ -143,7 +143,7 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  onCreate() {
+  onCreate(): void {
     this.createExpense.emit('test');
   }
 }
