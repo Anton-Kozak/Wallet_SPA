@@ -14,6 +14,7 @@ import { DetailedUserStatisticsDTO } from '../_model/detailedUserStatisticsDTO';
 import { WalletForPage } from '../_model/wallet-for-page';
 import { SpecifiedMonthData } from '../_model/specifiedMonthsData';
 import { ExpenseWithMessage } from '../_model/expenseWithMessage';
+import { PreviousData } from '../_model/previousData';
 
 @Injectable({
   providedIn: 'root'
@@ -75,8 +76,8 @@ export class ExpenseService {
     );
   }
 
-  getPreviousExpenses(date: string): Observable<ExpensesWithCategories[]> {
-    return this.http.get<ExpensesWithCategories[]>(
+  getPreviousExpenses(date: string): Observable<PreviousData> {
+    return this.http.get<PreviousData>(
       `${this.baseUrl}${
         this.authService.getToken().nameid
       }/previousExpenses/${date}`

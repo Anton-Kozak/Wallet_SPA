@@ -54,59 +54,28 @@ export class ShowWalletTableComponent implements OnInit {
   expensesWithCategories: ExpensesWithCategories[] = [];
 
   ngOnInit(): void {
-    if (this.translateService.currentLang === 'en') {
-      this.moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru')
-      this.moment.locale('ru');
-
-    this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        this.moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        this.moment.locale('ru');
-      this.currentSelectedDate = new FormControl(
-        this.moment(this.dayForDailyExpenses).format('LL')
-      );
-    });
-
-    this.themeService.getCurrentColors().subscribe((colors) => {
-      this.colors = colors;
-      console.log('colors', colors);
-    });
-
+    this.setLanguage();
+    this.setTheme();
     this.id = this.authService.getToken().nameid;
     this.isLoading = true;
     this.expenseService
       .getWalletData(this.id)
       .subscribe((walletData: WalletForPage) => {
-        this.walletTitle = walletData['title'];
-        this.walletCurrency = walletData['currency'];
-        this.expenseService.expensesSubject.subscribe((expData) => {
-          this.walletExpenses = expData;
-          // this.expensesToShow = expData;
-          this.checkLimit();
-        });
-
-        this.expenseService
-          .getExpenseSubjectsAsObservable()
-          .subscribe((exp) => {
-            this.expensesWithCategories = exp;
-            console.log('This is new!: ', exp);
-          });
-
-        this.walletLimit = walletData['monthlyLimit'];
+        this.setWalletData(walletData);
         this.checkLimit();
         this.expenseService.showAllExpenses();
-        this.currentSelectedDate = new FormControl(
-          moment(this.dayForDailyExpenses).format('LL')
-        );
-        this.expenseService
-          .showDailyExpenses(this.dayForDailyExpenses.toUTCString())
-          .subscribe((expenses: ExpenseForTable[]) => {
-            this.dailyExpenses = expenses;
-          });
+        this.setDailyExpenses();
         this.isLoading = false;
       });
+    this.expenseService
+      .getExpenseSubjectsAsObservable()
+      .subscribe((exp: ExpensesWithCategories[]) => {
+        this.expensesWithCategories = exp;
+      });
+    this.expenseService.expensesSubject.subscribe((expData) => {
+      this.walletExpenses = expData;
+      this.checkLimit();
+    });
     this.route.data.subscribe((data) => {
       this.categories = data['categories'];
     });
@@ -121,6 +90,47 @@ export class ShowWalletTableComponent implements OnInit {
       this.setTitle(lang['lang']);
     });
   }
+  private setDailyExpenses() {
+    this.currentSelectedDate = new FormControl(
+      moment(this.dayForDailyExpenses).format('LL')
+    );
+    this.expenseService
+      .showDailyExpenses(this.dayForDailyExpenses.toUTCString())
+      .subscribe((expenses: ExpenseForTable[]) => {
+        this.dailyExpenses = expenses;
+      });
+  }
+
+  private setWalletData(walletData: WalletForPage) {
+    this.walletTitle = walletData.title;
+    this.walletCurrency = walletData.currency;
+    this.walletLimit = walletData.monthlyLimit;
+  }
+
+  private setTheme() {
+    this.themeService.getCurrentColors().subscribe((colors) => {
+      this.colors = colors;
+      console.log('colors', colors);
+    });
+  }
+
+  private setLanguage() {
+    if (this.translateService.currentLang === 'en') {
+      this.moment.locale('en');
+    } else if (this.translateService.currentLang === 'ru')
+      this.moment.locale('ru');
+
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        this.moment.locale('en');
+      } else if (this.translateService.currentLang === 'ru')
+        this.moment.locale('ru');
+      this.currentSelectedDate = new FormControl(
+        this.moment(this.dayForDailyExpenses).format('LL')
+      );
+    });
+  }
+
   setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Your Wallet');

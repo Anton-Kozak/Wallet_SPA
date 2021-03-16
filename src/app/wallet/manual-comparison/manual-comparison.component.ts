@@ -64,21 +64,15 @@ export class ManualComparisonComponent implements OnInit {
     this.walletService.getCurrentWallet().subscribe((wallet) => {
       this.walletCurrency = wallet['currency'];
     });
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
-
-    this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
-      this.firstDate = new FormControl(this.firstDay.toDateString());
-      this.secondDate = new FormControl(this.secondDay.toDateString());
+    this.setLanguage();
+    this.setDate();
+    this.setCategories();
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe((lang) => {
+      this.setTitle(lang['lang']);
     });
-
-    this.firstDate = new FormControl(this.firstDay.toDateString());
-    this.secondDate = new FormControl(this.secondDay.toDateString());
+  }
+  private setCategories() {
     if (this.walletService.currentCategories.length === 0) {
       this.walletService
         .getWalletsCategories()
@@ -89,11 +83,27 @@ export class ManualComparisonComponent implements OnInit {
     } else {
       this.categories = this.walletService.currentCategories;
     }
-    this.setTitle(this.translateService.currentLang);
-    this.translateService.onLangChange.subscribe((lang) => {
-      this.setTitle(lang['lang']);
+  }
+
+  private setDate() {
+    this.firstDate = new FormControl(this.firstDay.toDateString());
+    this.secondDate = new FormControl(this.secondDay.toDateString());
+  }
+
+  private setLanguage() {
+    if (this.translateService.currentLang === 'en') {
+      moment.locale('en');
+    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        moment.locale('en');
+      } else if (this.translateService.currentLang === 'ru')
+        moment.locale('ru');
+      this.setDate();
     });
   }
+
   setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Date Comparison');

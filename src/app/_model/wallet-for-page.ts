@@ -1,5 +1,7 @@
 export interface WalletForPage {
-  itle: string;
+  title: string;
   monthlyLimit: number;
   monthlyExpenses: number;
+  currency: string;
+  walletCategories: number[];
 }

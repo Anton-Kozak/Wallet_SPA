@@ -64,18 +64,19 @@ export class UserStatisticsComponent implements OnInit {
   ngOnInit(): void {
     this.setLanguage();
     this.setDate();
-    this.isThisUser = false;
     this.setCurrency();
-    const userId = this.authService.decodedToken.nameid;
-    this.id = this.route.snapshot.params['id'];
-    if (userId === this.id) this.isThisUser = true;
     this.getCategories();
     this.getData(this.date);
     this.setTitle(this.translateService.currentLang);
-    this.translateService.onLangChange.subscribe((lang) => {
-      this.setTitle(lang['lang']);
-    });
+    this.checkIfCurrentUser();
   }
+  private checkIfCurrentUser() {
+    this.isThisUser = false;
+    const userId = this.authService.decodedToken.nameid;
+    this.id = this.route.snapshot.params['id'];
+    if (userId === this.id) this.isThisUser = true;
+  }
+
   private getCategories() {
     if (this.walletService.currentCategories.length === 0) {
       this.walletService
@@ -112,6 +113,9 @@ export class UserStatisticsComponent implements OnInit {
         moment.locale('ru');
       }
       this.monthName = moment(this.date).format('MMMM');
+    });
+    this.translateService.onLangChange.subscribe((lang) => {
+      this.setTitle(lang['lang']);
     });
   }
 
