@@ -8,9 +8,8 @@ describe('BarCategoryComparisonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BarCategoryComparisonComponent ]
-    })
-    .compileComponents();
+      declarations: [BarCategoryComparisonComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,4 +1,4 @@
 export interface CategoryComparison {
-    currentMonthData: number;
-    lastMonthData: number;
+  currentMonthData: number;
+  lastMonthData: number;
 }

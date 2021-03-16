@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RequestService } from 'src/app/_services/request.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -9,41 +9,32 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './request-access.component.html',
   styleUrls: ['./request-access.component.css']
 })
-export class RequestAccessComponent implements OnInit {
-
-  constructor(private reqService: RequestService, 
-    private router: Router, 
+export class RequestAccessComponent {
+  constructor(
+    private reqService: RequestService,
+    private router: Router,
     private alertify: AlertifyService,
-    public dialogRef: MatDialogRef<RequestAccessComponent>) { }
+    public dialogRef: MatDialogRef<RequestAccessComponent>
+  ) {}
 
-  @Input() email: string = "";
+  @Input() email = '';
 
-  ngOnInit(): void {
-  }
-
-  onSubmit() {
+  onSubmit(): void {
     if (this.email.length >= 4) {
-      this.reqService.createRequestForAccess(this.email).subscribe((response: any) => {
-        this.alertify.success(response);
-      }, error => {
-        this.alertify.error(error.error)
-      });
-    }
-    else{
-      this.alertify.error("Email is too short!");
+      this.reqService.createRequestForAccess(this.email).subscribe(
+        (response: string) => {
+          this.alertify.success(response);
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
+    } else {
+      this.alertify.error('Email is too short!');
     }
   }
 
-  back() {
+  back(): void {
     this.dialogRef.close();
   }
-
-  test() {
-    this.reqService.test().subscribe(response => {
-      this.alertify.success(response)
-    }, error => {
-      this.alertify.error(error.error);
-    });
-  }
-
 }

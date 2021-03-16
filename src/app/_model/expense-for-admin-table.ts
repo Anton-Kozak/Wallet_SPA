@@ -1,5 +1,5 @@
-import { ExpenseForTable } from "./expense-for-table";
+import { ExpenseForTable } from './expense-for-table';
 
 export interface ExpenseForAdminTable extends ExpenseForTable {
-    isAdmin: boolean,
+  isAdmin: boolean;
 }

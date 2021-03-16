@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Label, MultiDataSet, ThemeService } from 'ng2-charts';
+import { Label } from 'ng2-charts';
 import { ChartOptions, ChartType } from 'chart.js';
 
 @Component({
@@ -10,10 +10,7 @@ import { ChartOptions, ChartType } from 'chart.js';
 export class DonutChartComponent implements OnInit {
   donutColors = [
     {
-      backgroundColor: [
-        '#F4B41C',
-        '#972600',
-      ],
+      backgroundColor: ['#F4B41C', '#972600']
     }
   ];
 
@@ -33,17 +30,11 @@ export class DonutChartComponent implements OnInit {
       labels: {
         fontSize: 13,
         fontStyle: 'bold'
-      },
-    },
+      }
+    }
   };
-  constructor() { }
-
   ngOnInit(): void {
     this.doughnutChartData.push(this.currentMonthbar);
     this.doughnutChartData.push(this.lastMonthbar);
   }
-
-
-  
-
 }

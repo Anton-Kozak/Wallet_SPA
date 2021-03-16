@@ -8,32 +8,51 @@ import { ExpenseForTable } from '../_model/expense-for-table';
   providedIn: 'root'
 })
 export class AdminService {
-
   baseUrl: string = environment.apiUrl + 'admin/';
 
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
-
-
-  getUsers(){
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getUsers');
+  getUsers() {
+    return this.http.get(
+      this.baseUrl + this.authService.getToken().nameid + '/getUsers'
+    );
   }
 
-  removeUser(userId: string){
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/removeUser/' + userId, {}, {responseType: 'text'});
+  removeUser(userId: string) {
+    return this.http.post(
+      this.baseUrl +
+        this.authService.getToken().nameid +
+        '/removeUser/' +
+        userId,
+      {},
+      { responseType: 'text' }
+    );
   }
 
-  getAllExpenses(){
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getExpensesData');
+  getAllExpenses() {
+    return this.http.get(
+      this.baseUrl + this.authService.getToken().nameid + '/getExpensesData'
+    );
   }
 
   onExpenseDelete(id: number) {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/expenseDelete/' + id, {},  {responseType: 'text'});
+    return this.http.post(
+      this.baseUrl +
+        this.authService.getToken().nameid +
+        '/expenseDelete/' +
+        id,
+      {},
+      { responseType: 'text' }
+    );
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable) {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit);
+    return this.http.post(
+      this.baseUrl +
+        this.authService.getToken().nameid +
+        '/expenseEdit/' +
+        expenseToEdit.id,
+      expenseToEdit
+    );
   }
-
-
 }

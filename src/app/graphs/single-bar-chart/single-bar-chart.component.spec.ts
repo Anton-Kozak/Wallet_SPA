@@ -8,9 +8,8 @@ describe('SingleBarChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SingleBarChartComponent ]
-    })
-    .compileComponents();
+      declarations: [SingleBarChartComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

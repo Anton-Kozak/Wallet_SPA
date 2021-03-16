@@ -1,125 +1,87 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { ExpenseList } from 'src/app/_model/expense-list';
-import { LastMonthStat } from 'src/app/_model/lastMonthStat';
-import { TopUsersStat } from 'src/app/_model/top-users-stat';
-import { User } from 'src/app/_model/user';
 import { Router } from '@angular/router';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { DetailedWalletStatisticsDTO } from 'src/app/_model/detailedWalletStatisticsDTO';
+
 @Component({
   selector: 'app-wallet-statistics',
   templateUrl: './wallet-statistics.component.html',
   styleUrls: ['./wallet-statistics.component.css', '../../css/spinner.css']
 })
 export class WalletStatisticsComponent implements OnInit {
-
-  constructor(private expService: ExpenseService,
+  constructor(
+    private expService: ExpenseService,
     private router: Router,
-    private walletService: WalletService, private translateService: TranslateService, private titleService: Title) { }
+    private walletService: WalletService,
+    private translateService: TranslateService,
+    private titleService: Title
+  ) {}
 
   isLoading: boolean;
   showComparisonData = false;
-
-  avgDailyExpenses: number;
-  mostSpentCategory: string;
-  mostUsedCategory: string;
-
-  currentMonthDataToCompare: ExpenseList[];
-  lastMonthDataToCompare: ExpenseList[];
-  barExpenses: ExpenseList[];
-  lastSixMonths: LastMonthStat[];
-  topFiveUsers: TopUsersStat[];
-  walletMembers: User[];
-  amountOfMoneySpent: number;
+  statisticalData: DetailedWalletStatisticsDTO;
   categories: CategoryData[] = [];
 
-
-
   ngOnInit(): void {
+    this.getLanguage();
+    this.getAllCategories();
+    this.isLoading = true;
+    this.expService
+      .getWalletStatistics(new Date(Date.now()).toUTCString())
+      .subscribe((response: DetailedWalletStatisticsDTO) => {
+        this.statisticalData = response;
+        this.isLoading = false;
+      });
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe((lang) => {
+      this.setTitle(lang['lang']);
+    });
+  }
+  private getLanguage() {
     if (this.translateService.currentLang === 'en') {
       moment.locale('en');
-    }
-    else if (this.translateService.currentLang === 'ru')
+    } else if (this.translateService.currentLang === 'ru') {
       moment.locale('ru');
-
+    }
     this.translateService.onLangChange.subscribe(() => {
       if (this.translateService.currentLang === 'en') {
         moment.locale('en');
-      }
-      else if (this.translateService.currentLang === 'ru')
+      } else if (this.translateService.currentLang === 'ru')
         moment.locale('ru');
-    })
+    });
+  }
+
+  private getAllCategories() {
     if (this.walletService.currentCategories.length === 0) {
-      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-        this.walletService.currentCategories = data;
-        this.categories = this.walletService.currentCategories;
-      });
+      this.walletService
+        .getWalletsCategories()
+        .subscribe((data: CategoryData[]) => {
+          this.walletService.currentCategories = data;
+          this.categories = this.walletService.currentCategories;
+        });
     } else {
       this.categories = this.walletService.currentCategories;
     }
-
-    this.isLoading = true;
-    this.expService.getWalletStatistics(new Date(Date.now()).toUTCString()).subscribe(response => {
-      this.avgDailyExpenses = response['averageDailyExpense'];
-      this.amountOfMoneySpent = response['amountOfMoneySpent'];
-      if (response['hasExpenseData'] === true) {
-        this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
-        let showCurrentComparison = false;
-        for (let i = 0; i < this.currentMonthDataToCompare.length; i++) {
-          if (this.currentMonthDataToCompare[i].categoryExpenses !== 0)
-            showCurrentComparison = true;
-        }
-        let showPreviousComparison = false;
-        this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
-        for (let i = 0; i < this.lastMonthDataToCompare.length; i++) {
-          if (this.lastMonthDataToCompare[i].categoryExpenses !== 0)
-            showPreviousComparison = true;
-        }
-
-        if (showCurrentComparison && showPreviousComparison)
-          this.showComparisonData = true;
-
-        this.barExpenses = response['barExpenses'];
-        this.lastSixMonths = response['lastSixMonths'];
-        this.topFiveUsers = response['topFiveUsers'];
-        this.mostUsedCategory = response['mostUsedCategory'];
-        console.log('most spend', response['mostSpentCategory']);
-
-        this.mostSpentCategory = response['mostSpentCategory'];
-
-      } else {
-        this.mostSpentCategory = 'null';
-        this.mostUsedCategory = 'null';
-      }
-      this.walletMembers = response['walletUsers'];
-      this.isLoading = false;
-    });
-    this.setTitle(this.translateService.currentLang);
-    this.translateService.onLangChange.subscribe(lang => {
-      this.setTitle(lang['lang']);
-    });
-
   }
-  setTitle(lang: string) {
+
+  setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Wallet Statistics');
-    }
-    else if (lang === 'ru') {
+    } else if (lang === 'ru') {
       this.titleService.setTitle('Статистика Кошелька');
     }
   }
 
-  getUserStatistics(id: string) {
+  getUserStatistics(id: string): void {
     this.router.navigate(['/wallet/userStatistics', id]);
   }
 
-
-  getFormat(date) {
+  getFormat(date: string): string {
     return moment(date).format('lll');
   }
-
 }

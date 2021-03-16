@@ -11,21 +11,27 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class WalletService {
-
-  constructor(private http: HttpClient, private authService: AuthService) {
-  }
-  baseUrl: string = environment.apiUrl + "wallet/";
+  constructor(private http: HttpClient, private authService: AuthService) {}
+  baseUrl: string = environment.apiUrl + 'wallet/';
 
   walletCategories: CategoryData[] = [];
 
   currentCategories: CategoryData[] = [];
 
   getAllCategories() {
-    return this.http.get(environment.apiUrl + "expense/" + this.authService.getToken().nameid + '/getAllCategories');
+    return this.http.get(
+      environment.apiUrl +
+        'expense/' +
+        this.authService.getToken().nameid +
+        '/getAllCategories'
+    );
   }
 
   createNewWallet(walletToCreate: Wallet) {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/createwallet', walletToCreate);
+    return this.http.post(
+      this.baseUrl + this.authService.getToken().nameid + '/createwallet',
+      walletToCreate
+    );
   }
 
   // getCurrentWallet() {
@@ -36,30 +42,43 @@ export class WalletService {
   // }
 
   getCurrentWallet() {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet');
+    return this.http.get(
+      this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet'
+    );
   }
-
 
   getWalletsCategories() {
-    return this.http.get<CategoryData[]>(this.baseUrl + this.authService.getToken().nameid + '/getWalletCategories');
+    return this.http.get<CategoryData[]>(
+      this.baseUrl + this.authService.getToken().nameid + '/getWalletCategories'
+    );
   }
-
 
   editWallet(walletToEdit: Wallet) {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/editWallet',  walletToEdit, { responseType: 'text' } );
+    return this.http.post(
+      this.baseUrl + this.authService.getToken().nameid + '/editWallet',
+      walletToEdit,
+      { responseType: 'text' }
+    );
   }
 
-
   addCategoriesToWallet(categories: number[]) {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/addCategories', categories);
+    return this.http.post(
+      this.baseUrl + this.authService.getToken().nameid + '/addCategories',
+      categories
+    );
   }
 
   getProfileData() {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/profile');
+    return this.http.get(
+      this.baseUrl + this.authService.getToken().nameid + '/profile'
+    );
   }
 
   updateUserProfile(editUser: UserForProfileEdit) {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/updateProfile', editUser, { responseType: 'text' });
+    return this.http.post(
+      this.baseUrl + this.authService.getToken().nameid + '/updateProfile',
+      editUser,
+      { responseType: 'text' }
+    );
   }
-
 }

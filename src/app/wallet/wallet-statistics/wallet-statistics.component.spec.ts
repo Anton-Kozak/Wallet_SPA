@@ -8,9 +8,8 @@ describe('WalletStatisticsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WalletStatisticsComponent ]
-    })
-    .compileComponents();
+      declarations: [WalletStatisticsComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

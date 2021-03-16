@@ -4,15 +4,13 @@ import { RouterModule } from '@angular/router';
 import { TipsComponent } from './tips.component';
 import { TranslateSharedLazyModule } from '../shared/translate-shared-lazy/translate-shared-lazy.module';
 
-
 @NgModule({
   declarations: [TipsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: TipsComponent }]),
-    TranslateSharedLazyModule,
-
+    TranslateSharedLazyModule
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class TipsModule { }
+export class TipsModule {}

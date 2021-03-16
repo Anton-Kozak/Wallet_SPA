@@ -1,4 +1,4 @@
 export interface ExpenseList {
-    id: number,
-    categoryExpenses: number
+  id: number;
+  categoryExpenses: number;
 }

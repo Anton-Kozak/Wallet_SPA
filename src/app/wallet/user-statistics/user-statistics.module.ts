@@ -9,21 +9,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from '../../shared/table-with-expenses/table.module';
 import { CardModule } from 'src/app/shared/card/card.module';
 
-
-
-
 @NgModule({
-    declarations: [UserStatisticsComponent, EditExpenseModalComponent],
-    imports: [
-        CommonModule,
-        RouterModule.forChild([{ path: '', component: UserStatisticsComponent }]),
-        TranslateSharedLazyModule,
-        FormsModule,
-        ReactiveFormsModule,
-        GraphsModule,
-        TableModule,
-        CardModule
-    ],
-    schemas: [NO_ERRORS_SCHEMA]
+  declarations: [UserStatisticsComponent, EditExpenseModalComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([{ path: '', component: UserStatisticsComponent }]),
+    TranslateSharedLazyModule,
+    FormsModule,
+    ReactiveFormsModule,
+    GraphsModule,
+    TableModule,
+    CardModule
+  ],
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class UserStatisticsModule { }
+export class UserStatisticsModule {}

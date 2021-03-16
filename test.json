@@ -1,0 +1,100 @@
+{
+  "root": true,
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "eslint:recommended",
+        "standard",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:sonarjs/recommended",
+        "plugin:rxjs/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          { "type": "element", "prefix": "app", "style": "kebab-case" }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": ["element", "attribute"],
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/no-output-native": 0,
+        "@angular-eslint/directive-class-suffix": 0,
+        "@typescript-eslint/no-inferrable-types": 0,
+        "@typescript-eslint/prefer-for-of": 2,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-unused-vars": 0,
+        "@typescript-eslint/no-empty-function": 0,
+        "@typescript-eslint/prefer-as-const": 0,
+        "@typescript-eslint/ban-ts-comment": 0,
+        "@typescript-eslint/no-this-alias": 0,
+        "sonarjs/cognitive-complexity": 2,
+        "sonarjs/no-redundant-jump": 0,
+        "sonarjs/no-identical-functions": 2,
+        "sonarjs/no-duplicate-string": 2,
+        "sonarjs/no-inverted-boolean-check": 0,
+        "sonarjs/prefer-single-boolean-return": 0,
+        "rxjs/no-ignored-replay-buffer": 0,
+        "rxjs/no-implicit-any-catch": 0,
+        "rxjs/no-internal": 0,
+        "rxjs/no-unsafe-subject-next": 0,
+        "rxjs/no-subject-value": 0,
+        "rxjs/no-unbound-methods": 0,
+        "rxjs/no-unsafe-takeuntil": 2,
+        "rxjs/no-ignored-subscribe": 2,
+        "no-console": ["error", { "allow": ["log", "error"] }],
+        "no-prototype-builtins": 0,
+        "no-extra-boolean-cast": 0,
+        "no-case-declarations": 0,
+        "no-useless-escape": 0,
+        "lines-between-class-members": 0,
+        "no-useless-constructor": 0,
+        "default-param-last": 0,
+        "dot-notation": 0,
+        "no-use-before-define": 0,
+        "import/no-duplicates": 0,
+        "import/no-named-default": 0,
+        "import/export": 0,
+        "import/first": 0,
+        "camelcase": 0,
+        "no-unused-expressions": 0,
+        "no-var": 0,
+        "prefer-const": 0,
+        "no-async-promise-executor": 0,
+        "no-useless-computed-key": 0,
+        "no-proto": 0,
+        "no-unneeded-ternary": 0,
+        "accessor-pairs": 0,
+        "node/handle-callback-err": 0,
+        "no-useless-return": 0,
+        "array-callback-return": 0,
+        "prefer-spread": 0
+      }
+    },
+    {
+      "files": ["*.component.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {
+        "@angular-eslint/template/no-negated-async": 2
+      }
+    },
+    {
+      "files": ["*.component.ts"],
+      "extends": ["plugin:@angular-eslint/template/process-inline-templates"]
+    }
+  ]
+}

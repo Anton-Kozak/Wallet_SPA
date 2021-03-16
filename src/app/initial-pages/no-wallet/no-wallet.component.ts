@@ -14,61 +14,57 @@ import { Router } from '@angular/router';
   styleUrls: ['./no-wallet.component.css']
 })
 export class NoWalletComponent implements OnInit {
-  invites: number = 0;
-  constructor(public dialog: MatDialog, 
-    private noteService: NotificationService, 
-    private authService: AuthService, 
-    private translateService: TranslateService, 
+  invites = 0;
+  constructor(
+    public dialog: MatDialog,
+    private noteService: NotificationService,
+    private authService: AuthService,
+    private translateService: TranslateService,
     private titleService: Title,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.noteService.getNotifications().subscribe((res: Notification[]) => {
       this.invites = res.length;
     });
     this.setTitle(this.translateService.currentLang);
-    this.translateService.onLangChange.subscribe(lang => {
+    this.translateService.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);
     });
-
   }
-  setTitle(lang: string) {
+  setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Create Wallet');
-    }
-    else if (lang === 'ru') {
+    } else if (lang === 'ru') {
       this.titleService.setTitle('Создайте Кошелёк');
     }
   }
 
-
-  onWalletCreateDialog() {
+  onWalletCreateDialog(): void {
     const dialogRef = this.dialog.open(CreateWalletComponent, {
       height: '95vh'
     });
     dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result){
+      if (result) {
         this.authService.logout();
         this.router.navigate(['/main/reg']);
       }
     });
   }
 
-  onInvitesCheckDialog() {
+  onInvitesCheckDialog(): void {
     const dialogRef = this.dialog.open(CheckInvitesComponent);
     dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result){
+      if (result) {
         this.authService.logout();
         this.router.navigate(['/main/reg']);
       }
     });
   }
 
-  onRequestCreateDialog() {
+  onRequestCreateDialog(): void {
     const dialogRef = this.dialog.open(RequestAccessComponent);
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    dialogRef.afterClosed().subscribe();
   }
-
-
 }

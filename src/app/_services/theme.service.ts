@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ChartOptions } from 'chart.js';
 import { ThemeService } from 'ng2-charts';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export const blueTheme = {
   'content-background': '#424242',
@@ -26,7 +26,7 @@ export const blueTheme = {
   'spinner-second': '#008855',
   'button-text': '#ffb204',
   'button-text-hover': 'black',
-  'home-tips': "#1c2a38"
+  'home-tips': '#1c2a38'
 };
 
 export const lightTheme = {
@@ -52,7 +52,7 @@ export const lightTheme = {
   'spinner-second': '#006eff',
   'button-text': '#0084ff',
   'button-text-hover': 'white',
-  'home-tips': "#eef7ff",
+  'home-tips': '#eef7ff'
 };
 
 export const darkTheme = {
@@ -78,28 +78,27 @@ export const darkTheme = {
   'spinner-second': '#008855',
   'button-text': '#ffb204',
   'button-text-hover': 'black',
-  'home-tips': "#1c2a38"
+  'home-tips': '#1c2a38'
 };
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyThemeService {
-
-  private currentTheme = new BehaviorSubject<string>(localStorage.getItem('theme'));
+  private currentTheme = new BehaviorSubject<string>(
+    localStorage.getItem('theme')
+  );
   private currentColors = new BehaviorSubject<string[]>(null);
 
-
-  getCurrentColors() {
+  getCurrentColors(): Observable<string[]> {
     return this.currentColors.asObservable();
   }
 
-  getCurrentTheme() {
+  getCurrentTheme(): Observable<string> {
     return this.currentTheme.asObservable();
   }
 
-
-  checkTheme() {
+  checkTheme(): void {
     switch (localStorage.getItem('theme')) {
       case 'dark':
         this.toggleDark();
@@ -119,10 +118,11 @@ export class MyThemeService {
   constructor(private themeService: ThemeService) {
     this.checkTheme();
   }
-  toggleDark() {
+  toggleDark(): void {
     this.setThemeDark();
     localStorage.setItem('theme', 'dark');
     let overrides: ChartOptions;
+    // eslint-disable-next-line prefer-const
     overrides = {
       legend: {
         labels: { fontColor: '#ffb204' }
@@ -131,51 +131,86 @@ export class MyThemeService {
     this.themeService.setColorschemesOptions(overrides);
   }
 
-
-  toggleLight() {
+  toggleLight(): void {
     this.setThemeLight();
     localStorage.setItem('theme', 'light');
     let overrides: ChartOptions;
+    // eslint-disable-next-line prefer-const
     overrides = {
       legend: {
         labels: { fontColor: 'black' }
-      },
+      }
     };
     this.themeService.setColorschemesOptions(overrides);
   }
 
-  toggleBlue() {
+  toggleBlue(): void {
     this.setThemeBlue();
     localStorage.setItem('theme', 'blue');
     let overrides: ChartOptions;
+    // eslint-disable-next-line prefer-const
     overrides = {
       legend: {
         labels: { fontColor: '#ffb204' }
-      },
+      }
     };
     this.themeService.setColorschemesOptions(overrides);
   }
 
-  setThemeBlue() {
+  setThemeBlue(): void {
     this.currentTheme.next('blue');
     this.setTheme(blueTheme);
-    this.currentColors.next(['#F4B41C', '#F4A719', '#F39916', '#F38C13', '#CB7510', '#C0650C', '#B65509', '#AC4606', '#A13603', '#972600']);
+    this.currentColors.next([
+      '#F4B41C',
+      '#F4A719',
+      '#F39916',
+      '#F38C13',
+      '#CB7510',
+      '#C0650C',
+      '#B65509',
+      '#AC4606',
+      '#A13603',
+      '#972600'
+    ]);
   }
 
-  setThemeLight() {
+  setThemeLight(): void {
     this.setTheme(lightTheme);
     this.currentTheme.next('light');
-    this.currentColors.next(['#cafcfa', '#cafcdf', '#dafcca', '#fcf0ca', '#fcd9ca', '#fccaca', '#fccaea', '#eccafc', '#d1cafc', '#cad8fc']);
+    this.currentColors.next([
+      '#cafcfa',
+      '#cafcdf',
+      '#dafcca',
+      '#fcf0ca',
+      '#fcd9ca',
+      '#fccaca',
+      '#fccaea',
+      '#eccafc',
+      '#d1cafc',
+      '#cad8fc'
+    ]);
   }
 
-  setThemeDark() {
+  setThemeDark(): void {
     this.setTheme(darkTheme);
     this.currentTheme.next('dark');
-    this.currentColors.next(['#F4B41C', '#F4A719', '#F39916', '#F38C13', '#CB7510', '#C0650C', '#B65509', '#AC4606', '#A13603', '#972600']);
+    this.currentColors.next([
+      '#F4B41C',
+      '#F4A719',
+      '#F39916',
+      '#F38C13',
+      '#CB7510',
+      '#C0650C',
+      '#B65509',
+      '#AC4606',
+      '#A13603',
+      '#972600'
+    ]);
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   private setTheme(theme: {}) {
-    Object.keys(theme).forEach(k =>
+    Object.keys(theme).forEach((k) =>
       document.documentElement.style.setProperty(`--${k}`, theme[k])
     );
   }

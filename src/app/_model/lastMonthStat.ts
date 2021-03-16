@@ -1,4 +1,4 @@
 export interface LastMonthStat {
-    month: string,
-    expenseSum: number
+  month: string;
+  expenseSum: number;
 }

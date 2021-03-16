@@ -12,55 +12,59 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./check-invites.component.css']
 })
 export class CheckInvitesComponent implements OnInit {
-
-  constructor(private invService: InviteService, 
-    private alertify: AlertifyService, 
-    public dialogRef: MatDialogRef<CheckInvitesComponent>, private translateService: TranslateService) { }
+  constructor(
+    private invService: InviteService,
+    private alertify: AlertifyService,
+    public dialogRef: MatDialogRef<CheckInvitesComponent>,
+    private translateService: TranslateService
+  ) {}
   invites: Invite[];
 
   ngOnInit(): void {
     if (this.translateService.currentLang === 'en') {
       moment.locale('en');
-    }
-    else if (this.translateService.currentLang === 'ru')
-      moment.locale('ru');
+    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
 
     this.translateService.onLangChange.subscribe(() => {
       if (this.translateService.currentLang === 'en') {
         moment.locale('en');
-      }
-      else if (this.translateService.currentLang === 'ru')
+      } else if (this.translateService.currentLang === 'ru')
         moment.locale('ru');
-    })
+    });
     this.invService.checkInvites().subscribe((inv: Invite[]) => {
       this.invites = inv;
-    })
-  }
-
-  acceptInvite(walletId: number) {
-    this.invService.accept(walletId).subscribe(response => {
-      this.alertify.success(response);
-      this.alertify.success("Please, log in to see your wallet");
-      this.dialogRef.close(true);
-    }, error => {
-      this.alertify.error(error.error);
     });
   }
 
+  acceptInvite(walletId: number) {
+    this.invService.accept(walletId).subscribe(
+      (response) => {
+        this.alertify.success(response);
+        this.alertify.success('Please, log in to see your wallet');
+        this.dialogRef.close(true);
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
+  }
+
   declineInvite(walletId: number) {
-    this.invService.decline(walletId).subscribe(response => {
-      this.alertify.success(response);
-    }, error => {
-      this.alertify.error(error.error);
-    })
+    this.invService.decline(walletId).subscribe(
+      (response) => {
+        this.alertify.success(response);
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   back() {
     this.dialogRef.close(false);
   }
 
-  getFormat(date: string){
+  getFormat(date: string) {
     return moment(date).format('lll');
   }
-
 }

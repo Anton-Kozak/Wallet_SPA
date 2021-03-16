@@ -8,7 +8,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TranslateSharedLazyModule } from '../shared/translate-shared-lazy/translate-shared-lazy.module';
 
-
 @NgModule({
   declarations: [ProfileComponent, ImageModalComponent],
   imports: [
@@ -21,4 +20,4 @@ import { TranslateSharedLazyModule } from '../shared/translate-shared-lazy/trans
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class ProfileModule { }
+export class ProfileModule {}

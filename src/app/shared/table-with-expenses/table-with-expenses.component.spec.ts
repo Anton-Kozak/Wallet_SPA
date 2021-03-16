@@ -8,9 +8,8 @@ describe('TableWithExpensesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableWithExpensesComponent ]
-    })
-    .compileComponents();
+      declarations: [TableWithExpensesComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -8,9 +8,8 @@ describe('PieGraphComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PieGraphComponent ]
-    })
-    .compileComponents();
+      declarations: [PieGraphComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -4,16 +4,13 @@ import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/
 import { RouterModule } from '@angular/router';
 import { HomeWalletComponent } from './home-wallet.component';
 
-
-
-
 @NgModule({
   declarations: [HomeWalletComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: HomeWalletComponent }]),
-    TranslateSharedLazyModule,
+    TranslateSharedLazyModule
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class HomeWalletModule { }
+export class HomeWalletModule {}

@@ -12,11 +12,13 @@ import { CreateInviteComponent } from '../invites/create-invite/create-invite.co
 import { EditWalletComponent } from '../wallet/edit-wallet/edit-wallet.component';
 import { TableModule } from '../shared/table-with-expenses/table.module';
 
-
-
-
 @NgModule({
-  declarations: [WalletAdminComponent, CheckRequestsComponent, CreateInviteComponent, EditWalletComponent],
+  declarations: [
+    WalletAdminComponent,
+    CheckRequestsComponent,
+    CreateInviteComponent,
+    EditWalletComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: WalletAdminComponent }]),
@@ -28,8 +30,6 @@ import { TableModule } from '../shared/table-with-expenses/table.module';
     TableModule,
     ProgressbarModule.forRoot()
   ],
-  schemas: [NO_ERRORS_SCHEMA],
-
-
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class AdminModule { }
+export class AdminModule {}

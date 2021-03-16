@@ -6,10 +6,6 @@ import { WalletStatisticsComponent } from './wallet-statistics.component';
 import { GraphsModule } from 'src/app/shared/graphs.module';
 import { CardModule } from 'src/app/shared/card/card.module';
 
-
-
-
-
 @NgModule({
   declarations: [WalletStatisticsComponent],
   imports: [
@@ -21,4 +17,4 @@ import { CardModule } from 'src/app/shared/card/card.module';
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class WalletStatisticsModule { }
+export class WalletStatisticsModule {}

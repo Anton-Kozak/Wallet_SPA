@@ -30,10 +30,10 @@
                             <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
                             <p class="card-category">{{'Expenses.TopDesc' | translate}}</p>
                         </div>
-                        <div *ngIf="topFiveUsers" class="card-body ">
-                            <app-pie-graph [topFiveUsers]="topFiveUsers"></app-pie-graph>
+                        <div *ngIf="detailedCategoryStatistics.topFiveUsers" class="card-body ">
+                            <app-pie-graph [topFiveUsers]="detailedCategoryStatistics.topFiveUsers"></app-pie-graph>
                         </div>
-                        <div *ngIf="!topFiveUsers" class="card-body ">
+                        <div *ngIf="!detailedCategoryStatistics.topFiveUsers" class="card-body ">
                             ---
                         </div>
                         <div class="card-footer">
@@ -52,12 +52,12 @@
                             <h5 class="card-title">{{'Expenses.Last' | translate}}</h5>
                             <p class="card-category">{{'Expenses.LastDesc' | translate}}</p>
                         </div>
-                        <div *ngIf="lastSixMonths" class="card-body ">
+                        <div *ngIf="detailedCategoryStatistics.lastSixMonths" class="card-body ">
                             <div>
-                                <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart>
+                                <app-line-chart [lastSixMonths]="detailedCategoryStatistics.lastSixMonths"></app-line-chart>
                             </div>
                         </div>
-                        <div *ngIf="!lastSixMonths" class="card-body ">
+                        <div *ngIf="!detailedCategoryStatistics.lastSixMonths" class="card-body ">
                             <div>
                                 ---
                             </div>
@@ -79,7 +79,7 @@
                             <p class="card-category">{{'Expenses.ExpensesCompareDesc' | translate}}</p>
                         </div>
                         <div *ngIf="chosenCategoryName" class="container">
-                            <app-donut-chart [currentMonthbar]="currentMonthData" [lastMonthbar]="lastMonthData" [category]="chosenCategoryName"></app-donut-chart>
+                            <app-donut-chart [currentMonthbar]="detailedCategoryStatistics.barCompareExpensesWithLastMonth.currentMonthData" [lastMonthbar]="detailedCategoryStatistics.barCompareExpensesWithLastMonth.lastMonthData" [category]="chosenCategoryName"></app-donut-chart>
                         </div>
                         <div class="card-footer ">
                             <hr>

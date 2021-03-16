@@ -9,24 +9,26 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isSignedIn: boolean = false;
-  constructor(private authService: AuthService, private translateService: TranslateService, private titleService: Title) { }
+  isSignedIn = false;
+  constructor(
+    private authService: AuthService,
+    private translateService: TranslateService,
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
-    this.authService.isLoggedIn.subscribe(res => {
+    this.authService.isLoggedIn.subscribe((res) => {
       this.isSignedIn = res;
-    })
+    });
     this.setTitle(this.translateService.currentLang);
-    this.translateService.onLangChange.subscribe(lang => {
+    this.translateService.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);
     });
-
   }
   setTitle(lang: string) {
     if (lang === 'en') {
       this.titleService.setTitle('Home Page');
-    }
-    else if (lang === 'ru') {
+    } else if (lang === 'ru') {
       this.titleService.setTitle('Домашняя Страница');
     }
   }

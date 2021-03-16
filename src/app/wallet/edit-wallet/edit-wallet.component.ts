@@ -11,10 +11,11 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./edit-wallet.component.css']
 })
 export class EditWalletComponent implements OnInit {
-
-  constructor(private walletService: WalletService,
+  constructor(
+    private walletService: WalletService,
     private alertify: AlertifyService,
-    public dialogRef: MatDialogRef<EditWalletComponent>) { }
+    public dialogRef: MatDialogRef<EditWalletComponent>
+  ) {}
 
   editWalletForm: FormGroup;
   walletToEdit: Wallet;
@@ -23,26 +24,39 @@ export class EditWalletComponent implements OnInit {
     this.walletService.getCurrentWallet().subscribe((currentWallet: Wallet) => {
       this.currentWallet = currentWallet;
       this.editWalletForm = new FormGroup({
-        'title': new FormControl(this.currentWallet.title, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
-        'currency': new FormControl(this.currentWallet.currency, Validators.required),
-        'limit': new FormControl(this.currentWallet.monthlyLimit, Validators.min(10))
+        title: new FormControl(this.currentWallet.title, [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(16)
+        ]),
+        currency: new FormControl(
+          this.currentWallet.currency,
+          Validators.required
+        ),
+        limit: new FormControl(
+          this.currentWallet.monthlyLimit,
+          Validators.min(10)
+        )
       });
     });
   }
   //TODO: сделать подтверждение смены названия
   walletEdit() {
-    this.walletToEdit = ({
+    this.walletToEdit = {
       title: this.editWalletForm.value['title'],
       monthlyLimit: this.editWalletForm.value['limit'],
       walletCategories: this.currentWallet.walletCategories,
       currency: this.editWalletForm.value['currency']
-    });
+    };
 
-    this.walletService.editWallet(this.walletToEdit).subscribe(response => {
-      this.alertify.success("You have successfully edited your wallet");
-    }, error => {
-      this.alertify.error(error.error);
-    });
+    this.walletService.editWallet(this.walletToEdit).subscribe(
+      (response) => {
+        this.alertify.success('You have successfully edited your wallet');
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   goBack() {

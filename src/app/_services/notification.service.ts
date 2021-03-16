@@ -7,18 +7,20 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class NotificationService {
-
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   baseUrl: string = environment.apiUrl + 'notification/';
   value: boolean;
   getNotifications() {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getNotifications');
+    return this.http.get(
+      this.baseUrl + this.authService.getToken().nameid + '/getNotifications'
+    );
   }
-
 
   deleteNotifications() {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/deleteNotification', {});
+    return this.http.post(
+      this.baseUrl + this.authService.getToken().nameid + '/deleteNotification',
+      {}
+    );
   }
-
 }

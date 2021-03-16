@@ -1,5 +1,5 @@
 export interface Request {
-    id: number,
-    requestCreatorEmail: string,
-    inviteCreationTime: string
+  id: number;
+  requestCreatorEmail: string;
+  inviteCreationTime: string;
 }

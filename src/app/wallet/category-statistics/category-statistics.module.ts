@@ -7,19 +7,18 @@ import { CategoryStatisticsComponent } from './category-statistics.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-
-
-
 @NgModule({
-    declarations: [CategoryStatisticsComponent],
-    imports: [
-        CommonModule,
-        RouterModule.forChild([{ path: '', component: CategoryStatisticsComponent }]),
-        TranslateSharedLazyModule,
-        GraphsModule,
-        MatTableModule,
-        MatPaginatorModule
-    ],
-    schemas: [NO_ERRORS_SCHEMA]
+  declarations: [CategoryStatisticsComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      { path: '', component: CategoryStatisticsComponent }
+    ]),
+    TranslateSharedLazyModule,
+    GraphsModule,
+    MatTableModule,
+    MatPaginatorModule
+  ],
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class CategoryStatisticsModule { }
+export class CategoryStatisticsModule {}

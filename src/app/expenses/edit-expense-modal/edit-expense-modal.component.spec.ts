@@ -8,9 +8,8 @@ describe('EditExpenseModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditExpenseModalComponent ]
-    })
-    .compileComponents();
+      declarations: [EditExpenseModalComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

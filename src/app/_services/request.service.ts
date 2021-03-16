@@ -7,29 +7,43 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class RequestService {
+  baseUrl: string = environment.apiUrl + 'request/';
 
-  baseUrl: string = environment.apiUrl + "request/"
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
-  
-  createRequestForAccess(email: string){
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/request/' + email, {}, {responseType:'text'});
+  createRequestForAccess(email: string) {
+    return this.http.post(
+      this.baseUrl + this.authService.getToken().nameid + '/request/' + email,
+      {},
+      { responseType: 'text' }
+    );
   }
 
-  getRequests(userId: string){
+  getRequests(userId: string) {
     return this.http.get(this.baseUrl + userId + '/getRequests');
   }
 
-  acceptRequest(email: string, userId: string){
-    return this.http.post(this.baseUrl + userId + '/acceptRequest/' + email, {}, {responseType:'text'});
+  acceptRequest(email: string, userId: string) {
+    return this.http.post(
+      this.baseUrl + userId + '/acceptRequest/' + email,
+      {},
+      { responseType: 'text' }
+    );
   }
 
-  declineRequest(email: string){
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/decline/' + email, {}, {responseType:'text'});
+  declineRequest(email: string) {
+    return this.http.post(
+      this.baseUrl + this.authService.getToken().nameid + '/decline/' + email,
+      {},
+      { responseType: 'text' }
+    );
   }
 
-  test(){
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/test', {}, {responseType:'text'});
+  test() {
+    return this.http.post(
+      this.baseUrl + this.authService.getToken().nameid + '/test',
+      {},
+      { responseType: 'text' }
+    );
   }
-
 }

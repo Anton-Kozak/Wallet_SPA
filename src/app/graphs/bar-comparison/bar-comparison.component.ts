@@ -11,7 +11,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./bar-comparison.component.css']
 })
 export class BarComparisonComponent implements OnInit {
-
   @Input() currentMonthbarExpensesList: ExpenseList;
   @Input() lastMonthbarExpensesList: ExpenseList;
   @Input() categories: CategoryData[];
@@ -23,30 +22,34 @@ export class BarComparisonComponent implements OnInit {
     maintainAspectRatio: false,
     aspectRatio: 0.7,
     scales: {
-      xAxes: [{
-        ticks: {
-          fontColor: '#F4B41C',
-          fontSize: 14
-        },
-      }],
-      yAxes: [{
-        ticks: {
-          fontColor: '#F4B41C',
-          fontSize: 14
-        },
-      }]
+      xAxes: [
+        {
+          ticks: {
+            fontColor: '#F4B41C',
+            fontSize: 14
+          }
+        }
+      ],
+      yAxes: [
+        {
+          ticks: {
+            fontColor: '#F4B41C',
+            fontSize: 14
+          }
+        }
+      ]
     },
     legend: {
       display: true,
       labels: {
         fontColor: '#F4B41C',
         fontSize: 13
-      },
+      }
     },
     plugins: {
       datalabels: {
         anchor: 'end',
-        align: 'end',
+        align: 'end'
       }
     }
   };
@@ -59,10 +62,23 @@ export class BarComparisonComponent implements OnInit {
 
   constructor(private translate: TranslateService) {
     this.barChartData = [
-      { data: [], label: 'Last Month', backgroundColor: '#F4B41C', borderColor: '#fad378', hoverBackgroundColor: '#c28f17', hoverBorderColor: '#fad378' },
-      { data: [], label: 'Current Month', backgroundColor: '#972600', borderColor: '#91513c', hoverBackgroundColor: '#91513c', hoverBorderColor: '#91513c' },
+      {
+        data: [],
+        label: 'Last Month',
+        backgroundColor: '#F4B41C',
+        borderColor: '#fad378',
+        hoverBackgroundColor: '#c28f17',
+        hoverBorderColor: '#fad378'
+      },
+      {
+        data: [],
+        label: 'Current Month',
+        backgroundColor: '#972600',
+        borderColor: '#91513c',
+        hoverBackgroundColor: '#91513c',
+        hoverBorderColor: '#91513c'
+      }
     ];
-
   }
 
   ngOnInit() {
@@ -77,32 +93,45 @@ export class BarComparisonComponent implements OnInit {
     this.translateLabels();
   }
 
-
   translateLabels() {
     if (this.translate.currentLang === 'en') {
       this.labels = this.translate.translations.en.ExpenseCategory;
       this.months = this.translate.translations.en.Months;
       this.barChartLabels = [];
-      this.barChartData[0].label = this.months[this.date.toLocaleString('default', { month: 'long' })];
-      this.barChartData[1].label = this.months[this.prevDate.toLocaleString('default', { month: 'long' })];
+      this.barChartData[0].label = this.months[
+        this.date.toLocaleString('default', { month: 'long' })
+      ];
+      this.barChartData[1].label = this.months[
+        this.prevDate.toLocaleString('default', { month: 'long' })
+      ];
       for (let i = 0; i < this.categories.length; i++) {
         this.barChartLabels.push([this.categories[i].title]);
-        this.barChartData[1].data[i] = this.currentMonthbarExpensesList[i]['categoryExpenses'];
-        this.barChartData[0].data[i] = this.lastMonthbarExpensesList[i]['categoryExpenses'];
+        this.barChartData[1].data[i] = this.currentMonthbarExpensesList[i][
+          'categoryExpenses'
+        ];
+        this.barChartData[0].data[i] = this.lastMonthbarExpensesList[i][
+          'categoryExpenses'
+        ];
       }
-    }
-    else if (this.translate.currentLang === 'ru') {
+    } else if (this.translate.currentLang === 'ru') {
       this.labels = this.translate.translations.ru.ExpenseCategory;
       this.months = this.translate.translations.ru.Months;
       this.barChartLabels = [];
-      this.barChartData[0].label = this.months[this.date.toLocaleString('default', { month: 'long' })];
-      this.barChartData[1].label = this.months[this.prevDate.toLocaleString('default', { month: 'long' })];
+      this.barChartData[0].label = this.months[
+        this.date.toLocaleString('default', { month: 'long' })
+      ];
+      this.barChartData[1].label = this.months[
+        this.prevDate.toLocaleString('default', { month: 'long' })
+      ];
       for (let i = 0; i < this.categories.length; i++) {
         this.barChartLabels.push([this.labels[this.categories[i].title]]);
-        this.barChartData[1].data[i] = this.currentMonthbarExpensesList[i]['categoryExpenses'];
-        this.barChartData[0].data[i] = this.lastMonthbarExpensesList[i]['categoryExpenses'];
+        this.barChartData[1].data[i] = this.currentMonthbarExpensesList[i][
+          'categoryExpenses'
+        ];
+        this.barChartData[0].data[i] = this.lastMonthbarExpensesList[i][
+          'categoryExpenses'
+        ];
       }
     }
   }
-
 }

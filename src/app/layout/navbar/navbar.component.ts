@@ -10,28 +10,27 @@ import { Photo } from 'src/app/_model/photo';
 import { PhotoService } from 'src/app/_services/photo.service';
 import { AuthService } from 'src/app/_services/auth.service';
 
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(private photoService: PhotoService,
+  constructor(
+    private photoService: PhotoService,
     private authService: AuthService,
     private router: Router,
     public dialog: MatDialog,
     private noteService: NotificationService,
     private themeService: MyThemeService,
-    public translate: TranslateService) {
+    public translate: TranslateService
+  ) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
     if (localStorage.getItem('language') !== null) {
       this.translate.use(localStorage.getItem('language'));
       this.activeLang = localStorage.getItem('language');
-    }
-    else {
+    } else {
       this.activeLang = translate.getBrowserLang();
       translate.use(this.activeLang.match(/en|ru/) ? this.activeLang : 'en');
     }
@@ -39,7 +38,7 @@ export class NavbarComponent implements OnInit {
   signInForm: FormGroup;
   currentUserName?: string;
   isLoggedIn = false;
-  notificationCount: number = 0;
+  notificationCount = 0;
   notifications: Notification[] = [];
   activeLang: string;
   activeTheme: string;
@@ -47,21 +46,20 @@ export class NavbarComponent implements OnInit {
   @Output() toggleDrawer = new EventEmitter();
   toggleState = false;
 
-
   ngOnInit(): void {
-
-    this.themeService.getCurrentTheme().subscribe(theme => {
+    this.themeService.getCurrentTheme().subscribe((theme) => {
       this.activeTheme = theme;
-    })
+    });
     this.getPhoto();
     this.currentUserName = this.authService.getToken().unique_name;
-    this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
-      if (notifications != null) {
-        this.notifications = notifications;
-        this.notificationCount = notifications.length;
-      }
-    })
-
+    this.noteService
+      .getNotifications()
+      .subscribe((notifications: Notification[]) => {
+        if (notifications != null) {
+          this.notifications = notifications;
+          this.notificationCount = notifications.length;
+        }
+      });
   }
 
   changeLang(lang: string) {
@@ -91,7 +89,7 @@ export class NavbarComponent implements OnInit {
     this.photoService.getPhoto().subscribe((data: Photo) => {
       console.log('Photo: ', data);
       this.photo = data;
-    })
+    });
   }
 
   logout() {
@@ -99,13 +97,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/main/home']);
   }
 
-
   onToggle() {
     this.toggleState = !this.toggleState;
     this.toggleDrawer.emit();
   }
-
-
 
   checkNotifications() {
     this.noteService.deleteNotifications().subscribe(() => {

@@ -12,30 +12,92 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AdminGuard } from '../_guards/admin.guard';
 import { HasRoleDirective } from '../_directives/hasRole.directive';
 import { MatBadgeModule } from '@angular/material/badge';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { CardModule } from '../shared/card/card.module';
-
 
 const routes: Routes = [
   {
-    path: '', component: WalletSectionComponent, canActivate: [NavigationGuard], canActivateChild: [NavigationGuard], children: [
-      { path: 'profile', loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule) },
-      { path: 'walletExpenses', loadChildren: () => import('./show-wallet-table/wallet-expenses.module').then(m => m.WalletExpensesModule) },
-      { path: 'previousExpenses', loadChildren: () => import('./show-previous-expenses/previous-expenses.module').then(m => m.PreviousExpensesModule) },
-      { path: 'getWalletStatistics', loadChildren: () => import('./wallet-statistics/wallet-statistics.module').then(m => m.WalletStatisticsModule) },
-      { path: 'userStatistics/:id', loadChildren: () => import('./user-statistics/user-statistics.module').then(m => m.UserStatisticsModule) },
-      { path: 'catstat/:id', loadChildren: () => import('./category-statistics/category-statistics.module').then(m => m.CategoryStatisticsModule) },
-      { path: 'compare', loadChildren: () => import('./manual-comparison/manual.module').then(m => m.ManualModule) },
-      { path: 'home-wallet', loadChildren: () => import('./home-wallet/home-wallet.module').then(m => m.HomeWalletModule) },
-      { path: 'walletAdmin', loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule), canActivate: [AdminGuard] },
-      { path: 'tips', loadChildren: () => import('../tips/tips.module').then(m => m.TipsModule) },
+    path: '',
+    component: WalletSectionComponent,
+    canActivate: [NavigationGuard],
+    canActivateChild: [NavigationGuard],
+    children: [
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('../profile/profile.module').then((m) => m.ProfileModule)
+      },
+      {
+        path: 'walletExpenses',
+        loadChildren: () =>
+          import('./show-wallet-table/wallet-expenses.module').then(
+            (m) => m.WalletExpensesModule
+          )
+      },
+      {
+        path: 'previousExpenses',
+        loadChildren: () =>
+          import('./show-previous-expenses/previous-expenses.module').then(
+            (m) => m.PreviousExpensesModule
+          )
+      },
+      {
+        path: 'getWalletStatistics',
+        loadChildren: () =>
+          import('./wallet-statistics/wallet-statistics.module').then(
+            (m) => m.WalletStatisticsModule
+          )
+      },
+      {
+        path: 'userStatistics/:id',
+        loadChildren: () =>
+          import('./user-statistics/user-statistics.module').then(
+            (m) => m.UserStatisticsModule
+          )
+      },
+      {
+        path: 'catstat/:id',
+        loadChildren: () =>
+          import('./category-statistics/category-statistics.module').then(
+            (m) => m.CategoryStatisticsModule
+          )
+      },
+      {
+        path: 'compare',
+        loadChildren: () =>
+          import('./manual-comparison/manual.module').then(
+            (m) => m.ManualModule
+          )
+      },
+      {
+        path: 'home-wallet',
+        loadChildren: () =>
+          import('./home-wallet/home-wallet.module').then(
+            (m) => m.HomeWalletModule
+          )
+      },
+      {
+        path: 'walletAdmin',
+        loadChildren: () =>
+          import('../admin/admin.module').then((m) => m.AdminModule),
+        canActivate: [AdminGuard]
+      },
+      {
+        path: 'tips',
+        loadChildren: () =>
+          import('../tips/tips.module').then((m) => m.TipsModule)
+      }
     ]
-  },
+  }
 ];
 
-
 @NgModule({
-  declarations: [WalletSectionComponent, NavbarComponent, SidebarComponent, HasRoleDirective],
+  declarations: [
+    WalletSectionComponent,
+    NavbarComponent,
+    SidebarComponent,
+    HasRoleDirective
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -45,8 +107,8 @@ const routes: Routes = [
     MatDialogModule,
     ReactiveFormsModule,
     MatBadgeModule,
-    MatExpansionModule,
+    MatExpansionModule
   ],
-  schemas: [NO_ERRORS_SCHEMA],
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class WalletModule { }
+export class WalletModule {}

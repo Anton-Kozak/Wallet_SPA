@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/translate-shared-lazy.module';
 import { AboutComponent } from './about.component';
 
-
-
 @NgModule({
   declarations: [AboutComponent],
   imports: [
@@ -14,4 +12,4 @@ import { AboutComponent } from './about.component';
     TranslateSharedLazyModule
   ]
 })
-export class AboutModule { }
+export class AboutModule {}

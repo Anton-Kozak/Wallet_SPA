@@ -7,16 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./not-found.component.css']
 })
 export class NotFoundComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     console.log('NOT FOUND');
-    
   }
 
-  back(){
+  back() {
     this.router.navigate(['/main']);
   }
-
 }

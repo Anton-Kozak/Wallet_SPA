@@ -5,17 +5,15 @@ import { MatTableModule } from '@angular/material/table';
 import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/translate-shared-lazy.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-
-
 @NgModule({
   declarations: [TableWithExpensesComponent],
   imports: [
     CommonModule,
     MatTableModule,
     TranslateSharedLazyModule,
-    MatPaginatorModule,
+    MatPaginatorModule
   ],
   exports: [TableWithExpensesComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class TableModule { }
+export class TableModule {}

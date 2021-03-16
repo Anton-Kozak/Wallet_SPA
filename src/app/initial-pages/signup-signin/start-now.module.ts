@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/translate-shared-lazy.module';
 
-
-
 @NgModule({
   declarations: [SignupSigninComponent],
   imports: [
@@ -18,4 +16,4 @@ import { TranslateSharedLazyModule } from 'src/app/shared/translate-shared-lazy/
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class StartNowModule { }
+export class StartNowModule {}

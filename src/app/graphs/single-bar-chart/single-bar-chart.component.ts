@@ -13,38 +13,41 @@ import { MyThemeService } from 'src/app/_services/theme.service';
   styleUrls: ['./single-bar-chart.component.css']
 })
 export class SingleBarChartComponent implements OnInit {
-
   @Input() barExpensesList: ExpenseList;
   @Input() categories: CategoryData[];
   colors: MyColors = new MyColors();
-  labelColor = "black";
+  labelColor = 'black';
   public barChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     aspectRatio: 0.7,
     scales: {
-      xAxes: [{
-        ticks: {
-          fontColor: '#008855',
-        },
-      }],
-      yAxes: [{
-        ticks: {
-          fontColor: '#AC4606',
-        },
-      }]
+      xAxes: [
+        {
+          ticks: {
+            fontColor: '#008855'
+          }
+        }
+      ],
+      yAxes: [
+        {
+          ticks: {
+            fontColor: '#AC4606'
+          }
+        }
+      ]
     },
     legend: {
       display: true,
       labels: {
         fontColor: '#972600',
         fontSize: 13
-      },
+      }
     },
     plugins: {
       datalabels: {
         anchor: 'end',
-        align: 'end',
+        align: 'end'
       }
     }
   };
@@ -54,9 +57,7 @@ export class SingleBarChartComponent implements OnInit {
   public barChartData: ChartDataSets[] = [];
   labels: { [key: string]: string }[] = [];
 
-  constructor(private translate: TranslateService) {
-
-  }
+  constructor(private translate: TranslateService) {}
   ngOnInit() {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateLabels();
@@ -68,14 +69,24 @@ export class SingleBarChartComponent implements OnInit {
     if (this.translate.currentLang === 'en') {
       this.labels = this.translate.translations.en.ExpenseCategory;
       for (let i = 0; i < this.categories.length; i++) {
-        this.barChartData[i] = { label: this.labels[this.categories[i].title], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].backgroundColor };
-
+        this.barChartData[i] = {
+          label: this.labels[this.categories[i].title],
+          data: [this.barExpensesList[i]['categoryExpenses']],
+          backgroundColor: this.colors.colors[i].backgroundColor,
+          borderColor: this.colors.colors[i].borderColor,
+          hoverBackgroundColor: this.colors.colors[i].backgroundColor
+        };
       }
-    }
-    else if (this.translate.currentLang === 'ru') {
+    } else if (this.translate.currentLang === 'ru') {
       this.labels = this.translate.translations.ru.ExpenseCategory;
       for (let i = 0; i < this.categories.length; i++) {
-        this.barChartData[i] = { label: this.labels[this.categories[i].title], data: [this.barExpensesList[i]['categoryExpenses']], backgroundColor: this.colors.colors[i].backgroundColor, borderColor: this.colors.colors[i].borderColor, hoverBackgroundColor: this.colors.colors[i].backgroundColor };
+        this.barChartData[i] = {
+          label: this.labels[this.categories[i].title],
+          data: [this.barExpensesList[i]['categoryExpenses']],
+          backgroundColor: this.colors.colors[i].backgroundColor,
+          borderColor: this.colors.colors[i].borderColor,
+          hoverBackgroundColor: this.colors.colors[i].backgroundColor
+        };
       }
     }
   }

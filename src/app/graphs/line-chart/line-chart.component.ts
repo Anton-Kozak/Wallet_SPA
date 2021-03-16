@@ -10,51 +10,51 @@ import { LastMonthStat } from 'src/app/_model/lastMonthStat';
   styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent implements OnInit {
-
   @Input() lastSixMonths: LastMonthStat[];
 
-  public lineChartData: ChartDataSets[] = [
-    { data: [], label: 'Data' },
-  ];
+  public lineChartData: ChartDataSets[] = [{ data: [], label: 'Data' }];
   public lineChartLabels: Label[] = [];
-  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public lineChartOptions: ChartOptions & { annotation: any } = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-        },
-        ticks: {
-          fontColor: '#AC4606',
-        },
-      }],
+      xAxes: [
+        {
+          gridLines: {
+            color: 'transparent'
+          },
+          ticks: {
+            fontColor: '#AC4606'
+          }
+        }
+      ],
       yAxes: [
         {
           ticks: {
-            fontColor: '#AC4606',
+            fontColor: '#AC4606'
           },
           id: 'y-axis-0',
           position: 'left',
           gridLines: {
-            color: 'transparent',
-          },
+            color: 'transparent'
+          }
         },
         {
           id: 'y-axis-1',
           position: 'right',
           gridLines: {
-            color: 'transparent',
+            color: 'transparent'
           },
           ticks: {
-            fontColor: 'transparent',
+            fontColor: 'transparent'
           }
         }
       ]
     },
     legend: {
-      display: false,
+      display: false
     },
     annotation: {
       annotations: [
@@ -70,9 +70,9 @@ export class LineChartComponent implements OnInit {
             fontColor: 'orange',
             content: 'LineAnno'
           }
-        },
-      ],
-    },
+        }
+      ]
+    }
   };
   public lineChartColors: Color[] = [
     {
@@ -82,16 +82,16 @@ export class LineChartComponent implements OnInit {
       pointBorderColor: 'transparent',
       pointHoverBackgroundColor: 'transparent',
       pointHoverBorderColor: 'transparent'
-    },
+    }
   ];
   public lineChartLegend = true;
   public lineChartType = 'line';
   months: { [key: string]: string }[] = [];
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
-  constructor(private translate: TranslateService) { }
+  constructor(private translate: TranslateService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.lastSixMonths = this.lastSixMonths.reverse();
     this.translate.onLangChange.subscribe(() => {
       this.translateLabels();
@@ -99,18 +99,21 @@ export class LineChartComponent implements OnInit {
     this.translateLabels();
   }
 
-  translateLabels() {
+  translateLabels(): void {
     if (this.translate.currentLang === 'en') {
       this.months = this.translate.translations.en.Months;
       for (let i = 0; i < this.lastSixMonths.length; i++) {
-        this.lineChartData[0].data[i] = [this.lastSixMonths[i]['expenseSum']][0];
+        this.lineChartData[0].data[i] = [
+          this.lastSixMonths[i]['expenseSum']
+        ][0];
         this.lineChartLabels[i] = this.months[this.lastSixMonths[i]['month']];
       }
-    }
-    else if (this.translate.currentLang === 'ru') {
+    } else if (this.translate.currentLang === 'ru') {
       this.months = this.translate.translations.ru.Months;
       for (let i = 0; i < this.lastSixMonths.length; i++) {
-        this.lineChartData[0].data[i] = [this.lastSixMonths[i]['expenseSum']][0];
+        this.lineChartData[0].data[i] = [
+          this.lastSixMonths[i]['expenseSum']
+        ][0];
         this.lineChartLabels[i] = this.months[this.lastSixMonths[i]['month']];
       }
     }

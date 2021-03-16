@@ -18,83 +18,99 @@ import { WalletService } from 'src/app/_services/wallet.service';
   styleUrls: ['./wallet-admin.component.css']
 })
 export class WalletAdminComponent implements OnInit {
-
   //TODO: перекинуть таблицу с пользователями на страницу edit-wallet
-  constructor(private admService: AdminService,
+  constructor(
+    private admService: AdminService,
     public dialog: MatDialog,
     private alertify: AlertifyService,
     private adminService: AdminService,
-    public translate: TranslateService, private titleService: Title, private walletService: WalletService) {
-  }
+    public translate: TranslateService,
+    private titleService: Title,
+    private walletService: WalletService
+  ) {}
 
-  columnsForExpenses: string[] = ['expenseTitle', 'category', 'userName', 'moneySpent', 'expenseDescription', 'creationDate', 'actions'];
-  columnsForUsers: string[] = ['username', 'dateJoined', 'userRoles', 'actions'];
+  columnsForExpenses: string[] = [
+    'expenseTitle',
+    'category',
+    'userName',
+    'moneySpent',
+    'expenseDescription',
+    'creationDate',
+    'actions'
+  ];
+  columnsForUsers: string[] = [
+    'username',
+    'dateJoined',
+    'userRoles',
+    'actions'
+  ];
   expenses: ExpenseForAdminTable[] = [];
   users = new MatTableDataSource<UserForAdmin>();
-  walletCurrency: string = 'USD';
-  isLoading: boolean = false;
+  walletCurrency = 'USD';
+  isLoading = false;
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
   ngOnInit(): void {
-    this.walletService.getCurrentWallet().subscribe(wallet => {
+    this.walletService.getCurrentWallet().subscribe((wallet) => {
       this.walletCurrency = wallet['currency'];
-    })
+    });
     if (this.translate.currentLang === 'en') {
       moment.locale('en');
-    }
-    else if (this.translate.currentLang === 'ru')
-      moment.locale('ru');
+    } else if (this.translate.currentLang === 'ru') moment.locale('ru');
 
     this.translate.onLangChange.subscribe(() => {
       if (this.translate.currentLang === 'en') {
         moment.locale('en');
-      }
-      else if (this.translate.currentLang === 'ru')
-        moment.locale('ru');
-    })
+      } else if (this.translate.currentLang === 'ru') moment.locale('ru');
+    });
 
-    this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[]) => {
-      this.isLoading = true;
-      this.expenses = expenses;
-      console.log(expenses);
-      
-      //this.expenses.paginator = this.expensePaginator;
-      this.isLoading = false;
-    })
+    this.admService
+      .getAllExpenses()
+      .subscribe((expenses: ExpenseForAdminTable[]) => {
+        this.isLoading = true;
+        this.expenses = expenses;
+        console.log(expenses);
+
+        //this.expenses.paginator = this.expensePaginator;
+        this.isLoading = false;
+      });
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
       this.users.data = usersForAdmin;
     });
     this.setTitle(this.translate.currentLang);
-    this.translate.onLangChange.subscribe(lang => {
+    this.translate.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);
     });
-
   }
-  setTitle(lang: string) {
+  setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Admin panel');
-    }
-    else if (lang === 'ru') {
+    } else if (lang === 'ru') {
       this.titleService.setTitle('Админ Панель');
     }
   }
 
-
-  removeUser(userId: string, rowIndex: number) {
-    let res = confirm(this.translate.currentLang === 'en' ? "Do you really want to remove this user from your wallet?" : "Вы действительно хотите убрать этого пользователя из Вашего кошелька?")
-    this.admService.removeUser(userId).subscribe(response => {
-      this.users.data.splice(rowIndex, 1);
-      this.alertify.success(response);
-      this.users.data = this.users.data;
-    }, error => {
-      this.alertify.error(error.error);
-    });
+  removeUser(userId: string, rowIndex: number): void {
+    confirm(
+      this.translate.currentLang === 'en'
+        ? 'Do you really want to remove this user from your wallet?'
+        : 'Вы действительно хотите убрать этого пользователя из Вашего кошелька?'
+    );
+    this.admService.removeUser(userId).subscribe(
+      (response) => {
+        this.users.data.splice(rowIndex, 1);
+        this.alertify.success(response);
+        this.users.data = this.users.data;
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
-  sendInvitation() {
+  sendInvitation(): void {
     const dialogRef = this.dialog.open(CreateInviteComponent);
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    dialogRef.afterClosed().subscribe();
   }
 
   // openDialog(id: number, rowIndex: number): void {
@@ -115,11 +131,9 @@ export class WalletAdminComponent implements OnInit {
   //   });
   // }
 
-
-  onWalletEditDialog() {
+  onWalletEditDialog(): void {
     const dialogRef = this.dialog.open(EditWalletComponent);
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    dialogRef.afterClosed().subscribe();
   }
 
   // expenseDelete(id: number, rowIndex: number, elem: any) {
@@ -136,14 +150,13 @@ export class WalletAdminComponent implements OnInit {
   //   }
   // }
 
-  addUserFromRequest($event) {
+  addUserFromRequest(): void {
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
       this.users.data = usersForAdmin;
     });
   }
 
-  getFormat(date) {
+  getFormat(date: string): string {
     return moment(date).format('lll');
   }
-
 }

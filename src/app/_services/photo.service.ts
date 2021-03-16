@@ -1,28 +1,39 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Photo } from '../_model/photo';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhotoService {
-  baseUrl: string = environment.apiUrl + "photo/";
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  baseUrl: string = environment.apiUrl + 'photo/';
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getPhoto() {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid);
+  getPhoto(): Observable<Photo> {
+    return this.http.get<Photo>(
+      this.baseUrl + this.authService.getToken().nameid
+    );
   }
 
-  addPhoto(photo: any) {
-    return this.http.post(this.baseUrl + this.authService.getToken().nameid, photo);
+  addPhoto(photo: Photo | unknown): Observable<Photo> {
+    return this.http.post<Photo>(
+      this.baseUrl + this.authService.getToken().nameid,
+      photo
+    );
   }
 
-  deletePhoto() {
-    return this.http.delete(this.baseUrl + this.authService.getToken().nameid);
+  deletePhoto(): Observable<void | string> {
+    return this.http.delete<void | string>(
+      `${this.baseUrl}${this.authService.getToken().nameid}`
+    );
   }
 
-  getAllUserPhotos() {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getUserPhotos')
+  getAllUserPhotos(): Observable<void> {
+    return this.http.get<void>(
+      `${this.baseUrl}${this.authService.getToken().nameid}'/getUserPhotos'`
+    );
   }
 }

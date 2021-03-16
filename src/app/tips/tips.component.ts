@@ -8,36 +8,38 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./tips.component.css']
 })
 export class TipsComponent implements OnInit {
-  tips: { title: string, tip: string }[] = [];
+  tips: { title: string; tip: string }[] = [];
   panelOpenState = false;
-  constructor(private http: HttpClient, public translate: TranslateService, private titleService: Title) { }
+  constructor(
+    private http: HttpClient,
+    public translate: TranslateService,
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
-    this.getTipsWithRightLanguage(this.translate.currentLang);  
-    this.translate.onLangChange.subscribe(lang => {
+    this.getTipsWithRightLanguage(this.translate.currentLang);
+    this.translate.onLangChange.subscribe((lang) => {
       this.getTipsWithRightLanguage(lang['lang']);
-    })
+    });
   }
 
   getTipsWithRightLanguage(lang) {
     if (lang === 'ru') {
-      this.http.get('assets/tips_ru.json').subscribe(tips => {
+      this.http.get('assets/tips_ru.json').subscribe((tips) => {
         this.tips = [];
         for (const key in tips['Tips']) {
           this.tips.push({ title: key, tip: tips['Tips'][key] });
         }
         this.titleService.setTitle('Советы для бюджета');
-      })
-    }
-    else if (lang === 'en') {
-      this.http.get('assets/tips_en.json').subscribe(tips => {
+      });
+    } else if (lang === 'en') {
+      this.http.get('assets/tips_en.json').subscribe((tips) => {
         this.tips = [];
         for (const key in tips['Tips']) {
           this.tips.push({ title: key, tip: tips['Tips'][key] });
         }
         this.titleService.setTitle('Budget Tips');
-      })
+      });
     }
   }
-
 }

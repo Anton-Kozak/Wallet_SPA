@@ -7,12 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-expense.component';
-import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { TableModule } from '../../shared/table-with-expenses/table.module';
 import { CardModule } from 'src/app/shared/card/card.module';
 // import { TableWithExpensesComponent } from 'src/app/table-with-expenses/table-with-expenses.component';
-
-
 
 @NgModule({
   declarations: [ShowWalletTableComponent, CreateExpenseComponent],
@@ -28,8 +26,6 @@ import { CardModule } from 'src/app/shared/card/card.module';
     CardModule,
     ProgressbarModule.forRoot()
   ],
-  schemas: [NO_ERRORS_SCHEMA],
-
-
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class WalletExpensesModule { }
+export class WalletExpensesModule {}

@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="amountOfMoneySpent > 0 && barExpenses != null && !isLoading">
+    <div *ngIf="detailedUserStatistics.amountOfMoneySpent > 0 && detailedUserStatistics.barExpenses != null && !isLoading">
         <div class="row">
             <div class="col-lg-4 col-md-12 mob" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                 data-aos-delay="0">
@@ -30,7 +30,7 @@
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="0">
                         <app-card [classes]="['nc-icon nc-chart-bar-32 text-success', 'fa fa-sort-amount-asc']"
-                            [mainText]="'Expenses.MostUsed'" [subText]="'ExpenseCategory.'+mostUsedCategory"
+                            [mainText]="'Expenses.MostUsed'" [subText]="'ExpenseCategory.'+detailedUserStatistics.mostUsedCategory"
                             [subTextNone]="'None found'" [hasFooter]="true" [footerText]="'Footer.NumberExp'"
                             [footerTextNone]="'Please, add expenses'">
                         </app-card>
@@ -40,7 +40,7 @@
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="100">
                         <app-card [classes]="['nc-icon nc-chart-bar-32 text-primary', 'fa fa-money']"
-                            [mainText]="'Expenses.MostSpent'" [subText]="'ExpenseCategory.'+mostSpentCategory"
+                            [mainText]="'Expenses.MostSpent'" [subText]="'ExpenseCategory.'+detailedUserStatistics.mostSpentCategory"
                             [subTextNone]="'None found'" [hasFooter]="true" [footerText]="'Footer.TotalCat'"
                             [footerTextNone]="'Please, add expenses'">
                         </app-card>
@@ -50,7 +50,7 @@
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="200">
                         <app-card [classes]="['nc-icon nc-money-coins text-success', 'fa fa-money']"
-                            [mainText]="'Expenses.Largest'" [subText]="largestExpense" [subTextNone]="'None found'"
+                            [mainText]="'Expenses.Largest'" [subText]="detailedUserStatistics.largestExpense" [subTextNone]="'None found'"
                             [hasFooter]="true" [footerText]="'Footer.Largest'"
                             [footerTextNone]="'Please, add expenses'">
                         </app-card>
@@ -60,7 +60,7 @@
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="300">
                         <app-card [classes]="['nc-icon nc-money-coins text-secondary', 'fa fa-money']"
-                            [mainText]="'Expenses.Average'" [subText]="avgDailyExpenses" [subTextNone]="'None found'"
+                            [mainText]="'Expenses.Average'" [subText]="detailedUserStatistics.averageDailyExpense" [subTextNone]="'None found'"
                             [hasFooter]="true" [footerText]="'Footer.PerDay'" [footerTextNone]="'Please, add expenses'">
                         </app-card>
                     </div>
@@ -69,13 +69,13 @@
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="400">
                         <app-card [classes]="['fas fa-donate text-warning', 'fas fa-hand-holding-usd']"
-                            [mainText]="'Expenses.Total'" [subText]="amountOfMoneySpent" [subTextNone]="'None found'"
+                            [mainText]="'Expenses.Total'" [subText]="detailedUserStatistics.amountOfMoneySpent" [subTextNone]="'None found'"
                             [hasFooter]="true" [footerText]="'Footer.TotalSum'"
                             [footerTextNone]="'Please, add expenses'">
                         </app-card>
                     </div>
                 </div>
-                <div *ngIf="lastSixMonths" class="row">
+                <div *ngIf="detailedUserStatistics.lastSixMonths" class="row">
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="450">
                         <div class="card " style="border-radius: 12px;">
@@ -85,7 +85,7 @@
                             </div>
                             <div class="card-body ">
                                 <div>
-                                    <app-line-chart [lastSixMonths]="lastSixMonths"></app-line-chart>
+                                    <app-line-chart [lastSixMonths]="detailedUserStatistics.lastSixMonths"></app-line-chart>
                                 </div>
                             </div>
                             <div class="card-footer ">
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="currentMonthData !== 0 && previousMonthData !== 0" class="row">
+                <div *ngIf="detailedUserStatistics.monthCompareData.currentMonthData !== 0 && detailedUserStatistics.monthCompareData.lastMonthData !== 0" class="row">
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="500">
                         <div class="card " style="border-radius: 12px;">
@@ -107,8 +107,8 @@
                             </div>
                             <div class="card-body ">
                                 <div>
-                                    <app-donut-chart [currentMonthbar]="currentMonthData"
-                                        [lastMonthbar]="previousMonthData" [category]=""></app-donut-chart>
+                                    <app-donut-chart [currentMonthbar]="detailedUserStatistics.monthCompareData.currentMonthData"
+                                        [lastMonthbar]="detailedUserStatistics.monthCompareData.lastMonthData" [category]=""></app-donut-chart>
                                 </div>
                             </div>
                             <div class="card-footer ">
@@ -129,9 +129,9 @@
                         <h5 class="card-title">{{'Expenses.ExpenseForCategory' | translate}}</h5>
                         <p class="card-category">{{'Expenses.ExpenseForCatDesc' | translate}}</p>
                     </div>
-                    <div *ngIf="barExpenses" class="card-body ">
-                        <div *ngIf="barExpenses != null && categories.length > 0">
-                            <app-single-bar-chart [categories]="categories" [barExpensesList]="barExpenses">
+                    <div *ngIf="detailedUserStatistics.barExpenses" class="card-body ">
+                        <div *ngIf="detailedUserStatistics.barExpenses != null && categories.length > 0">
+                            <app-single-bar-chart [categories]="categories" [barExpensesList]="detailedUserStatistics.barExpenses">
                             </app-single-bar-chart>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="!isLoading && amountOfMoneySpent === 0">
+    <div *ngIf="!isLoading && detailedUserStatistics.amountOfMoneySpent === 0">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">

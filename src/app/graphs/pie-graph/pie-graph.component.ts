@@ -10,7 +10,6 @@ import { MyColors } from 'src/app/_helper/chart-colors';
   styleUrls: ['./pie-graph.component.css']
 })
 export class PieGraphComponent implements OnInit {
-
   @Input() topFiveUsers: TopUsersStat[];
   colors: MyColors = new MyColors();
   public pieChartOptions: ChartOptions = {
@@ -19,7 +18,7 @@ export class PieGraphComponent implements OnInit {
     aspectRatio: 0.7,
     legend: {
       position: 'top',
-      labels:{
+      labels: {
         fontColor: '#AC4606',
         fontSize: 13
       }
@@ -29,8 +28,8 @@ export class PieGraphComponent implements OnInit {
         formatter: (value, ctx) => {
           const label = ctx.chart.data.labels[ctx.dataIndex];
           return label;
-        },
-      },
+        }
+      }
     }
   };
   public pieChartLabels: Label[] = [];
@@ -44,15 +43,12 @@ export class PieGraphComponent implements OnInit {
         this.colors.colors[1].backgroundColor,
         this.colors.colors[2].backgroundColor,
         this.colors.colors[3].backgroundColor,
-        this.colors.colors[4].backgroundColor],
-    },
+        this.colors.colors[4].backgroundColor
+      ]
+    }
   ];
-  constructor() { }
-
- 
 
   ngOnInit(): void {
-
     for (let i = 0; i < this.topFiveUsers.length; i++) {
       this.pieChartData[i] = this.topFiveUsers[i]['sum'];
       this.pieChartLabels[i] = this.topFiveUsers[i]['userName'];

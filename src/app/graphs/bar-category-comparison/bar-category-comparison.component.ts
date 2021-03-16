@@ -8,7 +8,6 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./bar-category-comparison.component.css']
 })
 export class BarCategoryComparisonComponent implements OnInit {
-
   @Input() currentMonthbar: number;
   @Input() lastMonthbar: number;
   @Input() category: string;
@@ -25,7 +24,7 @@ export class BarCategoryComparisonComponent implements OnInit {
         '#f0e8aa',
         '#c4f0a2',
         '#a2e7f0',
-        '#f0a2c4',
+        '#f0a2c4'
       ]
     }
   ];
@@ -34,27 +33,32 @@ export class BarCategoryComparisonComponent implements OnInit {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
-      xAxes: [{
-        ticks: {
-          fontColor: '#008855',
-        },
-      }], yAxes: [{
-        ticks: {
-          fontColor: '#008855',
-        },
-      }]
+      xAxes: [
+        {
+          ticks: {
+            fontColor: '#008855'
+          }
+        }
+      ],
+      yAxes: [
+        {
+          ticks: {
+            fontColor: '#008855'
+          }
+        }
+      ]
     },
     legend: {
       display: true,
       labels: {
         fontColor: '#008855',
         fontSize: 14
-      },
+      }
     },
     plugins: {
       datalabels: {
         anchor: 'end',
-        align: 'end',
+        align: 'end'
       }
     }
   };
@@ -64,18 +68,12 @@ export class BarCategoryComparisonComponent implements OnInit {
 
   public barChartData: ChartDataSets[] = [
     { data: [], label: '' },
-    { data: [], label: '' },
+    { data: [], label: '' }
   ];
 
-  constructor() { }
-
-  ngOnInit() {
-
-    const last = this.lastMonthbar;
+  ngOnInit(): void {
     this.barChartData[0].data = [this.lastMonthbar];
-    const current = this.currentMonthbar;
     this.barChartData[1].data = [31];
     this.barChartLabels[0] = this.category;
   }
-
 }

@@ -8,23 +8,18 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-
-  constructor(private authService: AuthService, private titleService: Title) { }
+  constructor(private authService: AuthService, private titleService: Title) {}
 
   hasWallet = false;
   isAuthorized = false;
 
   ngOnInit(): void {
     AOS.init({});
-    this.authService.hasWallet.subscribe(res => {
+    this.authService.hasWallet.subscribe((res) => {
       this.hasWallet = res;
-    })
-    this.authService.isLoggedIn.subscribe(res => {
+    });
+    this.authService.isLoggedIn.subscribe((res) => {
       this.isAuthorized = res;
     });
-
   }
-
-
 }

@@ -12,24 +12,26 @@ export class InitialNavbarComponent implements OnInit {
   activeLang: string;
   isSignedIn: boolean;
 
-  
-  constructor(private authService: AuthService, private router: Router, public translate: TranslateService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    public translate: TranslateService
+  ) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
     if (localStorage.getItem('language') !== null) {
       this.translate.use(localStorage.getItem('language'));
       this.activeLang = localStorage.getItem('language');
-    }
-    else {
+    } else {
       this.activeLang = translate.getBrowserLang();
       translate.use(this.activeLang.match(/en|ru/) ? this.activeLang : 'en');
     }
   }
 
   ngOnInit(): void {
-    this.authService.isLoggedIn.subscribe(res => {
+    this.authService.isLoggedIn.subscribe((res) => {
       this.isSignedIn = res;
-    })
+    });
   }
 
   changeLang(lang: string) {

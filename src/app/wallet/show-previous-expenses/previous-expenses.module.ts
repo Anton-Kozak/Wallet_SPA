@@ -6,18 +6,17 @@ import { ShowPreviousExpensesComponent } from './show-previous-expenses.componen
 import { GraphsModule } from 'src/app/shared/graphs.module';
 import { TableModule } from 'src/app/shared/table-with-expenses/table.module';
 
-
-
-
 @NgModule({
-    declarations: [ShowPreviousExpensesComponent],
-    imports: [
-        CommonModule,
-        RouterModule.forChild([{ path: '', component: ShowPreviousExpensesComponent }]),
-        TranslateSharedLazyModule,
-        GraphsModule,
-        TableModule
-    ],
-    schemas: [NO_ERRORS_SCHEMA]
+  declarations: [ShowPreviousExpensesComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      { path: '', component: ShowPreviousExpensesComponent }
+    ]),
+    TranslateSharedLazyModule,
+    GraphsModule,
+    TableModule
+  ],
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class PreviousExpensesModule { }
+export class PreviousExpensesModule {}

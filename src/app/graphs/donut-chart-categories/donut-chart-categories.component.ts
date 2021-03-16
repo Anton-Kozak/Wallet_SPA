@@ -12,7 +12,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./donut-chart-categories.component.css']
 })
 export class DonutChartCategoriesComponent implements OnInit {
-
   @Input() barExpensesList: ExpenseList[];
   @Input() categories: CategoryData[];
   public doughnutChartLabels: Label[] = [];
@@ -28,7 +27,7 @@ export class DonutChartCategoriesComponent implements OnInit {
         fontColor: '#F4B41C',
         fontSize: 13
       }
-    },
+    }
   };
   colors: MyColors = new MyColors();
   labels: { [key: string]: string }[] = [];
@@ -44,11 +43,11 @@ export class DonutChartCategoriesComponent implements OnInit {
         this.colors.colors[6].backgroundColor,
         this.colors.colors[7].backgroundColor,
         this.colors.colors[8].backgroundColor,
-        this.colors.colors[9].backgroundColor,
-      ],
-    },
+        this.colors.colors[9].backgroundColor
+      ]
+    }
   ];
-  constructor(private translate: TranslateService) { }
+  constructor(private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.translate.onLangChange.subscribe(() => {
@@ -65,8 +64,7 @@ export class DonutChartCategoriesComponent implements OnInit {
         this.doughnutChartLabels.push(this.labels[this.categories[i].title]);
         this.doughnutChartData[i] = this.barExpensesList[i]['categoryExpenses'];
       }
-    }
-    else if (this.translate.currentLang === 'ru') {
+    } else if (this.translate.currentLang === 'ru') {
       this.labels = this.translate.translations.ru.ExpenseCategory;
       this.doughnutChartLabels = [];
       for (let i = 0; i < this.categories.length; i++) {

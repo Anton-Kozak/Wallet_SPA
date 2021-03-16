@@ -33,13 +33,13 @@
 
     </div>
 
-    <div class="row mt-5 data-column" [hidden]="!showData">
-        <div *ngIf="firstMonthTotal == 0" class="col-lg-6 col-sm-12 col-12">
+    <div class="row mt-5 data-column" *ngIf="showData">
+        <div *ngIf="specifiedDataStatistics.firstMonthTotal == 0" class="col-lg-6 col-sm-12 col-12">
             <div style="font-size: 22px;" class="card col-12 p-5 text-uppercase text-center">
                 {{'Expenses.Nothing' | translate}} {{'Expenses.On' | translate}} {{getFormat(firstDate.value)}}
             </div>
         </div>
-        <div *ngIf="firstMonthTotal > 0" class="col-lg-6 col-sm-12 col-12">
+        <div *ngIf="specifiedDataStatistics.firstMonthTotal > 0" class="col-lg-6 col-sm-12 col-12">
             <div class="d-lg-none">
                 <div class="card p-3 text-center text-uppercase">
                     {{getFormat(firstDate.value)}}
@@ -47,31 +47,31 @@
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left': showData}">
                 <app-card [classes]="['nc-icon nc-chart-bar-32 text-success', null]" [mainText]="'Expenses.MostSpent'"
-                    [subText]="'ExpenseCategory.'+firstMonthMostSpent" [subTextNone]="'None found'" [hasFooter]="false"
+                    [subText]="'ExpenseCategory.'+specifiedDataStatistics.firstMonthMostSpent" [subTextNone]="'None found'" [hasFooter]="false"
                     [footerText]="null" [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-s': showData}">
                 <app-card [classes]="['nc-icon nc-chart-bar-32 text-primary', null]" [mainText]="'Expenses.MostUsed'"
-                    [subText]="'ExpenseCategory.'+firstMonthMostUsed" [subTextNone]="'None found'" [hasFooter]="false"
+                    [subText]="'ExpenseCategory.'+specifiedDataStatistics.firstMonthMostUsed" [subTextNone]="'None found'" [hasFooter]="false"
                     [footerText]="null" [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-t': showData}">
                 <app-card [classes]="['nc-icon nc-money-coins text-secondary', null]" [mainText]="'Expenses.Average'"
-                    [subText]="firstMonthAverage" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [subText]="specifiedDataStatistics.firstMonthAverage" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-f': showData}">
                 <app-card [classes]="['nc-icon nc-money-coins text-primary', null]" [mainText]="'Expenses.Total'"
-                    [subText]="firstMonthTotal" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [subText]="specifiedDataStatistics.firstMonthTotal" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-x': showData}">
                 <app-card [classes]="['nc-icon nc-money-coins text-success', null]" [mainText]="'Expenses.Largest'"
-                    [subText]="firstLargestExpense" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [subText]="specifiedDataStatistics.firstLargestExpense" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
@@ -82,9 +82,9 @@
                         <!-- <p class="card-category">In {{monthName}}</p> -->
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="firstMonthPreviousExpensesBars != null && categories.length > 0">
+                        <div *ngIf="specifiedDataStatistics.firstMonthPreviousExpensesBars != null && categories.length > 0">
                             <app-donut-chart-categories [categories]="categories"
-                                [barExpensesList]="firstMonthPreviousExpensesBars"></app-donut-chart-categories>
+                                [barExpensesList]="specifiedDataStatistics.firstMonthPreviousExpensesBars"></app-donut-chart-categories>
                         </div>
                         <!-- <p *ngIf="topFiveUsers == null" class="text-uppercase">No one was spending in {{monthName}}
                         </p> -->
@@ -103,8 +103,8 @@
                         <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="firstMonthTopFiveUsers != null">
-                            <app-pie-graph [topFiveUsers]="firstMonthTopFiveUsers"></app-pie-graph>
+                        <div *ngIf="specifiedDataStatistics.firstMonthTopFiveUsers != null">
+                            <app-pie-graph [topFiveUsers]="specifiedDataStatistics.firstMonthTopFiveUsers"></app-pie-graph>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -159,12 +159,12 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="secondMonthTotal == 0" class="col-lg-6 col-sm-12 col-12">
+        <div *ngIf="specifiedDataStatistics.secondMonthTotal == 0" class="col-lg-6 col-sm-12 col-12">
             <div style="font-size: 22px;" class="card col-12 p-5 text-uppercase text-center">
                 {{'Expenses.Nothing' | translate}} {{'Expenses.On' | translate}} {{getFormat(secondDate.value)}}
             </div>
         </div>
-        <div *ngIf="secondMonthTotal > 0" class="col-lg-6 col-sm-12 col-12">
+        <div *ngIf="specifiedDataStatistics.secondMonthTotal > 0" class="col-lg-6 col-sm-12 col-12">
             <div class="d-lg-none mt-5">
                 <div class="card p-3 text-center text-uppercase">
                     {{secondDate.value}}
@@ -172,31 +172,31 @@
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right': showData}">
                 <app-card [classes]="['nc-icon nc-chart-bar-32 text-success', null]" [mainText]="'Expenses.MostSpent'"
-                    [subText]="'ExpenseCategory.'+secondMonthMostSpent" [subTextNone]="'None found'" [hasFooter]="false"
+                    [subText]="'ExpenseCategory.'+specifiedDataStatistics.secondMonthMostSpent" [subTextNone]="'None found'" [hasFooter]="false"
                     [footerText]="null" [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-s': showData}">
                 <app-card [classes]="['nc-icon nc-chart-bar-32 text-primary', null]" [mainText]="'Expenses.MostUsed'"
-                    [subText]="'ExpenseCategory.'+secondMonthMostUsed" [subTextNone]="'None found'" [hasFooter]="false"
+                    [subText]="'ExpenseCategory.'+specifiedDataStatistics.secondMonthMostUsed" [subTextNone]="'None found'" [hasFooter]="false"
                     [footerText]="null" [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-t': showData}">
                 <app-card [classes]="['nc-icon nc-money-coins text-secondary', null]" [mainText]="'Expenses.Average'"
-                    [subText]="secondMonthAverage" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [subText]="specifiedDataStatistics.secondMonthAverage" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-f': showData}">
                 <app-card [classes]="['nc-icon nc-money-coins text-primary', null]" [mainText]="'Expenses.Total'"
-                    [subText]="secondMonthTotal" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [subText]="specifiedDataStatistics.secondMonthTotal" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-x': showData}">
                 <app-card [classes]="['nc-icon nc-money-coins text-success', null]" [mainText]="'Expenses.Largest'"
-                    [subText]="secondLargestExpense" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+                    [subText]="specifiedDataStatistics.secondLargestExpense" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
@@ -206,9 +206,9 @@
                         <h5 class="card-title">{{'Expenses.CategoryCompare' | translate}}</h5>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="secondMonthPreviousExpensesBars != null && categories.length > 0">
+                        <div *ngIf="specifiedDataStatistics.secondMonthPreviousExpensesBars != null && categories.length > 0">
                             <app-donut-chart-categories [categories]="categories"
-                                [barExpensesList]="secondMonthPreviousExpensesBars"></app-donut-chart-categories>
+                                [barExpensesList]="specifiedDataStatistics.secondMonthPreviousExpensesBars"></app-donut-chart-categories>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -225,8 +225,8 @@
                         <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="secondMonthTopFiveUsers != null">
-                            <app-pie-graph [topFiveUsers]="secondMonthTopFiveUsers"></app-pie-graph>
+                        <div *ngIf="specifiedDataStatistics.secondMonthTopFiveUsers != null">
+                            <app-pie-graph [topFiveUsers]="specifiedDataStatistics.secondMonthTopFiveUsers"></app-pie-graph>
                         </div>
                     </div>
                     <div class="card-footer">
