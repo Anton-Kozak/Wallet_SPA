@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { InviteService } from 'src/app/_services/invite.service';
 import { Invite } from 'src/app/_model/invite';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
@@ -36,7 +35,7 @@ export class CheckInvitesComponent implements OnInit {
     });
   }
 
-  acceptInvite(walletId: number) {
+  acceptInvite(walletId: number): void {
     this.invService.accept(walletId).subscribe(
       (response) => {
         this.alertify.success(response);
@@ -49,7 +48,7 @@ export class CheckInvitesComponent implements OnInit {
     );
   }
 
-  declineInvite(walletId: number) {
+  declineInvite(walletId: number): void {
     this.invService.decline(walletId).subscribe(
       (response) => {
         this.alertify.success(response);
@@ -60,11 +59,11 @@ export class CheckInvitesComponent implements OnInit {
     );
   }
 
-  back() {
+  back(): void {
     this.dialogRef.close(false);
   }
 
-  getFormat(date: string) {
+  getFormat(date: string): string {
     return moment(date).format('lll');
   }
 }

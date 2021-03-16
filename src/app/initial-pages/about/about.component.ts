@@ -19,7 +19,7 @@ export class AboutComponent implements OnInit {
       this.setTitle(lang['lang']);
     });
   }
-  setTitle(lang: string) {
+  setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('About Us');
     } else if (lang === 'ru') {

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
       this.setTitle(lang['lang']);
     });
   }
-  setTitle(lang: string) {
+  setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Home Page');
     } else if (lang === 'ru') {
