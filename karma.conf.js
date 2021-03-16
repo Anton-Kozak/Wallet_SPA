@@ -16,6 +16,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       dir: require('path').join(__dirname, './coverage/WalletsSPA'),
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true

@@ -99,6 +99,11 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.component.html",
+              "./i18n_scripts/i18n-*.service.ts"
+            ],
             "tsConfig": [
               "tsconfig.app.json",
               "tsconfig.spec.json",

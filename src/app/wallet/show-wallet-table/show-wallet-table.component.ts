@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { WalletForPage } from 'src/app/_model/wallet-for-page';
@@ -171,7 +171,7 @@ export class ShowWalletTableComponent implements OnInit {
     this.updateDailyExpenses();
   }
 
-  orgValueChange(value: any): void {
+  orgValueChange(value: string): void {
     this.dayForDailyExpenses = new Date(value);
     this.updateDailyExpenses();
   }
