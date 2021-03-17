@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { DetailedCategoryStatisticsDTO } from 'src/app/_model/detailedCategoryStatisticsDTO';
+import { MyThemeService } from 'src/app/_services/theme.service';
 
 @Component({
   selector: 'app-category-statistics',
@@ -22,7 +23,8 @@ export class CategoryStatisticsComponent implements OnInit {
     private route: ActivatedRoute,
     private walletService: WalletService,
     private translateService: TranslateService,
-    private titleService: Title
+    private titleService: Title,
+    private themeService: MyThemeService
   ) {}
 
   showComparisonData = false;
@@ -42,16 +44,18 @@ export class CategoryStatisticsComponent implements OnInit {
   ];
 
   showData = true;
-
+  currentTheme: string;
   isLoading: boolean;
   @ViewChild('paginator') paginator: MatPaginator;
   ngOnInit(): void {
+    this.setTheme();
     this.getCurrencyData();
     this.getLanguageData();
     this.getData();
     this.setLanguage();
   }
   private getData() {
+    //todo: rxjs
     this.route.params.subscribe((params) => {
       this.walletService.getCurrentWallet().subscribe();
       this.getCategoryData(params);
@@ -73,6 +77,12 @@ export class CategoryStatisticsComponent implements OnInit {
           }
           this.isLoading = false;
         });
+    });
+  }
+
+  private setTheme() {
+    this.themeService.getCurrentTheme().subscribe((theme) => {
+      this.currentTheme = theme;
     });
   }
 
