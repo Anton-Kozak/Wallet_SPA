@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { Notification } from 'src/app/_model/notification';
+
 @Component({
   selector: 'app-no-wallet',
   templateUrl: './no-wallet.component.html',

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
+import { Notification } from 'src/app/_model/notification';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +13,14 @@ export class NotificationService {
 
   baseUrl: string = environment.apiUrl + 'notification/';
   value: boolean;
-  getNotifications() {
-    return this.http.get(
-      this.baseUrl + this.authService.getToken().nameid + '/getNotifications'
+  getNotifications(): Observable<Notification[]> {
+    return this.http.get<Notification[]>(
+      `${this.baseUrl}${this.authService.getToken().nameid}'/getNotifications'`
     );
   }
 
-  deleteNotifications() {
-    return this.http.post(
+  deleteNotifications(): Observable<void> {
+    return this.http.post<void>(
       this.baseUrl + this.authService.getToken().nameid + '/deleteNotification',
       {}
     );

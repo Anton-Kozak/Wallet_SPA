@@ -51,9 +51,30 @@ export class WalletAdminComponent implements OnInit {
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
   ngOnInit(): void {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
+    this.getCurrency();
+    this.setLanguage();
+    this.getExpenses();
+    this.getUsers();
+  }
+  private getUsers() {
+    this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
+      this.users.data = usersForAdmin;
     });
+  }
+
+  private getExpenses() {
+    this.admService
+      .getAllExpenses()
+      .subscribe((expenses: ExpenseForAdminTable[]) => {
+        this.isLoading = true;
+        this.expenses = expenses;
+        console.log(expenses);
+        //this.expenses.paginator = this.expensePaginator;
+        this.isLoading = false;
+      });
+  }
+
+  private setLanguage() {
     if (this.translate.currentLang === 'en') {
       moment.locale('en');
     } else if (this.translate.currentLang === 'ru') moment.locale('ru');
@@ -63,25 +84,18 @@ export class WalletAdminComponent implements OnInit {
         moment.locale('en');
       } else if (this.translate.currentLang === 'ru') moment.locale('ru');
     });
-
-    this.admService
-      .getAllExpenses()
-      .subscribe((expenses: ExpenseForAdminTable[]) => {
-        this.isLoading = true;
-        this.expenses = expenses;
-        console.log(expenses);
-
-        //this.expenses.paginator = this.expensePaginator;
-        this.isLoading = false;
-      });
-    this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
-      this.users.data = usersForAdmin;
-    });
     this.setTitle(this.translate.currentLang);
     this.translate.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);
     });
   }
+
+  private getCurrency() {
+    this.walletService.getCurrentWallet().subscribe((wallet) => {
+      this.walletCurrency = wallet['currency'];
+    });
+  }
+
   setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Admin panel');

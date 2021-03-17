@@ -3,6 +3,10 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { ExpenseForTable } from '../_model/expense-for-table';
+import { Observable } from 'rxjs';
+import { UserForAdmin } from '../_model/user-for-admin';
+import { ExpenseForAdminTable } from '../_model/expense-for-admin-table';
+import { Expense } from '../_model/expense';
 
 @Injectable({
   providedIn: 'root'
@@ -12,46 +16,45 @@ export class AdminService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getUsers() {
-    return this.http.get(
-      this.baseUrl + this.authService.getToken().nameid + '/getUsers'
+  getUsers(): Observable<UserForAdmin[]> {
+    return this.http.get<UserForAdmin[]>(
+      `${this.baseUrl}${this.authService.getToken().nameid}'/getUsers'`
     );
   }
 
-  removeUser(userId: string) {
+  removeUser(userId: string): Observable<string> {
     return this.http.post(
-      this.baseUrl +
-        this.authService.getToken().nameid +
-        '/removeUser/' +
-        userId,
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }'/removeUser/'${userId}`,
       {},
       { responseType: 'text' }
     );
   }
 
-  getAllExpenses() {
-    return this.http.get(
-      this.baseUrl + this.authService.getToken().nameid + '/getExpensesData'
+  getAllExpenses(): Observable<ExpenseForAdminTable[]> {
+    return this.http.get<ExpenseForAdminTable[]>(
+      `${this.baseUrl}${this.authService.getToken().nameid}'/getExpensesData'`
     );
   }
 
-  onExpenseDelete(id: number) {
+  onExpenseDelete(id: number): Observable<string> {
     return this.http.post(
-      this.baseUrl +
-        this.authService.getToken().nameid +
-        '/expenseDelete/' +
-        id,
+      `${this.baseUrl}
+        ${this.authService.getToken().nameid}
+        '/expenseDelete/'
+        ${id}`,
       {},
       { responseType: 'text' }
     );
   }
 
-  onExpenseEdit(expenseToEdit: ExpenseForTable) {
-    return this.http.post(
-      this.baseUrl +
-        this.authService.getToken().nameid +
-        '/expenseEdit/' +
-        expenseToEdit.id,
+  onExpenseEdit(expenseToEdit: ExpenseForTable): Observable<Expense> {
+    return this.http.post<Expense>(
+      `${this.baseUrl}
+        ${this.authService.getToken().nameid}
+        '/expenseEdit/'
+        ${expenseToEdit.id}`,
       expenseToEdit
     );
   }

@@ -42,7 +42,7 @@ export class CreateWalletComponent implements OnInit {
     });
   }
 
-  toggleCategory(categoryId: number) {
+  toggleCategory(categoryId: number): void {
     if (this.finalCategories.find((n) => n === categoryId) === undefined) {
       if (this.finalCategories.length < 10) {
         this.finalCategories.push(categoryId);
@@ -57,7 +57,7 @@ export class CreateWalletComponent implements OnInit {
     }
   }
 
-  createWallet() {
+  createWallet(): void {
     const res = confirm(
       this.translateService.currentLang === 'en'
         ? 'Are you sure you want to create a wallet with these categories?'
@@ -68,36 +68,39 @@ export class CreateWalletComponent implements OnInit {
         title: this.walletForm.value['title'],
         monthlyLimit: this.walletForm.value['limit'],
         walletCategories: null,
-        currency: this.walletForm.value['currency']
+        currency: this.walletForm.value['currency'],
+        monthlyExpenses: 0
       };
       if (this.finalCategories.length >= 5) {
-        this.walletService.createNewWallet(this.wallet).subscribe(
-          () => {
-            this.walletService
-              .addCategoriesToWallet(this.finalCategories)
-              .subscribe(
-                () => {
-                  this.alertify.success(
-                    'You have successfully created a wallet'
-                  );
-                  this.dialogRef.close(true);
-                },
-                (error) => {
-                  this.alertify.error(error.statusText);
-                }
-              );
-          },
-          (error) => {
-            this.alertify.error(error.statusText);
-          }
-        );
+        this.createCategories();
       } else {
         this.alertify.error('You need to choose 5 or more categories!');
       }
     }
   }
 
-  back() {
+  private createCategories() {
+    this.walletService.createNewWallet(this.wallet).subscribe(
+      () => {
+        this.walletService
+          .addCategoriesToWallet(this.finalCategories)
+          .subscribe(
+            () => {
+              this.alertify.success('You have successfully created a wallet');
+              this.dialogRef.close(true);
+            },
+            (error) => {
+              this.alertify.error(error.statusText);
+            }
+          );
+      },
+      (error) => {
+        this.alertify.error(error.statusText);
+      }
+    );
+  }
+
+  back(): void {
     this.dialogRef.close(false);
   }
 }
