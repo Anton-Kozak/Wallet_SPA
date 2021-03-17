@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { WalletService } from 'src/app/_services/wallet.service';
-import { CategoryData } from 'src/app/_model/categoryData';
+import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
-import { PreviousData } from 'src/app/_model/previousData';
+import { PreviousData } from 'src/app/_model/data_models/previousData';
 import { MyThemeService } from 'src/app/_services/theme.service';
 
 @Component({

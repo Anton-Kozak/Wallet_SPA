@@ -3,11 +3,11 @@ import { Wallet } from '../_model/wallet';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
-import { CategoryData } from '../_model/categoryData';
-import { UserForProfileEdit } from '../_model/user-for-profile-edit';
+import { CategoryData } from '../_model/data_models/categoryData';
+import { UserForProfileEdit } from '../_model/user_models/user-for-profile-edit';
 import { Observable } from 'rxjs';
-import { ApplicationUser } from '../_model/applicationUser';
-import { ProfileData } from '../_model/profile-data';
+import { ApplicationUser } from '../_model/user_models/applicationUser';
+import { ProfileData } from '../_model/data_models/profile-data';
 @Injectable({
   providedIn: 'root'
 })

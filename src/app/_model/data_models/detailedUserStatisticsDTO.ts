@@ -1,5 +1,5 @@
-import { ExpenseList } from './expense-list';
-import { LastMonthStat } from './lastMonthStat';
+import { ExpenseList } from '../expense_models/expense-list';
+import { LastMonthStat } from '../lastMonthStat';
 
 export interface DetailedUserStatisticsDTO {
   mostSpentCategory: string;

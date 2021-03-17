@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Expense } from '../_model/expense';
+import { Expense } from '../_model/expense_models/expense';
 import { Subject, BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ExpenseForTable } from '../_model/expense-for-table';
+import { ExpenseForTable } from '../_model/expense_models/expense-for-table';
 import { AuthService } from './auth.service';
-import { CategoryData } from '../_model/categoryData';
-import { ExpensesWithCategories } from '../_model/expensesWithCategories';
-import { DetailedWalletStatisticsDTO } from '../_model/detailedWalletStatisticsDTO';
-import { DetailedCategoryStatisticsDTO } from '../_model/detailedCategoryStatisticsDTO';
-import { DetailedUserStatisticsDTO } from '../_model/detailedUserStatisticsDTO';
+import { CategoryData } from '../_model/data_models/categoryData';
+import { ExpensesWithCategories } from '../_model/expense_models/expensesWithCategories';
+import { DetailedWalletStatisticsDTO } from '../_model/data_models/detailedWalletStatisticsDTO';
+import { DetailedCategoryStatisticsDTO } from '../_model/data_models/detailedCategoryStatisticsDTO';
+import { DetailedUserStatisticsDTO } from '../_model/data_models/detailedUserStatisticsDTO';
 import { WalletForPage } from '../_model/wallet-for-page';
-import { SpecifiedMonthData } from '../_model/specifiedMonthsData';
-import { ExpenseWithMessage } from '../_model/expenseWithMessage';
-import { PreviousData } from '../_model/previousData';
+import { SpecifiedMonthData } from '../_model/data_models/specifiedMonthsData';
+import { ExpenseWithMessage } from '../_model/expense_models/expenseWithMessage';
+import { PreviousData } from '../_model/data_models/previousData';
 
 @Injectable({
   providedIn: 'root'

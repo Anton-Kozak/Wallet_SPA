@@ -5,10 +5,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { ExpenseForTable } from '../../_model/expense-for-table';
+import { ExpenseForTable } from '../../_model/expense_models/expense-for-table';
 import * as moment from 'moment';
 import { MatPaginator } from '@angular/material/paginator';
-import { ExpenseForAdminTable } from 'src/app/_model/expense-for-admin-table';
+import { ExpenseForAdminTable } from 'src/app/_model/expense_models/expense-for-admin-table';
 
 @Component({
   selector: 'app-table-with-expenses',

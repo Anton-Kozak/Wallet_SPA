@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from 'src/app/_services/auth.service';
-import { CategoryData } from 'src/app/_model/categoryData';
+import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { WalletService } from 'src/app/_services/wallet.service';
 
 @Component({

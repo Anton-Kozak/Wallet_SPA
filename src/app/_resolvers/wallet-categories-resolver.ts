@@ -1,6 +1,6 @@
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CategoryData } from '../_model/categoryData';
+import { CategoryData } from '../_model/data_models/categoryData';
 import { Injectable } from '@angular/core';
 import { WalletService } from '../_services/wallet.service';
 

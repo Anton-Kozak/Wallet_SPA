@@ -1,4 +1,4 @@
-import { UserForProfileEdit } from './user-for-profile-edit';
+import { UserForProfileEdit } from '../user_models/user-for-profile-edit';
 
 export interface ProfileData {
   editUser: UserForProfileEdit;

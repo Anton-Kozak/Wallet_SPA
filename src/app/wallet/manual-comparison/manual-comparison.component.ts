@@ -5,9 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
-import { CategoryData } from 'src/app/_model/categoryData';
-import { ExpenseForTable } from 'src/app/_model/expense-for-table';
-import { SpecifiedMonthData } from 'src/app/_model/specifiedMonthsData';
+import { CategoryData } from 'src/app/_model/data_models/categoryData';
+import { ExpenseForTable } from 'src/app/_model/expense_models/expense-for-table';
+import { SpecifiedMonthData } from 'src/app/_model/data_models/specifiedMonthsData';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { WalletService } from 'src/app/_services/wallet.service';
 

@@ -43,7 +43,7 @@ export class PhotoService {
 
   addPhoto(photo: Photo | unknown): Observable<Photo> {
     return this.http.post<Photo>(
-      this.baseUrl + this.authService.getToken().nameid,
+      `${this.baseUrl}${this.authService.getToken().nameid}`,
       photo
     );
   }

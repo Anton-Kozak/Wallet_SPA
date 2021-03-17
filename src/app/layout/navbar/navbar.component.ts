@@ -92,13 +92,6 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // getPhoto(): void {
-  //   this.photoService.getPhoto().subscribe((data: Photo) => {
-  //     console.log('Photo: ', data);
-  //     this.photo = data;
-  //   });
-  // }
-
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/main/home']);

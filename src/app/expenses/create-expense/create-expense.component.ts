@@ -3,11 +3,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CategoryData } from 'src/app/_model/categoryData';
+import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { WalletService } from 'src/app/_services/wallet.service';
-import { Expense } from 'src/app/_model/expense';
+import { Expense } from 'src/app/_model/expense_models/expense';
 import * as moment from 'moment';
-import { ExpenseWithMessage } from 'src/app/_model/expenseWithMessage';
+import { ExpenseWithMessage } from 'src/app/_model/expense_models/expenseWithMessage';
 @Component({
   selector: 'app-create-expense',
   templateUrl: './create-expense.component.html',

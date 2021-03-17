@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { ActivatedRoute } from '@angular/router';
-import { ExpenseForTable } from 'src/app/_model/expense-for-table';
+import { ExpenseForTable } from 'src/app/_model/expense_models/expense-for-table';
 import { WalletService } from 'src/app/_services/wallet.service';
-import { CategoryData } from 'src/app/_model/categoryData';
+import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
-import { DetailedCategoryStatisticsDTO } from 'src/app/_model/detailedCategoryStatisticsDTO';
+import { DetailedCategoryStatisticsDTO } from 'src/app/_model/data_models/detailedCategoryStatisticsDTO';
 import { MyThemeService } from 'src/app/_services/theme.service';
 
 @Component({

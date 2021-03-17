@@ -6,10 +6,10 @@ import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-e
 import { MatDialog } from '@angular/material/dialog';
 import { Notification } from 'src/app/_model/notification';
 import { NotificationService } from 'src/app/_services/notification.service';
-import { ExpensesWithCategories } from 'src/app/_model/expensesWithCategories';
+import { ExpensesWithCategories } from 'src/app/_model/expense_models/expensesWithCategories';
 import { ActivatedRoute } from '@angular/router';
-import { CategoryData } from 'src/app/_model/categoryData';
-import { ExpenseForTable } from 'src/app/_model/expense-for-table';
+import { CategoryData } from 'src/app/_model/data_models/categoryData';
+import { ExpenseForTable } from 'src/app/_model/expense_models/expense-for-table';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';

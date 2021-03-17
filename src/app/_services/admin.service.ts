@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { ExpenseForTable } from '../_model/expense-for-table';
+import { ExpenseForTable } from '../_model/expense_models/expense-for-table';
 import { Observable } from 'rxjs';
-import { UserForAdmin } from '../_model/user-for-admin';
-import { ExpenseForAdminTable } from '../_model/expense-for-admin-table';
-import { Expense } from '../_model/expense';
+import { UserForAdmin } from '../_model/user_models/user-for-admin';
+import { ExpenseForAdminTable } from '../_model/expense_models/expense-for-admin-table';
+import { Expense } from '../_model/expense_models/expense';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class AdminService {
 
   getUsers(): Observable<UserForAdmin[]> {
     return this.http.get<UserForAdmin[]>(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/getUsers'`
+      `${this.baseUrl}${this.authService.getToken().nameid}/getUsers`
     );
   }
 
@@ -26,7 +26,7 @@ export class AdminService {
     return this.http.post(
       `${this.baseUrl}${
         this.authService.getToken().nameid
-      }'/removeUser/'${userId}`,
+      }/removeUser/${userId}`,
       {},
       { responseType: 'text' }
     );
@@ -34,7 +34,7 @@ export class AdminService {
 
   getAllExpenses(): Observable<ExpenseForAdminTable[]> {
     return this.http.get<ExpenseForAdminTable[]>(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/getExpensesData'`
+      `${this.baseUrl}${this.authService.getToken().nameid}/getExpensesData`
     );
   }
 
@@ -42,7 +42,7 @@ export class AdminService {
     return this.http.post(
       `${this.baseUrl}
         ${this.authService.getToken().nameid}
-        '/expenseDelete/'
+        /expenseDelete/
         ${id}`,
       {},
       { responseType: 'text' }
@@ -55,7 +55,7 @@ export class AdminService {
     return this.http.post<Expense | ExpenseForTable>(
       `${this.baseUrl}
         ${this.authService.getToken().nameid}
-        '/expenseEdit/'
+        /expenseEdit/
         ${expenseToEdit.id}`,
       expenseToEdit
     );

@@ -1,6 +1,6 @@
-import { ExpenseForTable } from './expense-for-table';
-import { LastMonthStat } from './lastMonthStat';
-import { TopUsersStat } from './top-users-stat';
+import { ExpenseForTable } from '../expense_models/expense-for-table';
+import { LastMonthStat } from '../lastMonthStat';
+import { TopUsersStat } from '../user_models/top-users-stat';
 
 export interface DetailedCategoryStatisticsDTO {
   largestExpense: number;

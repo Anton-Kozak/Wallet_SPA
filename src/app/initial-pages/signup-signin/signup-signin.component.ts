@@ -11,8 +11,8 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { UserAfterRegistration } from 'src/app/_model/userAfterRegistration';
-import { ApplicationUser } from 'src/app/_model/applicationUser';
+import { UserAfterRegistration } from 'src/app/_model/user_models/userAfterRegistration';
+import { ApplicationUser } from 'src/app/_model/user_models/applicationUser';
 
 @Component({
   selector: 'app-signup-signin',

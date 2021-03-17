@@ -1,6 +1,6 @@
-import { ExpenseForTable } from './expense-for-table';
-import { ExpenseList } from './expense-list';
-import { TopUsersStat } from './top-users-stat';
+import { ExpenseForTable } from '../expense_models/expense-for-table';
+import { ExpenseList } from '../expense_models/expense-list';
+import { TopUsersStat } from '../user_models/top-users-stat';
 
 export interface SpecifiedMonthData {
   firstMonthMostUsed: string;

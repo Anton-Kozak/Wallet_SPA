@@ -1,19 +1,19 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { ExpenseForTable } from 'src/app/_model/expense-for-table';
+import { ExpenseForTable } from 'src/app/_model/expense_models/expense-for-table';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditExpenseModalComponent } from 'src/app/expenses/edit-expense-modal/edit-expense-modal.component';
 import { WalletService } from 'src/app/_services/wallet.service';
-import { CategoryData } from 'src/app/_model/categoryData';
+import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/_services/auth.service';
 import { EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { Title } from '@angular/platform-browser';
-import { DetailedUserStatisticsDTO } from 'src/app/_model/detailedUserStatisticsDTO';
+import { DetailedUserStatisticsDTO } from 'src/app/_model/data_models/detailedUserStatisticsDTO';
 
 @Component({
   selector: 'app-user-statistics',

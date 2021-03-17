@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { Router } from '@angular/router';
 import { WalletService } from 'src/app/_services/wallet.service';
-import { CategoryData } from 'src/app/_model/categoryData';
+import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
-import { DetailedWalletStatisticsDTO } from 'src/app/_model/detailedWalletStatisticsDTO';
+import { DetailedWalletStatisticsDTO } from 'src/app/_model/data_models/detailedWalletStatisticsDTO';
 
 @Component({
   selector: 'app-wallet-statistics',

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ExpenseForTable } from 'src/app/_model/expense-for-table';
+import { ExpenseForTable } from 'src/app/_model/expense_models/expense-for-table';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { AdminService } from 'src/app/_services/admin.service';

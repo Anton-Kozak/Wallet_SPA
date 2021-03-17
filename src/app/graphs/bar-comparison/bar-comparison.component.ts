@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ExpenseList } from 'src/app/_model/expense-list';
+import { ExpenseList } from 'src/app/_model/expense_models/expense-list';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
-import { CategoryData } from 'src/app/_model/categoryData';
+import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

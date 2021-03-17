@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
-import { TopUsersStat } from 'src/app/_model/top-users-stat';
+import { TopUsersStat } from 'src/app/_model/user_models/top-users-stat';
 import { MyColors } from 'src/app/_helper/chart-colors';
 
 @Component({

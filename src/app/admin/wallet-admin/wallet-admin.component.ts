@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from 'src/app/_services/admin.service';
-import { UserForAdmin } from 'src/app/_model/user-for-admin';
+import { UserForAdmin } from 'src/app/_model/user_models/user-for-admin';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateInviteComponent } from 'src/app/invites/create-invite/create-invite.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ExpenseForAdminTable } from 'src/app/_model/expense-for-admin-table';
+import { ExpenseForAdminTable } from 'src/app/_model/expense_models/expense-for-admin-table';
 import { EditWalletComponent } from 'src/app/wallet/edit-wallet/edit-wallet.component';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
