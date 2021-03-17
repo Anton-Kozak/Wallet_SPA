@@ -23,34 +23,32 @@ export class WalletService {
     return this.http.get<CategoryData[]>(
       `${environment.apiUrl}'expense/'${
         this.authService.getToken().nameid
-      }'/getAllCategories'`
+      }/getAllCategories`
     );
   }
   //todo: зачем возвращать здесь юзера с бека?
   createNewWallet(walletToCreate: Wallet): Observable<ApplicationUser> {
     return this.http.post<ApplicationUser>(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/createwallet'`,
+      `${this.baseUrl}${this.authService.getToken().nameid}/createwallet`,
       walletToCreate
     );
   }
 
   getCurrentWallet(): Observable<Wallet> {
     return this.http.get<Wallet>(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/getCurrentWallet'`
+      `${this.baseUrl}${this.authService.getToken().nameid}/getCurrentWallet`
     );
   }
 
   getWalletsCategories(): Observable<CategoryData[]> {
     return this.http.get<CategoryData[]>(
-      `${this.baseUrl}${
-        this.authService.getToken().nameid
-      }'/getWalletCategories'`
+      `${this.baseUrl}${this.authService.getToken().nameid}/getWalletCategories`
     );
   }
 
   editWallet(walletToEdit: Wallet): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/editWallet'`,
+      `${this.baseUrl}${this.authService.getToken().nameid}/editWallet`,
       walletToEdit,
       { responseType: 'text' }
     );
@@ -58,20 +56,20 @@ export class WalletService {
 
   addCategoriesToWallet(categories: number[]): Observable<boolean> {
     return this.http.post<boolean>(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/addCategories'`,
+      `${this.baseUrl}${this.authService.getToken().nameid}/addCategories`,
       categories
     );
   }
 
   getProfileData(): Observable<ProfileData> {
     return this.http.get<ProfileData>(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/profile'`
+      `${this.baseUrl}${this.authService.getToken().nameid}/profile`
     );
   }
 
   updateUserProfile(editUser: UserForProfileEdit): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/updateProfile'`,
+      `${this.baseUrl}${this.authService.getToken().nameid}/updateProfile`,
       editUser,
       { responseType: 'text' }
     );

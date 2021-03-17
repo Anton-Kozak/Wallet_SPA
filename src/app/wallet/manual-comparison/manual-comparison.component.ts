@@ -67,10 +67,6 @@ export class ManualComparisonComponent implements OnInit {
     this.setLanguage();
     this.setDate();
     this.setCategories();
-    this.setTitle(this.translateService.currentLang);
-    this.translateService.onLangChange.subscribe((lang) => {
-      this.setTitle(lang['lang']);
-    });
   }
   private setCategories() {
     if (this.walletService.currentCategories.length === 0) {
@@ -101,6 +97,10 @@ export class ManualComparisonComponent implements OnInit {
       } else if (this.translateService.currentLang === 'ru')
         moment.locale('ru');
       this.setDate();
+    });
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe((lang) => {
+      this.setTitle(lang['lang']);
     });
   }
 

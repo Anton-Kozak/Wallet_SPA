@@ -19,7 +19,7 @@ export class HomeWalletComponent implements OnInit {
       this.setTitle(lang['lang']);
     });
   }
-  setTitle(lang: string) {
+  setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Welcome to XPense!');
     } else if (lang === 'ru') {

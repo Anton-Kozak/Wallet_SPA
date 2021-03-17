@@ -80,11 +80,11 @@ export class ShowWalletTableComponent implements OnInit {
       this.categories = data['categories'];
     });
 
-    this.noteService
-      .getNotifications()
-      .subscribe((notifications: Notification[]) => {
-        this.notifications = notifications;
-      });
+    // this.noteService
+    //   .getNotifications()
+    //   .subscribe((notifications: Notification[]) => {
+    //     this.notifications = notifications;
+    //   });
     this.setTitle(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);

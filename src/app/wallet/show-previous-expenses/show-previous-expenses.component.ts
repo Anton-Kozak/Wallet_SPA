@@ -23,11 +23,13 @@ export class ShowPreviousExpensesComponent implements OnInit {
     private titleService: Title
   ) {}
 
-  expensesWithCategories: ExpensesWithCategories[] = [];
+  // expensesWithCategories: ExpensesWithCategories[] = [];
+  // topFiveUsers: TopUsersStat[];
+  // barExpenses: ExpenseList[];
+
+  data: PreviousData = null;
 
   isLoading = true;
-  topFiveUsers: TopUsersStat[];
-  barExpenses: ExpenseList[];
   categories: CategoryData[] = [];
   walletCurrency = 'USD';
   monthNumber = 1;
@@ -41,10 +43,6 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.getCategories();
     this.getCurrency();
     this.getData(this.date);
-    this.setTitle(this.translateService.currentLang);
-    this.translateService.onLangChange.subscribe((lang) => {
-      this.setTitle(lang['lang']);
-    });
   }
   private getCurrency(): void {
     this.walletService.getCurrentWallet().subscribe((wallet) => {
@@ -84,6 +82,11 @@ export class ShowPreviousExpensesComponent implements OnInit {
         moment.locale('ru');
       this.monthName = moment(this.date).format('MMMM');
     });
+
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe((lang) => {
+      this.setTitle(lang['lang']);
+    });
   }
 
   setTitle(lang: string): void {
@@ -99,10 +102,13 @@ export class ShowPreviousExpensesComponent implements OnInit {
       .getPreviousExpenses(date.toUTCString())
       .subscribe((expenses: PreviousData) => {
         this.isLoading = true;
-        this.barExpenses = expenses.previousExpensesBars;
-        this.topFiveUsers = expenses.topFiveUsers;
-        if (this.topFiveUsers.length > 0) {
-          this.expensesWithCategories = expenses.previousMonthExpenses;
+        // this.barExpenses = expenses.previousExpensesBars;
+        // this.topFiveUsers = expenses.topFiveUsers;
+        if (expenses.topFiveUsers.length > 0) {
+          this.data = expenses;
+          console.log('data', this.data);
+
+          //this.expensesWithCategories = expenses.previousMonthExpenses;
         }
         this.isLoading = false;
       });
@@ -137,8 +143,8 @@ export class ShowPreviousExpensesComponent implements OnInit {
     // this.expensesWithCategories.forEach((exp) => {
     //   exp = { categoryName: '', expenses: [], categoryId: 0 };
     // });
-    this.topFiveUsers = [];
-    this.barExpenses = null;
+    // this.topFiveUsers = [];
+    // this.barExpenses = null;
   }
 
   getFormat(date: string): string {

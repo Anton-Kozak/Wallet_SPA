@@ -33,7 +33,7 @@ export class PhotoService {
 
   getAllUserPhotos(): Observable<void> {
     return this.http.get<void>(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/getUserPhotos'`
+      `${this.baseUrl}${this.authService.getToken().nameid}/getUserPhotos`
     );
   }
 }

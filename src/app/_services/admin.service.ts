@@ -49,8 +49,10 @@ export class AdminService {
     );
   }
 
-  onExpenseEdit(expenseToEdit: ExpenseForTable): Observable<Expense> {
-    return this.http.post<Expense>(
+  onExpenseEdit(
+    expenseToEdit: ExpenseForTable
+  ): Observable<Expense | ExpenseForTable> {
+    return this.http.post<Expense | ExpenseForTable>(
       `${this.baseUrl}
         ${this.authService.getToken().nameid}
         '/expenseEdit/'

@@ -52,14 +52,14 @@ export class NavbarComponent implements OnInit {
     });
     this.getPhoto();
     this.currentUserName = this.authService.getToken().unique_name;
-    this.noteService
-      .getNotifications()
-      .subscribe((notifications: Notification[]) => {
-        if (notifications != null) {
-          this.notifications = notifications;
-          this.notificationCount = notifications.length;
-        }
-      });
+    // this.noteService
+    //   .getNotifications()
+    //   .subscribe((notifications: Notification[]) => {
+    //     if (notifications != null) {
+    //       this.notifications = notifications;
+    //       this.notificationCount = notifications.length;
+    //     }
+    //   });
   }
 
   changeLang(lang: string): void {

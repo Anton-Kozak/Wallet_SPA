@@ -60,7 +60,7 @@ export class EditWalletComponent implements OnInit {
     );
   }
 
-  goBack() {
+  goBack(): void {
     this.dialogRef.close();
   }
 }

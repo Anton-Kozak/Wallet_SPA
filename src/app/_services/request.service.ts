@@ -15,19 +15,19 @@ export class RequestService {
 
   createRequestForAccess(email: string): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/request/'${email}`,
+      `${this.baseUrl}${this.authService.getToken().nameid}/request/${email}`,
       {},
       { responseType: 'text' }
     );
   }
 
   getRequests(userId: string): Observable<Request[]> {
-    return this.http.get<Request[]>(`${this.baseUrl}${userId}'/getRequests'`);
+    return this.http.get<Request[]>(`${this.baseUrl}${userId}/getRequests`);
   }
 
   acceptRequest(email: string, userId: string): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}${userId}'/acceptRequest/'${email}`,
+      `${this.baseUrl}${userId}/acceptRequest/${email}`,
       {},
       { responseType: 'text' }
     );
@@ -35,7 +35,7 @@ export class RequestService {
 
   declineRequest(email: string): Observable<string> {
     return this.http.post(
-      this.baseUrl + this.authService.getToken().nameid + '/decline/' + email,
+      `${this.baseUrl}${this.authService.getToken().nameid}/decline/${email}`,
       {},
       { responseType: 'text' }
     );

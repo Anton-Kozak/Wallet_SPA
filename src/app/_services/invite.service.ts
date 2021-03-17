@@ -15,13 +15,13 @@ export class InviteService {
 
   checkInvites(): Observable<Invite[]> {
     return this.http.get<Invite[]>(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/getInvites'`
+      `${this.baseUrl}${this.authService.getToken().nameid}/getInvites`
     );
   }
 
   createInvite(email: string): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/invite/'${email}`,
+      `${this.baseUrl}${this.authService.getToken().nameid}/invite/${email}`,
       {},
       { responseType: 'text' }
     );
@@ -29,9 +29,7 @@ export class InviteService {
 
   accept(walletId: number): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}${
-        this.authService.getToken().nameid
-      }'/accept/'${walletId}`,
+      `${this.baseUrl}${this.authService.getToken().nameid}/accept/${walletId}`,
       {},
       { responseType: 'text' }
     );
@@ -39,10 +37,10 @@ export class InviteService {
 
   decline(walletId: number): Observable<string> {
     return this.http.post(
-      this.baseUrl +
-        this.authService.getToken().nameid +
-        '/decline/' +
-        walletId,
+      `${this.baseUrl}
+        ${this.authService.getToken().nameid}
+        /decline/
+        ${walletId}`,
       {},
       { responseType: 'text' }
     );

@@ -15,13 +15,13 @@ export class NotificationService {
   value: boolean;
   getNotifications(): Observable<Notification[]> {
     return this.http.get<Notification[]>(
-      `${this.baseUrl}${this.authService.getToken().nameid}'/getNotifications'`
+      `${this.baseUrl}${this.authService.getToken().nameid}/getNotifications`
     );
   }
 
   deleteNotifications(): Observable<void> {
     return this.http.post<void>(
-      this.baseUrl + this.authService.getToken().nameid + '/deleteNotification',
+      `${this.baseUrl}${this.authService.getToken().nameid}/deleteNotification`,
       {}
     );
   }
