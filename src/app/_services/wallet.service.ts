@@ -5,8 +5,9 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { CategoryData } from '../_model/categoryData';
 import { UserForProfileEdit } from '../_model/user-for-profile-edit';
-import { map } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ApplicationUser } from '../_model/applicationUser';
+import { ProfileData } from '../_model/profile-data';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,65 +19,59 @@ export class WalletService {
 
   currentCategories: CategoryData[] = [];
 
-  getAllCategories() {
-    return this.http.get(
-      environment.apiUrl +
-        'expense/' +
-        this.authService.getToken().nameid +
-        '/getAllCategories'
+  getAllCategories(): Observable<CategoryData[]> {
+    return this.http.get<CategoryData[]>(
+      `${environment.apiUrl}'expense/'${
+        this.authService.getToken().nameid
+      }'/getAllCategories'`
     );
   }
-
-  createNewWallet(walletToCreate: Wallet) {
-    return this.http.post(
-      this.baseUrl + this.authService.getToken().nameid + '/createwallet',
+  //todo: зачем возвращать здесь юзера с бека?
+  createNewWallet(walletToCreate: Wallet): Observable<ApplicationUser> {
+    return this.http.post<ApplicationUser>(
+      `${this.baseUrl}${this.authService.getToken().nameid}'/createwallet'`,
       walletToCreate
     );
   }
 
-  // getCurrentWallet() {
-  //   this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet').subscribe((currentWallet: Wallet) => {
-  //     this.currentWallet = currentWallet;
-  //     return currentWallet;
-  //   });
-  // }
-
-  getCurrentWallet() {
-    return this.http.get(
-      this.baseUrl + this.authService.getToken().nameid + '/getCurrentWallet'
+  getCurrentWallet(): Observable<Wallet> {
+    return this.http.get<Wallet>(
+      `${this.baseUrl}${this.authService.getToken().nameid}'/getCurrentWallet'`
     );
   }
 
-  getWalletsCategories() {
+  getWalletsCategories(): Observable<CategoryData[]> {
     return this.http.get<CategoryData[]>(
-      this.baseUrl + this.authService.getToken().nameid + '/getWalletCategories'
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }'/getWalletCategories'`
     );
   }
 
-  editWallet(walletToEdit: Wallet) {
+  editWallet(walletToEdit: Wallet): Observable<string> {
     return this.http.post(
-      this.baseUrl + this.authService.getToken().nameid + '/editWallet',
+      `${this.baseUrl}${this.authService.getToken().nameid}'/editWallet'`,
       walletToEdit,
       { responseType: 'text' }
     );
   }
 
-  addCategoriesToWallet(categories: number[]) {
-    return this.http.post(
-      this.baseUrl + this.authService.getToken().nameid + '/addCategories',
+  addCategoriesToWallet(categories: number[]): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.baseUrl}${this.authService.getToken().nameid}'/addCategories'`,
       categories
     );
   }
 
-  getProfileData() {
-    return this.http.get(
-      this.baseUrl + this.authService.getToken().nameid + '/profile'
+  getProfileData(): Observable<ProfileData> {
+    return this.http.get<ProfileData>(
+      `${this.baseUrl}${this.authService.getToken().nameid}'/profile'`
     );
   }
 
-  updateUserProfile(editUser: UserForProfileEdit) {
+  updateUserProfile(editUser: UserForProfileEdit): Observable<string> {
     return this.http.post(
-      this.baseUrl + this.authService.getToken().nameid + '/updateProfile',
+      `${this.baseUrl}${this.authService.getToken().nameid}'/updateProfile'`,
       editUser,
       { responseType: 'text' }
     );

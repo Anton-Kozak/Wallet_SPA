@@ -3,4 +3,5 @@ export interface Wallet {
   monthlyLimit: number;
   walletCategories: number[];
   currency: string;
+  monthlyExpenses: number;
 }

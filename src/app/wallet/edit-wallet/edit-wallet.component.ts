@@ -41,16 +41,17 @@ export class EditWalletComponent implements OnInit {
     });
   }
   //TODO: сделать подтверждение смены названия
-  walletEdit() {
+  walletEdit(): void {
     this.walletToEdit = {
       title: this.editWalletForm.value['title'],
       monthlyLimit: this.editWalletForm.value['limit'],
       walletCategories: this.currentWallet.walletCategories,
-      currency: this.editWalletForm.value['currency']
+      currency: this.editWalletForm.value['currency'],
+      monthlyExpenses: this.currentWallet.monthlyExpenses
     };
 
     this.walletService.editWallet(this.walletToEdit).subscribe(
-      (response) => {
+      () => {
         this.alertify.success('You have successfully edited your wallet');
       },
       (error) => {
