@@ -62,8 +62,8 @@
                 </div>
                 <div class="d-flex text-center mr-5 ml-3 user">
                     <div class="mr-3">{{'Navbar.Hello' | translate}} {{currentUserName}}</div>
-                    <a *ngIf="photo" [routerLink]="['/wallet/profile']"><img class="avatar border-gray"
-                            src="{{ photo === null ? '../../assets/images/default-avatar.png' : photo.url}}"
+                    <a *ngIf="photo" [routerLink]="['/wallet/profile']"><img (error)="updateUrl($event.target)" class="avatar border-gray"
+                            src="{{photo.url}}"
                             alt="..."></a>
                 </div>
                 <div class="d-flex align-items-center">

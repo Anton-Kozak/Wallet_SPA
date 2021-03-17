@@ -50,16 +50,23 @@ export class NavbarComponent implements OnInit {
     this.themeService.getCurrentTheme().subscribe((theme) => {
       this.activeTheme = theme;
     });
-    this.getPhoto();
+    this.getPhotoData();
     this.currentUserName = this.authService.getToken().unique_name;
-    // this.noteService
-    //   .getNotifications()
-    //   .subscribe((notifications: Notification[]) => {
-    //     if (notifications != null) {
-    //       this.notifications = notifications;
-    //       this.notificationCount = notifications.length;
-    //     }
-    //   });
+    this.noteService
+      .getNotifications()
+      .subscribe((notifications: Notification[]) => {
+        if (notifications != null) {
+          this.notifications = notifications;
+          this.notificationCount = notifications.length;
+        }
+      });
+  }
+
+  private getPhotoData() {
+    this.photoService.getCurrentPhoto().subscribe((photo: Photo) => {
+      this.photo = photo;
+    });
+    this.photoService.getPhoto();
   }
 
   changeLang(lang: string): void {
@@ -85,16 +92,20 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  getPhoto(): void {
-    this.photoService.getPhoto().subscribe((data: Photo) => {
-      console.log('Photo: ', data);
-      this.photo = data;
-    });
-  }
+  // getPhoto(): void {
+  //   this.photoService.getPhoto().subscribe((data: Photo) => {
+  //     console.log('Photo: ', data);
+  //     this.photo = data;
+  //   });
+  // }
 
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/main/home']);
+  }
+
+  updateUrl(target: EventTarget): void {
+    (target as HTMLInputElement).src = '../../assets/images/default-avatar.png';
   }
 
   onToggle(): void {

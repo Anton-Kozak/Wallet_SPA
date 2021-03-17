@@ -17,7 +17,7 @@ import * as moment from 'moment';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  imagePath = '../../assets/images/default-avatar.png';
+  // imagePath = '../../assets/images/default-avatar.png';
   photo: Photo = null;
   editProfileForm: FormGroup;
   profileData: ProfileData = null;
@@ -34,21 +34,10 @@ export class ProfileComponent implements OnInit {
     private titleService: Title
   ) {}
   ngOnInit(): void {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
-
-    this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
-    });
-
     this.isLoading = true;
+    this.getPhotoData();
+    this.setCurrency();
+    this.setLanguage();
     this.walletService
       .getProfileData()
       .subscribe((profileData: ProfileData) => {
@@ -103,13 +92,38 @@ export class ProfileComponent implements OnInit {
         });
         this.isLoading = false;
       });
+  }
+  private getPhotoData() {
+    this.photoService.getCurrentPhoto().subscribe((photo: Photo) => {
+      this.photo = photo;
+    });
+    this.photoService.getPhoto();
+  }
 
-    this.getPhoto();
+  private setCurrency() {
+    this.walletService.getCurrentWallet().subscribe((wallet) => {
+      this.walletCurrency = wallet['currency'];
+    });
+  }
+
+  private setLanguage() {
+    if (this.translateService.currentLang === 'en') {
+      moment.locale('en');
+    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+
+    this.translateService.onLangChange.subscribe(() => {
+      if (this.translateService.currentLang === 'en') {
+        moment.locale('en');
+      } else if (this.translateService.currentLang === 'ru')
+        moment.locale('ru');
+    });
+
     this.setTitle(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);
     });
   }
+
   setTitle(lang: string): void {
     if (lang === 'en') {
       this.titleService.setTitle('Your Profile');
@@ -121,14 +135,20 @@ export class ProfileComponent implements OnInit {
   onImageChange(): void {
     const dialogRef = this.dialog.open(ImageModalComponent);
     dialogRef.afterClosed().subscribe(() => {
-      this.getPhoto();
+      //this.getPhoto();
+      this.photoService.getPhoto();
     });
   }
 
-  getPhoto(): void {
-    this.photoService.getPhoto().subscribe((data: Photo) => {
-      this.photo = data;
-    });
+  // getPhoto(): void {
+  //   this.photoService.getPhoto().subscribe((data: Photo) => {
+  //     this.photo = data;
+  //   });
+  // }
+
+  updateUrl(target: EventTarget): void {
+    console.log('error img', target);
+    (target as HTMLInputElement).src = '../../assets/images/default-avatar.png';
   }
 
   editProfile(): void {

@@ -56,17 +56,7 @@ export class ShowWalletTableComponent implements OnInit {
   ngOnInit(): void {
     this.setLanguage();
     this.setTheme();
-    this.id = this.authService.getToken().nameid;
-    this.isLoading = true;
-    this.expenseService
-      .getWalletData(this.id)
-      .subscribe((walletData: WalletForPage) => {
-        this.setWalletData(walletData);
-        this.checkLimit();
-        this.expenseService.showAllExpenses();
-        this.setDailyExpenses();
-        this.isLoading = false;
-      });
+    this.getWalletData();
     this.expenseService
       .getExpenseSubjectsAsObservable()
       .subscribe((exp: ExpensesWithCategories[]) => {
@@ -80,16 +70,30 @@ export class ShowWalletTableComponent implements OnInit {
       this.categories = data['categories'];
     });
 
-    // this.noteService
-    //   .getNotifications()
-    //   .subscribe((notifications: Notification[]) => {
-    //     this.notifications = notifications;
-    //   });
+    this.noteService
+      .getNotifications()
+      .subscribe((notifications: Notification[]) => {
+        this.notifications = notifications;
+      });
     this.setTitle(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);
     });
   }
+  private getWalletData() {
+    this.id = this.authService.getToken().nameid;
+    this.isLoading = true;
+    this.expenseService
+      .getWalletData(this.id)
+      .subscribe((walletData: WalletForPage) => {
+        this.setWalletData(walletData);
+        this.checkLimit();
+        this.expenseService.showAllExpenses();
+        this.setDailyExpenses();
+        this.isLoading = false;
+      });
+  }
+
   private setDailyExpenses() {
     this.currentSelectedDate = new FormControl(
       moment(this.dayForDailyExpenses).format('LL')

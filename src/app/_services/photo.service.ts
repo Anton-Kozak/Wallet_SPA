@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Photo } from '../_model/photo';
 import { AuthService } from './auth.service';
@@ -12,10 +13,32 @@ export class PhotoService {
   baseUrl: string = environment.apiUrl + 'photo/';
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getPhoto(): Observable<Photo> {
-    return this.http.get<Photo>(
-      this.baseUrl + this.authService.getToken().nameid
-    );
+  private currentPhotoSubject = new BehaviorSubject<Photo>(null);
+
+  getCurrentPhoto(): Observable<Photo> {
+    return this.currentPhotoSubject.asObservable();
+  }
+
+  // getPhoto(): Observable<Photo> {
+  //   return this.http
+  //     .get<Photo>(`${this.baseUrl}${this.authService.getToken().nameid}`)
+  //     .pipe(
+  //       map((photo: Photo) => {
+  //         this.currentPhotoSubject.next(photo);
+  //         return photo;
+  //       })
+  //     );
+  // }
+
+  getPhoto(): void {
+    this.http
+      .get<Photo>(`${this.baseUrl}${this.authService.getToken().nameid}`)
+      .pipe(
+        map((photo: Photo) => {
+          this.currentPhotoSubject.next(photo);
+        })
+      )
+      .subscribe();
   }
 
   addPhoto(photo: Photo | unknown): Observable<Photo> {

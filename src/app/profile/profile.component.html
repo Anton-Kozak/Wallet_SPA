@@ -8,7 +8,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="!isLoading" class="content">
+<div *ngIf="!isLoading && photo !== null" class="content">
     <div class="row">
         <div class="col-xl-4 col-md-12 col-12" data-aos="fade-right" data-aos-duration="600" data-aos-once="true" data-aos-delay="0">
             <div class="card card-user">
@@ -18,9 +18,9 @@
                 <div class="card-body">
                     <div class="author">
                         <div>
-                            <img class="avatar border-gray" src="{{ photo === null ? imagePath : photo.url}}" alt="...">
+                            <img class="avatar border-gray" (error)="updateUrl($event.target)" src="{{photo.url}}" alt="profile image">
                         </div>
-                        <i (click)="onImageChange()" class="fas fa-camera-retro change-image mb-2" style="font-size: 25px;"></i>
+                        <i (click)="onImageChange()" class="fas fa-camera-retro change-image mb-2" style="font-size: 25px; cursor: pointer;"></i>
                         <h5 class="title text-capitalize">{{profileData.editUser.firstName}} {{profileData.editUser.lastName}}</h5>
                         <p class="description text-capitalize">{{profileData.editUser.userName}}</p>
                     </div>
@@ -56,7 +56,7 @@
                             <div class="row">
                                 <div class="col-md-2 col-2">
                                     <div class="avatar">
-                                        <img src="{{ teamUser.photoUrl === null ? imagePath : teamUser.photoUrl}}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                        <img (error)="updateUrl($event.target)" src="{{teamUser.photoUrl}}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                                     </div>
                                 </div>
                                 <div class="col-md-7 col-7">

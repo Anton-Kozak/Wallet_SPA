@@ -61,13 +61,17 @@ export class ManualComparisonComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
+    this.setCurrency();
     this.setLanguage();
     this.setDate();
     this.setCategories();
   }
+  private setCurrency() {
+    this.walletService.getCurrentWallet().subscribe((wallet) => {
+      this.walletCurrency = wallet['currency'];
+    });
+  }
+
   private setCategories() {
     if (this.walletService.currentCategories.length === 0) {
       this.walletService
