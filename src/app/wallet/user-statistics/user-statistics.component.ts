@@ -62,13 +62,13 @@ export class UserStatisticsComponent implements OnInit {
   @Output() themeChange = new EventEmitter<boolean>();
 
   ngOnInit(): void {
+    this.checkIfCurrentUser();
     this.setLanguage();
     this.setDate();
     this.setCurrency();
     this.getCategories();
     this.getData(this.date);
     this.setTitle(this.translateService.currentLang);
-    this.checkIfCurrentUser();
   }
   private checkIfCurrentUser() {
     this.isThisUser = false;
@@ -196,16 +196,16 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   next(): void {
-    this.isLoading = true;
-    this.monthNumber++;
-    this.date = new Date(Date.now());
-    if (this.monthNumber > 0)
-      this.date.setMonth(this.date.getMonth() - this.monthNumber);
-    else this.date.setMonth(this.date.getMonth() + this.monthNumber);
-    this.monthName = moment(this.date).format('MMMM');
-    this.year = moment(this.date).format('YYYY');
-    this.clearData();
-    this.getData(this.date);
+    if (this.monthNumber < 0) {
+      this.isLoading = true;
+      this.monthNumber++;
+      this.date = new Date(Date.now());
+      this.date.setMonth(this.date.getMonth() + this.monthNumber);
+      this.monthName = moment(this.date).format('MMMM');
+      this.year = moment(this.date).format('YYYY');
+      this.clearData();
+      this.getData(this.date);
+    }
   }
 
   clearData(): void {

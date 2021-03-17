@@ -28,21 +28,21 @@ export class WalletStatisticsComponent implements OnInit {
   categories: CategoryData[] = [];
 
   ngOnInit(): void {
-    this.getLanguage();
-    this.getAllCategories();
     this.isLoading = true;
+    this.setLanguage();
+    this.getAllCategories();
+    this.getWalletStatistics();
+  }
+  private getWalletStatistics() {
     this.expService
       .getWalletStatistics(new Date(Date.now()).toUTCString())
       .subscribe((response: DetailedWalletStatisticsDTO) => {
         this.statisticalData = response;
         this.isLoading = false;
       });
-    this.setTitle(this.translateService.currentLang);
-    this.translateService.onLangChange.subscribe((lang) => {
-      this.setTitle(lang['lang']);
-    });
   }
-  private getLanguage() {
+
+  private setLanguage() {
     if (this.translateService.currentLang === 'en') {
       moment.locale('en');
     } else if (this.translateService.currentLang === 'ru') {
@@ -53,6 +53,10 @@ export class WalletStatisticsComponent implements OnInit {
         moment.locale('en');
       } else if (this.translateService.currentLang === 'ru')
         moment.locale('ru');
+    });
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe((lang) => {
+      this.setTitle(lang['lang']);
     });
   }
 

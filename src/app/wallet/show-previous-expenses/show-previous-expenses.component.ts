@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/_services/expense.service';
-import { ExpensesWithCategories } from 'src/app/_model/expensesWithCategories';
-import { TopUsersStat } from 'src/app/_model/top-users-stat';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { CategoryData } from 'src/app/_model/categoryData';
-import { ExpenseList } from 'src/app/_model/expense-list';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { PreviousData } from 'src/app/_model/previousData';
+import { MyThemeService } from 'src/app/_services/theme.service';
 
 @Component({
   selector: 'app-show-previous-expenses',
@@ -20,15 +18,11 @@ export class ShowPreviousExpensesComponent implements OnInit {
     private expenseService: ExpenseService,
     private walletService: WalletService,
     private translateService: TranslateService,
-    private titleService: Title
+    private titleService: Title,
+    private themeService: MyThemeService
   ) {}
-
-  // expensesWithCategories: ExpensesWithCategories[] = [];
-  // topFiveUsers: TopUsersStat[];
-  // barExpenses: ExpenseList[];
-
   data: PreviousData = null;
-
+  colors: string[] = [];
   isLoading = true;
   categories: CategoryData[] = [];
   walletCurrency = 'USD';
@@ -39,6 +33,7 @@ export class ShowPreviousExpensesComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.setLanguage();
+    this.setTheme();
     this.setDate();
     this.getCategories();
     this.getCurrency();
@@ -114,6 +109,13 @@ export class ShowPreviousExpensesComponent implements OnInit {
       });
   }
 
+  private setTheme() {
+    this.themeService.getCurrentColors().subscribe((colors) => {
+      this.colors = colors;
+      console.log('colors', colors);
+    });
+  }
+
   previousMonth(): void {
     this.isLoading = true;
     this.date = new Date(Date.now());
@@ -121,30 +123,19 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
     this.monthName = moment(this.date).format('MMMM');
     this.year = moment(this.date).format('YYYY');
-    this.clearData();
     this.getData(this.date);
   }
 
   next(): void {
-    this.isLoading = true;
     if (this.monthNumber - 1 !== 0) {
+      this.isLoading = true;
       this.monthNumber--;
       this.date = new Date(Date.now());
       this.date.setMonth(this.date.getMonth() - this.monthNumber, 1);
       this.monthName = moment(this.date).format('MMMM');
       this.year = moment(this.date).format('YYYY');
-      this.clearData();
       this.getData(this.date);
     }
-  }
-
-  clearData(): void {
-    this.isLoading = true;
-    // this.expensesWithCategories.forEach((exp) => {
-    //   exp = { categoryName: '', expenses: [], categoryId: 0 };
-    // });
-    // this.topFiveUsers = [];
-    // this.barExpenses = null;
   }
 
   getFormat(date: string): string {
