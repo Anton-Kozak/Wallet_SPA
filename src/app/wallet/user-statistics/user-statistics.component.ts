@@ -126,7 +126,6 @@ export class UserStatisticsComponent implements OnInit {
       this.titleService.setTitle('Ваши Траты');
     }
   }
-  //todo: rxjs
   private getData(date: Date): void {
     this.expService
       .getUserStatistics(this.id, date.toUTCString())

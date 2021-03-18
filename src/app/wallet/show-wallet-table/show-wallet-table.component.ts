@@ -15,6 +15,8 @@ import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { MyThemeService } from 'src/app/_services/theme.service';
+import { map, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -52,7 +54,6 @@ export class ShowWalletTableComponent implements OnInit {
   isLoading: boolean;
 
   expensesWithCategories: ExpensesWithCategories[] = [];
-
   ngOnInit(): void {
     this.setLanguage();
     this.setTheme();
@@ -75,10 +76,6 @@ export class ShowWalletTableComponent implements OnInit {
       .subscribe((notifications: Notification[]) => {
         this.notifications = notifications;
       });
-    this.setTitle(this.translateService.currentLang);
-    this.translateService.onLangChange.subscribe((lang) => {
-      this.setTitle(lang['lang']);
-    });
   }
   private getWalletData() {
     this.id = this.authService.getToken().nameid;
@@ -88,10 +85,10 @@ export class ShowWalletTableComponent implements OnInit {
       .subscribe((walletData: WalletForPage) => {
         this.setWalletData(walletData);
         this.checkLimit();
-        this.expenseService.showAllExpenses();
-        this.setDailyExpenses();
         this.isLoading = false;
       });
+    this.expenseService.showAllExpenses();
+    this.setDailyExpenses();
   }
 
   private setDailyExpenses() {
@@ -133,6 +130,11 @@ export class ShowWalletTableComponent implements OnInit {
         this.moment(this.dayForDailyExpenses).format('LL')
       );
     });
+
+    this.setTitle(this.translateService.currentLang);
+    this.translateService.onLangChange.subscribe((lang) => {
+      this.setTitle(lang['lang']);
+    });
   }
 
   setTitle(lang: string): void {
@@ -161,15 +163,20 @@ export class ShowWalletTableComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateExpenseComponent);
-    dialogRef.afterClosed().subscribe((newExpense) => {
-      if (newExpense !== null) {
-        if (
-          this.moment(this.dayForDailyExpenses).format('ll') ===
-          this.moment(new Date()).format('ll')
-        )
-          this.updateDailyExpenses();
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap((newExpense) => {
+          if (newExpense !== null) {
+            if (
+              this.moment(this.dayForDailyExpenses).format('ll') ===
+              this.moment(new Date()).format('ll')
+            )
+              return this.updateDailyExpenses();
+          }
+        })
+      )
+      .subscribe();
   }
 
   showNotifications(): void {
@@ -182,26 +189,28 @@ export class ShowWalletTableComponent implements OnInit {
     else
       this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() + 1);
 
-    this.updateDailyExpenses();
+    this.updateDailyExpenses().subscribe();
   }
 
   orgValueChange(value: string): void {
     this.dayForDailyExpenses = new Date(value);
-    this.updateDailyExpenses();
+    this.updateDailyExpenses().subscribe();
   }
 
   getFormat(date: string): string {
     return moment(date).format('lll');
   }
 
-  updateDailyExpenses(): void {
-    this.expenseService
+  updateDailyExpenses(): Observable<void> {
+    return this.expenseService
       .showDailyExpenses(this.dayForDailyExpenses.toUTCString())
-      .subscribe((expenses: ExpenseForTable[]) => {
-        this.currentSelectedDate.patchValue(
-          this.moment(this.dayForDailyExpenses).format('ll')
-        );
-        this.dailyExpenses = expenses;
-      });
+      .pipe(
+        map((expenses: ExpenseForTable[]) => {
+          this.currentSelectedDate.patchValue(
+            this.moment(this.dayForDailyExpenses).format('ll')
+          );
+          this.dailyExpenses = expenses;
+        })
+      );
   }
 }

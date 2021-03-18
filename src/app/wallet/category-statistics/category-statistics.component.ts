@@ -11,7 +11,6 @@ import * as moment from 'moment';
 import { DetailedCategoryStatisticsDTO } from 'src/app/_model/data_models/detailedCategoryStatisticsDTO';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-category-statistics',
@@ -50,16 +49,13 @@ export class CategoryStatisticsComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
   ngOnInit(): void {
     this.setTheme();
-    //this.getCategoryData();
     this.getCurrencyData();
     this.getLanguageData();
     this.getData();
     this.walletService.getCurrentWallet().subscribe();
-    //this.getCategoryStatistics();
     this.setLanguage();
   }
 
-  //todo: спросить
   private getData() {
     this.fetchCategoryData();
     this.getCategoryName();
@@ -78,11 +74,13 @@ export class CategoryStatisticsComponent implements OnInit {
       .subscribe();
   }
   private getCategoryName() {
-    return this.route.queryParams.pipe(
-      tap((params) => {
-        this.chosenCategoryName = params['category'];
-      })
-    );
+    this.route.queryParams
+      .pipe(
+        tap((params) => {
+          this.chosenCategoryName = params['category'];
+        })
+      )
+      .subscribe();
   }
 
   private getCategoryStatistics(category: number) {

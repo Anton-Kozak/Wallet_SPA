@@ -5,6 +5,7 @@ import { WalletService } from 'src/app/_services/wallet.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-wallet',
@@ -80,23 +81,27 @@ export class CreateWalletComponent implements OnInit {
   }
 
   private createCategories() {
-    this.walletService.createNewWallet(this.wallet).subscribe(
-      () => {
-        this.walletService
-          .addCategoriesToWallet(this.finalCategories)
-          .subscribe(
-            () => {
-              this.alertify.success('You have successfully created a wallet');
-              this.dialogRef.close(true);
-            },
-            (error) => {
-              this.alertify.error(error.statusText);
-            }
-          );
-      },
-      (error) => {
-        this.alertify.error(error.statusText);
-      }
+    this.walletService
+      .createNewWallet(this.wallet)
+      .pipe(
+        switchMap(() => {
+          return this.addCategories();
+        })
+      )
+      .subscribe();
+  }
+
+  private addCategories() {
+    return this.walletService.addCategoriesToWallet(this.finalCategories).pipe(
+      map(
+        () => {
+          this.alertify.success('You have successfully created a wallet');
+          this.dialogRef.close(true);
+        },
+        (error) => {
+          this.alertify.error(error.statusText);
+        }
+      )
     );
   }
 
