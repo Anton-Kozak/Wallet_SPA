@@ -73,10 +73,6 @@ export class ExpenseService {
       `${this.baseUrl}${
         this.authService.getToken().nameid
       }/dailyExpenses/${date}`
-      // this.baseUrl +
-      //   this.authService.getToken().nameid +
-      //   '/dailyExpenses/' +
-      //   date
     );
   }
 
@@ -125,12 +121,10 @@ export class ExpenseService {
     date: string
   ): Observable<DetailedCategoryStatisticsDTO> {
     return this.http.get<DetailedCategoryStatisticsDTO>(
-      this.baseUrl +
-        this.authService.getToken().nameid +
-        '/detailedCategoryStatistics/' +
-        categoryId +
-        '/' +
-        date
+      `${this.baseUrl}
+        ${this.authService.getToken().nameid}
+        /detailedCategoryStatistics/
+        ${categoryId}/${date}`
     );
   }
 
@@ -165,10 +159,10 @@ export class ExpenseService {
 
   onExpenseEdit(expenseToEdit: ExpenseForTable): Observable<ExpenseForTable> {
     return this.http.post<ExpenseForTable>(
-      this.baseUrl +
-        this.authService.getToken().nameid +
-        '/expenseEdit/' +
-        expenseToEdit.id,
+      `${this.baseUrl}
+        ${this.authService.getToken().nameid}
+        /expenseEdit/
+        ${expenseToEdit.id}`,
       expenseToEdit
     );
   }
@@ -189,12 +183,10 @@ export class ExpenseService {
     secondMonth: string
   ): Observable<SpecifiedMonthData> {
     return this.http.get<SpecifiedMonthData>(
-      this.baseUrl +
-        this.authService.getToken().nameid +
-        '/specificMonthsData/' +
-        firstMonth +
-        '/' +
-        secondMonth
+      `${this.baseUrl}
+        ${this.authService.getToken().nameid}
+        /specificMonthsData/
+        ${firstMonth}/${secondMonth}`
     );
   }
 }
