@@ -15,7 +15,7 @@ export class PhotoService {
 
   private currentPhotoSubject = new BehaviorSubject<Photo>(null);
 
-  getCurrentPhoto(): Observable<Photo> {
+  getCurrentPhotoSubject(): Observable<Photo> {
     return this.currentPhotoSubject.asObservable();
   }
 

@@ -63,7 +63,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private getPhotoData() {
-    this.photoService.getCurrentPhoto().subscribe((photo: Photo) => {
+    this.photoService.getCurrentPhotoSubject().subscribe((photo: Photo) => {
       this.photo = photo;
     });
     this.photoService.getPhoto();

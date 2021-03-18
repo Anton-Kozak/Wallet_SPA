@@ -94,8 +94,9 @@ export class ProfileComponent implements OnInit {
       });
   }
   private getPhotoData() {
-    this.photoService.getCurrentPhoto().subscribe((photo: Photo) => {
+    this.photoService.getCurrentPhotoSubject().subscribe((photo: Photo) => {
       this.photo = photo;
+      console.log(photo);
     });
     this.photoService.getPhoto();
   }
