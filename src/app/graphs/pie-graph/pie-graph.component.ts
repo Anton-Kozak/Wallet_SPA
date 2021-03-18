@@ -40,10 +40,10 @@ export class PieGraphComponent implements OnInit {
     {
       backgroundColor: [
         this.colors.colors[0].backgroundColor,
-        this.colors.colors[1].backgroundColor,
-        this.colors.colors[2].backgroundColor,
         this.colors.colors[3].backgroundColor,
-        this.colors.colors[4].backgroundColor
+        this.colors.colors[5].backgroundColor,
+        this.colors.colors[7].backgroundColor,
+        this.colors.colors[9].backgroundColor
       ]
     }
   ];

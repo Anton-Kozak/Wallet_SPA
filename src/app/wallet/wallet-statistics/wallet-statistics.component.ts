@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { DetailedWalletStatisticsDTO } from 'src/app/_model/data_models/detailedWalletStatisticsDTO';
+import { ExpenseList } from 'src/app/_model/expense_models/expense-list';
 
 @Component({
   selector: 'app-wallet-statistics',
@@ -38,8 +39,24 @@ export class WalletStatisticsComponent implements OnInit {
       .getWalletStatistics(new Date(Date.now()).toUTCString())
       .subscribe((response: DetailedWalletStatisticsDTO) => {
         this.statisticalData = response;
+        if (this.checkIfHasPreviousData()) this.showComparisonData = true;
         this.isLoading = false;
       });
+  }
+
+  private checkIfHasPreviousData() {
+    return (
+      this.statisticalData.barCompareExpensesWithLastMonth.currentMonthData.find(
+        (el: ExpenseList) => {
+          return el.categoryExpenses > 0;
+        }
+      ) &&
+      this.statisticalData.barCompareExpensesWithLastMonth.lastMonthData.find(
+        (el: ExpenseList) => {
+          return el.categoryExpenses > 0;
+        }
+      )
+    );
   }
 
   private setLanguage() {
