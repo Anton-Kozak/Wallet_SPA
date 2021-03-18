@@ -41,24 +41,28 @@ export class ExpenseService {
       .get(this.baseUrl + this.authService.getToken().nameid)
       .subscribe((expenses: ExpensesWithCategories[]) => {
         if (expenses != null) {
-          console.log('We get to subject filling' + expenses.length);
-          const tempArrayWithSubjectExpenses: ExpensesWithCategories[] = [];
+          // const tempArrayWithSubjectExpenses: ExpensesWithCategories[] = [];
+          // for (let i = 0; i < expenses.length; i++) {
+          //   const expWithCategory: ExpensesWithCategories = {
+          //     categoryId: expenses[i]['categoryId'],
+          //     categoryName: expenses[i]['categoryName'],
+          //     expenses: expenses[i]['expenses']
+          //   };
+          //   categories.push({
+          //     id: expWithCategory.categoryId,
+          //     title: expWithCategory.categoryName
+          //   });
+          //   tempArrayWithSubjectExpenses.push(expWithCategory);
+          // }
           const categories: CategoryData[] = [];
-          for (let i = 0; i < expenses.length; i++) {
-            const expWithCategory: ExpensesWithCategories = {
-              categoryId: expenses[i]['categoryId'],
-              categoryName: expenses[i]['categoryName'],
-              expenses: expenses[i]['expenses']
-            };
+          expenses.map((category: ExpensesWithCategories) => {
             categories.push({
-              id: expWithCategory.categoryId,
-              title: expWithCategory.categoryName
+              id: category.categoryId,
+              title: category.categoryName
             });
-            tempArrayWithSubjectExpenses.push(expWithCategory);
-          }
-          this.allExpenses = [...tempArrayWithSubjectExpenses];
-          this.expenseSubjects.next(tempArrayWithSubjectExpenses);
-
+          });
+          this.allExpenses = [...expenses];
+          this.expenseSubjects.next(expenses);
           this.categoryTitles.next(categories);
         } else console.log('Nothing has been found');
       });
