@@ -3,7 +3,6 @@ import { ExpenseService } from 'src/app/_services/expense.service';
 import { ActivatedRoute } from '@angular/router';
 import { ExpenseForTable } from 'src/app/_model/expense_models/expense-for-table';
 import { WalletService } from 'src/app/_services/wallet.service';
-import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Title } from '@angular/platform-browser';
@@ -11,6 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { DetailedCategoryStatisticsDTO } from 'src/app/_model/data_models/detailedCategoryStatisticsDTO';
 import { MyThemeService } from 'src/app/_services/theme.service';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-category-statistics',
@@ -49,24 +50,47 @@ export class CategoryStatisticsComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
   ngOnInit(): void {
     this.setTheme();
+    //this.getCategoryData();
     this.getCurrencyData();
     this.getLanguageData();
     this.getData();
+    this.walletService.getCurrentWallet().subscribe();
+    //this.getCategoryStatistics();
     this.setLanguage();
   }
+
+  //todo: спросить
   private getData() {
-    //todo: rxjs
-    this.route.params.subscribe((params) => {
-      this.walletService.getCurrentWallet().subscribe();
-      this.getCategoryData(params);
-      this.isLoading = true;
-      this.expService
-        .getCategoryStatistics(
-          this.chosenCategory,
-          new Date(Date.now()).toUTCString()
-        )
-        .subscribe((data: DetailedCategoryStatisticsDTO) => {
-          console.log('data', data);
+    this.fetchCategoryData();
+    this.getCategoryName();
+  }
+
+  private fetchCategoryData() {
+    this.route.params
+      .pipe(
+        map((params) => {
+          return +params['id'] || 0;
+        }),
+        switchMap((category: number) => {
+          return this.getCategoryStatistics(category);
+        })
+      )
+      .subscribe();
+  }
+  private getCategoryName() {
+    return this.route.queryParams.pipe(
+      tap((params) => {
+        this.chosenCategoryName = params['category'];
+      })
+    );
+  }
+
+  private getCategoryStatistics(category: number) {
+    this.isLoading = true;
+    return this.expService
+      .getCategoryStatistics(category, new Date(Date.now()).toUTCString())
+      .pipe(
+        map((data: DetailedCategoryStatisticsDTO) => {
           if (data.spentAll <= 0) {
             this.showData = false;
           } else {
@@ -76,8 +100,8 @@ export class CategoryStatisticsComponent implements OnInit {
             this.showData = true;
           }
           this.isLoading = false;
-        });
-    });
+        })
+      );
   }
 
   private setTheme() {
@@ -109,24 +133,6 @@ export class CategoryStatisticsComponent implements OnInit {
     this.translateService.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);
     });
-  }
-
-  private getCategoryData(params) {
-    this.chosenCategory = +params['id'] || 0;
-    if (this.walletService.currentCategories.length === 0) {
-      this.walletService
-        .getWalletsCategories()
-        .subscribe((data: CategoryData[]) => {
-          this.walletService.currentCategories = data;
-          this.chosenCategoryName = this.walletService.currentCategories.find(
-            (x) => x.id === this.chosenCategory
-          ).title;
-        });
-    } else {
-      this.chosenCategoryName = this.walletService.currentCategories.find(
-        (x) => x.id === this.chosenCategory
-      ).title;
-    }
   }
 
   setTitle(lang: string): void {

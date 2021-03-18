@@ -132,15 +132,15 @@ export class UserStatisticsComponent implements OnInit {
       .getUserStatistics(this.id, date.toUTCString())
       .subscribe((response: DetailedUserStatisticsDTO) => {
         this.isLoading = true;
-        this.expService
-          .getUserExpenses(this.id, date.toUTCString())
-          .subscribe((expensesRecieved: ExpenseForTable[]) => {
-            this.expenses.data = expensesRecieved;
-            this.expensesToSend = expensesRecieved;
-          });
         if (response.amountOfMoneySpent > 0)
           this.detailedUserStatistics = response;
         this.isLoading = false;
+      });
+    this.expService
+      .getUserExpenses(this.id, date.toUTCString())
+      .subscribe((expensesRecieved: ExpenseForTable[]) => {
+        this.expenses.data = expensesRecieved;
+        this.expensesToSend = expensesRecieved;
       });
   }
 

@@ -1,98 +1,107 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
-    <div class="sidebar-wrapper">
-        <ul [ngClass]="toggle === true ? 'toggled':''" class="nav">
-            <li class="sidebar-header-item">
-                <div class="row sidebar-header">
-                    <div class="image">
-                        <img class="img-responsive border border-dark rounded-circle" src="../../../assets/images/x-coin.jpg" style="height: 45px; width: 45px;">
-                    </div>
-                    <div class="align-self-center">
-                        <p class="mb-0 ml-2 mat-h5 brand-name">
-                            XPense
-                        </p>
-                    </div>
-                </div>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/wallet/home-wallet']">
-                    <i class="nc-icon nc-shop"></i>
-                    <p>{{'Sidebar.Home' | translate}}</p>
-                </a>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/wallet/walletExpenses']">
-                    <i class="nc-icon nc-bank"></i>
-                    <p>{{'Sidebar.YourWallet' | translate}}</p>
-                </a>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/wallet/previousExpenses']">
-                    <i class="nc-icon nc-calendar-60"></i>
-                    <p>{{'Sidebar.Previous' | translate}}</p>
-                </a>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/wallet/getWalletStatistics']">
-                    <i class="nc-icon nc-chart-bar-32"></i>
-                    <p>{{'Sidebar.WalletStatistics' | translate}}</p>
-                </a>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/wallet/userStatistics/' + id]">
-                    <i class="nc-icon nc-circle-10"></i>
-                    <p>{{'Sidebar.UserStatistics' | translate}}</p>
-                </a>
-            </li>
-            <li>
-                <div class="acc-outer">
-                    <mat-accordion>
-                        <mat-expansion-panel hideToggle>
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    <a class="cat-acc">
-                                        <i class="nc-icon nc-chart-pie-36"></i>
-                                        <p class="mt-2">{{'Sidebar.Categories' | translate}}</p>
-                                    </a>
-                                </mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <div *ngFor="let category of categoryTitles">
-                                <ul class="nav">
-                                    <li routerLinkActive="active">
-                                        <a class="categories" style="font-size: 10px;" [routerLink]="['/wallet/catstat/' + category.id]">
-                                            <i class="fas {{category.icon}}"></i>
-                                            <p>{{'ExpenseCategory.' + category.title | translate}}</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </mat-expansion-panel>
-                    </mat-accordion>
-                </div>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/wallet/compare']">
-                    <i class="far fa-calendar-alt"></i>
-                    <p class="custom">{{'Sidebar.CompareCustom' | translate}}</p>
-                </a>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/wallet/profile']">
-                    <i class="nc-icon nc-badge"></i>
-                    <p>{{'Sidebar.Profile' | translate}}</p>
-                </a>
-            </li>
-            <li *appHasRole="['Admin']" routerLinkActive="active">
-                <a [routerLink]="['/wallet/walletAdmin']">
-                    <i class="nc-icon nc-lock-circle-open"></i>
-                    <p>{{'Sidebar.Admin' | translate}}</p>
-                </a>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/wallet/tips']">
-                    <i class="far fa-question-circle"></i>
-                    <p>{{'Sidebar.Tips' | translate}}</p>
-                </a>
-            </li>
-        </ul>
-    </div>
+  <div class="sidebar-wrapper">
+    <ul [ngClass]="toggle === true ? 'toggled' : ''" class="nav">
+      <li class="sidebar-header-item">
+        <div class="row sidebar-header">
+          <div class="image">
+            <img
+              class="img-responsive border border-dark rounded-circle"
+              src="../../../assets/images/x-coin.jpg"
+              style="height: 45px; width: 45px"
+            />
+          </div>
+          <div class="align-self-center">
+            <p class="mb-0 ml-2 mat-h5 brand-name">XPense</p>
+          </div>
+        </div>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/wallet/home-wallet']">
+          <i class="nc-icon nc-shop"></i>
+          <p>{{ 'Sidebar.Home' | translate }}</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/wallet/walletExpenses']">
+          <i class="nc-icon nc-bank"></i>
+          <p>{{ 'Sidebar.YourWallet' | translate }}</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/wallet/previousExpenses']">
+          <i class="nc-icon nc-calendar-60"></i>
+          <p>{{ 'Sidebar.Previous' | translate }}</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/wallet/getWalletStatistics']">
+          <i class="nc-icon nc-chart-bar-32"></i>
+          <p>{{ 'Sidebar.WalletStatistics' | translate }}</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/wallet/userStatistics/' + id]">
+          <i class="nc-icon nc-circle-10"></i>
+          <p>{{ 'Sidebar.UserStatistics' | translate }}</p>
+        </a>
+      </li>
+      <li>
+        <div class="acc-outer">
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <a class="cat-acc">
+                    <i class="nc-icon nc-chart-pie-36"></i>
+                    <p class="mt-2">{{ 'Sidebar.Categories' | translate }}</p>
+                  </a>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div *ngFor="let category of categoryTitles">
+                <ul class="nav">
+                  <li routerLinkActive="active">
+                    <a
+                      class="categories"
+                      style="font-size: 10px"
+                      [routerLink]="['/wallet/catstat/' + category.id]"
+                      [queryParams]="{category: category.title}"
+                    >
+                      <i class="fas {{ category.icon }}"></i>
+                      <p>
+                        {{ 'ExpenseCategory.' + category.title | translate }}
+                      </p>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/wallet/compare']">
+          <i class="far fa-calendar-alt"></i>
+          <p class="custom">{{ 'Sidebar.CompareCustom' | translate }}</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/wallet/profile']">
+          <i class="nc-icon nc-badge"></i>
+          <p>{{ 'Sidebar.Profile' | translate }}</p>
+        </a>
+      </li>
+      <li *appHasRole="['Admin']" routerLinkActive="active">
+        <a [routerLink]="['/wallet/walletAdmin']">
+          <i class="nc-icon nc-lock-circle-open"></i>
+          <p>{{ 'Sidebar.Admin' | translate }}</p>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/wallet/tips']">
+          <i class="far fa-question-circle"></i>
+          <p>{{ 'Sidebar.Tips' | translate }}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>

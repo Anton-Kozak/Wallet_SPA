@@ -19,17 +19,6 @@ export class PhotoService {
     return this.currentPhotoSubject.asObservable();
   }
 
-  // getPhoto(): Observable<Photo> {
-  //   return this.http
-  //     .get<Photo>(`${this.baseUrl}${this.authService.getToken().nameid}`)
-  //     .pipe(
-  //       map((photo: Photo) => {
-  //         this.currentPhotoSubject.next(photo);
-  //         return photo;
-  //       })
-  //     );
-  // }
-
   getPhoto(): void {
     this.http
       .get<Photo>(`${this.baseUrl}${this.authService.getToken().nameid}`)

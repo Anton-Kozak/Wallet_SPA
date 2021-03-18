@@ -174,7 +174,7 @@ export class ExpenseService {
       .get<WalletForPage>(`${this.baseUrl}${userId}/getNameAndLimit`)
       .pipe(
         map((data: WalletForPage) => {
-          this.expensesSubject.next(data['monthlyExpenses']);
+          this.expensesSubject.next(data.monthlyExpenses);
           return data;
         })
       );

@@ -8,6 +8,7 @@ import { UserForProfileEdit } from '../_model/user_models/user-for-profile-edit'
 import { Observable } from 'rxjs';
 import { ApplicationUser } from '../_model/user_models/applicationUser';
 import { ProfileData } from '../_model/data_models/profile-data';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -41,9 +42,18 @@ export class WalletService {
   }
 
   getWalletsCategories(): Observable<CategoryData[]> {
-    return this.http.get<CategoryData[]>(
-      `${this.baseUrl}${this.authService.getToken().nameid}/getWalletCategories`
-    );
+    return this.http
+      .get<CategoryData[]>(
+        `${this.baseUrl}${
+          this.authService.getToken().nameid
+        }/getWalletCategories`
+      )
+      .pipe(
+        map((categories: CategoryData[]) => {
+          this.currentCategories = categories;
+          return categories;
+        })
+      );
   }
 
   editWallet(walletToEdit: Wallet): Observable<string> {
