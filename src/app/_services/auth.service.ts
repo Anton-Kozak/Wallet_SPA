@@ -12,8 +12,6 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   decodedToken: DecodedToken;
   baseUrl: string = environment.apiUrl + 'auth/';
-
-  // isLoggedIn = new BehaviorSubject<boolean>(!this.jwtHelper.isTokenExpired(localStorage.getItem('token')));
   isLoggedIn = new BehaviorSubject<boolean>(this.getToken() !== null);
   hasWallet = new BehaviorSubject<boolean>(this.checkUserWallet());
   constructor(private http: HttpClient) {}

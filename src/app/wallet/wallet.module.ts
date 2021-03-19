@@ -83,6 +83,11 @@ const routes: Routes = [
         canActivate: [AdminGuard]
       },
       {
+        path: 'vip',
+        loadChildren: () =>
+          import('../premium/premium.module').then((m) => m.PremiumModule)
+      },
+      {
         path: 'tips',
         loadChildren: () =>
           import('../tips/tips.module').then((m) => m.TipsModule)

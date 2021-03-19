@@ -84,4 +84,12 @@ export class WalletService {
       { responseType: 'text' }
     );
   }
+
+  becomePremium(): Observable<string> {
+    return this.http.post(
+      `${this.baseUrl}${this.authService.getToken().nameid}/premium`,
+      {},
+      { responseType: 'text' }
+    );
+  }
 }
