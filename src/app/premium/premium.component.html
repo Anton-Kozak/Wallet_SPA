@@ -6,21 +6,49 @@
     <div class="row mb-5 mt-5">
         <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
             <img src="assets/images/home/001-wallet.svg" class="img-fluid w-25 mb-4">
-            <h3 class="card-title">{{"Home.SaveMoney" | translate}}</h3>
-            <p>{{"Home.SaveText" | translate}}</p>
+            <h3 class="card-title">Get more information</h3>
+            <p>Get access to advanced statistics</p>
         </div>
         <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
             <img src="assets/images/home/004-cart.svg" class="img-fluid w-25 mb-4">
             <h3 class="card-title">{{"Home.ControlBudget" | translate}}</h3>
-            <p>{{"Home.ControlText" | translate}}</p>
+            <p>See what your members spend on daily basis</p>
         </div>
         <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
             <img src="assets/images/home/006-credit-card.svg" class="img-fluid w-25 mb-4">
             <h3 class="card-title">{{"Home.TrackExpenses" | translate}}</h3>
-            <p>{{"Home.TrackText" | translate}}</p>
+            <p>Get monthly reports on your spending habits!</p>
         </div>
     </div>
   </div>
-  <div class="item price">Price for VIP status</div>
+  <div class="item price">
+    <div class="card pricing col-md-3 text-center">
+      <p>$12 / month</p>
+      <ul>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet consectetur</li>
+        <li>Lorem, ipsum dolor.</li>
+        <li>Lorem, ipsum.</li>
+      </ul>
+    </div>
+    <div class="card pricing col-md-3 text-center">
+      <p>$12 / month</p>
+      <ul>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet consectetur</li>
+        <li>Lorem, ipsum dolor.</li>
+        <li>Lorem, ipsum.</li>
+      </ul>
+    </div>
+    <div class="card pricing col-md-3 text-center">
+      <p>$12 / month</p>
+      <ul>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet consectetur</li>
+        <li>Lorem, ipsum dolor.</li>
+        <li>Lorem, ipsum.</li>
+      </ul>
+    </div>
+  </div>
 </div>
-<button (click)="onPremiumClick()">Become premium</button>
+<button *ngIf="vipStatus !== 'VIP'" (click)="onPremiumClick()">Become premium</button>
