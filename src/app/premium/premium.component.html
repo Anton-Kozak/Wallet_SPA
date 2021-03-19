@@ -1,1 +1,26 @@
-<button (click)="onPremiumClick()">Become premium</button> 
+<div class="outer">
+  <div class="item status">Your status is: <span style="font-weight: bold;">{{vipStatus}}</span></div>
+  <div class="item benefits">
+    <div *ngIf="vipStatus !== 'VIP'" class="text-center mt-5" >Why should you become a premium member?</div>
+    <div *ngIf="vipStatus === 'VIP'" class="text-center mt-5" >Benefits of being a VIP!</div>
+    <div class="row mb-5 mt-5">
+        <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="0">
+            <img src="assets/images/home/001-wallet.svg" class="img-fluid w-25 mb-4">
+            <h3 class="card-title">{{"Home.SaveMoney" | translate}}</h3>
+            <p>{{"Home.SaveText" | translate}}</p>
+        </div>
+        <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
+            <img src="assets/images/home/004-cart.svg" class="img-fluid w-25 mb-4">
+            <h3 class="card-title">{{"Home.ControlBudget" | translate}}</h3>
+            <p>{{"Home.ControlText" | translate}}</p>
+        </div>
+        <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true" data-aos-delay="200">
+            <img src="assets/images/home/006-credit-card.svg" class="img-fluid w-25 mb-4">
+            <h3 class="card-title">{{"Home.TrackExpenses" | translate}}</h3>
+            <p>{{"Home.TrackText" | translate}}</p>
+        </div>
+    </div>
+  </div>
+  <div class="item price">Price for VIP status</div>
+</div>
+<button (click)="onPremiumClick()">Become premium</button>

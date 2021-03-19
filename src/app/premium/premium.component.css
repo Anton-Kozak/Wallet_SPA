@@ -1,0 +1,20 @@
+.outer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 10px;
+  border: 1px solid var(--card-table-header);
+  height: 80%;
+}
+.item {
+  width: 100%;
+  text-align: center;
+}
+.status {
+  font-size: 32pt;
+  color: var(--card-table-header);
+}
+.benefits {
+  background-color: var(--card-background);
+  color: var(--card-table-header);
+}
