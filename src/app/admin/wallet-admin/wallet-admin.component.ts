@@ -170,6 +170,54 @@ export class WalletAdminComponent implements OnInit {
       this.users.data = usersForAdmin;
     });
   }
+  //todo: спросить у Миши
+  makeUserPremium(user: UserForAdmin, index: number): void {
+    const res = confirm('Do you really want to add premium status?');
+    if (res)
+      this.adminService.makeUserPremium(user.id).subscribe(
+        (res) => {
+          console.log(
+            `${res} - now ${user.username} can do anything he/she wants!!!`
+          );
+        },
+        (error) => {
+          console.log(error.error);
+        },
+        () => {
+          this.addPremiumRole(index);
+        }
+      );
+  }
+
+  removePremiumStatus(user: UserForAdmin, index: number): void {
+    const res = confirm('Do you really want to remove premium status?');
+    if (res)
+      this.adminService.removePremiumStatus(user.id).subscribe(
+        () => {
+          console.log(`${user.username} is now a peasant!`);
+        },
+        (error) => {
+          console.log(error.error);
+        },
+        () => {
+          this.removePremiumRole(index);
+        }
+      );
+  }
+
+  private removePremiumRole(index: number) {
+    const users = this.users.data[index];
+    const indexToSplice = users.userRoles.findIndex((u) => u === 'VIP');
+    users.userRoles.splice(indexToSplice, 1);
+    this.users.data[index] = { ...users };
+    this.users.data = this.users.data;
+  }
+  private addPremiumRole(index: number) {
+    const users = this.users.data[index];
+    users.userRoles.push('VIP');
+    this.users.data[index] = { ...users };
+    this.users.data = this.users.data;
+  }
 
   getFormat(date: string): string {
     return moment(date).format('lll');

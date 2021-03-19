@@ -67,9 +67,11 @@
                                             translate}} </th>
                                         <td class="table-text" mat-cell *matCellDef="let element; let i = index">
                                             <div *ngIf="!element.userRoles.includes('Admin')">
-                                                <!-- <a class="mr-2"><i class="fa fa-lock"></i></a> -->
+                                                <a class="mr-2"><i class="fa fa-lock text-primary"></i></a>
                                                 <a (click)="removeUser(element.id, i)" class="mr-2"><i
-                                                        class="fa fa-2x fa-user-times text-danger"></i></a>
+                                                        class="fa fa-user-times text-danger"></i></a>
+                                                <a *ngIf="!element.userRoles.includes('VIP')" (click)="makeUserPremium(element, i)" class="mr-2"><i class="fas fa-crown text-warning"></i></a>
+                                                <a *ngIf="element.userRoles.includes('VIP')" (click)="removePremiumStatus(element, i)" class="mr-2"><i class="fas fa-crown" style="color: rgb(138, 138, 138);"></i></a>
                                                 <!-- <a *ngIf="element.userRoles.includes('Adult') && !element.userRoles.includes('Admin')" class="mr-2"><i class="fa fa-users-cog"></i></a> -->
                                             </div>
                                         </td>
@@ -99,51 +101,6 @@
             <app-table-with-expenses *ngIf="expenses.length > 0" [tableData]='expenses'
                 [tableHeaders]='columnsForExpenses' [isThisUser]='null' [walletCurrency]='walletCurrency'>
             </app-table-with-expenses>
-            <!-- <table style="width: 100%;" mat-table [dataSource]="expenses">
-                <ng-container matColumnDef="expenseTitle">
-                    <th class="text-center table-head title-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.Expense" | translate}} </th>
-                    <td class="table-text title-table-cell" mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
-                </ng-container>
-                <ng-container matColumnDef="category">
-                    <th class="text-center table-head category-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.Category" | translate}} </th>
-                    <td class="text-center table-text category-table-cell" mat-cell *matCellDef="let element"> {{'ExpenseCategory.' + element.category | translate}} </td>
-                </ng-container>
-                <ng-container matColumnDef="userName">
-                    <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.User" | translate}} </th>
-                    <td class="table-text user-table-cell " mat-cell *matCellDef="let element"> {{element.userName}} </td>
-                </ng-container>
-                <ng-container matColumnDef="moneySpent">
-                    <th class="text-center table-head money-table-header" mat-header-cell *matHeaderCellDef> {{'Currency.' + walletCurrency + 'Sign' | translate}} </th>
-                    <td class="table-text money-table-cell" mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
-                </ng-container>
-                <ng-container matColumnDef="expenseDescription">
-                    <th class="text-center table-head d-none d-xl-table-cell" mat-header-cell *matHeaderCellDef> {{"Expenses.Details" | translate}} </th>
-                    <td class="text-center table-cell d-none d-xl-table-cell" mat-cell *matCellDef="let element"> {{element.expenseDescription}} </td>
-                </ng-container>
-                <ng-container matColumnDef="creationDate">
-                    <th class="text-center table-head date-table-header" mat-header-cell *matHeaderCellDef> {{"Expenses.Date" | translate}} </th>
-                    <td class="table-text date-table-cell" mat-cell *matCellDef="let element"> {{getFormat(element.creationDate)}} </td>
-                </ng-container>
-                <ng-container matColumnDef="actions">
-                    <th class="text-center table-head" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" | translate}} </th>
-                    <td class="table-text" mat-cell *matCellDef="let element; let i = index">
-                        <a (click)="openDialog(element.id, i)" class="btn edit">
-                            <span style="color: green;">
-                                <i class="fa fa-cog"></i>
-                            </span>
-                        </a>
-                        <a (click)="expenseDelete(element.id, i, element)" class="btn delete">
-                            <span class="mr" style="color: red;">
-                                <i class="fa fa-times"></i>
-                            </span>
-                        </a>
-                    </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="columnsForExpenses"></tr>
-                <tr mat-row *matRowDef="let row; columns: columnsForExpenses;"></tr>
-            </table>
-            <mat-paginator #expPaginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
-            </mat-paginator> -->
         </div>
     </div>
 </div>

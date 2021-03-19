@@ -60,4 +60,23 @@ export class AdminService {
       expenseToEdit
     );
   }
+
+  makeUserPremium(userToMakeId: string): Observable<string> {
+    return this.http.post(
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/makePremium/${userToMakeId}`,
+      {},
+      { responseType: 'text' }
+    );
+  }
+  removePremiumStatus(userToRemoveId: string): Observable<string> {
+    return this.http.post(
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/removePremium/${userToRemoveId}`,
+      {},
+      { responseType: 'text' }
+    );
+  }
 }
