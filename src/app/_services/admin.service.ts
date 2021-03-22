@@ -61,16 +61,37 @@ export class AdminService {
 
   makeUserPremium(userToMakeId: string): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}
-      ${this.authService.getToken().nameid}/makePremium/${userToMakeId}`,
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/makePremium/${userToMakeId}`,
       {},
       { responseType: 'text' }
     );
   }
   removePremiumStatus(userToRemoveId: string): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}
-      ${this.authService.getToken().nameid}/removePremium/${userToRemoveId}`,
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/removePremium/${userToRemoveId}`,
+      {},
+      { responseType: 'text' }
+    );
+  }
+
+  blockUser(userToBlockId: string): Observable<string> {
+    return this.http.post(
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/blockUser/${userToBlockId}`,
+      {},
+      { responseType: 'text' }
+    );
+  }
+  unblockUser(userToUnblockId: string): Observable<string> {
+    return this.http.post(
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/unblockUser/${userToUnblockId}`,
       {},
       { responseType: 'text' }
     );

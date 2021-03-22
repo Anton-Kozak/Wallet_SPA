@@ -10,10 +10,9 @@ import { TranslateSharedLazyModule } from '../shared/translate-shared-lazy/trans
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AdminGuard } from '../_guards/admin.guard';
-import { HasRoleDirective } from '../_directives/hasRole.directive';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { CardModule } from '../shared/card/card.module';
+import { HasRoleDirective } from '../_directives/hasRole.directive';
 
 const routes: Routes = [
   {

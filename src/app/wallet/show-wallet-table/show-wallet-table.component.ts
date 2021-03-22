@@ -52,7 +52,7 @@ export class ShowWalletTableComponent implements OnInit {
   notifications: Notification[] = [];
   categories: CategoryData[] = [];
   isLoading: boolean;
-
+  isBlocked = false;
   expensesWithCategories: ExpensesWithCategories[] = [];
   ngOnInit(): void {
     this.setLanguage();
@@ -67,9 +67,12 @@ export class ShowWalletTableComponent implements OnInit {
       this.walletExpenses = expData;
       this.checkLimit();
     });
+    //todo: исправить ???
     this.route.data.subscribe((data) => {
       this.categories = data['categories'];
     });
+
+    this.isBlocked = this.authService.roleMatch(['Blocked']);
 
     this.noteService
       .getNotifications()

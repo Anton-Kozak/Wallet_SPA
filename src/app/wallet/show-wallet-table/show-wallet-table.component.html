@@ -14,7 +14,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-4 col-lg-7 col-md-7" data-aos="fade-down" data-aos-duration="1200"
                     data-aos-once="true">
-                    <button (click)="openDialog()"
+                    <button [disabled]="isBlocked" (click)="openDialog()"
                         class="btn add-expense-button btn-block font-weight-bold mt-1">{{"Expenses.Add" |
                         translate}}</button>
                 </div>

@@ -205,6 +205,37 @@ export class WalletAdminComponent implements OnInit {
       );
   }
 
+  blockUser(user: UserForAdmin, index: number): void {
+    const res = confirm('Do you really want to block this user?');
+    if (res)
+      this.adminService.blockUser(user.id).subscribe(
+        () => {
+          console.log(`${user.username} is now blocked!`);
+        },
+        (error) => {
+          console.log(error.error);
+        },
+        () => {
+          this.addBlockedRole(index);
+        }
+      );
+  }
+  unblockUser(user: UserForAdmin, index: number): void {
+    const res = confirm('Do you really want to unblock this user?');
+    if (res)
+      this.adminService.unblockUser(user.id).subscribe(
+        () => {
+          console.log(`${user.username} is now unblocked!`);
+        },
+        (error) => {
+          console.log(error.error);
+        },
+        () => {
+          this.addBlockedRole(index);
+        }
+      );
+  }
+
   private removePremiumRole(index: number) {
     const users = this.users.data[index];
     const indexToSplice = users.userRoles.findIndex((u) => u === 'VIP');
@@ -215,6 +246,12 @@ export class WalletAdminComponent implements OnInit {
   private addPremiumRole(index: number) {
     const users = this.users.data[index];
     users.userRoles.push('VIP');
+    this.users.data[index] = { ...users };
+    this.users.data = this.users.data;
+  }
+  private addBlockedRole(index: number) {
+    const users = this.users.data[index];
+    users.userRoles.push('Blocked');
     this.users.data[index] = { ...users };
     this.users.data = this.users.data;
   }

@@ -67,11 +67,12 @@
                                             translate}} </th>
                                         <td class="table-text" mat-cell *matCellDef="let element; let i = index">
                                             <div *ngIf="!element.userRoles.includes('Admin')">
-                                                <a matTooltipShowDelay="300" matTooltip="Block User" class="mr-2"><i class="fa fa-lock text-primary"></i></a>
+                                                <a matTooltipShowDelay="300" *ngIf="!element.userRoles.includes('Blocked')" (click)="blockUser(element, i)" matTooltip="Block User" class="mr-2"><i class="fa fa-lock text-primary"></i></a>
+                                                <a matTooltipShowDelay="300" *ngIf="element.userRoles.includes('Blocked')" (click)="unblockUser(element, i)" matTooltip="Unblock User" class="mr-2"><i class="fa fa-lock" style="color: rgb(138, 138, 138);"></i></a>
                                                 <a matTooltipShowDelay="300" matTooltip="Remove User" (click)="removeUser(element.id, i)" class="mr-2"><i
                                                         class="fa fa-user-times text-danger"></i></a>
                                                 <a matTooltipShowDelay="300" matTooltip="Make VIP" *ngIf="!element.userRoles.includes('VIP')" (click)="makeUserPremium(element, i)" class="mr-2"><i class="fas fa-crown text-warning"></i></a>
-                                                <a matTooltipShowDelay="300"  matTooltip="Make Standard"*ngIf="element.userRoles.includes('VIP')" (click)="removePremiumStatus(element, i)" class="mr-2"><i class="fas fa-crown" style="color: rgb(138, 138, 138);"></i></a>
+                                                <a matTooltipShowDelay="300"  matTooltip="Make Standard" *ngIf="element.userRoles.includes('VIP')" (click)="removePremiumStatus(element, i)" class="mr-2"><i class="fas fa-crown" style="color: rgb(138, 138, 138);"></i></a>
                                                 <!-- <a *ngIf="element.userRoles.includes('Adult') && !element.userRoles.includes('Admin')" class="mr-2"><i class="fa fa-users-cog"></i></a> -->
                                             </div>
                                         </td>

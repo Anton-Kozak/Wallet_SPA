@@ -10,6 +10,7 @@ import { CreateExpenseComponent } from 'src/app/expenses/create-expense/create-e
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { TableModule } from '../../shared/table-with-expenses/table.module';
 import { CardModule } from 'src/app/shared/card/card.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 // import { TableWithExpensesComponent } from 'src/app/table-with-expenses/table-with-expenses.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CardModule } from 'src/app/shared/card/card.module';
     MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTooltipModule,
     MatMomentDateModule,
     TableModule,
     CardModule,
