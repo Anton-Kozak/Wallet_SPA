@@ -15,13 +15,7 @@ export class PremiumComponent implements OnInit {
     private router: Router
   ) {}
 
-  vipStatus = '';
-
-  ngOnInit(): void {
-    this.authService.roleMatch(['VIP']) === true
-      ? (this.vipStatus = 'VIP')
-      : 'Standard';
-  }
+  ngOnInit(): void {}
 
   onPremiumClick(): void {
     this.walletService.becomePremium().subscribe(
@@ -31,7 +25,6 @@ export class PremiumComponent implements OnInit {
         this.router.navigate(['/main/reg']);
       },
       (error) => {
-        alert(error.error);
         console.error(error.error);
       }
     );
