@@ -158,9 +158,11 @@ export class ExpenseService {
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable): Observable<ExpenseForTable> {
+    console.log('|', this.authService.getToken().nameid, '|');
+
     return this.http.post<ExpenseForTable>(
-      `${this.baseUrl}
-        ${this.authService.getToken().nameid}/expenseEdit/${expenseToEdit.id}`,
+      `${this.baseUrl}${this.authService.getToken().nameid}/expenseEdit/
+      ${expenseToEdit.id}`,
       expenseToEdit
     );
   }

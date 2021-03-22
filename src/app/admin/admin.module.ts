@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateInviteComponent } from '../invites/create-invite/create-invite.component';
 import { EditWalletComponent } from '../wallet/edit-wallet/edit-wallet.component';
 import { TableModule } from '../shared/table-with-expenses/table.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TableModule } from '../shared/table-with-expenses/table.module';
     TranslateSharedLazyModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
     TableModule,
