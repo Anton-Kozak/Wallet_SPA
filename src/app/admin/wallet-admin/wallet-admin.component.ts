@@ -170,7 +170,7 @@ export class WalletAdminComponent implements OnInit {
       this.users.data = usersForAdmin;
     });
   }
-  //todo: спросить у Миши
+
   makeUserPremium(user: UserForAdmin, index: number): void {
     const res = confirm('Do you really want to add premium status?');
     if (res)

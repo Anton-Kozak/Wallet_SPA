@@ -21,6 +21,7 @@ export class TableWithExpensesComponent implements OnInit, OnChanges {
     | ExpenseForTable[]
     | ExpenseForAdminTable[] = [];
   @Input('isThisUser') isThisUser = false;
+  @Input('isAdmin') isAdmin = false;
   @Input('walletCurrency') walletCurrency = 'USD';
   @Input('hasPaginator') hasPaginator = true;
 
@@ -53,7 +54,7 @@ export class TableWithExpensesComponent implements OnInit, OnChanges {
     const exp = this.expenses.data.find((x) => x.id === id);
     const dialogRef = this.dialog.open(EditExpenseModalComponent, {
       width: '550px',
-      data: exp
+      data: { expenseToEdit: exp, isAdmin: this.isAdmin }
     });
 
     dialogRef.afterClosed().subscribe((result) => {

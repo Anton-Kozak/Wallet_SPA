@@ -99,7 +99,7 @@
         data-aos-delay="200">
         <div class="mat-elevation-z8 text-center">
             <app-table-with-expenses *ngIf="expenses.length > 0" [tableData]='expenses'
-                [tableHeaders]='columnsForExpenses' [isThisUser]='null' [walletCurrency]='walletCurrency'>
+                [tableHeaders]='columnsForExpenses' [isThisUser]='false' [isAdmin]="true" [walletCurrency]='walletCurrency'>
             </app-table-with-expenses>
         </div>
     </div>
