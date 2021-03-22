@@ -72,7 +72,7 @@ export class ShowWalletTableComponent implements OnInit {
       this.categories = data['categories'];
     });
 
-    this.isBlocked = this.authService.roleMatch(['Blocked']);
+    this.isBlocked = this.authService.roleMatch('Blocked');
 
     this.noteService
       .getNotifications()

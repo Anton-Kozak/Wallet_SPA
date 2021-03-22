@@ -1,219 +1,236 @@
 .navbar {
-    box-shadow: none;
-    border-bottom: 1px solid var(--navbar-borders);
-    padding: 4px;
-    background-color: var(--navbar-background);
-    color: var(--navbar-text);
+  box-shadow: none;
+  border-bottom: 1px solid var(--navbar-borders);
+  padding: 4px;
+  background-color: var(--navbar-background);
+  color: var(--navbar-text);
 }
 
 .nav-left-side {
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-container {
-    height: 51px;
+  height: 51px;
 }
 
 .expense-image {
-    border-right: 1px solid var(--navbar-borders);
-    width: 256px;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border-right: 1px solid var(--navbar-borders);
+  width: 256px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 i,
 .user {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 .user {
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .user div {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .toggleButton,
 .logout {
-    border-color: var(--navbar-icons);
-    background-color: transparent;
-    color: var(--button-text);
+  border-color: var(--navbar-icons);
+  background-color: transparent;
+  color: var(--button-text);
 }
 
 .toggleButton:hover i,
 .toggleButton:hover,
 .logout:hover {
-    color: var(--button-text-hover) !important;
-    background-color: var(--navbar-icons);
+  color: var(--button-text-hover) !important;
+  background-color: var(--navbar-icons);
 }
 
 .toggleButton i,
 .logout {
-    color: var(--button-text) !important;
+  color: var(--button-text) !important;
 }
 
 .right-nav {
-    width: calc(100% - 257px);
+  width: calc(100% - 257px);
 }
 
 .dropdown-item {
-    font-size: 18px;
-    width: 250px !important;
-    height: auto;
-    white-space: pre-wrap;
-    text-align: center;
+  font-size: 18px;
+  width: 250px !important;
+  height: auto;
+  white-space: pre-wrap;
+  text-align: center;
 }
 
 .dropdown-toggle:after {
-    content: none
+  content: none;
 }
 
 .dropdown-menu {
-    background-color: var(--navbar-background);
+  background-color: var(--navbar-background);
 }
 
 .dropdown-item:hover {
-    filter: brightness(125%);
-    background-color: var(--navbar-background);
+  filter: brightness(125%);
+  background-color: var(--navbar-background);
 }
 
 .dropdown-menu a,
 .dropdown-menu label {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
-.active-theme{
-    filter: brightness(125%);
-    background-color: var(--navbar-background);
+.active-theme {
+  filter: brightness(125%);
+  background-color: var(--navbar-background);
 }
 
 .notifications {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 .lang {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
 }
 
 .language-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .language {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .active-lang {
-    filter: brightness(100%);
+  filter: brightness(100%);
 }
 
 .inactive {
-    filter: brightness(50%);
-    /* color: var(--text-color); */
-    cursor: pointer;
+  filter: brightness(50%);
+  /* color: var(--text-color); */
+  cursor: pointer;
 }
 
 .inactive:hover {
-    filter: brightness(70%);
+  filter: brightness(70%);
 }
 
 .avatar {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
 
 .theme-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    padding: 10px 5px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 5px;
 }
 
 .themeChange {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 5px;
 }
 
 .themeChange p {
-    color: var(--text-color);
-    font-size: 12px;
+  color: var(--text-color);
+  font-size: 12px;
 }
 
 .themeChange i {
-    font-size: 25px;
+  font-size: 25px;
+}
+
+.cont {
+  position: relative;
+}
+
+.cont a {
+  display: block;
+}
+
+.cont .icon {
+  position: absolute;
+  left: 30%;
+  top: 25%;
+  color: black;
+}
+
+.blocked{
+    filter: contrast(60%);
 }
 
 @media (max-width: 767px) {
-    .expense-image {
-        width: 56px;
-    }
-    .toggleButton {
-        display: none;
-    }
-    .right-nav {
-        width: calc(100% - 55px);
-    }
-    .user {
-        margin-right: 15px !important;
-    }
-    .logout {
-        margin-right: 20px !important;
-    }
+  .expense-image {
+    width: 56px;
+  }
+  .toggleButton {
+    display: none;
+  }
+  .right-nav {
+    width: calc(100% - 55px);
+  }
+  .user {
+    margin-right: 15px !important;
+  }
+  .logout {
+    margin-right: 20px !important;
+  }
 }
 
 @media (max-width: 410px) {
-    .user div {
-        font-size: .85rem;
-    }
-    i {
-        font-size: 20px !important;
-    }
+  .user div {
+    font-size: 0.85rem;
+  }
+  i {
+    font-size: 20px !important;
+  }
 }
 
 @media (max-width: 380px) {
-    .user div {
-        font-size: .7rem;
-    }
-    .logout {
-        font-size: .7rem;
-    }
+  .user div {
+    font-size: 0.7rem;
+  }
+  .logout {
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 360px) {
-    .user div {
-        font-size: .6rem;
-    }
-    .logout {
-        font-size: .6rem;
-    }
-    i {
-        font-size: 17px !important;
-    }
+  .user div {
+    font-size: 0.6rem;
+  }
+  .logout {
+    font-size: 0.6rem;
+  }
+  i {
+    font-size: 17px !important;
+  }
 }
 
 @media (max-width: 340px) {
-    .user div {
-        display: none
-    }
+  .user div {
+    display: none;
+  }
 }
-
-

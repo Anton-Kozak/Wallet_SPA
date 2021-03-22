@@ -62,9 +62,12 @@
                 </div>
                 <div class="d-flex text-center mr-5 ml-3 user">
                     <div class="mr-3">{{'Navbar.Hello' | translate}} {{currentUserName}}</div>
-                    <a [routerLink]="['/wallet/profile']"><img (error)="updateUrl($event.target)" class="avatar border-gray"
-                            src="{{photo !== null ? photo.url : '../../../../../assets/images/default-avatar.png'}}"
-                            alt="..."></a>
+                    <div class="cont">
+                        <a [routerLink]="['/wallet/profile']"><img (error)="updateUrl($event.target)" class="avatar border-gray" [ngClass]="{'blocked': isBlocked}"
+                                src="{{photo !== null ? photo.url : '../../../../../assets/images/default-avatar.png'}}"
+                                alt="..."></a>
+                        <i *ngIf="isBlocked" class="fas fa-lock icon"></i>
+                        </div>
                 </div>
                 <div class="d-flex align-items-center">
 

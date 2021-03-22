@@ -1,9 +1,4 @@
-import {
-  AfterContentChecked,
-  AfterViewInit,
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -26,7 +21,7 @@ export class HomeWalletComponent implements OnInit {
       this.setTitle(lang['lang']);
     });
     setTimeout(() => {
-      if (this.authService.roleMatch(['Blocked']))
+      if (this.authService.roleMatch('Blocked'))
         alert("Your account has been blocked. Contact wallet's admin");
     }, 500);
   }

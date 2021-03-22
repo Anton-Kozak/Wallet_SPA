@@ -11,6 +11,7 @@ import { PhotoService } from '../_services/photo.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { AuthService } from '../_services/auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,6 +25,7 @@ export class ProfileComponent implements OnInit {
   userForEdit: UserForProfileEdit;
   isLoading: boolean;
   walletCurrency = 'USD';
+  isBlocked: boolean;
 
   constructor(
     public dialog: MatDialog,
@@ -31,13 +33,15 @@ export class ProfileComponent implements OnInit {
     private walletService: WalletService,
     private alertify: AlertifyService,
     public translateService: TranslateService,
-    private titleService: Title
+    private titleService: Title,
+    private authService: AuthService
   ) {}
   ngOnInit(): void {
     this.isLoading = true;
     this.getPhotoData();
     this.setCurrency();
     this.setLanguage();
+    this.getStatus();
     this.walletService
       .getProfileData()
       .subscribe((profileData: ProfileData) => {
@@ -101,6 +105,10 @@ export class ProfileComponent implements OnInit {
     this.photoService.getPhoto();
   }
 
+  private getStatus() {
+    this.isBlocked = this.authService.roleMatch('Blocked');
+  }
+
   private setCurrency() {
     this.walletService.getCurrentWallet().subscribe((wallet) => {
       this.walletCurrency = wallet['currency'];
@@ -153,7 +161,7 @@ export class ProfileComponent implements OnInit {
   }
 
   editProfile(): void {
-    if (this.editProfileForm.valid) {
+    if (this.editProfileForm.valid && !this.isBlocked) {
       if (
         this.editProfileForm.value['address'] !==
           this.profileData.editUser.address ||

@@ -45,6 +45,7 @@ export class NavbarComponent implements OnInit {
   photo: Photo = null;
   @Output() toggleDrawer = new EventEmitter();
   toggleState = false;
+  isBlocked = false;
 
   ngOnInit(): void {
     this.themeService.getCurrentTheme().subscribe((theme) => {
@@ -52,6 +53,7 @@ export class NavbarComponent implements OnInit {
     });
     this.getPhotoData();
     this.currentUserName = this.authService.getToken().unique_name;
+    this.isBlocked = this.authService.roleMatch('Blocked');
     this.noteService
       .getNotifications()
       .subscribe((notifications: Notification[]) => {

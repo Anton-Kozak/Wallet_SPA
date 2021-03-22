@@ -11,7 +11,7 @@ import { AuthService } from '../_services/auth.service';
   selector: '[appHasRole]' //*appHasRole
 })
 export class HasRoleDirective implements OnInit {
-  @Input() appHasRole: string[];
+  @Input() appHasRole: string;
   //appHasRole =  ['Admin', 'Moderator'];
   isVisible = false;
   constructor(
@@ -28,7 +28,12 @@ export class HasRoleDirective implements OnInit {
     }
 
     //if user has a particular role need them render the element
-    if (this.authService.roleMatch(this.appHasRole)) {
+
+    if (
+      this.authService.roleMatch(this.appHasRole) &&
+      this.appHasRole !== 'Blocked'
+    ) {
+      console.log('role have', this.appHasRole);
       if (!this.isVisible) this.isVisible = true;
       this.viewContainerRef.createEmbeddedView(this.templateRef);
     } else {

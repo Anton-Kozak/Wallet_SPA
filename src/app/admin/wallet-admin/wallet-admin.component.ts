@@ -207,7 +207,7 @@ export class WalletAdminComponent implements OnInit {
 
   blockUser(user: UserForAdmin, index: number): void {
     const res = confirm('Do you really want to block this user?');
-    if (res)
+    if (res && user.userRoles.find((u) => u === 'Admin') === undefined)
       this.adminService.blockUser(user.id).subscribe(
         () => {
           console.log(`${user.username} is now blocked!`);
@@ -222,7 +222,7 @@ export class WalletAdminComponent implements OnInit {
   }
   unblockUser(user: UserForAdmin, index: number): void {
     const res = confirm('Do you really want to unblock this user?');
-    if (res)
+    if (res && user.userRoles.find((u) => u === 'Admin') === undefined)
       this.adminService.unblockUser(user.id).subscribe(
         () => {
           console.log(`${user.username} is now unblocked!`);
@@ -231,7 +231,7 @@ export class WalletAdminComponent implements OnInit {
           console.log(error.error);
         },
         () => {
-          this.addBlockedRole(index);
+          this.addUnblockedRole(index);
         }
       );
   }
@@ -252,6 +252,13 @@ export class WalletAdminComponent implements OnInit {
   private addBlockedRole(index: number) {
     const users = this.users.data[index];
     users.userRoles.push('Blocked');
+    this.users.data[index] = { ...users };
+    this.users.data = this.users.data;
+  }
+  private addUnblockedRole(index: number) {
+    const users = this.users.data[index];
+    const indexToSplice = users.userRoles.findIndex((u) => u === 'Blocked');
+    users.userRoles.splice(indexToSplice, 1);
     this.users.data[index] = { ...users };
     this.users.data = this.users.data;
   }

@@ -27,7 +27,7 @@
           <p>{{ 'Sidebar.YourWallet' | translate }}</p>
         </a>
       </li>
-      <li routerLinkActive="active">
+      <li *appHasRole="'Blocked'" routerLinkActive="active">
         <a [routerLink]="['/wallet/previousExpenses']">
           <i class="nc-icon nc-calendar-60"></i>
           <p>{{ 'Sidebar.Previous' | translate }}</p>
@@ -90,7 +90,7 @@
           <p>{{ 'Sidebar.Profile' | translate }}</p>
         </a>
       </li>
-      <li *appHasRole="['Admin']" routerLinkActive="active">
+      <li *appHasRole="'Admin'" routerLinkActive="active">
         <a [routerLink]="['/wallet/walletAdmin']">
           <i class="nc-icon nc-lock-circle-open"></i>
           <p>{{ 'Sidebar.Admin' | translate }}</p>

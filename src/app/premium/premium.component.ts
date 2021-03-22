@@ -18,7 +18,7 @@ export class PremiumComponent implements OnInit {
   vipStatus = '';
 
   ngOnInit(): void {
-    this.authService.roleMatch(['VIP']) === true
+    this.authService.roleMatch('VIP') === true
       ? (this.vipStatus = 'VIP')
       : 'Standard';
   }
