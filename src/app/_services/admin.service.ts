@@ -24,9 +24,8 @@ export class AdminService {
 
   removeUser(userId: string): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}${
-        this.authService.getToken().nameid
-      }/removeUser/${userId}`,
+      `${this.baseUrl}
+      ${this.authService.getToken().nameid}/removeUser/${userId}`,
       {},
       { responseType: 'text' }
     );
@@ -40,10 +39,9 @@ export class AdminService {
 
   onExpenseDelete(id: number): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}
-        ${this.authService.getToken().nameid}
-        /expenseDelete/
-        ${id}`,
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/expenseDelete/${id}`,
       {},
       { responseType: 'text' }
     );
@@ -53,11 +51,28 @@ export class AdminService {
     expenseToEdit: ExpenseForTable
   ): Observable<Expense | ExpenseForTable> {
     return this.http.post<Expense | ExpenseForTable>(
-      `${this.baseUrl}
-        ${this.authService.getToken().nameid}
-        /expenseEdit/
-        ${expenseToEdit.id}`,
+      this.baseUrl +
+        this.authService.getToken().nameid +
+        '/expenseEdit/' +
+        expenseToEdit.id,
       expenseToEdit
+    );
+  }
+
+  makeUserPremium(userToMakeId: string): Observable<string> {
+    return this.http.post(
+      `${this.baseUrl}
+      ${this.authService.getToken().nameid}/makePremium/${userToMakeId}`,
+      {},
+      { responseType: 'text' }
+    );
+  }
+  removePremiumStatus(userToRemoveId: string): Observable<string> {
+    return this.http.post(
+      `${this.baseUrl}
+      ${this.authService.getToken().nameid}/removePremium/${userToRemoveId}`,
+      {},
+      { responseType: 'text' }
     );
   }
 }

@@ -3,11 +3,11 @@
         background-color: var(--card-background);
         box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.25), 0px 8px 10px 1px rgba(0, 0, 0, 0.03), 0px 3px 14px 2px rgba(0, 0, 0, 0.03);
     }
-    
+
     .users {
         box-shadow: none;
     }
-    
+
     .mat-table {
         background-color: transparent!important;
         color: black;
@@ -15,38 +15,38 @@
         font-weight: 400;
         text-align: center;
     }
-    
+
     .mat-header-cell {
         text-align: center;
         font-size: 20px;
     }
-    
+
     .mat-paginator {
         border-bottom-right-radius: 12px;
         border-bottom-left-radius: 12px;
     }
-    
+
     .mat-paginator-outer-container .users {
         border-radius: none;
     }
-    
+
     .mat-paginator-page-size {
         display: none;
     }
-    
+
     .mat-header-row {
         font-size: 30px !important;
     }
-    
+
     .buttons {
         height: 100px;
     }
-    
+
     .edit-wallet {
         box-shadow: 0px 0px 20px -4px #28a745;
         animation: walletglow 10000ms infinite;
     }
-    
+
     .add-user {
         border-color: var(--navbar-icons);
         background-color: transparent;
@@ -54,52 +54,57 @@
         box-shadow: 0px 0px 20px -4px var(--navbar-icons);
         animation: glowing 10000ms infinite;
     }
-    
+
     .add-user:hover {
         color: var(--button-text-hover);
         background-color: var(--navbar-icons);
         box-shadow: 0px 0px 20px -4px var(--button-text-hover);
     }
-    
+
+    i {
+        font-size: 20px;
+    }
+
     @media (max-width: 1150px) {
-        .add-user,
-        .edit-wallet {
+        .add-user, .edit-wallet {
             font-size: .85rem;
         }
     }
+
     /* @media(max-width: 1020px) {
     .add-user,
     .edit-wallet {
         font-size: .75rem;
     }
 } */
-    
+
     @media (max-width: 1500px) {
-        .table-head {
+        .table-head, i {
             font-size: 17px !important;
         }
         .table-text {
             font-size: 12px !important;
         }
+        
     }
-    
+
     @media (max-width: 1320px) {
-        .table-head {
+        .table-head, i {
             font-size: 15px !important;
         }
     }
-    
+
     @media (max-width: 600px) {
-        .table-head {
+        .table-head, i {
             font-size: 14px !important;
         }
         .table-text {
             font-size: 10px !important;
         }
     }
-    
+
     @media (max-width: 500px) {
-        .table-head {
+        .table-head, i {
             font-size: 9px !important;
         }
         .table-text {
@@ -111,14 +116,13 @@
         .table-head:last-of-type {
             padding-right: 10px;
         }
-        .edit,
-        .delete {
+        .edit, .delete {
             font-size: .85rem !important;
             padding: 0 !important;
             padding-left: 10px !important;
         }
     }
-    
+
     @keyframes glowing {
         0% {
             box-shadow: 0px 0px 20px -4px var(--navbar-icons);
@@ -136,7 +140,7 @@
             box-shadow: 0px 0px 20px -4px var(--navbar-icons);
         }
     }
-    
+
     @keyframes walletglow {
         0% {
             box-shadow: 0px 0px 20px -4px #28a745;

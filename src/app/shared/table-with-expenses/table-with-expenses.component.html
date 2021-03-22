@@ -38,12 +38,12 @@
             <th class="text-center table-head action-head" mat-header-cell *matHeaderCellDef> {{'Expenses.Actions' |
                 translate}} </th>
             <td class="table-text action-cell" mat-cell *matCellDef="let element; let i = index">
-                <a *ngIf="isThisUser" (click)="openDialog(element.id, i)" class="btn edit">
+                <a *ngIf="isThisUser || isAdmin" (click)="openDialog(element.id, i)" class="btn edit">
                     <span style="color: green;">
                         <i class="fa fa-cog"></i>
                     </span>
                 </a>
-                <a *ngIf="isThisUser" (click)="expenseDelete(element.id, i)" class="btn delete">
+                <a *ngIf="isThisUser || isAdmin" (click)="expenseDelete(element.id, i)" class="btn delete">
                     <span class="mr" style="color: red;">
                         <i class="fa fa-times"></i>
                     </span>
