@@ -8,6 +8,7 @@ import { UserForAdmin } from '../_model/user_models/user-for-admin';
 import { ExpenseForAdminTable } from '../_model/expense_models/expense-for-admin-table';
 import { Expense } from '../_model/expense_models/expense';
 import { ProfileData } from '../_model/data_models/profile-data';
+import { UserForProfileEdit } from '../_model/user_models/user-for-profile-edit';
 
 @Injectable({
   providedIn: 'root'
@@ -102,6 +103,18 @@ export class AdminService {
       `${this.baseUrl}${
         this.authService.getToken().nameid
       }/profile/${userToEditId}`
+    );
+  }
+  updateUserProfile(
+    editUser: UserForProfileEdit,
+    editUserId: string
+  ): Observable<string> {
+    return this.http.post(
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/updateProfile/${editUserId}`,
+      editUser,
+      { responseType: 'text' }
     );
   }
 }

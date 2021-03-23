@@ -194,23 +194,25 @@ export class ProfileEditComponent implements OnInit {
           country: this.editProfileForm.value['country'],
           phoneNumber: this.editProfileForm.value['phoneNumber']
         };
-        this.walletService.updateUserProfile(this.userForEdit).subscribe(
-          (response: string) => {
-            this.alertify.success(response);
-            this.profileData.editUser.userName = this.editProfileForm.value[
-              'username'
-            ];
-            this.profileData.editUser.firstName = this.editProfileForm.value[
-              'firstName'
-            ];
-            this.profileData.editUser.lastName = this.editProfileForm.value[
-              'lastName'
-            ];
-          },
-          (error) => {
-            this.alertify.error(error.statusText);
-          }
-        );
+        this.adminService
+          .updateUserProfile(this.userForEdit, this.data.id)
+          .subscribe(
+            (response: string) => {
+              this.alertify.success(response);
+              this.profileData.editUser.userName = this.editProfileForm.value[
+                'username'
+              ];
+              this.profileData.editUser.firstName = this.editProfileForm.value[
+                'firstName'
+              ];
+              this.profileData.editUser.lastName = this.editProfileForm.value[
+                'lastName'
+              ];
+            },
+            (error) => {
+              this.alertify.error(error.statusText);
+            }
+          );
       } else {
         this.alertify.warning('You have not done any changes!');
       }
