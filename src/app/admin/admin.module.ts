@@ -12,13 +12,15 @@ import { CreateInviteComponent } from '../invites/create-invite/create-invite.co
 import { EditWalletComponent } from '../wallet/edit-wallet/edit-wallet.component';
 import { TableModule } from '../shared/table-with-expenses/table.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
     WalletAdminComponent,
     CheckRequestsComponent,
     CreateInviteComponent,
-    EditWalletComponent
+    EditWalletComponent,
+    ProfileEditComponent
   ],
   imports: [
     CommonModule,

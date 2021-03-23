@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { UserForAdmin } from '../_model/user_models/user-for-admin';
 import { ExpenseForAdminTable } from '../_model/expense_models/expense-for-admin-table';
 import { Expense } from '../_model/expense_models/expense';
+import { ProfileData } from '../_model/data_models/profile-data';
 
 @Injectable({
   providedIn: 'root'
@@ -94,6 +95,13 @@ export class AdminService {
       }/unblockUser/${userToUnblockId}`,
       {},
       { responseType: 'text' }
+    );
+  }
+  getProfileData(userToEditId: string): Observable<ProfileData> {
+    return this.http.get<ProfileData>(
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/profile/${userToEditId}`
     );
   }
 }

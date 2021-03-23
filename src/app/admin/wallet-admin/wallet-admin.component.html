@@ -72,8 +72,10 @@
                                                 <a matTooltipShowDelay="300" matTooltip="Remove User" (click)="removeUser(element.id, i)" class="mr-2"><i
                                                         class="fa fa-user-times text-danger"></i></a>
                                                 <a matTooltipShowDelay="300" matTooltip="Make VIP" *ngIf="!element.userRoles.includes('VIP')" (click)="makeUserPremium(element, i)" class="mr-2"><i class="fas fa-crown text-warning"></i></a>
-                                                <a matTooltipShowDelay="300"  matTooltip="Make Standard" *ngIf="element.userRoles.includes('VIP')" (click)="removePremiumStatus(element, i)" class="mr-2"><i class="fas fa-crown" style="color: rgb(138, 138, 138);"></i></a>
-                                                <!-- <a *ngIf="element.userRoles.includes('Adult') && !element.userRoles.includes('Admin')" class="mr-2"><i class="fa fa-users-cog"></i></a> -->
+                                                <a matTooltipShowDelay="300"  matTooltip="Make Standard" *ngIf="element.userRoles.includes('VIP')" (click)="removePremiumStatus(element, i)" class="mr-2">
+                                                    <i class="fas fa-user" style="color: rgb(138, 138, 138);"></i>
+                                                </a>
+                                                <a *ngIf="!element.userRoles.includes('Admin')" (click)="editUser(element, i)" class="mr-2"><i class="fa fa-users-cog text-success"></i></a>
                                             </div>
                                         </td>
                                     </ng-container>
