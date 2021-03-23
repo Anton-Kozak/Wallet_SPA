@@ -23,6 +23,7 @@ export class ProfileEditComponent implements OnInit {
   editProfileForm: FormGroup;
   profileData: ProfileData = null;
   userForEdit: UserForProfileEdit;
+  userRoles: string[] = [];
   isLoading: boolean;
   walletCurrency = 'USD';
   isBlocked: boolean;
@@ -41,12 +42,12 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    console.log('data', this.data);
-
     // this.getPhotoData();
     this.setCurrency();
     this.setLanguage();
-    this.getStatus();
+    this.getPhotoData(this.data.id);
+    this.isBlocked = this.data.userRoles.includes('Blocked');
+    this.userRoles = [...this.data.userRoles];
     this.adminService
       .getProfileData(this.data.id)
       .subscribe((profileData: ProfileData) => {
@@ -103,16 +104,12 @@ export class ProfileEditComponent implements OnInit {
       });
   }
 
-  private getPhotoData() {
-    this.photoService.getCurrentPhotoSubject().subscribe((photo: Photo) => {
-      this.photo = photo;
-      console.log(photo);
-    });
-    this.photoService.getPhoto();
-  }
-
-  private getStatus() {
-    this.isBlocked = this.authService.roleMatch('Blocked');
+  private getPhotoData(userToEditId: string) {
+    this.photoService
+      .getPhotoAsAdmin(userToEditId)
+      .subscribe((photo: Photo) => {
+        this.photo = photo;
+      });
   }
 
   private setCurrency() {
@@ -161,7 +158,7 @@ export class ProfileEditComponent implements OnInit {
   }
 
   editProfile(): void {
-    if (this.editProfileForm.valid && !this.isBlocked) {
+    if (this.editProfileForm.valid) {
       if (
         this.editProfileForm.value['address'] !==
           this.profileData.editUser.address ||

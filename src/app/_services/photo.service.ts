@@ -29,6 +29,13 @@ export class PhotoService {
       )
       .subscribe();
   }
+  getPhotoAsAdmin(userToEditId: string): Observable<Photo> {
+    return this.http.get<Photo>(
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/getUserPhotoAsAdmin/${userToEditId}`
+    );
+  }
 
   addPhoto(photo: Photo | unknown): Observable<Photo> {
     return this.http.post<Photo>(
