@@ -75,7 +75,7 @@
                                                 <a matTooltipShowDelay="300"  matTooltip="Make Standard" *ngIf="element.userRoles.includes('VIP')" (click)="removePremiumStatus(element, i)" class="mr-2">
                                                     <i class="fas fa-user" style="color: rgb(138, 138, 138);"></i>
                                                 </a>
-                                                <a *ngIf="!element.userRoles.includes('Admin')" (click)="editUser(element, i)" class="mr-2"><i class="fa fa-users-cog text-success"></i></a>
+                                                <a *ngIf="!element.userRoles.includes('Admin')" (click)="editUser(element)" class="mr-2"><i class="fa fa-users-cog text-success"></i></a>
                                             </div>
                                         </td>
                                     </ng-container>

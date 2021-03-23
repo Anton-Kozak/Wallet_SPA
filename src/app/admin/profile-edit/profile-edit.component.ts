@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { Roles } from 'src/app/_helper/roles';
 import { ProfileData } from 'src/app/_model/data_models/profile-data';
 import { Photo } from 'src/app/_model/photo';
 import { UserForProfileEdit } from 'src/app/_model/user_models/user-for-profile-edit';
@@ -46,7 +47,7 @@ export class ProfileEditComponent implements OnInit {
     this.setCurrency();
     this.setLanguage();
     this.getPhotoData(this.data.id);
-    this.isBlocked = this.data.userRoles.includes('Blocked');
+    this.isBlocked = this.data.userRoles.includes(Roles.Blocked);
     this.userRoles = [...this.data.userRoles];
     this.adminService
       .getProfileData(this.data.id)
@@ -157,29 +158,21 @@ export class ProfileEditComponent implements OnInit {
     (target as HTMLInputElement).src = '../../assets/images/default-avatar.png';
   }
 
+  get isSaveDisabled(): boolean {
+    return this.checkIfChangesWereMade();
+  }
+
+  private checkIfChangesWereMade(): boolean {
+    const initialUser = Object.values(this.editProfileForm.value).sort();
+    const editedUser = Object.values(this.profileData.editUser).sort();
+    const res = JSON.stringify(initialUser) !== JSON.stringify(editedUser);
+    console.log(res);
+    return res;
+  }
+
   editProfile(): void {
     if (this.editProfileForm.valid) {
-      if (
-        this.editProfileForm.value['address'] !==
-          this.profileData.editUser.address ||
-        this.editProfileForm.value['company'] !==
-          this.profileData.editUser.company ||
-        this.editProfileForm.value['firstName'] !==
-          this.profileData.editUser.firstName ||
-        this.editProfileForm.value['firstName'] !==
-          this.profileData.editUser.firstName ||
-        this.editProfileForm.value['lastName'] !==
-          this.profileData.editUser.lastName ||
-        this.editProfileForm.value['username'] !==
-          this.profileData.editUser.userName ||
-        this.editProfileForm.value['email'] !==
-          this.profileData.editUser.email ||
-        this.editProfileForm.value['city'] !== this.profileData.editUser.city ||
-        this.editProfileForm.value['country'] !==
-          this.profileData.editUser.country ||
-        this.editProfileForm.value['phoneNumber'] !==
-          this.profileData.editUser.phoneNumber
-      ) {
+      if (this.checkIfChangesWereMade()) {
         this.userForEdit = {
           address: this.editProfileForm.value['address'],
           company: this.editProfileForm.value['company'],

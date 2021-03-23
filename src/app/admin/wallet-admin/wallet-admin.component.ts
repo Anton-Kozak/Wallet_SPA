@@ -13,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
+import { Roles } from 'src/app/_helper/roles';
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -185,7 +186,7 @@ export class WalletAdminComponent implements OnInit {
           console.log(error.error);
         },
         () => {
-          this.addRole('VIP', index);
+          this.addRole(Roles.Premium, index);
         }
       );
   }
@@ -201,14 +202,14 @@ export class WalletAdminComponent implements OnInit {
           console.log(error.error);
         },
         () => {
-          this.removeRole('VIP', index);
+          this.removeRole(Roles.Premium, index);
         }
       );
   }
 
   blockUser(user: UserForAdmin, index: number): void {
     const res = confirm('Do you really want to block this user?');
-    if (res && user.userRoles.find((u) => u === 'Admin') === undefined)
+    if (res && user.userRoles.find((u) => u === Roles.Admin) === undefined)
       this.adminService.blockUser(user.id).subscribe(
         () => {
           console.log(`${user.username} is now blocked!`);
@@ -217,13 +218,13 @@ export class WalletAdminComponent implements OnInit {
           console.log(error.error);
         },
         () => {
-          this.addRole('Blocked', index);
+          this.addRole(Roles.Blocked, index);
         }
       );
   }
   unblockUser(user: UserForAdmin, index: number): void {
     const res = confirm('Do you really want to unblock this user?');
-    if (res && user.userRoles.find((u) => u === 'Admin') === undefined)
+    if (res && user.userRoles.find((u) => u === Roles.Admin) === undefined)
       this.adminService.unblockUser(user.id).subscribe(
         () => {
           console.log(`${user.username} is now unblocked!`);
@@ -232,12 +233,12 @@ export class WalletAdminComponent implements OnInit {
           console.log(error.error);
         },
         () => {
-          this.removeRole('Blocked', index);
+          this.removeRole(Roles.Blocked, index);
         }
       );
   }
 
-  editUser(user: UserForAdmin, index: number): void {
+  editUser(user: UserForAdmin): void {
     const dialogRef = this.dialog.open(ProfileEditComponent, {
       width: '850px',
       data: user
@@ -246,7 +247,7 @@ export class WalletAdminComponent implements OnInit {
   }
 
   private addRole(role: string, index: number): void {
-    if (role === 'VIP' || role === 'Blocked') {
+    if (role === Roles.Premium || role === Roles.Blocked) {
       const users = this.users.data[index];
       users.userRoles.push(role);
       this.users.data[index] = { ...users };
@@ -254,7 +255,7 @@ export class WalletAdminComponent implements OnInit {
     }
   }
   private removeRole(role: string, index: number): void {
-    if (role === 'VIP' || role === 'Blocked') {
+    if (role === Roles.Premium || role === Roles.Blocked) {
       const users = this.users.data[index];
       const indexToSplice = users.userRoles.findIndex((u) => u === role);
       users.userRoles.splice(indexToSplice, 1);
@@ -262,33 +263,6 @@ export class WalletAdminComponent implements OnInit {
       this.users.data = this.users.data;
     }
   }
-
-  // private removePremiumRole(index: number) {
-  //   const users = this.users.data[index];
-  //   const indexToSplice = users.userRoles.findIndex((u) => u === 'VIP');
-  //   users.userRoles.splice(indexToSplice, 1);
-  //   this.users.data[index] = { ...users };
-  //   this.users.data = this.users.data;
-  // }
-  // private addPremiumRole(index: number) {
-  //   const users = this.users.data[index];
-  //   users.userRoles.push('VIP');
-  //   this.users.data[index] = { ...users };
-  //   this.users.data = this.users.data;
-  // }
-  // private addBlockedRole(index: number) {
-  //   const users = this.users.data[index];
-  //   users.userRoles.push('Blocked');
-  //   this.users.data[index] = { ...users };
-  //   this.users.data = this.users.data;
-  // }
-  // private addUnblockedRole(index: number) {
-  //   const users = this.users.data[index];
-  //   const indexToSplice = users.userRoles.findIndex((u) => u === 'Blocked');
-  //   users.userRoles.splice(indexToSplice, 1);
-  //   this.users.data[index] = { ...users };
-  //   this.users.data = this.users.data;
-  // }
 
   getFormat(date: string): string {
     return moment(date).format('lll');
