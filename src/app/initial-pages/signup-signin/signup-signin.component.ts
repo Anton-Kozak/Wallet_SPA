@@ -13,6 +13,9 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { UserAfterRegistration } from 'src/app/_model/user_models/userAfterRegistration';
 import { ApplicationUser } from 'src/app/_model/user_models/applicationUser';
+import { exhaustMap, tap, throttleTime } from 'rxjs/operators';
+import { concat, fromEvent, merge } from 'rxjs';
+import { Roles } from 'src/app/_helper/roles';
 
 @Component({
   selector: 'app-signup-signin',
@@ -79,6 +82,14 @@ export class SignupSigninComponent implements OnInit {
     this.translateService.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);
     });
+    const clicks = fromEvent(document, 'click');
+    clicks.pipe(throttleTime(5000)).subscribe(
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      (x) => {
+        console.log(x);
+      },
+      (error) => console.log(error)
+    );
   }
 
   MustMatch(controlName: string, matchingControlName: string) {
@@ -109,23 +120,27 @@ export class SignupSigninComponent implements OnInit {
   }
 
   onSignUp(): void {
+    this.signUpLoading = true;
     const username = this.signUpForm.value['usernameUp'];
     const password = this.signUpForm.value['userpassUp'];
-    const role = 'Adult';
-    this.authService.register(username, password, role).subscribe(
-      (data: { data: string; user: UserAfterRegistration }) => {
-        this.signUpLoading = true;
-        this.alertify.success(data.data);
-        this.resetSignUpForm();
-        this.resetSignInForm();
-        this.isSignUp = false;
-        this.signUpLoading = false;
-      },
-      (error) => {
-        this.alertify.error(error);
-        this.signUpLoading = false;
-      }
-    );
+    const role = Roles.Adult;
+
+    this.authService
+      .register(username, password, role)
+      .pipe(throttleTime(2000))
+      .subscribe(
+        (data: { data: string; user: UserAfterRegistration }) => {
+          this.alertify.success(data.data);
+          this.resetSignUpForm();
+          this.resetSignInForm();
+          this.isSignUp = false;
+          this.signUpLoading = false;
+        },
+        (error) => {
+          this.alertify.error(error);
+          this.signUpLoading = false;
+        }
+      );
   }
 
   onSignIn(): void {
@@ -143,8 +158,8 @@ export class SignupSigninComponent implements OnInit {
         }
         this.signInLoading = false;
       },
-      () => {
-        this.alertify.error('Incorrect username or password');
+      (error) => {
+        this.alertify.error(error);
         this.signInLoading = false;
       }
     );
