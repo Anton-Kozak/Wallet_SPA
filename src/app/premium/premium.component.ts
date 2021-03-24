@@ -23,21 +23,19 @@ export class PremiumComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.roleMatch('VIP') === true
-      ? (this.vipStatus = 'VIP')
-      : 'Standard';
+    this.authService.roleMatch(Roles.Premium) === true
+      ? (this.vipStatus = Roles.Premium)
+      : Roles.Standard;
   }
 
   onPremiumClick(): void {
     this.walletService.becomePremium().subscribe(
-      (result) => {
-        console.log('subscribed', result);
+      () => {
         this.authService.logout();
         this.router.navigate(['/main/reg']);
       },
       (error) => {
         alert(error.error);
-        console.error(error.error);
       }
     );
   }

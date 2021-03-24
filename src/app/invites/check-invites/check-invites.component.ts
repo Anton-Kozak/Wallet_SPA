@@ -30,9 +30,14 @@ export class CheckInvitesComponent implements OnInit {
       } else if (this.translateService.currentLang === 'ru')
         moment.locale('ru');
     });
-    this.invService.checkInvites().subscribe((inv: Invite[]) => {
-      this.invites = inv;
-    });
+    this.invService.checkInvites().subscribe(
+      (inv: Invite[]) => {
+        this.invites = inv;
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   acceptInvite(walletId: number): void {

@@ -101,19 +101,27 @@ export class UserStatisticsComponent implements OnInit {
 
   private getCategories() {
     if (this.walletService.currentCategories.length === 0) {
-      this.walletService
-        .getWalletsCategories()
-        .subscribe((categories: CategoryData[]) => {
+      this.walletService.getWalletsCategories().subscribe(
+        (categories: CategoryData[]) => {
           this.walletService.currentCategories = categories;
           this.categories = this.walletService.currentCategories;
-        });
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
     } else this.categories = this.walletService.currentCategories;
   }
 
   private setCurrency() {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
+    this.walletService.getCurrentWallet().subscribe(
+      (wallet) => {
+        this.walletCurrency = wallet['currency'];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private setDate() {
@@ -149,20 +157,26 @@ export class UserStatisticsComponent implements OnInit {
     }
   }
   private getData(date: Date): void {
-    this.expService
-      .getUserStatistics(this.id, date.toUTCString())
-      .subscribe((response: DetailedUserStatisticsDTO) => {
+    this.expService.getUserStatistics(this.id, date.toUTCString()).subscribe(
+      (response: DetailedUserStatisticsDTO) => {
         this.isLoading = true;
         if (response.amountOfMoneySpent > 0)
           this.detailedUserStatistics = response;
         this.isLoading = false;
-      });
-    this.expService
-      .getUserExpenses(this.id, date.toUTCString())
-      .subscribe((expensesRecieved: ExpenseForTable[]) => {
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
+    this.expService.getUserExpenses(this.id, date.toUTCString()).subscribe(
+      (expensesRecieved: ExpenseForTable[]) => {
         this.expenses.data = expensesRecieved;
         this.expensesToSend = expensesRecieved;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   expenseDelete(id: number, rowIndex: number): void {
@@ -192,15 +206,20 @@ export class UserStatisticsComponent implements OnInit {
       data: exp
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
-        this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
-        this.expenses.data[rowIndex].expenseDescription =
-          result['expenseDescription'];
-        this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-        this.expenses.data[rowIndex].creationDate = result['creationDate'];
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        if (result != null) {
+          this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
+          this.expenses.data[rowIndex].expenseDescription =
+            result['expenseDescription'];
+          this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
+          this.expenses.data[rowIndex].creationDate = result['creationDate'];
+        }
+      },
+      (error) => {
+        this.alertify.error(error.error);
       }
-    });
+    );
   }
 
   previousMonth(): void {

@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Notification } from 'src/app/_model/notification';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-no-wallet',
@@ -26,13 +27,19 @@ export class NoWalletComponent implements OnInit {
     private authService: AuthService,
     private translateService: TranslateService,
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    private alertify: AlertifyService
   ) {}
 
   ngOnInit(): void {
-    this.noteService.getNotifications().subscribe((res: Notification[]) => {
-      this.invites = res.length;
-    });
+    this.noteService.getNotifications().subscribe(
+      (res: Notification[]) => {
+        this.invites = res.length;
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
     this.setTitle(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);

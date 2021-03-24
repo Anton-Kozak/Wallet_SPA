@@ -61,15 +61,20 @@ export class TableWithExpensesComponent implements OnInit, OnChanges {
       data: { expenseToEdit: exp, isAdmin: this.isAdmin }
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
-        this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
-        this.expenses.data[rowIndex].expenseDescription =
-          result['expenseDescription'];
-        this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-        this.expenses.data[rowIndex].creationDate = result['creationDate'];
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        if (result != null) {
+          this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
+          this.expenses.data[rowIndex].expenseDescription =
+            result['expenseDescription'];
+          this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
+          this.expenses.data[rowIndex].creationDate = result['creationDate'];
+        }
+      },
+      (error) => {
+        this.alertify.error(error.error);
       }
-    });
+    );
   }
   expenseDelete(id: number, rowIndex: number): void {
     const deleteConfirmation = confirm(

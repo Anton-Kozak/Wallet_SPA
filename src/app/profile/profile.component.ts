@@ -42,9 +42,8 @@ export class ProfileComponent implements OnInit {
     this.setCurrency();
     this.setLanguage();
     this.getStatus();
-    this.walletService
-      .getProfileData()
-      .subscribe((profileData: ProfileData) => {
+    this.walletService.getProfileData().subscribe(
+      (profileData: ProfileData) => {
         this.profileData = profileData;
         //todo: сделать валидацию как и везде
         this.editProfileForm = new FormGroup({
@@ -95,12 +94,15 @@ export class ProfileComponent implements OnInit {
           ])
         });
         this.isLoading = false;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
   private getPhotoData() {
     this.photoService.getCurrentPhotoSubject().subscribe((photo: Photo) => {
       this.photo = photo;
-      console.log(photo);
     });
     this.photoService.getPhoto();
   }
@@ -110,9 +112,14 @@ export class ProfileComponent implements OnInit {
   }
 
   private setCurrency() {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
+    this.walletService.getCurrentWallet().subscribe(
+      (wallet) => {
+        this.walletCurrency = wallet['currency'];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private setLanguage() {
@@ -143,10 +150,15 @@ export class ProfileComponent implements OnInit {
 
   onImageChange(): void {
     const dialogRef = this.dialog.open(ImageModalComponent);
-    dialogRef.afterClosed().subscribe(() => {
-      //this.getPhoto();
-      this.photoService.getPhoto();
-    });
+    dialogRef.afterClosed().subscribe(
+      () => {
+        //this.getPhoto();
+        this.photoService.getPhoto();
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   // getPhoto(): void {
@@ -160,29 +172,17 @@ export class ProfileComponent implements OnInit {
     (target as HTMLInputElement).src = '../../assets/images/default-avatar.png';
   }
 
+  private checkIfChangesWereMade(): boolean {
+    const initialUser = Object.values(this.editProfileForm.value).sort();
+    const editedUser = Object.values(this.profileData.editUser).sort();
+    const res = JSON.stringify(initialUser) !== JSON.stringify(editedUser);
+    console.log(res);
+    return res;
+  }
+
   editProfile(): void {
     if (this.editProfileForm.valid && !this.isBlocked) {
-      if (
-        this.editProfileForm.value['address'] !==
-          this.profileData.editUser.address ||
-        this.editProfileForm.value['company'] !==
-          this.profileData.editUser.company ||
-        this.editProfileForm.value['firstName'] !==
-          this.profileData.editUser.firstName ||
-        this.editProfileForm.value['firstName'] !==
-          this.profileData.editUser.firstName ||
-        this.editProfileForm.value['lastName'] !==
-          this.profileData.editUser.lastName ||
-        this.editProfileForm.value['username'] !==
-          this.profileData.editUser.userName ||
-        this.editProfileForm.value['email'] !==
-          this.profileData.editUser.email ||
-        this.editProfileForm.value['city'] !== this.profileData.editUser.city ||
-        this.editProfileForm.value['country'] !==
-          this.profileData.editUser.country ||
-        this.editProfileForm.value['phoneNumber'] !==
-          this.profileData.editUser.phoneNumber
-      ) {
+      if (this.checkIfChangesWereMade()) {
         this.userForEdit = {
           address: this.editProfileForm.value['address'],
           company: this.editProfileForm.value['company'],

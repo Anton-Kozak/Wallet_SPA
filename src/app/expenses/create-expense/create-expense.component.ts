@@ -27,13 +27,16 @@ export class CreateExpenseComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.walletService.currentCategories.length === 0) {
-      this.walletService
-        .getWalletsCategories()
-        .subscribe((data: CategoryData[]) => {
+      this.walletService.getWalletsCategories().subscribe(
+        (data: CategoryData[]) => {
           this.walletService.currentCategories = data;
           this.categoryTitles = this.walletService.currentCategories;
           this.setForm();
-        });
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
     } else {
       this.categoryTitles = this.walletService.currentCategories;
       this.setForm();
@@ -94,10 +97,8 @@ export class CreateExpenseComponent implements OnInit {
           this.dialogRef.close();
         }
       },
-      (error) => {
+      () => {
         this.alertify.error('You did not create an expense');
-        console.error(error);
-
         this.isLoading = false;
       }
     );

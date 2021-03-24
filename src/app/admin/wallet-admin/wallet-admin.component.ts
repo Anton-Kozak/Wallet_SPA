@@ -63,21 +63,27 @@ export class WalletAdminComponent implements OnInit {
     this.getUsers();
   }
   private getUsers() {
-    this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
-      this.users.data = usersForAdmin;
-    });
+    this.admService.getUsers().subscribe(
+      (usersForAdmin: UserForAdmin[]) => {
+        this.users.data = usersForAdmin;
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private getExpenses() {
-    this.admService
-      .getAllExpenses()
-      .subscribe((expenses: ExpenseForAdminTable[]) => {
+    this.admService.getAllExpenses().subscribe(
+      (expenses: ExpenseForAdminTable[]) => {
         this.isLoading = true;
-        this.expenses = expenses;
-        console.log(expenses);
-        //this.expenses.paginator = this.expensePaginator;
+        this.expenses = [...expenses];
         this.isLoading = false;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private setLanguage() {
@@ -97,9 +103,14 @@ export class WalletAdminComponent implements OnInit {
   }
 
   private getCurrency() {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
+    this.walletService.getCurrentWallet().subscribe(
+      (wallet) => {
+        this.walletCurrency = wallet['currency'];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   setTitle(lang: string): void {
@@ -172,9 +183,14 @@ export class WalletAdminComponent implements OnInit {
   // }
 
   addUserFromRequest(): void {
-    this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
-      this.users.data = usersForAdmin;
-    });
+    this.admService.getUsers().subscribe(
+      (usersForAdmin: UserForAdmin[]) => {
+        this.users.data = usersForAdmin;
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   makeUserPremium(user: UserForAdmin, index: number): void {

@@ -10,6 +10,7 @@ import { ExpenseForTable } from 'src/app/_model/expense_models/expense-for-table
 import { SpecifiedMonthData } from 'src/app/_model/data_models/specifiedMonthsData';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { WalletService } from 'src/app/_services/wallet.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-manual-comparison',
@@ -67,7 +68,8 @@ export class ManualComparisonComponent implements OnInit {
     private expenseService: ExpenseService,
     private walletService: WalletService,
     private translateService: TranslateService,
-    private titleService: Title
+    private titleService: Title,
+    private alertify: AlertifyService
   ) {}
 
   ngOnInit(): void {
@@ -77,19 +79,27 @@ export class ManualComparisonComponent implements OnInit {
     this.setCategories();
   }
   private setCurrency() {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
+    this.walletService.getCurrentWallet().subscribe(
+      (wallet) => {
+        this.walletCurrency = wallet['currency'];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private setCategories() {
     if (this.walletService.currentCategories.length === 0) {
-      this.walletService
-        .getWalletsCategories()
-        .subscribe((data: CategoryData[]) => {
+      this.walletService.getWalletsCategories().subscribe(
+        (data: CategoryData[]) => {
           this.walletService.currentCategories = data;
           this.categories = this.walletService.currentCategories;
-        });
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
     } else {
       this.categories = this.walletService.currentCategories;
     }
@@ -143,17 +153,22 @@ export class ManualComparisonComponent implements OnInit {
         this.firstDay.toDateString(),
         this.secondDay.toDateString()
       )
-      .subscribe((response: SpecifiedMonthData) => {
-        if (response.firstMonthTotal > 0 && response.firstMonthTotal > 0) {
-          this.specifiedDataStatistics = response;
-          this.firstMonthExpenses.data = response.firstMonthExpenses;
-          this.secondMonthExpenses.data = response.secondMonthExpenses;
-        } else {
-          this.specifiedDataStatistics.firstMonthTotal = 0;
-          this.specifiedDataStatistics.secondMonthTotal = 0;
+      .subscribe(
+        (response: SpecifiedMonthData) => {
+          if (response.firstMonthTotal > 0 && response.firstMonthTotal > 0) {
+            this.specifiedDataStatistics = response;
+            this.firstMonthExpenses.data = response.firstMonthExpenses;
+            this.secondMonthExpenses.data = response.secondMonthExpenses;
+          } else {
+            this.specifiedDataStatistics.firstMonthTotal = 0;
+            this.specifiedDataStatistics.secondMonthTotal = 0;
+          }
+          this.showData = true;
+        },
+        (error) => {
+          this.alertify.error(error.error);
         }
-        this.showData = true;
-      });
+      );
   }
 
   private resetData() {

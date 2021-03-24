@@ -17,6 +17,7 @@ import { Title } from '@angular/platform-browser';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -32,7 +33,8 @@ export class ShowWalletTableComponent implements OnInit {
     private route: ActivatedRoute,
     private translateService: TranslateService,
     private titleService: Title,
-    private themeService: MyThemeService
+    private themeService: MyThemeService,
+    private alertify: AlertifyService
   ) {}
 
   colors: string[] = [];
@@ -63,15 +65,23 @@ export class ShowWalletTableComponent implements OnInit {
     this.setLanguage();
     this.setTheme();
     this.getWalletData();
-    this.expenseService
-      .getExpenseSubjectsAsObservable()
-      .subscribe((exp: ExpensesWithCategories[]) => {
+    this.expenseService.getExpenseSubjectsAsObservable().subscribe(
+      (exp: ExpensesWithCategories[]) => {
         this.expensesWithCategories = exp;
-      });
-    this.expenseService.expensesSubject.subscribe((expData) => {
-      this.walletExpenses = expData;
-      this.checkLimit();
-    });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
+    this.expenseService.expensesSubject.subscribe(
+      (expData) => {
+        this.walletExpenses = expData;
+        this.checkLimit();
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
     //todo: исправить ???
     this.route.data.subscribe((data) => {
       this.categories = data['categories'];
@@ -79,11 +89,14 @@ export class ShowWalletTableComponent implements OnInit {
 
     this.isBlocked = this.authService.roleMatch('Blocked');
 
-    this.noteService
-      .getNotifications()
-      .subscribe((notifications: Notification[]) => {
+    this.noteService.getNotifications().subscribe(
+      (notifications: Notification[]) => {
         this.notifications = notifications;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
   checkTableData(expenseData: ExpensesWithCategories): boolean {
     return expenseData.expenses.length > 0 && this.colors !== null;
@@ -92,13 +105,16 @@ export class ShowWalletTableComponent implements OnInit {
   private getWalletData() {
     this.id = this.authService.getToken().nameid;
     this.isLoading = true;
-    this.expenseService
-      .getWalletData(this.id)
-      .subscribe((walletData: WalletForPage) => {
+    this.expenseService.getWalletData(this.id).subscribe(
+      (walletData: WalletForPage) => {
         this.setWalletData(walletData);
         this.checkLimit();
         this.isLoading = false;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
     this.expenseService.showAllExpenses();
     this.setDailyExpenses();
   }
@@ -109,9 +125,14 @@ export class ShowWalletTableComponent implements OnInit {
     );
     this.expenseService
       .showDailyExpenses(this.dayForDailyExpenses.toUTCString())
-      .subscribe((expenses: ExpenseForTable[]) => {
-        this.dailyExpenses = expenses;
-      });
+      .subscribe(
+        (expenses: ExpenseForTable[]) => {
+          this.dailyExpenses = expenses;
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
   }
 
   private setWalletData(walletData: WalletForPage) {
@@ -123,7 +144,6 @@ export class ShowWalletTableComponent implements OnInit {
   private setTheme() {
     this.themeService.getCurrentColors().subscribe((colors) => {
       this.colors = colors;
-      console.log('colors', colors);
     });
   }
 
@@ -178,7 +198,7 @@ export class ShowWalletTableComponent implements OnInit {
     dialogRef
       .afterClosed()
       .pipe(
-        switchMap((newExpense) => {
+        map((newExpense) => {
           if (newExpense !== null) {
             if (
               this.moment(this.dayForDailyExpenses).format('ll') ===
@@ -201,12 +221,18 @@ export class ShowWalletTableComponent implements OnInit {
     else
       this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() + 1);
 
-    this.updateDailyExpenses().subscribe();
+    this.updateDailyExpenses().subscribe(),
+      (error) => {
+        this.alertify.error(error.error);
+      };
   }
 
   orgValueChange(value: string): void {
     this.dayForDailyExpenses = new Date(value);
-    this.updateDailyExpenses().subscribe();
+    this.updateDailyExpenses().subscribe(),
+      (error) => {
+        this.alertify.error(error.error);
+      };
   }
 
   getFormat(date: string): string {

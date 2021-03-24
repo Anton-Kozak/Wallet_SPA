@@ -22,6 +22,7 @@ export class MainInterceptor implements HttpInterceptor {
           return throwError(
             'Unable to connect to server. Please, try again later!'
           );
+        return throwError(error);
       })
     );
   }

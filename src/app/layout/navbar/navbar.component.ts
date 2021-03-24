@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Photo } from 'src/app/_model/photo';
 import { PhotoService } from 'src/app/_services/photo.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +24,8 @@ export class NavbarComponent implements OnInit {
     public dialog: MatDialog,
     private noteService: NotificationService,
     private themeService: MyThemeService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private alertify: AlertifyService
   ) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('en');
@@ -58,14 +60,17 @@ export class NavbarComponent implements OnInit {
     this.getPhotoData();
     this.currentUserName = this.authService.getToken().unique_name;
     this.isBlocked = this.authService.roleMatch('Blocked');
-    this.noteService
-      .getNotifications()
-      .subscribe((notifications: Notification[]) => {
+    this.noteService.getNotifications().subscribe(
+      (notifications: Notification[]) => {
         if (notifications != null) {
           this.notifications = notifications;
           this.notificationCount = notifications.length;
         }
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private getPhotoData() {
@@ -113,11 +118,16 @@ export class NavbarComponent implements OnInit {
   }
 
   checkNotifications(): void {
-    this.noteService.deleteNotifications().subscribe(() => {
-      this.notificationCount = 0;
-      setTimeout(() => {
-        this.notifications = [];
-      }, 20000);
-    });
+    this.noteService.deleteNotifications().subscribe(
+      () => {
+        this.notificationCount = 0;
+        setTimeout(() => {
+          this.notifications = [];
+        }, 20000);
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 }

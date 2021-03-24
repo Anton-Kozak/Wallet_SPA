@@ -49,9 +49,8 @@ export class ProfileEditComponent implements OnInit {
     this.getPhotoData(this.data.id);
     this.isBlocked = this.data.userRoles.includes(Roles.Blocked);
     this.userRoles = [...this.data.userRoles];
-    this.adminService
-      .getProfileData(this.data.id)
-      .subscribe((profileData: ProfileData) => {
+    this.adminService.getProfileData(this.data.id).subscribe(
+      (profileData: ProfileData) => {
         this.profileData = profileData;
         //todo: сделать валидацию как и везде
         this.editProfileForm = new FormGroup({
@@ -102,7 +101,11 @@ export class ProfileEditComponent implements OnInit {
           ])
         });
         this.isLoading = false;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private getPhotoData(userToEditId: string) {
@@ -114,9 +117,14 @@ export class ProfileEditComponent implements OnInit {
   }
 
   private setCurrency() {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
+    this.walletService.getCurrentWallet().subscribe(
+      (wallet) => {
+        this.walletCurrency = wallet['currency'];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private setLanguage() {
@@ -156,10 +164,6 @@ export class ProfileEditComponent implements OnInit {
   updateUrl(target: EventTarget): void {
     console.log('error img', target);
     (target as HTMLInputElement).src = '../../assets/images/default-avatar.png';
-  }
-
-  get isSaveDisabled(): boolean {
-    return this.checkIfChangesWereMade();
   }
 
   private checkIfChangesWereMade(): boolean {

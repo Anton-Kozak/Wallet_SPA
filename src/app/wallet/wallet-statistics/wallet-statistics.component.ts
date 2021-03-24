@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { DetailedWalletStatisticsDTO } from 'src/app/_model/data_models/detailedWalletStatisticsDTO';
 import { ExpenseList } from 'src/app/_model/expense_models/expense-list';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-wallet-statistics',
@@ -20,7 +21,8 @@ export class WalletStatisticsComponent implements OnInit {
     private router: Router,
     private walletService: WalletService,
     private translateService: TranslateService,
-    private titleService: Title
+    private titleService: Title,
+    private alertify: AlertifyService
   ) {}
 
   isLoading: boolean;
@@ -50,11 +52,16 @@ export class WalletStatisticsComponent implements OnInit {
   private getWalletStatistics() {
     this.expService
       .getWalletStatistics(new Date(Date.now()).toUTCString())
-      .subscribe((response: DetailedWalletStatisticsDTO) => {
-        this.statisticalData = response;
-        if (this.checkIfHasPreviousData()) this.showComparisonData = true;
-        this.isLoading = false;
-      });
+      .subscribe(
+        (response: DetailedWalletStatisticsDTO) => {
+          this.statisticalData = response;
+          if (this.checkIfHasPreviousData()) this.showComparisonData = true;
+          this.isLoading = false;
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
   }
 
   private checkIfHasPreviousData() {
@@ -92,12 +99,15 @@ export class WalletStatisticsComponent implements OnInit {
 
   private getAllCategories() {
     if (this.walletService.currentCategories.length === 0) {
-      this.walletService
-        .getWalletsCategories()
-        .subscribe((data: CategoryData[]) => {
+      this.walletService.getWalletsCategories().subscribe(
+        (data: CategoryData[]) => {
           this.walletService.currentCategories = data;
           this.categories = this.walletService.currentCategories;
-        });
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
     } else {
       this.categories = this.walletService.currentCategories;
     }
