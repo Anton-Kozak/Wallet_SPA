@@ -51,6 +51,10 @@ export class WalletAdminComponent implements OnInit {
   walletCurrency = 'USD';
   isLoading = false;
 
+  get getLengthOfExpenses(): boolean {
+    return this.expenses.length > 0;
+  }
+
   @ViewChild('expPaginator') expensePaginator: MatPaginator;
   ngOnInit(): void {
     this.getCurrency();
@@ -244,6 +248,10 @@ export class WalletAdminComponent implements OnInit {
       data: user
     });
     dialogRef.afterClosed().subscribe();
+  }
+
+  isInRole(user: UserForAdmin, role: string): boolean {
+    return user.userRoles.includes(role);
   }
 
   private addRole(role: string, index: number): void {

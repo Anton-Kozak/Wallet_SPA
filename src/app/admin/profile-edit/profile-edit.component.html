@@ -20,11 +20,11 @@
             <div class="button-container">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-6 ml-auto">
-                        <h5 class="joined" *ngIf="profileData">{{'Profile.Joined' | translate}}</h5>
+                        <h5 class="joined">{{'Profile.Joined' | translate}}</h5>
                         <p class="profile-data">{{getFormat(profileData.dateJoined)}}</p>
                     </div>
                     <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-                        <h5 class="total" *ngIf="profileData">{{'Expenses.Total' | translate}}</h5>
+                        <h5 class="total">{{'Expenses.Total' | translate}}</h5>
                         <p class="profile-data"> {{'Currency.' + walletCurrency + 'Sign' | translate}} {{profileData.moneySpent}}</p>
 
                     </div>
@@ -168,6 +168,5 @@
                 </div>
             </div>
         </form>
-        <!-- //<button class="btn btn-outline-danger" (click)="check()">test</button> -->
     </div>
 </div>
