@@ -17,6 +17,9 @@ import { Notification } from 'src/app/_model/notification';
 })
 export class NoWalletComponent implements OnInit {
   invites = 0;
+  get getLengthOfInvites(): boolean {
+    return this.invites > 0;
+  }
   constructor(
     public dialog: MatDialog,
     private noteService: NotificationService,

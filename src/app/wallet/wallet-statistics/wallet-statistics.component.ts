@@ -28,6 +28,19 @@ export class WalletStatisticsComponent implements OnInit {
   statisticalData: DetailedWalletStatisticsDTO;
   categories: CategoryData[] = [];
 
+  get getCategoriesLength(): boolean {
+    return this.categories.length > 0;
+  }
+
+  get getMonthCompareData(): boolean {
+    return (
+      this.statisticalData.barCompareExpensesWithLastMonth.currentMonthData !==
+        null &&
+      this.statisticalData.barCompareExpensesWithLastMonth.lastMonthData !==
+        null
+    );
+  }
+
   ngOnInit(): void {
     this.isLoading = true;
     this.setLanguage();

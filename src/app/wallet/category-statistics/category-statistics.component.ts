@@ -46,6 +46,14 @@ export class CategoryStatisticsComponent implements OnInit {
   showData = true;
   currentTheme: string;
   isLoading: boolean;
+
+  get getExpenseLength(): boolean {
+    return this.expenses.data.length > 0;
+  }
+  get getExpenseLengthForPagination(): boolean {
+    return this.expenses.data.length > 10;
+  }
+
   @ViewChild('paginator') paginator: MatPaginator;
   ngOnInit(): void {
     this.setTheme();

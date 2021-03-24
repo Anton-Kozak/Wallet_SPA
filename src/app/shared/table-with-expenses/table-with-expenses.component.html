@@ -1,17 +1,17 @@
 <!-- EXPENSEFORTABLE TEMPLATE -->
 <div>
-    <table *ngIf="expenses !== null" style="width: 100%;" mat-table [dataSource]="expenses">
+    <table *ngIf="expenses" style="width: 100%;" mat-table [dataSource]="expenses">
         <ng-container matColumnDef="expenseTitle">
             <th class="text-center table-head title-header" mat-header-cell *matHeaderCellDef> {{'Expenses.Expense' |
                 translate}} </th>
             <td class="table-text title-cell" mat-cell *matCellDef="let element"> {{element.expenseTitle}} </td>
         </ng-container>
-        <ng-container *ngIf="tableHeaders.includes('userName')" matColumnDef="userName">
+        <ng-container *ngIf="doesContainCategory('userName')" matColumnDef="userName">
             <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef> {{'Expenses.User' |
                 translate}} </th>
             <td class="table-text user-table-cell" mat-cell *matCellDef="let element"> {{element.userName}} </td>
         </ng-container>
-        <ng-container *ngIf="tableHeaders.includes('category')" matColumnDef="category">
+        <ng-container *ngIf="doesContainCategory('category')" matColumnDef="category">
             <th class="text-center table-head category-head" mat-header-cell *matHeaderCellDef> {{'Expenses.Category' |
                 translate}} </th>
             <td class="table-text category-cell" mat-cell *matCellDef="let element"> {{'ExpenseCategory.' +
@@ -22,7 +22,7 @@
                 walletCurrency + 'Sign' | translate}} </th>
             <td class="table-text money-cell" mat-cell *matCellDef="let element"> {{element.moneySpent}} </td>
         </ng-container>
-        <ng-container *ngIf="tableHeaders.includes('expenseDescription')" matColumnDef="expenseDescription">
+        <ng-container *ngIf="doesContainCategory('expenseDescription')" matColumnDef="expenseDescription">
             <th class="text-center table-head d-none d-xl-table-cell" mat-header-cell *matHeaderCellDef>
                 {{'Expenses.Details' | translate}} </th>
             <td class="table-text" class="d-none d-xl-table-cell" mat-cell *matCellDef="let element">
@@ -34,7 +34,7 @@
             <td class="table-text date-cell" mat-cell *matCellDef="let element"> {{getFormat(element.creationDate)}}
             </td>
         </ng-container>
-        <ng-container *ngIf="tableHeaders.includes('actions')" matColumnDef="actions">
+        <ng-container *ngIf="doesContainCategory('actions')" matColumnDef="actions">
             <th class="text-center table-head action-head" mat-header-cell *matHeaderCellDef> {{'Expenses.Actions' |
                 translate}} </th>
             <td class="table-text action-cell" mat-cell *matCellDef="let element; let i = index">

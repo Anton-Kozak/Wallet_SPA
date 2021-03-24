@@ -49,6 +49,10 @@ export class TableWithExpensesComponent implements OnInit, OnChanges {
       }, 1);
   }
 
+  doesContainCategory(category: string): boolean {
+    return this.tableHeaders.includes(category);
+  }
+
   //for user stats
   openDialog(id: number, rowIndex: number): void {
     const exp = this.expenses.data.find((x) => x.id === id);

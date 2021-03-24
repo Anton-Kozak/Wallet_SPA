@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Roles } from '../_helper/roles';
 import { AuthService } from '../_services/auth.service';
 import { WalletService } from '../_services/wallet.service';
 
@@ -16,6 +17,10 @@ export class PremiumComponent implements OnInit {
   ) {}
 
   vipStatus = '';
+
+  get getStatus(): boolean {
+    return this.vipStatus === Roles.Premium;
+  }
 
   ngOnInit(): void {
     this.authService.roleMatch('VIP') === true

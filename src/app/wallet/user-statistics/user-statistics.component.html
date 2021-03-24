@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="detailedUserStatistics.amountOfMoneySpent > 0 && detailedUserStatistics.barExpenses != null && !isLoading">
+    <div *ngIf="getAmountOfMoney && detailedUserStatistics.barExpenses && !isLoading">
         <div class="row">
             <div class="col-lg-4 col-md-12 mob" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                 data-aos-delay="0">
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="detailedUserStatistics.monthCompareData.currentMonthData !== 0 && detailedUserStatistics.monthCompareData.lastMonthData !== 0" class="row">
+                <div *ngIf="getMonthCompareData" class="row">
                     <div class="col-12" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true"
                         data-aos-delay="500">
                         <div class="card " style="border-radius: 12px;">
@@ -130,7 +130,7 @@
                         <p class="card-category">{{'Expenses.ExpenseForCatDesc' | translate}}</p>
                     </div>
                     <div *ngIf="detailedUserStatistics.barExpenses" class="card-body ">
-                        <div *ngIf="detailedUserStatistics.barExpenses != null && categories.length > 0">
+                        <div *ngIf="getCategoriesLength">
                             <app-single-bar-chart [categories]="categories" [barExpensesList]="detailedUserStatistics.barExpenses">
                             </app-single-bar-chart>
                         </div>
@@ -145,7 +145,7 @@
                 <div *ngIf="!isLoading" class="card" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true"
                     data-aos-delay="0">
                     <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
-                        <app-table-with-expenses *ngIf="expensesToSend.length > 0 && !isLoading"
+                        <app-table-with-expenses *ngIf="getExpensesLength && !isLoading"
                             [tableData]='expensesToSend' [tableHeaders]='columnsForExpenses' [isThisUser]='isThisUser'
                             [walletCurrency]='walletCurrency'></app-table-with-expenses>
                         <!-- <table style="width: 100%;" mat-table [dataSource]="expenses">
@@ -207,11 +207,11 @@
                                 </div>
                             </div>
                             <div class="col-7 col-md-8">
-                                <div *ngIf="monthNumber === 0" class="numbers">
+                                <div *ngIf="getMonthNumber" class="numbers">
                                     <p class="card-category mb-2">Add Some Expenses!</p>
                                     <p class="card-title">Please!</p>
                                 </div>
-                                <div *ngIf="monthNumber !== 0" class="numbers">
+                                <div *ngIf="!getMonthNumber" class="numbers">
                                     <p class="card-category mb-2">You did not make any expenses in {{monthName}}!</p>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                            <i *ngIf="monthNumber === 0" class="fa fa-refresh"></i> Please, add expenses to see your
+                            <i *ngIf="getMonthNumber" class="fa fa-refresh"></i> Please, add expenses to see your
                             statistics
                         </div>
                     </div>

@@ -183,10 +183,9 @@ export class ExpenseService {
     secondMonth: string
   ): Observable<SpecifiedMonthData> {
     return this.http.get<SpecifiedMonthData>(
-      `${this.baseUrl}
-        ${this.authService.getToken().nameid}
-        /specificMonthsData/
-        ${firstMonth}/${secondMonth}`
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/specificMonthsData/${firstMonth}/${secondMonth}`
     );
   }
 }

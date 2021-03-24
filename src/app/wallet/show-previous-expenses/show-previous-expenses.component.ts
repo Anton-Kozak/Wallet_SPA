@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { PreviousData } from 'src/app/_model/data_models/previousData';
 import { MyThemeService } from 'src/app/_services/theme.service';
+import { ExpensesWithCategories } from 'src/app/_model/expense_models/expensesWithCategories';
 
 @Component({
   selector: 'app-show-previous-expenses',
@@ -30,6 +31,15 @@ export class ShowPreviousExpensesComponent implements OnInit {
   monthName = '';
   year: string;
   date: Date;
+
+  get getUsersDataLength(): boolean {
+    return this.data.topFiveUsers.length > 0;
+  }
+
+  get getCategoriesLength(): boolean {
+    return this.categories.length > 0;
+  }
+
   ngOnInit(): void {
     this.isLoading = true;
     this.setLanguage();
@@ -56,6 +66,10 @@ export class ShowPreviousExpensesComponent implements OnInit {
     } else {
       this.categories = this.walletService.currentCategories;
     }
+  }
+
+  checkTableData(expenseData: ExpensesWithCategories): boolean {
+    return expenseData.categoryId != 0 && expenseData.expenses.length > 0;
   }
 
   private setDate(): void {

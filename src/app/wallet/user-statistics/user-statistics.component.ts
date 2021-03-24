@@ -59,6 +59,28 @@ export class UserStatisticsComponent implements OnInit {
   walletCurrency = 'USD';
   private id;
   theme = false;
+  get getAmountOfMoney(): boolean {
+    return this.detailedUserStatistics.amountOfMoneySpent > 0;
+  }
+
+  get getMonthCompareData(): boolean {
+    return (
+      this.detailedUserStatistics.monthCompareData.currentMonthData !== 0 &&
+      this.detailedUserStatistics.monthCompareData.lastMonthData !== 0
+    );
+  }
+
+  get getCategoriesLength(): boolean {
+    return this.categories.length > 0;
+  }
+
+  get getExpensesLength(): boolean {
+    return this.expensesToSend.length > 0;
+  }
+
+  get getMonthNumber(): boolean {
+    return this.monthNumber === 0;
+  }
   @Output() themeChange = new EventEmitter<boolean>();
 
   ngOnInit(): void {

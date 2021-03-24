@@ -54,6 +54,11 @@ export class ShowWalletTableComponent implements OnInit {
   isLoading: boolean;
   isBlocked = false;
   expensesWithCategories: ExpensesWithCategories[] = [];
+
+  get getDailyExpensesLength(): boolean {
+    return this.dailyExpenses.length > 0 && !this.isLoading;
+  }
+
   ngOnInit(): void {
     this.setLanguage();
     this.setTheme();
@@ -80,6 +85,10 @@ export class ShowWalletTableComponent implements OnInit {
         this.notifications = notifications;
       });
   }
+  checkTableData(expenseData: ExpensesWithCategories): boolean {
+    return expenseData.expenses.length > 0 && this.colors !== null;
+  }
+
   private getWalletData() {
     this.id = this.authService.getToken().nameid;
     this.isLoading = true;

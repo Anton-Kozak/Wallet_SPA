@@ -27,7 +27,7 @@
           <p>{{ 'Sidebar.YourWallet' | translate }}</p>
         </a>
       </li>
-      <li *appHasRole="'Blocked'" routerLinkActive="active">
+      <li routerLinkActive="active">
         <a [routerLink]="['/wallet/previousExpenses']">
           <i class="nc-icon nc-calendar-60"></i>
           <p>{{ 'Sidebar.Previous' | translate }}</p>

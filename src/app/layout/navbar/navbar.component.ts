@@ -47,6 +47,10 @@ export class NavbarComponent implements OnInit {
   toggleState = false;
   isBlocked = false;
 
+  get getNotificationLength(): boolean {
+    return this.notifications.length === 0;
+  }
+
   ngOnInit(): void {
     this.themeService.getCurrentTheme().subscribe((theme) => {
       this.activeTheme = theme;

@@ -49,11 +49,11 @@
                             matBadge={{notificationCount}} matBadgeSize="small" matBadgeColor="warn"
                             class="nc-icon nc-bell-55"></i>
                     </button>
-                    <div *ngIf="notifications.length === 0" class="dropdown-menu notification-menu"
+                    <div *ngIf="getNotificationLength" class="dropdown-menu notification-menu"
                         aria-labelledby="notifications">
                         <div class="notifications m-2">{{'Navbar.NoNote' | translate}}</div>
                     </div>
-                    <div *ngIf="notifications.length !== 0" class="dropdown-menu notification-menu"
+                    <div *ngIf="!getNotificationLength" class="dropdown-menu notification-menu"
                         aria-labelledby="notifications">
                         <div *ngFor="let notification of notifications" class="dropdown-item notifications">
                             <p>{{notification.message}}</p>

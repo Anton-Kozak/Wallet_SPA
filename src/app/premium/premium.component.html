@@ -1,8 +1,8 @@
 <div class="outer">
   <div class="item status">Your status is: <span style="font-weight: bold;">{{vipStatus}}</span></div>
   <div class="item benefits">
-    <div *ngIf="vipStatus !== 'VIP'" class="text-center mt-5">Why should you become a premium member?</div>
-    <div *ngIf="vipStatus === 'VIP'" class="text-center mt-5">Benefits of being a VIP!</div>
+    <div *ngIf="!getStatus" class="text-center mt-5">Why should you become a premium member?</div>
+    <div *ngIf="getStatus" class="text-center mt-5">Benefits of being a VIP!</div>
     <div class="row mb-5 mt-5">
       <div class="col-md-4 text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true"
         data-aos-delay="0">
@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="vipStatus !== 'VIP'"class="item price">
+  <div *ngIf="getStatus"class="item price">
     <div class="col-md-3">
       <div class="card pricing text-center">
         <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom shadow-sm sp">Beginner</span>
@@ -69,4 +69,4 @@
     </div>
   </div>
 </div>
-<button *ngIf="vipStatus !== 'VIP'" (click)="onPremiumClick()">Become premium</button>
+<button *ngIf="!getStatus" (click)="onPremiumClick()">Become premium</button>

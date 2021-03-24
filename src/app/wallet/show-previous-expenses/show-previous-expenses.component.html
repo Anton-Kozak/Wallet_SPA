@@ -26,10 +26,10 @@
             </div>
         </div>
         <div class="row">
-            <div *ngIf="data !== null && data.topFiveUsers.length > 0" class="col-xl-8 col-md-12 no-pad">
+            <div *ngIf="data" class="col-xl-8 col-md-12 no-pad">
                 <div class="content">
                     <div *ngFor="let exp of data.previousMonthExpenses; let i = index">
-                        <div *ngIf="exp.categoryId != 0 && exp.expenses.length > 0" class="row" data-aos="fade-left"
+                        <div *ngIf="checkTableData(exp)" class="row" data-aos="fade-left"
                             data-aos-duration="1200" data-aos-once="true" data-aos-delay="100">
                             <div class="col-md-12 no-pad">
                                 <div class="card card-img">
@@ -41,7 +41,7 @@
                                             +exp.categoryName | translate}} </h4>
                                     </div>
                                     <div class="text-center">
-                                        <app-table-with-expenses *ngIf="exp.expenses.length > 0 && !isLoading"
+                                        <app-table-with-expenses *ngIf="!isLoading"
                                             [tableData]='exp.expenses'
                                             [tableHeaders]='["userName", "expenseTitle", "expenseDescription", "creationDate", "moneySpent"]'
                                             [isThisUser]='null' [isAdmin]="false" [walletCurrency]='walletCurrency'
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="data !== null && data.topFiveUsers.length > 0" class="col-xl-4 col-md-12 no-pad">
+            <div *ngIf="data && getUsersDataLength" class="col-xl-4 col-md-12 no-pad">
                 <div class="card" style="border-radius: 12px;" data-aos="fade-right" data-aos-duration="1200"
                     data-aos-once="true" data-aos-delay="0">
                     <div class="card-header">
@@ -62,7 +62,7 @@
                         <p class="card-category">{{monthName}}</p>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="data.topFiveUsers != null">
+                        <div *ngIf="data.topFiveUsers">
                             <app-pie-graph [topFiveUsers]="data.topFiveUsers"></app-pie-graph>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         <p class="card-category">{{monthName}}</p>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="data.previousExpensesBars != null && categories.length > 0">
+                        <div *ngIf="data.previousExpensesBars && getCategoriesLength">
                             <app-donut-chart-categories [categories]="categories" [barExpensesList]="data.previousExpensesBars">
                             </app-donut-chart-categories>
                         </div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="data !== null && data.topFiveUsers.length === 0 && !isLoading" class="col-12">
+            <div *ngIf="data && !getUsersDataLength && !isLoading" class="col-12">
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">

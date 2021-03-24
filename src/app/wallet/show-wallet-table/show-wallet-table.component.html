@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <app-table-with-expenses *ngIf="dailyExpenses.length > 0 && !isLoading"
+                        <app-table-with-expenses *ngIf="getDailyExpensesLength"
                             [tableData]='dailyExpenses'
                             [tableHeaders]='["userName", "expenseTitle", "category", "creationDate", "moneySpent"]'
                             [isThisUser]='null' [isAdmin]="false" [walletCurrency]='walletCurrency'></app-table-with-expenses>
@@ -85,7 +85,7 @@
         </div>
         <div class="col-xl-6 col-lg-12">
             <div *ngFor="let exp of expensesWithCategories; let i = index ">
-                <div *ngIf="exp.expenses.length > 0 && colors !== null" class="row" data-aos="fade-right" data-aos-duration="1300"
+                <div *ngIf="checkTableData(exp)" class="row" data-aos="fade-right" data-aos-duration="1300"
                     data-aos-delay="100" data-aos-once="true">
                     <div class="col-md-12">
                         <div class="card card-img">
@@ -97,7 +97,7 @@
                                     +exp.categoryName | translate}} </h4>
                             </div>
                             <div class="text-center">
-                                <app-table-with-expenses *ngIf="exp.expenses.length > 0 && !isLoading"
+                                <app-table-with-expenses *ngIf="!isLoading"
                                     [tableData]='exp.expenses'
                                     [tableHeaders]='["userName", "expenseTitle", "expenseDescription", "creationDate", "moneySpent"]'
                                     [isThisUser]='null' [isAdmin]="false" [walletCurrency]='walletCurrency' [hasPaginator]="false">
