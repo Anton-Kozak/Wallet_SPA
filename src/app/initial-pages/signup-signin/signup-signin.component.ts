@@ -122,7 +122,7 @@ export class SignupSigninComponent implements OnInit {
         this.signUpLoading = false;
       },
       (error) => {
-        this.alertify.error(error.error);
+        this.alertify.error(error);
         this.signUpLoading = false;
       }
     );
