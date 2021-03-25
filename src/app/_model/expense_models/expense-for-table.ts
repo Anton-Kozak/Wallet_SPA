@@ -1,5 +1,5 @@
 export interface ExpenseForTable {
-  id: number;
+  id?: number;
   userName: string;
   expenseDescription: string;
   expenseTitle: string;

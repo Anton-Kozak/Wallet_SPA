@@ -16,8 +16,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { map, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Expense } from 'src/app/_model/expense_models/expense';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -67,7 +68,7 @@ export class ShowWalletTableComponent implements OnInit {
     this.getWalletData();
     this.expenseService.getExpenseSubjectsAsObservable().subscribe(
       (exp: ExpensesWithCategories[]) => {
-        this.expensesWithCategories = exp;
+        this.expensesWithCategories = [...exp];
       },
       (error) => {
         this.alertify.error(error.error);
@@ -198,17 +199,43 @@ export class ShowWalletTableComponent implements OnInit {
     dialogRef
       .afterClosed()
       .pipe(
-        map((newExpense) => {
-          if (newExpense !== null) {
+        switchMap((newExpense: Expense) => {
+          if (newExpense !== undefined) {
             if (
               this.moment(this.dayForDailyExpenses).format('ll') ===
               this.moment(new Date()).format('ll')
-            )
+            ) {
+              this.updateCategoryExpensesAfterAddingNew(
+                newExpense.expenseCategoryId,
+                newExpense
+              );
               return this.updateDailyExpenses();
+            }
           }
+          return new Observable<never>();
         })
       )
       .subscribe();
+  }
+
+  private updateCategoryExpensesAfterAddingNew(
+    categoryIndex: number,
+    expenseToAdd: Expense
+  ): void {
+    const index = this.expensesWithCategories.findIndex(
+      (x) => x.categoryId === categoryIndex
+    );
+    const expenseDataSetToAdd = { ...this.expensesWithCategories[index] };
+    const expense: ExpenseForTable = {
+      userName: this.authService.getToken().unique_name,
+      expenseDescription: expenseToAdd.expenseDescription,
+      expenseTitle: expenseToAdd.expenseTitle,
+      creationDate: new Date(expenseToAdd.creationDate),
+      moneySpent: expenseToAdd.moneySpent,
+      expenseCategory: expenseDataSetToAdd.categoryName
+    };
+    expenseDataSetToAdd.expenses.unshift(expense);
+    this.expensesWithCategories[index] = { ...expenseDataSetToAdd };
   }
 
   showNotifications(): void {
@@ -247,7 +274,7 @@ export class ShowWalletTableComponent implements OnInit {
           this.currentSelectedDate.patchValue(
             this.moment(this.dayForDailyExpenses).format('ll')
           );
-          this.dailyExpenses = expenses;
+          this.dailyExpenses = [...expenses];
         })
       );
   }

@@ -14,8 +14,6 @@ import * as moment from 'moment';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 import { Roles } from 'src/app/_helper/roles';
-import { switchMap, throttleTime } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -53,7 +51,6 @@ export class WalletAdminComponent implements OnInit {
   walletCurrency = 'USD';
   isLoading = false;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  buttonClick$: Subject<any> = new Subject();
 
   get getLengthOfExpenses(): boolean {
     return this.expenses.length > 0;

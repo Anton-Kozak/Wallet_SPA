@@ -9,7 +9,6 @@ import { Expense } from 'src/app/_model/expense_models/expense';
 import * as moment from 'moment';
 import { ExpenseWithMessage } from 'src/app/_model/expense_models/expenseWithMessage';
 import { Subject } from 'rxjs';
-import { switchMap, tap, throttleTime } from 'rxjs/operators';
 @Component({
   selector: 'app-create-expense',
   templateUrl: './create-expense.component.html',
@@ -21,6 +20,10 @@ export class CreateExpenseComponent implements OnInit {
   categoryTitles: CategoryData[] = [];
   isLoading = false;
   addExpenseButtonClick$: Subject<void> = new Subject();
+
+  get isDisabled(): boolean {
+    return this.newExpenseForm.invalid || this.isLoading;
+  }
   constructor(
     private expenseService: ExpenseService,
     private walletService: WalletService,
@@ -44,26 +47,19 @@ export class CreateExpenseComponent implements OnInit {
       this.categoryTitles = this.walletService.currentCategories;
       this.setForm();
     }
-    this.listenForButtonClick();
   }
 
-  listenForButtonClick() {
-    this.addExpenseButtonClick$
-      .pipe(
-        throttleTime(2000),
-        switchMap(() => {
-          return this.expenseCreation();
-        })
-      )
-      .subscribe(
-        (response: ExpenseWithMessage) => {
-          this.handleMessageAfterExpenseCreation(response);
-        },
-        () => {
-          this.alertify.error('You did not create an expense!');
-          this.isLoading = false;
-        }
-      );
+  expenseCreation(): void {
+    this.createExpense();
+    this.expenseService.createExpense(this.expense).subscribe(
+      (response: ExpenseWithMessage) => {
+        this.handleMessageAfterExpenseCreation(response);
+      },
+      () => {
+        this.alertify.error('You did not create an expense!');
+        this.isLoading = false;
+      }
+    );
   }
 
   private handleMessageAfterExpenseCreation(response: ExpenseWithMessage) {
@@ -117,10 +113,6 @@ export class CreateExpenseComponent implements OnInit {
         creationDate: date
       };
     }
-  }
-  private expenseCreation() {
-    this.createExpense();
-    return this.expenseService.createExpense(this.expense);
   }
 
   back(): void {
