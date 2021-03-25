@@ -54,14 +54,14 @@ export class ManualComparisonComponent implements OnInit {
 
   walletCurrency = 'USD';
 
-  get specifiedDataStatisticsFirstTotal(): boolean {
+  get isSpecifiedDataStatisticsFirstTotalNil(): boolean {
     return this.specifiedDataStatistics.firstMonthTotal === 0;
   }
-  get specifiedDataStatisticsSecondTotal(): boolean {
+  get isSpecifiedDataStatisticsSecondTotalNil(): boolean {
     return this.specifiedDataStatistics.secondMonthTotal === 0;
   }
-  get getCategoriesLength(): boolean {
-    return this.categories.length > 0;
+  get isCategoriesLengthNotNil(): boolean {
+    return !!this.categories.length;
   }
 
   constructor(

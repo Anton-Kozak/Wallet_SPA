@@ -56,8 +56,8 @@ export class SingleBarChartComponent implements OnInit {
   public barChartData: ChartDataSets[] = [];
   labels: { [key: string]: string }[] = [];
 
-  get getLengthOfCategories(): boolean {
-    return this.categories.length > 0;
+  get isLengthNotNil(): boolean {
+    return !!this.categories.length;
   }
 
   constructor(private translate: TranslateService) {}

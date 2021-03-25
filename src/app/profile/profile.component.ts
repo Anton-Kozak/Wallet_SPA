@@ -12,6 +12,7 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { AuthService } from '../_services/auth.service';
+import { Roles } from '../_helper/roles';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -108,7 +109,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private getStatus() {
-    this.isBlocked = this.authService.roleMatch('Blocked');
+    this.isBlocked = this.authService.roleMatch(Roles.Blocked);
   }
 
   private setCurrency() {

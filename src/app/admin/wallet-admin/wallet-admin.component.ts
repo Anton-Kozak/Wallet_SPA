@@ -14,6 +14,18 @@ import * as moment from 'moment';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 import { Roles } from 'src/app/_helper/roles';
+import {
+  category,
+  date,
+  description,
+  moneySpent,
+  title,
+  userName,
+  actions,
+  dateJoined,
+  userRoles,
+  username
+} from 'src/app/_helper/columns-headers';
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -32,28 +44,23 @@ export class WalletAdminComponent implements OnInit {
   ) {}
 
   columnsForExpenses: string[] = [
-    'expenseTitle',
-    'category',
-    'userName',
-    'moneySpent',
-    'expenseDescription',
-    'creationDate',
-    'actions'
+    title,
+    category,
+    userName,
+    moneySpent,
+    description,
+    date,
+    actions
   ];
-  columnsForUsers: string[] = [
-    'username',
-    'dateJoined',
-    'userRoles',
-    'actions'
-  ];
+  columnsForUsers: string[] = [username, dateJoined, userRoles, actions];
   expenses: ExpenseForAdminTable[] = [];
   users = new MatTableDataSource<UserForAdmin>();
   walletCurrency = 'USD';
   isLoading = false;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
-  get getLengthOfExpenses(): boolean {
-    return this.expenses.length > 0;
+  get isLengthNotNill(): boolean {
+    return !!this.expenses.length;
   }
 
   @ViewChild('expPaginator') expensePaginator: MatPaginator;

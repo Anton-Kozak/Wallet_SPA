@@ -10,6 +10,7 @@ import { Photo } from 'src/app/_model/photo';
 import { PhotoService } from 'src/app/_services/photo.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Roles } from 'src/app/_helper/roles';
 
 @Component({
   selector: 'app-navbar',
@@ -49,7 +50,7 @@ export class NavbarComponent implements OnInit {
   toggleState = false;
   isBlocked = false;
 
-  get getNotificationLength(): boolean {
+  get isNotificationLengthNil(): boolean {
     return this.notifications.length === 0;
   }
 
@@ -59,7 +60,7 @@ export class NavbarComponent implements OnInit {
     });
     this.getPhotoData();
     this.currentUserName = this.authService.getToken().unique_name;
-    this.isBlocked = this.authService.roleMatch('Blocked');
+    this.isBlocked = this.authService.roleMatch(Roles.Blocked);
     this.noteService.getNotifications().subscribe(
       (notifications: Notification[]) => {
         if (notifications != null) {

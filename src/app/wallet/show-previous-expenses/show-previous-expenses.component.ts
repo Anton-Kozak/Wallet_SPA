@@ -34,12 +34,12 @@ export class ShowPreviousExpensesComponent implements OnInit {
   year: string;
   date: Date;
 
-  get getUsersDataLength(): boolean {
-    return this.data.topFiveUsers.length > 0;
+  get isUsersDataLengthNotNil(): boolean {
+    return !!this.data.topFiveUsers.length;
   }
 
-  get getCategoriesLength(): boolean {
-    return this.categories.length > 0;
+  get isCategoriesLengthNotNil(): boolean {
+    return !!this.categories.length;
   }
 
   ngOnInit(): void {

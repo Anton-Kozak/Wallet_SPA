@@ -34,12 +34,12 @@
     </div>
 
     <div class="row mt-5 data-column" *ngIf="showData">
-        <div *ngIf="specifiedDataStatisticsFirstTotal" class="col-lg-6 col-sm-12 col-12">
+        <div *ngIf="isSpecifiedDataStatisticsFirstTotalNil" class="col-lg-6 col-sm-12 col-12">
             <div style="font-size: 22px;" class="card col-12 p-5 text-uppercase text-center">
                 {{'Expenses.Nothing' | translate}} {{'Expenses.On' | translate}} {{getFormat(firstDate.value)}}
             </div>
         </div>
-        <div *ngIf="!specifiedDataStatisticsFirstTotal" class="col-lg-6 col-sm-12 col-12">
+        <div *ngIf="!isSpecifiedDataStatisticsFirstTotalNil" class="col-lg-6 col-sm-12 col-12">
             <div class="d-lg-none">
                 <div class="card p-3 text-center text-uppercase">
                     {{getFormat(firstDate.value)}}
@@ -81,7 +81,7 @@
                         <h5 class="card-title">{{'Expenses.CategoryCompare' | translate}}</h5>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="specifiedDataStatistics.firstMonthPreviousExpensesBars && getCategoriesLength">
+                        <div *ngIf="specifiedDataStatistics.firstMonthPreviousExpensesBars && isCategoriesLengthNotNil">
                             <app-donut-chart-categories [categories]="categories"
                                 [barExpensesList]="specifiedDataStatistics.firstMonthPreviousExpensesBars"></app-donut-chart-categories>
                         </div>
@@ -156,12 +156,12 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="specifiedDataStatisticsSecondTotal" class="col-lg-6 col-sm-12 col-12">
+        <div *ngIf="isSpecifiedDataStatisticsSecondTotalNil" class="col-lg-6 col-sm-12 col-12">
             <div style="font-size: 22px;" class="card col-12 p-5 text-uppercase text-center">
                 {{'Expenses.Nothing' | translate}} {{'Expenses.On' | translate}} {{getFormat(secondDate.value)}}
             </div>
         </div>
-        <div *ngIf="!specifiedDataStatisticsSecondTotal" class="col-lg-6 col-sm-12 col-12">
+        <div *ngIf="!isSpecifiedDataStatisticsSecondTotalNil" class="col-lg-6 col-sm-12 col-12">
             <div class="d-lg-none mt-5">
                 <div class="card p-3 text-center text-uppercase">
                     {{secondDate.value}}
@@ -203,7 +203,7 @@
                         <h5 class="card-title">{{'Expenses.CategoryCompare' | translate}}</h5>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="specifiedDataStatistics.secondMonthPreviousExpensesBars && getCategoriesLength">
+                        <div *ngIf="specifiedDataStatistics.secondMonthPreviousExpensesBars && isCategoriesLengthNotNil">
                             <app-donut-chart-categories [categories]="categories"
                                 [barExpensesList]="specifiedDataStatistics.secondMonthPreviousExpensesBars"></app-donut-chart-categories>
                         </div>

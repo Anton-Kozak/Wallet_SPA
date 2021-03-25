@@ -1,0 +1,10 @@
+export const title = 'expenseTitle';
+export const category = 'category';
+export const moneySpent = 'moneySpent';
+export const description = 'expenseDescription';
+export const date = 'creationDate';
+export const actions = 'actions';
+export const userName = 'userName';
+export const username = 'username';
+export const dateJoined = 'dateJoined';
+export const userRoles = 'userRoles';

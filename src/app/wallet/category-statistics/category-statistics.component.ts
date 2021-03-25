@@ -47,10 +47,10 @@ export class CategoryStatisticsComponent implements OnInit {
   currentTheme: string;
   isLoading: boolean;
 
-  get getExpenseLength(): boolean {
-    return this.expenses.data.length > 0;
+  get isExpenseLengthNotNil(): boolean {
+    return !!this.expenses.data.length;
   }
-  get getExpenseLengthForPagination(): boolean {
+  get isExpenseLengthForPaginationExceed(): boolean {
     return this.expenses.data.length > 10;
   }
 

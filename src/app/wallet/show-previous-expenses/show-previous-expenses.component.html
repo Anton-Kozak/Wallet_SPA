@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="data && getUsersDataLength" class="col-xl-4 col-md-12 no-pad">
+            <div *ngIf="data && isUsersDataLengthNotNil" class="col-xl-4 col-md-12 no-pad">
                 <div class="card" style="border-radius: 12px;" data-aos="fade-right" data-aos-duration="1200"
                     data-aos-once="true" data-aos-delay="0">
                     <div class="card-header">
@@ -80,7 +80,7 @@
                         <p class="card-category">{{monthName}}</p>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="data.previousExpensesBars && getCategoriesLength">
+                        <div *ngIf="data.previousExpensesBars && isCategoriesLengthNotNil">
                             <app-donut-chart-categories [categories]="categories" [barExpensesList]="data.previousExpensesBars">
                             </app-donut-chart-categories>
                         </div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="data && !getUsersDataLength && !isLoading" class="col-12">
+            <div *ngIf="data && !isUsersDataLengthNotNil && !isLoading" class="col-12">
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">

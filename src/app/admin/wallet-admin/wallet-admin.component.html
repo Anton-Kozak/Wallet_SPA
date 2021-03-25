@@ -101,7 +101,7 @@
     <div class="col-xl-7 col-md-12" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true"
         data-aos-delay="200">
         <div class="mat-elevation-z8 text-center">
-            <app-table-with-expenses *ngIf="getLengthOfExpenses" [tableData]='expenses'
+            <app-table-with-expenses *ngIf="isLengthNotNill" [tableData]='expenses'
                 [tableHeaders]='columnsForExpenses' [isThisUser]='false' [isAdmin]="true" [walletCurrency]='walletCurrency'>
             </app-table-with-expenses>
         </div>

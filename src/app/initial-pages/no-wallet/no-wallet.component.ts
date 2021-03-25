@@ -18,8 +18,8 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 })
 export class NoWalletComponent implements OnInit {
   invites = 0;
-  get getLengthOfInvites(): boolean {
-    return this.invites > 0;
+  get isLengthOfInvitesNotNil(): boolean {
+    return !!this.invites;
   }
   constructor(
     public dialog: MatDialog,

@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <app-table-with-expenses *ngIf="getDailyExpensesLength"
+                        <app-table-with-expenses *ngIf="isDailyExpensesLengthNil"
                             [tableData]='dailyExpenses'
                             [tableHeaders]='["userName", "expenseTitle", "category", "creationDate", "moneySpent"]'
                             [isThisUser]='null' [isAdmin]="false" [walletCurrency]='walletCurrency'></app-table-with-expenses>

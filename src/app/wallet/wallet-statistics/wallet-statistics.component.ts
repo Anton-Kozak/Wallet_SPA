@@ -30,16 +30,14 @@ export class WalletStatisticsComponent implements OnInit {
   statisticalData: DetailedWalletStatisticsDTO;
   categories: CategoryData[] = [];
 
-  get getCategoriesLength(): boolean {
-    return this.categories.length > 0;
+  get isCategoriesLengthNotNil(): boolean {
+    return !!this.categories.length;
   }
 
-  get getMonthCompareData(): boolean {
+  get isMonthCompareDataNotNil(): boolean {
     return (
-      this.statisticalData.barCompareExpensesWithLastMonth.currentMonthData !==
-        null &&
-      this.statisticalData.barCompareExpensesWithLastMonth.lastMonthData !==
-        null
+      !!this.statisticalData.barCompareExpensesWithLastMonth.currentMonthData &&
+      !!this.statisticalData.barCompareExpensesWithLastMonth.lastMonthData
     );
   }
 

@@ -1,4 +1,4 @@
-<div *ngIf="getLengthOfCategories" style="display: block;">
+<div *ngIf="isLengthNotNil" style="display: block;">
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
   </canvas>
 </div>

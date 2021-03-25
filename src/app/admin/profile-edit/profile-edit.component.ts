@@ -5,6 +5,12 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { Roles } from 'src/app/_helper/roles';
+import {
+  allNumbersAndLettersAndOther,
+  justLetters,
+  justNumbers,
+  lettersAndSpaces
+} from 'src/app/_helper/validationPatterns';
 import { ProfileData } from 'src/app/_model/data_models/profile-data';
 import { Photo } from 'src/app/_model/photo';
 import { UserForProfileEdit } from 'src/app/_model/user_models/user-for-profile-edit';
@@ -13,6 +19,8 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { PhotoService } from 'src/app/_services/photo.service';
 import { WalletService } from 'src/app/_services/wallet.service';
+
+const validationPattern = '[A-Za-z0-9]+';
 
 @Component({
   selector: 'app-profile-edit',
@@ -43,7 +51,6 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    // this.getPhotoData();
     this.setCurrency();
     this.setLanguage();
     this.getPhotoData(this.data.id);
@@ -52,60 +59,63 @@ export class ProfileEditComponent implements OnInit {
     this.adminService.getProfileData(this.data.id).subscribe(
       (profileData: ProfileData) => {
         this.profileData = profileData;
-        //todo: сделать валидацию как и везде
-        this.editProfileForm = new FormGroup({
-          company: new FormControl(this.profileData.editUser.company, [
-            Validators.minLength(2),
-            Validators.maxLength(32),
-            Validators.pattern('[A-Za-z0-9 .]+')
-          ]),
-          username: new FormControl(this.profileData.editUser.userName, [
-            Validators.required,
-            Validators.maxLength(16),
-            Validators.pattern('[A-Za-z0-9]+')
-          ]),
-          email: new FormControl(this.profileData.editUser.email, [
-            Validators.required,
-            Validators.maxLength(32),
-            Validators.email
-          ]),
-          firstName: new FormControl(this.profileData.editUser.firstName, [
-            Validators.minLength(2),
-            Validators.maxLength(16),
-            Validators.pattern('[A-Za-z]+')
-          ]),
-          lastName: new FormControl(this.profileData.editUser.lastName, [
-            Validators.minLength(2),
-            Validators.maxLength(16),
-            Validators.pattern('[A-Za-z]+')
-          ]),
-          address: new FormControl(this.profileData.editUser.address, [
-            Validators.minLength(2),
-            Validators.maxLength(32),
-            Validators.pattern('[A-Za-z0-9 .]+')
-          ]),
-          phoneNumber: new FormControl(this.profileData.editUser.phoneNumber, [
-            Validators.minLength(4),
-            Validators.maxLength(16),
-            Validators.pattern('[0-9]+')
-          ]),
-          city: new FormControl(this.profileData.editUser.city, [
-            Validators.minLength(2),
-            Validators.maxLength(32),
-            Validators.pattern('[A-Za-z0-9]+')
-          ]),
-          country: new FormControl(this.profileData.editUser.country, [
-            Validators.minLength(2),
-            Validators.maxLength(32),
-            Validators.pattern('[A-Za-z0-9 ]+')
-          ])
-        });
+        this.editFormInitialization();
         this.isLoading = false;
       },
       (error) => {
         this.alertify.error(error.error);
       }
     );
+  }
+
+  private editFormInitialization() {
+    this.editProfileForm = new FormGroup({
+      company: new FormControl(this.profileData.editUser.company, [
+        Validators.minLength(2),
+        Validators.maxLength(32),
+        Validators.pattern(allNumbersAndLettersAndOther)
+      ]),
+      username: new FormControl(this.profileData.editUser.userName, [
+        Validators.required,
+        Validators.maxLength(16),
+        Validators.pattern(validationPattern)
+      ]),
+      email: new FormControl(this.profileData.editUser.email, [
+        Validators.required,
+        Validators.maxLength(32),
+        Validators.email
+      ]),
+      firstName: new FormControl(this.profileData.editUser.firstName, [
+        Validators.minLength(2),
+        Validators.maxLength(16),
+        Validators.pattern(justLetters)
+      ]),
+      lastName: new FormControl(this.profileData.editUser.lastName, [
+        Validators.minLength(2),
+        Validators.maxLength(16),
+        Validators.pattern(justLetters)
+      ]),
+      address: new FormControl(this.profileData.editUser.address, [
+        Validators.minLength(2),
+        Validators.maxLength(32),
+        Validators.pattern(allNumbersAndLettersAndOther)
+      ]),
+      phoneNumber: new FormControl(this.profileData.editUser.phoneNumber, [
+        Validators.minLength(4),
+        Validators.maxLength(16),
+        Validators.pattern(justNumbers)
+      ]),
+      city: new FormControl(this.profileData.editUser.city, [
+        Validators.minLength(2),
+        Validators.maxLength(32),
+        Validators.pattern(validationPattern)
+      ]),
+      country: new FormControl(this.profileData.editUser.country, [
+        Validators.minLength(2),
+        Validators.maxLength(32),
+        Validators.pattern(lettersAndSpaces)
+      ])
+    });
   }
 
   private getPhotoData(userToEditId: string) {
@@ -119,7 +129,7 @@ export class ProfileEditComponent implements OnInit {
   private setCurrency() {
     this.walletService.getCurrentWallet().subscribe(
       (wallet) => {
-        this.walletCurrency = wallet['currency'];
+        this.walletCurrency = wallet.currency;
       },
       (error) => {
         this.alertify.error(error.error);

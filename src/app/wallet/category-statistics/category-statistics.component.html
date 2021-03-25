@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="getExpenseLength" class="col-md-12 col-lg-7 col-xl-8" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="250">
+        <div *ngIf="isExpenseLengthNotNil" class="col-md-12 col-lg-7 col-xl-8" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true" data-aos-delay="250">
             <div class="card">
                 <div class="mat-elevation-z8" style="box-shadow: none;">
                     <table style="width: 100%;" mat-table [dataSource]="expenses">
@@ -121,7 +121,7 @@
                         <tr mat-header-row *matHeaderRowDef="columnsForExpenses"></tr>
                         <tr mat-row *matRowDef="let row; columns: columnsForExpenses;"></tr>
                     </table>
-                    <mat-paginator *ngIf="getExpenseLengthForPagination" #paginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
+                    <mat-paginator *ngIf="isExpenseLengthForPaginationExceed" #paginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
                     </mat-paginator>
                 </div>
             </div>

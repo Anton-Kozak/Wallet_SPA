@@ -16,9 +16,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { map, switchMap } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Expense } from 'src/app/_model/expense_models/expense';
+import { Roles } from 'src/app/_helper/roles';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -58,8 +59,8 @@ export class ShowWalletTableComponent implements OnInit {
   isBlocked = false;
   expensesWithCategories: ExpensesWithCategories[] = [];
 
-  get getDailyExpensesLength(): boolean {
-    return this.dailyExpenses.length > 0 && !this.isLoading;
+  get isDailyExpensesLengthNil(): boolean {
+    return !!this.dailyExpenses.length && !this.isLoading;
   }
 
   ngOnInit(): void {
@@ -88,7 +89,7 @@ export class ShowWalletTableComponent implements OnInit {
       this.categories = data['categories'];
     });
 
-    this.isBlocked = this.authService.roleMatch('Blocked');
+    this.isBlocked = this.authService.roleMatch(Roles.Blocked);
 
     this.noteService.getNotifications().subscribe(
       (notifications: Notification[]) => {

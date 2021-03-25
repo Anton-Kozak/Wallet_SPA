@@ -22,8 +22,8 @@ export class CheckRequestsComponent implements OnInit {
   columns: string[] = ['from', 'date', 'actions'];
   requests = new MatTableDataSource<Request>();
 
-  get requestLength(): boolean {
-    return this.requests.data.length > 0;
+  get isLengthNotNil(): boolean {
+    return !!this.requests.data.length;
   }
   ngOnInit(): void {
     this.reqService.getRequests(this.authService.getToken().nameid).subscribe(
