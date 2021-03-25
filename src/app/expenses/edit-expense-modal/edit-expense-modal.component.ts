@@ -27,8 +27,8 @@ export class EditExpenseModalComponent implements OnInit {
   exp: ExpenseForTable;
 
   ngOnInit(): void {
-    this.exp = this.data.expenseToEdit;
-    this.isAdminEdit = this.data.isAdmin;
+    this.exp = this.data;
+    if (this.data['isAdmin'] !== undefined) this.isAdminEdit = true;
     this.editExpense = new FormGroup({
       title: new FormControl(this.exp.expenseTitle, [
         Validators.required,
@@ -47,10 +47,22 @@ export class EditExpenseModalComponent implements OnInit {
   }
 
   onEdit(): void {
-    console.log('call this');
     if (this.editExpense.valid) {
-      const expToEdit: ExpenseForTable = this.getExpenseforTableToEdit();
-      if (this.checkExpenseValidity(expToEdit)) {
+      const expToEdit: ExpenseForTable = {
+        id: this.exp.id,
+        creationDate: this.exp.creationDate,
+        expenseTitle: this.editExpense.value['title'],
+        expenseDescription: this.editExpense.value['desc'],
+        moneySpent: this.editExpense.value['money'],
+        userName: this.exp.userName
+      };
+      if (
+        this.exp.userName == expToEdit.userName &&
+        this.exp.creationDate === expToEdit.creationDate &&
+        this.exp.expenseTitle === expToEdit.expenseTitle &&
+        this.exp.moneySpent === expToEdit.moneySpent &&
+        this.exp.expenseDescription === expToEdit.expenseDescription
+      ) {
         this.alertify.warning('You have not made any changes!');
       } else {
         this.expService.onExpenseEdit(expToEdit).subscribe(
@@ -59,30 +71,11 @@ export class EditExpenseModalComponent implements OnInit {
             this.dialogRef.close(editedExpense);
           },
           (error) => {
-            this.alertify.error(error.error);
+            this.alertify.error(error);
           }
         );
       }
     }
-  }
-  private getExpenseforTableToEdit(): ExpenseForTable {
-    return {
-      id: this.exp.id,
-      creationDate: this.exp.creationDate,
-      expenseTitle: this.editExpense.value['title'],
-      expenseDescription: this.editExpense.value['desc'],
-      moneySpent: this.editExpense.value['money'],
-      userName: this.exp.userName
-    };
-  }
-  private checkExpenseValidity(expToEdit: ExpenseForTable) {
-    return (
-      this.exp.userName == expToEdit.userName &&
-      this.exp.creationDate === expToEdit.creationDate &&
-      this.exp.expenseTitle === expToEdit.expenseTitle &&
-      this.exp.moneySpent === expToEdit.moneySpent &&
-      this.exp.expenseDescription === expToEdit.expenseDescription
-    );
   }
 
   getFormat(date: Date): string {
@@ -90,10 +83,22 @@ export class EditExpenseModalComponent implements OnInit {
   }
 
   onAdminEdit(): void {
-    console.log('call not this');
     if (this.editExpense.valid) {
-      const expToEdit: ExpenseForTable = this.getExpenseforTableToEdit();
-      if (this.checkExpenseValidity(expToEdit)) {
+      const expToEdit: ExpenseForTable = {
+        id: this.exp.id,
+        creationDate: this.exp.creationDate,
+        expenseTitle: this.editExpense.value['title'],
+        expenseDescription: this.editExpense.value['desc'],
+        moneySpent: this.editExpense.value['money'],
+        userName: this.exp.userName
+      };
+      if (
+        this.exp.userName == expToEdit.userName &&
+        this.exp.creationDate === expToEdit.creationDate &&
+        this.exp.expenseTitle === expToEdit.expenseTitle &&
+        this.exp.moneySpent === expToEdit.moneySpent &&
+        this.exp.expenseDescription === expToEdit.expenseDescription
+      ) {
         this.alertify.warning('You have not made any changes!');
       } else {
         this.adminService.onExpenseEdit(expToEdit).subscribe(
@@ -102,7 +107,7 @@ export class EditExpenseModalComponent implements OnInit {
             this.dialogRef.close(editedExpense);
           },
           (error) => {
-            this.alertify.error(error.error);
+            this.alertify.error(error);
           }
         );
       }
