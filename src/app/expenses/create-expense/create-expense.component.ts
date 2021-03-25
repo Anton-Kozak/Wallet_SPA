@@ -8,6 +8,8 @@ import { WalletService } from 'src/app/_services/wallet.service';
 import { Expense } from 'src/app/_model/expense_models/expense';
 import * as moment from 'moment';
 import { ExpenseWithMessage } from 'src/app/_model/expense_models/expenseWithMessage';
+import { Subject } from 'rxjs';
+import { switchMap, tap, throttleTime } from 'rxjs/operators';
 @Component({
   selector: 'app-create-expense',
   templateUrl: './create-expense.component.html',
@@ -18,6 +20,7 @@ export class CreateExpenseComponent implements OnInit {
   newExpenseForm: FormGroup;
   categoryTitles: CategoryData[] = [];
   isLoading = false;
+  addExpenseButtonClick$: Subject<void> = new Subject();
   constructor(
     private expenseService: ExpenseService,
     private walletService: WalletService,
@@ -40,6 +43,38 @@ export class CreateExpenseComponent implements OnInit {
     } else {
       this.categoryTitles = this.walletService.currentCategories;
       this.setForm();
+    }
+    this.listenForButtonClick();
+  }
+
+  listenForButtonClick() {
+    this.addExpenseButtonClick$
+      .pipe(
+        throttleTime(2000),
+        switchMap(() => {
+          return this.expenseCreation();
+        })
+      )
+      .subscribe(
+        (response: ExpenseWithMessage) => {
+          this.handleMessageAfterExpenseCreation(response);
+        },
+        () => {
+          this.alertify.error('You did not create an expense!');
+          this.isLoading = false;
+        }
+      );
+  }
+
+  private handleMessageAfterExpenseCreation(response: ExpenseWithMessage) {
+    if (response.message === null) {
+      this.alertify.success('You have successfully created an expense!');
+      this.isLoading = false;
+      this.dialogRef.close(this.expense);
+    } else {
+      this.alertify.warning(response.message);
+      this.isLoading = false;
+      this.dialogRef.close();
     }
   }
 
@@ -81,27 +116,11 @@ export class CreateExpenseComponent implements OnInit {
         moneySpent: this.newExpenseForm.value['money'],
         creationDate: date
       };
-      this.expenseCreation();
     }
   }
   private expenseCreation() {
-    this.expenseService.createExpense(this.expense).subscribe(
-      (response: ExpenseWithMessage) => {
-        if (response.message === null) {
-          this.alertify.success('You have successfully created an expense!');
-          this.isLoading = false;
-          this.dialogRef.close(this.expense);
-        } else {
-          this.alertify.warning(response.message);
-          this.isLoading = false;
-          this.dialogRef.close();
-        }
-      },
-      () => {
-        this.alertify.error('You did not create an expense');
-        this.isLoading = false;
-      }
-    );
+    this.createExpense();
+    return this.expenseService.createExpense(this.expense);
   }
 
   back(): void {
