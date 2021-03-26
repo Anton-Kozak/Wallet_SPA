@@ -4,6 +4,7 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { TranslateService } from '@ngx-translate/core';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-bar-comparison',
@@ -94,7 +95,7 @@ export class BarComparisonComponent implements OnInit {
   }
 
   translateLabels(): void {
-    if (this.translate.currentLang === 'en') {
+    if (this.translate.currentLang === Language.English) {
       this.labels = this.translate.translations.en.ExpenseCategory;
       this.months = this.translate.translations.en.Months;
       this.barChartLabels = [];
@@ -113,7 +114,7 @@ export class BarComparisonComponent implements OnInit {
           'categoryExpenses'
         ];
       }
-    } else if (this.translate.currentLang === 'ru') {
+    } else if (this.translate.currentLang === Language.Russian) {
       this.labels = this.translate.translations.ru.ExpenseCategory;
       this.months = this.translate.translations.ru.Months;
       this.barChartLabels = [];

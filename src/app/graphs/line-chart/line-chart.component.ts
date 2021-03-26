@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Label, Color, BaseChartDirective } from 'ng2-charts';
+import { Language } from 'src/app/_helper/language';
 import { LastMonthStat } from 'src/app/_model/lastMonthStat';
 
 @Component({
@@ -100,21 +101,17 @@ export class LineChartComponent implements OnInit {
   }
 
   translateLabels(): void {
-    if (this.translate.currentLang === 'en') {
+    if (this.translate.currentLang === Language.English) {
       this.months = this.translate.translations.en.Months;
       for (let i = 0; i < this.lastSixMonths.length; i++) {
-        this.lineChartData[0].data[i] = [
-          this.lastSixMonths[i]['expenseSum']
-        ][0];
-        this.lineChartLabels[i] = this.months[this.lastSixMonths[i]['month']];
+        this.lineChartData[0].data[i] = [this.lastSixMonths[i].expenseSum][0];
+        this.lineChartLabels[i] = this.months[this.lastSixMonths[i].month];
       }
-    } else if (this.translate.currentLang === 'ru') {
+    } else if (this.translate.currentLang === Language.Russian) {
       this.months = this.translate.translations.ru.Months;
       for (let i = 0; i < this.lastSixMonths.length; i++) {
-        this.lineChartData[0].data[i] = [
-          this.lastSixMonths[i]['expenseSum']
-        ][0];
-        this.lineChartLabels[i] = this.months[this.lastSixMonths[i]['month']];
+        this.lineChartData[0].data[i] = [this.lastSixMonths[i].expenseSum][0];
+        this.lineChartLabels[i] = this.months[this.lastSixMonths[i].month];
       }
     }
   }

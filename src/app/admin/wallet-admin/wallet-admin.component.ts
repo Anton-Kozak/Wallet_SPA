@@ -15,6 +15,7 @@ import { WalletService } from 'src/app/_services/wallet.service';
 import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 import { Roles } from 'src/app/_helper/roles';
 import { ColumnHeaders } from 'src/app/_helper/columns-headers';
+import { Language } from 'src/app/_helper/language';
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -89,14 +90,16 @@ export class WalletAdminComponent implements OnInit {
   }
 
   private setLanguage() {
-    if (this.translate.currentLang === 'en') {
+    if (this.translate.currentLang === Language.English) {
       moment.locale('en');
-    } else if (this.translate.currentLang === 'ru') moment.locale('ru');
+    } else if (this.translate.currentLang === Language.Russian)
+      moment.locale('ru');
 
     this.translate.onLangChange.subscribe(() => {
-      if (this.translate.currentLang === 'en') {
+      if (this.translate.currentLang === Language.English) {
         moment.locale('en');
-      } else if (this.translate.currentLang === 'ru') moment.locale('ru');
+      } else if (this.translate.currentLang === Language.Russian)
+        moment.locale('ru');
     });
     this.setTitle(this.translate.currentLang);
     this.translate.onLangChange.subscribe((lang) => {
@@ -125,7 +128,7 @@ export class WalletAdminComponent implements OnInit {
 
   removeUser(userId: string, rowIndex: number): void {
     const res = confirm(
-      this.translate.currentLang === 'en'
+      this.translate.currentLang === Language.English
         ? 'Do you really want to remove this user from your wallet?'
         : 'Вы действительно хотите убрать этого пользователя из Вашего кошелька?'
     );

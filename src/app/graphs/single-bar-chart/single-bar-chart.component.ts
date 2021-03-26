@@ -5,6 +5,7 @@ import { ExpenseList } from 'src/app/_model/expense_models/expense-list';
 import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { MyColors } from 'src/app/_helper/chart-colors';
 import { TranslateService } from '@ngx-translate/core';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-single-bar-chart',
@@ -69,23 +70,23 @@ export class SingleBarChartComponent implements OnInit {
   }
 
   translateLabels(): void {
-    if (this.translate.currentLang === 'en') {
+    if (this.translate.currentLang === Language.English) {
       this.labels = this.translate.translations.en.ExpenseCategory;
       for (let i = 0; i < this.categories.length; i++) {
         this.barChartData[i] = {
           label: this.labels[this.categories[i].title],
-          data: [this.barExpensesList[i]['categoryExpenses']],
+          data: [this.barExpensesList[i].categoryExpenses],
           backgroundColor: this.colors.colors[i].backgroundColor,
           borderColor: this.colors.colors[i].borderColor,
           hoverBackgroundColor: this.colors.colors[i].backgroundColor
         };
       }
-    } else if (this.translate.currentLang === 'ru') {
+    } else if (this.translate.currentLang === Language.Russian) {
       this.labels = this.translate.translations.ru.ExpenseCategory;
       for (let i = 0; i < this.categories.length; i++) {
         this.barChartData[i] = {
           label: this.labels[this.categories[i].title],
-          data: [this.barExpensesList[i]['categoryExpenses']],
+          data: [this.barExpensesList[i].categoryExpenses],
           backgroundColor: this.colors.colors[i].backgroundColor,
           borderColor: this.colors.colors[i].borderColor,
           hoverBackgroundColor: this.colors.colors[i].backgroundColor
