@@ -13,6 +13,10 @@ export class InitialNavbarComponent implements OnInit {
   activeLang: string;
   isSignedIn: boolean;
 
+  get isEnglishActiveLanguage(): boolean {
+    return this.activeLang === Language.English;
+  }
+
   constructor(
     private authService: AuthService,
     private router: Router,

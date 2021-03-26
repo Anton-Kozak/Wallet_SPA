@@ -54,6 +54,14 @@ export class NavbarComponent implements OnInit {
   toggleState = false;
   isBlocked = false;
 
+  isActiveTheme(theme: string): boolean {
+    return this.activeTheme === theme;
+  }
+
+  get isEnglishActiveLanguage(): boolean {
+    return this.activeLang === Language.English;
+  }
+
   get isNotificationLengthNil(): boolean {
     return this.notifications.length === 0;
   }
