@@ -5,6 +5,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
+import { Language } from 'src/app/_helper/language';
 @Component({
   selector: 'app-check-invites',
   templateUrl: './check-invites.component.html',
@@ -20,15 +21,16 @@ export class CheckInvitesComponent implements OnInit {
   invites: Invite[];
 
   ngOnInit(): void {
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      moment.locale(Language.Russian);
 
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian)
+        moment.locale(Language.Russian);
     });
     this.invService.checkInvites().subscribe(
       (inv: Invite[]) => {

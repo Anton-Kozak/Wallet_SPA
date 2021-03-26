@@ -9,6 +9,7 @@ import { PreviousData } from 'src/app/_model/data_models/previousData';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { ExpensesWithCategories } from 'src/app/_model/expense_models/expensesWithCategories';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-show-previous-expenses',
@@ -90,15 +91,16 @@ export class ShowPreviousExpensesComponent implements OnInit {
   }
 
   private setLanguage(): void {
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      moment.locale(Language.Russian);
 
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian)
+        moment.locale(Language.Russian);
       this.monthName = moment(this.date).format('MMMM');
     });
 
@@ -109,9 +111,9 @@ export class ShowPreviousExpensesComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Previous Expenses');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Прошлые Траты');
     }
   }

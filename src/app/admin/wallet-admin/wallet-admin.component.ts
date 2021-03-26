@@ -91,15 +91,15 @@ export class WalletAdminComponent implements OnInit {
 
   private setLanguage() {
     if (this.translate.currentLang === Language.English) {
-      moment.locale('en');
+      moment.locale(Language.English);
     } else if (this.translate.currentLang === Language.Russian)
-      moment.locale('ru');
+      moment.locale(Language.Russian);
 
     this.translate.onLangChange.subscribe(() => {
       if (this.translate.currentLang === Language.English) {
-        moment.locale('en');
+        moment.locale(Language.English);
       } else if (this.translate.currentLang === Language.Russian)
-        moment.locale('ru');
+        moment.locale(Language.Russian);
     });
     this.setTitle(this.translate.currentLang);
     this.translate.onLangChange.subscribe((lang) => {
@@ -119,9 +119,9 @@ export class WalletAdminComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Admin panel');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Админ Панель');
     }
   }
@@ -150,42 +150,10 @@ export class WalletAdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe();
   }
 
-  // openDialog(id: number, rowIndex: number): void {
-  //   var exp = this.expenses.data.find(x => x.id === id);
-  //   exp.isAdmin = true;
-  //   const dialogRef = this.dialog.open(EditExpenseModalComponent, {
-  //     width: '550px',
-  //     data: exp
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result !== undefined && result !== null) {
-  //       this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
-  //       this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
-  //       this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-  //       this.expenses.data[rowIndex].creationDate = result['creationDate'];
-  //     }
-  //   });
-  // }
-
   onWalletEditDialog(): void {
     const dialogRef = this.dialog.open(EditWalletComponent);
     dialogRef.afterClosed().subscribe();
   }
-
-  // expenseDelete(id: number, rowIndex: number, elem: any) {
-  //   let deleteConfirmation = confirm(this.translate.currentLang === 'en' ? "Do you really want to delete this expense?" : "Вы действительно хотите удалить этот расход?");
-  //   if (deleteConfirmation) {
-  //     this.adminService.onExpenseDelete(id).subscribe((response: any) => {
-  //       this.alertify.success(response);
-  //       let indexOfItemToDelete = this.expenses.data.indexOf(elem);
-  //       this.expenses.data.splice(indexOfItemToDelete, 1);
-  //       this.expenses.data = this.expenses.data;
-  //     }, error => {
-  //       this.alertify.error(error.error);
-  //     });
-  //   }
-  // }
 
   addUserFromRequest(): void {
     this.admService.getUsers().subscribe(

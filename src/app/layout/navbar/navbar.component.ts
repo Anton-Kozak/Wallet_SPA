@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Roles } from 'src/app/_helper/roles';
 import { Themes } from 'src/app/_helper/themes';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-navbar',
@@ -29,14 +30,16 @@ export class NavbarComponent implements OnInit {
     public translate: TranslateService,
     private alertify: AlertifyService
   ) {
-    translate.addLangs(['en', 'ru']);
-    translate.setDefaultLang('en');
+    translate.addLangs([Language.English, Language.Russian]);
+    translate.setDefaultLang(Language.English);
     if (localStorage.getItem('language') !== null) {
       this.translate.use(localStorage.getItem('language'));
       this.activeLang = localStorage.getItem('language');
     } else {
       this.activeLang = translate.getBrowserLang();
-      translate.use(this.activeLang.match(/en|ru/) ? this.activeLang : 'en');
+      translate.use(
+        this.activeLang.match(/en|ru/) ? this.activeLang : Language.English
+      );
     }
   }
   signInForm: FormGroup;

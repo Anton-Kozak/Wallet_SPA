@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import { DetailedWalletStatisticsDTO } from 'src/app/_model/data_models/detailedWalletStatisticsDTO';
 import { ExpenseList } from 'src/app/_model/expense_models/expense-list';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-wallet-statistics',
@@ -78,16 +79,16 @@ export class WalletStatisticsComponent implements OnInit {
   }
 
   private setLanguage() {
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') {
-      moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian) {
+      moment.locale(Language.Russian);
     }
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian)
+        moment.locale(Language.Russian);
     });
     this.setTitle(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe((lang) => {
@@ -112,9 +113,9 @@ export class WalletStatisticsComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Wallet Statistics');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Статистика Кошелька');
     }
   }

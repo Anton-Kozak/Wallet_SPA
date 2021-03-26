@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { Language } from 'src/app/_helper/language';
 import { Roles } from 'src/app/_helper/roles';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -27,9 +28,9 @@ export class HomeWalletComponent implements OnInit {
     }, 500);
   }
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Welcome to XPense!');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Добро Пожаловать!');
     }
   }

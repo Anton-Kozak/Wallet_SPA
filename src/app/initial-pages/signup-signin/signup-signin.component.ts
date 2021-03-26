@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserAfterRegistration } from 'src/app/_model/user_models/userAfterRegistration';
 import { ApplicationUser } from 'src/app/_model/user_models/applicationUser';
 import { Roles } from 'src/app/_helper/roles';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-signup-signin',
@@ -102,9 +103,9 @@ export class SignupSigninComponent implements OnInit {
     };
   }
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Start Now');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Ввойдите или зарегестрируйтесь');
     }
   }

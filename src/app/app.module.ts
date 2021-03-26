@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './_routes';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainInterceptor } from './_intercepters/main.interceptor';
+import { Language } from './_helper/language';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -36,7 +37,7 @@ export function tokenGetter() {
     HttpClientModule,
     MatProgressSpinnerModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
+      defaultLanguage: Language.English,
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,

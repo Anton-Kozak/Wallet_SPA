@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { Language } from 'src/app/_helper/language';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -26,9 +27,9 @@ export class HomeComponent implements OnInit {
     });
   }
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Home Page');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Домашняя Страница');
     }
   }

@@ -13,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { AuthService } from '../_services/auth.service';
 import { Roles } from '../_helper/roles';
+import { Language } from '../_helper/language';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -124,15 +125,16 @@ export class ProfileComponent implements OnInit {
   }
 
   private setLanguage() {
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      moment.locale(Language.Russian);
 
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian)
+        moment.locale(Language.Russian);
     });
 
     this.setTitle(this.translateService.currentLang);
@@ -142,9 +144,9 @@ export class ProfileComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Your Profile');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Ваш Профиль');
     }
   }

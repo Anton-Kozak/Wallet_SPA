@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Notification } from 'src/app/_model/notification';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-no-wallet',
@@ -46,9 +47,9 @@ export class NoWalletComponent implements OnInit {
     });
   }
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Create Wallet');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Создайте Кошелёк');
     }
   }

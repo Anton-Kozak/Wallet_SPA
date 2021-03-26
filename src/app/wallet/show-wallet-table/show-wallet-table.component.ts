@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Expense } from 'src/app/_model/expense_models/expense';
 import { Roles } from 'src/app/_helper/roles';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -150,16 +151,16 @@ export class ShowWalletTableComponent implements OnInit {
   }
 
   private setLanguage() {
-    if (this.translateService.currentLang === 'en') {
-      this.moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru')
-      this.moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      this.moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      this.moment.locale(Language.Russian);
 
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        this.moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        this.moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        this.moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian)
+        this.moment.locale(Language.Russian);
       this.currentSelectedDate = new FormControl(
         this.moment(this.dayForDailyExpenses).format('LL')
       );
@@ -172,9 +173,9 @@ export class ShowWalletTableComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Your Wallet');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Ваш Кошелёк');
     }
   }

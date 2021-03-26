@@ -60,7 +60,7 @@ export class CreateWalletComponent implements OnInit {
 
   createWallet(): void {
     const res = confirm(
-      this.translateService.currentLang === 'en'
+      this.translateService.currentLang === Language.English
         ? 'Are you sure you want to create a wallet with these categories?'
         : 'Вы уверенны в своем выборе?'
     );

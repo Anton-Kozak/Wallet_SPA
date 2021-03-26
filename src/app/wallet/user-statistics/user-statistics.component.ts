@@ -15,6 +15,7 @@ import * as moment from 'moment';
 import { Title } from '@angular/platform-browser';
 import { DetailedUserStatisticsDTO } from 'src/app/_model/data_models/detailedUserStatisticsDTO';
 import { ColumnHeaders } from 'src/app/_helper/columns-headers';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-user-statistics',
@@ -133,15 +134,16 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   private setLanguage() {
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      moment.locale(Language.Russian);
 
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru') {
-        moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian) {
+        moment.locale(Language.Russian);
       }
       this.monthName = moment(this.date).format('MMMM');
     });
@@ -151,9 +153,9 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Your Expenses');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Ваши Траты');
     }
   }
@@ -182,7 +184,7 @@ export class UserStatisticsComponent implements OnInit {
 
   expenseDelete(id: number, rowIndex: number): void {
     const deleteConfirmation = confirm(
-      this.translateService.currentLang === 'en'
+      this.translateService.currentLang === Language.English
         ? 'Do you really want to delete this expense?'
         : 'Вы действительно хотите удалить этот расход?'
     );

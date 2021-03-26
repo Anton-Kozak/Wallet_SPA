@@ -9,6 +9,7 @@ import { ExpenseForTable } from '../../_model/expense_models/expense-for-table';
 import * as moment from 'moment';
 import { MatPaginator } from '@angular/material/paginator';
 import { ExpenseForAdminTable } from 'src/app/_model/expense_models/expense-for-admin-table';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-table-with-expenses',
@@ -78,7 +79,7 @@ export class TableWithExpensesComponent implements OnInit, OnChanges {
   }
   expenseDelete(id: number, rowIndex: number): void {
     const deleteConfirmation = confirm(
-      this.translateService.currentLang === 'en'
+      this.translateService.currentLang === Language.English
         ? 'Do you really want to delete this expense?'
         : 'Вы действительно хотите удалить этот расход?'
     );
