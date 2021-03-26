@@ -1,0 +1,117 @@
+<div>
+    <div class="d-lg-none">
+        <div class="card p-3 text-center text-uppercase">
+            {{date}}
+        </div>
+    </div>
+    <div class="col-12" [ngClass]="{'fade-in-left': true}">
+        <app-card [classes]="['nc-icon nc-chart-bar-32 icon-color-1', null]" [mainText]="'Expenses.MostSpent'"
+            [subText]="'ExpenseCategory.'+specifiedDataStatistics.mostSpent" [subTextNone]="'None found'" [hasFooter]="false"
+            [footerText]="null" [footerTextNone]="null">
+        </app-card>
+    </div>
+    <div class="col-12" [ngClass]="{'fade-in-left-s': true}">
+        <app-card [classes]="['nc-icon nc-chart-bar-32 icon-color-2', null]" [mainText]="'Expenses.MostUsed'"
+            [subText]="'ExpenseCategory.'+specifiedDataStatistics.mostUsed" [subTextNone]="'None found'" [hasFooter]="false"
+            [footerText]="null" [footerTextNone]="null">
+        </app-card>
+    </div>
+    <div class="col-12" [ngClass]="{'fade-in-left-t': true}">
+        <app-card [classes]="['nc-icon nc-money-coins icon-color-3', null]" [mainText]="'Expenses.Average'"
+            [subText]="specifiedDataStatistics.average" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+            [footerTextNone]="null">
+        </app-card>
+    </div>
+    <div class="col-12" [ngClass]="{'fade-in-left-f': true}">
+        <app-card [classes]="['nc-icon nc-money-coins icon-color-4', null]" [mainText]="'Expenses.Total'"
+            [subText]="specifiedDataStatistics.total" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+            [footerTextNone]="null">
+        </app-card>
+    </div>
+    <div class="col-12" [ngClass]="{'fade-in-left-x': true}">
+        <app-card [classes]="['nc-icon nc-money-coins icon-color-5', null]" [mainText]="'Expenses.Largest'"
+            [subText]="specifiedDataStatistics.largestExpense" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
+            [footerTextNone]="null">
+        </app-card>
+    </div>
+    <div class="col-12" [ngClass]="{'fade-in-left': true}">
+        <div class="card" style="border-radius: 12px;">
+            <div class="card-header">
+                <h5 class="card-title">{{'Expenses.CategoryCompare' | translate}}</h5>
+            </div>
+            <div class="card-body ">
+                <div *ngIf="specifiedDataStatistics.previousExpensesBars && isCategoriesLengthNotNil">
+                    <app-donut-chart-categories [categories]="categories"
+                        [barExpensesList]="specifiedDataStatistics.previousExpensesBars"></app-donut-chart-categories>
+                </div>
+            </div>
+            <div class="card-footer">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-money"></i> {{'Footer.NumberExp' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12" [ngClass]="{'fade-in-left': true}">
+        <div class="card" style="border-radius: 12px;">
+            <div class="card-header">
+                <h5 class="card-title">{{'Expenses.Top' | translate}}</h5>
+            </div>
+            <div class="card-body ">
+                <div *ngIf="specifiedDataStatistics.topFiveUsers != null">
+                    <app-pie-graph [topFiveUsers]="specifiedDataStatistics.topFiveUsers"></app-pie-graph>
+                </div>
+            </div>
+            <div class="card-footer">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-money"></i> {{'Footer.Top5' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 card" [ngClass]="{'fade-in-left': true}">
+        <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
+            <table style="width: 100%;" mat-table [dataSource]="specifiedDataStatistics.expenses">
+                <ng-container matColumnDef="expenseTitle">
+                    <th class="text-center table-head title-table-header" mat-header-cell *matHeaderCellDef>
+                        {{'Expenses.Expense' | translate}} </th>
+                    <td class="table-text title-table-cell" mat-cell *matCellDef="let element">
+                        {{element.expenseTitle}} </td>
+                </ng-container>
+                <ng-container matColumnDef="userName">
+                    <th class="text-center table-head user-table-header" mat-header-cell *matHeaderCellDef>
+                        {{'Expenses.User' | translate}} </th>
+                    <td class="table-text user-table-cell" mat-cell *matCellDef="let element">
+                        {{element.userName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="category">
+                    <th class="text-center table-head category-table-header" mat-header-cell *matHeaderCellDef>
+                        {{'Expenses.Category' | translate}} </th>
+                    <td class="table-text category-table-cell" mat-cell *matCellDef="let element">
+                        {{element.expenseCategory}} </td>
+                </ng-container>
+                <ng-container matColumnDef="moneySpent">
+                    <th class="text-center table-head money-table-header" mat-header-cell *matHeaderCellDef>
+                        {{'Currency.' + currency + 'Sign' | translate}} </th>
+                    <td class="table-text money-table-cell " mat-cell *matCellDef="let element">
+                        {{element.moneySpent}} </td>
+                </ng-container>
+                <ng-container matColumnDef="creationDate">
+                    <th class="text-center table-head date-table-header" mat-header-cell *matHeaderCellDef>
+                        {{'Expenses.Date' | translate}} </th>
+                    <td class="table-text date-table-cell" mat-cell *matCellDef="let element">
+                        {{element.creationDate | date :'short'}}
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsForExpenses"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsForExpenses;"></tr>
+            </table>
+
+            <mat-paginator #firstPaginator [pageSizeOptions]="[10]" [hidePageSize]="true" showFirstLastButtons>
+            </mat-paginator>
+
+        </div>
+    </div>
+</div>

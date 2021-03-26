@@ -1,17 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { CategoryData } from 'src/app/_model/data_models/categoryData';
-import { ExpenseForTable } from 'src/app/_model/expense_models/expense-for-table';
-import { SpecifiedMonthData } from 'src/app/_model/data_models/specifiedMonthsData';
 import { ExpenseService } from 'src/app/_services/expense.service';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Language } from 'src/app/_helper/language';
+import { SpecifiedMonthsData } from 'src/app/_model/data_models/specifiedMonthsData';
 
 @Component({
   selector: 'app-manual-comparison',
@@ -20,46 +17,22 @@ import { Language } from 'src/app/_helper/language';
 })
 export class ManualComparisonComponent implements OnInit {
   categories: CategoryData[] = [];
-  columnsForSecondExpenses: string[] = [
-    'expenseTitle',
-    'userName',
-    'category',
-    'moneySpent',
-    'creationDate'
-  ];
-  columnsForFirstExpenses: string[] = [
-    'expenseTitle',
-    'userName',
-    'category',
-    'moneySpent',
-    'creationDate'
-  ];
-  specifiedDataStatistics: SpecifiedMonthData;
+  specifiedDataStatistics: SpecifiedMonthsData;
   showData = false;
 
   firstDate: FormControl;
   firstDay = new Date();
-  firstMonthExpenses = new MatTableDataSource<ExpenseForTable>();
-  @ViewChild('firstPaginator') set firstMatPaginator(paginator: MatPaginator) {
-    this.firstMonthExpenses.paginator = paginator;
-  }
-  @ViewChild('secondPaginator') set secondMatPaginator(
-    paginator: MatPaginator
-  ) {
-    this.secondMonthExpenses.paginator = paginator;
-  }
 
   secondDay = new Date();
   secondDate: FormControl;
-  secondMonthExpenses = new MatTableDataSource<ExpenseForTable>();
 
   walletCurrency = 'USD';
 
   get isSpecifiedDataStatisticsFirstTotalNil(): boolean {
-    return this.specifiedDataStatistics.firstMonthTotal === 0;
+    return this.specifiedDataStatistics.firstMonth.total === 0;
   }
   get isSpecifiedDataStatisticsSecondTotalNil(): boolean {
-    return this.specifiedDataStatistics.secondMonthTotal === 0;
+    return this.specifiedDataStatistics.secondMonth.total === 0;
   }
   get isCategoriesLengthNotNil(): boolean {
     return !!this.categories.length;
@@ -82,7 +55,7 @@ export class ManualComparisonComponent implements OnInit {
   private setCurrency() {
     this.walletService.getCurrentWallet().subscribe(
       (wallet) => {
-        this.walletCurrency = wallet['currency'];
+        this.walletCurrency = wallet.currency;
       },
       (error) => {
         this.alertify.error(error.error);
@@ -156,14 +129,12 @@ export class ManualComparisonComponent implements OnInit {
         this.secondDay.toDateString()
       )
       .subscribe(
-        (response: SpecifiedMonthData) => {
-          if (response.firstMonthTotal > 0 && response.firstMonthTotal > 0) {
+        (response: SpecifiedMonthsData) => {
+          if (!!response.firstMonth.total && !!response.secondMonth.total) {
             this.specifiedDataStatistics = response;
-            this.firstMonthExpenses.data = response.firstMonthExpenses;
-            this.secondMonthExpenses.data = response.secondMonthExpenses;
           } else {
-            this.specifiedDataStatistics.firstMonthTotal = 0;
-            this.specifiedDataStatistics.secondMonthTotal = 0;
+            this.specifiedDataStatistics.firstMonth.total = 0;
+            this.specifiedDataStatistics.firstMonth.total = 0;
           }
           this.showData = true;
         },
@@ -175,11 +146,15 @@ export class ManualComparisonComponent implements OnInit {
 
   private resetData() {
     if (this.specifiedDataStatistics !== undefined) {
-      this.specifiedDataStatistics.firstMonthPreviousExpensesBars = null;
-      this.specifiedDataStatistics.secondMonthPreviousExpensesBars = null;
-      this.specifiedDataStatistics.firstMonthTopFiveUsers = null;
-      this.specifiedDataStatistics.secondMonthTopFiveUsers = null;
+      this.specifiedDataStatistics.firstMonth.previousExpensesBars = null;
+      this.specifiedDataStatistics.secondMonth.previousExpensesBars = null;
+      this.specifiedDataStatistics.firstMonth.topFiveUsers = null;
+      this.specifiedDataStatistics.secondMonth.topFiveUsers = null;
     }
+  }
+
+  getFormattedDate(date: FormControl): string {
+    return this.getFormat(date.value);
   }
 
   getFormat(date: string): string {

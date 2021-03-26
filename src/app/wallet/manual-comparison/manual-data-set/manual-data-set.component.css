@@ -1,0 +1,24 @@
+.fade-in-left {
+    -webkit-animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.fade-in-left-s {
+    -webkit-animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.3s both;
+    animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.3s both;
+}
+
+.fade-in-left-t {
+    -webkit-animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.6s both;
+    animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.6s both;
+}
+
+.fade-in-left-f {
+    -webkit-animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.8s both;
+    animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.8s both;
+}
+
+.fade-in-left-x {
+    -webkit-animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1s both;
+    animation: fade-in-left 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1s both;
+}

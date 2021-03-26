@@ -11,9 +11,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { CardModule } from 'src/app/shared/card/card.module';
+import { ManualDataSetComponent } from './manual-data-set/manual-data-set.component';
 
 @NgModule({
-  declarations: [ManualComparisonComponent],
+  declarations: [ManualComparisonComponent, ManualDataSetComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: ManualComparisonComponent }]),
