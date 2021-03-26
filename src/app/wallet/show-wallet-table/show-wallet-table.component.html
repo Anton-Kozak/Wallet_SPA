@@ -78,7 +78,7 @@
                         <app-table-with-expenses *ngIf="isDailyExpensesLengthNil"
                             [tableData]='dailyExpenses'
                             [tableHeaders]='["userName", "expenseTitle", "category", "creationDate", "moneySpent"]'
-                            [isThisUser]='null' [isAdmin]="false" [walletCurrency]='walletCurrency'></app-table-with-expenses>
+                            [isThisUser]='null' [walletCurrency]='walletCurrency'></app-table-with-expenses>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                                 <app-table-with-expenses *ngIf="!isLoading"
                                     [tableData]='exp.expenses'
                                     [tableHeaders]='["userName", "expenseTitle", "expenseDescription", "creationDate", "moneySpent"]'
-                                    [isThisUser]='null' [isAdmin]="false" [walletCurrency]='walletCurrency' [hasPaginator]="false">
+                                    [isThisUser]='null' [walletCurrency]='walletCurrency' [hasPaginator]="false">
                                 </app-table-with-expenses>
                             </div>
                         </div>

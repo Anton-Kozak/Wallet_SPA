@@ -27,8 +27,9 @@ export class AdminService {
 
   removeUser(userId: string): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}
-      ${this.authService.getToken().nameid}/removeUser/${userId}`,
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/removeUser/${userId}`,
       {},
       { responseType: 'text' }
     );
@@ -42,9 +43,10 @@ export class AdminService {
 
   onExpenseDelete(id: number): Observable<string> {
     return this.http.post(
-      `${this.baseUrl}${
-        this.authService.getToken().nameid
-      }/expenseDelete/${id}`,
+      `${this.baseUrl}
+        ${this.authService.getToken().nameid}
+        /expenseDelete/
+        ${id}`,
       {},
       { responseType: 'text' }
     );

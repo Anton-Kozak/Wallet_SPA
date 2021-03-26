@@ -35,8 +35,8 @@ export class EditExpenseModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.exp = this.data.expenseToEdit;
-    this.isAdminEdit = this.data.isAdmin;
+    this.exp = this.data;
+    if (this.data['isAdmin'] !== undefined) this.isAdminEdit = true;
     this.editExpense = new FormGroup({
       title: new FormControl(this.exp.expenseTitle, [
         Validators.required,

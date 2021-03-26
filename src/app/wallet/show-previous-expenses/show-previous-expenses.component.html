@@ -44,7 +44,7 @@
                                         <app-table-with-expenses *ngIf="!isLoading"
                                             [tableData]='exp.expenses'
                                             [tableHeaders]='["userName", "expenseTitle", "expenseDescription", "creationDate", "moneySpent"]'
-                                            [isThisUser]='null' [isAdmin]="false" [walletCurrency]='walletCurrency'
+                                            [isThisUser]='null' [walletCurrency]='walletCurrency'
                                             [hasPaginator]="false">
                                         </app-table-with-expenses>
                                     </div>
