@@ -32,9 +32,10 @@ export class NavbarComponent implements OnInit {
   ) {
     translate.addLangs([Language.English, Language.Russian]);
     translate.setDefaultLang(Language.English);
-    if (localStorage.getItem('language') !== null) {
-      this.translate.use(localStorage.getItem('language'));
-      this.activeLang = localStorage.getItem('language');
+    const LANGUAGE = localStorage.getItem('language');
+    if (!!LANGUAGE) {
+      this.translate.use(LANGUAGE);
+      this.activeLang = LANGUAGE;
     } else {
       this.activeLang = translate.getBrowserLang();
       translate.use(
