@@ -11,6 +11,7 @@ import * as moment from 'moment';
 import { DetailedCategoryStatisticsDTO } from 'src/app/_model/data_models/detailedCategoryStatisticsDTO';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { ColumnHeaders } from 'src/app/_helper/columns-headers';
 
 @Component({
   selector: 'app-category-statistics',
@@ -36,11 +37,11 @@ export class CategoryStatisticsComponent implements OnInit {
 
   expenses = new MatTableDataSource<ExpenseForTable>();
   columnsForExpenses: string[] = [
-    'expenseTitle',
-    'userName',
-    'moneySpent',
-    'expenseDescription',
-    'creationDate'
+    ColumnHeaders.Title,
+    ColumnHeaders.UserName,
+    ColumnHeaders.MoneySpent,
+    ColumnHeaders.Description,
+    ColumnHeaders.Date
   ];
 
   showData = true;

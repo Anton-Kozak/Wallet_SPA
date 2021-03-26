@@ -11,6 +11,7 @@ import { PhotoService } from 'src/app/_services/photo.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Roles } from 'src/app/_helper/roles';
+import { Themes } from 'src/app/_helper/themes';
 
 @Component({
   selector: 'app-navbar',
@@ -89,13 +90,13 @@ export class NavbarComponent implements OnInit {
 
   changeTheme(theme: string): void {
     switch (theme) {
-      case 'light':
+      case Themes.Light:
         this.themeService.toggleLight();
         break;
-      case 'dark':
+      case Themes.Dark:
         this.themeService.toggleDark();
         break;
-      case 'blue':
+      case Themes.Blue:
         this.themeService.toggleBlue();
         break;
       default:

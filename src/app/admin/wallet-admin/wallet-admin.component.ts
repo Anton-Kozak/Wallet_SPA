@@ -14,18 +14,7 @@ import * as moment from 'moment';
 import { WalletService } from 'src/app/_services/wallet.service';
 import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 import { Roles } from 'src/app/_helper/roles';
-import {
-  category,
-  date,
-  description,
-  moneySpent,
-  title,
-  userName,
-  actions,
-  dateJoined,
-  userRoles,
-  username
-} from 'src/app/_helper/columns-headers';
+import { ColumnHeaders } from 'src/app/_helper/columns-headers';
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -44,15 +33,20 @@ export class WalletAdminComponent implements OnInit {
   ) {}
 
   columnsForExpenses: string[] = [
-    title,
-    category,
-    userName,
-    moneySpent,
-    description,
-    date,
-    actions
+    ColumnHeaders.Title,
+    ColumnHeaders.Category,
+    ColumnHeaders.UserName,
+    ColumnHeaders.MoneySpent,
+    ColumnHeaders.Description,
+    ColumnHeaders.Date,
+    ColumnHeaders.Actions
   ];
-  columnsForUsers: string[] = [username, dateJoined, userRoles, actions];
+  columnsForUsers: string[] = [
+    ColumnHeaders.Username,
+    ColumnHeaders.DateJoined,
+    ColumnHeaders.UserRoles,
+    ColumnHeaders.Actions
+  ];
   expenses: ExpenseForAdminTable[] = [];
   users = new MatTableDataSource<UserForAdmin>();
   walletCurrency = 'USD';

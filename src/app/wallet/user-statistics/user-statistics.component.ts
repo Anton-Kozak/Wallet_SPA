@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { Title } from '@angular/platform-browser';
 import { DetailedUserStatisticsDTO } from 'src/app/_model/data_models/detailedUserStatisticsDTO';
+import { ColumnHeaders } from 'src/app/_helper/columns-headers';
 
 @Component({
   selector: 'app-user-statistics',
@@ -38,12 +39,12 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   columnsForExpenses: string[] = [
-    'expenseTitle',
-    'category',
-    'moneySpent',
-    'expenseDescription',
-    'creationDate',
-    'actions'
+    ColumnHeaders.Title,
+    ColumnHeaders.Category,
+    ColumnHeaders.MoneySpent,
+    ColumnHeaders.Description,
+    ColumnHeaders.Date,
+    ColumnHeaders.Actions
   ];
   expenses = new MatTableDataSource<ExpenseForTable>();
   expensesToSend: ExpenseForTable[] = [];
