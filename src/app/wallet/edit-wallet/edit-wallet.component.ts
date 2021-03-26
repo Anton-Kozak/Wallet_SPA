@@ -21,24 +21,29 @@ export class EditWalletComponent implements OnInit {
   walletToEdit: Wallet;
   public currentWallet: Wallet;
   ngOnInit(): void {
-    this.walletService.getCurrentWallet().subscribe((currentWallet: Wallet) => {
-      this.currentWallet = currentWallet;
-      this.editWalletForm = new FormGroup({
-        title: new FormControl(this.currentWallet.title, [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(16)
-        ]),
-        currency: new FormControl(
-          this.currentWallet.currency,
-          Validators.required
-        ),
-        limit: new FormControl(
-          this.currentWallet.monthlyLimit,
-          Validators.min(10)
-        )
-      });
-    });
+    this.walletService.getCurrentWallet().subscribe(
+      (currentWallet: Wallet) => {
+        this.currentWallet = currentWallet;
+        this.editWalletForm = new FormGroup({
+          title: new FormControl(this.currentWallet.title, [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(16)
+          ]),
+          currency: new FormControl(
+            this.currentWallet.currency,
+            Validators.required
+          ),
+          limit: new FormControl(
+            this.currentWallet.monthlyLimit,
+            Validators.min(10)
+          )
+        });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
   //TODO: сделать подтверждение смены названия
   walletEdit(): void {

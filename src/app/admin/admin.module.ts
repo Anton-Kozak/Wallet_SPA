@@ -11,13 +11,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateInviteComponent } from '../invites/create-invite/create-invite.component';
 import { EditWalletComponent } from '../wallet/edit-wallet/edit-wallet.component';
 import { TableModule } from '../shared/table-with-expenses/table.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
     WalletAdminComponent,
     CheckRequestsComponent,
     CreateInviteComponent,
-    EditWalletComponent
+    EditWalletComponent,
+    ProfileEditComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,7 @@ import { TableModule } from '../shared/table-with-expenses/table.module';
     TranslateSharedLazyModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
     TableModule,

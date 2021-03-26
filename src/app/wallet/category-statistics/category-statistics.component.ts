@@ -11,6 +11,8 @@ import * as moment from 'moment';
 import { DetailedCategoryStatisticsDTO } from 'src/app/_model/data_models/detailedCategoryStatisticsDTO';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { ColumnHeaders } from 'src/app/_helper/columns-headers';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-category-statistics',
@@ -36,16 +38,24 @@ export class CategoryStatisticsComponent implements OnInit {
 
   expenses = new MatTableDataSource<ExpenseForTable>();
   columnsForExpenses: string[] = [
-    'expenseTitle',
-    'userName',
-    'moneySpent',
-    'expenseDescription',
-    'creationDate'
+    ColumnHeaders.Title,
+    ColumnHeaders.UserName,
+    ColumnHeaders.MoneySpent,
+    ColumnHeaders.Description,
+    ColumnHeaders.Date
   ];
 
   showData = true;
   currentTheme: string;
   isLoading: boolean;
+
+  get isExpenseLengthNotNil(): boolean {
+    return !!this.expenses.data.length;
+  }
+  get isExpenseLengthForPaginationExceed(): boolean {
+    return this.expenses.data.length > 10;
+  }
+
   @ViewChild('paginator') paginator: MatPaginator;
   ngOnInit(): void {
     this.setTheme();
@@ -115,14 +125,15 @@ export class CategoryStatisticsComponent implements OnInit {
   }
 
   private getLanguageData() {
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      moment.locale(Language.Russian);
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian)
+        moment.locale(Language.Russian);
     });
   }
 
@@ -134,9 +145,9 @@ export class CategoryStatisticsComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Category Statistics');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Статистика Категории');
     }
   }

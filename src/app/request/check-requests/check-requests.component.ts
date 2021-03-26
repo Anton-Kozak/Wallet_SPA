@@ -21,14 +21,21 @@ export class CheckRequestsComponent implements OnInit {
 
   columns: string[] = ['from', 'date', 'actions'];
   requests = new MatTableDataSource<Request>();
+
+  get isLengthNotNil(): boolean {
+    return !!this.requests.data.length;
+  }
   ngOnInit(): void {
-    this.reqService
-      .getRequests(this.authService.getToken().nameid)
-      .subscribe((req: Request[]) => {
+    this.reqService.getRequests(this.authService.getToken().nameid).subscribe(
+      (req: Request[]) => {
         this.requests.data = req;
         if (this.requests.data.length == 0)
           this.alertify.error('You have no new requests');
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
   //TODO: обновлять таблицу при добавлении пользователя
   acceptRequest(email: string, rowIndex: number): void {

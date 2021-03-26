@@ -21,8 +21,10 @@
                             <img class="avatar border-gray" (error)="updateUrl($event.target)" src="{{photo === null ? '../../assets/images/default-avatar.png' : photo.url}}" alt="profile image">
                         </div>
                         <i (click)="onImageChange()" class="fas fa-camera-retro change-image mb-2" style="font-size: 25px; cursor: pointer;"></i>
+                        <p style="font-weight: bold; color: red;">{{isBlocked ? 'Blocked! ' : ''}}</p>
                         <h5 class="title text-capitalize">{{profileData.editUser.firstName}} {{profileData.editUser.lastName}}</h5>
                         <p class="description text-capitalize">{{profileData.editUser.userName}}</p>
+                        <p *ngIf="isBlocked" class="description text-capitalize text-danger">Please, contact admin to get your account unblocked</p>
                     </div>
                 </div>
                 <div class="card-footer" *ngIf="profileData">
@@ -204,7 +206,7 @@
                         </div>
                         <div class="row">
                             <div class="update ml-auto mr-auto">
-                                <button class="btn" [disabled]="editProfileForm.invalid" [ngClass]="{'btn-success text-white': editProfileForm.valid, 'btn-danger text-white disabled': editProfileForm.invalid}">{{'Profile.Edit' | translate}}</button>
+                                <button class="btn" [disabled]="editProfileForm.invalid || isBlocked" [ngClass]="{'btn-success text-white': editProfileForm.valid, 'btn-danger text-white disabled': editProfileForm.invalid}">{{'Profile.Edit' | translate}}</button>
                             </div>
                         </div>
                     </form>

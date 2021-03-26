@@ -7,6 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { PreviousData } from 'src/app/_model/data_models/previousData';
 import { MyThemeService } from 'src/app/_services/theme.service';
+import { ExpensesWithCategories } from 'src/app/_model/expense_models/expensesWithCategories';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-show-previous-expenses',
@@ -19,7 +22,8 @@ export class ShowPreviousExpensesComponent implements OnInit {
     private walletService: WalletService,
     private translateService: TranslateService,
     private titleService: Title,
-    private themeService: MyThemeService
+    private themeService: MyThemeService,
+    private alertify: AlertifyService
   ) {}
   data: PreviousData = null;
   colors: string[] = [];
@@ -30,6 +34,15 @@ export class ShowPreviousExpensesComponent implements OnInit {
   monthName = '';
   year: string;
   date: Date;
+
+  get isUsersDataLengthNotNil(): boolean {
+    return !!this.data.topFiveUsers.length;
+  }
+
+  get isCategoriesLengthNotNil(): boolean {
+    return !!this.categories.length;
+  }
+
   ngOnInit(): void {
     this.isLoading = true;
     this.setLanguage();
@@ -40,22 +53,34 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.getData(this.date);
   }
   private getCurrency(): void {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
+    this.walletService.getCurrentWallet().subscribe(
+      (wallet) => {
+        this.walletCurrency = wallet['currency'];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private getCategories(): void {
     if (this.walletService.currentCategories.length === 0) {
-      this.walletService
-        .getWalletsCategories()
-        .subscribe((data: CategoryData[]) => {
+      this.walletService.getWalletsCategories().subscribe(
+        (data: CategoryData[]) => {
           this.walletService.currentCategories = data;
           this.categories = this.walletService.currentCategories;
-        });
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
     } else {
       this.categories = this.walletService.currentCategories;
     }
+  }
+
+  checkTableData(expenseData: ExpensesWithCategories): boolean {
+    return expenseData.categoryId != 0 && expenseData.expenses.length > 0;
   }
 
   private setDate(): void {
@@ -66,15 +91,16 @@ export class ShowPreviousExpensesComponent implements OnInit {
   }
 
   private setLanguage(): void {
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      moment.locale(Language.Russian);
 
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian)
+        moment.locale(Language.Russian);
       this.monthName = moment(this.date).format('MMMM');
     });
 
@@ -85,17 +111,16 @@ export class ShowPreviousExpensesComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Previous Expenses');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Прошлые Траты');
     }
   }
 
   getData(date: Date): void {
-    this.expenseService
-      .getPreviousExpenses(date.toUTCString())
-      .subscribe((expenses: PreviousData) => {
+    this.expenseService.getPreviousExpenses(date.toUTCString()).subscribe(
+      (expenses: PreviousData) => {
         this.isLoading = true;
         // this.barExpenses = expenses.previousExpensesBars;
         // this.topFiveUsers = expenses.topFiveUsers;
@@ -106,13 +131,16 @@ export class ShowPreviousExpensesComponent implements OnInit {
           //this.expensesWithCategories = expenses.previousMonthExpenses;
         }
         this.isLoading = false;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private setTheme() {
     this.themeService.getCurrentColors().subscribe((colors) => {
       this.colors = colors;
-      console.log('colors', colors);
     });
   }
 

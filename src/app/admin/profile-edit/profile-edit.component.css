@@ -1,0 +1,33 @@
+.author{
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+}
+
+
+.card-user .card-body {
+    min-height: 80px;
+}
+
+.card-user .image {
+    height: 130px;
+}
+
+.card-user .image img {
+    border-radius: 12px;
+}
+
+.card-user .avatar {
+    width: 124px;
+    height: 124px;
+    border: 1px solid #000279;
+    position: relative;
+}
+
+.card-user .change-image {
+    color: #3b863b;
+}
+
+.card-user .change-image:hover {
+    color: #003b00;
+}

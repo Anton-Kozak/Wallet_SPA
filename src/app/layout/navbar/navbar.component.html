@@ -2,7 +2,7 @@
     <div class="nav-container d-flex w-100">
         <div class="expense-image">
             <button type="button" class="btn toggleButton" (click)="onToggle()">
-                <i class="nc-icon" [ngClass]="toggleState == false ? 'fa fa-arrow-left' : 'fa fa-arrow-right'"></i>
+                <i class="nc-icon" [ngClass]="!toggleState ? 'fa fa-arrow-left' : 'fa fa-arrow-right'"></i>
             </button>
         </div>
         <div class="d-flex right-nav">
@@ -16,17 +16,17 @@
                         <a class="dropdown-item" [routerLink]="['/wallet/profile']">{{'Navbar.EditProfile' |
                             translate}}</a>
                         <div class="dropdown-item theme-item">
-                            <div class="themeChange" [ngClass]="{'active-theme': activeTheme === 'light'}"
+                            <div class="themeChange" [ngClass]="{'active-theme': isActiveTheme('light')}"
                                 (click)="changeTheme('light')">
                                 <i class="fas fa-moon"></i>
                                 <p>{{'Navbar.LightTheme' | translate}}</p>
                             </div>
-                            <div class="themeChange" [ngClass]="{'active-theme': activeTheme === 'dark'}"
+                            <div class="themeChange" [ngClass]="{'active-theme': isActiveTheme('dark')}"
                                 (click)="changeTheme('dark')">
                                 <i class="fas fa-sun"></i>
                                 <p>{{'Navbar.DarkTheme' | translate}}</p>
                             </div>
-                            <div class="themeChange" [ngClass]="{'active-theme': activeTheme === 'blue'}"
+                            <div class="themeChange" [ngClass]="{'active-theme': isActiveTheme('blue')}"
                                 (click)="changeTheme('blue')">
                                 <i class="fas fa-sun"></i>
                                 <p>Blue theme</p>
@@ -34,10 +34,10 @@
                         </div>
                         <div class="dropdown-item language-item">
                             <img (click)="changeLang('ru')" class="language"
-                                [ngClass]="{'active-lang': activeLang === 'ru', 'inactive': activeLang === 'en' }"
+                                [ngClass]="{'active-lang': !isEnglishActiveLanguage, 'inactive': isEnglishActiveLanguage  }"
                                 src="assets/images/rus.png" alt="russian_language">
                             <img (click)="changeLang('en')" class="language"
-                                [ngClass]="{'active-lang': activeLang === 'en', 'inactive': activeLang === 'ru' }"
+                                [ngClass]="{'active-lang': isEnglishActiveLanguage, 'inactive': !isEnglishActiveLanguage }"
                                 src="assets/images/usa.png" alt="english_language">
                         </div>
                     </div>
@@ -49,11 +49,11 @@
                             matBadge={{notificationCount}} matBadgeSize="small" matBadgeColor="warn"
                             class="nc-icon nc-bell-55"></i>
                     </button>
-                    <div *ngIf="notifications.length === 0" class="dropdown-menu notification-menu"
+                    <div *ngIf="isNotificationLengthNil" class="dropdown-menu notification-menu"
                         aria-labelledby="notifications">
                         <div class="notifications m-2">{{'Navbar.NoNote' | translate}}</div>
                     </div>
-                    <div *ngIf="notifications.length !== 0" class="dropdown-menu notification-menu"
+                    <div *ngIf="!isNotificationLengthNil" class="dropdown-menu notification-menu"
                         aria-labelledby="notifications">
                         <div *ngFor="let notification of notifications" class="dropdown-item notifications">
                             <p>{{notification.message}}</p>
@@ -62,9 +62,12 @@
                 </div>
                 <div class="d-flex text-center mr-5 ml-3 user">
                     <div class="mr-3">{{'Navbar.Hello' | translate}} {{currentUserName}}</div>
-                    <a [routerLink]="['/wallet/profile']"><img (error)="updateUrl($event.target)" class="avatar border-gray"
-                            src="{{photo !== null ? photo.url : '../../../../../assets/images/default-avatar.png'}}"
-                            alt="..."></a>
+                    <div class="cont">
+                        <a [routerLink]="['/wallet/profile']"><img (error)="updateUrl($event.target)" class="avatar border-gray" [ngClass]="{'blocked': isBlocked}"
+                                src="{{photo !== null ? photo.url : '../../../../../assets/images/default-avatar.png'}}"
+                                alt="..."></a>
+                        <i *ngIf="isBlocked" class="fas fa-lock icon"></i>
+                        </div>
                 </div>
                 <div class="d-flex align-items-center">
 

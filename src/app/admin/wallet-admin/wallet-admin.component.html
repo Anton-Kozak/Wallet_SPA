@@ -60,17 +60,22 @@
                                         <th class="text-center table-head user-table-header" mat-header-cell
                                             *matHeaderCellDef> {{"Profile.Roles" | translate}} </th>
                                         <td class="text-center table-text" mat-cell *matCellDef="let element">
-                                            {{element.userRoles}} </td>
+                                            {{element.userRoles.join(', ')}} </td>
                                     </ng-container>
                                     <ng-container matColumnDef="actions">
                                         <th class="table-text" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" |
                                             translate}} </th>
                                         <td class="table-text" mat-cell *matCellDef="let element; let i = index">
-                                            <div *ngIf="!element.userRoles.includes('Admin')">
-                                                <!-- <a class="mr-2"><i class="fa fa-lock"></i></a> -->
-                                                <a (click)="removeUser(element.id, i)" class="mr-2"><i
-                                                        class="fa fa-2x fa-user-times text-danger"></i></a>
-                                                <!-- <a *ngIf="element.userRoles.includes('Adult') && !element.userRoles.includes('Admin')" class="mr-2"><i class="fa fa-users-cog"></i></a> -->
+                                            <div *ngIf="!isInRole(element,'Admin')">
+                                                <a matTooltipShowDelay="300" *ngIf="!isInRole(element, 'Blocked')" (click)="blockUser(element, i)" matTooltip="Block User" class="mr-2"><i class="fa fa-lock text-primary"></i></a>
+                                                <a matTooltipShowDelay="300" *ngIf="isInRole(element,'Blocked')" (click)="unblockUser(element, i)" matTooltip="Unblock User" class="mr-2"><i class="fa fa-lock" style="color: rgb(138, 138, 138);"></i></a>
+                                                <a matTooltipShowDelay="300" matTooltip="Remove User" (click)="removeUser(element.id, i)" class="mr-2"><i
+                                                        class="fa fa-user-times text-danger"></i></a>
+                                                <a matTooltipShowDelay="300" matTooltip="Make VIP" *ngIf="!isInRole(element,'VIP')" (click)="makeUserPremium(element, i)" class="mr-2"><i class="fas fa-crown text-warning"></i></a>
+                                                <a matTooltipShowDelay="300"  matTooltip="Make Standard" *ngIf="isInRole(element,'VIP')" (click)="removePremiumStatus(element, i)" class="mr-2">
+                                                    <i class="fas fa-user" style="color: rgb(138, 138, 138);"></i>
+                                                </a>
+                                                <a *ngIf="!isInRole(element,'Admin')" (click)="editUser(element)" class="mr-2"><i class="fa fa-users-cog text-success"></i></a>
                                             </div>
                                         </td>
                                     </ng-container>
@@ -96,8 +101,8 @@
     <div class="col-xl-7 col-md-12" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true"
         data-aos-delay="200">
         <div class="mat-elevation-z8 text-center">
-            <app-table-with-expenses *ngIf="expenses.length > 0" [tableData]='expenses'
-                [tableHeaders]='columnsForExpenses' [isThisUser]='null' [walletCurrency]='walletCurrency'>
+            <app-table-with-expenses *ngIf="isLengthNotNill" [tableData]='expenses'
+                [tableHeaders]='columnsForExpenses' [isThisUser]='false' [isAdmin]="true" [walletCurrency]='walletCurrency'>
             </app-table-with-expenses>
             <!-- <table style="width: 100%;" mat-table [dataSource]="expenses">
                 <ng-container matColumnDef="expenseTitle">

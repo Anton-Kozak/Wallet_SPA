@@ -9,6 +9,7 @@ import { ExpenseForTable } from '../../_model/expense_models/expense-for-table';
 import * as moment from 'moment';
 import { MatPaginator } from '@angular/material/paginator';
 import { ExpenseForAdminTable } from 'src/app/_model/expense_models/expense-for-admin-table';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-table-with-expenses',
@@ -48,6 +49,10 @@ export class TableWithExpensesComponent implements OnInit, OnChanges {
       }, 1);
   }
 
+  doesContainCategory(category: string): boolean {
+    return this.tableHeaders.includes(category);
+  }
+
   //for user stats
   openDialog(id: number, rowIndex: number): void {
     const exp = this.expenses.data.find((x) => x.id === id);
@@ -56,19 +61,24 @@ export class TableWithExpensesComponent implements OnInit, OnChanges {
       data: exp
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
-        this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
-        this.expenses.data[rowIndex].expenseDescription =
-          result['expenseDescription'];
-        this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-        this.expenses.data[rowIndex].creationDate = result['creationDate'];
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        if (result != null) {
+          this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
+          this.expenses.data[rowIndex].expenseDescription =
+            result['expenseDescription'];
+          this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
+          this.expenses.data[rowIndex].creationDate = result['creationDate'];
+        }
+      },
+      (error) => {
+        this.alertify.error(error.error);
       }
-    });
+    );
   }
   expenseDelete(id: number, rowIndex: number): void {
     const deleteConfirmation = confirm(
-      this.translateService.currentLang === 'en'
+      this.translateService.currentLang === Language.English
         ? 'Do you really want to delete this expense?'
         : 'Вы действительно хотите удалить этот расход?'
     );

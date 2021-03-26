@@ -83,10 +83,10 @@
                         <p class="card-category">{{'Expenses.TopDesc' | translate}}</p>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="statisticalData.topFiveUsers != null">
+                        <div *ngIf="statisticalData.topFiveUsers">
                             <app-pie-graph [topFiveUsers]="statisticalData.topFiveUsers"></app-pie-graph>
                         </div>
-                        <p *ngIf="statisticalData.topFiveUsers == null" class="text-uppercase">Please, add some expenses
+                        <p *ngIf="!statisticalData.topFiveUsers" class="text-uppercase">Please, add some expenses
                             to see
                             statistics
                         </p>
@@ -107,11 +107,11 @@
                         <p class="card-category">{{'Expenses.WalletStatDesc' | translate}}</p>
                     </div>
                     <div class="card-body ">
-                        <div *ngIf="statisticalData.barExpenses != null && categories.length > 0">
+                        <div *ngIf="statisticalData.barExpenses && isCategoriesLengthNotNil">
                             <app-single-bar-chart [categories]="categories"
                                 [barExpensesList]="statisticalData.barExpenses">
                             </app-single-bar-chart>
-                            <p *ngIf="statisticalData.barExpenses == null" class="text-uppercase">Please, add some
+                            <p *ngIf="statisticalData.barExpenses === null" class="text-uppercase">Please, add some
                                 expenses to see
                                 statistics
                             </p>
@@ -137,10 +137,10 @@
                     </div>
                     <div class="card-body ">
                         <div>
-                            <app-line-chart *ngIf="statisticalData.lastSixMonths != null"
+                            <app-line-chart *ngIf="statisticalData.lastSixMonths"
                                 [lastSixMonths]="statisticalData.lastSixMonths">
                             </app-line-chart>
-                            <p *ngIf="statisticalData.lastSixMonths == null" class="text-uppercase">Please, add some
+                            <p *ngIf="statisticalData.lastSixMonths === null" class="text-uppercase">Please, add some
                                 expenses to see
                                 statistics
                             </p>
@@ -164,12 +164,12 @@
                     <div class="card-body ">
                         <div>
                             <app-bar-comparison
-                                *ngIf="statisticalData.barCompareExpensesWithLastMonth.currentMonthData != null && statisticalData.barCompareExpensesWithLastMonth.lastMonthData != null"
+                                *ngIf="isMonthCompareDataNotNil"
                                 [categories]="categories"
                                 [currentMonthbarExpensesList]="statisticalData.barCompareExpensesWithLastMonth.currentMonthData"
                                 [lastMonthbarExpensesList]="statisticalData.barCompareExpensesWithLastMonth.lastMonthData">
                             </app-bar-comparison>
-                            <p *ngIf="statisticalData.barCompareExpensesWithLastMonth.currentMonthData == null && statisticalData.barCompareExpensesWithLastMonth.lastMonthData == null"
+                            <p *ngIf="!isMonthCompareDataNotNil"
                                 class="text-uppercase">Please, add some expenses to see statistics
                             </p>
                         </div>

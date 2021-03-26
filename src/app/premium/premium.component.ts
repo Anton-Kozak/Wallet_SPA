@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Roles } from '../_helper/roles';
 import { AuthService } from '../_services/auth.service';
 import { WalletService } from '../_services/wallet.service';
 
@@ -15,17 +16,26 @@ export class PremiumComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  vipStatus = '';
+
+  get getStatus(): boolean {
+    return this.vipStatus === Roles.Premium;
+  }
+
+  ngOnInit(): void {
+    this.authService.roleMatch(Roles.Premium) === true
+      ? (this.vipStatus = Roles.Premium)
+      : Roles.Standard;
+  }
 
   onPremiumClick(): void {
     this.walletService.becomePremium().subscribe(
-      (result) => {
-        console.log('subscribed', result);
+      () => {
         this.authService.logout();
         this.router.navigate(['/main/reg']);
       },
       (error) => {
-        console.error(error.error);
+        alert(error.error);
       }
     );
   }

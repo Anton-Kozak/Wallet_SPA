@@ -64,7 +64,7 @@
                       class="categories"
                       style="font-size: 10px"
                       [routerLink]="['/wallet/catstat/' + category.id]"
-                      [queryParams]="{category: category.title}"
+                      [queryParams]="{ category: category.title }"
                     >
                       <i class="fas {{ category.icon }}"></i>
                       <p>
@@ -90,7 +90,7 @@
           <p>{{ 'Sidebar.Profile' | translate }}</p>
         </a>
       </li>
-      <li *appHasRole="['Admin']" routerLinkActive="active">
+      <li *appHasRole="'Admin'" routerLinkActive="active">
         <a [routerLink]="['/wallet/walletAdmin']">
           <i class="nc-icon nc-lock-circle-open"></i>
           <p>{{ 'Sidebar.Admin' | translate }}</p>

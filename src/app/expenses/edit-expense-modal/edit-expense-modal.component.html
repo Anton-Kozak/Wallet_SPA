@@ -1,7 +1,7 @@
 <div mat-dialog-content>
     <div class="container outer">
         <div class="border-primary">
-            <form [formGroup]="editExpense" (ngSubmit)="isAdminEdit != true ? onEdit() : onAdminEdit()">
+            <form [formGroup]="editExpense" (ngSubmit)="onEdit()">
                 <div class="form-group">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -71,8 +71,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-outline-secondary btn-block" [disabled]="editExpense.invalid" [ngClass]="{'btn-outline-success': editExpense.valid}">{{'Expenses.Edit' | translate}}</button>
-
+                    <button class="btn btn-outline-secondary btn-block" [disabled]="isDisabled" [ngClass]="{'btn-outline-success': editExpense.valid}">{{'Expenses.Edit' | translate}}</button>
                 </div>
             </form>
             <button class="btn btn-warning btn-block" (click)="back()">{{'Profile.Back' | translate}}</button>

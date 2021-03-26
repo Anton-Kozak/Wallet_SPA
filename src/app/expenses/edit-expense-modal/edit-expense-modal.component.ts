@@ -23,8 +23,16 @@ export class EditExpenseModalComponent implements OnInit {
   ) {}
 
   editExpense: FormGroup;
+  isLoading = false;
   isAdminEdit = false;
   exp: ExpenseForTable;
+
+  get isDisabled(): boolean {
+    return (
+      (this.editExpense.invalid || this.checkExpenseValidity()) &&
+      this.isLoading
+    );
+  }
 
   ngOnInit(): void {
     this.exp = this.data;
@@ -46,72 +54,63 @@ export class EditExpenseModalComponent implements OnInit {
     });
   }
 
-  onEdit(): void {
+  onEdit() {
+    this.isLoading = true;
     if (this.editExpense.valid) {
-      const expToEdit: ExpenseForTable = {
-        id: this.exp.id,
-        creationDate: this.exp.creationDate,
-        expenseTitle: this.editExpense.value['title'],
-        expenseDescription: this.editExpense.value['desc'],
-        moneySpent: this.editExpense.value['money'],
-        userName: this.exp.userName
-      };
-      if (
-        this.exp.userName == expToEdit.userName &&
-        this.exp.creationDate === expToEdit.creationDate &&
-        this.exp.expenseTitle === expToEdit.expenseTitle &&
-        this.exp.moneySpent === expToEdit.moneySpent &&
-        this.exp.expenseDescription === expToEdit.expenseDescription
-      ) {
-        this.alertify.warning('You have not made any changes!');
-      } else {
-        this.expService.onExpenseEdit(expToEdit).subscribe(
-          (editedExpense: ExpenseForTable) => {
-            this.alertify.success('Вы успешно обновили расход!');
-            this.dialogRef.close(editedExpense);
-          },
-          (error) => {
-            this.alertify.error(error);
-          }
-        );
+      const expToEdit: ExpenseForTable = this.getExpenseforTableToEdit();
+      if (!this.checkExpenseValidity()) {
+        if (this.isAdminEdit) {
+          this.adminService.onExpenseEdit(expToEdit).subscribe(
+            (editedExpense: ExpenseForTable) => {
+              this.alertify.success('Вы успешно обновили расход!');
+              this.isLoading = false;
+              this.dialogRef.close(editedExpense);
+            },
+            (error) => {
+              this.alertify.error(error);
+              this.isLoading = false;
+            }
+          );
+        } else {
+          this.expService.onExpenseEdit(expToEdit).subscribe(
+            (editedExpense: ExpenseForTable) => {
+              this.alertify.success('Вы успешно обновили расход!');
+              this.isLoading = false;
+              this.dialogRef.close(editedExpense);
+            },
+            (error) => {
+              this.alertify.error(error);
+              this.isLoading = false;
+            }
+          );
+        }
       }
     }
+  }
+
+  private getExpenseforTableToEdit(): ExpenseForTable {
+    return {
+      id: this.exp.id,
+      creationDate: this.exp.creationDate,
+      expenseTitle: this.editExpense.value['title'],
+      expenseDescription: this.editExpense.value['desc'],
+      moneySpent: this.editExpense.value['money'],
+      userName: this.exp.userName
+    };
+  }
+  private checkExpenseValidity(): boolean {
+    const expenseToEdit = this.getExpenseforTableToEdit();
+    return (
+      this.exp.userName == expenseToEdit.userName &&
+      this.exp.creationDate === expenseToEdit.creationDate &&
+      this.exp.expenseTitle === expenseToEdit.expenseTitle &&
+      this.exp.moneySpent === expenseToEdit.moneySpent &&
+      this.exp.expenseDescription === expenseToEdit.expenseDescription
+    );
   }
 
   getFormat(date: Date): string {
     return moment(date).format('lll');
-  }
-
-  onAdminEdit(): void {
-    if (this.editExpense.valid) {
-      const expToEdit: ExpenseForTable = {
-        id: this.exp.id,
-        creationDate: this.exp.creationDate,
-        expenseTitle: this.editExpense.value['title'],
-        expenseDescription: this.editExpense.value['desc'],
-        moneySpent: this.editExpense.value['money'],
-        userName: this.exp.userName
-      };
-      if (
-        this.exp.userName == expToEdit.userName &&
-        this.exp.creationDate === expToEdit.creationDate &&
-        this.exp.expenseTitle === expToEdit.expenseTitle &&
-        this.exp.moneySpent === expToEdit.moneySpent &&
-        this.exp.expenseDescription === expToEdit.expenseDescription
-      ) {
-        this.alertify.warning('You have not made any changes!');
-      } else {
-        this.adminService.onExpenseEdit(expToEdit).subscribe(
-          (editedExpense: ExpenseForTable) => {
-            this.alertify.success('Вы успешно обновили расход!');
-            this.dialogRef.close(editedExpense);
-          },
-          (error) => {
-            this.alertify.error(error);
-          }
-        );
-      }
-    }
   }
 
   back(): void {

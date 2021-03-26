@@ -5,13 +5,14 @@ import {
   TemplateRef,
   OnInit
 } from '@angular/core';
+import { Roles } from '../_helper/roles';
 import { AuthService } from '../_services/auth.service';
 
 @Directive({
   selector: '[appHasRole]' //*appHasRole
 })
 export class HasRoleDirective implements OnInit {
-  @Input() appHasRole: string[];
+  @Input() appHasRole: string;
   //appHasRole =  ['Admin', 'Moderator'];
   isVisible = false;
   constructor(
@@ -22,13 +23,15 @@ export class HasRoleDirective implements OnInit {
   ) {}
   ngOnInit(): void {
     const userRoles = this.authService.decodedToken.role as Array<string>;
+    const role = this.appHasRole;
     //if user has no roles, the element to which this directive is attached should not be displayed
     if (!userRoles) {
       this.viewContainerRef.clear();
     }
 
     //if user has a particular role need them render the element
-    if (this.authService.roleMatch(this.appHasRole)) {
+
+    if (this.authService.roleMatch(role) && role !== Roles.Blocked) {
       if (!this.isVisible) this.isVisible = true;
       this.viewContainerRef.createEmbeddedView(this.templateRef);
     } else {

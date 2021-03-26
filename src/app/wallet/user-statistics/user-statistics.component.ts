@@ -14,6 +14,8 @@ import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { Title } from '@angular/platform-browser';
 import { DetailedUserStatisticsDTO } from 'src/app/_model/data_models/detailedUserStatisticsDTO';
+import { ColumnHeaders } from 'src/app/_helper/columns-headers';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-user-statistics',
@@ -38,12 +40,12 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   columnsForExpenses: string[] = [
-    'expenseTitle',
-    'category',
-    'moneySpent',
-    'expenseDescription',
-    'creationDate',
-    'actions'
+    ColumnHeaders.Title,
+    ColumnHeaders.Category,
+    ColumnHeaders.MoneySpent,
+    ColumnHeaders.Description,
+    ColumnHeaders.Date,
+    ColumnHeaders.Actions
   ];
   expenses = new MatTableDataSource<ExpenseForTable>();
   expensesToSend: ExpenseForTable[] = [];
@@ -59,6 +61,28 @@ export class UserStatisticsComponent implements OnInit {
   walletCurrency = 'USD';
   private id;
   theme = false;
+  get isAmountOfMoneyNotNil(): boolean {
+    return !!this.detailedUserStatistics.amountOfMoneySpent;
+  }
+
+  get isMonthCompareDataNotNil(): boolean {
+    return (
+      !!this.detailedUserStatistics.monthCompareData.currentMonthData &&
+      !!this.detailedUserStatistics.monthCompareData.lastMonthData
+    );
+  }
+
+  get isCategoriesLengthNotNil(): boolean {
+    return !!this.categories.length;
+  }
+
+  get isExpensesLengthNotNil(): boolean {
+    return !!this.expensesToSend.length;
+  }
+
+  get isMonthNumberNil(): boolean {
+    return this.monthNumber === 0;
+  }
   @Output() themeChange = new EventEmitter<boolean>();
 
   ngOnInit(): void {
@@ -79,19 +103,27 @@ export class UserStatisticsComponent implements OnInit {
 
   private getCategories() {
     if (this.walletService.currentCategories.length === 0) {
-      this.walletService
-        .getWalletsCategories()
-        .subscribe((categories: CategoryData[]) => {
+      this.walletService.getWalletsCategories().subscribe(
+        (categories: CategoryData[]) => {
           this.walletService.currentCategories = categories;
           this.categories = this.walletService.currentCategories;
-        });
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
     } else this.categories = this.walletService.currentCategories;
   }
 
   private setCurrency() {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
+    this.walletService.getCurrentWallet().subscribe(
+      (wallet) => {
+        this.walletCurrency = wallet['currency'];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private setDate() {
@@ -102,15 +134,16 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   private setLanguage() {
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      moment.locale(Language.Russian);
 
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru') {
-        moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian) {
+        moment.locale(Language.Russian);
       }
       this.monthName = moment(this.date).format('MMMM');
     });
@@ -120,32 +153,38 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Your Expenses');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Ваши Траты');
     }
   }
   private getData(date: Date): void {
-    this.expService
-      .getUserStatistics(this.id, date.toUTCString())
-      .subscribe((response: DetailedUserStatisticsDTO) => {
+    this.expService.getUserStatistics(this.id, date.toUTCString()).subscribe(
+      (response: DetailedUserStatisticsDTO) => {
         this.isLoading = true;
         if (response.amountOfMoneySpent > 0)
           this.detailedUserStatistics = response;
         this.isLoading = false;
-      });
-    this.expService
-      .getUserExpenses(this.id, date.toUTCString())
-      .subscribe((expensesRecieved: ExpenseForTable[]) => {
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
+    this.expService.getUserExpenses(this.id, date.toUTCString()).subscribe(
+      (expensesRecieved: ExpenseForTable[]) => {
         this.expenses.data = expensesRecieved;
         this.expensesToSend = expensesRecieved;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   expenseDelete(id: number, rowIndex: number): void {
     const deleteConfirmation = confirm(
-      this.translateService.currentLang === 'en'
+      this.translateService.currentLang === Language.English
         ? 'Do you really want to delete this expense?'
         : 'Вы действительно хотите удалить этот расход?'
     );
@@ -170,15 +209,20 @@ export class UserStatisticsComponent implements OnInit {
       data: exp
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
-        this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
-        this.expenses.data[rowIndex].expenseDescription =
-          result['expenseDescription'];
-        this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-        this.expenses.data[rowIndex].creationDate = result['creationDate'];
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        if (result != null) {
+          this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
+          this.expenses.data[rowIndex].expenseDescription =
+            result['expenseDescription'];
+          this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
+          this.expenses.data[rowIndex].creationDate = result['creationDate'];
+        }
+      },
+      (error) => {
+        this.alertify.error(error.error);
       }
-    });
+    );
   }
 
   previousMonth(): void {

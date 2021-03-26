@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ChartOptions } from 'chart.js';
 import { ThemeService } from 'ng2-charts';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Themes } from '../_helper/themes';
 
 export const blueTheme = {
   'content-background': '#424242',
@@ -100,13 +101,13 @@ export class MyThemeService {
 
   checkTheme(): void {
     switch (localStorage.getItem('theme')) {
-      case 'dark':
+      case Themes.Dark:
         this.toggleDark();
         break;
-      case 'light':
+      case Themes.Light:
         this.toggleLight();
         break;
-      case 'blue':
+      case Themes.Blue:
         this.toggleBlue();
         break;
       default:
@@ -120,7 +121,7 @@ export class MyThemeService {
   }
   toggleDark(): void {
     this.setThemeDark();
-    localStorage.setItem('theme', 'dark');
+    localStorage.setItem('theme', Themes.Dark);
     let overrides: ChartOptions;
     // eslint-disable-next-line prefer-const
     overrides = {
@@ -133,7 +134,7 @@ export class MyThemeService {
 
   toggleLight(): void {
     this.setThemeLight();
-    localStorage.setItem('theme', 'light');
+    localStorage.setItem('theme', Themes.Light);
     let overrides: ChartOptions;
     // eslint-disable-next-line prefer-const
     overrides = {
@@ -146,7 +147,7 @@ export class MyThemeService {
 
   toggleBlue(): void {
     this.setThemeBlue();
-    localStorage.setItem('theme', 'blue');
+    localStorage.setItem('theme', Themes.Blue);
     let overrides: ChartOptions;
     // eslint-disable-next-line prefer-const
     overrides = {
@@ -158,7 +159,7 @@ export class MyThemeService {
   }
 
   setThemeBlue(): void {
-    this.currentTheme.next('blue');
+    this.currentTheme.next(Themes.Blue);
     this.setTheme(blueTheme);
     this.currentColors.next([
       '#F4B41C',
@@ -176,7 +177,7 @@ export class MyThemeService {
 
   setThemeLight(): void {
     this.setTheme(lightTheme);
-    this.currentTheme.next('light');
+    this.currentTheme.next(Themes.Light);
     this.currentColors.next([
       '#cafcfa',
       '#cafcdf',
@@ -193,7 +194,7 @@ export class MyThemeService {
 
   setThemeDark(): void {
     this.setTheme(darkTheme);
-    this.currentTheme.next('dark');
+    this.currentTheme.next(Themes.Dark);
     this.currentColors.next([
       '#F4B41C',
       '#F4A719',

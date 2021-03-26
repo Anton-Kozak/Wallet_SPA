@@ -6,6 +6,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { map, switchMap } from 'rxjs/operators';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-create-wallet',
@@ -60,7 +61,7 @@ export class CreateWalletComponent implements OnInit {
 
   createWallet(): void {
     const res = confirm(
-      this.translateService.currentLang === 'en'
+      this.translateService.currentLang === Language.English
         ? 'Are you sure you want to create a wallet with these categories?'
         : 'Вы уверенны в своем выборе?'
     );

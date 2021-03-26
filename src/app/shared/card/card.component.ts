@@ -14,6 +14,14 @@ export class CardComponent implements OnInit {
   @Input('footerText') footerText = '';
   @Input('footerTextNone') footerTextNone = '';
 
+  get isExpenseCategoryNull(): boolean {
+    return this.subText === 'ExpenseCategory.null';
+  }
+
+  get isFooterTextNull(): boolean {
+    return this.footerText === null;
+  }
+
   ngOnInit(): void {
     console.log('Sub', this.subText);
   }

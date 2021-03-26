@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
+import { Language } from '../_helper/language';
 @Component({
   selector: 'app-tips',
   templateUrl: './tips.component.html',
@@ -24,7 +25,7 @@ export class TipsComponent implements OnInit {
   }
 
   getTipsWithRightLanguage(lang) {
-    if (lang === 'ru') {
+    if (lang === Language.Russian) {
       this.http.get('assets/tips_ru.json').subscribe((tips) => {
         this.tips = [];
         for (const key in tips['Tips']) {
@@ -32,7 +33,7 @@ export class TipsComponent implements OnInit {
         }
         this.titleService.setTitle('Советы для бюджета');
       });
-    } else if (lang === 'en') {
+    } else if (lang === Language.English) {
       this.http.get('assets/tips_en.json').subscribe((tips) => {
         this.tips = [];
         for (const key in tips['Tips']) {

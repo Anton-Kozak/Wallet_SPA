@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-about',
@@ -20,9 +21,9 @@ export class AboutComponent implements OnInit {
     });
   }
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('About Us');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('О Нас');
     }
   }

@@ -9,6 +9,8 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Notification } from 'src/app/_model/notification';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-no-wallet',
@@ -17,28 +19,37 @@ import { Notification } from 'src/app/_model/notification';
 })
 export class NoWalletComponent implements OnInit {
   invites = 0;
+  get isLengthOfInvitesNotNil(): boolean {
+    return !!this.invites;
+  }
   constructor(
     public dialog: MatDialog,
     private noteService: NotificationService,
     private authService: AuthService,
     private translateService: TranslateService,
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    private alertify: AlertifyService
   ) {}
 
   ngOnInit(): void {
-    this.noteService.getNotifications().subscribe((res: Notification[]) => {
-      this.invites = res.length;
-    });
+    this.noteService.getNotifications().subscribe(
+      (res: Notification[]) => {
+        this.invites = res.length;
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
     this.setTitle(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe((lang) => {
       this.setTitle(lang['lang']);
     });
   }
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Create Wallet');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Создайте Кошелёк');
     }
   }

@@ -17,6 +17,10 @@ import { Title } from '@angular/platform-browser';
 import { MyThemeService } from 'src/app/_services/theme.service';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Expense } from 'src/app/_model/expense_models/expense';
+import { Roles } from 'src/app/_helper/roles';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-show-wallet-table',
@@ -32,7 +36,8 @@ export class ShowWalletTableComponent implements OnInit {
     private route: ActivatedRoute,
     private translateService: TranslateService,
     private titleService: Title,
-    private themeService: MyThemeService
+    private themeService: MyThemeService,
+    private alertify: AlertifyService
   ) {}
 
   colors: string[] = [];
@@ -52,41 +57,67 @@ export class ShowWalletTableComponent implements OnInit {
   notifications: Notification[] = [];
   categories: CategoryData[] = [];
   isLoading: boolean;
-
+  isBlocked = false;
   expensesWithCategories: ExpensesWithCategories[] = [];
+
+  get isDailyExpensesLengthNil(): boolean {
+    return !!this.dailyExpenses.length && !this.isLoading;
+  }
+
   ngOnInit(): void {
     this.setLanguage();
     this.setTheme();
     this.getWalletData();
-    this.expenseService
-      .getExpenseSubjectsAsObservable()
-      .subscribe((exp: ExpensesWithCategories[]) => {
-        this.expensesWithCategories = exp;
-      });
-    this.expenseService.expensesSubject.subscribe((expData) => {
-      this.walletExpenses = expData;
-      this.checkLimit();
-    });
+    this.expenseService.getExpenseSubjectsAsObservable().subscribe(
+      (exp: ExpensesWithCategories[]) => {
+        this.expensesWithCategories = [...exp];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
+    this.expenseService.expensesSubject.subscribe(
+      (expData) => {
+        this.walletExpenses = expData;
+        this.checkLimit();
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
+    //todo: исправить ???
     this.route.data.subscribe((data) => {
       this.categories = data['categories'];
     });
 
-    this.noteService
-      .getNotifications()
-      .subscribe((notifications: Notification[]) => {
+    this.isBlocked = this.authService.roleMatch(Roles.Blocked);
+
+    this.noteService.getNotifications().subscribe(
+      (notifications: Notification[]) => {
         this.notifications = notifications;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
+  checkTableData(expenseData: ExpensesWithCategories): boolean {
+    return expenseData.expenses.length > 0 && this.colors !== null;
+  }
+
   private getWalletData() {
     this.id = this.authService.getToken().nameid;
     this.isLoading = true;
-    this.expenseService
-      .getWalletData(this.id)
-      .subscribe((walletData: WalletForPage) => {
+    this.expenseService.getWalletData(this.id).subscribe(
+      (walletData: WalletForPage) => {
         this.setWalletData(walletData);
         this.checkLimit();
         this.isLoading = false;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
     this.expenseService.showAllExpenses();
     this.setDailyExpenses();
   }
@@ -97,9 +128,14 @@ export class ShowWalletTableComponent implements OnInit {
     );
     this.expenseService
       .showDailyExpenses(this.dayForDailyExpenses.toUTCString())
-      .subscribe((expenses: ExpenseForTable[]) => {
-        this.dailyExpenses = expenses;
-      });
+      .subscribe(
+        (expenses: ExpenseForTable[]) => {
+          this.dailyExpenses = expenses;
+        },
+        (error) => {
+          this.alertify.error(error.error);
+        }
+      );
   }
 
   private setWalletData(walletData: WalletForPage) {
@@ -111,21 +147,20 @@ export class ShowWalletTableComponent implements OnInit {
   private setTheme() {
     this.themeService.getCurrentColors().subscribe((colors) => {
       this.colors = colors;
-      console.log('colors', colors);
     });
   }
 
   private setLanguage() {
-    if (this.translateService.currentLang === 'en') {
-      this.moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru')
-      this.moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      this.moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      this.moment.locale(Language.Russian);
 
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        this.moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        this.moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        this.moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian)
+        this.moment.locale(Language.Russian);
       this.currentSelectedDate = new FormControl(
         this.moment(this.dayForDailyExpenses).format('LL')
       );
@@ -138,9 +173,9 @@ export class ShowWalletTableComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Your Wallet');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Ваш Кошелёк');
     }
   }
@@ -166,17 +201,43 @@ export class ShowWalletTableComponent implements OnInit {
     dialogRef
       .afterClosed()
       .pipe(
-        switchMap((newExpense) => {
-          if (newExpense !== null) {
+        switchMap((newExpense: Expense) => {
+          if (newExpense !== undefined) {
             if (
               this.moment(this.dayForDailyExpenses).format('ll') ===
               this.moment(new Date()).format('ll')
-            )
+            ) {
+              this.updateCategoryExpensesAfterAddingNew(
+                newExpense.expenseCategoryId,
+                newExpense
+              );
               return this.updateDailyExpenses();
+            }
           }
+          return new Observable<never>();
         })
       )
       .subscribe();
+  }
+
+  private updateCategoryExpensesAfterAddingNew(
+    categoryIndex: number,
+    expenseToAdd: Expense
+  ): void {
+    const index = this.expensesWithCategories.findIndex(
+      (x) => x.categoryId === categoryIndex
+    );
+    const expenseDataSetToAdd = { ...this.expensesWithCategories[index] };
+    const expense: ExpenseForTable = {
+      userName: this.authService.getToken().unique_name,
+      expenseDescription: expenseToAdd.expenseDescription,
+      expenseTitle: expenseToAdd.expenseTitle,
+      creationDate: new Date(expenseToAdd.creationDate),
+      moneySpent: expenseToAdd.moneySpent,
+      expenseCategory: expenseDataSetToAdd.categoryName
+    };
+    expenseDataSetToAdd.expenses.unshift(expense);
+    this.expensesWithCategories[index] = { ...expenseDataSetToAdd };
   }
 
   showNotifications(): void {
@@ -189,12 +250,18 @@ export class ShowWalletTableComponent implements OnInit {
     else
       this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() + 1);
 
-    this.updateDailyExpenses().subscribe();
+    this.updateDailyExpenses().subscribe(),
+      (error) => {
+        this.alertify.error(error.error);
+      };
   }
 
   orgValueChange(value: string): void {
     this.dayForDailyExpenses = new Date(value);
-    this.updateDailyExpenses().subscribe();
+    this.updateDailyExpenses().subscribe(),
+      (error) => {
+        this.alertify.error(error.error);
+      };
   }
 
   getFormat(date: string): string {
@@ -209,7 +276,7 @@ export class ShowWalletTableComponent implements OnInit {
           this.currentSelectedDate.patchValue(
             this.moment(this.dayForDailyExpenses).format('ll')
           );
-          this.dailyExpenses = expenses;
+          this.dailyExpenses = [...expenses];
         })
       );
   }

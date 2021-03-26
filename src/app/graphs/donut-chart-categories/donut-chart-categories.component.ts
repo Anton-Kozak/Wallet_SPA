@@ -5,6 +5,7 @@ import { ExpenseList } from 'src/app/_model/expense_models/expense-list';
 import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { MyColors } from 'src/app/_helper/chart-colors';
 import { TranslateService } from '@ngx-translate/core';
+import { Language } from 'src/app/_helper/language';
 
 @Component({
   selector: 'app-donut-chart-categories',
@@ -57,14 +58,14 @@ export class DonutChartCategoriesComponent implements OnInit {
   }
 
   translateLabels(): void {
-    if (this.translate.currentLang === 'en') {
+    if (this.translate.currentLang === Language.English) {
       this.labels = this.translate.translations.en.ExpenseCategory;
       this.doughnutChartLabels = [];
       for (let i = 0; i < this.categories.length; i++) {
         this.doughnutChartLabels.push(this.labels[this.categories[i].title]);
         this.doughnutChartData[i] = this.barExpensesList[i]['categoryExpenses'];
       }
-    } else if (this.translate.currentLang === 'ru') {
+    } else if (this.translate.currentLang === Language.Russian) {
       this.labels = this.translate.translations.ru.ExpenseCategory;
       this.doughnutChartLabels = [];
       for (let i = 0; i < this.categories.length; i++) {

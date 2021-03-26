@@ -11,6 +11,9 @@ import { PhotoService } from '../_services/photo.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { AuthService } from '../_services/auth.service';
+import { Roles } from '../_helper/roles';
+import { Language } from '../_helper/language';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,6 +27,7 @@ export class ProfileComponent implements OnInit {
   userForEdit: UserForProfileEdit;
   isLoading: boolean;
   walletCurrency = 'USD';
+  isBlocked: boolean;
 
   constructor(
     public dialog: MatDialog,
@@ -31,16 +35,17 @@ export class ProfileComponent implements OnInit {
     private walletService: WalletService,
     private alertify: AlertifyService,
     public translateService: TranslateService,
-    private titleService: Title
+    private titleService: Title,
+    private authService: AuthService
   ) {}
   ngOnInit(): void {
     this.isLoading = true;
     this.getPhotoData();
     this.setCurrency();
     this.setLanguage();
-    this.walletService
-      .getProfileData()
-      .subscribe((profileData: ProfileData) => {
+    this.getStatus();
+    this.walletService.getProfileData().subscribe(
+      (profileData: ProfileData) => {
         this.profileData = profileData;
         //todo: сделать валидацию как и везде
         this.editProfileForm = new FormGroup({
@@ -91,32 +96,45 @@ export class ProfileComponent implements OnInit {
           ])
         });
         this.isLoading = false;
-      });
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
   private getPhotoData() {
     this.photoService.getCurrentPhotoSubject().subscribe((photo: Photo) => {
       this.photo = photo;
-      console.log(photo);
     });
     this.photoService.getPhoto();
   }
 
+  private getStatus() {
+    this.isBlocked = this.authService.roleMatch(Roles.Blocked);
+  }
+
   private setCurrency() {
-    this.walletService.getCurrentWallet().subscribe((wallet) => {
-      this.walletCurrency = wallet['currency'];
-    });
+    this.walletService.getCurrentWallet().subscribe(
+      (wallet) => {
+        this.walletCurrency = wallet['currency'];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   private setLanguage() {
-    if (this.translateService.currentLang === 'en') {
-      moment.locale('en');
-    } else if (this.translateService.currentLang === 'ru') moment.locale('ru');
+    if (this.translateService.currentLang === Language.English) {
+      moment.locale(Language.English);
+    } else if (this.translateService.currentLang === Language.Russian)
+      moment.locale(Language.Russian);
 
     this.translateService.onLangChange.subscribe(() => {
-      if (this.translateService.currentLang === 'en') {
-        moment.locale('en');
-      } else if (this.translateService.currentLang === 'ru')
-        moment.locale('ru');
+      if (this.translateService.currentLang === Language.English) {
+        moment.locale(Language.English);
+      } else if (this.translateService.currentLang === Language.Russian)
+        moment.locale(Language.Russian);
     });
 
     this.setTitle(this.translateService.currentLang);
@@ -126,19 +144,24 @@ export class ProfileComponent implements OnInit {
   }
 
   setTitle(lang: string): void {
-    if (lang === 'en') {
+    if (lang === Language.English) {
       this.titleService.setTitle('Your Profile');
-    } else if (lang === 'ru') {
+    } else if (lang === Language.Russian) {
       this.titleService.setTitle('Ваш Профиль');
     }
   }
 
   onImageChange(): void {
     const dialogRef = this.dialog.open(ImageModalComponent);
-    dialogRef.afterClosed().subscribe(() => {
-      //this.getPhoto();
-      this.photoService.getPhoto();
-    });
+    dialogRef.afterClosed().subscribe(
+      () => {
+        //this.getPhoto();
+        this.photoService.getPhoto();
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
   }
 
   // getPhoto(): void {
@@ -152,29 +175,17 @@ export class ProfileComponent implements OnInit {
     (target as HTMLInputElement).src = '../../assets/images/default-avatar.png';
   }
 
+  private checkIfChangesWereMade(): boolean {
+    const initialUser = Object.values(this.editProfileForm.value).sort();
+    const editedUser = Object.values(this.profileData.editUser).sort();
+    const res = JSON.stringify(initialUser) !== JSON.stringify(editedUser);
+    console.log(res);
+    return res;
+  }
+
   editProfile(): void {
-    if (this.editProfileForm.valid) {
-      if (
-        this.editProfileForm.value['address'] !==
-          this.profileData.editUser.address ||
-        this.editProfileForm.value['company'] !==
-          this.profileData.editUser.company ||
-        this.editProfileForm.value['firstName'] !==
-          this.profileData.editUser.firstName ||
-        this.editProfileForm.value['firstName'] !==
-          this.profileData.editUser.firstName ||
-        this.editProfileForm.value['lastName'] !==
-          this.profileData.editUser.lastName ||
-        this.editProfileForm.value['username'] !==
-          this.profileData.editUser.userName ||
-        this.editProfileForm.value['email'] !==
-          this.profileData.editUser.email ||
-        this.editProfileForm.value['city'] !== this.profileData.editUser.city ||
-        this.editProfileForm.value['country'] !==
-          this.profileData.editUser.country ||
-        this.editProfileForm.value['phoneNumber'] !==
-          this.profileData.editUser.phoneNumber
-      ) {
+    if (this.editProfileForm.valid && !this.isBlocked) {
+      if (this.checkIfChangesWereMade()) {
         this.userForEdit = {
           address: this.editProfileForm.value['address'],
           company: this.editProfileForm.value['company'],

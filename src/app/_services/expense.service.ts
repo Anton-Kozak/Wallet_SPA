@@ -158,11 +158,11 @@ export class ExpenseService {
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable): Observable<ExpenseForTable> {
+    console.log('|', this.authService.getToken().nameid, '|');
+
     return this.http.post<ExpenseForTable>(
-      `${this.baseUrl}
-        ${this.authService.getToken().nameid}
-        /expenseEdit/
-        ${expenseToEdit.id}`,
+      `${this.baseUrl}${this.authService.getToken().nameid}/expenseEdit/
+      ${expenseToEdit.id}`,
       expenseToEdit
     );
   }
@@ -183,10 +183,9 @@ export class ExpenseService {
     secondMonth: string
   ): Observable<SpecifiedMonthData> {
     return this.http.get<SpecifiedMonthData>(
-      `${this.baseUrl}
-        ${this.authService.getToken().nameid}
-        /specificMonthsData/
-        ${firstMonth}/${secondMonth}`
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/specificMonthsData/${firstMonth}/${secondMonth}`
     );
   }
 }

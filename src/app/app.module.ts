@@ -1,7 +1,11 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS
+} from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -9,10 +13,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 import { appRoutes } from './_routes';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MainInterceptor } from './_intercepters/main.interceptor';
+import { Language } from './_helper/language';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -32,7 +37,7 @@ export function tokenGetter() {
     HttpClientModule,
     MatProgressSpinnerModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
+      defaultLanguage: Language.English,
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
@@ -51,7 +56,10 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     FontAwesomeModule
   ],
-  providers: [Title],
+  providers: [
+    Title,
+    { provide: HTTP_INTERCEPTORS, useClass: MainInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
