@@ -22,12 +22,9 @@ import { PreviousData } from '../_model/data_models/previousData';
 export class ExpenseService {
   baseUrl: string = environment.apiUrl + 'expense/';
 
-  //initialExpenses: any[] = [];
-  expensesSubject = new BehaviorSubject<number>(0);
-
-  categoryTitles = new Subject<CategoryData[]>();
-
+  private categoryTitles = new Subject<CategoryData[]>();
   private expenseSubjects = new Subject<ExpensesWithCategories[]>();
+  private totalMoneySpentSubject = new BehaviorSubject<number>(0);
   private allExpenses: ExpensesWithCategories[] = [];
 
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -35,25 +32,18 @@ export class ExpenseService {
   getExpenseSubjectsAsObservable(): Observable<ExpensesWithCategories[]> {
     return this.expenseSubjects.asObservable();
   }
+  getTotalMoneySubjectAsObservable(): Observable<number> {
+    return this.totalMoneySpentSubject.asObservable();
+  }
+  getCategoryTitlesSubjectAsObservable(): Observable<CategoryData[]> {
+    return this.categoryTitles.asObservable();
+  }
 
   showAllExpenses(): Subscription {
     return this.http
       .get(this.baseUrl + this.authService.getToken().nameid)
       .subscribe((expenses: ExpensesWithCategories[]) => {
         if (expenses != null) {
-          // const tempArrayWithSubjectExpenses: ExpensesWithCategories[] = [];
-          // for (let i = 0; i < expenses.length; i++) {
-          //   const expWithCategory: ExpensesWithCategories = {
-          //     categoryId: expenses[i]['categoryId'],
-          //     categoryName: expenses[i]['categoryName'],
-          //     expenses: expenses[i]['expenses']
-          //   };
-          //   categories.push({
-          //     id: expWithCategory.categoryId,
-          //     title: expWithCategory.categoryName
-          //   });
-          //   tempArrayWithSubjectExpenses.push(expWithCategory);
-          // }
           const categories: CategoryData[] = [];
           expenses.map((category: ExpensesWithCategories) => {
             categories.push({
@@ -64,7 +54,7 @@ export class ExpenseService {
           this.allExpenses = [...expenses];
           this.expenseSubjects.next(expenses);
           this.categoryTitles.next(categories);
-        } else console.log('Nothing has been found');
+        }
       });
   }
 
@@ -100,8 +90,9 @@ export class ExpenseService {
           );
           currentExpenses[index].expenses.push(receivedExpense);
           this.expenseSubjects.next(currentExpenses);
-          this.expensesSubject.next(
-            this.expensesSubject.getValue() + receivedExpense.moneySpent
+          console.log('emit new expenses subject');
+          this.totalMoneySpentSubject.next(
+            this.totalMoneySpentSubject.getValue() + receivedExpense.moneySpent
           );
           return response;
         })
@@ -171,7 +162,8 @@ export class ExpenseService {
       .get<WalletForPage>(`${this.baseUrl}${userId}/getNameAndLimit`)
       .pipe(
         map((data: WalletForPage) => {
-          this.expensesSubject.next(data.monthlyExpenses);
+          console.log('emit new expenses subject 222');
+          this.totalMoneySpentSubject.next(data.monthlyExpenses);
           return data;
         })
       );

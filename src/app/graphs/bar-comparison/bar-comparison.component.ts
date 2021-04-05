@@ -86,53 +86,48 @@ export class BarComparisonComponent implements OnInit {
     this.translate.onLangChange.subscribe(() => {
       this.translateLabels();
     });
+    this.setDate();
+    this.translateLabels();
+    this.setBarLabels();
+    this.setBarChartData();
+  }
+
+  private setDate() {
     this.date = new Date(Date.now());
     this.prevDate = new Date(Date.now());
     this.date.setMonth(this.date.getMonth());
     this.prevDate.setMonth(this.date.getMonth() - 1);
-
-    this.translateLabels();
   }
 
   translateLabels(): void {
     if (this.translate.currentLang === Language.English) {
       this.labels = this.translate.translations.en.ExpenseCategory;
       this.months = this.translate.translations.en.Months;
-      this.barChartLabels = [];
-      this.barChartData[0].label = this.months[
-        this.date.toLocaleString('default', { month: 'long' })
-      ];
-      this.barChartData[1].label = this.months[
-        this.prevDate.toLocaleString('default', { month: 'long' })
-      ];
-      for (let i = 0; i < this.categories.length; i++) {
-        this.barChartLabels.push([this.categories[i].title]);
-        this.barChartData[1].data[i] = this.currentMonthbarExpensesList[i][
-          'categoryExpenses'
-        ];
-        this.barChartData[0].data[i] = this.lastMonthbarExpensesList[i][
-          'categoryExpenses'
-        ];
-      }
     } else if (this.translate.currentLang === Language.Russian) {
       this.labels = this.translate.translations.ru.ExpenseCategory;
       this.months = this.translate.translations.ru.Months;
-      this.barChartLabels = [];
-      this.barChartData[0].label = this.months[
-        this.date.toLocaleString('default', { month: 'long' })
+    }
+  }
+
+  private setBarLabels() {
+    this.barChartLabels = [];
+    this.barChartData[0].label = this.months[
+      this.date.toLocaleString('default', { month: 'long' })
+    ];
+    this.barChartData[1].label = this.months[
+      this.prevDate.toLocaleString('default', { month: 'long' })
+    ];
+  }
+
+  private setBarChartData() {
+    for (let i = 0; i < this.categories.length; i++) {
+      this.barChartLabels.push([this.categories[i].title]);
+      this.barChartData[0].data[i] = this.currentMonthbarExpensesList[i][
+        'categoryExpenses'
       ];
-      this.barChartData[1].label = this.months[
-        this.prevDate.toLocaleString('default', { month: 'long' })
+      this.barChartData[1].data[i] = this.lastMonthbarExpensesList[i][
+        'categoryExpenses'
       ];
-      for (let i = 0; i < this.categories.length; i++) {
-        this.barChartLabels.push([this.labels[this.categories[i].title]]);
-        this.barChartData[1].data[i] = this.currentMonthbarExpensesList[i][
-          'categoryExpenses'
-        ];
-        this.barChartData[0].data[i] = this.lastMonthbarExpensesList[i][
-          'categoryExpenses'
-        ];
-      }
     }
   }
 }

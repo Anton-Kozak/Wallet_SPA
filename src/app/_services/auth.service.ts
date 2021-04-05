@@ -79,7 +79,6 @@ export class AuthService {
     console.log('roes', userRoles);
 
     if (userRoles.includes(allowedRole)) {
-      console.log('contains', allowedRole);
       return true;
     } else return false;
   }

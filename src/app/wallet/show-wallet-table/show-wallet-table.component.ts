@@ -55,7 +55,6 @@ export class ShowWalletTableComponent implements OnInit {
   private id;
   // expensesToShow: number;
   notifications: Notification[] = [];
-  categories: CategoryData[] = [];
   isLoading: boolean;
   isBlocked = false;
   expensesWithCategories: ExpensesWithCategories[] = [];
@@ -73,18 +72,18 @@ export class ShowWalletTableComponent implements OnInit {
     this.setTheme();
     this.getWalletData();
     //this is for tables with data
-    // this.expenseService.getExpenseSubjectsAsObservable().subscribe(
-    //   (exp: ExpensesWithCategories[]) => {
-    //     this.expensesWithCategories = [...exp];
-    //   },
-    //   (error) => {
-    //     this.alertify.error(error.error);
-    //   }
-    // );
+    this.expenseService.getExpenseSubjectsAsObservable().subscribe(
+      (exp: ExpensesWithCategories[]) => {
+        this.expensesWithCategories = [...exp];
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
     //this is overall number of expenses
-    this.expenseService.expensesSubject.subscribe(
+    this.expenseService.getTotalMoneySubjectAsObservable().subscribe(
       (expData) => {
-        console.log('data');
+        console.log('data', expData);
         this.walletExpenses = expData;
         this.checkLimit();
       },
@@ -92,10 +91,6 @@ export class ShowWalletTableComponent implements OnInit {
         this.alertify.error(error.error);
       }
     );
-    //todo: исправить ???
-    this.route.data.subscribe((data) => {
-      this.categories = data['categories'];
-    });
 
     this.isBlocked = this.authService.roleMatch(Roles.Blocked);
 
@@ -123,6 +118,7 @@ export class ShowWalletTableComponent implements OnInit {
       },
       (error) => {
         this.alertify.error(error.error);
+        this.isLoading = false;
       }
     );
     this.expenseService.showAllExpenses();
