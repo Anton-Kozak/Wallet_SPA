@@ -64,20 +64,27 @@ export class ShowWalletTableComponent implements OnInit {
     return !!this.dailyExpenses.length && !this.isLoading;
   }
 
+  get isWalletExpensesNil(): boolean {
+    return !!this.walletExpenses;
+  }
+
   ngOnInit(): void {
     this.setLanguage();
     this.setTheme();
     this.getWalletData();
-    this.expenseService.getExpenseSubjectsAsObservable().subscribe(
-      (exp: ExpensesWithCategories[]) => {
-        this.expensesWithCategories = [...exp];
-      },
-      (error) => {
-        this.alertify.error(error.error);
-      }
-    );
+    //this is for tables with data
+    // this.expenseService.getExpenseSubjectsAsObservable().subscribe(
+    //   (exp: ExpensesWithCategories[]) => {
+    //     this.expensesWithCategories = [...exp];
+    //   },
+    //   (error) => {
+    //     this.alertify.error(error.error);
+    //   }
+    // );
+    //this is overall number of expenses
     this.expenseService.expensesSubject.subscribe(
       (expData) => {
+        console.log('data');
         this.walletExpenses = expData;
         this.checkLimit();
       },

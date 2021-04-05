@@ -12,7 +12,7 @@ import { DetailedWalletStatisticsDTO } from '../_model/data_models/detailedWalle
 import { DetailedCategoryStatisticsDTO } from '../_model/data_models/detailedCategoryStatisticsDTO';
 import { DetailedUserStatisticsDTO } from '../_model/data_models/detailedUserStatisticsDTO';
 import { WalletForPage } from '../_model/wallet-for-page';
-import { SpecifiedMonthData } from '../_model/data_models/specifiedMonthsData';
+import { SpecifiedMonthsData } from '../_model/data_models/specifiedMonthsData';
 import { ExpenseWithMessage } from '../_model/expense_models/expenseWithMessage';
 import { PreviousData } from '../_model/data_models/previousData';
 
@@ -121,10 +121,9 @@ export class ExpenseService {
     date: string
   ): Observable<DetailedCategoryStatisticsDTO> {
     return this.http.get<DetailedCategoryStatisticsDTO>(
-      `${this.baseUrl}
-        ${this.authService.getToken().nameid}
-        /detailedCategoryStatistics/
-        ${categoryId}/${date}`
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/detailedCategoryStatistics/${categoryId}/${date}`
     );
   }
 
@@ -181,8 +180,8 @@ export class ExpenseService {
   getSpecifiedMonthsData(
     firstMonth: string,
     secondMonth: string
-  ): Observable<SpecifiedMonthData> {
-    return this.http.get<SpecifiedMonthData>(
+  ): Observable<SpecifiedMonthsData> {
+    return this.http.get<SpecifiedMonthsData>(
       `${this.baseUrl}${
         this.authService.getToken().nameid
       }/specificMonthsData/${firstMonth}/${secondMonth}`

@@ -27,7 +27,12 @@ export const blueTheme = {
   'spinner-second': '#008855',
   'button-text': '#ffb204',
   'button-text-hover': 'black',
-  'home-tips': '#1c2a38'
+  'home-tips': '#1c2a38',
+  'icon-color-1': '#972600',
+  'icon-color-2': '#B65509',
+  'icon-color-3': '#F38C13',
+  'icon-color-4': '#ebcf8f',
+  'icon-color-5': '#ffc107'
 };
 
 export const lightTheme = {
@@ -53,7 +58,12 @@ export const lightTheme = {
   'spinner-second': '#006eff',
   'button-text': '#0084ff',
   'button-text-hover': 'white',
-  'home-tips': '#eef7ff'
+  'home-tips': '#eef7ff',
+  'icon-color-1': '#28a745',
+  'icon-color-2': '#007bff',
+  'icon-color-3': '#28a745',
+  'icon-color-4': '#6c757d',
+  'icon-color-5': '#ffc107'
 };
 
 export const darkTheme = {
@@ -79,7 +89,12 @@ export const darkTheme = {
   'spinner-second': '#008855',
   'button-text': '#ffb204',
   'button-text-hover': 'black',
-  'home-tips': '#1c2a38'
+  'home-tips': '#1c2a38',
+  'icon-color-1': '#972600',
+  'icon-color-2': '#B65509',
+  'icon-color-3': '#F38C13',
+  'icon-color-4': '#ebcf8f',
+  'icon-color-5': '#ffc107'
 };
 
 @Injectable({

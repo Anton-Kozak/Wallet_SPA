@@ -39,38 +39,44 @@
                 {{'Expenses.Nothing' | translate}} {{'Expenses.On' | translate}} {{getFormat(firstDate.value)}}
             </div>
         </div>
-        <div *ngIf="!isSpecifiedDataStatisticsFirstTotalNil" class="col-lg-6 col-sm-12 col-12">
+        <div class="col-lg-6 col-sm-12 col-12">
+        <app-manual-data-set [specifiedDataStatistics]="specifiedDataStatistics.firstMonth" [date]="getFormattedDate(firstDate)" 
+        [currency]="walletCurrency" 
+        [categories]="categories">
+    </app-manual-data-set>
+</div>
+        <!-- <div *ngIf="!isSpecifiedDataStatisticsFirstTotalNil" class="col-lg-6 col-sm-12 col-12">
             <div class="d-lg-none">
                 <div class="card p-3 text-center text-uppercase">
                     {{getFormat(firstDate.value)}}
                 </div>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left': showData}">
-                <app-card [classes]="['nc-icon nc-chart-bar-32 text-success', null]" [mainText]="'Expenses.MostSpent'"
+                <app-card [classes]="['nc-icon nc-chart-bar-32 icon-color-1', null]" [mainText]="'Expenses.MostSpent'"
                     [subText]="'ExpenseCategory.'+specifiedDataStatistics.firstMonthMostSpent" [subTextNone]="'None found'" [hasFooter]="false"
                     [footerText]="null" [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-s': showData}">
-                <app-card [classes]="['nc-icon nc-chart-bar-32 text-primary', null]" [mainText]="'Expenses.MostUsed'"
+                <app-card [classes]="['nc-icon nc-chart-bar-32 icon-color-2', null]" [mainText]="'Expenses.MostUsed'"
                     [subText]="'ExpenseCategory.'+specifiedDataStatistics.firstMonthMostUsed" [subTextNone]="'None found'" [hasFooter]="false"
                     [footerText]="null" [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-t': showData}">
-                <app-card [classes]="['nc-icon nc-money-coins text-secondary', null]" [mainText]="'Expenses.Average'"
+                <app-card [classes]="['nc-icon nc-money-coins icon-color-3', null]" [mainText]="'Expenses.Average'"
                     [subText]="specifiedDataStatistics.firstMonthAverage" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-f': showData}">
-                <app-card [classes]="['nc-icon nc-money-coins text-primary', null]" [mainText]="'Expenses.Total'"
+                <app-card [classes]="['nc-icon nc-money-coins icon-color-4', null]" [mainText]="'Expenses.Total'"
                     [subText]="specifiedDataStatistics.firstMonthTotal" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-left-x': showData}">
-                <app-card [classes]="['nc-icon nc-money-coins text-success', null]" [mainText]="'Expenses.Largest'"
+                <app-card [classes]="['nc-icon nc-money-coins icon-color-5', null]" [mainText]="'Expenses.Largest'"
                     [subText]="specifiedDataStatistics.firstLargestExpense" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
@@ -155,44 +161,51 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
         <div *ngIf="isSpecifiedDataStatisticsSecondTotalNil" class="col-lg-6 col-sm-12 col-12">
             <div style="font-size: 22px;" class="card col-12 p-5 text-uppercase text-center">
                 {{'Expenses.Nothing' | translate}} {{'Expenses.On' | translate}} {{getFormat(secondDate.value)}}
             </div>
         </div>
-        <div *ngIf="!isSpecifiedDataStatisticsSecondTotalNil" class="col-lg-6 col-sm-12 col-12">
+        <div class="col-lg-6 col-sm-12 col-12">
+            <app-manual-data-set [specifiedDataStatistics]="specifiedDataStatistics.secondMonth" 
+            [date]="getFormattedDate(secondDate)" 
+            [currency]="walletCurrency"  
+            [categories]="categories">
+        </app-manual-data-set>
+    </div>
+        <!-- <div *ngIf="!isSpecifiedDataStatisticsSecondTotalNil" class="col-lg-6 col-sm-12 col-12">
             <div class="d-lg-none mt-5">
                 <div class="card p-3 text-center text-uppercase">
                     {{secondDate.value}}
                 </div>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right': showData}">
-                <app-card [classes]="['nc-icon nc-chart-bar-32 text-success', null]" [mainText]="'Expenses.MostSpent'"
+                <app-card [classes]="['nc-icon nc-chart-bar-32 icon-color-1', null]" [mainText]="'Expenses.MostSpent'"
                     [subText]="'ExpenseCategory.'+specifiedDataStatistics.secondMonthMostSpent" [subTextNone]="'None found'" [hasFooter]="false"
                     [footerText]="null" [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-s': showData}">
-                <app-card [classes]="['nc-icon nc-chart-bar-32 text-primary', null]" [mainText]="'Expenses.MostUsed'"
+                <app-card [classes]="['nc-icon nc-chart-bar-32 icon-color-2', null]" [mainText]="'Expenses.MostUsed'"
                     [subText]="'ExpenseCategory.'+specifiedDataStatistics.secondMonthMostUsed" [subTextNone]="'None found'" [hasFooter]="false"
                     [footerText]="null" [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-t': showData}">
-                <app-card [classes]="['nc-icon nc-money-coins text-secondary', null]" [mainText]="'Expenses.Average'"
+                <app-card [classes]="['nc-icon nc-money-coins icon-color-3', null]" [mainText]="'Expenses.Average'"
                     [subText]="specifiedDataStatistics.secondMonthAverage" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-f': showData}">
-                <app-card [classes]="['nc-icon nc-money-coins text-primary', null]" [mainText]="'Expenses.Total'"
+                <app-card [classes]="['nc-icon nc-money-coins icon-color-4', null]" [mainText]="'Expenses.Total'"
                     [subText]="specifiedDataStatistics.secondMonthTotal" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
             </div>
             <div class="col-12" [ngClass]="{'fade-in-right-x': showData}">
-                <app-card [classes]="['nc-icon nc-money-coins text-success', null]" [mainText]="'Expenses.Largest'"
+                <app-card [classes]="['nc-icon nc-money-coins icon-color-5', null]" [mainText]="'Expenses.Largest'"
                     [subText]="specifiedDataStatistics.secondLargestExpense" [subTextNone]="0" [hasFooter]="false" [footerText]="null"
                     [footerTextNone]="null">
                 </app-card>
@@ -276,6 +289,6 @@
                     </mat-paginator>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

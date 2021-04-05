@@ -20,14 +20,14 @@
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6" data-aos="fade-down" data-aos-duration="1200"
                     data-aos-delay="200" data-aos-once="true">
-                    <app-card [classes]="['fas fa-wallet text-primary', null]" [mainText]="'Expenses.WalletTitle'"
+                    <app-card [classes]="['fas fa-wallet icon-color-1', null]" [mainText]="'Expenses.WalletTitle'"
                         [subText]="walletTitle" [subTextNone]="'Wallet title not found'" [hasFooter]="false"
                         [footerText]="null" [footerTextNone]="null">
                     </app-card>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6" data-aos="fade-down" data-aos-duration="1200"
                     data-aos-delay="400" data-aos-once="true">
-                    <app-card [classes]="['fas fa-wallet text-primary', null]" [mainText]="'Expenses.WalletLimit'"
+                    <app-card [classes]="['fas fa-money-bill-alt icon-color-3', null]" [mainText]="'Expenses.WalletLimit'"
                         [subText]="'(' + walletCurrency + ') ' + walletLimit" [subTextNone]="'Wallet limit not found'"
                         [hasFooter]="false" [footerText]="null" [footerTextNone]="null">
                     </app-card>
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 col-lg-12">
+        <div *ngIf="isWalletExpensesNil" class="col-xl-6 col-lg-12">
             <div *ngFor="let exp of expensesWithCategories; let i = index ">
                 <div *ngIf="checkTableData(exp)" class="row" data-aos="fade-right" data-aos-duration="1300"
                     data-aos-delay="100" data-aos-once="true">
