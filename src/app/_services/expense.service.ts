@@ -121,10 +121,9 @@ export class ExpenseService {
     date: string
   ): Observable<DetailedCategoryStatisticsDTO> {
     return this.http.get<DetailedCategoryStatisticsDTO>(
-      `${this.baseUrl}
-        ${this.authService.getToken().nameid}
-        /detailedCategoryStatistics/
-        ${categoryId}/${date}`
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/detailedCategoryStatistics/${categoryId}/${date}`
     );
   }
 

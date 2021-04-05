@@ -37,6 +37,7 @@ export class WalletStatisticsComponent implements OnInit {
 
   get isMonthCompareDataNotNil(): boolean {
     return (
+      !!this.statisticalData.barCompareExpensesWithLastMonth &&
       !!this.statisticalData.barCompareExpensesWithLastMonth.currentMonthData &&
       !!this.statisticalData.barCompareExpensesWithLastMonth.lastMonthData
     );
@@ -65,6 +66,7 @@ export class WalletStatisticsComponent implements OnInit {
 
   private checkIfHasPreviousData() {
     return (
+      !!this.statisticalData.barCompareExpensesWithLastMonth &&
       this.statisticalData.barCompareExpensesWithLastMonth.currentMonthData.find(
         (el: ExpenseList) => {
           return el.categoryExpenses > 0;

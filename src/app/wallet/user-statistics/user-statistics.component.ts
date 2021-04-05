@@ -62,7 +62,10 @@ export class UserStatisticsComponent implements OnInit {
   private id;
   theme = false;
   get isAmountOfMoneyNotNil(): boolean {
-    return !!this.detailedUserStatistics.amountOfMoneySpent;
+    return (
+      !!this.detailedUserStatistics &&
+      !!this.detailedUserStatistics.amountOfMoneySpent
+    );
   }
 
   get isMonthCompareDataNotNil(): boolean {
@@ -252,12 +255,14 @@ export class UserStatisticsComponent implements OnInit {
   }
 
   clearData(): void {
-    this.expenses = new MatTableDataSource<ExpenseForTable>();
-    this.detailedUserStatistics.averageDailyExpense = 0;
-    this.detailedUserStatistics.amountOfMoneySpent = 0;
-    this.detailedUserStatistics.barExpenses = [];
-    this.detailedUserStatistics.mostSpentCategory = '';
-    this.detailedUserStatistics.mostUsedCategory = '';
+    if (!!this.expenses && !!this.detailedUserStatistics) {
+      this.expenses = new MatTableDataSource<ExpenseForTable>();
+      this.detailedUserStatistics.averageDailyExpense = 0;
+      this.detailedUserStatistics.amountOfMoneySpent = 0;
+      this.detailedUserStatistics.barExpenses = [];
+      this.detailedUserStatistics.mostSpentCategory = '';
+      this.detailedUserStatistics.mostUsedCategory = '';
+    }
   }
   getFormat(date: string): string {
     return moment(date).format('lll');
