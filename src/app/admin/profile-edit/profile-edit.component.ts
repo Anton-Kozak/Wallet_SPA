@@ -174,7 +174,6 @@ export class ProfileEditComponent implements OnInit {
   }
 
   updateUrl(target: EventTarget): void {
-    console.log('error img', target);
     (target as HTMLInputElement).src = '../../assets/images/default-avatar.png';
   }
 
@@ -182,7 +181,6 @@ export class ProfileEditComponent implements OnInit {
     const initialUser = Object.values(this.editProfileForm.value).sort();
     const editedUser = Object.values(this.profileData.editUser).sort();
     const res = JSON.stringify(initialUser) !== JSON.stringify(editedUser);
-    console.log(res);
     return res;
   }
 

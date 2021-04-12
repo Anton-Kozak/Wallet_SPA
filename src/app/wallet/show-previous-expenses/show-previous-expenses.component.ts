@@ -122,13 +122,8 @@ export class ShowPreviousExpensesComponent implements OnInit {
     this.expenseService.getPreviousExpenses(date.toUTCString()).subscribe(
       (expenses: PreviousData) => {
         this.isLoading = true;
-        // this.barExpenses = expenses.previousExpensesBars;
-        // this.topFiveUsers = expenses.topFiveUsers;
         if (expenses.topFiveUsers.length > 0) {
           this.data = expenses;
-          console.log('data', this.data);
-
-          //this.expensesWithCategories = expenses.previousMonthExpenses;
         }
         this.isLoading = false;
       },

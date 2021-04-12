@@ -268,7 +268,6 @@ export class WalletAdminComponent implements OnInit {
         structuredRoles.push(' ' + value);
       });
     });
-    console.log('test');
     return structuredRoles;
   }
 

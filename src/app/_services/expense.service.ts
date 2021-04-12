@@ -90,7 +90,6 @@ export class ExpenseService {
           );
           currentExpenses[index].expenses.push(receivedExpense);
           this.expenseSubjects.next(currentExpenses);
-          console.log('emit new expenses subject');
           this.totalMoneySpentSubject.next(
             this.totalMoneySpentSubject.getValue() + receivedExpense.moneySpent
           );
@@ -148,8 +147,6 @@ export class ExpenseService {
   }
 
   onExpenseEdit(expenseToEdit: ExpenseForTable): Observable<ExpenseForTable> {
-    console.log('|', this.authService.getToken().nameid, '|');
-
     return this.http.post<ExpenseForTable>(
       `${this.baseUrl}${this.authService.getToken().nameid}/expenseEdit/
       ${expenseToEdit.id}`,
@@ -162,7 +159,6 @@ export class ExpenseService {
       .get<WalletForPage>(`${this.baseUrl}${userId}/getNameAndLimit`)
       .pipe(
         map((data: WalletForPage) => {
-          console.log('emit new expenses subject 222');
           this.totalMoneySpentSubject.next(data.monthlyExpenses);
           return data;
         })

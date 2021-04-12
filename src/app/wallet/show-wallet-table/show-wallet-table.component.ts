@@ -96,7 +96,6 @@ export class ShowWalletTableComponent implements OnInit {
   private getTotalMoney() {
     this.expenseService.getTotalMoneySubjectAsObservable().subscribe(
       (expData) => {
-        console.log('data', expData);
         this.walletExpenses = expData;
         this.checkLimit();
       },

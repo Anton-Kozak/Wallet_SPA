@@ -23,7 +23,6 @@ export class RegGuard implements CanActivate {
     | boolean
     | UrlTree {
     const token = this.authService.getToken();
-    // console.log('Reg guard is activated');
     if (token !== null) {
       if (token.hasWallet !== 'true') {
         this.router.navigate(['/main/no-wallet']);
