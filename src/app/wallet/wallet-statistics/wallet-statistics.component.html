@@ -47,30 +47,30 @@
                 data-aos-once="true" data-aos-delay="0">
                 <app-card [classes]="['nc-icon nc-chart-bar-32 icon-color-1', 'fa fa-sort-amount-asc']"
                     [mainText]="'Expenses.MostUsed'" [subText]="'ExpenseCategory.'+statisticalData.mostUsedCategory"
-                    [subTextNone]="'None found'" [hasFooter]="true" [footerText]="'Footer.NumberExp'"
-                    [footerTextNone]="'Please, add expenses'">
+                    [subTextNone]="'Error.NoneFound'" [hasFooter]="true" [footerText]="'Footer.NumberExp'"
+                    [footerTextNone]="'Error.AddSomeExpenses'">
                 </app-card>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
                 data-aos-once="true" data-aos-delay="150">
                 <app-card [classes]="['nc-icon nc-chart-bar-32 icon-color-2', 'fa fa-money']"
                     [mainText]="'Expenses.MostSpent'" [subText]="'ExpenseCategory.'+statisticalData.mostSpentCategory"
-                    [subTextNone]="'None found'" [hasFooter]="true" [footerText]="'Footer.TotalCat'"
-                    [footerTextNone]="'Please, add expenses'">
+                    [subTextNone]="'Error.NoneFound'" [hasFooter]="true" [footerText]="'Footer.TotalCat'"
+                    [footerTextNone]="'Error.AddSomeExpenses'">
                 </app-card>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
                 data-aos-once="true" data-aos-delay="300">
                 <app-card [classes]="['nc-icon nc-money-coins icon-color-3', 'fa fa-refresh']"
                     [mainText]="'Expenses.Average'" [subText]="statisticalData.averageDailyExpense" [subTextNone]="0"
-                    [hasFooter]="true" [footerText]="'Footer.PerDay'" [footerTextNone]="'Please, add expenses'">
+                    [hasFooter]="true" [footerText]="'Footer.PerDay'" [footerTextNone]="'Error.AddSomeExpenses'">
                 </app-card>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6" data-aos="fade-down" data-aos-duration="1200"
                 data-aos-once="true" data-aos-delay="450">
                 <app-card [classes]="['nc-icon nc-money-coins icon-color-4', 'fa fa-refresh']"
                     [mainText]="'Expenses.Total'" [subText]="statisticalData.amountOfMoneySpent" [subTextNone]="0"
-                    [hasFooter]="true" [footerText]="'Footer.TotalSum'" [footerTextNone]="'Please, add expenses'">
+                    [hasFooter]="true" [footerText]="'Footer.TotalSum'" [footerTextNone]="'Error.AddSomeExpenses'">
                 </app-card>
             </div>
         </div>
@@ -86,9 +86,7 @@
                         <div *ngIf="statisticalData.topFiveUsers">
                             <app-pie-graph [topFiveUsers]="statisticalData.topFiveUsers"></app-pie-graph>
                         </div>
-                        <p *ngIf="!statisticalData.topFiveUsers" class="text-uppercase">Please, add some expenses
-                            to see
-                            statistics
+                        <p *ngIf="!statisticalData.topFiveUsers" class="text-uppercase">{{'Error.AddSomeExpenses' | translate}}
                         </p>
                     </div>
                     <div class="card-footer">
@@ -111,9 +109,7 @@
                             <app-single-bar-chart [categories]="categories"
                                 [barExpensesList]="statisticalData.barExpenses">
                             </app-single-bar-chart>
-                            <p *ngIf="statisticalData.barExpenses === null" class="text-uppercase">Please, add some
-                                expenses to see
-                                statistics
+                            <p *ngIf="statisticalData.barExpenses === null" class="text-uppercase">{{'Error.AddSomeExpenses' | translate}}
                             </p>
                         </div>
                     </div>
@@ -140,9 +136,7 @@
                             <app-line-chart *ngIf="statisticalData.lastSixMonths"
                                 [lastSixMonths]="statisticalData.lastSixMonths">
                             </app-line-chart>
-                            <p *ngIf="statisticalData.lastSixMonths === null" class="text-uppercase">Please, add some
-                                expenses to see
-                                statistics
+                            <p *ngIf="statisticalData.lastSixMonths === null" class="text-uppercase">{{'Error.AddSomeExpenses' | translate}}
                             </p>
                         </div>
                     </div>
@@ -170,7 +164,7 @@
                                 [lastMonthbarExpensesList]="statisticalData.barCompareExpensesWithLastMonth.lastMonthData">
                             </app-bar-comparison>
                             <p *ngIf="!isMonthCompareDataNotNil"
-                                class="text-uppercase">Please, add some expenses to see statistics
+                                class="text-uppercase">{{'Error.AddSomeExpenses' | translate}}
                             </p>
                         </div>
                     </div>

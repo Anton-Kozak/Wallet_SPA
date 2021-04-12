@@ -12,7 +12,7 @@
                 <div class="numbers">
                     <p class="card-category mb-2">{{mainText | translate}}</p>
                     <p *ngIf="!isExpenseCategoryNull" class="card-title text-capitalize">{{subText | translate}}</p>
-                    <p *ngIf="isExpenseCategoryNull" class="card-title text-capitalize">{{subTextNone}}</p>
+                    <p *ngIf="isExpenseCategoryNull" class="card-title text-capitalize">{{subTextNone | translate}}</p>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
             <!-- 1 - иконка для футера
                  class="fa fa-sort-amount-asc" -->
             <span *ngIf="!isFooterTextNull">{{footerText | translate}}</span>
-            <span *ngIf="isFooterTextNull">{{footerTextNone}}</span>
+            <span *ngIf="isFooterTextNull">{{footerTextNone | translate}}</span>
         </div>
     </div>
 </div>

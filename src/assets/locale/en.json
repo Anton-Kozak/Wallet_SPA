@@ -333,5 +333,10 @@
     "ThirdPlanDetailed": "Detailed and advanced statistics",
     "Order": "Order now!",
     "BecomePremium": "Get Premium Status Now!"
+  },
+  "Error": {
+    "AddSomeExpenses": "PLEASE, ADD SOME EXPENSES TO SEE STATISTICS",
+    "NoneFound": "None Found",
+    "": ""
   }
 }
