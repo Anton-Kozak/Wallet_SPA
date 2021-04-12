@@ -3,6 +3,7 @@ export interface ApplicationUser {
   age: number;
   email: string;
   firstName: string;
+  normalizedUserName?: string;
   lastName: string;
   city: string;
   country: string;

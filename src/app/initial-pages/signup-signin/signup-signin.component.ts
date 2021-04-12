@@ -136,8 +136,10 @@ export class SignupSigninComponent implements OnInit {
     const username = this.signInForm.value['usernameIn'];
     const password = this.signInForm.value['userpassIn'];
     this.authService.login(username, password).subscribe(
-      (data: { token: string; user: ApplicationUser }) => {
-        this.alertify.success('Welcome: ' + data.user.firstName);
+      (data: { token: string; user: ApplicationUser }): void => {
+        let capitalizedName = data.user.normalizedUserName.toLowerCase();
+        capitalizedName = this.capitalizeWord(capitalizedName);
+        this.alertify.success('Welcome: ' + capitalizedName);
         if (this.hasWallet()) {
           this.authService.hasWallet.next(true);
           this.router.navigate(['/wallet/home-wallet']);
@@ -151,6 +153,10 @@ export class SignupSigninComponent implements OnInit {
         this.signInLoading = false;
       }
     );
+  }
+
+  capitalizeWord(word: string): string {
+    return word.charAt(0).toString().toUpperCase() + word.slice(1);
   }
 
   resetSignUpForm(): void {
