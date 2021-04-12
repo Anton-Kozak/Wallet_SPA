@@ -73,6 +73,7 @@
     </div>
     <div class="col-12 card" [ngClass]="{'fade-in-left': true}">
         <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
+            <p class="date-time">{{'Expenses.DateForManual' | translate}} {{date}}</p>
             <table style="width: 100%;" mat-table [dataSource]="specifiedDataStatistics.expenses">
                 <ng-container matColumnDef="expenseTitle">
                     <th class="text-center table-head title-table-header" mat-header-cell *matHeaderCellDef>

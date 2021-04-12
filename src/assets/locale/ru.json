@@ -55,7 +55,8 @@
     "ExpensesCompareDesc": "Предыдущий и текущий месяцы",
     "ExpenseForCategory": "Расходы по категориям",
     "ExpenseForCatDesc": "Для текущего пользователя",
-    "CreateExpense": "Добавить Расход"
+    "CreateExpense": "Добавить Расход",
+    "DateForManual": "Расходы за "
   },
   "CustomCompare": {
     "Select": "Выберите Даты для Сравнения",

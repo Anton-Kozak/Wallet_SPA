@@ -55,7 +55,8 @@
     "ExpensesCompareDesc": "Previous And Current Months",
     "ExpenseForCategory": "Expenses For Each Category",
     "ExpenseForCatDesc": "For Current User",
-    "CreateExpense": "Create Expense"
+    "CreateExpense": "Create Expense",
+    "DateForManual": "Expenses on "
   },
   "CustomCompare": {
     "Select": "Select Dates",
