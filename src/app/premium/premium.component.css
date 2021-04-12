@@ -1,0 +1,48 @@
+.outer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10px;
+    height: 100%;
+  }
+  .item {
+    width: 100%;
+    text-align: center;
+  }
+  .status {
+    font-size: 32pt;
+    color: var(--card-table-header);
+  }
+  .benefits {
+    background-color: var(--card-background);
+    color: var(--card-table-header);
+  }
+  .price{
+        align-items: center;
+    justify-content: space-around;
+  }
+  
+  .sp{
+    background-color: var(--card-table-header);
+    color: var(--card-background);
+    font-weight: bold;
+  }
+  
+  .pricing{
+    min-width: 70px;
+    min-height: 250px;
+    max-width: 300px;
+  }
+  
+  .price li {
+    line-height: 3.5em;
+    font-size: 12pt;
+  }
+  
+  
+  .confirm-button{
+    /* background-color: var(--card-table-header); */
+    border-color: var(--card-table-header);
+    color: var(--card-table-header);
+  }
+  

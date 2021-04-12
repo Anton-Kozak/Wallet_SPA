@@ -7,8 +7,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Notification } from 'src/app/_model/notification';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { ExpensesWithCategories } from 'src/app/_model/expense_models/expensesWithCategories';
-import { ActivatedRoute } from '@angular/router';
-import { CategoryData } from 'src/app/_model/data_models/categoryData';
 import { ExpenseForTable } from 'src/app/_model/expense_models/expense-for-table';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
@@ -33,7 +31,6 @@ export class ShowWalletTableComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private noteService: NotificationService,
-    private route: ActivatedRoute,
     private translateService: TranslateService,
     private titleService: Title,
     private themeService: MyThemeService,
@@ -72,6 +69,20 @@ export class ShowWalletTableComponent implements OnInit {
     this.setTheme();
     this.getWalletData();
     //this is for tables with data
+    this.getTableData();
+    //this is overall number of expenses
+    this.getTotalMoney();
+    this.isBlocked = this.authService.roleMatch(Roles.Blocked);
+    this.noteService.getNotifications().subscribe(
+      (notifications: Notification[]) => {
+        this.notifications = notifications;
+      },
+      (error) => {
+        this.alertify.error(error.error);
+      }
+    );
+  }
+  private getTableData() {
     this.expenseService.getExpenseSubjectsAsObservable().subscribe(
       (exp: ExpensesWithCategories[]) => {
         this.expensesWithCategories = [...exp];
@@ -80,7 +91,9 @@ export class ShowWalletTableComponent implements OnInit {
         this.alertify.error(error.error);
       }
     );
-    //this is overall number of expenses
+  }
+
+  private getTotalMoney() {
     this.expenseService.getTotalMoneySubjectAsObservable().subscribe(
       (expData) => {
         console.log('data', expData);
@@ -91,18 +104,8 @@ export class ShowWalletTableComponent implements OnInit {
         this.alertify.error(error.error);
       }
     );
-
-    this.isBlocked = this.authService.roleMatch(Roles.Blocked);
-
-    this.noteService.getNotifications().subscribe(
-      (notifications: Notification[]) => {
-        this.notifications = notifications;
-      },
-      (error) => {
-        this.alertify.error(error.error);
-      }
-    );
   }
+
   checkTableData(expenseData: ExpensesWithCategories): boolean {
     return expenseData.expenses.length > 0 && this.colors !== null;
   }
