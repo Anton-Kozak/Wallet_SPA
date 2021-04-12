@@ -60,7 +60,9 @@
                                         <th class="text-center table-head user-table-header" mat-header-cell
                                             *matHeaderCellDef> {{"Profile.Roles" | translate}} </th>
                                         <td class="text-center table-text" mat-cell *matCellDef="let element">
-                                            {{element.userRoles.join(', ')}} </td>
+                                            {{ structureRoles(element.userRoles)}} 
+                                            <!-- {{ element.userRoles.join(', ')}}  -->
+                                        </td>
                                     </ng-container>
                                     <ng-container matColumnDef="actions">
                                         <th class="table-text" mat-header-cell *matHeaderCellDef> {{"Expenses.Actions" |

@@ -18,7 +18,8 @@
     "CompareCustom": "Custom Date Compare",
     "Profile": "Profile",
     "Admin": "Admin Panel",
-    "Tips": "Tips"
+    "Tips": "Tips",
+    "VIP": "VIP"
   },
   "Expenses": {
     "Add": "Add Expense",
@@ -337,7 +338,12 @@
   },
   "Error": {
     "AddSomeExpenses": "PLEASE, ADD SOME EXPENSES TO SEE STATISTICS",
-    "NoneFound": "None Found",
-    "": ""
+    "NoneFound": "None Found"
+  },
+  "Roles": {
+    "Admin": "Admin",
+    "Adult": "Adult",
+    "Blocked": "Blocked",
+    "VIP": "VIP"
   }
 }

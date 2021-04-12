@@ -16,6 +16,7 @@ import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 import { Roles } from 'src/app/_helper/roles';
 import { ColumnHeaders } from 'src/app/_helper/columns-headers';
 import { Language } from 'src/app/_helper/language';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -50,10 +51,9 @@ export class WalletAdminComponent implements OnInit {
   ];
   expenses: ExpenseForAdminTable[] = [];
   users = new MatTableDataSource<UserForAdmin>();
+  userRoles: string[] = [];
   walletCurrency = 'USD';
   isLoading = false;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-
   get isLengthNotNill(): boolean {
     return !!this.expenses.length;
   }
@@ -259,6 +259,17 @@ export class WalletAdminComponent implements OnInit {
       this.users.data[index] = { ...users };
       this.users.data = this.users.data;
     }
+  }
+
+  structureRoles(roles: string[]): string[] {
+    const structuredRoles: string[] = [];
+    roles.map((role) => {
+      this.translate.get(`Roles.${role}`).subscribe((value) => {
+        structuredRoles.push(' ' + value);
+      });
+    });
+    console.log('test');
+    return structuredRoles;
   }
 
   getFormat(date: string): string {
