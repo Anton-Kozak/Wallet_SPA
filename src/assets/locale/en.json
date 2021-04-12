@@ -313,5 +313,25 @@
     "PLNSign": "zł",
     "CHF": "CHF",
     "CHFSign": "CHF"
+  },
+  "Premium": {
+    "Status": "Your status is: ",
+    "Question": "Why should you become a premium member?",
+    "Benefits": "Benefits of being a VIP!",
+    "GetMoreInfo": "Get more information",
+    "FirstTip": "Get access to advanced statistics",
+    "SecondTip": "See what your members spend on daily basis",
+    "ThirdTip": "Get monthly reports on your spending habits!",
+    "Beginner": "Beginner",
+    "Advanced": "Advanced",
+    "Pro": "Pro",
+    "OneMonth": "for 1 month",
+    "ThreeMonth": "for 3 month",
+    "TwelveMonth": "for 12 month",
+    "FirstPlanDetailed": "Up to 5 users",
+    "SecondPlanDetailed": "Free VIP status for admin",
+    "ThirdPlanDetailed": "Detailed and advanced statistics",
+    "Order": "Order now!",
+    "BecomePremium": "Get Premium Status Now!"
   }
 }

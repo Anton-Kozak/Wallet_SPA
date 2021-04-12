@@ -25,7 +25,7 @@ export class PremiumComponent implements OnInit {
   ngOnInit(): void {
     this.authService.roleMatch(Roles.Premium) === true
       ? (this.vipStatus = Roles.Premium)
-      : Roles.Standard;
+      : (this.vipStatus = Roles.Standard);
   }
 
   onPremiumClick(): void {
