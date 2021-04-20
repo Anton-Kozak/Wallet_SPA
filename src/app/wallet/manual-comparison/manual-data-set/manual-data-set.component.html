@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="specifiedDataStatistics">
     <div class="d-lg-none">
         <div class="card p-3 text-center text-uppercase">
             {{date}}
@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 card" [ngClass]="{'fade-in-left': true}">
+    <div *ngIf="specifiedDataStatistics.expenses" class="col-12 card" [ngClass]="{'fade-in-left': true}">
         <div class="mat-elevation-z8 text-center" style="box-shadow: none;">
             <p class="date-time">{{'Expenses.DateForManual' | translate}} {{date}}</p>
             <table style="width: 100%;" mat-table [dataSource]="specifiedDataStatistics.expenses">
