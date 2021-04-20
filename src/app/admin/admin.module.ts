@@ -13,6 +13,10 @@ import { EditWalletComponent } from '../wallet/edit-wallet/edit-wallet.component
 import { TableModule } from '../shared/table-with-expenses/table.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
     MatTableModule,
     MatPaginatorModule,
     MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
     FormsModule,
     ReactiveFormsModule,
     TableModule,

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { ExpenseForTable } from '../_model/expense_models/expense-for-table';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { UserForAdmin } from '../_model/user_models/user-for-admin';
 import { ExpenseForAdminTable } from '../_model/expense_models/expense-for-admin-table';
 import { Expense } from '../_model/expense_models/expense';
 import { ProfileData } from '../_model/data_models/profile-data';
 import { UserForProfileEdit } from '../_model/user_models/user-for-profile-edit';
 import { throttleTime } from 'rxjs/operators';
+import { Filters } from '../_model/expense_models/fitlers';
 
 @Injectable({
   providedIn: 'root'
@@ -124,5 +125,17 @@ export class AdminService {
     return this.http
       .get<number>(this.baseUrl + this.authService.getToken().nameid + '/test')
       .pipe(throttleTime(2000));
+  }
+
+  getExpensesDataFiltered(
+    filters: Filters
+  ): Observable<ExpenseForAdminTable[]> {
+    return this.http.post<ExpenseForAdminTable[]>(
+      `${this.baseUrl}${
+        this.authService.getToken().nameid
+      }/getExpensesDataFiltered`,
+      filters,
+      { responseType: 'json' }
+    );
   }
 }

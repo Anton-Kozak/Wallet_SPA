@@ -108,4 +108,53 @@
             </app-table-with-expenses>
         </div>
     </div>
+    <div class="col-xl-7 col-md-12 mt-5">
+        <div class="card">
+            <p class="text-center">RxJS test</p>
+            <div>
+            
+            <!-- <button class="btn btn-outline-info" (click)="onConcatTest()">Concat</button> -->
+            <button class="btn btn-outline-info m-1" (click)="onMergeTest()">Merge</button>
+            <button class="btn btn-outline-info m-1" (click)="onConcatTest()">Concat</button>
+            <button class="btn btn-outline-info m-1" (click)="onForkJoinTest()">Fork Join</button>
+            <button class="btn btn-outline-info m-1" (click)="onRaceTest()">Race</button>
+            <button class="btn btn-outline-danger m-1" (click)="onMergeAllTest()">Merge All</button>
+            <button class="btn btn-outline-danger m-1" (click)="onMergeMapTest()">Merge Map</button>
+            <button class="btn btn-outline-primary m-1" (click)="onZipTest()">Zip</button>
+            <button class="btn btn-outline-secondary m-1" (click)="onWithLatestFromTest()">With Lastest From</button>
+        </div>
+        </div>
+    </div>
+    <div class="col-xl-7 col-md-12 mt-5">
+        <div class="card">
+            <div class="dropdowns">
+                <select  #userFilterRef (change)="onFilterChange('users', userFilterRef.value)">
+                    <option value="All">All</option>
+                    <option *ngFor="let user of usersNames" [value]=user>{{user}}</option>
+                </select>
+                <select  #priceFilterRef class="ml-2" (change)="onFilterChange('price', priceFilterRef.value)">
+                    <option value="-1">All prices</option>
+                    <option value="10">$10+</option>
+                    <option value="30">$30+</option>
+                    <option value="50">$50+</option>
+                    <option value="100">$100+</option>
+                    <option value="150">$150+</option>
+                    <option value="500">$500+</option>
+                    <option value="1000">$1000+</option>
+                </select>
+                <mat-form-field class="calendar">
+                    <input #ref1 (dateChange)="onFilterChange('date', ref1.value)" [formControl]="filterDate"
+                        class="date-picker" matInput [matDatepicker]="picker" [value]="filterDate.value">
+                    <mat-datepicker-toggle class="dp" matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker class="dp" #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="mat-elevation-z8 text-center">
+                <app-table-with-expenses *ngIf="isExpensesFilteredLengthNotNill" [tableData]='expensesFiltered'
+                    [tableHeaders]='columnsForExpenses' [isThisUser]='false' [isAdmin]="true" [walletCurrency]='walletCurrency'>
+                </app-table-with-expenses>
+            </div>
+        </div>
+    </div>
+    
 </div>
