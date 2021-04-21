@@ -10,6 +10,8 @@ import {
   TranslateLoader,
   TranslateFakeLoader
 } from '@ngx-translate/core';
+import { AuthService } from 'src/app/_services/auth.service';
+import { WalletService } from 'src/app/_services/wallet.service';
 
 import { CreateExpenseComponent } from './create-expense.component';
 
@@ -29,8 +31,10 @@ describe('CreateExpenseComponent', () => {
           }
         })
       ],
-
       providers: [
+        CreateExpenseComponent,
+        WalletService,
+        AuthService,
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} }
       ]

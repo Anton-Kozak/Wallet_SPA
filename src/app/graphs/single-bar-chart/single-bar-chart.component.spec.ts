@@ -1,24 +1,41 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  TranslateModule,
+  TranslateLoader,
+  TranslateFakeLoader
+} from '@ngx-translate/core';
 
 import { SingleBarChartComponent } from './single-bar-chart.component';
 
 describe('SingleBarChartComponent', () => {
-  let component: SingleBarChartComponent;
-  let fixture: ComponentFixture<SingleBarChartComponent>;
+  // let component: SingleBarChartComponent;
+  // let fixture: ComponentFixture<SingleBarChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SingleBarChartComponent]
+      declarations: [SingleBarChartComponent],
+      imports: [
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useClass: TranslateFakeLoader
+          }
+        })
+      ]
     }).compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SingleBarChartComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(SingleBarChartComponent);
+    const app = fixture.componentInstance;
+    const categories = [
+      { id: 1, title: 'string' },
+      { id: 1, title: 'string' },
+      { id: 1, title: 'string' },
+      { id: 1, title: 'string' }
+    ];
+    app.categories = categories;
+
+    expect(app).toBeTruthy();
   });
 });
